@@ -1,0 +1,88 @@
+.card {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    margin: 40px;
+    padding: 10px;
+    width: 100%;
+    background-color: white;
+  }
+  
+  .card-header {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 10px;
+  }
+  
+  .card-header h3 {
+    margin: 0;
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
+  .card-body p {
+    margin: 0;
+    padding: 5px 0;
+  }
+
+  .card:hover{
+    border: 3px solid rgba(23, 154, 214, 0.3);
+    box-shadow: 2px 2px 5px rgba(23, 154, 214, 0.3);
+    border-color: lightblue;
+  }
+
+  .description{
+    width:60%
+  }
+
+
+.chat-now-btn {
+  background-color: #36A9AE;
+  background-image: linear-gradient(#37ADB2, #329CA0);
+  border: 1px solid #2A8387;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: block;
+  font-family: -apple-system,".SFNSDisplay-Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 17px;
+  line-height: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 11px 15px 12px;
+  text-align: center;
+  transition: box-shadow .05s ease-in-out,opacity .05s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  position: absolute;
+  right: 30px;
+  bottom: 10px;
+}
+
+.chat-now-btn:hover {
+  box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px inset, rgba(0, 0, 0, 0.4) 0 1px 2px;
+  text-decoration: none;
+  transition-duration: .15s, .15s;
+}
+
+.chat-now-btn:active {
+  box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.4) 0 1px 1px;
+}
+
+.chat-now-btn:disabled {
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+.chat-now-btn:disabled:active {
+  pointer-events: none;
+}
+
+.chat-now-btn:disabled:hover {
+  box-shadow: none;
+}
+  
