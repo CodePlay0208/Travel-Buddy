@@ -7,11 +7,11 @@
   }
 
   .webAppNameAndLogo{
-    font-family: "gt-eesti";
     font-weight: 500;
     color: rgb(5,71,82);
     font-size:40px;
     padding: 8px 12px;
+    cursor: pointer;
   }
 
   .otherContentsOfNavBar{
@@ -33,5 +33,10 @@
     border: none;
     font-weight: 500;
     margin-right: 20px;
+    cursor: pointer;
+  }
+
+  #search-button{
+    width: 50px;
   }
   

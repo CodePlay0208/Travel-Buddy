@@ -19,7 +19,7 @@ const SearchResultsSection = () => {
   let finalTrips = trips.filter((trip) => filterTrip(trip));
   console.log("The final trips are ", finalTrips);
   return (
-    <div className="container">
+    <div className="search-results-section-container">
       <div className="headerForSearchResults"></div>
       <div className="trips">
         {finalTrips && finalTrips.map((trip) =>(<Trip key ={trip.id} trip={trip} />)

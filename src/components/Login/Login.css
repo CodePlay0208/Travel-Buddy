@@ -74,7 +74,7 @@
     border-color: #545b62;
   }
 
- .container {
+ .login-page-container {
     display: flex;
     justify-content: center;
     align-items: center;

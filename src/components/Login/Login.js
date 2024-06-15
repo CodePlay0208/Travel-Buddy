@@ -22,7 +22,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container"> {/* add a container div */}
+    <div className="login-page-container"> 
       <div className="login">
         <h1>Login</h1>
 

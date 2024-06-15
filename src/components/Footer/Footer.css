@@ -1,0 +1,103 @@
+.footer-container{
+    position: fixed;
+    bottom:0;
+    margin-bottom: 0px;
+    width: 100%;
+    font-family: "Calibri";
+}
+
+.destinations-and-links{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: rgb(244, 244, 244);
+    margin-bottom: 3px;
+}
+
+ svg{
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
+
+.X{
+    fill:#ffffff;
+    stroke: #228BE6;
+    stroke-width: 2px;
+}
+
+.youTube{
+    fill:#ffffff;
+    stroke: #228BE6;
+    stroke-width: 2px;
+}
+
+.facebook{
+    fill:#ffffff;
+    stroke: #228BE6;
+    stroke-width: 2px;
+}
+
+.instagram{
+    stroke-width: 0.5px; 
+}
+
+.li-top-destinations{
+    padding: 15px;
+    list-style-type: none;
+    color: rgb(5, 70, 82);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.social-media-links{
+    padding: 15px;
+}
+
+.facebook:hover{
+    cursor: pointer;
+    filter: drop-shadow(3px 3px 4px #228BE6);
+}
+
+.instagram:hover{
+    cursor: pointer;
+    filter: drop-shadow(3px 3px 10px #228BE6);
+}
+
+.X:hover{
+    cursor: pointer;
+    filter: drop-shadow(3px 3px 4px #228BE6);
+}
+.youTube:hover{
+    cursor: pointer;
+    filter: drop-shadow(3px 3px 4px #228BE6);
+}
+
+.li-top-destinations:hover{
+    cursor: pointer;
+    color: #228BE6;
+    filter: drop-shadow(0px 0px 7px #228BE6);
+}
+
+.copyright{
+    width: 100%;
+}
+
+.copyright-name{
+   color: #727474;
+   font-size: 22px;
+   font-weight: 600;
+   padding-bottom: 0px;
+   display: flex;
+   align-items: center;
+   margin-left: 70%;
+   margin-top:0;
+}
+
+.copyright-icon{
+   height: 19px;
+   width: 19px;
+   fill:#727474 ;
+ }
+  
+ 

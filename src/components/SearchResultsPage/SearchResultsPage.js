@@ -5,6 +5,7 @@ import Searchbar from "../Searchbar/Searchbar";
 import FilterSection from "../FilterSection/FilterSection";
 import SearchResultsSection from "../SearchResultsSection/SearchResultsSection";
 import { FilterContext } from "../../Utils/Context/FilterContext";
+import Footer from "../Footer/Footer";
 
 
 const SearchResultsPage = () => {
@@ -26,7 +27,7 @@ const SearchResultsPage = () => {
             setFilterData: setFilterData,
           }}
         >
-          <div className="container">
+          <div className="search-results-page-container">
             <div className="filter-section">
               <FilterSection visibility = {true} />
             </div>
@@ -36,7 +37,6 @@ const SearchResultsPage = () => {
             </div>
           </div>
         </FilterContext.Provider>
-     
     </div>
   );
 };
