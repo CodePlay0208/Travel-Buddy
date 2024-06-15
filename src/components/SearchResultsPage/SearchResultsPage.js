@@ -37,6 +37,7 @@ const SearchResultsPage = () => {
             </div>
           </div>
         </FilterContext.Provider>
+        <Footer></Footer>
     </div>
   );
 };
