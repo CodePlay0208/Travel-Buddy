@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./Searchbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { TripsContext } from "../../Utils/Context/TripsContext";
-
+import data from "../../data/data.json"
 const Searchbar = () => {
   const [inputValues, setInputValues] = useState({
     destination: "",
@@ -15,63 +15,9 @@ const Searchbar = () => {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          const arr = [
-            {
-              id: 1,
-              startLocation: "Delhi",
-              endLocation: "Mussorie",
-              totalMembers: 4,
-              age: 25,
-              sex:"Male",
-              description: "Hi we are a group of 4 people and we are planning to go to mussorie, anyone can join who are interested."
-            },
-            {
-              id: 2,
-              startLocation: "Bangalore",
-              endLocation: "Tamil Nadu",
-              totalMembers: 3,
-              age: 37,
-              sex: "Female",
-              description: "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv "
-            },
-            {
-              id: 3,
-              startLocation: "Delhi",
-              endLocation: "Chandigrah",
-              totalMembers: 3,
-              age: 37,
-              sex: "Female",
-              description: "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv "
-            },
-            {
-              id: 4,
-              startLocation: "Bangalore",
-              endLocation: "USA",
-              totalMembers: 3,
-              age: 37,
-              sex: "Female",
-              description: "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv "
-            },
-            {
-              id: 5,
-              startLocation: "Bangalore",
-              endLocation: "USA",
-              totalMembers: 3,
-              age: 37,
-              sex: "Female",
-              description: "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv "
-            },
-            {
-              id: 6,
-              startLocation: "Bangalore",
-              endLocation: "USA",
-              totalMembers: 3,
-              age: 37,
-              sex: "Female",
-              description: "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv "
-            },
-          ];
+          const arr = data;
           tripsContext.setTripsData(arr);
+          console.log(inputValues.startDate);
           navigate("/search-results-page");
         }}
       >

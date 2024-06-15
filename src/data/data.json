@@ -1,0 +1,56 @@
+[
+    {
+      "id": 1,
+      "startLocation": "Delhi",
+      "endLocation": "Mussorie",
+      "totalMembers": 4,
+      "age": 25,
+      "sex":"Male",
+      "description": "Hi we are a group of 4 people and we are planning to go to mussorie, anyone can join who are interested."
+    },
+    {
+      "id": 2,
+      "startLocation": "Bangalore",
+      "endLocation": "Tamil Nadu",
+      "totalMembers": 3,
+      "age": 37,
+      "sex": "Female",
+      "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv "
+    },
+    {
+      "id": 3,
+      "startLocation": "Delhi",
+      "endLocation": "Chandigrah",
+      "totalMembers": 3,
+      "age": 37,
+      "sex": "Female",
+      "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv "
+    },
+    {
+      "id": 4,
+      "startLocation": "Bangalore",
+      "endLocation": "USA",
+      "totalMembers": 3,
+      "age": 37,
+      "sex": "Female",
+      "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv "
+    },
+    {
+      "id": 5,
+      "startLocation": "Bangalore",
+      "endLocation": "USA",
+      "totalMembers": 3,
+      "age": 37,
+      "sex": "Female",
+      "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv "
+    },
+    {
+      "id": 6,
+      "startLocation": "Bangalore",
+      "endLocation": "USA",
+      "totalMembers": 3,
+      "age": 37,
+      "sex": "Female",
+      "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv "
+    }
+  ]
