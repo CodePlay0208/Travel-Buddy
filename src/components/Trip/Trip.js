@@ -12,8 +12,17 @@ const Trip = ({trip})=>{
         <div class="card__header">
           
           <div class="card__header-text">
+
+          
           <p><strong>From:</strong>{trip.startLocation}</p>
           <p><strong>To:</strong> {trip.endLocation}</p>
+          </div>
+          <div className='card__user'>
+            
+            <div className='card__profile'>
+              <img src={trip.profileImg} alt="" />
+            </div>
+            <p>{trip.name}</p>
           </div>
         </div>
         <p class="card__description"><p><strong>No. of Members:</strong>{trip.totalMembers}</p>
