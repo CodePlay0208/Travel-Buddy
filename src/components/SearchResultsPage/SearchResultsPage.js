@@ -1,20 +1,34 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./SearchResultsPage.css";
 import Navbar from "../Navbar/Navbar";
 import Searchbar from "../Searchbar/Searchbar";
 import FilterSection from "../FilterSection/FilterSection";
 import SearchResultsSection from "../SearchResultsSection/SearchResultsSection";
 import { FilterContext } from "../../Utils/Context/FilterContext";
-import Footer from "../Footer/Footer";
+import {TripsContext} from "../../Utils/Context/TripsContext";
+import {InputValuesContext} from  "../../Utils/Context/InputValuesContext";
+import data from "../../data/data.json";
 
 
 const SearchResultsPage = () => {
   const [filterData, setFilterData] = useState({
     fromAge: 0,
     toAge: 100,
-    sex: "",
+    gender: "",
   });
 
+  console.log("search results page");
+
+  const {inputValues} = useContext(InputValuesContext);
+
+  const tripsContext = useContext(TripsContext);
+
+  console.log("The input values are", inputValues);
+
+  useEffect(()=>{
+    const arr = data;
+    tripsContext.setTripsData(arr);
+  },[inputValues]);
  
 
   return (

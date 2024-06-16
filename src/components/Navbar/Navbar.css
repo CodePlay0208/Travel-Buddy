@@ -39,4 +39,10 @@
   #search-button{
     width: 50px;
   }
+
+.nav-button:hover{
+  filter: drop-shadow(3px 3px 4px #228BE6);
+
+}
+
   

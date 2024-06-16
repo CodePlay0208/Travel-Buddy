@@ -12,7 +12,7 @@ const SearchResultsSection = () => {
   const trips = tripsContext.tripsData;
 
   const filterTrip = (trip) =>{
-    return (trip.age >= filterContext.fromAge && trip.age <= filterContext.toAge && (filterContext.sex === '' || trip.sex === filterContext.sex))
+    return (trip.age >= filterContext.fromAge && trip.age <= filterContext.toAge && (filterContext.gender === '' || trip.gender === filterContext.gender))
   }
 
 

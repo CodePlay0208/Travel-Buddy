@@ -1,0 +1,88 @@
+.publish-trip-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
+  margin-bottom: 50px;
+  font-size: 25px;
+}
+
+.input-element {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  font-weight: 500;
+  margin-left: 22%;
+}
+
+.publish-trips-label {
+  margin-bottom: 7px;
+}
+
+.publish-trips-input {
+  width: 370.312px;
+  height: 40px;
+  border-radius: 0.4rem;
+  font-size: 18px;
+  padding: 10px;
+  font-weight: 400;
+  font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
+  color: rgb(5, 0, 0);
+}
+
+input::placeholder {
+  font-weight: 400;
+  font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
+  color: rgb(5, 0, 0);
+}
+
+.publish-trip-heading {
+  font-family: sans-serif;
+  margin-left: 20%;
+  font-size: 55px;
+}
+
+.publish-trips-textarea {
+  width: 600px;
+  height: 150px;
+  border-radius: 0.4rem;
+  font-size: 18px;
+  padding: 10px;
+  font-weight: 400;
+  font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
+}
+
+.publish-trips-textarea::placeholder {
+  font-weight: 400;
+  font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
+  color: rgb(0, 0, 0);
+}
+
+.variants {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#input-file {
+  display: none;
+}
+
+.input-file-label {
+  width: 200px;
+  height: 45px;
+  background: #2f6f9c;
+  color: #ffffff;
+  font-size: 15px;
+  text-transform: capitalize;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:12px;
+  border: white;
+
+}
+
+

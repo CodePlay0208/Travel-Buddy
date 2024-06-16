@@ -41,4 +41,3 @@ const Trip = ({trip})=>{
 }
 
 export default Trip
-

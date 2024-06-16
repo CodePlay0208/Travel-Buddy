@@ -7,6 +7,7 @@ import { TripsContext } from "./Utils/Context/TripsContext";
 import PublishTrip from "./components/PublishTrip/PublishTrip";
 import React, { useEffect, useState } from "react";
 import { TopDestinationsContext } from "./Utils/Context/TopDestinationsContext";
+import { InputValuesContext } from "./Utils/Context/InputValuesContext";
 
 function App() {
   const [tripsData, setTripsData] = useState([
@@ -16,8 +17,9 @@ function App() {
       endLocation: "M",
       totalMembers: 4,
       age: -1,
-      sex: "Male",
+      gender: "Male",
       description: "",
+      image:""
     },
   ]);
 
@@ -35,11 +37,18 @@ function App() {
     setTopDestinations(topDestinationsFromAPI);
   }, []);
 
+  const [inputValues, setInputValues] = useState({
+    destination: "",
+    startDate: "",
+  });
+
   return (
-    <TripsContext.Provider value={{ tripsData, setTripsData: setTripsData }}>
+    <TripsContext.Provider value={{ tripsData,  setTripsData }}>
       <TopDestinationsContext.Provider
-        value={{ topDestinations, setTopDestinations: setTopDestinations }}
+        value={{ topDestinations, setTopDestinations }}
       >
+
+        <InputValuesContext.Provider value={{inputValues, setInputValues}}>
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
@@ -52,6 +61,7 @@ function App() {
             <Route exact path="/publish-trip" element={<PublishTrip />}></Route>
           </Routes>
         </BrowserRouter>
+        </InputValuesContext.Provider>
       </TopDestinationsContext.Provider>
     </TripsContext.Provider>
   );

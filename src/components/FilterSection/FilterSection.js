@@ -64,17 +64,17 @@ const FilterSection = (props) => {
               </div>
             </div>
             <div>
-              <label>Sex:</label>
+              <label>gender:</label>
               <div>
                 <label>
                   <input
                     type="radio"
                     value="Male"
-                    checked={filterDataContext.sex === "Male"}
+                    checked={filterDataContext.gender === "Male"}
                     onChange={(event) =>
                       filterDataContext.setFilterData((currentData) => ({
                         ...currentData,
-                        sex: event.target.value,
+                        gender: event.target.value,
                       }))
                     }
                   />
@@ -84,11 +84,11 @@ const FilterSection = (props) => {
                   <input
                     type="radio"
                     value="Female"
-                    checked={filterDataContext.sex === "Female"}
+                    checked={filterDataContext.gender === "Female"}
                     onChange={(event) =>
                       filterDataContext.setFilterData((currentData) => ({
                         ...currentData,
-                        sex: event.target.value,
+                        gender: event.target.value,
                       }))
                     }
                   />

@@ -8,7 +8,7 @@ export const TripsContext = createContext({
       endLocation: "M",
       totalMembers: 4,
       age: -1,
-      sex: "Male",
+      gender: "Male",
       description:"",
       image:""
     },
