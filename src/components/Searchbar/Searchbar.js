@@ -38,6 +38,7 @@ const Searchbar = () => {
         <input
           type="date"
           name="start_date"
+          placeholder="Travel Date"
           value={inputValues.date}
           onChange={(event) =>
             setInputValues((currentInputValues) => ({
