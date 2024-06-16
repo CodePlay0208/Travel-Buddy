@@ -1,5 +1,5 @@
 .footer-container{
-    position: relative;
+    position: fixed;
     bottom:0;
     margin-bottom: 0px;
     width: 100%;

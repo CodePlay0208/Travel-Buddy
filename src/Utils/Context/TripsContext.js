@@ -9,7 +9,8 @@ export const TripsContext = createContext({
       totalMembers: 4,
       age: -1,
       sex: "Male",
-      description:""
+      description:"",
+      image:""
     },
   ],
   setTripsData: () => {}

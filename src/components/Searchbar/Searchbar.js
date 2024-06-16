@@ -15,7 +15,9 @@ const Searchbar = () => {
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          
           const arr = data;
+
           tripsContext.setTripsData(arr);
           console.log(inputValues.startDate);
           navigate("/search-results-page");
