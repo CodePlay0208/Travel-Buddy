@@ -12,7 +12,9 @@
   flex-direction: column;
   margin: 10px;
   font-weight: 500;
+  justify-content: center;
   margin-left: 22%;
+  padding: 0;
 }
 
 .publish-trips-label {
@@ -21,10 +23,10 @@
 
 .publish-trips-input {
   width: 370.312px;
-  height: 40px;
+  height: 60px;
   border-radius: 0.4rem;
   font-size: 18px;
-  padding: 10px;
+  padding: 20px;
   font-weight: 400;
   font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
   color: rgb(5, 0, 0);

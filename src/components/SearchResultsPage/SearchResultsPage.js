@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./SearchResultsPage.css";
 import Navbar from "../Navbar/Navbar";
-import Searchbar from "../Searchbar/Searchbar";
+import SearchMenu from "../SearchMenu/SearchMenu";
 import FilterSection from "../FilterSection/FilterSection";
 import SearchResultsSection from "../SearchResultsSection/SearchResultsSection";
 import { FilterContext } from "../../Utils/Context/FilterContext";
@@ -34,7 +34,7 @@ const SearchResultsPage = () => {
   return (
     <div>
         <Navbar visibilityForSearch={false}></Navbar>
-        <Searchbar></Searchbar>
+        <SearchMenu></SearchMenu>
         <FilterContext.Provider
           value={{
             ...filterData,

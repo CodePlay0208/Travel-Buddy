@@ -1,29 +1,64 @@
-.search-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-  }
-  
-  .search-container input[type="text"],
-  .search-container input[type="date"],
-  .search-container button {
-    margin: 5px;
-    padding: 20px;
-    border: 2px solid;
-    border-radius: 10px;
-    box-shadow: 5px grey;
-    font-size: 14px;
-    width: 200px;
-  }
-  
-  .search-container input[type="text"] {
-    width: 400px;
-  }
-  
-  .search-container button {
+.searchbar-searchBtn{
     background-color: #008CBA;
     color: #fff;
     cursor: pointer;
   }
-  
+
+  .search-bar-container-inSearchMenu{
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+
+.dropDownListForSearchBar{
+  list-style-type: none;
+  background-color: white;
+  border-radius: 16px;
+  color:rgb(0, 0, 0);
+  margin-top: 70px;
+  font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
+  font-weight: 400;
+  padding-left: 0;
+  z-index: 1;
+  font-size: 20px;
+  position: absolute;
+  width: 500px;
+  border: 2px solid rgb(222,222,222);
+}
+
+.listItemInDropDownListForSearchBar{
+  border-radius: 12px;
+  height: 80px;
+  padding-left: 20px;
+  margin-top:4px;
+  margin-bottom: 2px;
+  margin-left:3.5px;
+  margin-right: 3.5px;
+  padding-top: 10px;
+}
+
+.listItemInDropDownListForSearchBar:hover{
+    background-color: rgb(235, 231, 231);
+}
+
+.listItemValue{
+  margin: 0;
+}
+
+.listItemInDropDownListForSearchBar0{
+  background-color: rgb(202, 201, 201);
+  margin-top:2px;
+}
+
+#location-search-bar{
+  width: 370.312px;
+  border-radius: 0.4rem;
+  font-size: 18px;
+  padding: 20px;
+  font-weight: 400;
+  font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
+  color: rgb(5, 0, 0);
+  height: 60px;
+}
+

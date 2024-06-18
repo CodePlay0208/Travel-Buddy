@@ -1,0 +1,34 @@
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  
+  .search-container input[type="text"],
+  .search-container input[type="date"],
+  .search-container button {
+    margin: 5px;
+    margin-left: 0;
+    padding: 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    box-shadow: 5px grey;
+    font-size: 14px;
+    width: 200px;
+    box-sizing: border-box;
+    height: 60px;
+    position: relative;
+  }
+  
+  .search-container input[type="text"] {
+    width: 400px;
+  }
+
+  .searchMenuInputForm{
+    display: flex;
+  }
+  
+  

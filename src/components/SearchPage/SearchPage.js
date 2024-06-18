@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
-import Searchbar from '../Searchbar/Searchbar';
+import SearchMenu from '../SearchMenu/SearchMenu';
 import Footer from '../Footer/Footer';
 
 const SearchPage = () =>{
     return(
         <div>
              <Navbar visibilityForSearch={false}></Navbar>
-             <Searchbar></Searchbar>
+             <SearchMenu ></SearchMenu>
              <Footer></Footer>
         </div>
     );
