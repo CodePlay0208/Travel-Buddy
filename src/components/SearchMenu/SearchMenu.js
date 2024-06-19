@@ -3,6 +3,7 @@ import "./SearchMenu.css";
 import { useNavigate } from "react-router-dom";
 import { InputValuesContext } from "../../Utils/Context/InputValuesContext";
 import SearchBar from "../SearchBar/SearchBar";
+import DatePickerValue from "../DatePicker/DatePicker";
 
 function validateDestination(destination) {
   return destination != null && destination != undefined && destination != "";
@@ -56,9 +57,15 @@ const SearchMenu = () => {
           submitForm(inputValues, navigate);
         }}
       >
-       <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"}></SearchBar>
+      <div className="alignPadding">
 
-        <input
+       <SearchBar className="searchBar" setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"}></SearchBar>
+      </div>
+      <div className="alignPadding">
+
+        <DatePickerValue />
+      </div>
+        {/* <input
           type="date"
           name="start_date"
           placeholder="Travel Date"
@@ -70,10 +77,13 @@ const SearchMenu = () => {
               startDate: event.target.value,
             }))
           }
-        />
-        <button type="submit" className="searchbar-searchBtn">
-          Search
-        </button>
+        /> */}
+        <div className="alignPadding">
+          <button type="submit" className="searchBar searchbar-searchBtn">
+            Search
+          </button>
+        </div>
+        
       </form>
     </div>
   );

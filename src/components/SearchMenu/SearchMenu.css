@@ -7,13 +7,13 @@
     margin-bottom: 40px;
   }
   
-  .search-container input[type="text"],
-  .search-container input[type="date"],
-  .search-container button {
+  .search-container .searchBar input[type="text"],
+  .search-container .searchBar input[type="date"],
+  .search-container .searchBar  {
     margin: 5px;
     margin-left: 0;
     padding: 20px;
-    border: 2px solid;
+    border: grey 2px solid;
     border-radius: 10px;
     box-shadow: 5px grey;
     font-size: 14px;
@@ -23,7 +23,7 @@
     position: relative;
   }
   
-  .search-container input[type="text"] {
+  .search-container .searchBar input[type="text"] {
     width: 400px;
   }
 
@@ -31,4 +31,9 @@
     display: flex;
   }
   
-  
+  .alignPadding{
+    padding: 8px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+  }
