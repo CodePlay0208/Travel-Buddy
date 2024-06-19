@@ -5,8 +5,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
-
-export default function ClearableProp() {
+import dayjs from 'dayjs';
+export default function ClearableProp({inputValues,setInputValues}) {
   const [cleared, setCleared] = React.useState(false);
 
   React.useEffect(() => {
@@ -19,7 +19,7 @@ export default function ClearableProp() {
     }
     return () => {};
   }, [cleared]);
-
+  
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       
@@ -29,6 +29,15 @@ export default function ClearableProp() {
             slotProps={{
               field: { clearable: true, onClear: () => setCleared(true) },
             }}
+            
+            value={dayjs(inputValues.startDate)}
+            onChange={(newValue) => {
+              const currentDate = dayjs(newValue);
+              const formattedDate = currentDate.format('YYYY-MM-DD');
+              setInputValues((currentInputValues) => ({
+              ...currentInputValues,
+              startDate: formattedDate
+            }))}}
           />
         </DemoItem>
 
