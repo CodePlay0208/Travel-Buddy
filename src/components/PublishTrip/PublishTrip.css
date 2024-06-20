@@ -46,6 +46,7 @@ input::placeholder {
   font-family: sans-serif;
   margin-left: 20%;
   font-size: 55px;
+  cursor:default;
 }
 
 .publish-trips-textarea {
@@ -88,7 +89,7 @@ input::placeholder {
   justify-content: center;
   margin-top:12px;
   border: white;
-
+  margin-left: 0;
 }
 
 /*
@@ -161,6 +162,23 @@ input::placeholder {
   background: #ccc;
   border-radius: 25px;
 }
+
+.mandatoryFieldSignInPublishTrips{
+  color: rgb(235, 115, 244);
+  position: relative;
+  top:5px;
+  font-size: 17px;
+  /* color: #615e5e; */
+}
+
+
+#uploadImagesElement{
+  display: flex;
+  flex-direction: column;
+  margin-left: 22%;   
+  justify-content: start;
+}
+
 
 
 

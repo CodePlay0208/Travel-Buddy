@@ -21,7 +21,7 @@ async function fetchAPIResponse(url, inputValueForSearchBar) {
 
 
 const SearchBar = (props) => {
-  const { setInputValueFunction, setInputValueVariable, placeholder, id } = props;
+  const { setInputValueFunction, setInputValueVariable, placeholder, id, setValuesFromLocalStorage } = props;
   const [dropDownData, setDropDownData] = useState([]);
   const [showDropDownList, setShowDropDownList] = useState(false);
   const [inputValueForSearchBar, setInputValueForSearchBar] = useState("");
@@ -32,14 +32,18 @@ const SearchBar = (props) => {
     );
   }, [debouncedValues]);
 
-  useEffect(() => {
+  useEffect(()=>{
     const storedInputValues = localStorage.getItem("inputValues");
     if (storedInputValues) {
       const parsedInputValues = JSON.parse(storedInputValues);
       setInputValueForSearchBar(parsedInputValues.destination);
     }
+  },[])
+
+  useEffect(() => {
 
     const selectDefaultValuesForSearchBar = () =>{
+      console.log("adding default values");
       if(dropDownData != null && dropDownData!= undefined && dropDownData.length > 0){
         setShowDropDownList(false);
         setInputValueForSearchBar(dropDownData[0]);
@@ -49,12 +53,10 @@ const SearchBar = (props) => {
           return newInputValues;
         });
         setDropDownData([]);
+        document.addEventListener('click', selectDefaultValuesForSearchBar);
       }
     }
-
-
-    document.addEventListener('click', selectDefaultValuesForSearchBar);
-
+   
     return ()=> document.removeEventListener('click', selectDefaultValuesForSearchBar)
 
   }, [dropDownData]);
@@ -69,6 +71,14 @@ const SearchBar = (props) => {
         onChange={(event) => {
           setInputValueForSearchBar(event.target.value);
           setShowDropDownList(true);
+          const currentSearchBarValue = event.target.value;
+          if( currentSearchBarValue == null || currentSearchBarValue == undefined || currentSearchBarValue == ""){
+            setInputValueFunction((currentInputValues) => {
+              const newInputValues = currentInputValues;
+              newInputValues[setInputValueVariable] = "";
+              return newInputValues;
+            });
+          }
         }}
         placeholder={placeholder}
         id={id}

@@ -20,7 +20,7 @@ function submitForm(inputValues, navigate) {
     localStorage.setItem("inputValues", JSON.stringify(inputValues));
     navigate("/search-results-page");
   } else if (!isValidDestination) {
-    document.getElementById("location-search-bar").focus();
+    document.getElementById("homePageSearchBar").focus();
   } else {
     document.getElementById("startDate").focus();
   }
@@ -55,7 +55,7 @@ const SearchMenu = () => {
           submitForm(inputValues, navigate);
         }}
       >
-       <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"} id={"homePageSearchBar"}></SearchBar>
+       <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"} id={"homePageSearchBar"} setValuesFromLocalStorage = {true}></SearchBar>
 
         <input
           type="date"
