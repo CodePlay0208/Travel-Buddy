@@ -29,7 +29,6 @@ function submitForm(inputValues, navigate) {
 
 const SearchMenu = () => {
   const { inputValues, setInputValues } = useContext(InputValuesContext);
-  let initialValues = 
   console.log("the input values are", inputValues);
  
   useEffect(() => {
