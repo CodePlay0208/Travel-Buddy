@@ -6,12 +6,12 @@ const Trip = ({trip})=>{
   return (
     <div className="cards">
 
-    <a href="" class="card">
-      <img src={trip.image} class="card__image" alt={trip.startLocation} />
-      <div class="card__overlay">
-        <div class="card__header">
+    <a href="" className="card">
+      <img src={trip.image} className="card__image" alt={trip.startLocation} />
+      <div className="card__overlay">
+        <div className="card__header">
           
-          <div class="card__header-text">
+          <div className="card__header-text">
 
           
           <p><strong>From:</strong>{trip.startLocation}</p>
@@ -25,12 +25,12 @@ const Trip = ({trip})=>{
             <p>{trip.name}</p>
           </div>
         </div>
-        <p class="card__description"><p><strong>No. of Members:</strong>{trip.totalMembers}</p>
+        <div className="card__description"><p><strong>No. of Members:</strong>{trip.totalMembers}</p>
           <p><strong>Age:</strong>{trip.age}</p>
           <p><strong>Sex:</strong> {trip.sex}</p>
           <p className='description'><strong>Description:</strong>{trip.description} </p>
           <button className="chat-now-btn" role="button">Chat Now</button>
-          </p>
+          </div>
       </div>
     </a>      
   

@@ -56,7 +56,7 @@ const SearchMenu = () => {
           submitForm(inputValues, navigate);
         }}
       >
-       <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"}></SearchBar>
+       <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"} id={"homePageSearchBar"}></SearchBar>
 
         <input
           type="date"
