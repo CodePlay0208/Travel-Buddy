@@ -1,36 +1,18 @@
-import * as React from 'react';
-import { DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
+import React from 'react';
+import { DatePicker } from 'antd';
 import dayjs from 'dayjs';
-export default function ClearableProp({inputValues,setInputValues}) {
-  const [cleared, setCleared] = React.useState(false);
-
-  React.useEffect(() => {
-    if (cleared) {
-      const timeout = setTimeout(() => {
-        setCleared(false);
-      }, 1500);
-
-      return () => clearTimeout(timeout);
-    }
-    return () => {};
-  }, [cleared]);
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
+const dateFormat = 'YYYY-MM-DD';
+const App = ({inputValues,setInputValues}) => (
   
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      
-        <DemoItem>
-          <DatePicker
-            sx={{ width: 260 ,backgroundColor:'white', borderRadius:'7px'}}
-            slotProps={{
-              field: { clearable: true, onClear: () => setCleared(true) },
-            }}
-            
-            value={dayjs(inputValues.startDate)}
+  <DatePicker
+    defaultValue={dayjs()}
+    minDate={dayjs()}
+    maxDate={dayjs().add(12,'month')}
+    style={{border:"2px solid"}}
+    allowClear={false}
+    value={inputValues.startDate===''?null:dayjs(inputValues.startDate)}
             onChange={(newValue) => {
               const currentDate = dayjs(newValue);
               const formattedDate = currentDate.format('YYYY-MM-DD');
@@ -38,10 +20,6 @@ export default function ClearableProp({inputValues,setInputValues}) {
               ...currentInputValues,
               startDate: formattedDate
             }))}}
-          />
-        </DemoItem>
-
-        
-    </LocalizationProvider>
-  );
-}
+  >{console.log(inputValues)}</DatePicker>
+);
+export default App;
