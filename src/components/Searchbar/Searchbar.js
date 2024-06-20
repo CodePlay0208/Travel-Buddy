@@ -97,7 +97,7 @@ const SearchBar = (props) => {
                 setDropDownData([]);
               }}
             >
-              <p className="listItemValue">{data}</p>
+              <p className="listItemValueForGender">{data}</p>
             </li>
           ))}
         </div>

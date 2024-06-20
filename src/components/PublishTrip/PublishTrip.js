@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./PublishTrip.css";
 import SearchBar from "../SearchBar/SearchBar";
 import data from "../../data/data.json";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import dropDownSvg from '../../data/Images/dropDown.svg'
 
 function submitForm(inputValues) {
   // TODO: integrate totalusers API
@@ -12,11 +15,17 @@ function submitForm(inputValues) {
   inputValues["id"] = getTotalUsers;
   //TODO: send data to backend
   data.push(inputValues);
+  console.log("publishing toast");
+  toast.success("Trip Published", {
+    closeOnClick: true,
+    position: "top-right",
+    autoClose: 50
+  });
 }
 
 const PublishTrip = () => {
   const initialPublishTripValues = {
-    id:0,
+    id: 0,
     startLocation: "",
     endLocation: "",
     totalMembers: "",
@@ -30,12 +39,91 @@ const PublishTrip = () => {
     endDate: "",
   };
   const [inputValues, setInputValues] = useState(initialPublishTripValues);
+  const genderDropDownData = ["Male", "Female", "Prefer Not To Say"];
+  const [showGenderDropDownList, setShowGenderDropDownList] = useState(false);
+  const totalMembersDropDownData = ["1", "2", "3", "4", ">=5"];
+  const [showTotalMembersDropDownList, setShowTotalMembersDropDownList] = useState(false);
+  const ageGroupDropDownData = ["0-10", "11-17", "18-35", "36-50", ">=50"];
+  const [showAgeGroupDropDownList, setShowAgeGroupDropDownList] = useState(false);
+
+  useEffect(() => {
+
+    const selectDefaultValuesForGenderBar = (event) => {
+      const isEventInDropDownMenu = document.getElementById("listItemValueForGender") && document.getElementById("listItemValueForGender").contains(event.target);
+      const isEventInButton = document.getElementById("publish-trips-input-gender").contains(event.target);
+      const isEventInGenderField = isEventInButton || isEventInDropDownMenu;
+
+      if (inputValues.gender == "" && showGenderDropDownList && !isEventInGenderField) {
+        setInputValues((currentInputValues) => ({
+          ...currentInputValues, gender: genderDropDownData[0]
+        }))
+        setShowGenderDropDownList(false);
+      }
+
+      else if(showGenderDropDownList && !isEventInGenderField){
+        setShowGenderDropDownList(false);
+      }
+    }
+
+    const selectDefaultValuesForTotalMembersBar = (event) => {
+      const isEventInDropDownMenu = document.getElementById("listItemValueForTotalMembers") && document.getElementById("listItemValueForTotalMembers").contains(event.target);
+      const isEventInButton = document.getElementById("publish-trips-input-totalMembers").contains(event.target);
+      const isEventInTotalMembersField = isEventInButton || isEventInDropDownMenu;
+
+      if (inputValues.totalMembers == "" && showTotalMembersDropDownList && !isEventInTotalMembersField) {
+        setInputValues((currentInputValues) => ({
+          ...currentInputValues, totalMembers: totalMembersDropDownData[0]
+        }))
+        setShowTotalMembersDropDownList(false);
+      }
+
+      else if(showTotalMembersDropDownList && !isEventInTotalMembersField){
+          setShowTotalMembersDropDownList(false);
+      }
+    }
+
+    const selectDefaultValuesForAgeBar = (event) => {
+      const isEventInDropDownMenu = document.getElementById("listItemValueForAge") && document.getElementById("listItemValueForAge").contains(event.target);
+      const isEventInButton = document.getElementById("publish-trips-input-age").contains(event.target);
+      const isEventInAgeField = isEventInButton || isEventInDropDownMenu;
+
+      console.log(inputValues.age, isEventInDropDownMenu, isEventInButton, isEventInAgeField);
+
+      if (inputValues.age === "" && showAgeGroupDropDownList && !isEventInAgeField) {
+        console.log("fired");
+        setInputValues((currentInputValues) => ({
+          ...currentInputValues, age: ageGroupDropDownData[0]
+        }))
+        setShowAgeGroupDropDownList(false);
+      }
+
+      else if(showAgeGroupDropDownList && !isEventInAgeField){
+          setShowAgeGroupDropDownList(false);
+      }
+    }
+
+    document.addEventListener('click', selectDefaultValuesForGenderBar);
+    document.addEventListener('click', selectDefaultValuesForTotalMembersBar);
+    document.addEventListener('click', selectDefaultValuesForAgeBar);
+
+    return () => {
+      document.removeEventListener('click', selectDefaultValuesForGenderBar);
+      document.removeEventListener('click' ,selectDefaultValuesForTotalMembersBar);
+      document.removeEventListener('click', selectDefaultValuesForAgeBar)
+
+    }
+
+
+  }, [showGenderDropDownList, showTotalMembersDropDownList, showAgeGroupDropDownList]);
+
   return (
+
     <div>
       <Navbar visibilityForSearch={true}></Navbar>
 
       <form
         onSubmit={(event) => {
+          console.log("hey");
           event.preventDefault();
           submitForm(inputValues);
           setInputValues(initialPublishTripValues);
@@ -126,7 +214,6 @@ const PublishTrip = () => {
               value={inputValues.startDate}
             ></input>
           </div>
-
           <div className="input-element">
             <label className="publish-trips-label" htmlFor="endDate">
               End Date
@@ -146,40 +233,84 @@ const PublishTrip = () => {
             ></input>
           </div>
           <div className="input-element">
-            <label className="publish-trips-label" htmlFor="totalMembers">
+            <label className="publish-trips-label" htmlFor="publish-trips-input-totalMembers">
               Total Members
             </label>
-            <input
-              type="text"
-              className="publish-trips-input"
-              placeholder="Enter Current Total Members"
-              id="totalMembers"
-              onChange={(event) => {
-                setInputValues((currentInputValues) => ({
-                  ...currentInputValues,
-                  totalMembers: event.target.value,
-                }));
-              }}
-              value={inputValues.totalMembers}
-            ></input>
+            <div>
+              <button
+                onClick={() => {
+                  setShowTotalMembersDropDownList(true);
+                }}
+                className="publish-trips-input publish-trips-input-dropDownBtn"
+                autoComplete="off"
+                id = "publish-trips-input-totalMembers"
+                type="button"
+                value={inputValues.totalMembers}
+              >{inputValues.totalMembers == "" ? "Select Current Total Members" : inputValues.totalMembers} 
+<svg xmlns="http://www.w3.org/2000/svg" className="dropDownSvg" viewBox="0 0 24 30" x="0px" y="0px"><title>Sort-Down-arrow-drop-triangle</title><path d="M18,8H6a1,1,0,0,0-.71,1.71l6,6a1,1,0,0,0,1.41,0l6-6A1,1,0,0,0,18,8Z"/><text x="0" y="39" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by IconSrc</text><text x="0" y="44" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></svg>
+              
+              </button>
+
+              {showTotalMembersDropDownList && (
+                <div className="dropDownListForPublishTripInputs">
+                  {totalMembersDropDownData.map((data, idx) => (
+                    <li
+                      key={data}
+                      onClick={() => {
+                        console.log(data);
+                        setShowTotalMembersDropDownList(false);
+                        setInputValues((currentInputValues) => ({
+                          ...currentInputValues, totalMembers: data
+                        }));
+                      }}
+                    >
+                      <p className="listItemValueForPublishTripInputs" >{data}</p>
+                    </li>
+                  ))}
+                </div>
+              )}
+
+            </div>
           </div>
           <div className="input-element">
             <label className="publish-trips-label" htmlFor="age">
               Age
             </label>
-            <input
-              className="publish-trips-input"
-              type="text"
-              placeholder="Enter Your Age"
-              id="age"
-              onChange={(event) => {
-                setInputValues((currentInputValues) => ({
-                  ...currentInputValues,
-                  age: event.target.value,
-                }));
-              }}
-              value={inputValues.age}
-            ></input>
+            <div>
+              <button
+                onClick={() => {
+                  setShowAgeGroupDropDownList(true);
+                }}
+                className="publish-trips-input publish-trips-input-dropDownBtn"
+                autoComplete="off"
+                type="button"
+                id = "publish-trips-input-age"
+                value={inputValues.age}
+              >{inputValues.age == "" ? "Select Your Age" : inputValues.age}
+<svg xmlns="http://www.w3.org/2000/svg" className="dropDownSvg" viewBox="0 0 24 30" x="0px" y="0px"><title>Sort-Down-arrow-drop-triangle</title><path d="M18,8H6a1,1,0,0,0-.71,1.71l6,6a1,1,0,0,0,1.41,0l6-6A1,1,0,0,0,18,8Z"/><text x="0" y="39" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by IconSrc</text><text x="0" y="44" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></svg>
+
+              </button>
+
+              {showAgeGroupDropDownList && (
+                <div className="dropDownListForPublishTripInputs">
+                  {ageGroupDropDownData.map((data) => (
+                    <li
+                      key={data}
+                      className="listItemValueForIdx"
+                      onClick={() => {
+                        setShowAgeGroupDropDownList(false);
+                        setInputValues((currentInputValues) => ({
+                          ...currentInputValues, age: data
+                        }));
+                      }}
+                    >
+                      <p className="listItemValueForPublishTripInputs" id="listItemValueForAge">{data}</p>
+                    </li>
+                  ))}
+                </div>
+              )}
+
+            </div>
           </div>
           <div className="input-element">
             <label htmlFor="input-file" className="input-file-label">
@@ -192,22 +323,44 @@ const PublishTrip = () => {
             />
           </div>
           <div className="input-element">
-            <label className="publish-trips-label" htmlFor="gender">
+            <label className="publish-trips-label" htmlFor="publish-trips-input-gender">
               Gender
             </label>
-            <input
-              className="publish-trips-input"
-              type="text"
-              placeholder="Enter Your Gender"
-              id="gender"
-              onChange={(event) => {
-                setInputValues((currentInputValues) => ({
-                  ...currentInputValues,
-                  gender: event.target.value,
-                }));
-              }}
-              value={inputValues.gender}
-            ></input>
+            <div>
+              <button
+                onClick={() => {
+                  setShowGenderDropDownList(true);
+                }}
+                className="publish-trips-input publish-trips-input-dropDownBtn"
+                autoComplete="off"
+                type="button"
+                id = "publish-trips-input-gender"
+                value={inputValues.gender}
+              >{inputValues.gender == "" ? "Select Your Gender" : inputValues.gender}
+<svg xmlns="http://www.w3.org/2000/svg" className="dropDownSvg" viewBox="0 0 24 30" x="0px" y="0px"><title>Sort-Down-arrow-drop-triangle</title><path d="M18,8H6a1,1,0,0,0-.71,1.71l6,6a1,1,0,0,0,1.41,0l6-6A1,1,0,0,0,18,8Z"/><text x="0" y="39" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by IconSrc</text><text x="0" y="44" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></svg>
+
+              </button>
+
+              {showGenderDropDownList && (
+                <div className="dropDownListForPublishTripInputs">
+                  {genderDropDownData.map((data) => (
+                    <li
+                      key={data}
+                      className="listItemValueForIdx"
+                      onClick={() => {
+                        setShowGenderDropDownList(false);
+                        setInputValues((currentInputValues) => ({
+                          ...currentInputValues, gender: data
+                        }));
+                      }}
+                    >
+                      <p className="listItemValueForPublishTripInputs" id="listItemValueForGender">{data}</p>
+                    </li>
+                  ))}
+                </div>
+              )}
+
+            </div>
           </div>
           <div className="input-element">
             <label className="publish-trips-label" htmlFor="description">
@@ -235,6 +388,7 @@ const PublishTrip = () => {
       </form>
 
       <Footer></Footer>
+      <ToastContainer />
     </div>
   );
 };

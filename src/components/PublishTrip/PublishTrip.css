@@ -19,6 +19,8 @@
 
 .publish-trips-label {
   margin-bottom: 7px;
+  width: 370.312px;
+
 }
 
 .publish-trips-input {
@@ -30,6 +32,8 @@
   font-weight: 400;
   font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
   color: rgb(5, 0, 0);
+  border-width: 2px;
+  
 }
 
 input::placeholder {
@@ -86,5 +90,82 @@ input::placeholder {
   border: white;
 
 }
+
+/*
+
+*/
+
+
+.dropDownListForPublishTripInputs{
+  position: absolute;
+  list-style: none;
+  width: 370.312px;
+  background-color: #fff;
+  border: 1px solid #caced1;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 10px;
+  max-height: 200px;
+  overflow-y: scroll;
+  font-size: 18px;
+  z-index: 2;
+}
+
+.publish-trips-input-dropDownBtn{
+  cursor: pointer;
+  outline: none;
+  background-color: white;
+  text-align: left;
+  border-color: rgb(118,118,118);
+  display: flex;
+  position: relative;
+}
+
+.dropDownSvg{
+  position: absolute;
+  right: 4px;
+  top: 20%;
+}
+
+.dropDownListForPublishTripInputs li {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  gap: 0px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  font-weight: 510;
+}
+
+
+.listItemValueForPublishTripInputs{
+  padding: 10px;
+  margin: 0;
+}
+
+.dropDownListForPublishTripInputs li:hover
+ {
+  background-color: #f2f2f2;
+}
+
+.dropDownListForPublishTripInputs::-webkit-scrollbar {
+  width: 7px;
+}
+.dropDownListForPublishTripInputs::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 25px;
+}
+
+.dropDownListForPublishTripInputs::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 25px;
+}
+
+
+
+
+
+
 
 
