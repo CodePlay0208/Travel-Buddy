@@ -30,6 +30,8 @@
   font-weight: 400;
   font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
   color: rgb(5, 0, 0);
+  border: grey 2px solid;
+  
 }
 
 input::placeholder {

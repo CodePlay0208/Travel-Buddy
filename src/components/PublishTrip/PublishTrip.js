@@ -3,7 +3,8 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./PublishTrip.css";
 import SearchBar from "../SearchBar/SearchBar";
-
+import { DatePicker, Space, Typography } from 'antd';
+const { RangePicker } = DatePicker;
 const PublishTrip = () => {
   return (
     <div>
@@ -38,12 +39,15 @@ const PublishTrip = () => {
             ></input>
           </div>
           <div className="input-element">
-            <label className="publish-trips-label">Start Date</label>
-            <input
-              className="publish-trips-input"
-              type="text"
-              placeholder="Enter Start Date Of the Journey"
-            ></input>
+          <label className="publish-trips-label">Date Range</label>
+            <RangePicker className="publish-trips-input" style={{width:"370.312px",}} disabledDate={(current, { from }) => {
+              if (from) {
+                const curMonth = current.year() * 12 + current.month();
+                const fromMonth = from.year() * 12 + from.month();
+                return Math.abs(fromMonth - curMonth) >= 6;
+              }
+              return false;
+            }} />
           </div>
 
           <div className="input-element">
