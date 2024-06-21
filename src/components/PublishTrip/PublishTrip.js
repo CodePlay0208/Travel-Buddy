@@ -6,6 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import data from "../../data/data.json";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UploadImages from "../UploadImages/UploadImages";
 import dropDownSvg from '../../data/Images/dropDown.svg'
 
 function submitForm(inputValues) {
@@ -17,13 +18,11 @@ function submitForm(inputValues) {
   data.push(inputValues);
   console.log("publishing toast");
   toast.success("Trip Published", {
-    closeOnClick: true,
-    position: "top-right",
-    autoClose: 50
+    autoClose: 100
   });
 }
 
-function validateForm(inputValues){
+function validateForm(inputValues, isClickOnHeading) {
   const isValidUserName = inputValues.userName != null && inputValues.userName != undefined && inputValues.userName != "";
   const isValidStartLocation = inputValues.startLocation != null && inputValues.startLocation != undefined && inputValues.startLocation != "";
   const isValidDestination = inputValues.endLocation != null && inputValues.endLocation != undefined && inputValues.endLocation != "";
@@ -35,55 +34,59 @@ function validateForm(inputValues){
 
   console.log(inputValues);
 
-  if(!isValidUserName){
-    toast.error("Enter Valid User Name");
+  let errorMessage = false;
+
+  if (!isValidUserName) {
+    errorMessage = "Enter Valid User Name";
     document.getElementById("name").focus();
-    return false;
   }
 
-  else if(!isValidStartLocation){
-    toast.error("Enter Valid Start Location");
+  else if (!isValidStartLocation) {
+    errorMessage = "Enter Valid Start Location";
     document.getElementById("startlocationSearchBar").focus();
-    return false;
   }
 
-  else if(!isValidDestination){
-    toast.error("Enter Valid Destination");
+  else if (!isValidDestination) {
+    errorMessage = "Enter Valid Destination";
     document.getElementById("destinationSearchBar").focus();
-    return false;
   }
 
-  else if(!isValidStartDate){
-    toast.error("Select Valid Start Date");
+  else if (!isValidStartDate) {
+    errorMessage = "Select Valid Start Date";
     document.getElementById("startDate").focus();
-    return false;
   }
 
-  else if(!isValidEndDate){
-    toast.error("Select Valid End Date");
+  else if (!isValidEndDate) {
+    errorMessage = "Select Valid End Date";
     document.getElementById("endDate").focus();
-    return false;
   }
 
-  else if(!isValidTotalMembers){
-    toast.error("Select Valid Total Members");
+  else if (!isValidTotalMembers) {
+    errorMessage = "Select Valid Total Members";
     document.getElementById("publish-trips-input-totalMembers").focus();
-    return false;
   }
 
-  else if(!isValidAge){
-    toast.error("Select Valid Age");
+  else if (!isValidAge) {
+    errorMessage = "Select Valid Age";
     document.getElementById("publish-trips-input-age").focus();
-    return false;
   }
 
-  else if(!isValidGender){
-    toast.error("Select Valid Gender");
+  else if (!isValidGender) {
+    errorMessage = "Select Valid Gender";
     document.getElementById("publish-trips-input-gender").focus();
-    return false
   }
 
-  return true;
+  if (!errorMessage) {
+    return true;
+  }
+
+  if (!isClickOnHeading) {
+    toast.error(errorMessage, {
+      autoClose: 1000
+    });
+  }
+
+  return false;
 }
 
 
@@ -97,7 +100,7 @@ const PublishTrip = () => {
     age: "",
     gender: "",
     description: "",
-    image:[],
+    image: [],
     userName: "",
     phoneNumber: "",
     startDate: "",
@@ -110,35 +113,77 @@ const PublishTrip = () => {
   const [showTotalMembersDropDownList, setShowTotalMembersDropDownList] = useState(false);
   const ageGroupDropDownData = ["0-10", "11-17", "18-35", "36-50", ">=50"];
   const [showAgeGroupDropDownList, setShowAgeGroupDropDownList] = useState(false);
+  // const [uploadedFiles, setUploadedFiles] = useState([]);
   const acceptableImageUploadTypes = ".jpg, .jpeg, .png";
 
-  
-  function handleImageUpload(event){
+  function handleImageUpload(event) {
+    if (event.target.files.length > 5) {
+      toast.warning("Kindly upload Images less than 6", {
+        autoClose: 1000
+      });
+      return;
+    }
 
-    setInputValues((currentInputValues)=>({
-      ...currentInputValues, image: event.target.files
-    }))
     let files = event.target.files;
+    files = Array.prototype.slice.call(files);
+    let totalSizeOfFiles = 0;
+    files.forEach((file) => {
+      totalSizeOfFiles += file.size;
+    })
+    if (totalSizeOfFiles > (1048576) * (5)) {
+      toast.error("Total size of files must be less than 5 MB", {
+        autoClose: 1000
+      })
+      return;
+    }
+
+    setInputValues((currentInputValues) => ({
+      ...currentInputValues, image: files
+    }));
+  }
+
+
+  useEffect(()=>{
+
+    let files = inputValues.image;
     let preview = document.getElementById('previewUploadedImages');
     preview.style.display = "flex";
     preview.style.flexDirection = "column";
     preview.style.marginTop = "10px";
     preview.innerHTML = '';
-    
-    for (let i = 0; i < files.length; i++) {
-      let file = files[i];
+    preview.style.marginLeft = "12px";
+    files.forEach((file) => {
       const urlForFile = URL.createObjectURL(file);
+      let fileContainer = document.createElement('div');
+      fileContainer.style.display = "flex";
+      fileContainer.style.flexDirection = "row";
+      fileContainer.style.alignItems = "center";
       let fileInfo = document.createElement('a');
       fileInfo.textContent = `File Name: ${file.name}`;
       fileInfo.href = urlForFile;
-      fileInfo.target="_blank";
-      fileInfo.style.fontSize = '14px';
+      fileInfo.target = "_blank";
+      fileInfo.style.fontSize = '16px';
       fileInfo.style.marginTop = '10px';
+      fileContainer.style.cursor = "pointer";
       fileInfo.style.color = "#615e5e";
-      fileInfo.click();
-      preview.appendChild(fileInfo);
-  }
-}
+      let deleteImageBtn = document.createElement('span');
+      deleteImageBtn.innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 50 50"> <path d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 37.690466 12.309534 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 13.390466 46 4 36.609534 4 25 C 4 13.390466 13.390466 4 25 4 z M 32.990234 15.986328 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z"></path></svg>'
+      deleteImageBtn.style.marginTop = '13px';
+      deleteImageBtn.style.color = "#615e5e";
+      deleteImageBtn.style.marginLeft = "13px";
+      deleteImageBtn.style.cursor = "pointer";
+      deleteImageBtn.id = file.name;
+      deleteImageBtn.onclick = () => {
+        files = files.filter((file) => file.name !== deleteImageBtn.id);
+        setInputValues((currentInputValues) => ({
+          ...currentInputValues, image: files
+        }));
+      }
+      fileContainer.appendChild(fileInfo);
+      fileContainer.appendChild(deleteImageBtn);
+      preview.appendChild(fileContainer);
+    })
+  }, [inputValues]);
 
   useEffect(() => {
 
@@ -217,15 +262,15 @@ const PublishTrip = () => {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          const isValidForm = validateForm(inputValues);
-          if(isValidForm){
+          const isValidForm = validateForm(inputValues, false);
+          if (isValidForm) {
             submitForm(inputValues);
             setInputValues(initialPublishTripValues);
           }
         }}
       >
         <div className="publish-trip-form">
-          <h2 className="publish-trip-heading" onClick={()=> document.getElementById("name").focus()}>Publish Your Trip!</h2>
+          <h2 className="publish-trip-heading" onClick={() => validateForm(inputValues, true)}>Publish Your Trip!</h2>
 
           <div className="input-element">
             <label className="publish-trips-label" htmlFor="name">
@@ -257,7 +302,7 @@ const PublishTrip = () => {
               id={"startlocationSearchBar"}
               setInputValueFunction={setInputValues}
               setInputValueVariable={"startLocation"}
-              setValuesFromLocalStorage = {false}
+              setValuesFromLocalStorage={false}
             ></SearchBar>
           </div>
           <div className="input-element">
@@ -272,7 +317,7 @@ const PublishTrip = () => {
               id={"destinationSearchBar"}
               setInputValueFunction={setInputValues}
               setInputValueVariable={"endLocation"}
-              setValuesFromLocalStorage = {false}
+              setValuesFromLocalStorage={false}
             ></SearchBar>
           </div>
           <div className="input-element">
@@ -409,9 +454,9 @@ const PublishTrip = () => {
 
             </div>
           </div>
-          <div className="input-element" id = "uploadImagesElement">
+          <div className="input-element" id="uploadImagesElement">
             <label htmlFor="input-file" className="input-file-label">
-              Upload Images
+              Upload Images Of Destination (&lt;6)
             </label>
             <input
               className="publish-trips-input"
@@ -481,7 +526,7 @@ const PublishTrip = () => {
             ></textarea>
           </div>
           <div className="input-element">
-            <button className="input-file-label publish-btn" type="submit">
+            <button className=" publish-btn" type="submit">
               Publish
             </button>
           </div>

@@ -10,7 +10,7 @@ export const TripsContext = createContext({
       age: -1,
       gender: "Male",
       description:"",
-      image:"",
+      image:[],
       userName:"",
       phoneNumber:"",
       startDate:"",

@@ -1,0 +1,20 @@
+#input-file {
+    display: none;
+  }
+  
+  .input-file-label {
+    width: 200px;
+    height: 45px;
+    background: #2f6f9c;
+    color: #ffffff;
+    font-size: 15px;
+    text-transform: capitalize;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:12px;
+    border: white;
+    margin-left: 0;
+  }
