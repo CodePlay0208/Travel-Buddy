@@ -8,7 +8,7 @@ import data from "../../data/data.json";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import dropDownSvg from '../../data/Images/dropDown.svg'
-const { RangePicker } = DatePicker;
+import DateRangePicker from "../RangePicker/RangePicker";
 
 function submitForm(inputValues) {
   // TODO: integrate totalusers API
@@ -297,14 +297,7 @@ const PublishTrip = () => {
           </div>
           <div className="input-element">
           <label className="publish-trips-label">Date Range</label>
-            <RangePicker className="publish-trips-input" style={{width:"370.312px",}} disabledDate={(current, { from }) => {
-              if (from) {
-                const curMonth = current.year() * 12 + current.month();
-                const fromMonth = from.year() * 12 + from.month();
-                return Math.abs(fromMonth - curMonth) >= 6;
-              }
-              return false;
-            }} />
+            <DateRangePicker setInputValues={setInputValues} inputValues={inputValues}/>
           </div>
           <div className="input-element">
             <label className="publish-trips-label" htmlFor="endDate">

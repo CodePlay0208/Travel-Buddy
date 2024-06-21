@@ -3,7 +3,7 @@ import './DatePicker.css';
 
 const DatePicker = ({ inputValues, setInputValues }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(inputValues.startDate);
+  const [selectedDate, setSelectedDate] = useState(inputValues);
   const [showCalendar, setShowCalendar] = useState(false);
   const dateInputRef = useRef(null);
   const calendarRef = useRef(null);
@@ -13,8 +13,8 @@ const DatePicker = ({ inputValues, setInputValues }) => {
   const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
   useEffect(() => {
 
-    setSelectedDate(inputValues.startDate);
-  }, [inputValues.startDate])
+    setSelectedDate(inputValues);
+  }, [inputValues])
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
