@@ -60,11 +60,11 @@ const SearchMenu = () => {
       <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"} id={"homePageSearchBar"} setValuesFromLocalStorage = {true}></SearchBar>
 
       </div>
-      {/* <div className="alignPadding">
+      <div className="alignPadding">
 
         <DatePickerValue inputValues={inputValues} setInputValues={setInputValues}/>
-      </div> */}
-      {console.log(inputValues)}
+      </div>
+      {/* {console.log(inputValues)}
         <input
           type="date"
           name="start_date"
@@ -77,7 +77,7 @@ const SearchMenu = () => {
               startDate: event.target.value,
             }))
           }
-        />
+        /> */}
         <div className="alignPadding">
           <button type="submit" className="searchBar searchbar-searchBtn">
             Search
