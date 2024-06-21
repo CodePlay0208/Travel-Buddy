@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import SearchResultsPage from "./components/SearchResultsPage/SearchResultsPage";
 import SearchPage from "./components/SearchPage/SearchPage";
 import HomePage from "./components/HomePage/HomePage";
@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 import { TopDestinationsContext } from "./Utils/Context/TopDestinationsContext";
 import { InputValuesContext } from "./Utils/Context/InputValuesContext";
 
-function App() {
+const App =() =>{
   const [tripsData, setTripsData] = useState([
     {
       id: 0,
@@ -42,14 +42,16 @@ function App() {
     startDate: "",
   });
 
+  const navigate = useNavigate();
+
   return (
     <TripsContext.Provider value={{ tripsData,  setTripsData }}>
       <TopDestinationsContext.Provider
         value={{ topDestinations, setTopDestinations }}
       >
-
         <InputValuesContext.Provider value={{inputValues, setInputValues}}>
-        <BrowserRouter>
+       
+        <div>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route
@@ -59,12 +61,17 @@ function App() {
             />
             <Route exact path="/search-page" element={<SearchPage />}></Route>
             <Route exact path="/publish-trip" element={<PublishTrip />}></Route>
+            <Route path = "/*" element={<InvalidRoute/>} />
           </Routes>
-        </BrowserRouter>
+          </div>
         </InputValuesContext.Provider>
       </TopDestinationsContext.Provider>
     </TripsContext.Provider>
   );
+  function InvalidRoute() {
+    navigate('/');
+    return null;
+  }
 }
 
 export default App;

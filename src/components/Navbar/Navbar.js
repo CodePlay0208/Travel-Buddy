@@ -38,7 +38,7 @@ const Navbar = (props) => {
             navigate("/publish-trip");
           }}
         >
-          Publish a Trip
+          Publish Trip
         </div>
       </div>
     </nav>

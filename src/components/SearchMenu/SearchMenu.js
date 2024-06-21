@@ -21,7 +21,7 @@ function submitForm(inputValues, navigate) {
     localStorage.setItem("inputValues", JSON.stringify(inputValues));
     navigate("/search-results-page");
   } else if (!isValidDestination) {
-    document.getElementById("location-search-bar").focus();
+    document.getElementById("homePageSearchBar").focus();
   } else {
     document.getElementById("startDate").focus();
   }
@@ -30,7 +30,6 @@ function submitForm(inputValues, navigate) {
 
 const SearchMenu = () => {
   const { inputValues, setInputValues } = useContext(InputValuesContext);
-  let initialValues = 
   console.log("the input values are", inputValues);
  
   useEffect(() => {
@@ -58,15 +57,15 @@ const SearchMenu = () => {
         }}
       >
       <div className="alignPadding">
+      <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"} id={"homePageSearchBar"} setValuesFromLocalStorage = {true}></SearchBar>
 
-       <SearchBar className="searchBar" setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"}></SearchBar>
       </div>
-      <div className="alignPadding">
+      {/* <div className="alignPadding">
 
         <DatePickerValue inputValues={inputValues} setInputValues={setInputValues}/>
-      </div>
+      </div> */}
       {console.log(inputValues)}
-        {/* <input
+        <input
           type="date"
           name="start_date"
           placeholder="Travel Date"
@@ -78,7 +77,7 @@ const SearchMenu = () => {
               startDate: event.target.value,
             }))
           }
-        /> */}
+        />
         <div className="alignPadding">
           <button type="submit" className="searchBar searchbar-searchBtn">
             Search

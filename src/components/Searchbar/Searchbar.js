@@ -18,8 +18,10 @@ async function fetchAPIResponse(url, inputValueForSearchBar) {
   return apiResponseToJson;
 }
 
+
+
 const SearchBar = (props) => {
-  const { setInputValueFunction, setInputValueVariable, placeholder } = props;
+  const { setInputValueFunction, setInputValueVariable, placeholder, id, setValuesFromLocalStorage } = props;
   const [dropDownData, setDropDownData] = useState([]);
   const [showDropDownList, setShowDropDownList] = useState(false);
   const [inputValueForSearchBar, setInputValueForSearchBar] = useState("");
@@ -30,14 +32,36 @@ const SearchBar = (props) => {
     );
   }, [debouncedValues]);
 
-  useEffect(() => {
+  useEffect(()=>{
     const storedInputValues = localStorage.getItem("inputValues");
-    console.log("The stored input values in searchbar are", storedInputValues);
     if (storedInputValues) {
       const parsedInputValues = JSON.parse(storedInputValues);
       setInputValueForSearchBar(parsedInputValues.destination);
     }
-  }, []);
+  },[])
+
+  useEffect(() => {
+
+    const selectDefaultValuesForSearchBar = () =>{
+      console.log("adding default values");
+      if(dropDownData != null && dropDownData!= undefined && dropDownData.length > 0){
+        setShowDropDownList(false);
+        setInputValueForSearchBar(dropDownData[0]);
+        setInputValueFunction((currentInputValues) => {
+          const newInputValues = currentInputValues;
+          newInputValues[setInputValueVariable] = dropDownData[0];
+          return newInputValues;
+        });
+        setDropDownData([]);
+        document.addEventListener('click', selectDefaultValuesForSearchBar);
+      }
+    }
+   
+    return ()=> document.removeEventListener('click', selectDefaultValuesForSearchBar)
+
+  }, [dropDownData]);
+
+
 
   return (
     <div className="search-bar-container-inSearchMenu">
@@ -47,9 +71,18 @@ const SearchBar = (props) => {
         onChange={(event) => {
           setInputValueForSearchBar(event.target.value);
           setShowDropDownList(true);
+          const currentSearchBarValue = event.target.value;
+          if( currentSearchBarValue == null || currentSearchBarValue == undefined || currentSearchBarValue == ""){
+            setInputValueFunction((currentInputValues) => {
+              const newInputValues = currentInputValues;
+              newInputValues[setInputValueVariable] = "";
+              return newInputValues;
+            });
+          }
         }}
         placeholder={placeholder}
-        id="location-search-bar"
+        id={id}
+        className="location-search-bar"
         autoComplete="off"
       />
      
@@ -74,7 +107,7 @@ const SearchBar = (props) => {
                 setDropDownData([]);
               }}
             >
-              <p className="listItemValue">{data}</p>
+              <p className="listItemValueForGender">{data}</p>
             </li>
           ))}
         </div>
