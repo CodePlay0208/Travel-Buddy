@@ -23,11 +23,11 @@ const DateRangePicker = ({setInputValues , inputValues}) => {
     <div className="date-range-picker">
       <div className="date-picker-wrapper">
         <label>Start Date:</label>
-        <DatePicker inputValues={inputValues.endDate} setInputValues={setInputValues} />
+        <DatePicker inputValues={inputValues.startDate} setInputValues={setInputValues} onValue={'startDate'}/>
       </div>
       <div className="date-picker-wrapper">
         <label>End Date:</label>
-        <DatePicker inputValues={inputValues.endDate} setInputValues={setInputValues} />
+        <DatePicker inputValues={inputValues.endDate} setInputValues={setInputValues} onValue={'endDate'}/>
       </div>
     </div>
   );

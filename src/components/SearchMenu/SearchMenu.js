@@ -6,11 +6,11 @@ import SearchBar from "../SearchBar/SearchBar";
 import DatePickerValue from "../DatePicker/DatePicker";
 
 function validateDestination(destination) {
-  return destination != null && destination != undefined && destination != "";
+  return destination !== null && destination !== undefined && destination !== "";
 }
 
 function validatestartData(date) {
-  return date != null && date != undefined && date != "";
+  return date !== null && date !== undefined && date !== "";
 }
 
 function submitForm(inputValues, navigate) {
@@ -62,7 +62,7 @@ const SearchMenu = () => {
       </div>
       <div className="alignPadding">
 
-        <DatePickerValue inputValues={inputValues.startDate} setInputValues={setInputValues}/>
+        <DatePickerValue inputValues={inputValues.startDate} setInputValues={setInputValues} onValue={'startDate'}/>
       </div>
       {/* {console.log(inputValues)}
         <input

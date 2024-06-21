@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './DatePicker.css';
 
-const DatePicker = ({ inputValues, setInputValues }) => {
+const DatePicker = ({ inputValues, setInputValues,onValue }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(inputValues);
   const [showCalendar, setShowCalendar] = useState(false);
@@ -83,7 +83,7 @@ const DatePicker = ({ inputValues, setInputValues }) => {
     let formattedDate = dateValue.toISOString().split('T')[0];
     setInputValues((currentInputValues) => ({
       ...currentInputValues,
-      startDate: formattedDate,
+      [onValue]: formattedDate,
     }));
     setShowCalendar(false);
   };
