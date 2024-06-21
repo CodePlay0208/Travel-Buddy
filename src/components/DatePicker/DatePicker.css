@@ -27,6 +27,16 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: border-color 0.2s;
+    width: 370.312px;
+    height: 60px;
+    border-radius: 0.4rem;
+    font-size: 18px;
+    padding: 20px;
+    font-weight: 400;
+    font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
+    color: rgb(5, 0, 0);
+    border: grey 2px solid;
+    border-width: 2px;
 }
 
 .date-picker input:focus {
@@ -75,10 +85,15 @@ body {
 }
 
 .nav-button {
+    position: relative;
     cursor: pointer;
     color: #007BFF;
     font-weight: bold;
     transition: color 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
 }
 
 .nav-button.disabled {
@@ -123,7 +138,7 @@ body {
 }
 
 .days span.selected {
-    background-color: #007BFF;
+    background-color: #53a2f6;
     color: white;
 }
 
@@ -152,4 +167,9 @@ body {
 
 .today-button:hover {
     background-color: #0056b3;
+}
+.svgIcon{
+    width: 35px;
+    height: 30px;
+    
 }

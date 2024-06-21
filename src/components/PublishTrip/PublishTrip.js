@@ -296,7 +296,6 @@ const PublishTrip = () => {
             ></input>
           </div>
           <div className="input-element">
-          <label className="publish-trips-label">Date Range</label>
             <DateRangePicker setInputValues={setInputValues} inputValues={inputValues}/>
           </div>
           <div className="input-element">
