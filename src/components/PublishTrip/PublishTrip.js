@@ -298,24 +298,7 @@ const PublishTrip = () => {
           <div className="input-element">
             <DateRangePicker setInputValues={setInputValues} inputValues={inputValues}/>
           </div>
-          <div className="input-element">
-            <label className="publish-trips-label" htmlFor="endDate">
-              End Date<sup className="mandatoryFieldSignInPublishTrips">*</sup>
-            </label>
-            <input
-              className="publish-trips-input"
-              type="text"
-              placeholder="Enter End Date Of the Journey"
-              id="endDate"
-              onChange={(event) => {
-                setInputValues((currentInputValues) => ({
-                  ...currentInputValues,
-                  endDate: event.target.value,
-                }));
-              }}
-              value={inputValues.endDate}
-            ></input>
-          </div>
+          
           <div className="input-element">
             <label className="publish-trips-label" htmlFor="publish-trips-input-totalMembers">
               Total Members<sup className="mandatoryFieldSignInPublishTrips">*</sup>

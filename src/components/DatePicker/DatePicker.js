@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './DatePicker.css';
 
-const DatePicker = ({ inputValues, setInputValues, onValue }) => {
+const DatePicker = ({ inputValues, setInputValues, onValue,placeholderValue }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(inputValues );
   const [showCalendar, setShowCalendar] = useState(false);
@@ -76,7 +76,8 @@ const DatePicker = ({ inputValues, setInputValues, onValue }) => {
     } else if (date.toDateString() === tomorrow.toDateString()) {
       return 'Tomorrow';
     } else {
-      return dateValue.toISOString().split('T')[0];
+      // return dateValue.toISOString().split('T')[0];
+      return  `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
     }
   };
 
@@ -121,7 +122,7 @@ const DatePicker = ({ inputValues, setInputValues, onValue }) => {
           type="text"
           ref={dateInputRef}
           value={selectedDate}
-          placeholder="Select date"
+          placeholder={placeholderValue}
           readOnly
           onClick={() => setShowCalendar(!showCalendar)}
         />
@@ -182,7 +183,7 @@ const DatePicker = ({ inputValues, setInputValues, onValue }) => {
             <div className="days">{populateDays()}</div>
           </div>
           <div className="today-button" onClick={handleTodayClick}>
-            Today
+            <button >Today</button>
           </div>
         </div>
       )}

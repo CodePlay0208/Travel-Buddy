@@ -62,7 +62,7 @@ const SearchMenu = () => {
       </div>
       <div className="alignPadding">
 
-        <DatePickerValue inputValues={inputValues.startDate} setInputValues={setInputValues} onValue={'startDate'}/>
+        <DatePickerValue inputValues={inputValues.startDate} setInputValues={setInputValues} onValue={'startDate'} placeholderValue={"Select Travel date"}/>
       </div>
       {/* {console.log(inputValues)}
         <input
