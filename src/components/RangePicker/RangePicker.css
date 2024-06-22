@@ -1,0 +1,15 @@
+.date-range-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .date-picker-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .date-picker-wrapper label {
+    margin-bottom: 0.5rem;
+  }
+  

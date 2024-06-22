@@ -3,13 +3,14 @@ import "./SearchMenu.css";
 import { useNavigate } from "react-router-dom";
 import { InputValuesContext } from "../../Utils/Context/InputValuesContext";
 import SearchBar from "../SearchBar/SearchBar";
+import DatePickerValue from "../DatePicker/DatePicker";
 
 function validateDestination(destination) {
-  return destination != null && destination != undefined && destination != "";
+  return destination !== null && destination !== undefined && destination !== "";
 }
 
 function validatestartData(date) {
-  return date != null && date != undefined && date != "";
+  return date !== null && date !== undefined && date !== "";
 }
 
 function submitForm(inputValues, navigate) {
@@ -55,8 +56,15 @@ const SearchMenu = () => {
           submitForm(inputValues, navigate);
         }}
       >
-       <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"} id={"homePageSearchBar"} setValuesFromLocalStorage = {true}></SearchBar>
+      <div className="alignPadding">
+      <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"} id={"homePageSearchBar"} setValuesFromLocalStorage = {true}></SearchBar>
 
+      </div>
+      <div className="alignPadding">
+
+        <DatePickerValue inputValues={inputValues.startDate} setInputValues={setInputValues} onValue={'startDate'}/>
+      </div>
+      {/* {console.log(inputValues)}
         <input
           type="date"
           name="start_date"
@@ -69,10 +77,13 @@ const SearchMenu = () => {
               startDate: event.target.value,
             }))
           }
-        />
-        <button type="submit" className="searchbar-searchBtn">
-          Search
-        </button>
+        /> */}
+        <div className="alignPadding">
+          <button type="submit" className="searchBar searchbar-searchBtn">
+            Search
+          </button>
+        </div>
+        
       </form>
     </div>
   );
