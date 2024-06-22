@@ -17,6 +17,7 @@ function submitForm(inputValues) {
   //TODO: send data to backend
   data.push(inputValues);
   console.log("publishing toast");
+  console.log(data);
   toast.success("Trip Published", {
     autoClose: 100
   });
@@ -100,7 +101,7 @@ const PublishTrip = () => {
     age: "",
     gender: "",
     description: "",
-    image: [],
+    destinationImages: [],
     userName: "",
     phoneNumber: "",
     startDate: "",
@@ -138,14 +139,14 @@ const PublishTrip = () => {
     }
 
     setInputValues((currentInputValues) => ({
-      ...currentInputValues, image: files
+      ...currentInputValues, destinationImages: files
     }));
   }
 
 
   useEffect(()=>{
 
-    let files = inputValues.image;
+    let files = inputValues.destinationImages;
     let preview = document.getElementById('previewUploadedImages');
     preview.style.display = "flex";
     preview.style.flexDirection = "column";
@@ -176,7 +177,7 @@ const PublishTrip = () => {
       deleteImageBtn.onclick = () => {
         files = files.filter((file) => file.name !== deleteImageBtn.id);
         setInputValues((currentInputValues) => ({
-          ...currentInputValues, image: files
+          ...currentInputValues, destinationImages: files
         }));
       }
       fileContainer.appendChild(fileInfo);

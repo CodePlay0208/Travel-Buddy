@@ -27,7 +27,10 @@ function submitForm(inputValues, navigate) {
 }
 
 
+
+
 const SearchMenu = () => {
+  
   const { inputValues, setInputValues } = useContext(InputValuesContext);
   console.log("the input values are", inputValues);
  
@@ -49,6 +52,7 @@ const SearchMenu = () => {
   const navigate = useNavigate();
   return (
     <div className="search-container">
+      
       <form className="searchMenuInputForm"
         onSubmit={(event) => {
           event.preventDefault();

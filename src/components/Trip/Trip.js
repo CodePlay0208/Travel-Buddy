@@ -7,7 +7,7 @@ const Trip = ({trip})=>{
     <div className="cards">
 
     <a href="" className="card">
-      <img src={trip.image} className="card__image" alt={trip.startLocation} />
+      <img src={trip.destinationImages} className="card__image" alt={trip.startLocation} />
       <div className="card__overlay">
         <div className="card__header">
           

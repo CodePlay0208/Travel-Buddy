@@ -8,6 +8,8 @@ import PublishTrip from "./components/PublishTrip/PublishTrip";
 import React, { useEffect, useState } from "react";
 import { TopDestinationsContext } from "./Utils/Context/TopDestinationsContext";
 import { InputValuesContext } from "./Utils/Context/InputValuesContext";
+import LoginPage from "./components/LoginPage/LoginPage";
+import { UserLoginContext } from "./Utils/Context/UserLoginContext";
 
 const App =() =>{
   const [tripsData, setTripsData] = useState([
@@ -19,7 +21,11 @@ const App =() =>{
       age: -1,
       gender: "Male",
       description: "",
-      image:""
+      destinationImages:"",
+      userName:"",
+      phoneNumber:"",
+      startDate:"",
+      endDate:""
     },
   ]);
 
@@ -42,6 +48,8 @@ const App =() =>{
     startDate: "",
   });
 
+  const [userLoginData , setUserLoginData] = useState({isUserLoggedIn: "",})
+
   const navigate = useNavigate();
 
   return (
@@ -50,6 +58,7 @@ const App =() =>{
         value={{ topDestinations, setTopDestinations }}
       >
         <InputValuesContext.Provider value={{inputValues, setInputValues}}>
+        <UserLoginContext.Provider value={{userLoginData, setUserLoginData}}>
        
         <div>
           <Routes>
@@ -61,9 +70,11 @@ const App =() =>{
             />
             <Route exact path="/search-page" element={<SearchPage />}></Route>
             <Route exact path="/publish-trip" element={<PublishTrip />}></Route>
+            <Route path = "/login-page" element={<LoginPage/>} />
             <Route path = "/*" element={<InvalidRoute/>} />
           </Routes>
           </div>
+          </UserLoginContext.Provider>
         </InputValuesContext.Provider>
       </TopDestinationsContext.Provider>
     </TripsContext.Provider>
