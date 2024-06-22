@@ -1,0 +1,65 @@
+/* HeroSection.css */
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px;
+  }
+  
+  .slider-item {
+    position: relative;
+    text-align: center;
+    color: white;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+  }
+  
+  .slider-item img {
+    width: 100%;
+    height: 700px;
+    border-radius: 10px;
+    display: block; /* Ensure the image behaves like a block element */
+  }
+  
+  .description {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  
+  .description h2 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .arrow.next {
+    z-index: 3;
+    right: 10px;
+  }
+  
+  .arrow.prev {
+    z-index: 3;
+    left: 10px;
+  }
+  
+  .arrow:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
