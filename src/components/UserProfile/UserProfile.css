@@ -1,0 +1,28 @@
+.userProfileHeadContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.userProfileInnerContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(244, 244, 244);
+    height: 100%;
+}
+
+.sideBarContainerInUserTrips{
+    width: 30%;
+}
+
+.userDashBoardContainerInUserTrips{
+    width: 70%;
+}
+
+
+
+
+
+
+

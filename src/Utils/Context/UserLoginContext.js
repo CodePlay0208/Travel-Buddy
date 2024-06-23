@@ -4,6 +4,7 @@ export const UserLoginContext = createContext({
   userLoginData: [
     {
       isUserLoggedIn: "",
+      userName:"",
     },
   ],
   setUserLoginData: () => {}

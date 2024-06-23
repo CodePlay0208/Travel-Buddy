@@ -5,9 +5,9 @@ import { FilterContext } from "../../Utils/Context/FilterContext";
 const FilterSection = (props) => {
   const filterDataContext = useContext(FilterContext);
   return (
-    <>
+    <div>
       {props.visibility && (
-        <div className="filter-section">
+        <div className="filterSectionContainer">
           <div className="sort-by">
             <h2>Sort By</h2>
             <label>
@@ -25,7 +25,7 @@ const FilterSection = (props) => {
                 value="closest-departure-point"
               />
               Closest to Departure Point
-            </label>
+            </label>  
           </div>
           <div className="preferences">
             <h2>Preferences</h2>
@@ -99,7 +99,7 @@ const FilterSection = (props) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

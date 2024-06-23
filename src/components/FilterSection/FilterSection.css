@@ -1,6 +1,6 @@
 /* FilterSection.css */
 
-.filter-section .filter-section{
+.filterSectionContainer {
   display: flex;
   flex-direction: column;
   padding-top: 16px;
@@ -15,7 +15,7 @@
 }
 
 
-.filter-section h2 {
+.filterSectionContainer h2 {
   margin-top: 16px;
   margin-bottom: 8px;
   font-weight: 600;

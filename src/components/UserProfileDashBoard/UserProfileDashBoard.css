@@ -1,0 +1,73 @@
+.userProfileImage {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-top: 24px;
+  position: relative;
+}
+
+.userInformation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  left: 200px;
+  top: 10%;
+  background-color: white;
+  height: 70%;
+  width: 570px;
+  flex-wrap: wrap;
+  padding-left: 30px;
+  gap:1em;
+}
+
+.userShortIntro {
+  display: flex;
+  flex-direction: row;
+}
+
+.userShortIntro input {
+  width: 220px;
+  border-radius: 0.4rem;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
+  color: rgb(5, 0, 0);
+  height: 20px;
+  border: none;
+  font-weight: 470;
+  outline: none;
+  background-color: white;
+}
+
+.verify-btn {
+  padding: 20px;
+  width: 200px;
+  height: 45px;
+  background: #2f6f9c;
+  color: #ffffff;
+  font-size: 15px;
+  text-transform: capitalize;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: white;
+  margin-left: 2%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.infoAttributeName{
+    font-weight: 700;
+}
+
+.img-container{
+    align-items: center;
+}
+
+.userProfileDashUserName{
+    padding-left: 20px;
+}

@@ -36,7 +36,7 @@ const LoginPage = () => {
           </div>
           <form action="post">
               <section className="inputSection">
-                  <input className="login-page-input" type="email" name="email" id="email" placeholder="E-mail address or phone number"/>
+                  <input className="login-page-input" type="email" name="email" id="email" placeholder="E-mail address"/>
                   <input className="login-page-input" type="password" name="password" id="password" placeholder="Password"/>
                   <div className="additionalChecksInLoginPage">
                       <div >

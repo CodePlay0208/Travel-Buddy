@@ -10,6 +10,8 @@ import { TopDestinationsContext } from "./Utils/Context/TopDestinationsContext";
 import { InputValuesContext } from "./Utils/Context/InputValuesContext";
 import LoginPage from "./components/LoginPage/LoginPage";
 import { UserLoginContext } from "./Utils/Context/UserLoginContext";
+import UserProfile from "./components/UserProfile/UserProfile";
+import UserTrips from "./components/UserTrips/UserTrips";
 
 const App =() =>{
   const [tripsData, setTripsData] = useState([
@@ -71,6 +73,8 @@ const App =() =>{
             <Route exact path="/search-page" element={<SearchPage />}></Route>
             <Route exact path="/publish-trip" element={<PublishTrip />}></Route>
             <Route path = "/login-page" element={<LoginPage/>} />
+            <Route path = "/userProfile" element={<UserProfile/>} />
+            <Route path = "/userTrips" element={<UserTrips/>} />
             <Route path = "/*" element={<InvalidRoute/>} />
           </Routes>
           </div>

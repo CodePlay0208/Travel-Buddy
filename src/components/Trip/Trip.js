@@ -10,7 +10,7 @@ const Trip = ({trip})=>{
 
   const handleClickOnChatButton = ()=>{
     if(userLoginData.isUserLoggedIn){
-      
+
     }
     else{
       navigate("/login-page");
@@ -28,7 +28,6 @@ const Trip = ({trip})=>{
           
           <div className="card__header-text">
 
-          
           <p><strong>From:</strong>{trip.startLocation}</p>
           <p><strong>To:</strong> {trip.endLocation}</p>
           </div>

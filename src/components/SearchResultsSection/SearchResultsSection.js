@@ -5,22 +5,26 @@ import Trip from "../Trip/Trip";
 import { TripsContext } from "../../Utils/Context/TripsContext";
 
 
-const SearchResultsSection = () => {
+const SearchResultsSection = (props) => {
 
-  const tripsContext = useContext(TripsContext);
   const filterContext = useContext(FilterContext);
-  const trips = tripsContext.tripsData;
+  const trips = props.tripsData;
 
   const filterTrip = (trip) =>{
     return (trip.age >= filterContext.fromAge && trip.age <= filterContext.toAge && (filterContext.gender === '' || trip.gender === filterContext.gender))
   }
 
+  let finalTrips = trips;
 
-  let finalTrips = trips.filter((trip) => filterTrip(trip));
-  console.log("The final trips are ", finalTrips);
+  if(!props.isUserTrip){
+    finalTrips = trips.filter((trip) => filterTrip(trip));
+  }
+
+
   return (
     <div className="search-results-section-container">
-      <div className="headerForSearchResults"></div>
+      <div className="headerForSearchResults">
+      </div>
       <div className="trips">
         {finalTrips && finalTrips.map((trip) =>(<Trip key ={trip.id} trip={trip} />)
         )}

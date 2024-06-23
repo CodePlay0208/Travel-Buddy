@@ -9,8 +9,8 @@ const Navbar = (props) => {
 
   const {userLoginData, setUserLoginData} = useContext(UserLoginContext);
   const userProfileDropDownData = [
-    {value : "My Profile" , path: "userProfile"} , 
-    {value : "My Trips" , path: "userTrips"} , 
+    {value : "My Profile" , path: "/userProfile"} , 
+    {value : "My Trips" , path: "/userTrips"} , 
     {value : "Sign Out" , path: "signOut"} ];
 
     const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false);
@@ -24,8 +24,6 @@ const Navbar = (props) => {
       ...currentUserLoginData, isUserLoggedIn: isUserLoggedIn
     }));
     
-    console.log(userLoginData);
-
   },[]);
 
   useEffect(()=>{
@@ -44,12 +42,8 @@ const Navbar = (props) => {
   },[]);
 
 
-console.log(showUserProfileDropDownList);
-
 const handleClickOnProfilePic = ()=>{
 
-  console.log(userLoginData.isUserLoggedIn);
-    
     if(userLoginData.isUserLoggedIn){
       setShowUserProfileDropDownList((currentValue)=> !currentValue);
     }
@@ -63,6 +57,7 @@ const handleClickOnProfilePic = ()=>{
     setUserLoginData((currentUserLoginData)=>({
       ...currentUserLoginData, isUserLoggedIn: false
     }));
+    navigate("/")
   }
 
   return (
