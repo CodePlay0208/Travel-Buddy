@@ -11,7 +11,9 @@ const SearchResultsSection = (props) => {
   const trips = props.tripsData;
 
   const filterTrip = (trip) =>{
-    return (trip.age >= filterContext.fromAge && trip.age <= filterContext.toAge && (filterContext.gender === '' || trip.gender === filterContext.gender))
+    console.log(filterContext);
+    console.log(trip);
+    return (trip.age >= filterContext.fromAge && trip.age <= filterContext.toAge && (filterContext.gender === '' || trip.sex === filterContext.gender))
   }
 
   let finalTrips = trips;
