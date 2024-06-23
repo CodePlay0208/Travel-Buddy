@@ -17,17 +17,15 @@ const SearchResultsPage = () => {
     gender: "",
   });
 
-  console.log("search results page");
-
   const {inputValues} = useContext(InputValuesContext);
 
-  const tripsContext = useContext(TripsContext);
+  const [tripsData, setTripsData] = useState([]);
 
-  console.log("The input values are", inputValues);
 
   useEffect(()=>{
+    // TODO: fetch trips data
     const arr = data;
-    tripsContext.setTripsData(arr);
+    setTripsData(arr);
   },[inputValues]);
  
 
@@ -47,7 +45,7 @@ const SearchResultsPage = () => {
             </div>
 
             <div className="search-results-section">
-              <SearchResultsSection />
+              <SearchResultsSection tripsData={tripsData} isUserTrip = {false}/>
             </div>
           </div>
         </FilterContext.Provider>

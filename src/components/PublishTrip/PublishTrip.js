@@ -7,8 +7,6 @@ import { DatePicker, Space, Typography } from 'antd';
 import data from "../../data/data.json";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import UploadImages from "../UploadImages/UploadImages";
-import dropDownSvg from '../../data/Images/dropDown.svg'
 import DateRangePicker from "../RangePicker/RangePicker";
 
 function submitForm(inputValues) {
@@ -18,7 +16,6 @@ function submitForm(inputValues) {
   inputValues["id"] = getTotalUsers;
   //TODO: send data to backend
   data.push(inputValues);
-  console.log("publishing toast");
   toast.success("Trip Published", {
     autoClose: 100
   });
@@ -33,8 +30,6 @@ function validateForm(inputValues, isClickOnHeading) {
   const isValidTotalMembers = inputValues.totalMembers != null && inputValues.totalMembers != undefined && inputValues.totalMembers != "";
   const isValidAge = inputValues.age != null && inputValues.age != undefined && inputValues.age != "";
   const isValidGender = inputValues.gender != null && inputValues.gender != undefined && inputValues.gender != "";
-
-  console.log(inputValues);
 
   let errorMessage = false;
 
@@ -102,11 +97,12 @@ const PublishTrip = () => {
     age: "",
     gender: "",
     description: "",
-    image: [],
+    destinationImages: [],
     userName: "",
     phoneNumber: "",
     startDate: "",
     endDate: "",
+    emailId:""
   };
   const [inputValues, setInputValues] = useState(initialPublishTripValues);
   const genderDropDownData = ["Male", "Female", "Prefer Not To Say"];
@@ -140,14 +136,14 @@ const PublishTrip = () => {
     }
 
     setInputValues((currentInputValues) => ({
-      ...currentInputValues, image: files
+      ...currentInputValues, destinationImages: files
     }));
   }
 
 
   useEffect(()=>{
 
-    let files = inputValues.image;
+    let files = inputValues.destinationImages;
     let preview = document.getElementById('previewUploadedImages');
     preview.style.display = "flex";
     preview.style.flexDirection = "column";
@@ -178,7 +174,7 @@ const PublishTrip = () => {
       deleteImageBtn.onclick = () => {
         files = files.filter((file) => file.name !== deleteImageBtn.id);
         setInputValues((currentInputValues) => ({
-          ...currentInputValues, image: files
+          ...currentInputValues, destinationImages: files
         }));
       }
       fileContainer.appendChild(fileInfo);
@@ -228,10 +224,9 @@ const PublishTrip = () => {
       const isEventInButton = document.getElementById("publish-trips-input-age").contains(event.target);
       const isEventInAgeField = isEventInButton || isEventInDropDownMenu;
 
-      console.log(inputValues.age, isEventInDropDownMenu, isEventInButton, isEventInAgeField);
+    
 
       if (inputValues.age === "" && showAgeGroupDropDownList && !isEventInAgeField) {
-        console.log("fired");
         setInputValues((currentInputValues) => ({
           ...currentInputValues, age: ageGroupDropDownData[2]
         }))
@@ -254,7 +249,6 @@ const PublishTrip = () => {
     }
   }, [showGenderDropDownList, showTotalMembersDropDownList, showAgeGroupDropDownList]);
 
-  console.log(inputValues);
 
   return (
 
@@ -312,7 +306,7 @@ const PublishTrip = () => {
               className="publish-trips-label"
               htmlFor="destinationSearchBar"
             >
-              Destination <sup className="mandatoryFieldSignInPublishTrips">*</sup>
+              Destination<sup className="mandatoryFieldSignInPublishTrips">*</sup>
             </label>
             <SearchBar
               placeholder={"Enter Your Destination"}
@@ -341,26 +335,27 @@ const PublishTrip = () => {
             ></input>
           </div>
           <div className="input-element">
-            <DateRangePicker setInputValues={setInputValues} inputValues={inputValues}/>
-          </div>
-          <div className="input-element">
-            <label className="publish-trips-label" htmlFor="endDate">
-              End Date<sup className="mandatoryFieldSignInPublishTrips">*</sup>
+            <label className="publish-trips-label" htmlFor="emailId">
+              Email<sup className="mandatoryFieldSignInPublishTrips">*</sup>
             </label>
             <input
               className="publish-trips-input"
               type="text"
-              placeholder="Enter End Date Of the Journey"
-              id="endDate"
+              placeholder="Enter Your Email"
+              id="emailId"
               onChange={(event) => {
                 setInputValues((currentInputValues) => ({
                   ...currentInputValues,
-                  endDate: event.target.value,
+                  emailId: event.target.value,
                 }));
               }}
-              value={inputValues.endDate}
+              value={inputValues.emailId}
             ></input>
           </div>
+          <div className="input-element">
+            <DateRangePicker setInputValues={setInputValues} inputValues={inputValues}/>
+          </div>
+          
           <div className="input-element">
             <label className="publish-trips-label" htmlFor="publish-trips-input-totalMembers">
               Total Members<sup className="mandatoryFieldSignInPublishTrips">*</sup>
@@ -386,7 +381,6 @@ const PublishTrip = () => {
                     <li
                       key={data}
                       onClick={() => {
-                        console.log(data);
                         setShowTotalMembersDropDownList(false);
                         setInputValues((currentInputValues) => ({
                           ...currentInputValues, totalMembers: data
@@ -519,7 +513,6 @@ const PublishTrip = () => {
           </div>
         </div>
       </form>
-
       <Footer></Footer>
       <ToastContainer />
     </div>

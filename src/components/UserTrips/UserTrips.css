@@ -1,0 +1,25 @@
+.userTripsHeadContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.userTripsInnerContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(244, 244, 244);
+    height: 100%;
+    flex-wrap: nowrap;
+}
+
+.sideBarContainerInUserTrips{
+    width: 30%;
+}
+
+.searchResultsContainerInUserTrips{
+    width: 70%;
+}
+
+
+
+

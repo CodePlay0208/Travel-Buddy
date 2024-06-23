@@ -1,0 +1,119 @@
+
+.heading1ForLoginCard{
+  font-size: 40px;
+  font-weight: 700;
+  margin-left: 19%;
+  width: 100%;
+}
+
+.heading2ForLoginCard{
+  font-size: 40px;
+  font-weight: 700;
+  margin-left: 23%;
+  width: 100%;
+  
+}
+
+.loginCardContainer{
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  border-radius: 10px;
+  max-width: 450px;
+  width: 100%;
+  height: 100%;
+  margin: 10% 0 0 0;
+  padding: 20px;
+  margin-left: 15%;
+  font-family: "Roboto", sans-serif;
+}
+
+.loginCardContainer:hover{
+    box-shadow: 0 20px 20px 0 hsla(180, 91%, 42%, 0.2);
+}
+
+.login-page-input{
+  border: 1px solid #c1c1c1;
+  font-size: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 370.312px;
+  border-radius: 0.4rem;
+  font-size: 18px;
+  height: 60px;
+  font-size: 18px;
+  padding: 20px;
+}
+
+.login-page-input::placeholder{
+  font-size: 18px;
+  color: #000000;
+  padding: 0 0 0 5px;
+}
+
+.linkInLoginPage{
+  text-decoration: none;
+  color: #f86d34;
+}
+
+.buttonSectionInLoginPage{
+  margin-top: 30px;
+}
+.additionalChecksInLoginPage{
+  display:flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+
+.signInButtonInLoginPage{
+  all:unset;
+  margin: 10px 0;
+  padding: 8px 0 8px 5px;
+  width: 100%;
+  max-width: 96%;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  color: #ffffff;
+  background-color: #2a2c30;
+  border: 1px solid #2a2c30;
+  border-radius: 20px;
+  height: 28px;
+}
+
+.signInUsingGoogleButtonInLoginPage{
+  all:unset;
+  margin: 10px 0;
+  padding: 8px 0 8px 5px;
+  width: 100%;
+  max-width: 96%;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  color: #ffffff;
+  background-color: #2a2c30;
+  border: 1px solid #2a2c30;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.not-member{
+  margin: 20px 0 40px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svgInLoginPage{
+  height: 30px;
+  width: 30px;
+  padding: 0 10px 0 0;
+}
+
+.imgForUserProfile{
+  cursor: pointer;
+}

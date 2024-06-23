@@ -43,7 +43,6 @@ const SearchBar = (props) => {
   useEffect(() => {
 
     const selectDefaultValuesForSearchBar = () =>{
-      console.log("adding default values");
       if(dropDownData != null && dropDownData!= undefined && dropDownData.length > 0){
         setShowDropDownList(false);
         setInputValueForSearchBar(dropDownData[0]);

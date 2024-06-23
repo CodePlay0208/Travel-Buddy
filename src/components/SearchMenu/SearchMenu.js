@@ -17,7 +17,6 @@ function submitForm(inputValues, navigate) {
   const isValidDestination = validateDestination(inputValues.destination);
   const isValidStartDate = validatestartData(inputValues.startDate);
   if (isValidDestination && isValidStartDate) {
-    console.log("the input values are", inputValues);
     localStorage.setItem("inputValues", JSON.stringify(inputValues));
     navigate("/search-results-page");
   } else if (!isValidDestination) {
@@ -28,13 +27,15 @@ function submitForm(inputValues, navigate) {
 }
 
 
+
+
 const SearchMenu = () => {
+  
   const { inputValues, setInputValues } = useContext(InputValuesContext);
-  console.log("the input values are", inputValues);
+ 
  
   useEffect(() => {
     const storedInputValues = localStorage.getItem("inputValues");
-    console.log("The stored input values in searchbar are", storedInputValues);
     if (storedInputValues) {
       const parsedInputValues = JSON.parse(storedInputValues);
       setInputValues(parsedInputValues);
@@ -50,6 +51,7 @@ const SearchMenu = () => {
   const navigate = useNavigate();
   return (
     <div className="search-container">
+      
       <form className="searchMenuInputForm"
         onSubmit={(event) => {
           event.preventDefault();
@@ -62,7 +64,7 @@ const SearchMenu = () => {
       </div>
       <div className="alignPadding">
 
-        <DatePickerValue inputValues={inputValues.startDate} setInputValues={setInputValues} onValue={'startDate'}/>
+        <DatePickerValue inputValues={inputValues.startDate} setInputValues={setInputValues} onValue={'startDate'} placeholderValue={"Select Travel date"}/>
       </div>
       {/* {console.log(inputValues)}
         <input

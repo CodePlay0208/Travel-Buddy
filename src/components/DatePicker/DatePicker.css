@@ -59,7 +59,7 @@ body {
     position: absolute;
     top: 45px;
     left: 0;
-    width: 300px;
+    width: 370px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: white;
@@ -67,6 +67,7 @@ body {
     z-index: 1000;
     animation: fadeIn 0.2s;
     font-size: 16px;
+    margin:20px 0px;
 }
 
 @keyframes fadeIn {
@@ -78,7 +79,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 30px;
     background-color: #f8f9fa;
     border-bottom: 1px solid #ccc;
     border-radius: 4px 4px 0 0;
@@ -156,18 +157,25 @@ body {
 }
 
 .today-button {
-    padding: 8px 16px;
-    border: none;
-    background-color: #007BFF;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    button{
+        padding: 13px 36px;
+        border: none;
+        background-color: #007BFF;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        margin-bottom: 10px;
+    }
 }
 
-.today-button:hover {
+/* .today-button:hover {
     background-color: #0056b3;
-}
+} */
 .svgIcon{
     width: 35px;
     height: 30px;

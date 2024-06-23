@@ -1,0 +1,33 @@
+.listOfSideBarItems{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.listOfSideBarItems li{
+    list-style-type: none;
+    margin-top:50px;
+    font-size: 30px;
+}
+
+.listOfSideBarItems li:hover{
+    filter: drop-shadow(2px 2px 2px #0505059f);
+    cursor: pointer;
+}
+
+
+.sideBar{
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
+  top: 0;
+  box-sizing: border-box;
+  position: sticky;
+  font-family: "Gill Sans";
+  padding-left: 55%;
+  margin-top:50px;
+  box-sizing: border-box;
+  margin-right: 0px;
+}
