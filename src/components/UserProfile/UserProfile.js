@@ -27,7 +27,7 @@ const UserProfile = () => {
             <div className="sideBarContainerInUserTrips"> <UserSideBar/></div>
             <div className="searchResultsContainerInUserTrips">
             <UserProfileDashBoard></UserProfileDashBoard>
-                 </div> 
+                </div> 
             </div>
         </div>
     );
