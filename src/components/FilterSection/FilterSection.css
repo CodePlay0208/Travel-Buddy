@@ -1,64 +1,97 @@
+
 .filterSectionWrapper {
-  margin-top: 20px;
   transition: all 0.3s ease;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  overflow-y: auto;
+  border-left: 1px solid #ccc;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 .filterSectionWrapper.hidden {
   display: none;
 }
 
-.filterSectionWrapper.visible {
-  display: flex;
-  align-items: end;
-  justify-items: end;
-  justify-content: end;
-  margin-left: 20px;
-}
-
 .filterSectionContainer {
   padding: 20px;
-  border: 1px solid #ccc;
+  background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  width: 100%;
+  margin: 20px;
 }
 
-.sort-by,
-.preferences {
-  margin-bottom: 10px;
+.filterHeader {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
   padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 8px 8px 0 0;
 }
 
-.sort-by h2,
-.preferences h2 {
+.clearButton {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.clearButton:hover {
+  color: #ffcccc;
+}
+
+.sectionTitle {
+  font-size: 1.2em;
   margin-bottom: 15px;
   color: #333;
-  font-size: 18px;
+  font-weight: bold;
 }
 
-.sort-by .options,
-.preferences .age-preference,
-.preferences .gender-preference {
+.filterOptions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filterOptionLabel {
   display: flex;
-  flex-direction: column;
-}
-
-.sort-by .options label,
-.preferences .age-preference label,
-.preferences .gender-preference label {
+  align-items: center;
   margin-bottom: 10px;
   font-weight: 500;
   font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
-.age-preference .age-inputs {
+.filterOptionLabel:hover {
+  background-color: #f1f1f1;
+}
+
+.preferences .agePreference, 
+.preferences .genderPreference {
+  margin-top: 20px;
+}
+
+.preferenceLabel {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.ageInputs {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
 }
 
-.age-preference .age-inputs div {
+.ageInputs div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,29 +99,57 @@
 
 input[type="number"] {
   width: 60px;
-  padding: 5px;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   text-align: center;
+  transition: border-color 0.3s ease;
+  font-size: 14px;
 }
 
-.gender-preference .gender-options {
+input[type="number"]:focus {
+  border-color: #007BFF;
+}
+
+.genderOptions {
   display: flex;
   gap: 20px;
   margin-top: 10px;
 }
 
-.gender-options label {
+.genderOptions label {
   display: flex;
   align-items: center;
+  transition: color 0.3s ease;
+}
+
+.genderOptions label:hover {
+  color: #007BFF;
 }
 
 input[type="radio"] {
   margin-right: 5px;
 }
 
-.error-message {
+.errorMessage {
   color: red;
+  font-size: 0.9em;
   margin-top: 10px;
-  font-size: 14px;
+}
+
+.divider {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.divider hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  width: 80%;
+}
+
+.content {
+  margin-left: 340px;
+  padding: 20px;
+  background-color: #f5f5f5;
 }
