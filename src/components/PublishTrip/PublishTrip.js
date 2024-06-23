@@ -3,11 +3,13 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./PublishTrip.css";
 import SearchBar from "../SearchBar/SearchBar";
+import { DatePicker, Space, Typography } from 'antd';
 import data from "../../data/data.json";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UploadImages from "../UploadImages/UploadImages";
 import dropDownSvg from '../../data/Images/dropDown.svg'
+import DateRangePicker from "../RangePicker/RangePicker";
 
 function submitForm(inputValues) {
   // TODO: integrate totalusers API
@@ -340,41 +342,9 @@ const PublishTrip = () => {
             ></input>
           </div>
           <div className="input-element">
-            <label className="publish-trips-label" htmlFor="startDate">
-              Start Date<sup className="mandatoryFieldSignInPublishTrips">*</sup>
-            </label>
-            <input
-              className="publish-trips-input"
-              type="text"
-              placeholder="Enter Start Date Of the Journey"
-              id="startDate"
-              onChange={(event) => {
-                setInputValues((currentInputValues) => ({
-                  ...currentInputValues,
-                  startDate: event.target.value,
-                }));
-              }}
-              value={inputValues.startDate}
-            ></input>
+            <DateRangePicker setInputValues={setInputValues} inputValues={inputValues}/>
           </div>
-          <div className="input-element">
-            <label className="publish-trips-label" htmlFor="endDate">
-              End Date<sup className="mandatoryFieldSignInPublishTrips">*</sup>
-            </label>
-            <input
-              className="publish-trips-input"
-              type="text"
-              placeholder="Enter End Date Of the Journey"
-              id="endDate"
-              onChange={(event) => {
-                setInputValues((currentInputValues) => ({
-                  ...currentInputValues,
-                  endDate: event.target.value,
-                }));
-              }}
-              value={inputValues.endDate}
-            ></input>
-          </div>
+          
           <div className="input-element">
             <label className="publish-trips-label" htmlFor="publish-trips-input-totalMembers">
               Total Members<sup className="mandatoryFieldSignInPublishTrips">*</sup>

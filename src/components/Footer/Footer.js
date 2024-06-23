@@ -50,7 +50,7 @@ const Footer = () => {
         </div>
         <div className="social-media-links">
           <span className="facebook">
-            <svg
+            <svg className="footersvg"
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
               y="0px"
@@ -70,7 +70,7 @@ const Footer = () => {
             </svg>
           </span>
           <span className="X">
-            <svg
+            <svg className="footersvg"
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
               y="0px"
@@ -83,7 +83,7 @@ const Footer = () => {
             </svg>
           </span>
           <span className="youTube">
-            <svg
+            <svg className="footersvg"
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
               y="0px"
@@ -100,7 +100,7 @@ const Footer = () => {
             </svg>
           </span>
           <span className="instagram">
-            <svg
+            <svg className="footersvg"
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
               y="0px"

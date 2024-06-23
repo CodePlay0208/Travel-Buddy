@@ -1,0 +1,83 @@
+/* PopularTrips.css */
+
+.popular-trips-section {
+  background-color: #b0e0e6; /* Powder blue background color */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.popular-trips-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.popular-trip-article {
+  margin-bottom: 20px;
+}
+
+.popular-trip-title {
+  font-size: 2em;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.popular-trip-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.popular-trip-item {
+  margin: 10px;
+  width: 40%;
+}
+
+.popular-trip-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #007acc;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.popular-trip-link:hover {
+  background-color: #e0f7fa;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.popular-trip-text {
+  margin-right: 10px;
+}
+
+.popular-trip-icon .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.popular-trip-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.popular-trip-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #007acc;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.popular-trip-button:hover {
+  background-color: #005f99;
+}
