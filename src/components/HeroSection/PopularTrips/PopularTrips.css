@@ -2,7 +2,7 @@
 
 .popular-trips-section {
   background-color: #b0e0e6; /* Powder blue background color */
-  padding: 20px;
+  padding: 40px;
   border-radius: 10px;
 }
 
@@ -46,6 +46,7 @@
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
 
 .popular-trip-link:hover {
@@ -64,11 +65,12 @@
 
 .popular-trip-button-container {
   text-align: center;
-  margin-top: 20px;
+  margin: 30px 0px;
+  margin-top: 50px;
 }
 
 .popular-trip-button {
-  padding: 10px 20px;
+  padding: 15px 20px;
   font-size: 1em;
   color: #fff;
   background-color: #007acc;
@@ -76,6 +78,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  text-decoration: none;
 }
 
 .popular-trip-button:hover {

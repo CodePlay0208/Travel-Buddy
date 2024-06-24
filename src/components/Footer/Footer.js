@@ -24,7 +24,7 @@ const Footer = () => {
     <div className="footer-container">
       <div className="destinations-and-links">
         <div className="top-destinations">
-          <h2>Top Destinations</h2>
+          <h2 id="topDestinations">Top Destinations</h2>
           <ul>
             {topDestinations.map((destination, idx) => (
               <li
@@ -57,7 +57,6 @@ const Footer = () => {
               width="100"
               height="100"
               viewBox="0 0 48 48"
-              className="footersvg"
             >
               <path
                 fill="#fff"
@@ -77,7 +76,6 @@ const Footer = () => {
               width="100"
               height="100"
               viewBox="0 0 50 50"
-              className="footersvg"
             >
               <path d="M 6.9199219 6 L 21.136719 26.726562 L 6.2285156 44 L 9.40625 44 L 22.544922 28.777344 L 32.986328 44 L 43 44 L 28.123047 22.3125 L 42.203125 6 L 39.027344 6 L 26.716797 20.261719 L 16.933594 6 L 6.9199219 6 z"></path>
             </svg>
@@ -90,7 +88,6 @@ const Footer = () => {
               width="100"
               height="100"
               viewBox="0 0 48 48"
-              className="footersvg"
             >
               <path
                 fill="#FFFFFF"
@@ -108,7 +105,6 @@ const Footer = () => {
               height="100"
               viewBox="0 0 24 24"
               style={{ fill: "#228BE6" }}
-              className="footersvg"
             >
               <path d="M 8 3 C 5.243 3 3 5.243 3 8 L 3 16 C 3 18.757 5.243 21 8 21 L 16 21 C 18.757 21 21 18.757 21 16 L 21 8 C 21 5.243 18.757 3 16 3 L 8 3 z M 8 5 L 16 5 C 17.654 5 19 6.346 19 8 L 19 16 C 19 17.654 17.654 19 16 19 L 8 19 C 6.346 19 5 17.654 5 16 L 5 8 C 5 6.346 6.346 5 8 5 z M 17 6 A 1 1 0 0 0 16 7 A 1 1 0 0 0 17 8 A 1 1 0 0 0 18 7 A 1 1 0 0 0 17 6 z M 12 7 C 9.243 7 7 9.243 7 12 C 7 14.757 9.243 17 12 17 C 14.757 17 17 14.757 17 12 C 17 9.243 14.757 7 12 7 z M 12 9 C 13.654 9 15 10.346 15 12 C 15 13.654 13.654 15 12 15 C 10.346 15 9 13.654 9 12 C 9 10.346 10.346 9 12 9 z"></path>
             </svg>
