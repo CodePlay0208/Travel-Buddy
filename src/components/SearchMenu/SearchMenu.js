@@ -62,7 +62,7 @@ const SearchMenu = () => {
       <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"} id={"homePageSearchBar"} setValuesFromLocalStorage = {true}></SearchBar>
 
       </div>
-      <div className="alignPadding">
+      <div className="alignPadding datepicker">
 
         <DatePickerValue inputValues={inputValues.startDate} setInputValues={setInputValues} onValue={'startDate'} placeholderValue={"Select Travel date"}/>
       </div>

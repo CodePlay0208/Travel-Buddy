@@ -1,11 +1,10 @@
-
 .filterSectionWrapper {
   transition: all 0.3s ease;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   right: 0;
-  width: 320px;
+  padding: 0 60px;
   height: 100vh;
   overflow-y: auto;
   border-left: 1px solid #ccc;
@@ -67,6 +66,7 @@
   margin-bottom: 10px;
   font-weight: 500;
   font-size: 14px;
+  padding: 10px;
   transition: background-color 0.3s ease;
 }
 
@@ -87,21 +87,24 @@
 
 .ageInputs {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* Change to column */
+  align-items: flex-start;
+  gap: 10px; /* Adjust the gap between input fields */
   margin-top: 10px;
 }
 
 .ageInputs div {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 input[type="number"] {
-  width: 60px;
+  width: 200px; /* Increase the width */
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin: 5px 0;
   text-align: center;
   transition: border-color 0.3s ease;
   font-size: 14px;
@@ -113,7 +116,8 @@ input[type="number"]:focus {
 
 .genderOptions {
   display: flex;
-  gap: 20px;
+  flex-direction: column; /* Change to column */
+  gap: 10px; /* Adjust the gap between options */
   margin-top: 10px;
 }
 
