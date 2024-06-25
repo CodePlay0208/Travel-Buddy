@@ -18,6 +18,18 @@ function submitForm(inputValues, navigate) {
   const isValidStartDate = validatestartData(inputValues.startDate);
   if (isValidDestination && isValidStartDate) {
     localStorage.setItem("inputValues", JSON.stringify(inputValues));
+    let searchList = localStorage.getItem("allSearches");
+    if(searchList){
+      searchList = JSON.parse(searchList);
+      searchList.push(inputValues);
+      if(searchList.length > 5){
+        searchList.shift();
+      }
+    }
+    else{
+      searchList = [inputValues];
+    }
+    localStorage.setItem("allSearches", JSON.stringify(searchList));
     navigate("/search-results-page");
   } else if (!isValidDestination) {
     document.getElementById("homePageSearchBar").focus();
@@ -81,7 +93,7 @@ const SearchMenu = () => {
           }
         /> */}
         <div className="alignPadding">
-          <button type="submit" className="searchBar searchbar-searchBtn">
+          <button type="submit" className="searchBarBtn">
             Search
           </button>
         </div>
