@@ -37,3 +37,6 @@
     justify-items: center;
     align-items: center;
   }
+.datepicker{
+  width :250px;
+}

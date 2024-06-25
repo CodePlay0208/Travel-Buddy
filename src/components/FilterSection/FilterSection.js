@@ -2,48 +2,71 @@ import React, { useContext } from "react";
 import "./FilterSection.css";
 import { FilterContext } from "../../Utils/Context/FilterContext";
 
-const FilterSection = (props) => {
-  const  filterDataContext  = useContext(FilterContext);
+const FilterSection = ({ visibility }) => {
+  const filterDataContext = useContext(FilterContext);
   const { fromAge, toAge, gender, setFilterData } = filterDataContext;
 
+  const handleClearAll = () => {
+    setFilterData({
+      fromAge: 0,
+      toAge: 100,
+      gender: "",
+    });
+  };
+
   return (
-    <div className={`filterSectionWrapper ${props.visibility ? 'visible' : 'hidden'}`}>
+    <div className={`filterSectionWrapper ${visibility ? 'visible' : 'hidden'}`}>
       <div className="filterSectionContainer">
-        <div className="sort-by">
-          <h2>Sort By</h2>
-          <div className="options">
-            <label>
-              <input
-                type="radio"
-                name="sort-by-departure"
-                value="earliest-departure"
-              />
-              Earliest Departure Date
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="sort-by-departure"
-                value="closest-departure-point"
-              />
-              Closest to Departure Point
-            </label>
-          </div>
+        <div className="filterHeader">
+          <button type="button" className="clearButton" onClick={handleClearAll}>
+            Clear all
+          </button>
         </div>
-        <div className="preferences">
-          <h2>Preferences</h2>
-          <div className="age-preference">
-            <label>Age:</label>
-            <div className="age-inputs">
+
+        <section>
+          <h3 className="sectionTitle">Sort by</h3>
+          <ul aria-label="Sort by" role="radiogroup" className="filterOptions">
+            <li>
+              <label className="filterOptionLabel">
+                <input
+                  type="radio"
+                  name="sort-by-departure"
+                  value="earliest-departure"
+                />
+                Earliest Departure Date
+              </label>
+            </li>
+            <li>
+              <label className="filterOptionLabel">
+                <input
+                  type="radio"
+                  name="sort-by-departure"
+                  value="closest-departure-point"
+                />
+                Closest to Departure Point
+              </label>
+            </li>
+          </ul>
+        </section>
+
+        <div aria-hidden="true" className="divider">
+          <hr />
+        </div>
+
+        <section>
+          <h3 className="sectionTitle">Preferences</h3>
+          <div className="agePreference">
+            <label className="preferenceLabel">Age:</label>
+            <div className="ageInputs">
               <div>
                 <label htmlFor="fromAge">From:</label>
                 <input
                   type="number"
                   id="fromAge"
                   name="fromAge"
-                  defaultValue={fromAge}
+                  value={fromAge}
                   onChange={(event) => {
-                    const value = event.target.value ? parseInt(event.target.value, 10) : 100;
+                    const value = event.target.value ? parseInt(event.target.value, 10) : 0;
                     setFilterData((currentData) => ({
                       ...currentData,
                       fromAge: value,
@@ -57,7 +80,7 @@ const FilterSection = (props) => {
                   type="number"
                   id="toAge"
                   name="toAge"
-                  defaultValue={toAge}
+                  value={toAge}
                   onChange={(event) => {
                     const value = event.target.value ? parseInt(event.target.value, 10) : 100;
                     setFilterData((currentData) => ({
@@ -69,12 +92,12 @@ const FilterSection = (props) => {
               </div>
             </div>
             {fromAge > toAge && (
-              <span className="error-message">Please enter a valid age range</span>
+              <span className="errorMessage">Please enter a valid age range</span>
             )}
           </div>
-          <div className="gender-preference">
-            <label>Gender:</label>
-            <div className="gender-options">
+          <div className="genderPreference">
+            <label className="preferenceLabel">Gender:</label>
+            <div className="genderOptions">
               <label>
                 <input
                   type="radio"
@@ -105,7 +128,7 @@ const FilterSection = (props) => {
               </label>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );

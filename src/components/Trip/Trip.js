@@ -42,7 +42,7 @@ const Trip = ({trip})=>{
         <div className="card__description"><p><strong>No. of Members:</strong>{trip.totalMembers}</p>
           <p><strong>Age:</strong>{trip.age}</p>
           <p><strong>Sex:</strong> {trip.sex}</p>
-          <p className='description'><strong>Description:</strong>{trip.description} </p>
+          <p className='descriptioncard'><strong>Description:</strong>{trip.description} </p>
           <button className="chat-now-btn" role="button" onClick={handleClickOnChatButton}>Chat Now</button>
           </div>
       </div>

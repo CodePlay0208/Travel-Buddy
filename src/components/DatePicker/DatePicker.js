@@ -14,7 +14,8 @@ const DatePicker = ({ inputValues, setInputValues, onValue,placeholderValue }) =
   const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
 
   useEffect(() => {
-    setSelectedDate(inputValues );
+    console.log(inputValues);
+    setSelectedDate(dateToString(inputValues) );
   }, [inputValues]);
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const DatePicker = ({ inputValues, setInputValues, onValue,placeholderValue }) =
       days.push(
         <span
           key={i}
-          className={`day ${selectedDate === dateToString(date) ? 'selected' : ''} ${isPastDate || isFutureDate ? 'disabled' : ''}`}
+          className={`day ${selectedDate === dateToStringSimple(date) ? 'selected' : ''} ${isPastDate || isFutureDate ? 'disabled' : ''}`}
           onClick={!isPastDate && !isFutureDate ? () => handleDateSelect(date) : null}
         >
           {i}
@@ -69,21 +70,48 @@ const DatePicker = ({ inputValues, setInputValues, onValue,placeholderValue }) =
     return days;
   };
 
-  const dateToString = (date) => {
-    const dateValue = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    if (date.toDateString() === today.toDateString()) {
+  
+const parseDateString = (dateString) => {
+  const [day, month, year] = dateString.split('-').map(Number);
+  return new Date(year, month - 1, day); // Months are zero-indexed
+};
+
+const dateToString = (dateString) => {
+  if(dateString===''){
+    return '';
+  }
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  const dateValue = parseDateString(dateString);
+  console.log(dateString);
+  console.log(dateValue);
+  if (dateValue.toDateString() === today.toDateString()) {
       return 'Today';
-    } else if (date.toDateString() === tomorrow.toDateString()) {
+  } else if (dateValue.toDateString() === tomorrow.toDateString()) {
       return 'Tomorrow';
-    } else {
-      // return dateValue.toISOString().split('T')[0];
-      return  `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
-    }
+  } else {
+      const dayName = dateValue.toLocaleDateString('en-US', { weekday: 'long' }); // Get the day name
+      const formattedDate = dateToStringSimple(dateValue);
+      return `${dayName} ${formattedDate}`;
+  }
+};
+
+
+  const dateToStringSimple = (date) => {
+    const dateValue = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const day = String(dateValue.getDate()).padStart(2, '0');
+    const month = String(dateValue.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const year = dateValue.getFullYear();
+    
+    return `${day}-${month}-${year}`;
+    
   };
 
   const handleDateSelect = (date) => {
-    const dateString = dateToString(date);
-    setSelectedDate(dateString);
+    const dateString = dateToStringSimple(date);
+    
     setInputValues((currentInputValues) => ({
       ...currentInputValues,
       [onValue]: dateString,
@@ -110,7 +138,7 @@ const DatePicker = ({ inputValues, setInputValues, onValue,placeholderValue }) =
     setCurrentDate(new Date());
     setInputValues((currentInputValues) => ({
       ...currentInputValues,
-      [onValue]: dateToString(new Date()),
+      [onValue]: dateToStringSimple(new Date()),
     }));
     setShowCalendar(false);
   };
