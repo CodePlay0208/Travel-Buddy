@@ -9,7 +9,7 @@ const FilterSection = ({ visibility }) => {
   const handleClearAll = () => {
     setFilterData({
       fromAge: 0,
-      toAge: 100,
+      toAge: 0,
       gender: "",
     });
   };
@@ -61,7 +61,7 @@ const FilterSection = ({ visibility }) => {
               <div>
                 <label htmlFor="fromAge">From:</label>
                 <input
-                  type="number"
+                  type="text"
                   id="fromAge"
                   name="fromAge"
                   value={fromAge}
@@ -77,12 +77,12 @@ const FilterSection = ({ visibility }) => {
               <div>
                 <label htmlFor="toAge">To:</label>
                 <input
-                  type="number"
+                  type="text"
                   id="toAge"
                   name="toAge"
                   value={toAge}
                   onChange={(event) => {
-                    const value = event.target.value ? parseInt(event.target.value, 10) : 100;
+                    const value = event.target.value ? parseInt(event.target.value, 10) : 0;
                     setFilterData((currentData) => ({
                       ...currentData,
                       toAge: value,

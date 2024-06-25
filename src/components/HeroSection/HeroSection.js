@@ -27,9 +27,7 @@ const Hero = () => {
           {photos.map(photo => (
             <div key={photo.id} className="slider-item">
               <img src={photo.url} alt={`Slide ${photo.id}`} />
-              <div className="description">
-                <h2>{photo.description}</h2>
-              </div>
+              
             </div>
           ))}
         </Slider>

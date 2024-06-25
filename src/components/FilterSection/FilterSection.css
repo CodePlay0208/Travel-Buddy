@@ -4,12 +4,13 @@
   position: sticky;
   top: 0;
   right: 0;
-  padding: 0 60px;
+  padding-left:25%;
   height: 100vh;
-  overflow-y: auto;
-  border-left: 1px solid #ccc;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: hidden;
+  border-left: 1px solid #e0e0e0;
+  
   z-index: 1000;
+  background-color: #f9f9f9;
 }
 
 .filterSectionWrapper.hidden {
@@ -21,30 +22,27 @@
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px;
+  margin: 20px 0;
+  height: 100%;
 }
 
 .filterHeader {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
-  padding: 10px;
-  background-color: #007BFF;
-  color: white;
-  border-radius: 8px 8px 0 0;
 }
 
 .clearButton {
   background: none;
   border: none;
-  color: white;
+  color: #007BFF;
   cursor: pointer;
   font-size: 14px;
   transition: color 0.3s ease;
 }
 
 .clearButton:hover {
-  color: #ffcccc;
+  color: #0056b3;
 }
 
 .sectionTitle {
@@ -52,6 +50,8 @@
   margin-bottom: 15px;
   color: #333;
   font-weight: bold;
+  border-bottom: 2px solid #007BFF;
+  padding-bottom: 5px;
 }
 
 .filterOptions {
@@ -68,6 +68,7 @@
   font-size: 14px;
   padding: 10px;
   transition: background-color 0.3s ease;
+  border-radius: 4px;
 }
 
 .filterOptionLabel:hover {
@@ -83,13 +84,14 @@
   font-weight: bold;
   margin-bottom: 5px;
   display: inline-block;
+  color: #007BFF;
 }
 
 .ageInputs {
   display: flex;
-  flex-direction: column; /* Change to column */
+  flex-direction: column;
   align-items: flex-start;
-  gap: 10px; /* Adjust the gap between input fields */
+  gap: 10px;
   margin-top: 10px;
 }
 
@@ -99,25 +101,24 @@
   align-items: flex-start;
 }
 
-input[type="number"] {
-  width: 200px; /* Increase the width */
-  padding: 8px;
+.filterSectionContainer input[type="text"] {
+  width: 100%; /* Adjusted to take full width */
+  padding: 10px; /* Increased padding */
   border: 1px solid #ccc;
   border-radius: 4px;
   margin: 5px 0;
-  text-align: center;
   transition: border-color 0.3s ease;
   font-size: 14px;
 }
 
-input[type="number"]:focus {
+.filterSectionContainer input[type="text"]:focus {
   border-color: #007BFF;
 }
 
 .genderOptions {
   display: flex;
-  flex-direction: column; /* Change to column */
-  gap: 10px; /* Adjust the gap between options */
+  flex-direction: column;
+  gap: 10px;
   margin-top: 10px;
 }
 
@@ -125,6 +126,7 @@ input[type="number"]:focus {
   display: flex;
   align-items: center;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 .genderOptions label:hover {
@@ -156,4 +158,7 @@ input[type="radio"] {
   margin-left: 340px;
   padding: 20px;
   background-color: #f5f5f5;
+}
+.genderPreference{
+  margin-top:10px;
 }
