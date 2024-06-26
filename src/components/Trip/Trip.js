@@ -7,7 +7,15 @@ const Trip = ({ trip }) => {
   const { userLoginData } = useContext(UserLoginContext);
   const navigate = useNavigate();
   const [imageIndex, setImageIndex] = useState(0);
-  
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const images=trip.destinationImages;
+      const imagesLength=images.length;
+      setImageIndex((currentImageIndex)=> (currentImageIndex+1)%imagesLength)
+    }, 2000)
+    
+    return () => clearInterval(intervalId);
+}, [])
   
   const handleClickOnChatButton = () => {
     if (userLoginData.isUserLoggedIn) {
