@@ -19,7 +19,7 @@ const Trip = ({trip})=>{
 
    
   return (
-    <div className="cards">
+    <div className="cards" onClick={()=> navigate(`/trip/${trip.id}`)}>
 
     <a href="" className="card">
       <img src={trip.destinationImages} className="card__image" alt={trip.startLocation} />

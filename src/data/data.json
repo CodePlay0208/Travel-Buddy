@@ -7,9 +7,12 @@
       "endLocation": "Mussorie",
       "totalMembers": 4,
       "age": 25,
-      "sex":"Male",
+      "gender":"Male",
       "description": "Hi we are a group of 4 people and we are planning to go to mussorie, anyone can join who are interested.",
-      "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
+      "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp",
+      "startDate": "27 June",
+      "endDate": "28 June",
+      "userRating": "4.97"
     },
     {
       "id": 2,
@@ -19,7 +22,7 @@
       "endLocation": "Tamil Nadu",
       "totalMembers": 3,
       "age": 37,
-      "sex": "Female",
+      "gender": "Female",
       "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv ",
       "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
     },
@@ -31,7 +34,7 @@
       "endLocation": "Chandigrah",
       "totalMembers": 3,
       "age": 37,
-      "sex": "Female",
+      "gender": "Female",
       "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv ",
       "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
     },
@@ -43,7 +46,7 @@
       "endLocation": "USA",
       "totalMembers": 3,
       "age": 37,
-      "sex": "Female",
+      "gender": "Female",
       "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv ",
       "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
     },
@@ -55,7 +58,7 @@
       "endLocation": "USA",
       "totalMembers": 3,
       "age": 37,
-      "sex": "Female",
+      "gender": "Female",
       "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv ",
       "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
     },
@@ -67,7 +70,7 @@
       "endLocation": "USA",
       "totalMembers": 3,
       "age": 37,
-      "sex": "Female",
+      "gender": "Female",
       "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv ",
       "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
       
