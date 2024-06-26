@@ -65,7 +65,7 @@ const handleClickOnProfilePic = ()=>{
       <div
         className="webAppNameAndLogo"
         onClick={() => {
-          localStorage.clear();
+          localStorage.removeItem("inputValues");
           navigate("/");
         }}
       >
@@ -90,7 +90,7 @@ const handleClickOnProfilePic = ()=>{
         <div
           className="nav-link nav-button"
           onClick={() => {
-            localStorage.clear();
+            localStorage.removeItem("inputValues");
             if(userLoginData.isUserLoggedIn){
               navigate("/publish-trip");
             }

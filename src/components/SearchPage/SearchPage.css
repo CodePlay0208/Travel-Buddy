@@ -1,0 +1,44 @@
+.containerForRecentSearches{
+    height: 100vh;
+}
+
+.searchHistoryValueContainer{
+    align-content: center;
+    justify-content: space-between;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 26%;
+    background-color: white;
+    padding: 50px;
+    box-sizing: border-box;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+
+.iconInSearchHistory{
+        width: 24px;
+        height: 24px;
+}
+
+.searchHistoryValue{
+    font-family: "sans-serif";
+}
+
+.destinationHistory{
+    font-size: 28px;
+    margin-right: 20px;
+    font-weight: 600;
+}
+
+.startDateHistory{
+    font-size: 22px;
+}
+
+.searchHistoryValueContainer:hover{
+    box-shadow: 3px 3px 3px 3px hsla(180, 91%, 42%, 0.2);
+}

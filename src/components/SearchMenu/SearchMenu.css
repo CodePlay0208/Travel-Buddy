@@ -40,3 +40,19 @@
 .datepicker{
   width :250px;
 }
+
+.searchBarBtn{
+  margin: 5px;
+  margin-left: 0;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  width: 200px;
+  box-sizing: border-box;
+  height: 60px;
+  position: relative;
+  background-color: #008CBA;
+  color: #fff;
+  cursor: pointer;
+}
