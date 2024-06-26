@@ -92,7 +92,7 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
     const options = { weekday: 'short', day: 'numeric', month: 'short' };
     const parts = date.toLocaleDateString('en-US', options).split(' ');
     console.log(parts);
-    return `${parts[0]}, ${parts[2]} ${parts[1]}`;
+    return `${parts[0]} ${parts[2]} ${parts[1]}`;
   };
     if (dateValue.toDateString() === today.toDateString()) {
       return 'Today';
