@@ -9,7 +9,7 @@
       "age": 25,
       "sex":"Male",
       "description": "Hi we are a group of 4 people and we are planning to go to mussorie, anyone can join who are interested.",
-      "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
+      "destinationImages":["https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp",""]
     },
     {
       "id": 2,
@@ -21,7 +21,7 @@
       "age": 37,
       "sex": "Female",
       "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv ",
-      "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
+      "destinationImages":["https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp","https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"]
     },
     {
       "id": 3,
@@ -33,7 +33,7 @@
       "age": 37,
       "sex": "Female",
       "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv ",
-      "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
+      "destinationImages":["https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp","https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"]
     },
     {
       "id": 4,
@@ -45,7 +45,7 @@
       "age": 37,
       "sex": "Female",
       "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv ",
-      "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
+      "destinationImages":["https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp","https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"]
     },
     {
       "id": 5,
@@ -57,7 +57,7 @@
       "age": 37,
       "sex": "Female",
       "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv ",
-      "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
+      "destinationImages":["https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp","https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"]
     },
     {
       "id": 6,
@@ -69,7 +69,7 @@
       "age": 37,
       "sex": "Female",
       "description": "Hi,owjnfgewofnewofeowfbnewofnsdkc cl qklfqwpfnpqjwpjqwpfnqpc qwpc wqpkq cpwqcnqpcnfpnwqfpnwqfoihovnownvewpv ",
-      "destinationImages":"https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"
+      "destinationImages":["https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp","https://static2.tripoto.com/media/filter/nl/gen/2380291/Image/1700978814_1087px_chelavara_water_falls.jfif.webp"]
       
     }
   ]

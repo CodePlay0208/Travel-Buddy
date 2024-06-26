@@ -9,7 +9,7 @@ const FilterSection = ({ visibility }) => {
   const handleClearAll = () => {
     setFilterData({
       fromAge: 0,
-      toAge: 0,
+      toAge: 100,
       gender: "",
     });
   };
@@ -137,7 +137,7 @@ const FilterSection = ({ visibility }) => {
               <label className="filterOptionLabel">
                 <input
                   type="radio"
-                  name="sort-by-departure"
+                  name="trustAndSafety"
                   value="earliest-departure"
                 />
                 <div className="filterOptionText">Verified Profile</div>

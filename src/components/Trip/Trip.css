@@ -262,3 +262,25 @@ img{
 .slick-next {
   right: 10px;
 }
+.left-arrow, .right-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}
+
+.left-arrow:hover, .right-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
