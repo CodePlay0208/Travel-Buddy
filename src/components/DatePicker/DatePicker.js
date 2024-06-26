@@ -71,7 +71,7 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
   };
 
 
-  const parseDateString = (dateString) => {
+  const parseDatestring = (dateString) => {
     const [day, month, year] = dateString.split('-').map(Number);
     return new Date(year, month - 1, day); // Months are zero-indexed
   };
@@ -84,7 +84,7 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
 
-    const dateValue = parseDateString(dateString);
+    const dateValue = parseDatestring(dateString);
     console.log(dateString);
     console.log(dateValue);
     

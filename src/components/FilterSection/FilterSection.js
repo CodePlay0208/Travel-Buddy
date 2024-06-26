@@ -33,7 +33,7 @@ const FilterSection = ({ visibility }) => {
                   name="sort-by-departure"
                   value="earliest-departure"
                 />
-                Earliest Departure Date
+                <div className="filterOptionText">Earliest Departure Date</div>
               </label>
             </li>
             <li>
@@ -43,7 +43,7 @@ const FilterSection = ({ visibility }) => {
                   name="sort-by-departure"
                   value="closest-departure-point"
                 />
-                Closest to Departure Point
+                <div className="filterOptionText">Closest to Departure Point</div>
               </label>
             </li>
           </ul>
@@ -110,7 +110,7 @@ const FilterSection = ({ visibility }) => {
                     }))
                   }
                 />
-                Male
+                <div className="filterOptionText">Male</div>
               </label>
               <label>
                 <input
@@ -124,10 +124,27 @@ const FilterSection = ({ visibility }) => {
                     }))
                   }
                 />
-                Female
+                <div className="filterOptionText">Female</div>
               </label>
             </div>
           </div>
+        </section>
+        
+        <section>
+          <h3 className="sectionTitle">Trust and safety</h3>
+          <ul aria-label="Sort by" role="radiogroup" className="filterOptions">
+            <li>
+              <label className="filterOptionLabel">
+                <input
+                  type="radio"
+                  name="sort-by-departure"
+                  value="earliest-departure"
+                />
+                <div className="filterOptionText">Verified Profile</div>
+              </label>
+            </li>
+            
+          </ul>
         </section>
       </div>
     </div>
