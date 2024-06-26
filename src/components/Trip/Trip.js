@@ -9,7 +9,6 @@ const Trip = ({ trip }) => {
   const [imageIndex, setImageIndex] = useState(0);
   
   
-
   const handleClickOnChatButton = () => {
     if (userLoginData.isUserLoggedIn) {
       // Add your chat handling logic here
