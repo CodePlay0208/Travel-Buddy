@@ -78,20 +78,7 @@ const SearchMenu = () => {
 
         <DatePickerValue inputValues={inputValues.startDate} setInputValues={setInputValues} onValue={'startDate'} placeholderValue={"Select Travel date"}/>
       </div>
-      {/* {console.log(inputValues)}
-        <input
-          type="date"
-          name="start_date"
-          placeholder="Travel Date"
-          id="startDate"
-          value={inputValues.startDate}
-          onChange={(event) =>
-            setInputValues((currentInputValues) => ({
-              ...currentInputValues,
-              startDate: event.target.value,
-            }))
-          }
-        /> */}
+      
         <div className="alignPadding">
           <button type="submit" className="searchBarBtn">
             Search
