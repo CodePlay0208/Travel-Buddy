@@ -26,8 +26,9 @@ const Trip = ({ trip }) => {
   };
 
   return (
-    <div className="cards">
-      <div className="card">
+    <div className="cards" onClick={()=> navigate(`/trip/${trip.id}`)}>
+
+<a className="card">
         <img src={trip.destinationImages[imageIndex]} className="card__image" alt={trip.startLocation} />
         <div className="card__overlay">
           <div className="card__header">
@@ -51,7 +52,7 @@ const Trip = ({ trip }) => {
           </div>
         </div>
 
-      </div>
+      </a>
     </div>
   );
 };

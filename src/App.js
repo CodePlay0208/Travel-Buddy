@@ -12,6 +12,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import { UserLoginContext } from "./Utils/Context/UserLoginContext";
 import UserProfile from "./components/UserProfile/UserProfile";
 import UserTrips from "./components/UserTrips/UserTrips";
+import TripPage from "./components/TripPage/TripPage";
 
 const App =() =>{
   const [tripsData, setTripsData] = useState([
@@ -62,7 +63,7 @@ const App =() =>{
         <InputValuesContext.Provider value={{inputValues, setInputValues}}>
         <UserLoginContext.Provider value={{userLoginData, setUserLoginData}}>
        
-        <div>
+      <div>
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route
@@ -70,11 +71,12 @@ const App =() =>{
               path="/search-results-page"
               element={<SearchResultsPage />}
             />
-            <Route exact path="/search-page" element={<SearchPage />}></Route>
+            <Route path="/search-page" element={<SearchPage />}></Route>
             <Route exact path="/publish-trip" element={<PublishTrip />}></Route>
             <Route path = "/login-page" element={<LoginPage/>} />
             <Route path = "/userProfile" element={<UserProfile/>} />
             <Route path = "/userTrips" element={<UserTrips/>} />
+            <Route path="/trip/:id" element={<TripPage />} />
             <Route path = "/*" element={<InvalidRoute/>} />
           </Routes>
           </div>
