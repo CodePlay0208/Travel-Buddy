@@ -1,15 +1,17 @@
+
 .filterSectionWrapper {
   transition: all 0.3s ease;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   right: 0;
-  padding: 0 60px;
+  padding-left:25%;
   height: 100vh;
-  overflow-y: auto;
-  border-left: 1px solid #ccc;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: hidden;
+  border-left: 1px solid #e0e0e0;
+  
   z-index: 1000;
+  background-color: #f9f9f9;
 }
 
 .filterSectionWrapper.hidden {
@@ -21,37 +23,40 @@
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px;
+  margin: 20px 0;
+  height: 100%;
+  font-weight: bolder;
+  font-family: "cursive";
 }
 
 .filterHeader {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
-  padding: 10px;
-  background-color: #007BFF;
-  color: white;
-  border-radius: 8px 8px 0 0;
 }
 
 .clearButton {
   background: none;
   border: none;
-  color: white;
+  background-color: #2c7cd3;
+  color: #ffffff;
   cursor: pointer;
   font-size: 14px;
   transition: color 0.3s ease;
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
 .clearButton:hover {
-  color: #ffcccc;
+  color: #0056b3;
 }
 
 .sectionTitle {
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin-bottom: 15px;
   color: #333;
-  font-weight: bold;
+  border-bottom: 2px solid #007BFF;
+  padding-bottom: 5px;
 }
 
 .filterOptions {
@@ -64,10 +69,10 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  font-weight: 500;
   font-size: 14px;
   padding: 10px;
   transition: background-color 0.3s ease;
+  border-radius: 4px;
 }
 
 .filterOptionLabel:hover {
@@ -80,16 +85,17 @@
 }
 
 .preferenceLabel {
-  font-weight: bold;
   margin-bottom: 5px;
   display: inline-block;
+  color: #007BFF;
+  font-size: 1.4em;
 }
 
 .ageInputs {
   display: flex;
-  flex-direction: column; /* Change to column */
+  flex-direction: column;
   align-items: flex-start;
-  gap: 10px; /* Adjust the gap between input fields */
+  gap: 10px;
   margin-top: 10px;
 }
 
@@ -99,25 +105,24 @@
   align-items: flex-start;
 }
 
-input[type="number"] {
-  width: 200px; /* Increase the width */
-  padding: 8px;
+.filterSectionContainer input[type="text"] {
+  width: 100%; /* Adjusted to take full width */
+  padding: 10px; /* Increased padding */
   border: 1px solid #ccc;
   border-radius: 4px;
   margin: 5px 0;
-  text-align: center;
   transition: border-color 0.3s ease;
   font-size: 14px;
 }
 
-input[type="number"]:focus {
+.filterSectionContainer input[type="text"]:focus {
   border-color: #007BFF;
 }
 
 .genderOptions {
   display: flex;
-  flex-direction: column; /* Change to column */
-  gap: 10px; /* Adjust the gap between options */
+  flex-direction: column;
+  gap: 10px;
   margin-top: 10px;
 }
 
@@ -125,6 +130,7 @@ input[type="number"]:focus {
   display: flex;
   align-items: center;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 .genderOptions label:hover {
@@ -133,8 +139,17 @@ input[type="number"]:focus {
 
 input[type="radio"] {
   margin-right: 5px;
+    width: 20px; /* Adjust the size as needed */
+    height: 20px; /* Adjust the size as needed */
+  
 }
-
+.filterOptionText{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-size: 18px;
+  color: #3d3c3c;
+}
 .errorMessage {
   color: red;
   font-size: 0.9em;
@@ -156,4 +171,7 @@ input[type="radio"] {
   margin-left: 340px;
   padding: 20px;
   background-color: #f5f5f5;
+}
+.genderPreference{
+  margin-top:10px;
 }
