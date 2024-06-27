@@ -9,14 +9,14 @@ const Trip = ({ trip }) => {
   const [imageIndex, setImageIndex] = useState(0);
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const images=trip.destinationImages;
-      const imagesLength=images.length;
-      setImageIndex((currentImageIndex)=> (currentImageIndex+1)%imagesLength)
+      const images = trip.destinationImages;
+      const sizeOfImages = images.length;
+      setImageIndex((currentImageIndex) => (currentImageIndex + 1) % sizeOfImages)
     }, 2000)
-    
+
     return () => clearInterval(intervalId);
-}, [])
-  
+  }, [])
+
   const handleClickOnChatButton = () => {
     if (userLoginData.isUserLoggedIn) {
       // Add your chat handling logic here
@@ -50,7 +50,7 @@ const Trip = ({ trip }) => {
             <button className="chat-now-btn" role="button" onClick={handleClickOnChatButton}>Chat Now</button>
           </div>
         </div>
-        
+
       </div>
     </div>
   );
