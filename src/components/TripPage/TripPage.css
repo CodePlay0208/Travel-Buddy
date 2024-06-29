@@ -1,149 +1,158 @@
-.trip-details-container{
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   /* background-color: white; */
-   /* padding: 10% 0; */
-   padding-top:5%;
-}
-
-.genericContainerInTripPage{
-    width: 40%;
-    background-color: white;
-    /* height: 150px; */
-    padding-left: 50px;
-    padding-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    font-family: "Robotic sans-serif";
-}
-
-.headerSpanInTripPage{
-    font-weight: 900;
-    font-size: 40px;
-}
-
-.locationContainerInTripPage{
-    display: flex;
-    flex-direction: column;
-    margin-left: 1%;
-}
-
-.locationInTripPage{
-    font-weight: 600;
-    font-size: 25px;
-    margin-top: 20px;
-}
-
-.dateInTripPage{
-    font-size: 20px;
-    margin-top: 20px;
-}
-
-
-.profileImageInTripPage{
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
-}
-
-.destinationImagesContainerInTripPage{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap:1em;
-    width: 40%;
-    background-color: white;
-    /* padding-bottom: 5%; */
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-}
-
-.destinationImagesInTripPage{
-    border-radius: 30px;
-    padding: 20px;
-    padding-top: 0;
-}
-
-.dividerInTripPage{
-    background-color: grey;
-    height: 18px;
-    width: 40%;
-    border-radius: 30px;
-}
-
-.totalMembers{
+.trip-details-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 40%;
-    font-size: 18px;
-    padding: 40px;
-    background-color: white;
-}
-
-.totalMembersInTripPage{
-    font-size: 25px;
-    font-weight: 600;
-}
-
-.totalMembersValueInTripPage{
-    font-size: 25px;
-    font-weight: 500;
-}
-
-.headingInTripPage{
-    font-size: 50px;
-    font-weight: 900;
-}
-
-.headLocationContainerInTripPage{
-    display: flex;
-    flex-direction: row;
-    width: 40%;
-    padding-left: 20px;
-    padding-bottom: 10px;
-    background-color: white;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    padding-top: 30px;
-    justify-content: space-between;
-}
-
-.personalInformation{
-    display: flex;
-    flex-direction: row;
-    padding: 30px 0;
-}
-
-.nameAndRating{
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    margin-left: 20px;
-    font-size: 26px;
+    align-items: flex-start;
+    padding: 5% 0;
+    gap: 2em;
+    background-color: #f4f4f9;
 }
 
-.descriptionSpanInTripPage{
+.leftPanel, .rightPanel {
+    width: 45%;
+    background-color: white;
+    padding: 2em;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 600px;
+}
+
+.destinationImagesContainerInTripPage {
+    text-align: center;
+}
+
+.image-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    position: relative;
+}
+
+.destinationImagesInTripPage {
+    width: 90%;
+    border-radius: 15px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.arrow-button {
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #333;
+}
+
+.arrow-button:hover {
+    color: #36A9AE;
+}
+
+.arrow-button:first-of-type {
+    left: 0;
+}
+
+.arrow-button:last-of-type {
+    right: 0;
+}
+
+.headingInTripPage {
+    font-size: 2em;
+    font-weight: 700;
+    color: #333;
+}
+
+.genericContainerInTripPage {
+    margin-bottom: 2em;
+}
+
+.personalInformation {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.profileImageInTripPage {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.nameAndRating {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    font-size: 1em;
+}
+
+.nameContainerInsidePersonalInformationInTripPage, .ratingContainerInsidePersonalInformationInTripPage {
     font-weight: 600;
-    font-size: 23px;
 }
 
-.nameContainerInsidePersonalInformationInTripPage{
+.descriptionInTripPage {
+    margin-top: 1em;
+}
+
+.descriptionSpanInTripPage {
     font-weight: 600;
-    font-size: 26px;
-    margin-bottom: 5px;
+    font-size: 1.2em;
 }
 
-.ratingInTripPage{
+.headLocationContainerInTripPage {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 1em 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.headerSpanInTripPage {
+    font-weight: 700;
+    font-size: 1.5em;
+    color: #36A9AE;
+}
+
+.locationContainerInTripPage {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.locationInTripPage {
     font-weight: 600;
-    font-size: 26px;
+    font-size: 1.2em;
 }
 
-.ratingContainerInsidePersonalInformationInTripPage{
-    margin-top: 5px;
-    font-size: 18px;
+.dateInTripPage {
+    font-size: 1em;
+    color: #777;
+}
+
+.totalMembers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.totalMembersInTripPage, .totalMembersValueInTripPage {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.chatBtnContainer {
+    display: flex;
+    justify-content: center;
+    padding: 1.5em 0;
+    background-color: white;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .chat-now-btnInTripPage {
@@ -154,51 +163,49 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
     color: #FFFFFF;
     cursor: pointer;
-    display: block;
-    font-family: -apple-system,".SFNSDisplay-Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 17px;
-    line-height: 100%;
-    margin: 0;
-    outline: 0;
-    padding: 15px 19px 16px;
+    font-family: -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    padding: 0.75em 1.5em;
     text-align: center;
-    transition: box-shadow .05s ease-in-out,opacity .05s ease-in-out;
+    transition: box-shadow .05s ease-in-out, opacity .05s ease-in-out;
     user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
     width: 200px;
-    }
-    
-    .chat-now-btnInTripPage:hover {
+}
+
+.chat-now-btnInTripPage:hover {
     box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px inset, rgba(0, 0, 0, 0.4) 0 1px 2px;
-    text-decoration: none;
     transition-duration: .15s, .15s;
-    }
-    
-    .chat-now-btnInTripPage:active {
+}
+
+.chat-now-btnInTripPage:active {
     box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.4) 0 1px 1px;
-    }
-    
-    .chat-now-btnInTripPage:disabled {
+}
+
+.chat-now-btnInTripPage:disabled {
     cursor: not-allowed;
     opacity: .6;
-    }
-    
-    .chat-now-btnInTripPage:disabled:active {
+}
+
+.chat-now-btnInTripPage:disabled:active {
     pointer-events: none;
-    }
-    
-    .chat-now-btnInTripPage:disabled:hover {
+}
+
+.chat-now-btnInTripPage:disabled:hover {
     box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .trip-details-container {
+        flex-direction: column;
+        align-items: center;
     }
 
-.chatBtnContainer{
-    background-color: white;
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+    .leftPanel, .rightPanel {
+        width: 90%;
+    }
+
+    .headLocationContainerInTripPage {
+        flex-direction: column;
+        gap: 1em;
+    }
 }
