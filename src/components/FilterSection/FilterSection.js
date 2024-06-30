@@ -56,7 +56,7 @@ const FilterSection = ({ visibility }) => {
         <section>
           <h3 className="sectionTitle">Preferences</h3>
           <div className="agePreference">
-            <label className="preferenceLabel">Age:</label>
+            <label className="preferenceLabel ">Age:</label>
             <div className="ageInputs">
               <div>
                 <label htmlFor="fromAge">From:</label>
@@ -96,9 +96,9 @@ const FilterSection = ({ visibility }) => {
             )}
           </div>
           <div className="genderPreference">
-            <label className="preferenceLabel">Gender:</label>
+            <label className="preferenceLabel ">Gender:</label>
             <div className="genderOptions">
-              <label>
+              <label className="filterOptionLabel">
                 <input
                   type="radio"
                   value="Male"
@@ -112,7 +112,7 @@ const FilterSection = ({ visibility }) => {
                 />
                 <div className="filterOptionText">Male</div>
               </label>
-              <label>
+              <label className="filterOptionLabel">
                 <input
                   type="radio"
                   value="Female"
