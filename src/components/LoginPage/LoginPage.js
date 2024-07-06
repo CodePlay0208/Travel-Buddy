@@ -1,18 +1,67 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './LoginPage.css';
 import { useNavigate } from 'react-router-dom';
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
+import { UserLoginContext } from '../../Utils/Context/UserLoginContext';
 
-function googleSignIn(){
-    
-}
+
 
 const LoginPage = () => {
+    const {setIsUserLoggedIn} = useContext(UserLoginContext);
+    const navigate = useNavigate();
+    
+    const googleSignIn = useGoogleLogin({
+        clientId: '464876682696-pkm7moinvftntbnild9dq19378vu3ski.apps.googleusercontent.com',
+        onSuccess: (response) => {
+            console.log(response);
+            const token = response.access_token;
+        
+            // Send the token to your backend for verification and user data fetching
+            fetch('http://localhost:4000/login/googleLogin', {
+              method: 'POST',
+              credentials: "include",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ token }),
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("the data is", data);
+              if (data.success) {
+                console.log('Login successful:', data);
+                const previousURL = sessionStorage.getItem("redirectUrl") || "/";
+                sessionStorage.removeItem("redirectUrl");
+                // Handle successful login on frontend if needed
+                console.log(previousURL);
+                navigate(previousURL)
+                setIsUserLoggedIn(true);
+              } else {
+                console.error('Login failed:', data);
+                setIsUserLoggedIn(false);
+              }
+            })
+            .catch(error => {
+              console.error('Error during login:', error);
+              setIsUserLoggedIn(false);
+
+            });
+          },
+          onError: (error) => {
+            console.error('Login failed:', error);
+            setIsUserLoggedIn(false);
+
+          },
+      });
+
+
+
+
   const [emailPhone, setEmailPhone] = useState('');
   const [password, setPassword] = useState('');
 
   useEffect(()=>{
-    
+    console.log("hi")
   },[]);
 
   const handleEmailPhoneChange = (event) => {
@@ -58,7 +107,7 @@ const LoginPage = () => {
   
               <section className="buttonSectionInLoginPage">
                   <button className="signInButtonInLoginPage" type="submit">Sign in</button>
-                  <button className="signInUsingGoogleButtonInLoginPage" type="none" onClick={googleSignIn}>
+                  <button className="signInUsingGoogleButtonInLoginPage" type="button" onClick={googleSignIn}>
                       <svg className="svgInLoginPage" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                           <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
@@ -87,5 +136,6 @@ const LoginPage = () => {
   </div>
   );
 };
+
 
 export default LoginPage;

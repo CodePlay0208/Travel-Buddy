@@ -3,34 +3,38 @@ import Navbar from "../Navbar/Navbar";
 import "./UserProfile.css";
 import UserSideBar from "../UserSideBar/UserSideBar";
 import UserProfileDashBoard from "../UserProfileDashBoard/UserProfileDashBoard";
-import {UserLoginContext} from "../../Utils/Context/UserLoginContext";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { checkUserLoggedIn } from "../../Utils/Context/UserLoginContext";
 
 const UserProfile = () => {
-    
-    const {userLoginData, setUserLoginData} = useContext(UserLoginContext);
-    const navigate = useNavigate();
-    useEffect(()=>{
-        if(!userLoginData.isUserLoggedIn){
-            toast.error("User Not Logged In", {
-                autoClose: 1000
-              });
-              navigate("/");
-        }
-    }, []);
-    return (
-        <div className="userProfileHeadContainer">
-            <Navbar visibilityForSearch={true}></Navbar>
-            <div className="userProfileInnerContainer">
-            <div className="sideBarContainerInUserTrips"> <UserSideBar/></div>
-            <div className="searchResultsContainerInUserTrips">
-            <UserProfileDashBoard></UserProfileDashBoard>
-                </div> 
-            </div>
+  const navigate = useNavigate();
+ 
+  const {isUserLoggedIn} = useContext(UserLoginContext);
+
+
+  useEffect(() => {
+    if (!isUserLoggedIn) {
+      console.log("naivgating")
+      navigate("/login-page");
+    }
+  });
+
+  return (
+    <div className="userProfileHeadContainer">
+      <Navbar visibilityForSearch={true}></Navbar>
+      <div className="userProfileInnerContainer">
+        <div className="sideBarContainerInUserTrips">
+          {" "}
+          <UserSideBar />
         </div>
-    );
-}
+        <div className="searchResultsContainerInUserTrips">
+          <UserProfileDashBoard></UserProfileDashBoard>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default UserProfile;

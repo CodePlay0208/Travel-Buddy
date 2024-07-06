@@ -16,7 +16,7 @@ const TripPage = () => {
     const paramsInUrl = useParams();
     const tripId = paramsInUrl.id;
     const trip = getTripFromTripId(tripId)[0];
-    const { userLoginData } = useContext(UserLoginContext);
+    const { isUserLoggedIn } = useContext(UserLoginContext);
     const navigate = useNavigate();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -29,7 +29,7 @@ const TripPage = () => {
     }, [trip.destinationImages.length]);
 
     const handleClickOnChatButton = () => {
-        if (userLoginData.isUserLoggedIn) {
+        if (isUserLoggedIn) {
             // Implement chat functionality
         } else {
             navigate("/login-page");

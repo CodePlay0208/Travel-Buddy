@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 import {UserLoginContext} from "../../Utils/Context/UserLoginContext";
-
-
+import { checkUserLoggedIn } from "../../Utils/Context/UserLoginContext";
 
 const Navbar = (props) => {
 
-  const {userLoginData, setUserLoginData} = useContext(UserLoginContext);
+
+  const {isUserLoggedIn , setIsUserLoggedIn} = useContext(UserLoginContext);
+
   const userProfileDropDownData = [
     {value : "My Profile" , path: "/userProfile"} , 
     {value : "My Trips" , path: "/userTrips"} , 
@@ -16,15 +17,6 @@ const Navbar = (props) => {
     const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false);
     const navigate = useNavigate();
 
-  useEffect(()=>{
-    //TODO: fetch if the user is logged in
-    const isUserLoggedIn = true;
-
-    setUserLoginData((currentUserLoginData)=>({
-      ...currentUserLoginData, isUserLoggedIn: isUserLoggedIn
-    }));
-    
-  },[]);
 
   useEffect(()=>{
 
@@ -43,20 +35,37 @@ const Navbar = (props) => {
 
 
 const handleClickOnProfilePic = ()=>{
-
-    if(userLoginData.isUserLoggedIn){
+  console.log("login status" ,isUserLoggedIn);
+    if(isUserLoggedIn){
       setShowUserProfileDropDownList((currentValue)=> !currentValue);
     }
     else{
+      sessionStorage.setItem('redirectUrl', "/userProfile");
       navigate("/login-page");
     }
   }
 
   const handleSignOutLogic=()=>{
+    console.log("Rrrr");
     //TODO: do all the necessary stuff
-    setUserLoginData((currentUserLoginData)=>({
-      ...currentUserLoginData, isUserLoggedIn: false
-    }));
+    fetch('http://localhost:4000/login/logout', {
+      method: 'POST',
+      credentials: 'include', // Ensure cookies are sent with the request
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log('Logged out successfully');
+        setIsUserLoggedIn(false);
+        // Optionally redirect or update UI after logout
+      } else {
+        console.error('Logout failed:', response.statusText);
+        // Handle logout failure, if needed
+      }
+    })
+    .catch(error => {
+      console.error('Error logging out:', error);
+      // Handle network errors or other issues
+    });
     navigate("/")
   }
 
@@ -91,12 +100,7 @@ const handleClickOnProfilePic = ()=>{
           className="nav-link nav-button"
           onClick={() => {
             localStorage.removeItem("inputValues");
-            if(userLoginData.isUserLoggedIn){
               navigate("/publish-trip");
-            }
-            else{
-              navigate("/login-page");
-            }
           }}
         >
           Publish Trip
