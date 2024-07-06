@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './LoginPage.css';
 import { useNavigate } from 'react-router-dom';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+
+function googleSignIn(){
+    
+}
 
 const LoginPage = () => {
   const [emailPhone, setEmailPhone] = useState('');
@@ -53,7 +58,7 @@ const LoginPage = () => {
   
               <section className="buttonSectionInLoginPage">
                   <button className="signInButtonInLoginPage" type="submit">Sign in</button>
-                  <button className="signInUsingGoogleButtonInLoginPage" type="submit">
+                  <button className="signInUsingGoogleButtonInLoginPage" type="none" onClick={googleSignIn}>
                       <svg className="svgInLoginPage" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                           <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
