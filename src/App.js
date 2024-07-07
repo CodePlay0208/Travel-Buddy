@@ -13,6 +13,9 @@ import {UserLoginContext, checkUserLoggedIn } from "./Utils/Context/UserLoginCon
 import UserProfile from "./components/UserProfile/UserProfile";
 import UserTrips from "./components/UserTrips/UserTrips";
 import TripPage from "./components/TripPage/TripPage";
+import VerifyOTP from "./components/LoginPage/VerifyOTP";
+import EnterEmail from "./components/LoginPage/EnterEmail";
+import SignUp from "./components/SignUpPage/SignUp";
 
 
 const App =() =>{
@@ -122,7 +125,9 @@ const App =() =>{
             <Route path = "/userProfile" element={<UserProfile/>} />
             <Route path = "/userTrips" element={<UserTrips/>} />
             <Route path="/trip/:id" element={<TripPage />} />
-            
+            <Route path="/verifyOTP" element={<VerifyOTP />} />
+            <Route path="/enterEmail" element={<EnterEmail />} />
+            <Route path = "/signUp" element = {<SignUp/>}></Route>
           </Routes>
           </div>
           </UserLoginContext.Provider>
