@@ -1,30 +1,126 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './LoginPage.css';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
+import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
+import { UserLoginContext } from '../../Utils/Context/UserLoginContext';
+import { toast, ToastContainer } from 'react-toastify';
+
+
 
 const LoginPage = () => {
-  const [emailPhone, setEmailPhone] = useState('');
-  const [password, setPassword] = useState('');
-
-  useEffect(()=>{
+    const {setIsUserLoggedIn} = useContext(UserLoginContext);
+    const navigate = useNavigate();
     
-  },[]);
+    const googleSignIn = useGoogleLogin({
+        clientId: '464876682696-pkm7moinvftntbnild9dq19378vu3ski.apps.googleusercontent.com',
+        onSuccess: (response) => {
+            console.log(response);
+            const token = response.access_token;
+        
+            // Send the token to your backend for verification and user data fetching
+            fetch('http://localhost:4000/login/googleLogin', {
+              method: 'POST',
+              credentials: "include",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ token }),
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("the data is", data);
+              if (data.success) {
+                console.log('Login successful:', data);
+                const previousURL = sessionStorage.getItem("redirectUrl") || "/";
+                sessionStorage.removeItem("redirectUrl");
+                // Handle successful login on frontend if needed
+                console.log(previousURL);
+                navigate(previousURL)
+                setIsUserLoggedIn(true);
+              } else {
+                console.error('Login failed:', data);
+                setIsUserLoggedIn(false);
+              }
+            })
+            .catch(error => {
+              console.error('Error during login:', error);
+              setIsUserLoggedIn(false);
 
-  const handleEmailPhoneChange = (event) => {
-    setEmailPhone(event.target.value);
-  };
+            });
+          },
+          onError: (error) => {
+            console.error('Login failed:', error);
+            setIsUserLoggedIn(false);
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+          },
+      });
 
-  const handleLogin = () => {
+
+
+
+  const [userEmail, setUserEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isRemeberMeChecked, setIsRemeberMeChecked] = useState(false);
+  console.log(isRemeberMeChecked);
+
+  function checkValueIsValid(value){
+    if(value == "" || value == undefined || value == null){
+        return false;
+    }
+    return true;
+  }
+
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+
+    var validEmail = checkValueIsValid(userEmail);
+    var validPassword = checkValueIsValid(password);
+
+    if(!(validEmail && validPassword)){
+        console.log("hello")
+        toast.error("EmailId or Password Not Valid", {
+            autoClose: 1500,
+          });
+          return ;
+    }
+
+
+    fetch("http://localhost:4000/login/", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userEmail: userEmail,
+          password: password,
+          rememberMe: isRemeberMeChecked
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+            const previousURL = sessionStorage.getItem("redirectUrl") || "/";
+                sessionStorage.removeItem("redirectUrl");
+                // Handle successful login on frontend if needed
+                console.log(previousURL);
+                navigate(previousURL)
+                setIsUserLoggedIn(true);
+        })
+        .catch((err) => {
+          console.log("cant send OTP", err);
+          setIsUserLoggedIn(false);
+        })
     // Handle login logic here
   };
 
   const handleSignUp = () => {
     // Handle sign up logic here
   };
+
+  const forgotPassWordHandler = () =>{
+   navigate("/enterEmail")
+  }
 
 
   return (
@@ -34,26 +130,29 @@ const LoginPage = () => {
               <h2 className="heading1ForLoginCard">One Account</h2>
               <h2 className="heading2ForLoginCard ">Many Trips</h2>
           </div>
-          <form action="post">
+          <form action="post" onSubmit={handleLogin}>
               <section className="inputSection">
-                  <input className="login-page-input" type="email" name="email" id="email" placeholder="E-mail address"/>
-                  <input className="login-page-input" type="password" name="password" id="password" placeholder="Password"/>
+                  <input className="login-page-input" type="email" name="email" id="email"
+                   placeholder="E-mail address" value = {userEmail} onChange={(event)=>setUserEmail(event.target.value)}/>
+                  <input className="login-page-input" type="password" name="password" id="password"
+                   placeholder="Password" value = {password} onChange={(event)=>setPassword(event.target.value)}/>
                   <div className="additionalChecksInLoginPage">
-                      <div >
-                          <input type="checkbox" name="rememberMe" id="rememberMe"/>
-                          <label htmlFor="rememberMe">Remember me</label>
+                      <div className='rememberMeDiv'>
+                          <input type="checkbox" name="rememberMe" id="rememberMe" value={isRemeberMeChecked} 
+                          onChange={()=>setIsRemeberMeChecked(currentValue=> !currentValue)} />
+                          <label htmlFor="rememberMe" className='text' >Remember me</label>
                       </div>
                       <div >
-                          <a className="linkInLoginPage" href="">
+                          <button className="linkInLoginPage" type="btn" onClick={forgotPassWordHandler}>
                               <span>Forgot password?</span>
-                          </a>
+                          </button>
                       </div>
                   </div>
               </section>
   
               <section className="buttonSectionInLoginPage">
-                  <button className="signInButtonInLoginPage" type="submit">Sign in</button>
-                  <button className="signInUsingGoogleButtonInLoginPage" type="submit">
+                  <button className="signInButtonInLoginPage" type="submit">Log in</button>
+                  <button className="signInUsingGoogleButtonInLoginPage" type="button" onClick={googleSignIn}>
                       <svg className="svgInLoginPage" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                           <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
@@ -71,16 +170,18 @@ const LoginPage = () => {
                                   d="M16.2864 7.4133C18.9689 7.4133 20.7784 8.54885 21.8102 9.4978L25.8419 5.64C23.3658 3.38445 20.1435 2 16.2864 2C10.699 2 5.8736 5.1422 3.52441 9.71549L8.14345 13.2311C9.30229 9.85555 12.5086 7.4133 16.2864 7.4133Z"
                                   fill="#ffffff"></path>
                           </g>
-                      </svg>Sign in with Google</button>
+                      </svg>Continue with Google</button>
               </section>
   
               <section className="not-member">
-                  <span> Not a member yet? <a className="linkInLoginPage" href="">Sign up</a></span>
+                  <span> Not a member yet? <a className="linkInLoginPage" href="/signUp">Sign up</a></span>
               </section>
           </form>
       </section>
+      <ToastContainer />
   </div>
   );
 };
+
 
 export default LoginPage;

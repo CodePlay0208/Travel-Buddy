@@ -4,7 +4,7 @@ import "./Trip.css";
 import { useNavigate } from 'react-router-dom';
 
 const Trip = ({ trip }) => {
-  const { userLoginData } = useContext(UserLoginContext);
+  const { isUserLoggedIn } = useContext(UserLoginContext);
   const navigate = useNavigate();
   const [imageIndex, setImageIndex] = useState(0);
   useEffect(() => {
@@ -18,7 +18,7 @@ const Trip = ({ trip }) => {
   }, [])
 
   const handleClickOnChatButton = () => {
-    if (userLoginData.isUserLoggedIn) {
+    if (isUserLoggedIn) {
       // Add your chat handling logic here
     } else {
       navigate("/login-page");
