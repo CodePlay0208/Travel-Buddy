@@ -11,12 +11,31 @@ import DateRangePicker from "../RangePicker/RangePicker";
 import { useNavigate } from "react-router-dom";
 import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
 
-function submitForm(inputValues) {
+async function submitForm(inputValues) {
   // TODO: integrate totalusers API
   let getTotalUsers = 5;
   getTotalUsers++;
   inputValues["id"] = getTotalUsers;
   //TODO: send data to backend
+  try {
+    console.log(inputValues);
+    const response = await fetch('http://localhost:4000/api/trips', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(inputValues)
+    });
+    const result = await response.json();
+    if (response.ok) {
+      alert('Trip added successfully!');
+    } else {
+      alert('Failed to add trip: ' + result.message);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error: ' + error.message);
+  }
   data.push(inputValues);
   toast.success("Trip Published", {
     autoClose: 100,

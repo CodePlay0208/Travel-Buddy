@@ -1,32 +1,47 @@
-import React, { useContext, useState,useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
-import { useParams } from 'react-router-dom';
-import data from "../../data/data.json";
+import { useParams, useNavigate } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import "./TripPage.css";
 import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
-import { useNavigate } from 'react-router-dom';
-
-function getTripFromTripId(id) {
-    // TODO: integrate the API to get trip from Id
-    return data.filter((obj) => obj["id"] == id);
-}
 
 const TripPage = () => {
-    const paramsInUrl = useParams();
-    const tripId = paramsInUrl.id;
-    const trip = getTripFromTripId(tripId)[0];
+    const { id: tripId } = useParams();
     const { isUserLoggedIn } = useContext(UserLoginContext);
     const navigate = useNavigate();
+    const [trip, setTrip] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % trip.destinationImages.length);
-        }, 2000);
+        const fetchTrip = async () => {
+            try {
+                const response = await fetch(`http://localhost:4000/api/trips/${tripId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch trip data');
+                }
+                const result = await response.json();
+                setTrip(result);
+                setLoading(false);
+            } catch (error) {
+                setError(error.message);
+                setLoading(false);
+            }
+        };
 
-        return () => clearInterval(interval);
-    }, [trip.destinationImages.length]);
+        fetchTrip();
+    }, [tripId]);
+
+    useEffect(() => {
+        if (trip && trip.destinationImages && trip.destinationImages.length > 0) {
+            const interval = setInterval(() => {
+                setCurrentImageIndex((prevIndex) => (prevIndex + 1) % trip.destinationImages.length);
+            }, 2000);
+
+            return () => clearInterval(interval);
+        }
+    }, [trip]);
 
     const handleClickOnChatButton = () => {
         if (isUserLoggedIn) {
@@ -37,12 +52,36 @@ const TripPage = () => {
     };
 
     const handleNextImage = () => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % trip.destinationImages.length);
+        if (trip && trip.destinationImages) {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % trip.destinationImages.length);
+        }
     };
 
     const handlePreviousImage = () => {
-        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + trip.destinationImages.length) % trip.destinationImages.length);
+        if (trip && trip.destinationImages) {
+            setCurrentImageIndex((prevIndex) => (prevIndex - 1 + trip.destinationImages.length) % trip.destinationImages.length);
+        }
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
+    if (!trip) {
+        return (
+            <div>
+                <Navbar visibilityForSearch={true} />
+                <div className="trip-details-container">
+                    <h1>Trip not found</h1>
+                </div>
+                <Footer />
+            </div>
+        );
+    }
 
     return (
         <div>
