@@ -10,38 +10,60 @@ import "react-toastify/dist/ReactToastify.css";
 import DateRangePicker from "../RangePicker/RangePicker";
 import { useNavigate } from "react-router-dom";
 import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
+import axios from 'axios';
+
 
 async function submitForm(inputValues) {
-  // TODO: integrate totalusers API
+  // TODO: Integrate totalusers API if necessary, for now assuming a static value
   let getTotalUsers = 5;
   getTotalUsers++;
   inputValues["id"] = getTotalUsers;
-  //TODO: send data to backend
-  try {
-    console.log(inputValues);
-    const response = await fetch('http://localhost:4000/api/trips', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(inputValues)
-    });
-    const result = await response.json();
-    if (response.ok) {
-      alert('Trip added successfully!');
-    } else {
-      alert('Failed to add trip: ' + result.message);
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('Error: ' + error.message);
-  }
-  data.push(inputValues);
-  toast.success("Trip Published", {
-    autoClose: 100,
-  });
-}
 
+  const fetchUserId = async (email) => {
+    try {
+      const response = await axios.get(`http://localhost:4000/user/getUserProfile?emailId=${email}`);
+      return response.data._id; // Adjust according to the actual response structure
+    } catch (error) {
+      console.error('Error fetching user ID:', error);
+    }
+  };
+  function convertDateFormat(dateStr) {
+    const [day, month, year] = dateStr.split('-');
+    return `${year}-${month}-${day}`;
+  }
+  try {
+    const userId = await fetchUserId(inputValues.emailId);
+
+    const tripPayload = {
+      key: `trip${inputValues.id}`, // Assuming you use `id` to generate a unique key
+      destination: inputValues.endLocation, // Adjust according to your data
+      startDate: convertDateFormat(inputValues.startDate),
+      endDate: convertDateFormat(inputValues.endDate),
+      details: inputValues.description,
+      startLocation: inputValues.startLocation,
+      endLocation: inputValues.endLocation,
+      totalMembers: parseInt(inputValues.totalMembers, 10),
+      age: inputValues.age,
+      sex: inputValues.gender,
+      description: inputValues.description,
+      profileImg: 'profile.jpg', // Placeholder, replace with actual logic if needed
+      destinationImages: inputValues.destinationImages.map((img, index) => `image${index}.jpg`), // Adjust according to your data
+      user: userId,
+    };
+
+    console.log(tripPayload);
+    await axios.post('http://localhost:4000/api/trips', tripPayload);
+
+    toast.success("Trip Published", {
+      autoClose: 100,
+    });
+  } catch (error) {
+    console.error('Error publishing trip:', error);
+    toast.error("Failed to publish trip", {
+      autoClose: 100,
+    });
+  }
+}
 
 
 function validateForm(inputValues, isClickOnHeading) {
