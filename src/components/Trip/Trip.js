@@ -19,6 +19,8 @@ const Trip = ({ trip }) => {
 
   const handleClickOnChatButton = () => {
     if (isUserLoggedIn) {
+      console.log("chats");
+      navigate("/chats")
       // Add your chat handling logic here
     } else {
       navigate("/login-page");
