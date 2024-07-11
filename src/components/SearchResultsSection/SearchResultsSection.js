@@ -4,7 +4,7 @@ import { FilterContext } from "../../Utils/Context/FilterContext";
 import Trip from "../Trip/Trip";
 
 const SearchResultsSection = (props) => {
-  const filterContext = useContext(FilterContext);
+  const { fromAge, toAge, gender } = useContext(FilterContext);
   const [displayedTrips, setDisplayedTrips] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -14,29 +14,25 @@ const SearchResultsSection = (props) => {
 
   const filterTrip = (trip) => {
     return (
-      trip.age >= filterContext.fromAge &&
-      trip.age <= filterContext.toAge &&
-      (filterContext.gender === '' || trip.gender === filterContext.gender)
+      trip.age >= fromAge &&
+      trip.age <= toAge &&
+      (gender === "" || trip.gender === gender)
     );
   };
 
   const loadTrips = (page) => {
-    if (trips.length > 0) {
-      setLoading(true);
-      const startIndex = (page - 1) * 10;
-      const endIndex = startIndex + 10;
-      const filteredTrips = trips.filter((trip) => filterTrip(trip));
-      const newTrips = filteredTrips.slice(startIndex, endIndex);
-      setDisplayedTrips((prevTrips) => [...prevTrips, ...newTrips]);
-      setLoading(false);
-    }
+    setLoading(true);
+    const startIndex = (page - 1) * 10;
+    const endIndex = startIndex + 10;
+    const filteredTrips = trips.filter(filterTrip);
+    const newTrips = filteredTrips.slice(startIndex, endIndex);
+    setDisplayedTrips((prevTrips) => [...prevTrips, ...newTrips]);
+    setLoading(false);
   };
 
   useEffect(() => {
-    if (trips.length > 0) {
-      setDisplayedTrips([]); // Reset displayed trips when trips data changes
-      setPage(1); // Reset page to 1 when trips data changes
-    }
+    setDisplayedTrips([]); // Reset displayed trips when trips data changes
+    setPage(1); // Reset page to 1 when trips data changes
   }, [trips]);
 
   useEffect(() => {
@@ -45,7 +41,7 @@ const SearchResultsSection = (props) => {
     } else if (page > 1) {
       loadTrips(page); // Load more trips when page changes
     }
-  }, [page, trips]);
+  }, [page, trips, fromAge, toAge, gender]);
 
   useEffect(() => {
     const options = {
@@ -55,7 +51,7 @@ const SearchResultsSection = (props) => {
     };
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && !loading) {
         setPage((prevPage) => prevPage + 1);
       }
     }, options);
@@ -69,7 +65,7 @@ const SearchResultsSection = (props) => {
         observer.unobserve(loader.current);
       }
     };
-  }, []);
+  }, [loading]);
 
   return (
     <div className="search-results-section-container">
@@ -78,7 +74,7 @@ const SearchResultsSection = (props) => {
       </div>
       <div className="trips">
         {displayedTrips.map((trip) => (
-          <Trip key={trip.id} trip={trip} />
+          <Trip key={trip._id} trip={trip} />
         ))}
       </div>
       {loading && (
@@ -87,9 +83,8 @@ const SearchResultsSection = (props) => {
         </div>
       )}
       <div className="loaderContainer">
-      <div ref={loader} className="loader"></div>
+        <div ref={loader} className="loader"></div>
       </div>
-      
     </div>
   );
 };

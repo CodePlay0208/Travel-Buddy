@@ -19,6 +19,8 @@ const Trip = ({ trip }) => {
 
   const handleClickOnChatButton = () => {
     if (isUserLoggedIn) {
+      console.log("chats");
+      navigate("/chats")
       // Add your chat handling logic here
     } else {
       navigate("/login-page");
@@ -26,7 +28,7 @@ const Trip = ({ trip }) => {
   };
 
   return (
-    <div className="cards" onClick={()=> navigate(`/trip/${trip.id}`)}>
+    <div className="cards" onClick={()=> navigate(`/trip/${trip._id}`)}>
 
 <a className="card">
         <img src={trip.destinationImages[imageIndex]} className="card__image" alt={trip.startLocation} />

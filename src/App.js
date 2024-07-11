@@ -16,7 +16,7 @@ import TripPage from "./components/TripPage/TripPage";
 import VerifyOTP from "./components/LoginPage/VerifyOTP";
 import EnterEmail from "./components/LoginPage/EnterEmail";
 import SignUp from "./components/SignUpPage/SignUp";
-
+import ChatApp from './components/chatSection/ChatApp'
 
 const App =() =>{
   const [tripsData, setTripsData] = useState([
@@ -121,6 +121,7 @@ const App =() =>{
             />
             <Route path="/search-page" element={<SearchPage />}></Route>
             <Route exact path="/publish-trip" element={<PublishTrip />}></Route>
+            <Route exact path="/chats" element={<ChatApp />}></Route>
             <Route path = "/login-page" element={<LoginPage/>} />
             <Route path = "/userProfile" element={<UserProfile/>} />
             <Route path = "/userTrips" element={<UserTrips/>} />
