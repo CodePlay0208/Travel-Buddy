@@ -26,7 +26,13 @@ const LoginPage = () => {
               },
               body: JSON.stringify({ token }),
             })
-            .then(res => res.json())
+            .then((response) => {
+              if(!response.ok){
+                return response.json().then(error => {
+                  throw new Error(error);
+                });
+              }
+              return response.json()})
             .then(data => {
                 console.log("the data is", data);
               if (data.success) {
@@ -85,7 +91,6 @@ const LoginPage = () => {
           return ;
     }
 
-
     fetch("http://localhost:4000/login/", {
         method: "POST",
         credentials: "include",
@@ -98,8 +103,16 @@ const LoginPage = () => {
           rememberMe: isRemeberMeChecked
         }),
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if(!response.ok){
+            return response.json().then(error => {
+              throw new Error(error);
+            });
+          }
+          return response.json()})
+
         .then((data) => {
+          
             const previousURL = sessionStorage.getItem("redirectUrl") || "/";
                 sessionStorage.removeItem("redirectUrl");
                 // Handle successful login on frontend if needed
@@ -108,15 +121,15 @@ const LoginPage = () => {
                 setIsUserLoggedIn(true);
         })
         .catch((err) => {
-          console.log("cant send OTP", err);
+          console.log("Passwords don't match", err);
           setIsUserLoggedIn(false);
+          toast.error("Invalid Password", {
+            autoClose: 1500,
+          });
+          return ;
         })
-    // Handle login logic here
   };
 
-  const handleSignUp = () => {
-    // Handle sign up logic here
-  };
 
   const forgotPassWordHandler = () =>{
    navigate("/enterEmail")

@@ -48,7 +48,12 @@ const emailOfUser = localStorage.getItem("userEmailForPasswordReset")
         },
         body: JSON.stringify({ otp: otpValue, newPassword: password, userEmail: emailOfUser }),
       });
-
+        if(!response.ok){
+          return response.json().then(error => {
+            throw new Error(error);
+          });
+        }
+      
       const data = await response.json();
       if (data.success) {
         console.log("done")

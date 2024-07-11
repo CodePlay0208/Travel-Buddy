@@ -61,7 +61,13 @@ function SignUp() {
         password: formData.password,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if(!response.ok){
+          return response.json().then(error => {
+            throw new Error(error);
+          });
+        }
+       return response.json()})
       .then((data) => {
         if(!data.success){
             toast.error("User Already Exist", {
@@ -83,6 +89,10 @@ function SignUp() {
       })
       .catch((err) => {
         console.log("cant send OTP", err);
+        toast.error("User Already Exist", {
+          autoClose: 1500,
+        });
+        return;
       });
 
     console.log(formData);

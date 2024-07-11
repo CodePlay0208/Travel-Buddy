@@ -21,7 +21,13 @@ const EnterEmail = () => {
         userEmail: email,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if(!response.ok){
+          return response.json().then(error => {
+            throw new Error(error);
+          });
+        }
+        return response.json()})
       .then((data) => {
         console.log("the code came here");
         localStorage.setItem("userEmailForPasswordReset", email);

@@ -19,21 +19,12 @@ async function submitForm(inputValues) {
   getTotalUsers++;
   inputValues["id"] = getTotalUsers;
 
-  const fetchUserId = async (email) => {
-    try {
-      const response = await axios.get(`http://localhost:4000/user/getUserProfile?emailId=${email}`);
-      return response.data._id; // Adjust according to the actual response structure
-    } catch (error) {
-      console.error('Error fetching user ID:', error);
-    }
-  };
   function convertDateFormat(dateStr) {
     const [day, month, year] = dateStr.split('-');
     return `${year}-${month}-${day}`;
   }
   try {
-    const userId = await fetchUserId(inputValues.emailId);
-
+  
     const tripPayload = {
       key: `trip${inputValues.id}`, // Assuming you use `id` to generate a unique key
       destination: inputValues.endLocation, // Adjust according to your data
@@ -48,20 +39,22 @@ async function submitForm(inputValues) {
       description: inputValues.description,
       profileImg: 'profile.jpg', // Placeholder, replace with actual logic if needed
       destinationImages: inputValues.destinationImages.map((img, index) => `image${index}.jpg`), // Adjust according to your data
-      user: userId,
+      user: "5",
     };
 
     console.log(tripPayload);
-    await axios.post('http://localhost:4000/api/trips', tripPayload);
+    await axios.post('http://localhost:4000/api/trips', tripPayload,{ withCredentials: true });
 
     toast.success("Trip Published", {
       autoClose: 100,
     });
+    return true;
   } catch (error) {
     console.error('Error publishing trip:', error);
     toast.error("Failed to publish trip", {
       autoClose: 100,
     });
+    return false;
   }
 }
 
@@ -355,8 +348,10 @@ const PublishTrip = () => {
           event.preventDefault();
           const isValidForm = validateForm(inputValues, false);
           if (isValidForm) {
-            submitForm(inputValues);
-            setInputValues(initialPublishTripValues);
+            const isFormSubmitted = submitForm(inputValues);
+            if(isFormSubmitted){
+              setInputValues(initialPublishTripValues);
+            }
           }
         }}
       >

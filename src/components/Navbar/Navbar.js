@@ -60,6 +60,11 @@ const handleClickOnProfilePic = ()=>{
       } else {
         console.error('Logout failed:', response.statusText);
         // Handle logout failure, if needed
+          if(!response.ok){
+            return response.json().then(error => {
+              throw new Error(error);
+            });
+          }
       }
     })
     .catch(error => {
