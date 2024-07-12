@@ -13,11 +13,11 @@ const UserTrips = () => {
   const [tripsData, setTripsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { isUserLoggedIn } = useContext(UserLoginContext);
+  const { loggedInUserValues } = useContext(UserLoginContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isUserLoggedIn) {
+    if (!loggedInUserValues) {
       navigate("/login-page");
       return;
     }
@@ -39,7 +39,7 @@ const UserTrips = () => {
     };
 
     fetchUserTrips();
-  }, [isUserLoggedIn, navigate]);
+  }, [loggedInUserValues, navigate]);
 
   if (loading) {
     return <div>Loading...</div>;
