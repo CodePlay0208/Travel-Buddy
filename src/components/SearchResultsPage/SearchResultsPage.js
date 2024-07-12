@@ -19,31 +19,33 @@ const SearchResultsPage = () => {
   const { inputValues } = useContext(InputValuesContext);
   const [tripsData, setTripsData] = useState([]);
 
-  useEffect(() => {
-    const convertDateFormat = (dateStr) => {
-      const [day, month, year] = dateStr.split('-');
-      return `${year}-${month}-${day}`;
-    };
+  const convertDateFormat = (dateStr) => {
+    const [day, month, year] = dateStr.split("-");
+    return `${year}-${month}-${day}`;
+  };
 
+  useEffect(() => {
     const fetchTrips = async () => {
       const { destination, startDate } = inputValues;
 
       if (!destination || !startDate) {
+        console.log("Destination or startDate is missing.");
         return; // Don't make a request if either destination or date is empty
       }
 
       try {
         const date = convertDateFormat(startDate);
+        console.log(`Fetching trips for destination: ${destination}, date: ${date}`);
         const response = await fetch(`http://localhost:4000/api/trips?destination=${destination}&date=${date}`);
         const result = await response.json();
 
         if (response.ok) {
           setTripsData(result);
         } else {
-          console.error('Failed to fetch trips:', result.message);
+          console.error("Failed to fetch trips:", result.message);
         }
       } catch (error) {
-        console.error('Error fetching trips:', error);
+        console.error("Error fetching trips:", error);
       }
     };
 
@@ -51,7 +53,7 @@ const SearchResultsPage = () => {
   }, [inputValues]);
 
   useEffect(() => {
-    console.log(tripsData);
+    console.log("Trips data updated:", tripsData);
   }, [tripsData]);
 
   return (
