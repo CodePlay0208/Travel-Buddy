@@ -1,8 +1,13 @@
 import React, { createContext } from "react";
 
 export const UserLoginContext = createContext({
-  isUserLoggedIn: false,
-  setIsUserLoggedIn: () => {}
+  loggedInUserValues:{
+    _id:"",
+    username:"",
+    emailId:"",
+    profilePic:""
+  } ,
+  setLoggedInUserValues: () => {}
 });
 
 

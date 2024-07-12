@@ -1,0 +1,74 @@
+.myChats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    width: 100%;
+    max-width: 31%;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+  }
+  
+  @media (max-width: 768px) {
+    .hide-on-base {
+      display: none;
+    }
+  }
+  
+  .myChats-header {
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.875rem;
+    font-family: 'Work sans', sans-serif;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .new-group-chat-btn {
+    display: flex;
+    font-size: 1.0625rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #3182ce;
+    color: white;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+  
+  .myChats-body {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: #f8f8f8;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    overflow-y: hidden;
+  }
+  
+  .chats-list {
+    overflow-y: scroll;
+  }
+  
+  .chat-item {
+    cursor: pointer;
+    background: #e8e8e8;
+    color: black;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .chat-item.selected {
+    background: #38b2ac;
+    color: white;
+  }
+  
+  .latest-message {
+    font-size: 0.875rem;
+  }
+  

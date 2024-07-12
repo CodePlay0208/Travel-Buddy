@@ -8,7 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 
 const LoginPage = () => {
-    const {setIsUserLoggedIn} = useContext(UserLoginContext);
+    const {setLoggedInUserValues} = useContext(UserLoginContext);
     const navigate = useNavigate();
     
     const googleSignIn = useGoogleLogin({
@@ -42,21 +42,36 @@ const LoginPage = () => {
                 // Handle successful login on frontend if needed
                 console.log(previousURL);
                 navigate(previousURL)
-                setIsUserLoggedIn(true);
+                setLoggedInUserValues(data.user);
               } else {
                 console.error('Login failed:', data);
-                setIsUserLoggedIn(false);
+                setLoggedInUserValues({
+                  _id:"",
+                  username:"",
+                  emailId:"",
+                  profilePic:""
+                })
               }
             })
             .catch(error => {
               console.error('Error during login:', error);
-              setIsUserLoggedIn(false);
+              setLoggedInUserValues({
+                _id:"",
+                username:"",
+                emailId:"",
+                profilePic:""
+              })
 
             });
           },
           onError: (error) => {
             console.error('Login failed:', error);
-            setIsUserLoggedIn(false);
+            setLoggedInUserValues({
+              _id:"",
+              username:"",
+              emailId:"",
+              profilePic:""
+            })
 
           },
       });
@@ -67,7 +82,7 @@ const LoginPage = () => {
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRemeberMeChecked, setIsRemeberMeChecked] = useState(false);
-  console.log(isRemeberMeChecked);
+  console.log("is remember me", isRemeberMeChecked);
 
   function checkValueIsValid(value){
     if(value == "" || value == undefined || value == null){
@@ -118,11 +133,16 @@ const LoginPage = () => {
                 // Handle successful login on frontend if needed
                 console.log(previousURL);
                 navigate(previousURL)
-                setIsUserLoggedIn(true);
+                setLoggedInUserValues(data.user);
         })
         .catch((err) => {
           console.log("Passwords don't match", err);
-          setIsUserLoggedIn(false);
+          setLoggedInUserValues({
+            _id:"",
+            username:"",
+            emailId:"",
+            profilePic:""
+          })
           toast.error("Invalid Password", {
             autoClose: 1500,
           });

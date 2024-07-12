@@ -7,7 +7,7 @@ import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
 
 const TripPage = () => {
     const { id: tripId } = useParams();
-    const { isUserLoggedIn } = useContext(UserLoginContext);
+    const { loggedInUserValues } = useContext(UserLoginContext);
     const navigate = useNavigate();
     const [trip, setTrip] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -44,8 +44,9 @@ const TripPage = () => {
     }, [trip]);
 
     const handleClickOnChatButton = () => {
-        if (isUserLoggedIn) {
-            navigate("/chats")
+        if (loggedInUserValues._id != "") {
+            
+            navigate("/chats");
             // Implement chat functionality
         } else {
             navigate("/login-page");
