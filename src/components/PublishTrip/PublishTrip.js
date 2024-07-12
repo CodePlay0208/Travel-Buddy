@@ -26,20 +26,18 @@ async function submitForm(inputValues) {
   try {
   
     const tripPayload = {
-      key: `trip${inputValues.id}`, // Assuming you use `id` to generate a unique key
+      
       destination: inputValues.endLocation, // Adjust according to your data
       startDate: convertDateFormat(inputValues.startDate),
       endDate: convertDateFormat(inputValues.endDate),
-      details: inputValues.description,
       startLocation: inputValues.startLocation,
       endLocation: inputValues.endLocation,
       totalMembers: parseInt(inputValues.totalMembers, 10),
       age: inputValues.age,
       sex: inputValues.gender,
       description: inputValues.description,
-      profileImg: 'profile.jpg', // Placeholder, replace with actual logic if needed
       destinationImages: inputValues.destinationImages.map((img, index) => `image${index}.jpg`), // Adjust according to your data
-      user: "5",
+      
     };
 
     console.log(tripPayload);
@@ -537,7 +535,13 @@ const PublishTrip = () => {
               Age<sup className="mandatoryFieldSignInPublishTrips">*</sup>
             </label>
             <div>
-              <button
+            <input type="number" className="publish-trips-input publish-trips-input-dropDownBtn" name="age" id="publish-trips-input-age" value={inputValues.age} onChange={(event) => {
+                setInputValues((currentInputValues) => ({
+                  ...currentInputValues,
+                  age: event.target.value,
+                }));
+              }}/>
+              {/* <button
                 onClick={() => {
                   setShowAgeGroupDropDownList(true);
                 }}
@@ -603,7 +607,7 @@ const PublishTrip = () => {
                     </li>
                   ))}
                 </div>
-              )}
+              )} */}
             </div>
           </div>
           <div className="input-element" id="uploadImagesElement">
