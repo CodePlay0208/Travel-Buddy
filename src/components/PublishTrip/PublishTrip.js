@@ -161,8 +161,8 @@ const PublishTrip = () => {
   // const [uploadedFiles, setUploadedFiles] = useState([]);
   const acceptableImageUploadTypes = ".jpg, .jpeg, .png";
 
-  const {isUserLoggedIn} = useContext(UserLoginContext);
-
+  const {loggedInUserValues} = useContext(UserLoginContext);
+  const isUserLoggedIn = loggedInUserValues._id != "";
 
   useEffect(() => {
     if (!isUserLoggedIn) {

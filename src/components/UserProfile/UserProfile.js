@@ -11,11 +11,12 @@ import { checkUserLoggedIn } from "../../Utils/Context/UserLoginContext";
 const UserProfile = () => {
   const navigate = useNavigate();
  
-  const {isUserLoggedIn} = useContext(UserLoginContext);
+  const {loggedInUserValues} = useContext(UserLoginContext);
 
 
   useEffect(() => {
-    if (!isUserLoggedIn) {
+    console.log("i am in profile url", loggedInUserValues);
+    if (loggedInUserValues._id == "") {
       console.log("naivgating")
       navigate("/login-page");
     }

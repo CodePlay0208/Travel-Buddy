@@ -1,13 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 import {UserLoginContext} from "../../Utils/Context/UserLoginContext";
 import { checkUserLoggedIn } from "../../Utils/Context/UserLoginContext";
+import { ChatContext } from "../../Utils/Context/ChatContext";
 
 const Navbar = (props) => {
 
 
-  const {isUserLoggedIn , setIsUserLoggedIn} = useContext(UserLoginContext);
+  const {loggedInUserValues , setLoggedInUserValues} = useContext(UserLoginContext);
+
+  console.log("the user is logged in navbar", loggedInUserValues);
 
   const userProfileDropDownData = [
     {value : "My Profile" , path: "/userProfile"} , 
@@ -35,8 +39,9 @@ const Navbar = (props) => {
 
 
 const handleClickOnProfilePic = ()=>{
-  console.log("login status" ,isUserLoggedIn);
-    if(isUserLoggedIn){
+  console.log("login status" ,loggedInUserValues);
+    if(loggedInUserValues._id != ""){
+      console.log("hehe");
       setShowUserProfileDropDownList((currentValue)=> !currentValue);
     }
     else{
@@ -55,7 +60,12 @@ const handleClickOnProfilePic = ()=>{
     .then(response => {
       if (response.ok) {
         console.log('Logged out successfully');
-        setIsUserLoggedIn(false);
+      setLoggedInUserValues({
+        _id:"",
+        username:"",
+        emailId:"",
+        profilePic:""
+      });
         // Optionally redirect or update UI after logout
       } else {
         console.error('Logout failed:', response.statusText);
@@ -72,6 +82,45 @@ const handleClickOnProfilePic = ()=>{
       // Handle network errors or other issues
     });
     navigate("/")
+  }
+
+  const {userChatValues, setUserChatValues} = useContext(ChatContext);
+
+  const accessChat = async (userId) => {
+    console.log(userId);
+
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const { data } = await axios.post(`http://localhost:4000/chat/fetchOrCreateChats`, { userId }, {
+        ...config,
+         withCredentials: true
+      }
+      );
+
+      if (!userChatValues.chats.find((c) => c._id === data._id)){
+        setUserChatValues((currentValues)=>({
+          ...currentValues , chats:[data , ...currentValues.chats]
+        }))
+      } 
+      setUserChatValues((currentValues)=>({
+        ...currentValues , selectedChat: data
+      }))
+
+      console.log(userChatValues);
+     
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  function handleChat(){
+    console.log("current user is", UserLoginContext);
+    accessChat("6690ab18c2d9d0a71a4533da");
+    navigate("/chats");
   }
 
   return (
@@ -146,6 +195,7 @@ const handleClickOnProfilePic = ()=>{
               )}
         </div>
       </div>
+      <button onClick={handleChat}>Chat</button>
     </nav>
   );
 };
