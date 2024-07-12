@@ -1,42 +1,71 @@
 import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
 import Navbar from "../Navbar/Navbar";
 import UserSideBar from "../UserSideBar/UserSideBar";
 import SearchResultsSection from "../SearchResultsSection/SearchResultsSection";
-import data from "../../data/data.json";
 import "./UserTrips.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
 import { useNavigate } from "react-router-dom";
-import { checkUserLoggedIn } from "../../Utils/Context/UserLoginContext";
-
+import Trip from "../Trip/Trip";
 const UserTrips = () => {
   const [tripsData, setTripsData] = useState([]);
-  const { userLoginData, setUserLoginData } = useContext(UserLoginContext);
-  const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { isUserLoggedIn } = useContext(UserLoginContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isUserLoggedIn) {
-      console.log("naivgating");
       navigate("/login-page");
+      return;
     }
 
-    //TODO: get user trips
-    const userTrips = data;
-    setTripsData(userTrips);
-  }, []);
+    const fetchUserTrips = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:4000/api/tripsByUser",
+          
+          { withCredentials: true }
+        );
+        setTripsData(response.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+        toast.error("Failed to fetch trips data.");
+      }
+    };
+
+    fetchUserTrips();
+  }, [isUserLoggedIn, navigate]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <div className="userTripsHeadContainer">
-      <Navbar visibilityForSearch={true}></Navbar>
+      <Navbar visibilityForSearch={true} />
       <div className="userTripsInnerContainer">
         <div className="sideBarContainerInUserTrips">
-          {" "}
           <UserSideBar />
         </div>
         <div className="searchResultsContainerInUserTrips">
-          <SearchResultsSection tripsData={tripsData} isUserTrip={true} />
+        {tripsData.length > 0 ? (
+        <ul>
+          {tripsData.map(trip => (
+            <Trip key={trip._id} trip={trip} />
+          ))}
+        </ul>
+      ) : (
+        <div>No trips found.</div>
+      )}
         </div>
       </div>
       <ToastContainer />
