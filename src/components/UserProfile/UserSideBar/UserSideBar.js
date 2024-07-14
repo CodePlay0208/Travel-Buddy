@@ -10,6 +10,8 @@ const UserSideBar = () => {
             <li onClick={()=>{navigate("/userProfile")}}>My Profile</li>
             <li onClick={()=>{navigate("/userTrips")}}>My Trips</li>
             <li onClick={()=>{navigate("/")}}>Home</li>
+            <li onClick={()=>{navigate("/deleteProfile")}}>Delete Profile</li>
+
         </ul>
     </div>
   )

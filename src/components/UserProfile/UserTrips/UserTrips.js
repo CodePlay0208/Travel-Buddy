@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../../Navbar/Navbar";
 import UserSideBar from "../UserSideBar/UserSideBar";
-import SearchResultsSection from "../SearchResultsSection/SearchResultsSection";
+import SearchResultsSection from "../../SearchResultsSection/SearchResultsSection";
 import "./UserTrips.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
+import { UserLoginContext } from "../../../Utils/Context/UserLoginContext";
 import { useNavigate } from "react-router-dom";
-import Trip from "../Trip/Trip";
+import Trip from "../../Trip/Trip";
 const UserTrips = () => {
   const [tripsData, setTripsData] = useState([]);
   const [loading, setLoading] = useState(true);
