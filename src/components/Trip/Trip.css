@@ -101,9 +101,11 @@ background-color: #fef8f8;
 }
 
 .cards {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 2rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-content: center;
+
 margin: 4rem 5vw;
 padding: 0;
 list-style-type: none;
@@ -283,4 +285,26 @@ img{
 
 .left-arrow:hover, .right-arrow:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+.deleteButtonuser-container{
+  display: flex;
+justify-content: center;
+align-content: center;
+}
+.deleteButtonuser{
+  
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s;
+  width: 40rem;
+
+}
+
+.delete-button:hover {
+  background-color: #e60000;
 }

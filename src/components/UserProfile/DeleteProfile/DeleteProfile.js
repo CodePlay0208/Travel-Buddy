@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useContext, useState } from 'react';
 import './DeleteProfile.css'; // Import the CSS file
 import axios from 'axios';
 import Navbar from '../../Navbar/Navbar';
@@ -6,17 +6,16 @@ import UserSideBar from '../UserSideBar/UserSideBar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+
+import {UserLoginContext} from "../../../Utils/Context/UserLoginContext";
 const DeleteProfile = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [confirmationText, setConfirmationText] = useState('');
 
-    const [loggedInUserValues, setLoggedInUserValues] = useState({
-        _id: "",
-        username: "",
-        emailId: "",
-        profilePic: ""
-    });
+    
+  const {loggedInUserValues , setLoggedInUserValues} = useContext(UserLoginContext);
+
 
     const handleSignOutLogic = () => {
         console.log("Rrrr");
