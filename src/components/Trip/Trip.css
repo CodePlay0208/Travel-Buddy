@@ -304,6 +304,19 @@ align-content: center;
   width: 40rem;
 
 }
+.EditButtonuser{
+  
+  background-color: #4dff00;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s;
+  width: 40rem;
+
+}
 
 .delete-button:hover {
   background-color: #e60000;

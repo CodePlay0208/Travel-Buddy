@@ -36,7 +36,9 @@ const SearchResultsPage = () => {
       try {
         const date = convertDateFormat(startDate);
         console.log(`Fetching trips for destination: ${destination}, date: ${date}`);
-        const response = await fetch(`http://localhost:4000/api/trips?destination=${destination}&date=${date}`);
+        const response = await fetch(`http://localhost:4000/api/trips?destination=${destination}&date=${date}`, {
+          credentials: 'include'
+        });
         const result = await response.json();
 
         if (response.ok) {

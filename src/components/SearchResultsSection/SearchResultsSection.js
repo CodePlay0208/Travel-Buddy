@@ -9,6 +9,7 @@ const SearchResultsSection = (props) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const loader = useRef(null);
+  const [hasMore, setHasMore] = useState(true);
 
   const trips = props.tripsData || [];
 
@@ -26,13 +27,20 @@ const SearchResultsSection = (props) => {
     const endIndex = startIndex + 10;
     const filteredTrips = trips.filter(filterTrip);
     const newTrips = filteredTrips.slice(startIndex, endIndex);
-    setDisplayedTrips((prevTrips) => [...prevTrips, ...newTrips]);
+    
+    if (newTrips.length === 0) {
+      setHasMore(false);
+    } else {
+      setDisplayedTrips((prevTrips) => [...prevTrips, ...newTrips]);
+    }
+    
     setLoading(false);
   };
 
   useEffect(() => {
     setDisplayedTrips([]); // Reset displayed trips when trips data changes
     setPage(1); // Reset page to 1 when trips data changes
+    setHasMore(true); // Reset hasMore when trips data changes
   }, [trips]);
 
   useEffect(() => {
@@ -51,7 +59,7 @@ const SearchResultsSection = (props) => {
     };
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !loading) {
+      if (entry.isIntersecting && !loading && hasMore) {
         setPage((prevPage) => prevPage + 1);
       }
     }, options);
@@ -65,7 +73,7 @@ const SearchResultsSection = (props) => {
         observer.unobserve(loader.current);
       }
     };
-  }, [loading]);
+  }, [loading, hasMore]);
 
   return (
     <div className="search-results-section-container">
@@ -82,9 +90,11 @@ const SearchResultsSection = (props) => {
           <div className="loader"></div>
         </div>
       )}
-      <div className="loaderContainer">
-        <div ref={loader} className="loader"></div>
-      </div>
+      {hasMore && (
+        <div className="loaderContainer">
+          <div ref={loader} className="loader"></div>
+        </div>
+      )}
     </div>
   );
 };

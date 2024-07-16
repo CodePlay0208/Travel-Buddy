@@ -38,6 +38,9 @@ const Trip = ({ trip, showDeleteButton, onDeleteSuccess }) => {
         toast.error('Failed to delete trip.');
       }
     };
+    const handleEdit = async () => {
+      
+    };
   
   return (
     <div className="cards">
@@ -70,6 +73,7 @@ const Trip = ({ trip, showDeleteButton, onDeleteSuccess }) => {
       <div className='deleteButtonuser-container'>
 
       {showDeleteButton && <button className='deleteButtonuser' onClick={handleDelete}>Delete</button>}
+      {showDeleteButton && <button className='EditButtonuser' onClick={handleEdit}>Edit</button>}
       </div>
     </div>
   );
