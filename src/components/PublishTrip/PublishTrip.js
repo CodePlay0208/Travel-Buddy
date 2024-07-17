@@ -535,7 +535,7 @@ const PublishTrip = () => {
               Age<sup className="mandatoryFieldSignInPublishTrips">*</sup>
             </label>
             <div>
-            <input type="number" className="publish-trips-input publish-trips-input-dropDownBtn" name="age" id="publish-trips-input-age" value={inputValues.age} onChange={(event) => {
+            <input type="number" placeholder="Enter Age" className="publish-trips-input publish-trips-input-dropDownBtn" name="age" id="publish-trips-input-age" value={inputValues.age} onChange={(event) => {
                 setInputValues((currentInputValues) => ({
                   ...currentInputValues,
                   age: event.target.value,

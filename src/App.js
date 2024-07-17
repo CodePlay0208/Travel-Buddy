@@ -13,14 +13,14 @@ import {
   UserLoginContext,
 } from "./Utils/Context/UserLoginContext";
 import UserProfile from "./components/UserProfile/UserProfile";
-import UserTrips from "./components/UserTrips/UserTrips";
+import UserTrips from "./components/UserProfile/UserTrips/UserTrips";
 import TripPage from "./components/TripPage/TripPage";
 import VerifyOTP from "./components/LoginPage/VerifyOTP";
 import EnterEmail from "./components/LoginPage/EnterEmail";
 import SignUp from "./components/SignUpPage/SignUp";
 import ChatPage from "./components/Chat/ChatPage";
 import { ChatContext } from "./Utils/Context/ChatContext";
-
+import DeleteProfile from "./components/UserProfile/DeleteProfile/DeleteProfile"
 const App = () => {
   const [tripsData, setTripsData] = useState([
     {
@@ -157,6 +157,7 @@ const App = () => {
                   <Route path="/verifyOTP" element={<VerifyOTP />} />
                   <Route path="/enterEmail" element={<EnterEmail />} />
                   <Route path="/signUp" element={<SignUp />}></Route>
+                  <Route path="/deleteProfile" element={<DeleteProfile />}></Route>
                 </Routes>
               </div>
             </ChatContext.Provider>
