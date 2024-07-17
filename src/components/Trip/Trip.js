@@ -39,6 +39,9 @@ const Trip = ({ trip, showDeleteButton, onDeleteSuccess }) => {
       }
     };
     const handleEdit = async () => {
+      console.log(trip);
+        navigate('/publish-trip', { state: { trip } });
+      
       
     };
   
