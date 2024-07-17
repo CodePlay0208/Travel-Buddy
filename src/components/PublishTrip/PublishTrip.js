@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
 import axios from 'axios';
 
+import { useLocation } from 'react-router-dom';
+
 
 async function submitForm(inputValues) {
   // TODO: Integrate totalusers API if necessary, for now assuming a static value
@@ -136,22 +138,35 @@ function validateForm(inputValues, isClickOnHeading) {
 
 const PublishTrip = () => {
   const navigate = useNavigate();
-  const initialPublishTripValues = {
-    id: 0,
-    startLocation: "",
-    endLocation: "",
-    totalMembers: "",
-    age: "",
-    gender: "",
-    description: "",
-    destinationImages: [],
-    userName: "",
-    phoneNumber: "",
-    startDate: "",
-    endDate: "",
-    emailId: "",
-    budget: ""
+  const location = useLocation();
+  const { trip } = location.state || {};
+  const formatDate = (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
   };
+  
+  const initialPublishTripValues = {
+    id: trip?._id || 0,
+    startLocation: trip?.startLocation || "",
+    endLocation: trip?.endLocation || "",
+    totalMembers: trip?.totalMembers || "",
+    age: trip?.age || "",
+    gender: trip?.sex || "",
+    description: trip?.description || "",
+    destinationImages: trip?.destinationImages || [],
+    userName: trip?.name || "",
+    phoneNumber: trip?.phoneNumber || "",
+    startDate: formatDate(trip?.startDate),
+    endDate: formatDate(trip?.endDate),
+    emailId: trip?.emailId || "",
+    budget: trip?.budget || ""
+  };
+  
+console.log(initialPublishTripValues);  
   const [inputValues, setInputValues] = useState(initialPublishTripValues);
   const genderDropDownData = ["Male", "Female", "Prefer Not To Say"];
   const [showGenderDropDownList, setShowGenderDropDownList] = useState(false);
