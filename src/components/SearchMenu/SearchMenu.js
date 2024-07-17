@@ -61,6 +61,8 @@ const SearchMenu = () => {
   }, []);
 
   const navigate = useNavigate();
+  const [destination, setDestination] = useState("");
+
   return (
     <div className="search-container">
       
@@ -71,8 +73,12 @@ const SearchMenu = () => {
         }}
       >
       <div className="alignPadding">
-      <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"} placeholder={"Enter Your Destination"} id={"homePageSearchBar"} setValuesFromLocalStorage = {true}></SearchBar>
-
+      <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"}
+       placeholder={"Enter Your Destination"} id={"homePageSearchBar"} setValuesFromLocalStorage = {true}
+       inputValueForSearchBar = {destination}
+       setInputValueForSearchBar = {setDestination}
+       ></SearchBar>
+  
       </div>
       <div className="alignPadding datepicker">
 

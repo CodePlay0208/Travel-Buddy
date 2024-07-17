@@ -195,7 +195,6 @@ const handleClickOnProfilePic = ()=>{
               )}
         </div>
       </div>
-      <button onClick={handleChat}>Chat</button>
     </nav>
   );
 };
