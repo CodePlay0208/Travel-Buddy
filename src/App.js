@@ -21,6 +21,7 @@ import SignUp from "./components/SignUpPage/SignUp";
 import ChatPage from "./components/Chat/ChatPage";
 import { ChatContext } from "./Utils/Context/ChatContext";
 import DeleteProfile from "./components/UserProfile/DeleteProfile/DeleteProfile"
+import EditProfile from "./components/UserProfile/EditProfile/EditProfile";
 const App = () => {
   const [tripsData, setTripsData] = useState([
     {
@@ -157,6 +158,7 @@ const App = () => {
                   <Route path="/enterEmail" element={<EnterEmail />} />
                   <Route path="/signUp" element={<SignUp />}></Route>
                   <Route path="/deleteProfile" element={<DeleteProfile />}></Route>
+                  <Route path="/editProfile" element={<EditProfile />}></Route>
                 </Routes>
               </div>
             </ChatContext.Provider>
