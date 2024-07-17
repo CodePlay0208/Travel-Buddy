@@ -24,9 +24,9 @@ async function submitForm(inputValues) {
     return `${year}-${month}-${day}`;
   }
   try {
-  
+
     const tripPayload = {
-      
+
       destination: inputValues.endLocation, // Adjust according to your data
       startDate: convertDateFormat(inputValues.startDate),
       endDate: convertDateFormat(inputValues.endDate),
@@ -37,11 +37,11 @@ async function submitForm(inputValues) {
       sex: inputValues.gender,
       description: inputValues.description,
       destinationImages: inputValues.destinationImages.map((img, index) => `image${index}.jpg`), // Adjust according to your data
-      
+      budget: inputValues.budget,
     };
 
     console.log(tripPayload);
-    await axios.post('http://localhost:4000/api/trips', tripPayload,{ withCredentials: true });
+    await axios.post('http://localhost:4000/api/trips', tripPayload, { withCredentials: true });
 
     toast.success("Trip Published", {
       autoClose: 100,
@@ -111,10 +111,12 @@ function validateForm(inputValues, isClickOnHeading) {
   } else if (!isValidTotalMembers) {
     errorMessage = "Select Valid Total Members";
     document.getElementById("publish-trips-input-totalMembers").focus();
-  } else if (!isValidAge) {
+  }
+  else if (!isValidAge) {
     errorMessage = "Select Valid Age";
     document.getElementById("publish-trips-input-age").focus();
-  } else if (!isValidGender) {
+  }
+  else if (!isValidGender) {
     errorMessage = "Select Valid Gender";
     document.getElementById("publish-trips-input-gender").focus();
   }
@@ -148,6 +150,7 @@ const PublishTrip = () => {
     startDate: "",
     endDate: "",
     emailId: "",
+    budget: ""
   };
   const [inputValues, setInputValues] = useState(initialPublishTripValues);
   const genderDropDownData = ["Male", "Female", "Prefer Not To Say"];
@@ -155,13 +158,13 @@ const PublishTrip = () => {
   const totalMembersDropDownData = ["1", "2", "3", "4", ">=5"];
   const [showTotalMembersDropDownList, setShowTotalMembersDropDownList] =
     useState(false);
-  const ageGroupDropDownData = ["0-10", "11-17", "18-35", "36-50", ">=50"];
-  const [showAgeGroupDropDownList, setShowAgeGroupDropDownList] =
+  const budgetGroupDropDownData = ["0-10k", "10k-20k", "20k-35k", "35k-50k", ">=50k"];
+  const [showBudgetGroupDropDownList, setShowBudgetGroupDropDownList] =
     useState(false);
   // const [uploadedFiles, setUploadedFiles] = useState([]);
   const acceptableImageUploadTypes = ".jpg, .jpeg, .png";
 
-  const {loggedInUserValues} = useContext(UserLoginContext);
+  const { loggedInUserValues } = useContext(UserLoginContext);
   const isUserLoggedIn = loggedInUserValues._id != "";
 
   useEffect(() => {
@@ -306,16 +309,16 @@ const PublishTrip = () => {
 
       if (
         inputValues.age === "" &&
-        showAgeGroupDropDownList &&
+        showBudgetGroupDropDownList &&
         !isEventInAgeField
       ) {
         setInputValues((currentInputValues) => ({
           ...currentInputValues,
-          age: ageGroupDropDownData[2],
+          budget: budgetGroupDropDownData[2],
         }));
-        setShowAgeGroupDropDownList(false);
-      } else if (showAgeGroupDropDownList && !isEventInAgeField) {
-        setShowAgeGroupDropDownList(false);
+        setShowBudgetGroupDropDownList(false);
+      } else if (showBudgetGroupDropDownList && !isEventInAgeField) {
+        setShowBudgetGroupDropDownList(false);
       }
     };
 
@@ -334,7 +337,7 @@ const PublishTrip = () => {
   }, [
     showGenderDropDownList,
     showTotalMembersDropDownList,
-    showAgeGroupDropDownList,
+    showBudgetGroupDropDownList,
   ]);
 
   return (
@@ -347,7 +350,7 @@ const PublishTrip = () => {
           const isValidForm = validateForm(inputValues, false);
           if (isValidForm) {
             const isFormSubmitted = submitForm(inputValues);
-            if(isFormSubmitted){
+            if (isFormSubmitted) {
               setInputValues(initialPublishTripValues);
             }
           }
@@ -535,23 +538,32 @@ const PublishTrip = () => {
               Age<sup className="mandatoryFieldSignInPublishTrips">*</sup>
             </label>
             <div>
-            <input type="number" placeholder="Enter Age" className="publish-trips-input publish-trips-input-dropDownBtn" name="age" id="publish-trips-input-age" value={inputValues.age} onChange={(event) => {
+              <input type="number" placeholder="Enter Age" className="publish-trips-input publish-trips-input-dropDownBtn" name="age" id="" value={inputValues.age} onChange={(event) => {
                 setInputValues((currentInputValues) => ({
                   ...currentInputValues,
                   age: event.target.value,
                 }));
-              }}/>
-              {/* <button
+              }} />
+
+            </div>
+          </div>
+          <div className="input-element">
+            <label className="publish-trips-label" htmlFor="budget">
+              Budget<sup className="mandatoryFieldSignInPublishTrips">*</sup>
+            </label>
+            <div>
+
+              <button
                 onClick={() => {
-                  setShowAgeGroupDropDownList(true);
+                  setShowBudgetGroupDropDownList(true);
                 }}
                 className="publish-trips-input publish-trips-input-dropDownBtn"
                 autoComplete="off"
                 type="button"
                 id="publish-trips-input-age"
-                value={inputValues.age}
+                value={inputValues.budget}
               >
-                {inputValues.age == "" ? "Select Your Age" : inputValues.age}
+                {inputValues.budget == "" ? "Select Your budget" : inputValues.budget}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="dropDownSvg"
@@ -584,17 +596,17 @@ const PublishTrip = () => {
                 </svg>
               </button>
 
-              {showAgeGroupDropDownList && (
+              {showBudgetGroupDropDownList && (
                 <div className="dropDownListForPublishTripInputs">
-                  {ageGroupDropDownData.map((data) => (
+                  {budgetGroupDropDownData.map((data) => (
                     <li
                       key={data}
                       className="listItemValueForIdx"
                       onClick={() => {
-                        setShowAgeGroupDropDownList(false);
+                        setShowBudgetGroupDropDownList(false);
                         setInputValues((currentInputValues) => ({
                           ...currentInputValues,
-                          age: data,
+                          budget: data,
                         }));
                       }}
                     >
@@ -607,7 +619,7 @@ const PublishTrip = () => {
                     </li>
                   ))}
                 </div>
-              )} */}
+              )}
             </div>
           </div>
           <div className="input-element" id="uploadImagesElement">
