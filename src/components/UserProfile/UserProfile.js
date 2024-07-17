@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./UserProfile.css";
-import UserSideBar from "../UserSideBar/UserSideBar";
-import UserProfileDashBoard from "../UserProfileDashBoard/UserProfileDashBoard";
+import UserSideBar from "./UserSideBar/UserSideBar";
+import UserProfileDashBoard from "./UserProfileDashBoard/UserProfileDashBoard";
 import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
