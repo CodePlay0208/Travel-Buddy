@@ -136,7 +136,13 @@ function validateForm(inputValues, isClickOnHeading) {
   return false;
 }
 
-const PublishTrip = () => {
+const PublishTrip = (props) => {
+
+  const {initialStartLocation, initialEndLocation} = props
+
+  const [startLocation, setStartLocation] = useState(initialStartLocation || "");
+  const [endLocation, setEndLocation] = useState(initialEndLocation || "");
+  
   const navigate = useNavigate();
   const location = useLocation();
   const { trip } = location.state || {};
@@ -355,6 +361,8 @@ console.log(initialPublishTripValues);
     showBudgetGroupDropDownList,
   ]);
 
+
+
   return (
     <div>
       <Navbar visibilityForSearch={true}></Navbar>
@@ -367,6 +375,8 @@ console.log(initialPublishTripValues);
             const isFormSubmitted = submitForm(inputValues);
             if (isFormSubmitted) {
               setInputValues(initialPublishTripValues);
+              setStartLocation("");
+              setEndLocation("");
             }
           }
         }}
@@ -411,6 +421,8 @@ console.log(initialPublishTripValues);
               setInputValueFunction={setInputValues}
               setInputValueVariable={"startLocation"}
               setValuesFromLocalStorage={false}
+              inputValueForSearchBar = {startLocation}
+              setInputValueForSearchBar = {setStartLocation}
             ></SearchBar>
           </div>
           <div className="input-element">
@@ -427,6 +439,8 @@ console.log(initialPublishTripValues);
               setInputValueFunction={setInputValues}
               setInputValueVariable={"endLocation"}
               setValuesFromLocalStorage={false}
+              inputValueForSearchBar = {endLocation}
+              setInputValueForSearchBar = {setEndLocation}
             ></SearchBar>
           </div>
           <div className="input-element">

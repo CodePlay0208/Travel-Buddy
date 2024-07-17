@@ -6,8 +6,7 @@ import { UserLoginContext } from "../../../Utils/Context/UserLoginContext";
 
 function getSender(currentUserId, users){
   console.log(users);
-  // return users[0]?._id === currentUserId ? users[1]?.name : users[0]?.name;
-  return "tushar";
+  return users[0]?._id === currentUserId ? users[1]?.username : users[0]?.username;
 }
 
 function getCookie(name) {
@@ -22,6 +21,8 @@ const MyChats = ({fetchAgain}) => {
   
   const {loggedInUserValues} = useContext(UserLoginContext);
   const { userChatValues, setUserChatValues} = useContext(ChatContext);
+
+  console.log("the user" , userChatValues);
 
 
   const fetchChats = async () => {
@@ -68,7 +69,7 @@ const MyChats = ({fetchAgain}) => {
         <span>My Chats</span>
       </div>
       <div className="myChats-body">
-        {userChatValues.chats && (
+        {userChatValues.chats.length > 0  && (
           <div className="chats-list">
             {userChatValues.chats.map((chat) => (
               <div

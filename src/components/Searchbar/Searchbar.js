@@ -21,10 +21,10 @@ async function fetchAPIResponse(url, inputValueForSearchBar) {
 
 
 const SearchBar = (props) => {
-  const { setInputValueFunction, setInputValueVariable, placeholder, id, setValuesFromLocalStorage } = props;
+  const { setInputValueFunction, setInputValueVariable, placeholder, id, 
+    setValuesFromLocalStorage, inputValueForSearchBar, setInputValueForSearchBar } = props;
   const [dropDownData, setDropDownData] = useState([]);
   const [showDropDownList, setShowDropDownList] = useState(false);
-  const [inputValueForSearchBar, setInputValueForSearchBar] = useState("");
   const [debouncedValues] = useDebounce(inputValueForSearchBar, 500);
   useEffect(() => {
     fetchAPIResponse("", inputValueForSearchBar).then((data) =>
@@ -34,7 +34,7 @@ const SearchBar = (props) => {
 
   useEffect(()=>{
     const storedInputValues = localStorage.getItem("inputValues");
-    if (storedInputValues) {
+    if (storedInputValues && setValuesFromLocalStorage) {
       const parsedInputValues = JSON.parse(storedInputValues);
       setInputValueForSearchBar(parsedInputValues.destination);
     }
@@ -60,7 +60,7 @@ const SearchBar = (props) => {
 
   }, [dropDownData]);
 
-
+  console.log("the code came again here with valuues" , props);
 
   return (
     <div className="search-bar-container-inSearchMenu">
