@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import { useParams, useNavigate } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import "./TripPage.css";
 import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
+import { ChatContext } from '../../Utils/Context/ChatContext';
 
 const TripPage = () => {
     const { id: tripId } = useParams();
@@ -43,8 +45,41 @@ const TripPage = () => {
         }
     }, [trip]);
 
-    const handleClickOnChatButton = () => {
+    const {userChatValues, setUserChatValues} = useContext(ChatContext);
+
+
+    const accessChat = async (userId) => {
+        console.log(userId);
+    
+        try {
+          const config = {
+            headers: {
+              "Content-type": "application/json",
+            },
+          };
+          const { data } = await axios.post(`http://localhost:4000/chat/fetchOrCreateChats`, { userId }, {
+            ...config,
+             withCredentials: true
+          }
+          );
+
+          console.log("changing the selectedChat to", data);
+
+          setUserChatValues((currentValues)=>({
+            ...currentValues , selectedChat: data
+          }))
+    
+          console.log("user chat values are" , userChatValues);
+         
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+    const handleClickOnChatButton = (userId) => {
         if (loggedInUserValues._id != "") {
+            console.log("I am in chat button", userId);
+            accessChat(userId);
             
             navigate("/chats");
             // Implement chat functionality
@@ -140,7 +175,9 @@ const TripPage = () => {
                     <div className="dividerInTripPage"></div>
 
                     <div className="chatBtnContainer">
-                        <button className="chat-now-btnInTripPage" role="button" onClick={handleClickOnChatButton}>Chat Now</button>
+                        <button className="chat-now-btnInTripPage" role="button" onClick={()=>{
+                            handleClickOnChatButton(trip.user)
+                        }}>Chat Now</button>
                     </div>
                 </div>
             </div>

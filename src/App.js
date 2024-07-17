@@ -43,9 +43,8 @@ const App = () => {
 
   const [userChatValues, setUserChatValues] = useState({
     selectedChat: "",
-    userId: "",
     notification: "",
-    chats:[""],
+    chats:[],
   });
 
   useEffect(() => {
@@ -123,6 +122,8 @@ const App = () => {
   }, []);
 
   const navigate = useNavigate();
+
+  console.log("in app", userChatValues);
 
   return (
     <TripsContext.Provider value={{ tripsData, setTripsData }}>
