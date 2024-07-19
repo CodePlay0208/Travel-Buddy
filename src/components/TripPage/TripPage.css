@@ -146,16 +146,15 @@
     font-weight: 600;
 }
 
-.chatBtnContainer {
+.chatBtnContainer, .editBtnContainer {
     display: flex;
     justify-content: center;
-    padding: 1.5em 0;
     background-color: white;
     border-radius: 0 0 20px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.chat-now-btnInTripPage {
+.chat-now-btnInTripPage, .edit-btnInTripPage {
     background-color: #36A9AE;
     background-image: linear-gradient(#37ADB2, #329CA0);
     border: 1px solid #2A8387;
@@ -167,31 +166,38 @@
     font-size: 1em;
     padding: 0.75em 1.5em;
     text-align: center;
-    transition: box-shadow .05s ease-in-out, opacity .05s ease-in-out;
+    transition: box-shadow 0.05s ease-in-out, opacity 0.05s ease-in-out;
     user-select: none;
     width: 200px;
+    margin: 0.5em;
 }
 
-.chat-now-btnInTripPage:hover {
+.chat-now-btnInTripPage:hover, .edit-btnInTripPage:hover {
     box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px inset, rgba(0, 0, 0, 0.4) 0 1px 2px;
-    transition-duration: .15s, .15s;
+    transition-duration: 0.15s, 0.15s;
 }
 
-.chat-now-btnInTripPage:active {
+.chat-now-btnInTripPage:active, .edit-btnInTripPage:active {
     box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.4) 0 1px 1px;
 }
 
-.chat-now-btnInTripPage:disabled {
+.chat-now-btnInTripPage:disabled, .edit-btnInTripPage:disabled {
     cursor: not-allowed;
-    opacity: .6;
+    opacity: 0.6;
 }
 
-.chat-now-btnInTripPage:disabled:active {
+.chat-now-btnInTripPage:disabled:active, .edit-btnInTripPage:disabled:active {
     pointer-events: none;
 }
 
-.chat-now-btnInTripPage:disabled:hover {
+.chat-now-btnInTripPage:disabled:hover, .edit-btnInTripPage:disabled:hover {
     box-shadow: none;
+}
+
+.edit-btnInTripPage {
+    background-color: #4CAF50;
+    background-image: linear-gradient(#4CAF50, #45A049);
+    border: 1px solid #3E8E41;
 }
 
 @media (max-width: 768px) {
