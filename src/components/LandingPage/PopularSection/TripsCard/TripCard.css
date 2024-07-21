@@ -1,0 +1,78 @@
+.trip-card {
+    width: 386px;
+    background: #FAF8ED;
+    border: 2px solid #FFFFFF;
+    box-shadow: 10px 10px 9px rgba(192, 188, 161, 0.22);
+    border-radius: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .trip-images {
+    width: 100%;
+    .slick-slide img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+  }
+  
+  .trip-profile {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  .profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 16px;
+  }
+  
+  .profile-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2D3134;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .trip-info {
+    padding: 16px;
+  }
+  
+  .trip-locations,
+  .trip-members,
+  .trip-age-gender,
+  .trip-description {
+    font-family: 'Inter', sans-serif;
+    margin: 8px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .trip-description {
+    font-size: 14px;
+    color: #5B5F62;
+    white-space: normal;
+  }
+  
+  .trip-button {
+    width: 100%;
+    height: 37px;
+    background: #2D3134;
+    border-radius: 46px;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 16px;
+  }
+  

@@ -1,0 +1,68 @@
+.popularTripContainer {
+    max-width: 1726px;
+    height: 707px;
+    margin: 0 auto; /* Center the container */
+    opacity: 1; /* Ensure the container is visible */
+    background-image: url('../../../data/Images/aeroplaneBack.png');
+    background-size: contain; /* Ensure the background image fits inside the container */
+    background-position: center; /* Center the background image */
+    /* background-repeat: no-repeat; Prevent repeating of the background image */
+}
+
+.popularTripHeading {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1459px;
+    margin: 70px 135px 0 135px; /* Center the heading */
+    padding: 30px 0;
+    opacity: 1; /* Ensure the heading is visible */
+}
+
+.popularTripContent {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    margin: 0 135px; /* Center the content */
+    padding: 30px 0;
+    opacity: 1; /* Ensure the content is visible */
+    scroll-behavior: smooth; /* Smooth scrolling effect */
+    gap: 20px; /* Add space between cards */
+}
+
+.popularTripContent::-webkit-scrollbar {
+    height: 8px; /* Scrollbar height */
+}
+
+.popularTripContent::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Scrollbar color */
+    border-radius: 10px;
+}
+
+.popularTripContent::-webkit-scrollbar-track {
+    background: transparent; /* Track color */
+}
+
+.popularHeadingLeft {
+    font-family: 'Inter', sans-serif;
+    font-size: 56px;
+    font-weight: 600; /* Adjusted to a standard value */
+    line-height: 66px;
+    text-align: left;
+    opacity: 1; /* Ensure the text is visible */
+}
+
+.popularHeadingRight {
+    display: flex;
+    align-items: center;
+    opacity: 1; /* Ensure the button container is visible */
+}
+
+.popularButton {
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #8DD3BB;
+    width: 268px;
+    border-radius: 10px;
+    border: none; /* Ensure no border if not needed */
+    color: rgb(0, 0, 0); /* Set text color to contrast with background */
+}
