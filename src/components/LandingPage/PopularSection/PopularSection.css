@@ -21,7 +21,7 @@
 .popularTripContent {
     display: flex;
     overflow-x: auto; /* Enable horizontal scrolling */
-    margin: 0 135px; /* Center the content */
+    margin: 0 0 0 135px; /* Center the content */
     padding: 30px 0;
     opacity: 1; /* Ensure the content is visible */
     scroll-behavior: smooth; /* Smooth scrolling effect */
