@@ -1,10 +1,12 @@
 .frame {
     position: relative;
-    width:100%;
-    height: 583.87px; /* Adjust height based on content */
+    width: 100%;
+    max-width: 1730px;
     margin: 0 auto;
     padding-top: 20px;
+    padding-bottom: 20px;
 }
+
 .background-image {
     width: 100%;
     height: auto;
@@ -14,24 +16,25 @@
     position: absolute;
     width: 100%;
     max-width: 1729px;
-    height: 60vh;
-    top: 15vh;
-    background: rgba(130, 194, 172, 0.28);
+    height: 65%;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(141, 211, 187, 0.28);
 }
 
 .heading {
     position: absolute;
     width: 80%;
     max-width: 469px;
-    height: auto;
-    top: 20vh;
+    top: 20%;
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 3vw;
-    line-height: 1.2;
+    font-size: 34px;
+    line-height: 42px;
     color: #000000;
     text-align: center;
 }
@@ -40,16 +43,16 @@
     position: absolute;
     width: 50%;
     max-width: 462px;
-    height: 10vh;
-    top: 60vh;
+    height: 15%;
+    top: 60%;
     left: 50%;
     transform: translateX(-50%);
     background: #8DD3BB;
     border-radius: 10px;
     border: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 2vw;
-    color: #ffffff;
+    font-size: 24px;
+    color: #000000;
     cursor: pointer;
 }
 
@@ -63,7 +66,8 @@
     flex-wrap: wrap;
     position: absolute;
     width: 100%;
-    top: 40vh;
+    top: 40%;
+    padding: 0 10px;
 }
 
 .location-box {
@@ -71,12 +75,12 @@
     margin: 10px;
     width: 30%;
     max-width: 386px;
-    height: 10vh;
+    height: 75px;
     background: #FFFFFF;
     border: 1px solid #E4CDCD;
     border-radius: 10px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 2vw;
+    font-size: 24px;
     font-weight: 500;
     color: #112211;
     cursor: pointer;
@@ -87,50 +91,80 @@
     border-color: #ccc;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .rectangle40 {
-        height: 25vh;
-        top: 10vh;
+        height: 50%;
+        top: 15%;
     }
 
     .heading {
-        font-size: 4vw;
-        top: 15vh;
+        font-size: 32px;
+        top: 20%;
     }
 
     .explore-button {
         width: 70%;
-        height: 8vh;
-        top: 50vh;
+        height: 12%;
+        top: 65%;
     }
 
     .location-container {
-        top: 30vh;
+        top: 35%;
     }
 
     .location-box {
-        width: 80%;
-        font-size: 3vw;
+        width: 45%;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    .rectangle40 {
+        height: 40%;
+        top: 10%;
+    }
+
     .heading {
-        font-size: 5vw;
+        font-size: 30px;
+        top: 15%;
     }
 
     .explore-button {
         width: 80%;
-        height: 7vh;
-        top: 45vh;
+        height: 10%;
+        top: 55%;
     }
 
     .location-container {
-        top: 25vh;
+        top: 30%;
     }
 
     .location-box {
         width: 90%;
-        font-size: 4vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .rectangle40 {
+        height: 30%;
+        top: 5%;
+    }
+
+    .heading {
+        font-size: 28px;
+        top: 10%;
+    }
+
+    .explore-button {
+        width: 90%;
+        height: 8%;
+        top: 50%;
+    }
+
+    .location-container {
+        top: 25%;
+    }
+
+    .location-box {
+        width: 100%;
     }
 }
