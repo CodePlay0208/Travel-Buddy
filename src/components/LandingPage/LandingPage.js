@@ -5,6 +5,8 @@ import PopularSection from './PopularSection/PopularSection';
 import AboutSection from './AboutSection/AboutSection';
 import HeroSection from './HeroSection/HeroSection';
 import TopDestination from './TopDestination/TopDestination';
+import Newsletter from './Newsletter/Newsletter';
+import Footer from './Footer/Footer';
 const LandingPage = () => {
   return (
     <div className="LandingContainer">
@@ -13,6 +15,8 @@ const LandingPage = () => {
         <AboutSection/>
         <HeroSection/>
         <TopDestination/>
+        <Newsletter/>
+        <Footer/>
     </div>
   );
 }
