@@ -44,7 +44,7 @@
     width: 50%;
     max-width: 462px;
     height: 15%;
-    top: 60%;
+    top: 80%;
     left: 50%;
     transform: translateX(-50%);
     background: #8DD3BB;
@@ -105,7 +105,7 @@
     .explore-button {
         width: 70%;
         height: 12%;
-        top: 65%;
+        top: 85%;
     }
 
     .location-container {
@@ -113,6 +113,7 @@
     }
 
     .location-box {
+        height: auto;
         width: 45%;
     }
 }
@@ -131,7 +132,7 @@
     .explore-button {
         width: 80%;
         height: 10%;
-        top: 55%;
+        top: 85%;
     }
 
     .location-container {
@@ -139,6 +140,7 @@
     }
 
     .location-box {
+        height: auto;
         width: 90%;
     }
 }
@@ -157,7 +159,7 @@
     .explore-button {
         width: 90%;
         height: 8%;
-        top: 50%;
+        top: 80%;
     }
 
     .location-container {
@@ -165,6 +167,7 @@
     }
 
     .location-box {
+        height: auto;
         width: 100%;
     }
 }

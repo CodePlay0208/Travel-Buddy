@@ -1,4 +1,4 @@
-/* Base styles */
+
 
   .HeaderContainer {
     position: relative;
@@ -9,7 +9,7 @@
   .LandingHeader {
     position: relative;
     width: 100%;
-    height: 60vh; /* Adjust the height as needed */
+    height: 60vh;
     border-radius: 25px;
     overflow: hidden;
   }
@@ -38,7 +38,7 @@
     position: absolute;
     width: 85%;
     max-width: 1339px;
-    height: 133px; /* Adjust the height as needed */
+    height: 133px;
     
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
@@ -80,7 +80,7 @@
     color: white;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
-    font-size: 1.5rem; /* Adjust as needed */
+    font-size: 1.5rem;
   }
   
   .HeaderNavRight .login {
@@ -105,7 +105,7 @@
     width: 80%;
     max-width: 753px;
     height: auto;
-    top: 35vh; /* Adjust as needed */
+    top: 35vh;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -115,18 +115,18 @@
   .HeaderDesHeading {
     font-family: "TradeGothic LT Extended", sans-serif;
     font-weight: 700;
-    font-size: 2rem; /* Adjust as needed */
+    font-size: 2rem;
     color: white;
   }
   
   .HeaderDesPara {
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
-    font-size: 1.25rem; /* Adjust as needed */
+    font-size: 1.25rem;
     color: white;
   }
   
-  /* Responsive styles */
+ 
   @media (max-width: 768px) {
     .LandingHeader {
       height: 50vh;

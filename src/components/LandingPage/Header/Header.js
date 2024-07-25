@@ -2,10 +2,10 @@ import React from 'react';
 import './Header.css';
 import LandingPageImage from "../../../data/Images/landingpage.jpeg";
 import SearchMenu from '../../SearchMenu/SearchMenu';
-
+import SearchBar from '../SearchBar/SearchBar'
 const Header = () => {
   return (
-    < >
+    <>
       <div className="HeaderContainer">
         <div className="HeaderNavbar">
           <div className="HeaderNavLeft">
@@ -25,7 +25,7 @@ const Header = () => {
           <div className="HeaderDesPara">Special offers to suit your plan</div>
         </div>
         <div className="HeaderSearchBar">
-          <SearchMenu />
+          <SearchBar />
         </div>
       </div>
     </>

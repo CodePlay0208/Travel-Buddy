@@ -80,21 +80,6 @@
     height: 100%;
   }
   
-  /* .social-icons .facebook {
-    background-image: url('facebook-icon.png');
-  }
-  
-  .social-icons .twitter {
-    background-image: url('twitter-icon.png');
-  }
-  
-  .social-icons .youtube {
-    background-image: url('youtube-icon.png');
-  }
-  
-  .social-icons .instagram {
-    background-image: url('instagram-icon.png');
-  } */
   
   @media (min-width: 768px) {
     .footer-top {

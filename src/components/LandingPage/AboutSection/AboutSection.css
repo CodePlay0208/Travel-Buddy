@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     height: auto;
+    flex-wrap: wrap;
     margin:100px; /* Center the section */
     .first{
         box-shadow:-9px 10px 20px #D1EDE4;
