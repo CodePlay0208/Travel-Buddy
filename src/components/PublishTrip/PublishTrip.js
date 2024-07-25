@@ -10,8 +10,9 @@ import "react-toastify/dist/ReactToastify.css";
 import DateRangePicker from "../RangePicker/RangePicker";
 import { useNavigate } from "react-router-dom";
 import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
-import axios from 'axios';
+import axios from "axios";
 
+import { useLocation } from "react-router-dom";
 
 async function submitForm(inputValues) {
   // TODO: Integrate totalusers API if necessary, for now assuming a static value
@@ -20,13 +21,11 @@ async function submitForm(inputValues) {
   inputValues["id"] = getTotalUsers;
 
   function convertDateFormat(dateStr) {
-    const [day, month, year] = dateStr.split('-');
+    const [day, month, year] = dateStr.split("-");
     return `${year}-${month}-${day}`;
   }
   try {
-
     const tripPayload = {
-
       destination: inputValues.endLocation, // Adjust according to your data
       startDate: convertDateFormat(inputValues.startDate),
       endDate: convertDateFormat(inputValues.endDate),
@@ -36,26 +35,29 @@ async function submitForm(inputValues) {
       age: inputValues.age,
       sex: inputValues.gender,
       description: inputValues.description,
-      destinationImages: inputValues.destinationImages.map((img, index) => `image${index}.jpg`), // Adjust according to your data
+      destinationImages: inputValues.destinationImages.map(
+        (img, index) => `image${index}.jpg`
+      ), // Adjust according to your data
       budget: inputValues.budget,
     };
 
     console.log(tripPayload);
-    await axios.post('http://localhost:4000/api/trips', tripPayload, { withCredentials: true });
+    await axios.post("http://localhost:4000/api/trips", tripPayload, {
+      withCredentials: true,
+    });
 
     toast.success("Trip Published", {
       autoClose: 100,
     });
     return true;
   } catch (error) {
-    console.error('Error publishing trip:', error);
+    console.error("Error publishing trip:", error);
     toast.error("Failed to publish trip", {
       autoClose: 100,
     });
     return false;
   }
 }
-
 
 function validateForm(inputValues, isClickOnHeading) {
   const isValidUserName =
@@ -111,12 +113,10 @@ function validateForm(inputValues, isClickOnHeading) {
   } else if (!isValidTotalMembers) {
     errorMessage = "Select Valid Total Members";
     document.getElementById("publish-trips-input-totalMembers").focus();
-  }
-  else if (!isValidAge) {
+  } else if (!isValidAge) {
     errorMessage = "Select Valid Age";
     document.getElementById("publish-trips-input-age").focus();
-  }
-  else if (!isValidGender) {
+  } else if (!isValidGender) {
     errorMessage = "Select Valid Gender";
     document.getElementById("publish-trips-input-gender").focus();
   }
@@ -134,6 +134,7 @@ function validateForm(inputValues, isClickOnHeading) {
   return false;
 }
 
+<<<<<<< HEAD
   const PublishTrip = (props) => {
 
     const {initialStartLocation, initialEndLocation} = props
@@ -157,13 +158,59 @@ function validateForm(inputValues, isClickOnHeading) {
     emailId: "",
     budget: ""
   };
+=======
+const PublishTrip = (props) => {
+  const { initialStartLocation, initialEndLocation } = props;
+
+  const [startLocation, setStartLocation] = useState(
+    initialStartLocation || ""
+  );
+  const [endLocation, setEndLocation] = useState(initialEndLocation || "");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { trip } = location.state || {};
+  const formatDate = (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
+
+  const initialPublishTripValues = {
+    id: trip?._id || 0,
+    startLocation: trip?.startLocation || "",
+    endLocation: trip?.endLocation || "",
+    totalMembers: trip?.totalMembers || "",
+    age: trip?.age || "",
+    gender: trip?.sex || "",
+    description: trip?.description || "",
+    destinationImages: trip?.destinationImages || [],
+    userName: trip?.name || "",
+    phoneNumber: trip?.phoneNumber || "",
+    startDate: formatDate(trip?.startDate),
+    endDate: formatDate(trip?.endDate),
+    emailId: trip?.emailId || "",
+    budget: trip?.budget || "",
+  };
+
+  console.log(initialPublishTripValues);
+>>>>>>> 7198e32 (FEAT: api store integration WIP)
   const [inputValues, setInputValues] = useState(initialPublishTripValues);
   const genderDropDownData = ["Male", "Female", "Prefer Not To Say"];
   const [showGenderDropDownList, setShowGenderDropDownList] = useState(false);
   const totalMembersDropDownData = ["1", "2", "3", "4", ">=5"];
   const [showTotalMembersDropDownList, setShowTotalMembersDropDownList] =
     useState(false);
-  const budgetGroupDropDownData = ["0-10k", "10k-20k", "20k-35k", "35k-50k", ">=50k"];
+  const budgetGroupDropDownData = [
+    "0-10k",
+    "10k-20k",
+    "20k-35k",
+    "35k-50k",
+    ">=50k",
+  ];
   const [showBudgetGroupDropDownList, setShowBudgetGroupDropDownList] =
     useState(false);
   // const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -174,7 +221,7 @@ function validateForm(inputValues, isClickOnHeading) {
 
   useEffect(() => {
     if (!isUserLoggedIn) {
-      console.log("naivgating")
+      console.log("naivgating");
       navigate("/login-page");
     }
   });
@@ -403,10 +450,15 @@ function validateForm(inputValues, isClickOnHeading) {
               setInputValueFunction={setInputValues}
               setInputValueVariable={"startLocation"}
               setValuesFromLocalStorage={false}
+<<<<<<< HEAD
               inputValueForSearchBar = {startLocation}
               setInputValueForSearchBar = {setStartLocation}
 
 
+=======
+              inputValueForSearchBar={startLocation}
+              setInputValueForSearchBar={setStartLocation}
+>>>>>>> 7198e32 (FEAT: api store integration WIP)
             ></SearchBar>
           </div>
           <div className="input-element">
@@ -423,8 +475,8 @@ function validateForm(inputValues, isClickOnHeading) {
               setInputValueFunction={setInputValues}
               setInputValueVariable={"endLocation"}
               setValuesFromLocalStorage={false}
-              inputValueForSearchBar = {endLocation}
-              setInputValueForSearchBar = {setEndLocation}
+              inputValueForSearchBar={endLocation}
+              setInputValueForSearchBar={setEndLocation}
             ></SearchBar>
           </div>
           <div className="input-element">
@@ -551,13 +603,20 @@ function validateForm(inputValues, isClickOnHeading) {
               Age<sup className="mandatoryFieldSignInPublishTrips">*</sup>
             </label>
             <div>
-              <input type="number" placeholder="Enter Age" className="publish-trips-input publish-trips-input-dropDownBtn" name="age" id="" value={inputValues.age} onChange={(event) => {
-                setInputValues((currentInputValues) => ({
-                  ...currentInputValues,
-                  age: event.target.value,
-                }));
-              }} />
-
+              <input
+                type="number"
+                placeholder="Enter Age"
+                className="publish-trips-input publish-trips-input-dropDownBtn"
+                name="age"
+                id=""
+                value={inputValues.age}
+                onChange={(event) => {
+                  setInputValues((currentInputValues) => ({
+                    ...currentInputValues,
+                    age: event.target.value,
+                  }));
+                }}
+              />
             </div>
           </div>
           <div className="input-element">
@@ -565,7 +624,6 @@ function validateForm(inputValues, isClickOnHeading) {
               Budget<sup className="mandatoryFieldSignInPublishTrips">*</sup>
             </label>
             <div>
-
               <button
                 onClick={() => {
                   setShowBudgetGroupDropDownList(true);
@@ -576,7 +634,9 @@ function validateForm(inputValues, isClickOnHeading) {
                 id="publish-trips-input-age"
                 value={inputValues.budget}
               >
-                {inputValues.budget == "" ? "Select Your budget" : inputValues.budget}
+                {inputValues.budget == ""
+                  ? "Select Your budget"
+                  : inputValues.budget}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="dropDownSvg"

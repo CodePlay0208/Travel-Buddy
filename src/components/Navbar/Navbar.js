@@ -129,7 +129,7 @@ const handleClickOnProfilePic = ()=>{
         className="webAppNameAndLogo"
         onClick={() => {
           localStorage.removeItem("inputValues");
-          navigate("/");
+          navigate("/TripPage");
         }}
       >
         Travmigoz

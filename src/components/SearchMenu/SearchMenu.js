@@ -6,7 +6,9 @@ import SearchBar from "../SearchBar/SearchBar";
 import DatePickerValue from "../DatePicker/DatePicker";
 
 function validateDestination(destination) {
-  return destination !== null && destination !== undefined && destination !== "";
+  return (
+    destination !== null && destination !== undefined && destination !== ""
+  );
 }
 
 function validatestartData(date) {
@@ -19,14 +21,13 @@ function submitForm(inputValues, navigate) {
   if (isValidDestination && isValidStartDate) {
     localStorage.setItem("inputValues", JSON.stringify(inputValues));
     let searchList = localStorage.getItem("allSearches");
-    if(searchList){
+    if (searchList) {
       searchList = JSON.parse(searchList);
       searchList.push(inputValues);
-      if(searchList.length > 5){
+      if (searchList.length > 5) {
         searchList.shift();
       }
-    }
-    else{
+    } else {
       searchList = [inputValues];
     }
     localStorage.setItem("allSearches", JSON.stringify(searchList));
@@ -38,14 +39,9 @@ function submitForm(inputValues, navigate) {
   }
 }
 
-
-
-
 const SearchMenu = () => {
-  
   const { inputValues, setInputValues } = useContext(InputValuesContext);
- 
- 
+
   useEffect(() => {
     const storedInputValues = localStorage.getItem("inputValues");
     if (storedInputValues) {
@@ -65,32 +61,38 @@ const SearchMenu = () => {
 
   return (
     <div className="search-container">
-      
-      <form className="searchMenuInputForm"
+      <form
+        className="searchMenuInputForm"
         onSubmit={(event) => {
           event.preventDefault();
           submitForm(inputValues, navigate);
         }}
       >
-      <div className="alignPadding">
-      <SearchBar setInputValueFunction= {setInputValues} setInputValueVariable={"destination"}
-       placeholder={"Enter Your Destination"} id={"homePageSearchBar"} setValuesFromLocalStorage = {true}
-       inputValueForSearchBar = {destination}
-       setInputValueForSearchBar = {setDestination}
-       ></SearchBar>
-  
-      </div>
-      <div className="alignPadding datepicker">
+        <div className="alignPadding">
+          <SearchBar
+            setInputValueFunction={setInputValues}
+            setInputValueVariable={"destination"}
+            placeholder={"Enter Your Destination"}
+            id={"homePageSearchBar"}
+            setValuesFromLocalStorage={true}
+            inputValueForSearchBar={destination}
+            setInputValueForSearchBar={setDestination}
+          ></SearchBar>
+        </div>
+        <div className="alignPadding datepicker">
+          <DatePickerValue
+            inputValues={inputValues.startDate}
+            setInputValues={setInputValues}
+            onValue={"startDate"}
+            placeholderValue={"Select Travel date"}
+          />
+        </div>
 
-        <DatePickerValue inputValues={inputValues.startDate} setInputValues={setInputValues} onValue={'startDate'} placeholderValue={"Select Travel date"}/>
-      </div>
-      
         <div className="alignPadding">
           <button type="submit" className="searchBarBtn">
             Search
           </button>
         </div>
-        
       </form>
     </div>
   );

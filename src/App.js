@@ -163,6 +163,7 @@ const App = () => {
                   <Route path="/deleteProfile" element={<DeleteProfile />}></Route>
                   <Route path="/editProfile" element={<EditProfile />}></Route>
                 </Routes>
+                {/* <TripPage /> */}
               </div>
             </ChatContext.Provider>
           </UserLoginContext.Provider>
