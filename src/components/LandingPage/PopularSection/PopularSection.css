@@ -5,7 +5,7 @@
     background-image: url('../../../data/Images/aeroplaneBack.png');
     background-size: contain; /* Ensure the background image fits inside the container */
     background-position: center; /* Center the background image */
-    /* background-repeat: no-repeat; Prevent repeating of the background image */
+    background-repeat: no-repeat; 
 }
 
 .popularTripHeading {

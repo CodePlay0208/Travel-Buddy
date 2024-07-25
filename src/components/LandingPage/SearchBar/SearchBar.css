@@ -1,96 +1,101 @@
-.frame-38 {
-    /* position: absolute; */
-    width: 1339px;
-    height: 133px;
-    left: calc(50% - 1339px/2 - 0.5px);
-    top: 618px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+.SearchBar-Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 2%;
+  height: 60%;
+}
+
+.SearchBar-date,
+.SearchBar-location {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem; /* Responsive font size */
+  line-height: 2.5rem; /* Responsive line height */
+  color: #686868;
+  padding: 5%;
+}
+
+.SearchBar-Image {
+  padding: 4%;
+  svg{
+    width: 34px;
+    height: 41px;
   }
-  
-  .group-1 {
-    /* position: absolute; */
-    width: 776px;
-    height: 80px;
-    left: calc(50% - 776px/2 - 150.5px);
-    top: 27px;
-  }
-  
-  .rectangle-33 {
-    box-sizing: border-box;
-    position: absolute;
-    width: 400px;
-    height: 80px;
-    left: 131px;
-    top: calc(50% - 80px/2 + 0.5px);
-    border: 1.5px solid #686868;
-    border-radius: 10px;
-  }
-  
-  .rectangle-34 {
-    box-sizing: border-box;
-    position: absolute;
-    width: 343px;
-    height: 80px;
-    left: calc(50% - 343px/2 + 66px);
-    top: calc(50% - 80px/2 + 0.5px);
-    border: 1.5px solid #686868;
-    border-radius: 10px;
-  }
-  
-  .group-2 {
-    position: absolute;
-    width: 268px;
-    height: 80px;
-    left: 940px;
-    top: 27px;
-  }
-  
-  .rectangle-35 {
+}
+
+.SearchBar-DateContainer {
+  border: grey 1.5px solid;
+  border-radius: 10px;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SearchBar-Searchbutton {
+  border-radius: 10px;
+  background-color: #8dd3bb;
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SearchBar-button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem; /* Responsive font size */
+  font-weight: 600;
+  line-height: 2.5rem; /* Responsive line height */
+  text-align: left;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablets and larger phones */
+@media (max-width: 768px) {
+  .SearchBar-Container {
     
-    width: 268px;
-    height: 80px;
-    
-    background: #8DD3BB;
-    border-radius: 10px;
-  }
-  
-  .search {
-    
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 34.3989px;
-    line-height: 42px;
-    color: #112211;
+    gap: 5%;
   }
 
-  .date {
-    position: absolute;
-    width: 70px;
-    height: 35px;
-    left: 596px;
-    top: 49px;
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 28.3285px;
-    line-height: 35px;
-    color: #686868;
+  .SearchBar-Image {
+    padding: 1%;
+    svg{
+      width: 13px;
+      height: 41px;
+    }
   }
   
-  .location {
-    position: absolute;
-    width: 127px;
-    height: 35px;
-    left: 203px;
-    top: 49px;
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 28.3285px;
-    line-height: 35px;
-    color: #686868;
+  .SearchBar-date,
+  .SearchBar-location,
+  .SearchBar-button {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
-  
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .SearchBar-DateContainer,
+  .SearchBar-Searchbutton {
+    width: 100%;
+  }
+  .SearchBar-Image {
+    padding: 1%;
+    svg{
+      width: 10px;
+      height: 41px;
+    }
+  }
+  .SearchBar-date,
+  .SearchBar-location,
+  .SearchBar-button {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+}
