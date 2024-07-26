@@ -1,6 +1,6 @@
 .popularTripContainer {
     max-width: 1726px;
-    margin: 0 auto;
+    margin: 10% auto;
     opacity: 1;
     background-image: url('../../../data/Images/aeroplaneBack.png');
     background-size: contain;

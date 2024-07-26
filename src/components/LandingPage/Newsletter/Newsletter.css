@@ -24,7 +24,7 @@
   flex-direction: row;
   align-items: flex-start;
   width: 100%;
-  padding: 20px;
+  padding: 2% 2% 0;
 }
 
 .newsletter-header {
@@ -34,7 +34,7 @@
   font-size: 52px;
   line-height: 65px;
   color: #112211;
-  margin-bottom: 20px;
+  margin-bottom: 7%;
 }
 
 .newsletter-left {
@@ -98,7 +98,7 @@
   line-height: 23px;
   color: #1C1B1F;
   background: transparent;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
 .supporting-text {
@@ -124,6 +124,7 @@
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
+  padding: 20px;
 }
 
 .newsletter-right {
