@@ -1,168 +1,147 @@
 .heroSection {
-    position: relative;
-    width: 1736px;
-    height: 977.71px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .heroSection-text {
-    position: absolute;
-    width: 657.18px;
-    height: 174.73px;
-    left: 550.94px;
-    top: 62.89px;
-    text-align: center;
-  }
-  
-  .heroSection-text h1 {
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 67.5111px;
-    line-height: 80px;
-    color: #2D3134;
-  }
-  
-  .heroSection-buttonGroup {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    width: 657.18px;
-    height: 41.11px;
-    top: 150.51px;
-  }
-  
-  .heroSection-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12.0556px 24.1111px;
-    gap: 12.06px;
-    width: 120.22px;
-    height: 41.11px;
-    border-radius: 36.1667px;
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16.8778px;
-    line-height: 17px;
-    text-align: center;
-  }
-  
-  .heroSection-btnPrimary {
-    background-color: #2D3134;
-    color: #FFFFFF;
-  }
-  
-  .heroSection-btnSecondary {
-    border: 1.20556px solid #3D3D3D;
-    color: #2D3134;
-    background-color: white;
-  }
-  
-  .heroSection-cards {
-    position: absolute;
-    width: 100%;
-    height: auto;
-  }
-  
+  position: relative;
+  width: 100%;
+  max-width: 1736px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.heroSection-text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.heroSection-text h1 {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 4vw;
+  line-height: 5vw;
+  color: #2D3134;
+}
+
+.heroSection-buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.heroSection-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  gap: 12px;
+  width: auto;
+  min-width: 120px;
+  height: 41px;
+  border-radius: 36px;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.heroSection-btnPrimary {
+  background-color: #2D3134;
+  color: #FFFFFF;
+}
+
+.heroSection-btnSecondary {
+  border: 1px solid #3D3D3D;
+  color: #2D3134;
+  background-color: white;
+}
+
+.heroSection-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.heroSection-card {
+  flex: 1 1 calc(33.333% - 40px);
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.heroSection-cardImg {
+  position: relative;
+  padding-top: 100%; /* 1:1 aspect ratio */
+  background-size: cover;
+  background-position: center;
+}
+
+.heroSection-cardImg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(54, 53, 48, 0) 72.87%, rgba(36, 36, 33, 0.9) 101.17%);
+  border-radius: 24px;
+}
+
+.heroSection-rating {
+  position: absolute;
+  width: 51px;
+  height: 29px;
+  left: 16px;
+  top: 16px;
+  background-color: #2D3134;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #FFFFFF;
+}
+
+.heroSection-placeName {
+  position: absolute;
+  width: 135px;
+  height: 25px;
+  left: 16px;
+  bottom: 16px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #FFFFFF;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
   .heroSection-card {
-    position: absolute;
-    border-radius: 24.1111px;
-    overflow: hidden;
+    flex: 1 1 calc(50% - 40px);
   }
-  
-  .heroSection-cardImg {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
+
+  .heroSection-text h1 {
+    font-size: 5vw;
   }
-  
-  .heroSection-cardImg::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(54, 53, 48, 0) 72.87%, rgba(36, 36, 33, 0.9) 101.17%);
-    border-radius: 24.1111px;
+}
+
+@media (max-width: 768px) {
+  .heroSection-card {
+    flex: 1 1 100%;
   }
-  
-  .heroSection-rating {
-    position: absolute;
-    width: 50.63px;
-    height: 28.93px;
-    left: 16px;
-    top: 16px;
-    background-color: #2D3134;
-    border-radius: 14.4667px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16.8778px;
-    color: #FFFFFF;
+
+  .heroSection-text h1 {
+    font-size: 6vw;
   }
-  
-  .heroSection-placeName {
-    position: absolute;
-    width: 135px;
-    height: 25px;
-    left: 16px;
-    bottom: 16px;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24.1111px;
-    color: #FFFFFF;
+
+  .heroSection-button {
+    width: auto;
+    min-width: 100px;
   }
-  
-  /* Specific styles for each card */
-  .heroSection-card1 {
-    top: 298.98px;
-    left: 162.75px;
-    height: 301.39px;
-    width: 325.5px;
-  }
-  
-  .heroSection-card2 {
-    top: 298.98px;
-    left: 524.42px;
-    height: 634.12px;
-    width: 446.06px;
-  }
-  
-  .heroSection-card3 {
-    top: 298.98px;
-    left: 1006.64px;
-    height: 301.39px;
-    width: 566.61px;
-  }
-  
-  .heroSection-card4 {
-    top: 631.71px;
-    left: 162.75px;
-    height: 301.39px;
-    width: 325.5px;
-  }
-  
-  .heroSection-card5 {
-    top: 616.04px;
-    left: 1006.64px;
-    height: 317.06px;
-    width: 204.94px;
-  }
-  
-  .heroSection-card6 {
-    top: 616.04px;
-    left: 1247.75px;
-    height: 317.06px;
-    width: 325.5px;
-  }
-  
+}
