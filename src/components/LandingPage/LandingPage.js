@@ -13,7 +13,7 @@ const LandingPage = () => {
       <Header/>
       <PopularSection/>
         <AboutSection/>
-        {/* <HeroSection/> */}
+        <HeroSection/>
         <TopDestination/>
         <Newsletter/>
         <Footer/>

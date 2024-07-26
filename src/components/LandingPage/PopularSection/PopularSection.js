@@ -11,15 +11,18 @@ const PopularSection = () => {
                 <div className="popularTripHeading">
                     <div className="popularHeadingLeft">Find Popular Destination</div>
                     <div className="popularHeadingRight">
-                        <button className='popularButton'>
-                            Show More
-                        </button>
+                        
                     </div>
                 </div>
                 <div className="popularTripContent">
                     {data.map((d) => (
                         <TripCard trip={d} />
                     ))}
+                </div>
+                <div className='popularButton-div'>
+                <button className='popularButton'>
+                            Show More
+                        </button>
                 </div>
             </div>
         </>
