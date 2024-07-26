@@ -26,6 +26,8 @@
     opacity: 1; /* Ensure the content is visible */
     scroll-behavior: smooth; /* Smooth scrolling effect */
     gap: 20px; /* Add space between cards */
+    scrollbar-width: none;
+    overflow-y: scroll;
 }
 
 .popularTripContent::-webkit-scrollbar {

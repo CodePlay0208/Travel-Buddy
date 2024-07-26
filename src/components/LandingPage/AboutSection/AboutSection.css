@@ -1,102 +1,102 @@
 .about-section {
-    position: relative; /* Changed from absolute for responsiveness */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: auto;
-    flex-wrap: wrap;
-    margin:100px; /* Center the section */
-    .first{
-        box-shadow:-9px 10px 20px #D1EDE4;
-    }.second{
-        box-shadow:0px 10px 20px #D1EDE4;
-    }.third{
-        box-shadow:9px 10px 20px #D1EDE4;
-    }
+  position: relative; /* Changed from absolute for responsiveness */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  flex-wrap: wrap;
+  margin: 100px; /* Center the section */
+  .first {
+    box-shadow: -9px 10px 20px #d1ede4;
   }
-  
-  .about-section__background {
-    
-    position: absolute;
-    width: 100%;
-    max-width: 425px;
-    height: auto;
-    left: 0;
-    top: 0;
-    background: rgba(141, 211, 187, 0.4);
-    border-radius: 20px;
+  .second {
+    box-shadow: 0px 10px 20px #d1ede4;
   }
-  
-  .about-section__content-frame {
-    position: relative; /* Changed from absolute for responsiveness */
-   width: 425px;
-    height: 388px;
-    background: #FFFFFF;
-    
-    border-radius: 20px;
-    margin: 15px auto; /* Center the frame */
+  .third {
+    box-shadow: 9px 10px 20px #d1ede4;
   }
-  
-  .about-section__content-inner-frame {
-    position: relative; /* Changed from absolute for responsiveness */
-    width: 100%;
-    height: auto;
-    padding: 20px;
-  }
-  
+}
+
+.about-section__background {
+  position: absolute;
+  width: 100%;
+  max-width: 425px;
+  height: auto;
+  left: 0;
+  top: 0;
+  background: rgba(141, 211, 187, 0.4);
+  border-radius: 20px;
+}
+
+.about-section__content-frame {
+  position: relative; /* Changed from absolute for responsiveness */
+  width: 425px;
+  height: 388px;
+  background: #ffffff;
+
+  border-radius: 20px;
+  margin: 15px auto; /* Center the frame */
+}
+
+.about-section__content-inner-frame {
+  position: relative; /* Changed from absolute for responsiveness */
+  width: 100%;
+  height: auto;
+  padding: 20px;
+}
+
+.about-section__title {
+  width: 100%;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  color: #000000;
+  text-align: center; /* Center align text */
+}
+
+.about-section__description {
+  width: 100%;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  color: #000000;
+  text-align: center; /* Center align text */
+  margin-top: 20px; /* Added margin for spacing */
+}
+
+.about-section__icon-group {
+  position: relative; /* Changed from absolute for responsiveness */
+
+  height: 60px;
+  display: flex;
+  justify-content: center; /* Center the icons */
+  margin: 20px; /* Added margin for spacing */
+}
+
+@media (max-width: 768px) {
   .about-section__title {
-    width: 100%;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 2rem;
-    line-height: 2.5rem;
-    color: #000000;
-    text-align: center; /* Center align text */
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
-  
+
   .about-section__description {
-    width: 100%;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section__title {
     font-size: 1.25rem;
     line-height: 1.5rem;
-    color: #000000;
-    text-align: center; /* Center align text */
-    margin-top: 20px; /* Added margin for spacing */
   }
-  
-  .about-section__icon-group {
-    position: relative; /* Changed from absolute for responsiveness */
-    
-    height: 60px;
-    display: flex;
-    justify-content: center; /* Center the icons */
-    margin: 20px; /* Added margin for spacing */
+
+  .about-section__description {
+    font-size: 0.875rem;
+    line-height: 1rem;
   }
- 
-  
-  @media (max-width: 768px) {
-    .about-section__title {
-      font-size: 1.5rem;
-      line-height: 2rem;
-    }
-  
-    .about-section__description {
-      font-size: 1rem;
-      line-height: 1.25rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .about-section__title {
-      font-size: 1.25rem;
-      line-height: 1.5rem;
-    }
-  
-    .about-section__description {
-      font-size: 0.875rem;
-      line-height: 1rem;
-    }
-  }
+}

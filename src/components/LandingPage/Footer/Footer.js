@@ -14,7 +14,7 @@ const Footer = () => {
             <li><a href="/">Mumbai</a></li>
           </ul>
         </div>
-        <div className="footer-section blogs">
+        {/* <div className="footer-section blogs">
           <h2>Travel Blogs</h2>
           <ul>
             <li><a href="/">Mumbai Travel Guide</a></li>
@@ -29,7 +29,7 @@ const Footer = () => {
             <li><a href="/">Our Story</a></li>
             <li><a href="/">Work with us</a></li>
           </ul>
-        </div>
+        </div> */}
         <div className="footer-section contact">
           <h2>Contact Us</h2>
           <ul className="social-icons">

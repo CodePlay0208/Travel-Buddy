@@ -2,8 +2,9 @@
 
   .HeaderContainer {
     position: relative;
-    width: 100%;
+    width: 95%;
     height: auto;
+    margin: 2.5%;
   }
   
   .LandingHeader {

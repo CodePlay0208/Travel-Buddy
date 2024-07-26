@@ -1,12 +1,11 @@
 .footer {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     align-items: center;
     padding: 20px;
     gap: 20px;
     background: #8DD3BB;
-    border-radius: 36px;
     width: 100%;
   }
   
@@ -14,7 +13,7 @@
     width: 100%;
     max-width: 1729px;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     padding: 20px;
     background: #8DD3BB;
@@ -23,9 +22,9 @@
   
   .footer-section {
     height: 215px;
-    max-width: 1479px;
+    width: 50%;
     background: #8DD3BB;
-    box-shadow: 0px 5px 19px rgba(17, 34, 17, 0.05);
+    /* box-shadow: 0px 5px 19px rgba(17, 34, 17, 0.05); */
     border-radius: 24px;
     padding: 20px;
     margin-bottom: 20px;
@@ -84,7 +83,7 @@
   @media (min-width: 768px) {
     .footer-top {
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: space-evenly;
     }
   
     .footer-section {
