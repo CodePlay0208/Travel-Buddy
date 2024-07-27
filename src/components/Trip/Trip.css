@@ -236,10 +236,10 @@ img{
 }
 
 .slick-slide img {
-  display: block;
+  /* display: block;
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: cover; */
 }
 
 .slick-prev, .slick-next {

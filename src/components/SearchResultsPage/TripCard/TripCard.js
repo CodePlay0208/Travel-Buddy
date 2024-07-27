@@ -53,7 +53,11 @@ const TripCard = ({ name, profileImg, startDate, endDate, startLocation, endLoca
           <div className="tripCard__description">Desc. {truncateDescription(description, 50)}</div>
         </div>
         <div className="tripCard__chatNow">
-          <button className="tripCard__chatButton">Chat Now</button>
+        
+          <button className="tripCard__chatButton">
+          <svg className='lefttochatnow'></svg>
+          Chat Now
+          </button>
         </div>
       </div>
     </div>

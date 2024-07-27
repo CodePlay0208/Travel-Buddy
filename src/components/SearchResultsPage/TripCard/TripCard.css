@@ -1,8 +1,8 @@
 .tripCard__container {
   width: 650px;
-  background: #FAF8ED;
+  background: #ffffff;
   border: 2px solid #FFFFFF;
-  box-shadow: 10px 10px 9px rgba(192, 188, 161, 0.22);
+  box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.418);
   border-radius: 16px;
   box-sizing: border-box;
   display: flex;
@@ -12,26 +12,25 @@
 
 .tripCard__leftContainer {
   width: 244px;
-  height: 244px; /* Ensures the container is square */
+  position: relative;
+  overflow: hidden;
   border-radius: 10px;
   margin: 10px;
-  overflow: hidden; /* Ensures the image doesn't overflow the container */
-  position: relative; /* Required for the padding trick */
 }
 
 .tripCard__carouselItem {
+  position: relative;
   width: 100%;
-  height: 100%;
+  padding-top: 100%; /* 1:1 Aspect Ratio */
 }
 
 .tripCard__destinationImg {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: translate(-50%, -50%);
   border-radius: 10px;
 }
 
