@@ -1,13 +1,13 @@
-.chat {
+.chatbox {
   flex: 1;
   display: flex;
   flex-direction: column;
   background: #FFFFFF;
   overflow: hidden;
-  width: 100%;
+  width: 60%;
 }
 
-.chat-top-bar {
+.chatbox-top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,56 +15,35 @@
   border-bottom: 1px solid #D9DCE0;
   flex-shrink: 0;
   height: 10%;
-  background-color:#D9DCE0;
+  background-color: #D9DCE0;
 }
 
-.chat-user-info {
+.chatbox-user-info {
   display: flex;
   align-items: center;
 }
 
-.chat-user-avatar {
+.chatbox-user-avatar {
   width: 50px;
   height: 50px;
-  /* background: url(.png); */
   border-radius: 50%;
   margin-right: 12px;
 }
 
-.chat-user-name {
+.chatbox-user-name {
   font-family: 'Inter';
   font-weight: 600;
   font-size: 18px;
   color: #112211;
 }
 
-.chat-actions {
-  display: flex;
-  gap: 16px;
-}
-
-.chat-action {
-  width: 24px;
-  height: 24px;
-  background: #112211;
-  cursor: pointer;
-}
-
-.call {
-  /* background-image: url(call-icon.png); */
-}
-
-.more {
-  /* background-image: url(more-icon.png); */
-}
-
-.chat-messages {
+.chatbox-messages {
   flex: 1;
   padding: 24px;
   overflow-y: auto;
 }
 
-.chat-input-bar {
+.chatbox-input-bar {
   display: flex;
   align-items: center;
   padding: 12px 24px;
@@ -72,7 +51,7 @@
   flex-shrink: 0;
 }
 
-.chat-input {
+.chatbox-input {
   flex: 1;
   padding: 8px 16px;
   border: 1px solid #D9DCE0;
@@ -82,24 +61,39 @@
   color: #707991;
 }
 
-.chat-input-actions {
+.chatbox-input-actions {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-left: 12px;
 }
 
-.chat-input-action {
+.chatbox-input-action {
   width: 24px;
   height: 24px;
   background: #112211;
   cursor: pointer;
 }
 
-.attach {
-  /* background-image: url(attach-icon.png); */
-}
+@media (max-width: 768px) {
+  .chatbox {
+    width: 100%;
+  }
 
-.send {
-  /* background-image: url(send-icon.png); */
+  .chatbox-top-bar {
+    padding: 12px 16px;
+  }
+
+  .chatbox-input-bar {
+    padding: 8px 16px;
+  }
+
+  .chatbox-input {
+    font-size: 12px;
+  }
+
+  .chatbox-input-action {
+    width: 20px;
+    height: 20px;
+  }
 }

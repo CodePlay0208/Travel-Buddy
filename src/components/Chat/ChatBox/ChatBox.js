@@ -2,16 +2,16 @@ import React from 'react';
 import './ChatBox.css';
 import ChatInput from './ChatInput';
 
-const Chat = () => {
+const ChatBox = () => {
   return (
-    <div className="chat">
-      <div className="chat-top-bar">
-        <div className="chat-user-info">
-          <div className="chat-user-avatar"></div>
-          <div className="chat-user-name">David Moore</div>
+    <div className="chatbox">
+      <div className="chatbox-top-bar">
+        <div className="chatbox-user-info">
+          <div className="chatbox-user-avatar"></div>
+          <div className="chatbox-user-name">David Moore</div>
         </div>
       </div>
-      <div className="chat-messages">
+      <div className="chatbox-messages">
         {/* Messages will go here */}
       </div>
       <ChatInput />
@@ -19,4 +19,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default ChatBox;
