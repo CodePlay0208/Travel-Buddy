@@ -62,14 +62,17 @@
     }
 }
 .popularButton {
-    font-size: 16px;
+    font-size: 36px;
     padding: 10px 20px;
     cursor: pointer;
     background-color: #8DD3BB;
     width: 268px;
     border-radius: 10px;
+    font-weight: 700;
     border: none;
     color: rgb(0, 0, 0);
+    padding: 2%;
+    
 }
 .arrowButton {
     background: #2D3134;
