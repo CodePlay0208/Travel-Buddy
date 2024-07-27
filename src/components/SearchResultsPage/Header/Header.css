@@ -1,0 +1,208 @@
+
+
+  .HeaderContainer {
+    position: relative;
+    width: 95%;
+    height: auto;
+    margin: 2.5%;
+  }
+  
+  .LandingHeader {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    border-radius: 25px;
+    overflow: hidden;
+  }
+  
+  .LandingHeader::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, #00000000 0%, #00234DA1 63%);
+    z-index: 1;
+    border-radius: 25px;
+  }
+  
+  .LandingImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 0;
+  }
+  
+  .HeaderSearchBar {
+    position: absolute;
+    width: 85%;
+    max-width: 1339px;
+    height: 24%;
+    
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    box-shadow: 1px 4px 13px;
+  }
+  
+  .HeaderNavbar {
+    position: absolute;
+    width: 90%;
+    max-width: 1500px;
+    height: auto;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .HeaderNavRight,
+  .HeaderNavLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .NavContents {
+    padding: 10px;
+  }
+  
+  .HeaderNavLeft .NavContents {
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+  }
+  
+  .HeaderNavRight .login {
+    color: white;
+  }
+  
+  .HeaderNavRight .signup {
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 9px;
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  
+  .HeaderDescription {
+    position: absolute;
+    width: 30%;
+    max-width: 753px;
+    height: auto;
+    top: 15vh;
+    left: 8%;
+    z-index: 1;
+  }
+  
+  .HeaderDesHeading {
+    font-family: "TradeGothic LT Extended", sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    color: white;
+  }
+  
+  .HeaderDesPara {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: white;
+  }
+  
+ 
+  @media (max-width: 768px) {
+    .LandingHeader {
+      height: 50vh;
+    }
+  
+    .HeaderSearchBar {
+      width: 90%;
+      height: 50px;
+      top: 45vh;
+    }
+  
+    .HeaderNavbar {
+      width: 95%;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px 0;
+    }
+  
+    .NavContents {
+      padding: 5px;
+    }
+  
+    .HeaderNavLeft .NavContents {
+      font-size: 1.2rem;
+    }
+  
+    .HeaderNavRight .signup {
+      padding: 5px 10px;
+      font-size: 0.9rem;
+    }
+  
+    .HeaderDescription {
+      top: 30vh;
+      width: 90%;
+    }
+  
+    .HeaderDesHeading {
+      font-size: 1.5rem;
+    }
+  
+    .HeaderDesPara {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .LandingHeader {
+      height: 40vh;
+    }
+  
+    .HeaderSearchBar {
+      width: 95%;
+      height: 40px;
+      top: 40vh;
+    }
+  
+    .HeaderNavLeft .NavContents {
+      font-size: 1rem;
+    }
+  
+    .HeaderNavRight .signup {
+      padding: 5px 10px;
+      font-size: 0.8rem;
+    }
+  
+    .HeaderDescription {
+      top: 25vh;
+      width: 95%;
+    }
+  
+    .HeaderDesHeading {
+      font-size: 1.2rem;
+    }
+  
+    .HeaderDesPara {
+      font-size: 0.9rem;
+    }
+  }
+  
