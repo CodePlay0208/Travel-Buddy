@@ -37,10 +37,9 @@
   
   .HeaderSearchBar {
     position: absolute;
-    width: 85%;
+    width: 80%;
     max-width: 1339px;
     height: 24%;
-    
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     border-radius: 10px;

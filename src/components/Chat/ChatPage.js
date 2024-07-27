@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Chatbox from './ChatBox/ChatBox';
-import MyChats from './ChatSideBar/MyChats';
+import ChatSideBar from './ChatSideBar/ChatSideBar';
 import { UserLoginContext } from '../../Utils/Context/UserLoginContext';
 import {toast, ToastContainer} from "react-toastify";
 import "./ChatPage.css";
@@ -13,8 +13,8 @@ const Chatpage = () => {
   return (
     <div style={{ width: '100%' }}>
       <div className="chat-container">
-        {loggedInUserValues._id !== "" && <MyChats fetchAgain={fetchAgain} />}
-        {loggedInUserValues._id !== "" && <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />}
+         <ChatSideBar fetchAgain={fetchAgain} />
+         <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
       </div>
       <ToastContainer/>
     </div>
