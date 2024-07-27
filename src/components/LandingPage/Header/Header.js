@@ -10,11 +10,10 @@ const Header = () => {
         <div className="HeaderNavbar">
           <div className="HeaderNavLeft">
             <div className="NavContents">Travmigoz</div>
-            <div className="NavContents">Publish Trip</div>
           </div>
           <div className="HeaderNavRight">
             <div className="NavContents login">Login</div>
-            <div className="NavContents signup">Sign Up</div>
+            <div className="NavContents signup">Publish Trip</div>
           </div>
         </div>
         <div className="LandingHeader">
