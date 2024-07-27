@@ -1,21 +1,24 @@
 .tripCard__container {
-  width: 650px;
+  width: 100%;
+  max-width: 650px;
   background: #ffffff;
   border: 2px solid #FFFFFF;
   box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.418);
   border-radius: 16px;
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin: 3%;
 }
 
 .tripCard__leftContainer {
-  width: 244px;
+  width: 100%;
+  max-width: 244px;
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  margin: 10px;
+  margin: 10px auto;
 }
 
 .tripCard__carouselItem {
@@ -40,6 +43,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 10px;
+  width: 100%;
 }
 
 .tripCard__profileSection {
@@ -78,6 +82,10 @@
 .tripCard__detailsLeft, .tripCard__detailsRight {
   display: flex;
   flex-direction: column;
+}
+
+.tripCard-details {
+  display: flex;
 }
 
 .tripCard__dateLabel, .tripCard__membersInfo, .tripCard__ageGender, .tripCard__description {
@@ -125,4 +133,40 @@
   color: #292222;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .tripCard__container {
+    flex-direction: row;
+  }
+
+  .tripCard__leftContainer {
+    margin: 10px;
+  }
+
+  .tripCard__rightContainer {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .tripCard__container {
+    flex-direction: column;
+  }
+
+  .tripCard__leftContainer {
+    margin: 10px auto;
+  }
+
+  .tripCard__rightContainer {
+    padding: 10px;
+  }
+
+  .tripCard__chatButton {
+    width: 100%;
+    justify-content: center;
+  }
 }
