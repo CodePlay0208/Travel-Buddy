@@ -1,46 +1,52 @@
-.chat-input-bar {
-    display: flex;
-    align-items: center;
-    padding: 12px 24px;
-    height: 10%;
-    background-color:  #EEEEEE;
+.chatinput-bar {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  height: 10%;
+  width: 100%;
+  background-color: #EEEEEE;
+}
 
-  }
-  
-  .chat-input {
-    flex: 1;
+.chatinput {
+  flex: 1;
+  padding: 8px 16px;
+  border: 0px;
+  font-family: 'Inter';
+  font-size: 25px;
+  outline: none;
+  color: black;
+  background-color: #EEEEEE;
+}
+
+.chatinput-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 12px;
+}
+
+.chatinput-action {
+  width: 24px;
+  height: 24px;
+  background: #112211;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .chatinput-bar {
     padding: 8px 16px;
-    /* border-radius: 24px; */
-    border: 0px;
-    font-family: 'Inter';
-    font-size: 25px;
-    /* background-color: red; */
-    outline: none;
-    color: black;
-    background-color: #EEEEEE;
-
   }
-  
-  .chat-input-actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-left: 12px;
+
+  .chatinput {
+    font-size: 10px;
   }
-  
-  .chat-input-action {
-    width: 24px;
-    height: 24px;
-    background: #112211;
-    cursor: pointer;
+
+  .chatinput-actions {
+    gap: 12px;
   }
-  
 
-  .send {
-    /* background-image: url(send-icon.png); */
+  .chatinput-action {
+    width: 20px;
+    height: 20px;
   }
-  
-
-
-
-
+}

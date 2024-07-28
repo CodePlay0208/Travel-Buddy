@@ -10,7 +10,7 @@ import { InputValuesContext } from "../../Utils/Context/InputValuesContext";
 import tripData from "../../data/data.json";
 import Header from "./Header/Header";
 import TripCard from "./TripCard/TripCard";
-
+import Footer from "../LandingPage/Footer/Footer"
 const SearchResultsPage = () => {
   const [filterData, setFilterData] = useState({
     fromAge: 0,
@@ -78,6 +78,7 @@ const SearchResultsPage = () => {
             <SearchResultsSection tripsData={tripsData} isUserTrip={false} />
           </div>
         </div> */}
+        <Navbar/>
         <Header/>
         <div className="trip-list">
       {tripData.map((trip) => (
@@ -95,6 +96,7 @@ const SearchResultsPage = () => {
         />
       ))}
     </div>
+    <Footer/>
       </FilterContext.Provider>
     </div>
   );

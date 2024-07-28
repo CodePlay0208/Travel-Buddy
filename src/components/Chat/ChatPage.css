@@ -1,9 +1,6 @@
-/* Chatpage.css */
-
-.chat-container {
+.chatpage-container {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100vh;
 }
-
