@@ -1,14 +1,15 @@
 .nav{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 30px;
   }
 
   .webAppNameAndLogo{
     font-weight: 500;
-    color: rgb(5,71,82);
+    color: #42A7C3;
+
     font-size:40px;
     padding: 8px 12px;
     cursor: pointer;

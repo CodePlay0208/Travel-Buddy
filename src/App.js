@@ -22,6 +22,7 @@ import ChatPage from "./components/Chat/ChatPage";
 import { ChatContext } from "./Utils/Context/ChatContext";
 import DeleteProfile from "./components/UserProfile/DeleteProfile/DeleteProfile"
 import EditProfile from "./components/UserProfile/EditProfile/EditProfile";
+import LandingPage from "./components/LandingPage/LandingPage"
 const App = () => {
   const [tripsData, setTripsData] = useState([
     {
@@ -138,7 +139,8 @@ const App = () => {
             <ChatContext.Provider value={{ userChatValues, setUserChatValues }}>
               <div>
                 <Routes>
-                  <Route exact path="/" element={<HomePage />} />
+                  <Route exact path="/" element={<LandingPage />} />
+                  <Route exact path="/Home" element={<HomePage />} />
                   <Route
                     exact
                     path="/search-results-page"

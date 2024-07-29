@@ -1,0 +1,142 @@
+.newsletter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(to bottom, #FFFFFF 50%, #8DD3BB 50%);
+  padding: 20px;
+}
+
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 84%;
+  max-width: 1470px;
+  background: #CDEAE1;
+  box-shadow: 0px 4.8px 19.2px rgba(17, 34, 17, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.newsletter-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  padding: 2% 2% 0;
+}
+
+.newsletter-header {
+  font-family: 'TradeGothic LT Extended';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 65px;
+  color: #112211;
+  margin-bottom: 7%;
+}
+
+.newsletter-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.newsletter-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.newsletter-text h2 {
+  margin: 0;
+  font-family: 'TradeGothic LT Extended';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: #112211;
+  opacity: 0.8;
+}
+
+.newsletter-text p {
+  margin: 0;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 23px;
+  color: #112211;
+  opacity: 0.7;
+}
+
+.newsletter-form {
+  padding: 10px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.text-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.email-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 23px;
+  color: #1C1B1F;
+  background: transparent;
+  margin: 10px;
+}
+
+.supporting-text {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1C1B1F;
+}
+
+.newsletter-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: #112211;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.newsletter-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newsletter-image {
+  max-width: 100%;
+  width: 480.28px;
+  height: 366.21px;
+  border-radius: 5px;
+}

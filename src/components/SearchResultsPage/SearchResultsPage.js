@@ -7,8 +7,10 @@ import SearchResultsSection from "../SearchResultsSection/SearchResultsSection";
 import { FilterContext } from "../../Utils/Context/FilterContext";
 import { TripsContext } from "../../Utils/Context/TripsContext";
 import { InputValuesContext } from "../../Utils/Context/InputValuesContext";
-import data from "../../data/data.json";
-
+import tripData from "../../data/data.json";
+import Header from "./Header/Header";
+import TripCard from "./TripCard/TripCard";
+import Footer from "../LandingPage/Footer/Footer"
 const SearchResultsPage = () => {
   const [filterData, setFilterData] = useState({
     fromAge: 0,
@@ -60,22 +62,41 @@ const SearchResultsPage = () => {
 
   return (
     <div>
-      <Navbar visibilityForSearch={false} />
-      <SearchMenu />
+      {/* <Navbar visibilityForSearch={false} />
+      <SearchMenu /> */}
       <FilterContext.Provider
         value={{
           ...filterData,
           setFilterData,
         }}
       >
-        <div className="search-results-page-container">
+        {/* <div className="search-results-page-container">
           <div className="filter-section">
             <FilterSection visibility={true} />
           </div>
           <div className="search-results-section">
             <SearchResultsSection tripsData={tripsData} isUserTrip={false} />
           </div>
-        </div>
+        </div> */}
+        <Navbar/>
+        <Header/>
+        <div className="trip-list">
+      {tripData.map((trip) => (
+        <TripCard
+          key={trip.id}
+          name={trip.name}
+          profileImg={trip.profileImg}
+          startLocation={trip.startLocation}
+          endLocation={trip.endLocation}
+          totalMembers={trip.totalMembers}
+          age={trip.age}
+          gender={trip.gender}
+          description={trip.description}
+          destinationImages={trip.destinationImages}
+        />
+      ))}
+    </div>
+    <Footer/>
       </FilterContext.Provider>
     </div>
   );

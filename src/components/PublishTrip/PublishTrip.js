@@ -12,8 +12,6 @@ import { useNavigate } from "react-router-dom";
 import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
 import axios from 'axios';
 
-import { useLocation } from 'react-router-dom';
-
 
 async function submitForm(inputValues) {
   // TODO: Integrate totalusers API if necessary, for now assuming a static value
@@ -136,43 +134,29 @@ function validateForm(inputValues, isClickOnHeading) {
   return false;
 }
 
-const PublishTrip = (props) => {
+  const PublishTrip = (props) => {
 
-  const {initialStartLocation, initialEndLocation} = props
-
-  const [startLocation, setStartLocation] = useState(initialStartLocation || "");
-  const [endLocation, setEndLocation] = useState(initialEndLocation || "");
+    const {initialStartLocation, initialEndLocation} = props
   
+    const [startLocation, setStartLocation] = useState(initialStartLocation || "");
+    const [endLocation, setEndLocation] = useState(initialEndLocation || "");
   const navigate = useNavigate();
-  const location = useLocation();
-  const { trip } = location.state || {};
-  const formatDate = (date) => {
-    if (!date) return "";
-    const d = new Date(date);
-    const day = String(d.getDate()).padStart(2, '0');
-    const month = String(d.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-    const year = d.getFullYear();
-    return `${day}-${month}-${year}`;
-  };
-  
   const initialPublishTripValues = {
-    id: trip?._id || 0,
-    startLocation: trip?.startLocation || "",
-    endLocation: trip?.endLocation || "",
-    totalMembers: trip?.totalMembers || "",
-    age: trip?.age || "",
-    gender: trip?.sex || "",
-    description: trip?.description || "",
-    destinationImages: trip?.destinationImages || [],
-    userName: trip?.name || "",
-    phoneNumber: trip?.phoneNumber || "",
-    startDate: formatDate(trip?.startDate),
-    endDate: formatDate(trip?.endDate),
-    emailId: trip?.emailId || "",
-    budget: trip?.budget || ""
+    id: 0,
+    startLocation: "",
+    endLocation: "",
+    totalMembers: "",
+    age: "",
+    gender: "",
+    description: "",
+    destinationImages: [],
+    userName: "",
+    phoneNumber: "",
+    startDate: "",
+    endDate: "",
+    emailId: "",
+    budget: ""
   };
-  
-console.log(initialPublishTripValues);  
   const [inputValues, setInputValues] = useState(initialPublishTripValues);
   const genderDropDownData = ["Male", "Female", "Prefer Not To Say"];
   const [showGenderDropDownList, setShowGenderDropDownList] = useState(false);
@@ -361,8 +345,6 @@ console.log(initialPublishTripValues);
     showBudgetGroupDropDownList,
   ]);
 
-
-
   return (
     <div>
       <Navbar visibilityForSearch={true}></Navbar>
@@ -423,6 +405,8 @@ console.log(initialPublishTripValues);
               setValuesFromLocalStorage={false}
               inputValueForSearchBar = {startLocation}
               setInputValueForSearchBar = {setStartLocation}
+
+
             ></SearchBar>
           </div>
           <div className="input-element">
