@@ -96,6 +96,11 @@ const SearchResultsPage = () => {
         />
       ))}
     </div>
+    <div className="search-result-button-div">
+
+
+    <button className='showMoreButton'>Show More</button>
+    </div>
     <Footer/>
       </FilterContext.Provider>
     </div>
