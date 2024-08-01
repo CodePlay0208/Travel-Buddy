@@ -5,7 +5,6 @@ import SearchMenu from "../SearchMenu/SearchMenu";
 import FilterSection from "../FilterSection/FilterSection";
 import SearchResultsSection from "../SearchResultsSection/SearchResultsSection";
 import { FilterContext } from "../../Utils/Context/FilterContext";
-import { TripsContext } from "../../Utils/Context/TripsContext";
 import { InputValuesContext } from "../../Utils/Context/InputValuesContext";
 import tripData from "../../data/data.json";
 import Header from "./Header/Header";
@@ -29,12 +28,10 @@ const SearchResultsPage = () => {
   useEffect(() => {
     const fetchTrips = async () => {
       const { destination, startDate } = inputValues;
-
       if (!destination || !startDate) {
         console.log("Destination or startDate is missing.");
         return; // Don't make a request if either destination or date is empty
       }
-
       try {
         const date = convertDateFormat(startDate);
         console.log(`Fetching trips for destination: ${destination}, date: ${date}`);
@@ -42,7 +39,6 @@ const SearchResultsPage = () => {
           credentials: 'include'
         });
         const result = await response.json();
-
         if (response.ok) {
           setTripsData(result);
         } else {
@@ -52,18 +48,12 @@ const SearchResultsPage = () => {
         console.error("Error fetching trips:", error);
       }
     };
-
     fetchTrips();
   }, [inputValues]);
 
-  useEffect(() => {
-    console.log("Trips data updated:", tripsData);
-  }, [tripsData]);
 
   return (
     <div>
-      {/* <Navbar visibilityForSearch={false} />
-      <SearchMenu /> */}
       <FilterContext.Provider
         value={{
           ...filterData,

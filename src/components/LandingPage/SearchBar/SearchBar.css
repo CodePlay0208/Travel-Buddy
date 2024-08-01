@@ -15,11 +15,25 @@
   font-size: 2rem; /* Responsive font size */
   line-height: 2.5rem; /* Responsive line height */
   color: #686868;
-  padding: 5%;
+  padding: 0%;
+  border: none;
+  outline: none;
+  padding-left: 5%;
+  width: 70%;
+}
+
+.SearchBar-location::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color:#787878;
+  font-weight: 200; /* Responsive font size */
+}
+
+.SearchBar-date::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color:#787878;
+  font-weight: 300; /* Responsive font size */
 }
 
 .SearchBar-Image {
-  padding: 4%;
+  padding-right: 7%;
   svg{
     width: 34px;
     height: 41px;

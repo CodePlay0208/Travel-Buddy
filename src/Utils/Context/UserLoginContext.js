@@ -5,7 +5,8 @@ export const UserLoginContext = createContext({
     _id:"",
     username:"",
     emailId:"",
-    profilePic:""
+    profilePic:"",
+    isLoggedIn: false
   } ,
   setLoggedInUserValues: () => {}
 });
