@@ -2,9 +2,9 @@ import React from 'react';
 import './AboutSection.css';
 
 // Ensure you import images correctly
-import firstImage from '../../../data/Images/aboutSection/image1.png';
-import secondImage from '../../../data/Images/aboutSection/image2.png';
-import thirdImage from '../../../data/Images/aboutSection/image.png';
+import firstImage from '../../data/Images/aboutSection/image1.png';
+import secondImage from '../../data/Images/aboutSection/image2.png';
+import thirdImage from '../../data/Images/aboutSection/image.png';
 
 const AboutSection = () => {
     return (

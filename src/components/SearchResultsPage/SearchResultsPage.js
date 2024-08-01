@@ -1,15 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./SearchResultsPage.css";
 import Navbar from "../Navbar/Navbar";
-import SearchMenu from "../SearchMenu/SearchMenu";
-import FilterSection from "../FilterSection/FilterSection";
-import SearchResultsSection from "../SearchResultsSection/SearchResultsSection";
 import { FilterContext } from "../../Utils/Context/FilterContext";
 import { InputValuesContext } from "../../Utils/Context/InputValuesContext";
 import tripData from "../../data/data.json";
-import Header from "./Header/Header";
-import TripCard from "./TripCard/TripCard";
-import Footer from "../LandingPage/Footer/Footer"
+import Header from "../Header/Header";
+import TripCard from "../TripCard/TripCard";
+import Footer from "../Footer/Footer"
 const SearchResultsPage = () => {
   const [filterData, setFilterData] = useState({
     fromAge: 0,

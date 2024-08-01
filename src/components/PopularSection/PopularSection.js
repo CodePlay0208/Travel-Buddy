@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import "./PopularSection.css";
-import data from "../../../data/data.json";
-import TripCard from './TripsCard/TripCard';
+import data from "../../data/data.json";
+import TripCard from '../TripsCard/TripCard';
 
 const PopularSection = () => {
     const scrollContainerRef = useRef(null);

@@ -1,7 +1,6 @@
 import React from "react";
-import LandingPage from "./components/LandingPage/LandingPage";
+import LandingPage from "./Screens/LandingPage/landingPage";
 import SearchResultsPage from "./components/SearchResultsPage/SearchResultsPage";
-import SearchPage from "./components/SearchPage/SearchPage";
 import PublishTrip from "./components/PublishTrip/PublishTrip";
 import ChatPage from "./components/Chat/ChatPage";
 import LoginPage from "./components/LoginPage/LoginPage";
@@ -22,12 +21,6 @@ export const routes = [
         "path": "/search-results-page",
         "element": <SearchResultsPage/>
     },
-
-    {
-        "path": "/search-page",
-        "element": <SearchPage/>
-    },
-
     {
         "path": "/publish-trip",
         "element": <PublishTrip/>

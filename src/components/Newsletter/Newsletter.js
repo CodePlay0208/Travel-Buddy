@@ -1,7 +1,7 @@
 import React from 'react';
 import './Newsletter.css';
 
-import firstImage from '../../../data/Images/image.png';
+import firstImage from '../../data/Images/image.png';
 
 const Newsletter = () => {
   return (

@@ -3,11 +3,8 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "./PublishTrip.css";
 import SearchBar from "../SearchBar/SearchBar";
-import { DatePicker, Space, Typography } from "antd";
-import data from "../../data/data.json";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import DateRangePicker from "../RangePicker/RangePicker";
 import { useNavigate } from "react-router-dom";
 import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
 import axios from 'axios';
@@ -463,13 +460,6 @@ function validateForm(inputValues, isClickOnHeading) {
               value={inputValues.emailId}
             ></input>
           </div>
-          <div className="input-element">
-            <DateRangePicker
-              setInputValues={setInputValues}
-              inputValues={inputValues}
-            />
-          </div>
-
           <div className="input-element">
             <label
               className="publish-trips-label"

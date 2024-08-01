@@ -2,7 +2,7 @@
     max-width: 1726px;
     margin: 10% 0;
     opacity: 1;
-    background-image: url('../../../data/Images/aeroplaneBack.png');
+    background-image: url('../../data/Images/aeroplaneBack.png');
     background-size: contain;
     background-position: -30px;
     background-repeat: no-repeat;

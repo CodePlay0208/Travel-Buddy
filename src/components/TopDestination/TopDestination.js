@@ -1,7 +1,7 @@
 import React from 'react';
 import './TopDestination.css';
 
-import firstImage from '../../../data/image.png';
+import firstImage from '../../data/image.png';
 
 const TopDestination = () => (
   <div className="frame">

@@ -5,6 +5,7 @@ import "./SignUp.css"; // Import your CSS file for styling
 import { useNavigate } from "react-router-dom";
 import {toast, ToastContainer} from 'react-toastify';
 
+
 function SignUp() {
     const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -154,5 +155,5 @@ function SignUp() {
 }
 
 
-export default memo(SignUpComponent)
+export default SignUp;
 
