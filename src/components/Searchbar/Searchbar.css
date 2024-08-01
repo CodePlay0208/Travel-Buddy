@@ -37,6 +37,7 @@
   svg{
     width: 34px;
     height: 41px;
+    cursor: pointer;
   }
 }
 
@@ -58,6 +59,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .SearchBar-button {

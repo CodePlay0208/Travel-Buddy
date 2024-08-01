@@ -17,7 +17,8 @@ const Navbar = (props) => {
     const navigate = useNavigate();
     useEffect(() => {
         const removeDropDownList = (event) => {
-            const hasTheUserClickedOnProfilePic = document.getElementById("imgForUserProfile").contains(event.target);
+            const isUserProfile = document.getElementById("imgForUserProfile");
+            const hasTheUserClickedOnProfilePic = isUserProfile && document.getElementById("imgForUserProfile").contains(event.target);
             if (!hasTheUserClickedOnProfilePic) {
                 setShowUserProfileDropDownList(false);
             }

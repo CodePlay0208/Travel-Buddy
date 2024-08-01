@@ -12,6 +12,7 @@
     font-size:40px;
     padding: 8px 12px;
     cursor: pointer;
+    cursor: pointer;
   }
 
   .otherContentsOfNavBar{
@@ -30,6 +31,11 @@
     padding-top: 0;
   }
 
+  .NavContents{
+    padding: 10px;
+    cursor: pointer;
+  }
+
   
  .signup {
     background-color: white;
@@ -42,6 +48,7 @@
     cursor: pointer;
     text-decoration: none;
     margin: 0 10px;
+    cursor: pointer;
   }
   
   .nav-link {
