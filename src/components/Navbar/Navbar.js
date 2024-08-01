@@ -176,8 +176,8 @@ const Navbar = (props) => {
                                 )}
                             </div>
                         </div> : <div className="otherContentsOfNavBar">
-                            <div className="NavContents login">Login</div>
-                            <div className="NavContents signup">Publish Trip</div>
+                            <div className="NavContents login" onClick={()=>{navigate("/login-page")}}>Login</div>
+                            <div className="NavContents signup" onClick={()=>{navigate("/publish-trip")}}>Publish Trip</div>
                         </div>}
                 </div>
 
