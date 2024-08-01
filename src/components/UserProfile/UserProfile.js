@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../NavBar/Navbar";
 import "./UserProfile.css";
 import UserSideBar from "./UserSideBar/UserSideBar";
 import UserProfileDashBoard from "./UserProfileDashBoard/UserProfileDashBoard";

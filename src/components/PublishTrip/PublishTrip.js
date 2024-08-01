@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../NavBar/Navbar";
 import Footer from "../Footer/Footer";
 import "./PublishTrip.css";
 import SearchBar from "../SearchBar/SearchBar";

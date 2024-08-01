@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./SearchResultsPage.css";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../NavBar/Navbar";
 import { FilterContext } from "../../Utils/Context/FilterContext";
 import { InputValuesContext } from "../../Utils/Context/InputValuesContext";
 import tripData from "../../data/data.json";
@@ -57,16 +57,7 @@ const SearchResultsPage = () => {
           setFilterData,
         }}
       >
-        {/* <div className="search-results-page-container">
-          <div className="filter-section">
-            <FilterSection visibility={true} />
-          </div>
-          <div className="search-results-section">
-            <SearchResultsSection tripsData={tripsData} isUserTrip={false} />
-          </div>
-        </div> */}
-        <Navbar/>
-        <Header/>
+        <Header isImageNavbar={true}/>
         <div className="trip-list">
       {tripData.map((trip) => (
         <TripCard

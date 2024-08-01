@@ -11,7 +11,7 @@ import Footer from '../../components/Footer/Footer';
 const landingPage = () => {
   return (
     <div className="LandingContainer">
-      <Header/>
+      <Header isImageNavbar={true}/>
       <PopularSection/>
         <AboutSection/>
         <HeroSection/>
