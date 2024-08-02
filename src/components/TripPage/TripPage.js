@@ -7,6 +7,7 @@ import "./TripPage.css";
 import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
 import { ChatContext } from '../../Utils/Context/ChatContext';
 import DatePicker from '../DatePicker/DatePicker';
+import ImagesSection from './ImagesSection/ImagesSection';
 
 const TripPage = () => {
   const { id: tripId } = useParams();
@@ -130,29 +131,31 @@ const TripPage = () => {
     }));
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  // if (error) {
+  //   return <div>Error: {error}</div>;
+  // }
 
-  if (!trip) {
-    return (
-      <div>
-        <Navbar visibilityForSearch={true} />
-        <div className="trip-details-container">
-          <h1>Trip not found</h1>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+  // if (!trip) {
+  //   return (
+  //     <div>
+  //       <Navbar visibilityForSearch={true} />
+  //       <div className="trip-details-container">
+  //         <h1>Trip not found</h1>
+  //       </div>
+  //       <Footer />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
-      <Navbar visibilityForSearch={true} />
+    <Navbar/>
+    <ImagesSection/>
+      {/* <Navbar visibilityForSearch={true} />
       <div className="trip-details-container">
         <div className="leftPanel">
           <div className="destinationImagesContainerInTripPage">
@@ -272,7 +275,7 @@ const TripPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer /> */}
     </div>
   );
 };

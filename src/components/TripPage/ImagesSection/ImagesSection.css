@@ -1,0 +1,60 @@
+/* App.css */
+.image-section {
+    display: flex;
+    width: 100%;
+  }
+  
+  .selected-image-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+    max-width: 50%;
+  }
+  
+  .selected-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+  }
+  
+  .navigation-arrows {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    margin-top: 10px;
+  }
+  
+  .arrow-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .thumbnail-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    padding: 10px;
+    max-width: 50%;
+  }
+  
+  .thumbnail {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  .thumbnail.selected {
+    border: 2px solid blue;
+  }
+  
