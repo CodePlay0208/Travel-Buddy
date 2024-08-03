@@ -154,7 +154,10 @@ const TripPage = () => {
   return (
     <div>
     <Navbar/>
+    <div classname="ImagesSection" >
+
     <ImagesSection images={data[0].destinationImages}/>
+    </div>
       {/* <Navbar visibilityForSearch={true} />
       <div className="trip-details-container">
         <div className="leftPanel">

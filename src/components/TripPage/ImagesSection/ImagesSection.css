@@ -1,6 +1,7 @@
 .image-section {
   display: flex;
   width: 100%;
+  height: 50vh; /* Set the height to 50% of the viewport height */
 }
 
 .selected-image-container {
@@ -12,6 +13,7 @@
   padding: 10px;
   position: relative;
   max-width: 50%;
+  height: 100%; /* Ensure the container takes the full height */
 }
 
 .selected-image {
@@ -19,7 +21,7 @@
   height: auto;
   max-width: 100%;
   max-height: 100%;
-  
+  object-fit: cover;
   aspect-ratio: 1 / 1;
 }
 
@@ -44,6 +46,7 @@
   grid-gap: 10px;
   padding: 10px;
   max-width: 50%;
+  height: 100%; /* Ensure the container takes the full height */
 }
 
 .thumbnail {
