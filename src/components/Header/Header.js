@@ -1,12 +1,18 @@
-import React from 'react';
+import React , {useState}from 'react';
 import './Header.css';
 import LandingPageImage from "../../data/Images/searchResult/header.png";
-import SearchBar from '../SearchBar/SearchBar';
+import SearchMenu from '../SearchMenu/SearchMenu';
 import Navbar from '../NavBar/Navbar';
+import { InputValuesContext } from '../../Utils/Context/InputValuesContext';
 
 const SearchResultHeader = (props) => {
+
+  const [inputValues , setInputValues] = useState({destination:'', startDate:''});
+
   return (
-    <>
+    <InputValuesContext.Provider
+    value={{ inputValues , setInputValues}}
+  >
       <div className="HeaderContainer">
        {
         props.isImageNavbar && <Navbar isImageNavbar={props.isImageNavbar}/>
@@ -19,10 +25,10 @@ const SearchResultHeader = (props) => {
           <div className="HeaderDesPara">Find Your Travel Amigos!</div>
         </div>
         <div className="HeaderSearchBar">
-          <SearchBar />
+          <SearchMenu />
         </div>
       </div>
-    </>
+    </InputValuesContext.Provider>
   );
 }
 

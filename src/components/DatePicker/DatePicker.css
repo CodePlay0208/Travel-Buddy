@@ -5,13 +5,19 @@ body {
 .date-picker {
     position: relative;
     display: inline-block;
-    height: 60px;
-    width: 370.312px;
+    height: 100%;
+    width: 30%;
     input{
         height: 100%;
         width: 100%;
     }
 }
+
+.SearchBar-date::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:#787878;
+    font-weight: 200; /* Responsive font size */
+  }
+
 
 .input-wrapper {
     position: relative;
@@ -23,19 +29,18 @@ body {
 .date-picker input {
     width: 100%;
     padding: 10px 40px 10px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     cursor: pointer;
     transition: border-color 0.2s;
-    height: 60px;
-    border-radius: 0.4rem;
-    font-size: 18px;
+    height: 100%;
+    border-radius: 10px;
     padding: 20px;
     font-weight: 400;
     font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
-    color: rgb(5, 0, 0);
-    border: grey 2px solid;
-    border-width: 2px;
+    color:#787878;
+    border: grey 1.5px solid;
+    font-size: 2rem; /* Responsive font size */
+    line-height: 2.5rem; /* Responsive line height */
+
 }
 
 .date-picker input:focus {
@@ -48,10 +53,11 @@ body {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
     pointer-events: none;
     color: #777;
+    width: 34px;
+    height: 41px;
+    cursor: pointer;
 }
 
 .calendar {

@@ -8,7 +8,7 @@ import { ChatContext } from "../../Utils/Context/ChatContext";
 const Navbar = (props) => {
     const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext);
     console.log("the user is logged in navbar", loggedInUserValues);
-    const isUserLoggedIn = false;
+    const isUserLoggedIn = true;
     const userProfileDropDownData = [
         { value: "My Profile", path: "/userProfile" },
         { value: "My Trips", path: "/userTrips" },
