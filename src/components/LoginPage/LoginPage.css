@@ -1,137 +1,419 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-.heading1ForLoginCard{
-  font-size: 40px;
+p,
+label {
+  font-family: 'Montserrat', sans-serif;
+}
+
+input::placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  padding-left: 4px;
+}
+
+.LoginContainer {
+  flex: 1;
+  display: flex;
+  background-color: white;
+  /* height: 100vh; */
+}
+
+.LoginLoginFormAndCopyrightContainer {
+  flex: 1.3 1;
+  /* height: 90%; */
+  width: 50%;
+  /* margin-top: 5vh; */
+  /* margin-top: 2.35%; */
+  /* margin-left: 6.8vh; */
+  /* margin-left: 3.5%; */
+  /* margin-right: 12%; */
+  margin: 2.35% 12% 0% 3.5%;
+}
+
+.LoginFormAndTitleContainer {
+  /* flex: 1.3 1;
+  height: 90%;
+  width: 50%; */
+  /* margin-top: 5vh; */
+  /* margin-top: 2.35%; */
+  /* margin-left: 6.8vh; */
+  /* margin-left: 3.5%; */
+  /* margin-right: 12%; */
+  /* margin: 2.35% 12% 2.35% 3.5%; */
+  margin-bottom: 5%;
+}
+
+.LoginTitleContainer {
+}
+
+.LoginTitleText {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #42a7c3;
+}
+
+.LoginFormContainer {
+  /* margin-top: 2.5rem; */
+  margin-top: 4.6%;
+  /* margin-left: 5rem; */
+  margin-left: 9%;
+}
+
+.LoginFormHeadingContainer {
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.LoginFormHeadingText {
+  font-size: 3.125rem;
   font-weight: 700;
-  margin-left: 19%;
-  width: 100%;
 }
 
-.heading2ForLoginCard{
-  font-size: 40px;
-  font-weight: 700;
-  margin-left: 23%;
-  width: 100%;
-  
+.LoginFormSubHeadingContainer {
 }
 
-.loginCardContainer{
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
-  border-radius: 10px;
-  max-width: 450px;
-  width: 100%;
-  height: 100%;
-  margin: 10% 0 0 0;
-  padding: 20px;
-  margin-left: 15%;
-  font-family: "Roboto", sans-serif;
+.LoginFormSubHeadingText {
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
-.loginCardContainer:hover{
-    box-shadow: 0 20px 20px 0 hsla(180, 91%, 42%, 0.2);
+.LoginFormInputsContainer {
+  /* margin-top: 50px; */
+  margin-top: 6.25%;
 }
 
-.login-page-input{
-  border: 1px solid #c1c1c1;
-  font-size: 10px;
+.LoginEmailInputContainer {
+  border-width: 1px;
   border-radius: 5px;
-  margin: 10px 0;
-  width: 370.312px;
-  border-radius: 0.4rem;
-  font-size: 18px;
-  height: 60px;
-  font-size: 18px;
-  padding: 20px;
+  border-color: #112211;
+  border-style: solid;
+  position: relative;
+  padding: 1px;
 }
 
-.login-page-input::placeholder{
-  font-size: 18px;
-  color: #000000;
-  padding: 0 0 0 5px;
+.LoginEmailText {
+  font-size: 1rem;
+  padding-right: 3px;
+  padding-left: 3px;
+  margin-left: 10px;
+  position: absolute;
+  top: -23%;
+  background-color: white;
 }
 
-.linkInLoginPage{
-  text-decoration: none;
-  color: #f86d34;
-  background: #ffffff;
+.LoginEmailInput {
+  width: 100%;
+  height: 3rem;
   border: none;
-  cursor: pointer;
-  font-size: 16px;
+  padding: 5px;
+  font-size: 1.125rem;
+  padding-left: 0.625rem;
+  color: #1c1b1f;
+  border-color: #112211;
 }
 
-.buttonSectionInLoginPage{
-  margin-top: 30px;
+input:focus {
+  outline: none;
 }
-.additionalChecksInLoginPage{
-  display:flex;
+
+.LoginPasswordInputContainer {
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: #112211;
+  border-style: solid;
+  /* margin-top: 30px; */
+  margin-top: 4.5%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1px;
+}
+
+.LoginPasswordText {
+  font-size: 1rem;
+  padding-right: 3px;
+  padding-left: 3px;
+  margin-left: 10px;
+  position: absolute;
+  top: -23%;
+  background-color: white;
+}
+
+.LoginPasswordInput {
+  width: 100%;
+  border: none;
+  padding: 5px;
+  height: 3rem;
+  font-size: 1.125rem;
+  padding-left: 0.625rem;
+  color: #1c1b1f;
+  border-color: #112211;
+}
+
+.LoginPasswordEyeContainer {
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.LoginPasswordEyeIcon {
+  height: 20px;
+}
+
+.LoginRememberMeAndForgetPasswordContainer {
+  display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-}
-
-.rememberMeDiv{
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  align-content: center;
+  /* margin-top: 24px; */
+  margin-top: 3.5%;
+  padding: 0px 4px;
+}
+
+.LoginRememberMeContainer {
+  display: flex;
+  position: relative;
   cursor: pointer;
 }
 
-.rememberMeDiv .text{
-  margin-top: 6px;
+/* .LoginRememberMeCheckbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+} */
+
+.LoginRememberMeText {
+  margin-left: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding-top: 4px;
+}
+
+.LoginForgetPasswordContainer {
+}
+
+.LoginForgetPasswordLink {
+  text-decoration: none;
+}
+
+.LoginForgetPasswordText {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ff8682;
+  transition: color 0.3s ease, transform 0.1s ease;
   cursor: pointer;
 }
 
+.LoginForgetPasswordLink:hover .LoginForgetPasswordText {
+  color: #e14944;
+}
 
-.signInButtonInLoginPage{
-  all:unset;
-  margin: 10px 0;
-  padding: 8px 0 8px 5px;
+.LoginForgetPasswordLink:active .LoginForgetPasswordText {
+  color: #ca2c27;
+  transform: scale(0.98);
+}
+
+.LoginLoginButtonContainer {
+  /* margin-top: 35px; */
+  margin-top: 5%;
+  border-style: none;
+  border-width: 0px;
+}
+
+.LoginLoginButton {
+  background-color: #8dd3bb;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: 500;
   width: 100%;
-  max-width: 96%;
-  font-size: 18px;
-  font-family: "Roboto", sans-serif;
-  text-align: center;
-  color: #ffffff;
-  background-color: #2a2c30;
-  border: 1px solid #2a2c30;
-  border-radius: 20px;
-  height: 28px;
+  border-width: 0px;
+  border-radius: 5px;
 }
 
-.signInUsingGoogleButtonInLoginPage{
-  all:unset;
-  margin: 10px 0;
-  padding: 8px 0 8px 5px;
-  width: 100%;
-  max-width: 96%;
-  font-size: 18px;
-  font-family: "Roboto", sans-serif;
-  text-align: center;
-  color: #ffffff;
-  background-color: #2a2c30;
-  border: 1px solid #2a2c30;
-  border-radius: 20px;
+.LoginLoginButton:active {
+  font-size: 1.125px;
+}
+
+.LoginLoginButtonText {
+  font-weight: 600;
+}
+
+.LoginDontHaveAccountContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* margin-top: 14px; */
+  margin-top: 2%;
 }
 
-
-.not-member{
-  margin: 20px 0 40px 0;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.LoginDontHavaAccountText {
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-.svgInLoginPage{
-  height: 30px;
-  width: 30px;
-  padding: 0 10px 0 0;
+.LoginSignUpLink {
+  text-decoration: none;
 }
 
-.imgForUserProfile{
+.LoginSignUpText {
+  margin-left: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ff8682;
+  transition: color 0.3s ease, transform 0.1s ease;
   cursor: pointer;
+  text-align: right;
+}
+
+.LoginSignUpLink:hover .LoginSignUpText {
+  color: #e14944;
+}
+
+.LoginSignUpLink:active .LoginSignUpText {
+  color: #ca2c27;
+  transform: scale(0.98);
+}
+.LoginDividerContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* margin: 40px 0px; */
+  margin: 6% 0px;
+}
+
+.LoginDivider1,
+.LoginDivider2 {
+  height: 0.3px;
+  width: 40%;
+  background-color: #112211;
+}
+
+.LoginOrLoginWithContainer {
+  margin: 0px 8px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.LoginOrLoginWithText {
+  color: #112211;
+  font-size: 0.9rem;
+}
+
+.LoginMoreSignUpButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LoginGoogleSignUpButton {
+  /* padding: 10px 100px; */
+  padding: 1.4% 20%;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: #8dd3bb;
+  background-color: #8dd3bb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  /* margin-bottom: 40px; */
+}
+
+.LoginGoogleSignUpButton:active {
+  border-width: 2.5px;
+}
+
+.LoginGoogleSignUpButton:active .LoginGoogleIcon {
+  height: 44px;
+}
+
+.LoginContinueWithText {
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.LoginGoogleIcon {
+  height: 40px;
+}
+
+.LoginCopyrightTextContainer {
+  width: fit-content;
+  /* position: static; */
+  left: -2%;
+  bottom: -3%;
+  z-index: 2;
+}
+
+.LoginCopyrightText {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.LoginTravmigozCopyrightText {
+  font-weight: 500;
+}
+
+.LoginDesignContainer {
+  flex: 1 2;
+  /* width: 40%; */
+  max-width: 42%;
+  /* max-width: 40%; */
+  min-width: 0%;
+  height: fit-content;
+  padding: 20px 0px 0px 0%;
+}
+
+.LoginAuthDesignImage {
+  height: 95vh;
+  /* margin: 20px; */
+}
+
+@media (max-width: 950px) {
+  .LoginPasswordInputContainer {
+    margin-top: 5%;
+  }
+}
+
+@media (max-width: 550px) {
+  .LoginDesignContainer {
+    display: none;
+  }
+  .LoginPasswordInputContainer {
+    margin-top: 6%;
+  }
+  input::placeholder {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 653px) {
+  .LoginForgetPasswordContainer {
+    text-align: end;
+  }
+}
+
+@media (max-width: 855px) {
+  .LoginGoogleSignUpButton {
+    padding: 1.4% 20%;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 2px;
+    border-color: #8dd3bb;
+    background-color: white;
+  }
+
+  .LoginGoogleSignUpButton:active {
+    border-width: 2.5px;
+  }
+
+  .LoginContinueWithText {
+    display: none;
+  }
 }

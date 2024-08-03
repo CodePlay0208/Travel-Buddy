@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+p,
+label {
+  font-family: 'Montserrat', sans-serif;
+}
+
+input::placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  padding-left: 4px;
+}
+
+.VerifyCodeContainer {
+  flex: 1;
+  display: flex;
+  background-color: white;
+}
+
+.VerifyCodeFormAndCopyrightContainer {
+  flex: 1.3 1;
+  /* height: 90%; */
+  width: 50%;
+  /* margin-top: 5vh; */
+  /* margin-top: 2.35%; */
+  /* margin-left: 6.8vh; */
+  /* margin-left: 3.5%; */
+  /* margin-right: 12%; */
+  margin: 2.35% 12% 0% 3.5%;
+}
+
+.VerifyCodeFormAndTitleContainer {
+  margin-bottom: 40%;
+}
+
+.VerifyCodeTitleContainer {
+}
+
+.VerifyCodeTitleText {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #42a7c3;
+}
+
+.VerifyCodeBackButtonContainer {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  margin-bottom: 10px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.VerifyCodeBackButtonContainer:hover .VerifyCodeBackButtonText {
+  color: #071007;
+  font-weight: 500;
+}
+
+.VerifyCodeBackButtonContainer:active .VerifyCodeBackButtonText {
+  color: #071007;
+  font-weight: 500;
+}
+
+.VerifyCodeBackButtonText:focus {
+  outline: none;
+}
+
+.VerifyCodeBackButtonIcon {
+  height: 12px;
+}
+
+.VerifyCodeBackButtonText {
+  margin-left: 10px;
+}
+
+.VerifyCodeFormContainer {
+  margin: 6.8%;
+}
+
+.VerifyCodeFormHeadingContainer {
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.VerifyCodeFormHeadingText {
+  font-size: 3.125rem;
+  font-weight: 700;
+}
+
+.VerifyCodeFormSubHeadingContainer {
+}
+
+.VerifyCodeFormSubHeadingText {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.VerifyCodeFormInputsContainer {
+  margin-top: 5%;
+}
+
+.VerifyCodeCodeInputContainer {
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: #112211;
+  border-style: solid;
+  position: relative;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+}
+
+.VerifyCodeCodeText {
+  font-size: 1rem;
+  padding-right: 3px;
+  padding-left: 3px;
+  margin-left: 10px;
+  position: absolute;
+  top: -23%;
+  background-color: white;
+}
+
+.VerifyCodeCodeInput {
+  width: 100%;
+  height: 3rem;
+  border: none;
+  padding: 5px;
+  font-size: 1.125rem;
+  padding-left: 0.625rem;
+  color: #1c1b1f;
+  border-color: #112211;
+}
+
+.VerifyCodePasswordEyeContainer {
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.VerifyCodePasswordEyeIcon {
+  height: 20px;
+}
+
+.VerifyCodeResendCodeContainer {
+  display: flex;
+  margin-top: 2.5%;
+}
+
+.VerifyCodeDidntRecieveText {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.VerifyCodeResendLink {
+  text-decoration: none;
+}
+
+.VerifyCodeResendText {
+  margin-left: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ff8682;
+  cursor: pointer;
+  padding: 0px 1px;
+}
+
+.VerifyCodeResendLink:hover .VerifyCodeResendText {
+  color: #e14944;
+}
+
+.VerifyCodeResendLink:active .VerifyCodeResendText {
+  color: #ca2c27;
+  transform: scale(0VerifyCode98);
+}
+
+.VerifyCodeVerifyButtonContainer {
+  margin-top: 4.5%;
+  border-style: none;
+  border-width: 0px;
+}
+
+.VerifyCodeVerifyButton {
+  background-color: #8dd3bb;
+  padding: 15px;
+  font-size: 1.1rem;
+  width: 100%;
+  border-width: 0px;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.VerifyCodeVerifyButton:active {
+  font-size: 1.125px;
+}
+
+.VerifyCodeCopyrightTextContainer {
+  width: fit-content;
+  /* position: static; */
+  left: -2%;
+  bottom: -3%;
+  z-index: 2;
+}
+
+.VerifyCodeCopyrightText {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.VerifyCodeTravmigozCopyrightText {
+  font-weight: 500;
+}
+
+.VerifyCodeDesignContainer {
+  flex: 1 2;
+  /* width: 40%; */
+  max-width: 42%;
+  /* max-width: 40%; */
+  min-width: 0%;
+  height: fit-content;
+  padding: 20px 0px 0px 0%;
+}
+
+.VerifyCodeAuthDesignImage {
+  height: 95vh;
+}
+
+@media (max-width: 1024px) {
+  .VerifyCodeCodeInputContainer {
+    margin-top: 7%;
+  }
+  .VerifyCodeResendCodeContainer {
+    margin-top: 6%;
+  }
+  .VerifyCodeVerifyButtonContainer {
+    margin-top: 8%;
+  }
+}
+
+@media (max-width: 950px) {
+  .VerifyCodeFormHeadingText {
+    font-size: 2rem;
+  }
+  .VerifyCodeFormSubHeadingText {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .VerifyCodeCodeInputContainer {
+    margin-top: 8.5%;
+  }
+  .VerifyCodeVerifyButtonContainer {
+    margin-top: 10%;
+  }
+}
+@media (max-width: 320px) {
+  .VerifyCodeCodeInputContainer {
+    margin-top: 12%;
+  }
+  .VerifyCodeVerifyButtonContainer {
+    margin-top: 12%;
+  }
+}
+
+@media (max-width: 550px) {
+  .VerifyCodeDesignContainer {
+    display: none;
+  }
+  input::placeholder {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .VerifyCodeInputsContainer {
+    margin-top: 20px;
+  }
+}
