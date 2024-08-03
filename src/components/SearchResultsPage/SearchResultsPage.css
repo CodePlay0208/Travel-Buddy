@@ -19,3 +19,21 @@
     margin-top: 5%;
     width: 100%;
 }
+.search-result-button-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1%;
+}
+.showMoreButton{
+    font-size: 36px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #8DD3BB;
+    width: 268px;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 2%;
+}

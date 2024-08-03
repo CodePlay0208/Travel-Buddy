@@ -72,8 +72,8 @@
 
 .location-box {
     box-sizing: border-box;
-    margin: 10px;
-    width: 30%;
+    margin: 0 5%;
+    width: 20%;
     max-width: 386px;
     height: 75px;
     background: #FFFFFF;
