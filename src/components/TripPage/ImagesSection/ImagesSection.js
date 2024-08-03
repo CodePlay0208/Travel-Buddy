@@ -1,39 +1,35 @@
 import React, { useState } from 'react';
-import './ImagesSection.css'; // Ensure you import the CSS file
+import './ImagesSection.css';
 
-const ImageSection = () => {
-    const images = [
-        'image1.jpg',
-        'image2.jpg',
-        'image3.jpg',
-        'image4.jpg',
-        'image5.jpg',
-        'image6.jpg'
-    ];
-    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+const ImageSection = ({ images }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-    const handleImageClick = (index) => {
-        setSelectedImageIndex(index);
-      };
-    
-      const handleNextImage = () => {
-        setSelectedImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-      };
-    
-      const handlePrevImage = () => {
-        setSelectedImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-      };
-    
-      return (
-        <div className="image-section">
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index);
+  };
+
+  const handleNextImage = () => {
+    setSelectedImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const handlePrevImage = () => {
+    setSelectedImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="image-section">
+      {images.length > 0 ? (
+        <>
           <div className="selected-image-container">
             <img src={images[selectedImageIndex]} alt="Selected" className="selected-image" />
-            <div className="navigation-arrows">
-              <button onClick={handlePrevImage} className="arrow-button">◀</button>
-              <button onClick={handleNextImage} className="arrow-button">▶</button>
-            </div>
+            {images.length > 1 && (
+              <div className="navigation-arrows">
+                <button onClick={handlePrevImage} className="arrow-button">◀</button>
+                <button onClick={handleNextImage} className="arrow-button">▶</button>
+              </div>
+            )}
           </div>
-          <div className="thumbnail-container">
+          <div className={`thumbnail-container thumbnails-${images.length}`}>
             {images.map((image, index) => (
               <img
                 key={index}
@@ -44,8 +40,12 @@ const ImageSection = () => {
               />
             ))}
           </div>
-        </div>
-      );
-    };
+        </>
+      ) : (
+        <div className="no-images">No Images Available</div>
+      )}
+    </div>
+  );
+};
 
 export default ImageSection;

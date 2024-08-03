@@ -8,7 +8,7 @@ import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
 import { ChatContext } from '../../Utils/Context/ChatContext';
 import DatePicker from '../DatePicker/DatePicker';
 import ImagesSection from './ImagesSection/ImagesSection';
-
+import data from "../../data/data.json"
 const TripPage = () => {
   const { id: tripId } = useParams();
   const { loggedInUserValues } = useContext(UserLoginContext);
@@ -154,7 +154,7 @@ const TripPage = () => {
   return (
     <div>
     <Navbar/>
-    <ImagesSection/>
+    <ImagesSection images={data[0].destinationImages}/>
       {/* <Navbar visibilityForSearch={true} />
       <div className="trip-details-container">
         <div className="leftPanel">
