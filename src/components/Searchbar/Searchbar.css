@@ -7,3 +7,18 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  .SearchBar-location {
+    font-style: normal;
+    line-height: 2.5rem; /* Responsive line height */
+    color: #686868;
+    padding: 0%;
+    border: none;
+    outline: none;
+    padding-left: 5%;
+    width: 70%;
+    font-family: Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  

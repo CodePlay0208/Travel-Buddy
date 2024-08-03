@@ -15,7 +15,10 @@ body {
 
 .SearchBar-date::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:#787878;
-    font-weight: 200; /* Responsive font size */
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+    font-size: 1.5rem;
+
   }
 
 
@@ -38,9 +41,10 @@ body {
     font-family: __Inter_aaf875, __Inter_Fallback_aaf875;
     color:#787878;
     border: grey 1.5px solid;
-    font-size: 2rem; /* Responsive font size */
     line-height: 2.5rem; /* Responsive line height */
-
+    font-family: Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .date-picker input:focus {
