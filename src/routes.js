@@ -12,61 +12,61 @@ import UserTrips from "./components/UserProfile/UserTrips/UserTrips";
 import ForgotPassword from "./Screens/ForgotPassword/ForgotPassword";
 import SetPassword from "./Screens/SetPassword/SetPassword";
 
-export const routes = [ 
-    {
-        "path": "/",
-        "element": <LandingPage/>
-    },
+export const routes = [
+  {
+    path: '/',
+    element: <LandingPage />,
+  },
 
-    {
-        "path": "/search-results-page",
-        "element": <SearchResultsPage/>
-    },
-    {
-        "path": "/publish-trip",
-        "element": <PublishTrip/>
-    },
-    {
-        "path": "/chats",
-        "element": <ChatPage/>
-    },
+  {
+    path: '/search-results-page',
+    element: <SearchResultsPage />,
+  },
+  {
+    path: '/publish-trip',
+    element: <PublishTrip />,
+  },
+  {
+    path: '/chats',
+    element: <ChatPage />,
+  },
 
-    {
-        "path": "/login-page",
-        "element": <LoginPage/>
-    },
+  {
+    path: '/login',
+    element: <LoginPage />,
+  },
 
-    {
-        "path": "/user-profile",
-        "element": <UserProfile/>
-    },
+  {
+    path: '/user-profile',
+    element: <UserProfile />,
+  },
 
-    {
-        "path": "/user-trips",
-        "element": <UserTrips/>
-    },
+  {
+    path: '/user-trips',
+    element: <UserTrips />,
+  },
 
-    {
-        "path": "/trip/:id",
-        "element": <TripPage/>
-    },
-    {
-        "path": "/verify-otp",
-        "element": <VerifyCode/>
-    },
+  {
+    path: '/trip/:id',
+    element: <TripPage />,
+  },
+  {
+    path: '/verify-otp',
+    element: <VerifyCode />,
+  },
 
-    {
-        "path": "/forogt-password",
-        "element": <ForgotPassword/>
-    },
+  {
+    path: '/forget-password',
+    element: <ForgotPassword />,
+  },
 
-    {
-        "path": "/set-password",
-        "element": <SetPassword/>
-    },
+  {
+    path: '/set-password',
+    element: <SetPassword />,
+  },
 
-    {
-        "path": "/signup",
-        "element": <SignUp/>
-    },
+  {
+    path: '/signup',
+    element: <SignUp />,
+  },
 ]

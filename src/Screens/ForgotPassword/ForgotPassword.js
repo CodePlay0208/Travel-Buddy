@@ -1,14 +1,15 @@
-import React, { useContext, useState, memo } from 'react'
+import React, { useState, memo, useEffect } from 'react'
 import './ForgotPassword.css'
-import { useNavigate } from 'react-router-dom'
-import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { SVG } from '../../assets'
+import { connect } from 'react-redux'
+import { forgetPassword } from '../../actions/auth.action'
 
-const ForgotPasswordPage = () => {
-  const { setLoggedInUserValues } = useContext(UserLoginContext)
+const ForgotPasswordPage = (props) => {
+  const { forgetPassword } = props
   const navigate = useNavigate()
+  const location = useLocation()
 
-  const [isLoading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
 
   const handleEmailChange = (e) => {
@@ -16,12 +17,19 @@ const ForgotPasswordPage = () => {
   }
 
   const handleBackButtonClick = () => {
-    console.log('clikced')
+    navigate(-1)
   }
 
-  const onSubmitClick = () => {
-    console.log('clikced')
+  const onSubmitClick = async (e) => {
+    e.preventDefault()
+    const isForgetPassSuccess = await forgetPassword(email)
+    if (isForgetPassSuccess) {
+      sessionStorage.setItem('prevRoute', location.pathname)
+      navigate('/verify-otp')
+    }
   }
+
+  useEffect(() => {}, [])
 
   return (
     <div className="ForgetPassContainer">
@@ -33,7 +41,7 @@ const ForgotPasswordPage = () => {
           <div className="ForgetPassFormContainer">
             <div className="ForgetPassBackButtonContainer" role="button" onClick={handleBackButtonClick}>
               <img src={SVG.BackButtonIcon} className="ForgetPassBackButtonIcon" />
-              <p className="ForgetPassBackButtonText">Back to login</p>
+              <p className="ForgetPassBackButtonText">Back</p>
             </div>
             <div className="ForgetPassFormHeadingContainer">
               <p className="ForgetPassFormHeadingText">Forgot your password?</p>
@@ -44,7 +52,7 @@ const ForgotPasswordPage = () => {
               </p>
             </div>
             <div className="ForgetPassFormInputsContainer">
-              <form>
+              <form onSubmit={onSubmitClick}>
                 <div className="ForgetPassEmailInputContainer">
                   <label className="ForgetPassEmailText">Email</label>
                   <input
@@ -58,7 +66,7 @@ const ForgotPasswordPage = () => {
                   />
                 </div>
                 <div className="ForgetPassSubmitButtonContainer">
-                  <button className="ForgetPassSubmitButton" onClick={onSubmitClick}>
+                  <button className="ForgetPassSubmitButton" type="submit">
                     Submit
                   </button>
                 </div>
@@ -93,4 +101,4 @@ const ForgotPasswordPage = () => {
   )
 }
 
-export default memo(ForgotPasswordPage)
+export default connect(null, { forgetPassword })(memo(ForgotPasswordPage))

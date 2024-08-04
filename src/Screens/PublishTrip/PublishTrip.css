@@ -1,8 +1,7 @@
 .publish__trip__page {
   position: relative;
   width: 100%;
-
-  background: #f5f7f9; /* Optional: Background for the whole page */
+  background: #f5f7f9;
 }
 .input-field,
 .description-field {
@@ -33,12 +32,11 @@
 
 .publish__trip__heading {
   position: relative;
-  
+
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 3.5vw; /* Use vw for responsiveness */
   line-height: 1.8;
-  
 }
 
 .publish__trip__content {
@@ -332,64 +330,85 @@
   }
 }
 .file-uploader-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    
-  
-    position: relative;
-  }
-  
-  .file-upload-label {
-    
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 150%;
-    color: #000000;
-  
-  }
-  
-  .file-upload-box {
-    
-    background: #F1F4F9;
-    border-radius: 6px;
-    position: relative;
-    width: 100%;
-    height: 40px;
-    display: flex;
-    padding: 0 0 0 10px;
-    align-items: center;
-    margin: 3%;
-  }
-  
-  .file-upload-placeholder {
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 150%;
-    color: #AAB6C1;
-  }
-  
-  .upload-button-container {
-    margin-left: auto;
-  }
-  
-  .upload-button {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 40px;
-    background-color: #8dd3bb;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 12px;
-    border-radius: 6px;
-    border: 0;
-    color: #3c3c3c;
-  }
-  
-  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
+  position: relative;
+}
+
+.file-upload-label {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  color: #000000;
+}
+
+.file-upload-box {
+  background: #f1f4f9;
+  border-radius: 6px;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  padding: 0 0 0 10px;
+  align-items: center;
+  margin: 3%;
+}
+
+.file-upload-placeholder {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  color: #aab6c1;
+}
+
+.upload-button-container {
+  margin-left: auto;
+}
+
+.upload-button {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 40px;
+  background-color: #8dd3bb;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 12px;
+  border-radius: 6px;
+  border: 0;
+  color: #3c3c3c;
+}
+
+.image-preview-section {
+  flex: 1;
+  flex-direction: row;
+}
+
+.preview-image-item-container {
+  margin: 5px;
+}
+
+.preview-image-item {
+  width: 95px;
+  height: 95px
+}
+
+.preview-image-cross-container {
+  position: relative;
+  top: -100px;
+  right: -90px;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-image-remove-button {
+  height: 15px;
+  width: 15px;
+  border-radius: 10px;
+}
