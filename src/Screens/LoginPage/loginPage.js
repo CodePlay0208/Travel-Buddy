@@ -5,6 +5,7 @@ import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
 import { toast } from 'react-toastify'
 import { SVG } from '../../assets'
 import './loginPage.css'
+import { setGoogleToken } from '../../api-services/api-services'
 
 const LoginPage = () => {
   const { setLoggedInUserValues } = useContext(UserLoginContext)
@@ -15,6 +16,7 @@ const LoginPage = () => {
     onSuccess: (response) => {
       console.log(response)
       const token = response.access_token
+      setGoogleToken(token)
 
       // Send the token to your backend for verification and user data fetching
       fetch('http://localhost:4000/login/googleLogin', {
