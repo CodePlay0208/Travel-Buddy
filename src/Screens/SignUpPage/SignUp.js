@@ -1,5 +1,5 @@
 import React, { useState, memo, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import { connect } from 'react-redux'
 import { register } from '../../actions/auth.action'
@@ -8,31 +8,21 @@ import { SVG } from '../../assets'
 import './SignUp.css'
 
 const mapStateToProps = (state) => ({
-  user: state.user,
-  isLoading: state.isLoading
+  user: state.auth.user,
+  isLoading: state.auth.isLoading,
 })
 
 const SignUp = (props) => {
-  const { user, isLoading, register } = props
-  const navigate = useNavigate()
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const { register } = props
   const [securePasswordText, setSecurePasswordText] = useState(true)
   const [secureConfirmPasswordText, setSecureConfirmPasswordText] = useState(true)
   const [isTermsAggrementChecked, setIsTermsAggrementChecked] = useState(false)
-
-  const handleInputChange = (e, setInput) => {
-    setInput(e.target.value)
-  }
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const toggleTermsAgreementCheck = () => {
     setIsTermsAggrementChecked((prevState) => !prevState)
   }
-  // TO DISCUSS: can't have specific type defined this way
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -47,12 +37,12 @@ const SignUp = (props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const checkValueIsValid = useCallback((value) => {
-    if (value == '' || value == undefined || value == null) {
+  const checkValueIsValid = (value) => {
+    if (value === '' || value === undefined || value === null) {
       return false
     }
     return true
-  }, [])
+  }
 
   const PasswordEyeComponent = memo((props) => {
     const { secureTextState, setSecureTextState } = props
@@ -72,49 +62,38 @@ const SignUp = (props) => {
     )
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    var validEmail = checkValueIsValid(formData.userEmail)
-    var validPassword = checkValueIsValid(formData.password)
+    const validEmail = checkValueIsValid(formData.email)
+    const validPassword = checkValueIsValid(formData.password)
 
     if (!(validEmail && validPassword)) {
-      toast.error('EmailId or Password Not Valid', {
+      toast.error('email-id or password not valid', {
         autoClose: 1500,
       })
       return
     }
-    if (formData.password != formData.confirmPassword) {
-      toast.error("Passwords Don't match", {
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords don't match", {
         autoClose: 1500,
       })
       return
     }
-    if (formData.password != formData.confirmPassword) {
-      toast.error("Passwords Don't match", {
-        autoClose: 1500,
-      })
-      return
-    }
-    register(formData)
-    // TODO: have to add toasts and handle different scenario
-    const previousURL = sessionStorage.getItem('redirectUrl') || '/'
-    sessionStorage.removeItem('redirectUrl')
+    const isAuth = await register(formData)
 
-    toast.success('User Signed In Successfully', {
-      autoClose: 1000,
-    })
-
-    setTimeout(() => {
-      navigate(previousURL)
-    }, 800)
+    if (isAuth) {
+      sessionStorage.setItem('prevRoute', location.pathname)
+      navigate('/verify-otp')
+    }
   }
 
   // const handleSubmit = (e) => {
   //   e.preventDefault()
-  //   // Add validation logic here (e.g., check if passwords match)
   //
-  //   var validEmail = checkValueIsValid(formData.userEmail)
+  //   var validEmail = checkValueIsValid(formData.email)
   //   var validPassword = checkValueIsValid(formData.password)
+  //   console.log(validEmail, validPassword)
+  //   console.log(formData.password, formData.confirmPassword)
   //
   //   if (!(validEmail && validPassword)) {
   //     toast.error('EmailId or Password Not Valid', {
@@ -123,7 +102,7 @@ const SignUp = (props) => {
   //     return
   //   }
   //
-  //   if (formData.password != formData.confirmPassword) {
+  //   if (formData.password !== formData.confirmPassword) {
   //     toast.error("Passwords Don't match", {
   //       autoClose: 1500,
   //     })
@@ -137,11 +116,12 @@ const SignUp = (props) => {
   //       'Content-Type': 'application/json',
   //     },
   //     body: JSON.stringify({
-  //       userEmail: formData.userEmail,
+  //       userEmail: formData.email,
   //       password: formData.password,
   //     }),
   //   })
   //     .then((response) => {
+  //       console.log('asa')
   //       if (!response.ok) {
   //         return response.json().then((error) => {
   //           throw new Error(error)
@@ -176,7 +156,6 @@ const SignUp = (props) => {
   //       return
   //     })
   // }
-
   return (
     <div className="SignUpContainer">
       <div className="SignUpFormAndCopyrightContainer">
@@ -192,7 +171,7 @@ const SignUp = (props) => {
               <p className="SignUpFormSubHeadingText">Let’s get you all set up so you can access your account.</p>
             </div>
             <div className="SignUpFormInputsContainer">
-              <form onSubmit={handleSubmit}>
+              <form action="post" onSubmit={handleSubmit}>
                 <div className="SignUpNameInputContainer">
                   <div className="SignUpFirstNameInputContainer">
                     <label className="SignUpFirstNameLabel">First Name</label>
@@ -251,7 +230,7 @@ const SignUp = (props) => {
                   <label className="SignUpPasswordText">Password</label>
                   <input
                     className="SignUpPasswordInput"
-                    type={securePasswordText ? 'password' : 'email'}
+                    type={securePasswordText ? 'password' : 'text'}
                     name="password"
                     id="password"
                     value={formData.password}
@@ -265,7 +244,7 @@ const SignUp = (props) => {
                   <label className="SignUpConfirmPasswordText">Confirm Password</label>
                   <input
                     className="SignUpConfirmPasswordInput"
-                    type={secureConfirmPasswordText ? 'password' : 'email'}
+                    type={secureConfirmPasswordText ? 'password' : 'text'}
                     name="confirmPassword"
                     value={formData.confirmPassword}
                     onChange={handleChange}
@@ -301,7 +280,7 @@ const SignUp = (props) => {
                 </div>
                 <div className="SignUpAlreadyHaveContainer">
                   <p className="SignUpAlreadyHaveText">Already have an account?</p>
-                  <a href="/login-page" className="SignUpLoginLink">
+                  <a href="/login" className="SignUpLoginLink">
                     <p className="SignUpLoginText">Login</p>
                   </a>
                 </div>
@@ -332,6 +311,7 @@ const SignUp = (props) => {
       <div className="SignUpDesignContainer">
         <img src={SVG.AuthDesignSection} className="SignUpAuthDesignImage" alt="AuthDesignImage" />
       </div>
+      <ToastContainer />
     </div>
   )
 }

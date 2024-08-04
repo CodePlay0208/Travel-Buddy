@@ -14,6 +14,10 @@ import startDate from './startDate.svg'
 import endDate from './endDate.svg'
 import startLocation from './startLocation.svg'
 import endLocation from './endLocation.svg'
+import editButton from './editButton.svg'
+import ChatButton from './ChatButton.svg'
+import ProfileIcon from './ProfileIcon.svg'
+
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -30,4 +34,7 @@ export const SVG = {
   age,
   gender,
   LocationIcon,
+  editButton,
+  ChatButton,
+  ProfileIcon
 }

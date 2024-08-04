@@ -1,13 +1,20 @@
-import React, { useContext, useState, memo } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
+import React, { useEffect, useState, memo } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { SVG } from '../../assets'
 import './VerifyCode.css'
-const VerifyCode = () => {
-  const { setLoggedInUserValues } = useContext(UserLoginContext)
-  const navigate = useNavigate()
+import { connect } from 'react-redux'
+import { verifyOTP, resendOTP } from '../../actions/auth.action'
+import { ToastContainer } from 'react-toastify'
 
-  const [isLoading, setLoading] = useState(false)
+const mapStateToProps = (state) => ({
+  otpVerified: state.auth.otpVerified,
+})
+
+const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const origin = sessionStorage.getItem('prevRoute')
+
   const [verificationCode, setVerificationCode] = useState('')
   const [secureVerificationCode, setSecureVerificationCode] = useState(true)
 
@@ -15,7 +22,19 @@ const VerifyCode = () => {
     setVerificationCode(e.target.value)
   }
 
-  const handleBackButtonClick = () => {}
+  const handleBackButtonClick = () => {
+    navigate(-1)
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const isSignUpRequest = origin === '/signup'
+    verifyOTP(verificationCode, isSignUpRequest)
+  }
+
+  const onResendClick = async () => {
+    await resendOTP()
+  }
 
   const PasswordEyeComponent = memo((props) => {
     const { secureTextState, setSecureTextState } = props
@@ -35,6 +54,16 @@ const VerifyCode = () => {
     )
   })
 
+  useEffect(() => {
+    if (otpVerified) {
+      if (origin === '/signup') {
+        navigate('/');
+      } else if (origin === '/forget-password') {
+        navigate('/set-password');
+      }
+    }
+  }, [otpVerified, navigate]);
+
   return (
     <div className="VerifyCodeContainer">
       <div className="VerifyCodeFormAndCopyrightContainer">
@@ -45,7 +74,7 @@ const VerifyCode = () => {
           <div className="VerifyCodeFormContainer">
             <div className="VerifyCodeBackButtonContainer" role="button" onClick={handleBackButtonClick}>
               <img src={SVG.BackButtonIcon} className="VerifyCodeBackButtonIcon" />
-              <p className="VerifyCodeBackButtonText">Back to login</p>
+              <p className="VerifyCodeBackButtonText">Back</p>
             </div>
             <div className="VerifyCodeFormHeadingContainer">
               <p className="VerifyCodeFormHeadingText">Verify code</p>
@@ -54,7 +83,7 @@ const VerifyCode = () => {
               <p className="VerifyCodeFormSubHeadingText">An authentication code has been sent to your email.</p>
             </div>
             <div className="VerifyCodeFormInputsContainer">
-              <form>
+              <form onSubmit={onSubmit}>
                 <div className="VerifyCodeCodeInputContainer">
                   <label className="VerifyCodeCodeText">Enter Code</label>
                   <input
@@ -70,12 +99,12 @@ const VerifyCode = () => {
                 </div>
                 <div className="VerifyCodeResendCodeContainer">
                   <p className="VerifyCodeDidntRecieveText">Didn’t receive a code?</p>
-                  <a href="#" className="VerifyCodeResendLink">
+                  <a href="#" className="VerifyCodeResendLink" onClick={onResendClick}>
                     <p className="VerifyCodeResendText">Resend</p>
                   </a>
                 </div>
                 <div className="VerifyCodeVerifyButtonContainer">
-                  <button className="VerifyCodeVerifyButton">Verify</button>
+                  <button type="submit" className="VerifyCodeVerifyButton">Verify</button>
                 </div>
               </form>
             </div>
@@ -90,8 +119,9 @@ const VerifyCode = () => {
       <div className="VerifyCodeDesignContainer">
         <img src={SVG.AuthDesignSection} className="VerifyCodeAuthDesignImage" alt="AuthDesignImage" />
       </div>
+      <ToastContainer />
     </div>
   )
 }
 
-export default memo(VerifyCode)
+export default connect(mapStateToProps, { verifyOTP, resendOTP })(memo(VerifyCode))

@@ -1,71 +1,58 @@
-import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import Navbar from '../../Navbar/Navbar';
-import UserSideBar from '../UserSideBar/UserSideBar';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { UserLoginContext } from '../../../Utils/Context/LoggedInUserContext';
-import { useNavigate } from 'react-router-dom';
-import Trip from '../../Trip/Trip';
-import './UserTrips.css';
+import React, { useEffect, memo } from 'react'
+import Navbar from '../../Navbar/Navbar'
+import UserSideBar from '../UserSideBar/UserSideBar'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import Trip from '../../Trip/Trip'
+import './UserTrips.css'
+import { connect } from 'react-redux'
+import { getUserTrips, deleteUserTrip } from '../../../actions/trips.action'
 
-const UserTrips = () => {
-  const [tripsData, setTripsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const { loggedInUserValues } = useContext(UserLoginContext);
-  const navigate = useNavigate();
+const mapStateToProps = (state) => ({
+  user: state.trip.user,
+  loading: state.trip.loading,
+  error: state.trip.error,
+})
+
+const UserTrips = (props) => {
+  const { user, loading, error } = props
+
+  const fetchUserTrips = () => {
+    try {
+      getUserTrips()
+    } catch (e) {
+      toast.error('Failed to fetch trips data.')
+    }
+  }
 
   useEffect(() => {
-    if (!loggedInUserValues) {
-      navigate('/login-page');
-      return;
-    }
-
-    const fetchUserTrips = async () => {
-      try {
-        const response = await axios.get('http://localhost:4000/api/tripsByUser', { withCredentials: true });
-        setTripsData(response.data);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-        toast.error('Failed to fetch trips data.');
-      }
-    };
-
-    fetchUserTrips();
-  }, [loggedInUserValues, navigate]);
+    fetchUserTrips()
+  }, [fetchUserTrips])
 
   const handleDeleteTrip = (deletedTripId) => {
-    setTripsData(tripsData.filter(trip => trip._id !== deletedTripId));
-  };
+    deleteUserTrip(deletedTripId)
+  }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error.message}</div>
   }
 
   return (
-    <div className='userTripsHeadContainer'>
+    <div className="userTripsHeadContainer">
       <Navbar visibilityForSearch={true} />
-      <div className='userTripsInnerContainer'>
-        <div className='sideBarContainerInUserTrips'>
+      <div className="userTripsInnerContainer">
+        <div className="sideBarContainerInUserTrips">
           <UserSideBar />
         </div>
-        <div className='searchResultsContainerInUserTrips'>
-          {tripsData.length > 0 ? (
+        <div className="searchResultsContainerInUserTrips">
+          {user.trips.length > 0 ? (
             <ul>
-              {tripsData.map(trip => (
-                <Trip 
-                  key={trip._id} 
-                  trip={trip} 
-                  showDeleteButton={true} // You can set this based on any condition you want
-                  onDeleteSuccess={handleDeleteTrip} 
-                />
+              {user.trips.map((trip) => (
+                <Trip key={trip._id} trip={trip} showDeleteButton={true} onDeleteTrip={handleDeleteTrip} />
               ))}
             </ul>
           ) : (
@@ -75,7 +62,7 @@ const UserTrips = () => {
       </div>
       <ToastContainer />
     </div>
-  );
-};
+  )
+}
 
-export default UserTrips;
+export default connect(mapStateToProps, { getUserTrips, deleteUserTrip })(memo(UserTrips))

@@ -1,79 +1,77 @@
-import React, { useState,useEffect } from 'react';
-import './Searchbar.css';
-import { SVG } from '../../assets';
-import axios from 'axios';
+import React, { useState, memo } from 'react'
+import './Searchbar.css'
+import { SVG } from '../../assets'
+import axios from 'axios'
+import { getLocationSuggestions } from '../../actions/location.action'
+import { connect } from 'react-redux'
 
-const Searchbar = ({ inputValues, setInputValues, onValue, placeholderValue }) => {
-  const [suggestions, setSuggestions] = useState([]); // To store location suggestions
-  const [isDropdownVisible, setDropdownVisible] = useState(false);
+const mapStateToProps = (state) => ({
+  suggestions: state.location.suggestions
+})
+
+const Searchbar = (props) => {
+  const { suggestions, getLocationSuggestions, inputValues, setInputValues, onValue, placeholderValue } = props
+  const [isDropdownVisible, setDropdownVisible] = useState(false)
 
   const searchBarChangeHandler = async (event) => {
-    
-    const value = event.target.value;
-    console.log(value);
+    const value = event.target.value
     setInputValues((currentInputValues) => ({
       ...currentInputValues,
-      [onValue]: value
-    }));
+      [onValue]: value,
+    }))
 
-    // Fetch location suggestions using axios
     if (value.length > 2) {
       try {
-        const response = await axios.get(`http://localhost:4000/location/getLocationByName/${value}`);
-        setSuggestions(response.data); // Assuming response.data contains the city and state objects
-        setDropdownVisible(true);
+        const suggestionSuccess = await getLocationSuggestions(value)
+        setDropdownVisible(true)
       } catch (error) {
-        console.error('Error fetching location suggestions:', error);
+        console.error('Error fetching location suggestions:', error)
       }
     } else {
-      setDropdownVisible(false); // Hide dropdown if input length is less than 3
+      setDropdownVisible(false)
     }
-  };
+  }
   const selectSuggestion = (suggestion) => {
-    // Set the selected value in the input field
     setInputValues((currentInputValues) => ({
       ...currentInputValues,
       [onValue]: `${suggestion.city}, ${suggestion.state}`,
-    }));
-  
-    // Debug: Check if the inputValues are updated correctly
-    console.log("Updated inputValues:", inputValues);
-  
-    // Hide the dropdown after ensuring the value is updated
-    setTimeout(() => setDropdownVisible(false), 0);
-  };
-  
+    }))
+
+    setTimeout(() => setDropdownVisible(false), 0)
+  }
+
+  const customId = `searchbar-input-${onValue}`
 
   return (
-    <div className="SearchBar-DestinationContainer" onClick={() => { document.getElementById('searchBar-destination-input').focus(); }}>
+    <div
+      className="SearchBar-DestinationContainer"
+      onClick={() => {
+        document.getElementById(`searchbar-input-${onValue}`).focus()
+      }}
+    >
       <input
         type="text"
         className="SearchBar-location"
         placeholder={placeholderValue}
-        id="searchBar-destination-input"
-        value={inputValues} // Show the selected value in the input field
+        id={customId}
+        value={inputValues}
         onChange={searchBarChangeHandler}
         autoComplete="off"
       />
       <div className="SearchBar-Image">
         <img src={SVG.LocationIcon} className="locationIcon" alt="Location Icon" />
       </div>
-      {/* Dropdown for suggestions */}
       {isDropdownVisible && suggestions.length > 0 && (
         <ul className="SearchBar-Dropdown">
           {suggestions.map((suggestion, index) => (
-            <li
-              key={index}
-              className="SearchBar-DropdownItem"
-              onClick={() => selectSuggestion(suggestion)}
-            >
+            <li key={index} className="SearchBar-DropdownItem" onClick={() => selectSuggestion(suggestion)}>
               {suggestion.city}, {suggestion.state}
             </li>
           ))}
         </ul>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Searchbar;
+export default connect(mapStateToProps, { getLocationSuggestions })(memo(Searchbar))

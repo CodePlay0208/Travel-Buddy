@@ -1,22 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './DatePicker.css';
+import React, { useState, useEffect, useRef } from 'react'
+import './DatePicker.css'
 
 const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(inputValues);
-  const [showCalendar, setShowCalendar] = useState(false);
-  const dateInputRef = useRef(null);
-  const calendarRef = useRef(null);
+  const [currentDate, setCurrentDate] = useState(new Date())
+  const [selectedDate, setSelectedDate] = useState(inputValues)
+  const [showCalendar, setShowCalendar] = useState(false)
+  const dateInputRef = useRef(null)
+  const calendarRef = useRef(null)
 
-  const today = new Date();
-  const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
+  const today = new Date()
+  const tomorrow = new Date(today)
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())
 
   useEffect(() => {
-    console.log(inputValues);
-    setSelectedDate(dateToString(inputValues));
-  }, [inputValues]);
+    setSelectedDate(dateToString(inputValues))
+  }, [inputValues])
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -26,35 +25,35 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
         dateInputRef.current &&
         !dateInputRef.current.contains(event.target)
       ) {
-        setShowCalendar(false);
+        setShowCalendar(false)
         if (!selectedDate) {
-          handleTodayClick();
+          handleTodayClick()
         }
       }
-    };
+    }
 
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('click', handleClickOutside)
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [selectedDate]);
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [selectedDate])
 
   const populateDays = () => {
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
-    const firstDay = new Date(year, month, 1).getDay();
-    const lastDate = new Date(year, month + 1, 0).getDate();
+    const year = currentDate.getFullYear()
+    const month = currentDate.getMonth()
+    const firstDay = new Date(year, month, 1).getDay()
+    const lastDate = new Date(year, month + 1, 0).getDate()
 
-    const days = [];
+    const days = []
     for (let i = 0; i < firstDay; i++) {
-      days.push(<span key={`empty-${i}`} className="empty-day" />);
+      days.push(<span key={`empty-${i}`} className="empty-day" />)
     }
 
     for (let i = 1; i <= lastDate; i++) {
-      const date = new Date(year, month, i);
-      const isPastDate = date < new Date(today.setHours(0, 0, 0, 0));
-      const isFutureDate = date > oneYearLater;
+      const date = new Date(year, month, i)
+      const isPastDate = date < new Date(today.setHours(0, 0, 0, 0))
+      const isFutureDate = date > oneYearLater
 
       days.push(
         <span
@@ -63,92 +62,86 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
           onClick={!isPastDate && !isFutureDate ? () => handleDateSelect(date) : null}
         >
           {i}
-        </span>
-      );
+        </span>,
+      )
     }
 
-    return days;
-  };
-
+    return days
+  }
 
   const parseDatestring = (dateString) => {
-    const [day, month, year] = dateString.split('-').map(Number);
-    return new Date(year, month - 1, day); // Months are zero-indexed
-  };
+    const [day, month, year] = dateString.split('-').map(Number)
+    return new Date(year, month - 1, day)
+  }
 
   const dateToString = (dateString) => {
     if (dateString === '') {
-      return '';
+      return ''
     }
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
+    const today = new Date()
+    const tomorrow = new Date(today)
+    tomorrow.setDate(today.getDate() + 1)
 
-    const dateValue = parseDatestring(dateString);
-    console.log(dateString);
-    console.log(dateValue);
-    
-  const formatDate = (date) => {
-    const options = { weekday: 'short', day: 'numeric', month: 'short' };
-    const parts = date.toLocaleDateString('en-US', options).split(' ');
-    console.log(parts);
-    return `${parts[0]} ${parts[2]} ${parts[1]}`;
-  };
+    const dateValue = parseDatestring(dateString)
+
+    const formatDate = (date) => {
+      const options = { weekday: 'short', day: 'numeric', month: 'short' }
+      const parts = date.toLocaleDateString('en-US', options).split(' ')
+      return `${parts[0]} ${parts[2]} ${parts[1]}`
+    }
     if (dateValue.toDateString() === today.toDateString()) {
-      return 'Today';
+      return 'Today'
     } else if (dateValue.toDateString() === tomorrow.toDateString()) {
-      return 'Tomorrow';
+      return 'Tomorrow'
     } else {
-      const dayName = dateValue.toLocaleDateString('en-US', { weekday: 'long' }); // Get the day name
-      const formattedDate = dateToStringSimple(dateValue);
-      return formatDate(dateValue);
+      const dayName = dateValue.toLocaleDateString('en-US', { weekday: 'long' }) // Get the day name
+      const formattedDate = dateToStringSimple(dateValue)
+      return formatDate(dateValue)
     }
-  };
-
+  }
 
   const dateToStringSimple = (date) => {
-    const dateValue = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    const day = String(dateValue.getDate()).padStart(2, '0');
-    const month = String(dateValue.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
-    const year = dateValue.getFullYear();
+    const dateValue = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+    const day = String(dateValue.getDate()).padStart(2, '0')
+    const month = String(dateValue.getMonth() + 1).padStart(2, '0') // Months are zero-indexed
+    const year = dateValue.getFullYear()
 
-    return `${day}-${month}-${year}`;
-
-  };
+    return `${year}-${month}-${day}`
+  }
 
   const handleDateSelect = (date) => {
-    const dateString = dateToStringSimple(date);
+    const dateString = dateToStringSimple(date)
 
     setInputValues((currentInputValues) => ({
       ...currentInputValues,
       [onValue]: dateString,
-    }));
-    setShowCalendar(false);
-  };
+    }))
+    setShowCalendar(false)
+  }
 
   const handlePrevMonth = () => {
-    const prevMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
+    const prevMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
     if (prevMonthDate >= new Date(today.getFullYear(), today.getMonth(), 1)) {
-      setCurrentDate(prevMonthDate);
+      setCurrentDate(prevMonthDate)
     }
-  };
+  }
 
   const handleNextMonth = () => {
-    const nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
+    const nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
     if (nextMonthDate <= oneYearLater) {
-      setCurrentDate(nextMonthDate);
+      setCurrentDate(nextMonthDate)
     }
-  };
+  }
 
   const handleTodayClick = () => {
-    setSelectedDate('Today');
-    setCurrentDate(new Date());
+    setSelectedDate('Today')
+    setCurrentDate(new Date())
     setInputValues((currentInputValues) => ({
       ...currentInputValues,
       [onValue]: dateToStringSimple(new Date()),
-    }));
-    setShowCalendar(false);
-  };
+    }))
+    setShowCalendar(false)
+  }
 
   return (
     <div className="date-picker">
@@ -160,17 +153,51 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
           placeholder={placeholderValue}
           readOnly
           onClick={() => setShowCalendar(!showCalendar)}
-          className='SearchBar-date'
+          className="SearchBar-date"
         />
         <svg className="calendar-icon" viewBox="0 0 40 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M1.59958 9.59823V2.55313C1.59958 1.13899 2.73537 0 4.15111 0H35.8413C37.2522 0 38.3928 1.13899 38.3928 2.55313V9.59823" fill="#C7C7C7" />
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M2.84398 6.3988H37.1561C38.6918 6.3988 40.3651 7.69936 39.93 9.17429L36.7305 19.9963L39.93 34.0193C40.2723 35.5166 38.6934 36.7932 37.1561 36.7932H2.84398C1.30827 36.7932 -0.272241 35.5166 0.0700959 34.0193L3.26951 19.9963L0.0700959 9.17429C-0.365024 7.69936 1.30667 6.3988 2.84398 6.3988Z" fill="#12AEF5" />
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M2.84398 6.3988H37.1561C38.6918 6.3988 40.3651 7.69936 39.93 9.17429L36.7305 19.9963H3.26951L0.0700959 9.17429C-0.365024 7.69936 1.30667 6.3988 2.84398 6.3988Z" fill="#4788F4" />
-          <path d="M18.6093 10.481C15.7778 9.97711 13.0231 11.7545 12.2824 14.5492C12.2281 14.7543 12.2575 14.9727 12.3642 15.1561C12.4708 15.3396 12.646 15.473 12.8511 15.5274C13.0563 15.5817 13.2746 15.5524 13.458 15.4457C13.6415 15.3391 13.775 15.1638 13.8293 14.9587C14.0752 13.9971 14.6754 13.164 15.5095 12.6261C16.3437 12.0883 17.3504 11.8855 18.3277 12.0585C19.3079 12.2367 20.1856 12.7758 20.7877 13.5695C21.3898 14.3632 21.6724 15.3537 21.5799 16.3456C21.502 17.3368 21.0539 18.2626 20.3248 18.9386C19.5957 19.6147 18.6389 19.9915 17.6446 19.9945C17.4325 19.9945 17.2291 20.0788 17.0791 20.2288C16.9291 20.3788 16.8448 20.5822 16.8448 20.7944C16.8448 21.0065 16.9291 21.2101 17.0791 21.3601C17.2291 21.5101 17.4325 21.5942 17.6446 21.5942C20.5193 21.5942 22.9237 19.3643 23.1732 16.4832C23.4228 13.6022 21.4407 10.9849 18.6093 10.481Z" fill="#F9F9F9" />
-          <path d="M16.7967 19.9946C16.5845 19.9946 16.3811 20.079 16.2311 20.229C16.0811 20.379 15.9968 20.5823 15.9968 20.7945C15.9968 21.0066 16.0811 21.2102 16.2311 21.3602C16.3811 21.5102 16.5845 21.5943 16.7967 21.5943C18.7403 21.5943 20.4872 22.7637 21.2295 24.5602C21.5936 25.4371 21.6892 26.4024 21.5041 27.3337C21.319 28.265 20.8615 29.1203 20.1897 29.7913C19.5187 30.4631 18.6634 30.9206 17.7321 31.1057C16.8008 31.2908 15.8355 31.1953 14.9586 30.8311C14.0814 30.4683 13.3317 29.8531 12.8045 29.0637C12.2773 28.2742 11.9965 27.3461 11.9976 26.3968C11.9976 26.1846 11.9133 25.9811 11.7633 25.8311C11.6133 25.6811 11.4098 25.5969 11.1977 25.5969C10.9856 25.5969 10.7821 25.6811 10.6321 25.8311C10.4821 25.9811 10.3979 26.1846 10.3979 26.3968C10.3979 28.9835 11.9576 31.3189 14.3475 32.3092C15.5172 32.7929 16.804 32.9193 18.0454 32.6722C19.2868 32.425 20.4271 31.8156 21.3222 30.9207C22.2162 30.0253 22.8249 28.885 23.0715 27.644C23.3181 26.403 23.1914 25.1168 22.7076 23.9476C22.2228 22.7788 21.4027 21.7797 20.3507 21.0765C19.2987 20.3732 18.062 19.9975 16.7967 19.9964V19.9946Z" fill="#F9F9F9" />
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M28.7816 10.3963C28.6765 10.398 28.5728 10.4204 28.4764 10.4622C28.38 10.5039 28.2928 10.5642 28.2197 10.6397C28.1466 10.7151 28.0891 10.8042 28.0505 10.9019C28.0118 10.9996 27.9928 11.104 27.9945 11.2091V32.0053C27.9945 32.2174 28.0788 32.4208 28.2288 32.5708C28.3788 32.7208 28.5822 32.8051 28.7944 32.8051C29.0065 32.8051 29.2099 32.7208 29.3599 32.5708C29.5099 32.4208 29.5942 32.2174 29.5942 32.0053V11.2091C29.5959 11.1019 29.5761 10.9954 29.5359 10.8961C29.4956 10.7967 29.4359 10.7063 29.36 10.6305C29.2842 10.5547 29.194 10.495 29.0946 10.4547C28.9952 10.4145 28.8888 10.3946 28.7816 10.3963Z" fill="#F9F9F9" />
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M28.8201 10.3901C28.7213 10.3864 28.6225 10.401 28.529 10.4333L23.7523 12.033C23.6525 12.0664 23.5603 12.119 23.4808 12.188C23.4014 12.2571 23.3364 12.3411 23.2895 12.4352C23.2425 12.5294 23.2146 12.632 23.2073 12.7369C23.1999 12.8419 23.2134 12.9472 23.2468 13.047C23.2802 13.1468 23.3329 13.2391 23.4019 13.3185C23.471 13.3979 23.555 13.4629 23.6492 13.5098C23.7434 13.5568 23.8459 13.5847 23.9508 13.592C24.0558 13.5994 24.1612 13.586 24.261 13.5526L29.0377 11.9529C29.2184 11.8963 29.3732 11.7776 29.4745 11.6176C29.5758 11.4576 29.6171 11.2668 29.591 11.0792C29.5649 10.8917 29.4731 10.7196 29.3319 10.5934C29.1908 10.4672 29.0094 10.3951 28.8201 10.3901Z" fill="#F9F9F9" />
-          <path d="M13.5972 3.19939C13.5972 3.41152 13.513 3.61497 13.363 3.76497C13.213 3.91497 13.0095 3.99924 12.7974 3.99924C12.5853 3.99924 12.3818 3.91497 12.2318 3.76497C12.0818 3.61497 11.9975 3.41152 11.9975 3.19939C11.9975 2.98725 12.0818 2.78381 12.2318 2.63381C12.3818 2.48381 12.5853 2.39954 12.7974 2.39954C13.0095 2.39954 13.213 2.48381 13.363 2.63381C13.513 2.78381 13.5972 2.98725 13.5972 3.19939ZM27.9946 3.19939C27.9946 3.41152 27.9103 3.61497 27.7603 3.76497C27.6103 3.91497 27.4069 3.99924 27.1947 3.99924C26.9826 3.99924 26.7792 3.91497 26.6292 3.76497C26.4792 3.61497 26.3949 3.41152 26.3949 3.19939C26.3949 2.98725 26.4792 2.78381 26.6292 2.63381C26.7792 2.48381 26.9826 2.39954 27.1947 2.39954C27.4069 2.39954 27.6103 2.48381 27.7603 2.63381C27.9103 2.78381 27.9946 2.98725 27.9946 3.19939Z" fill="#F9F9F9" />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M1.59958 9.59823V2.55313C1.59958 1.13899 2.73537 0 4.15111 0H35.8413C37.2522 0 38.3928 1.13899 38.3928 2.55313V9.59823"
+            fill="#C7C7C7"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M2.84398 6.3988H37.1561C38.6918 6.3988 40.3651 7.69936 39.93 9.17429L36.7305 19.9963L39.93 34.0193C40.2723 35.5166 38.6934 36.7932 37.1561 36.7932H2.84398C1.30827 36.7932 -0.272241 35.5166 0.0700959 34.0193L3.26951 19.9963L0.0700959 9.17429C-0.365024 7.69936 1.30667 6.3988 2.84398 6.3988Z"
+            fill="#12AEF5"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M2.84398 6.3988H37.1561C38.6918 6.3988 40.3651 7.69936 39.93 9.17429L36.7305 19.9963H3.26951L0.0700959 9.17429C-0.365024 7.69936 1.30667 6.3988 2.84398 6.3988Z"
+            fill="#4788F4"
+          />
+          <path
+            d="M18.6093 10.481C15.7778 9.97711 13.0231 11.7545 12.2824 14.5492C12.2281 14.7543 12.2575 14.9727 12.3642 15.1561C12.4708 15.3396 12.646 15.473 12.8511 15.5274C13.0563 15.5817 13.2746 15.5524 13.458 15.4457C13.6415 15.3391 13.775 15.1638 13.8293 14.9587C14.0752 13.9971 14.6754 13.164 15.5095 12.6261C16.3437 12.0883 17.3504 11.8855 18.3277 12.0585C19.3079 12.2367 20.1856 12.7758 20.7877 13.5695C21.3898 14.3632 21.6724 15.3537 21.5799 16.3456C21.502 17.3368 21.0539 18.2626 20.3248 18.9386C19.5957 19.6147 18.6389 19.9915 17.6446 19.9945C17.4325 19.9945 17.2291 20.0788 17.0791 20.2288C16.9291 20.3788 16.8448 20.5822 16.8448 20.7944C16.8448 21.0065 16.9291 21.2101 17.0791 21.3601C17.2291 21.5101 17.4325 21.5942 17.6446 21.5942C20.5193 21.5942 22.9237 19.3643 23.1732 16.4832C23.4228 13.6022 21.4407 10.9849 18.6093 10.481Z"
+            fill="#F9F9F9"
+          />
+          <path
+            d="M16.7967 19.9946C16.5845 19.9946 16.3811 20.079 16.2311 20.229C16.0811 20.379 15.9968 20.5823 15.9968 20.7945C15.9968 21.0066 16.0811 21.2102 16.2311 21.3602C16.3811 21.5102 16.5845 21.5943 16.7967 21.5943C18.7403 21.5943 20.4872 22.7637 21.2295 24.5602C21.5936 25.4371 21.6892 26.4024 21.5041 27.3337C21.319 28.265 20.8615 29.1203 20.1897 29.7913C19.5187 30.4631 18.6634 30.9206 17.7321 31.1057C16.8008 31.2908 15.8355 31.1953 14.9586 30.8311C14.0814 30.4683 13.3317 29.8531 12.8045 29.0637C12.2773 28.2742 11.9965 27.3461 11.9976 26.3968C11.9976 26.1846 11.9133 25.9811 11.7633 25.8311C11.6133 25.6811 11.4098 25.5969 11.1977 25.5969C10.9856 25.5969 10.7821 25.6811 10.6321 25.8311C10.4821 25.9811 10.3979 26.1846 10.3979 26.3968C10.3979 28.9835 11.9576 31.3189 14.3475 32.3092C15.5172 32.7929 16.804 32.9193 18.0454 32.6722C19.2868 32.425 20.4271 31.8156 21.3222 30.9207C22.2162 30.0253 22.8249 28.885 23.0715 27.644C23.3181 26.403 23.1914 25.1168 22.7076 23.9476C22.2228 22.7788 21.4027 21.7797 20.3507 21.0765C19.2987 20.3732 18.062 19.9975 16.7967 19.9964V19.9946Z"
+            fill="#F9F9F9"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M28.7816 10.3963C28.6765 10.398 28.5728 10.4204 28.4764 10.4622C28.38 10.5039 28.2928 10.5642 28.2197 10.6397C28.1466 10.7151 28.0891 10.8042 28.0505 10.9019C28.0118 10.9996 27.9928 11.104 27.9945 11.2091V32.0053C27.9945 32.2174 28.0788 32.4208 28.2288 32.5708C28.3788 32.7208 28.5822 32.8051 28.7944 32.8051C29.0065 32.8051 29.2099 32.7208 29.3599 32.5708C29.5099 32.4208 29.5942 32.2174 29.5942 32.0053V11.2091C29.5959 11.1019 29.5761 10.9954 29.5359 10.8961C29.4956 10.7967 29.4359 10.7063 29.36 10.6305C29.2842 10.5547 29.194 10.495 29.0946 10.4547C28.9952 10.4145 28.8888 10.3946 28.7816 10.3963Z"
+            fill="#F9F9F9"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M28.8201 10.3901C28.7213 10.3864 28.6225 10.401 28.529 10.4333L23.7523 12.033C23.6525 12.0664 23.5603 12.119 23.4808 12.188C23.4014 12.2571 23.3364 12.3411 23.2895 12.4352C23.2425 12.5294 23.2146 12.632 23.2073 12.7369C23.1999 12.8419 23.2134 12.9472 23.2468 13.047C23.2802 13.1468 23.3329 13.2391 23.4019 13.3185C23.471 13.3979 23.555 13.4629 23.6492 13.5098C23.7434 13.5568 23.8459 13.5847 23.9508 13.592C24.0558 13.5994 24.1612 13.586 24.261 13.5526L29.0377 11.9529C29.2184 11.8963 29.3732 11.7776 29.4745 11.6176C29.5758 11.4576 29.6171 11.2668 29.591 11.0792C29.5649 10.8917 29.4731 10.7196 29.3319 10.5934C29.1908 10.4672 29.0094 10.3951 28.8201 10.3901Z"
+            fill="#F9F9F9"
+          />
+          <path
+            d="M13.5972 3.19939C13.5972 3.41152 13.513 3.61497 13.363 3.76497C13.213 3.91497 13.0095 3.99924 12.7974 3.99924C12.5853 3.99924 12.3818 3.91497 12.2318 3.76497C12.0818 3.61497 11.9975 3.41152 11.9975 3.19939C11.9975 2.98725 12.0818 2.78381 12.2318 2.63381C12.3818 2.48381 12.5853 2.39954 12.7974 2.39954C13.0095 2.39954 13.213 2.48381 13.363 2.63381C13.513 2.78381 13.5972 2.98725 13.5972 3.19939ZM27.9946 3.19939C27.9946 3.41152 27.9103 3.61497 27.7603 3.76497C27.6103 3.91497 27.4069 3.99924 27.1947 3.99924C26.9826 3.99924 26.7792 3.91497 26.6292 3.76497C26.4792 3.61497 26.3949 3.41152 26.3949 3.19939C26.3949 2.98725 26.4792 2.78381 26.6292 2.63381C26.7792 2.48381 26.9826 2.39954 27.1947 2.39954C27.4069 2.39954 27.6103 2.48381 27.7603 2.63381C27.9103 2.78381 27.9946 2.98725 27.9946 3.19939Z"
+            fill="#F9F9F9"
+          />
         </svg>
       </div>
       {showCalendar && (
@@ -184,7 +211,12 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
                 <svg viewBox="0 0 24 24">
                   <g color="currentColor">
                     <g color="currentColor">
-                      <path fill="currentColor" fillRule="evenodd" d="M10.707 4.293a1 1 0 0 1 0 1.414L5.414 11H21a1 1 0 1 1 0 2H5.414l5.293 5.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0" clipRule="evenodd"></path>
+                      <path
+                        fill="currentColor"
+                        fillRule="evenodd"
+                        d="M10.707 4.293a1 1 0 0 1 0 1.414L5.414 11H21a1 1 0 1 1 0 2H5.414l5.293 5.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0"
+                        clipRule="evenodd"
+                      ></path>
                     </g>
                   </g>
                 </svg>
@@ -201,7 +233,12 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
                 <svg viewBox="0 0 24 24">
                   <g color="currentColor">
                     <g color="currentColor">
-                      <path fill="currentColor" fillRule="evenodd" d="M13.293 18.293a1 1 0 0 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 1 0-1.414 1.414L18.586 11H3a1 1 0 1 0 0 2h15.586z" clipRule="evenodd"></path>
+                      <path
+                        fill="currentColor"
+                        fillRule="evenodd"
+                        d="M13.293 18.293a1 1 0 0 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 1 0-1.414 1.414L18.586 11H3a1 1 0 1 0 0 2h15.586z"
+                        clipRule="evenodd"
+                      ></path>
                     </g>
                   </g>
                 </svg>
@@ -221,12 +258,12 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
             <div className="days">{populateDays()}</div>
           </div>
           <div className="today-button" onClick={handleTodayClick}>
-            <button >Today</button>
+            <button>Today</button>
           </div>
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default DatePicker;
+export default DatePicker
