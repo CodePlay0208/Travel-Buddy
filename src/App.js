@@ -1,11 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import "./App.css"
+import { Routes, Route, useNavigate } from "react-router-dom"
 import {
   UserLoginContext,
-} from "./Utils/Context/LoggedInUserContext";
-import { routes } from "./routes";
-
+} from "./Utils/Context/UserLoginContext"
+import { routes } from "./routes"
+import axios from "axios"
+import { Provider } from 'react-redux'
+import store from './store'
 
 
 const App = () => {
@@ -22,6 +24,7 @@ const App = () => {
   
 
   return (
+    <Provider store={store}>
 
     <UserLoginContext.Provider
       value={{ loggedInUserValues, setLoggedInUserValues }}
@@ -34,6 +37,8 @@ const App = () => {
           }
         </Routes>
     </UserLoginContext.Provider>
+    </Provider>
+
   );
 
 };
