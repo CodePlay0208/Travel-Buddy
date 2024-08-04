@@ -1,36 +1,52 @@
-import React, { useContext, useEffect, memo } from 'react'
+import React, { memo, useState } from 'react'
 import './SearchMenu.css'
-import SearchBar from '../SearchBar/SearchBar'
+import Searchbar from '../Searchbar/Searchbar'
 import DatePicker from '../DatePicker/DatePicker'
-import { InputValuesContext } from '../../Utils/Context/InputValuesContext'
+import { connect } from 'react-redux'
+import { getTrips } from '../../actions/trips.action'
+import { useNavigate } from 'react-router-dom'
 
-const SearchMenu = () => {
-  const { inputValues, setInputValues } = useContext(InputValuesContext)
+const DEFAULT_SEARCH_FORM = {
+  destination: '',
+  startDate: ''
+}
 
-  useEffect(() => {
-    console.log('the input values are', inputValues)
-    console.log('the input context is', InputValuesContext)
-  }, [inputValues])
+const mapStateToProps = (state) => ({
+  trips: state.trip.trips
+})
+
+const SearchMenu = (props) => {
+  const { getTrips } = props
+  const [searchForm, setSearchForm] = useState(DEFAULT_SEARCH_FORM)
+
+  const navigate = useNavigate()
+
+  const onSearchButton = async () => {
+    const searchSuccess = await getTrips(searchForm)
+    if (searchSuccess) {
+      navigate('/search-results-page')
+    }
+  }
 
   return (
     <div className="SearchBar-Container">
-      <SearchBar
-        inputValues={inputValues.destination}
-        setInputValues={setInputValues}
+      <Searchbar
+        inputValues={searchForm.destination}
+        setInputValues={setSearchForm}
         onValue={'destination'}
         placeholderValue={'Enter Destination'}
       />
       <DatePicker
-        inputValues={inputValues.startDate}
-        setInputValues={setInputValues}
+        inputValues={searchForm.startDate}
+        setInputValues={setSearchForm}
         onValue={'startDate'}
         placeholderValue={'Select Travel date'}
       />
-      <div className="SearchBar-Searchbutton">
+      <div className="SearchBar-Searchbutton" role='button' onClick={onSearchButton}>
         <div className="SearchBar-button">Search</div>
       </div>
     </div>
   )
 }
 
-export default memo(SearchMenu)
+export default connect(mapStateToProps, { getTrips })(memo(SearchMenu))

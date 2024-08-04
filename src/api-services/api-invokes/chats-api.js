@@ -9,9 +9,11 @@ export const ChatsApi = {
         baseURL: env.BASE_API_URL,
       })
       console.log('getSingleChat SUCCESS: ', result)
-      return result
+
+      return { status: result.status, data : result.data }
     } catch (e) {
       console.log('getSingleChat ERROR: ', e)
+      throw e
     }
   },
 }

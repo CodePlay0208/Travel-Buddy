@@ -1,4 +1,4 @@
-import React, {useContext, useState } from 'react';
+import React, {useContext, useState, memo } from 'react';
 import './DeleteProfile.css'; // Import the CSS file
 import axios from 'axios';
 import Navbar from '../../Navbar/Navbar';
@@ -6,9 +6,16 @@ import UserSideBar from '../UserSideBar/UserSideBar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-
+import { connect } from 'react-redux'
+import { deleteProfile} from '../../../actions/profile.action'
 import {UserLoginContext} from "../../../Utils/Context/UserLoginContext";
-const DeleteProfile = () => {
+
+const mapStateToProps = (state) => ({
+  profile: state.profile.profile,
+  loading: state.profile.loading,
+})
+
+const DeleteProfile = ({ profile }) => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [confirmationText, setConfirmationText] = useState('');
@@ -18,7 +25,6 @@ const DeleteProfile = () => {
 
 
     const handleSignOutLogic = () => {
-        console.log("Rrrr");
         //TODO: do all the necessary stuff
         fetch('http://localhost:4000/login/logout', {
             method: 'POST',
@@ -58,6 +64,20 @@ const DeleteProfile = () => {
             onClose: () => handleSignOutLogic(),
         });
     };
+
+    // const handleDelete = () => {
+    //   try {
+    //     deleteProfile()
+    //     if (profile.response === 200) {
+    //         toast.success('Profile deleted successfully');
+    //         handleProfileDeleted();
+    //     } else {
+    //         toast.error('Failed to delete profile');
+    //     }
+    //   } catch (e) {
+    //       toast.error('An error occurred while deleting the profile');
+    //   }
+    // }
 
     const handleDelete = async () => {
         if (confirmationText !== 'I want to delete my profile') {
@@ -114,4 +134,4 @@ const DeleteProfile = () => {
     );
 };
 
-export default DeleteProfile;
+export default connect(mapStateToProps, { deleteProfile})(memo(DeleteProfile))
