@@ -1,0 +1,35 @@
+import { GET_PROFILE, UPDATE_PROFILE, DELETE_PROFILE, PROFILE_ERROR } from '../constants'
+
+const initialState = {
+  profile: null,
+  loading: true,
+  error: {},
+}
+
+export default profileReducer = (state = initialState, action) => {
+  const { type, payload } = action
+
+  switch (type) {
+    case GET_PROFILE:
+    case UPDATE_PROFILE:
+      return {
+        ...state,
+        profile: payload,
+        loading: false,
+      }
+    case DELETE_PROFILE:
+      return {
+        ...state,
+        profile: null,
+        loading: false,
+      }
+    case PROFILE_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: payload,
+      }
+    default:
+      return state
+  }
+}
