@@ -154,7 +154,7 @@ const TripPage = () => {
   return (
     <div>
     <Navbar/>
-    <div classname="ImagesSection" >
+    <div className="imagesSectionTrip">
 
     <ImagesSection images={data[0].destinationImages}/>
     </div>
