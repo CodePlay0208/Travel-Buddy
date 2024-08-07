@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import Navbar from "../NavBar/Navbar";
-import Footer from "../Footer/Footer";
+import Navbar from '../NavBar/Navbar';
+import Footer from '../Footer/Footer';
 import "./PublishTrip.css";
 import SearchBar from "../SearchBar/SearchBar";
 import { ToastContainer, toast } from "react-toastify";
