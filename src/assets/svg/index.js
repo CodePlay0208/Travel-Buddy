@@ -5,11 +5,13 @@ import EyeIcon from './eyeIcon.svg'
 import EyeSlashIcon from './eyeSlashIcon.svg'
 import LocationIcon from './locationIcon.svg'
 
+import aeroPlane from './aeroPlane.svg'
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
   GoogleIcon,
   EyeIcon,
   EyeSlashIcon,
-  LocationIcon
+  LocationIcon,
+  aeroPlane
 }

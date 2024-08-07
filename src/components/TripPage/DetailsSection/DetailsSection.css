@@ -1,0 +1,41 @@
+.details-section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.chat-bar {
+    height: 50px;
+    background-color: #f0f0f0;
+    margin-bottom: 20px;
+}
+
+.details-upper-section, 
+.details-lower-section {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.details-right {
+    display: flex;
+    flex: 3;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details-left {
+    flex: 1;
+    background-color: #f9f9f9;
+}
+
+.details-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.trip-image {
+    max-width: 100%;
+    height: auto;
+}

@@ -9,6 +9,7 @@ import { ChatContext } from '../../Utils/Context/ChatContext';
 import DatePicker from '../DatePicker/DatePicker';
 import ImagesSection from './ImagesSection/ImagesSection';
 import data from "../../data/data.json"
+import DetailsSection from './DetailsSection/DetailsSection';
 const TripPage = () => {
   const { id: tripId } = useParams();
   const { loggedInUserValues } = useContext(UserLoginContext);
@@ -154,7 +155,13 @@ const TripPage = () => {
   return (
     <div>
     <Navbar/>
+    <div className="imagesSectionTrip">
+
     <ImagesSection images={data[0].destinationImages}/>
+    </div>
+    <div className='detailsSectionTrip'>
+      <DetailsSection/>
+    </div>
       {/* <Navbar visibilityForSearch={true} />
       <div className="trip-details-container">
         <div className="leftPanel">

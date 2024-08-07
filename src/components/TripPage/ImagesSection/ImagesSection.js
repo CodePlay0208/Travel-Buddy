@@ -38,6 +38,7 @@ const ImageSection = ({ images }) => {
                 onClick={() => handleImageClick(index)}
                 className={`thumbnail ${index === selectedImageIndex ? 'selected' : ''}`}
               />
+              
             ))}
           </div>
         </>

@@ -1,3 +1,13 @@
+.imagesSectionTrip{
+    position: relative;
+    margin: 1vw;
+    width: 98vw;
+    height: 38vw;
+    
+  box-shadow: 0px 0px 10px 0px;
+  border-radius: 50px;
+}
+
 .trip-details-container {
     display: flex;
     flex-direction: row;
