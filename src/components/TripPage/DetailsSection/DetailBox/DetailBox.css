@@ -2,26 +2,11 @@
     position: relative;
     width: 387.44px;
     height: 196.38px;
-    margin: 25.61px 32.93px;
+    margin: 11% 32.93px;
     background: #FFFFFF;
     border: 3.23462px solid #8DD3BB;
     border-radius: 8.62565px;
     box-sizing: border-box;
-}
-
-.detail-box-heading {
-    position: absolute;
-    width: 268px;
-    height: 47px;
-    left: 50.29px;
-    top: 65.15px;
-
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 38.761px;
-    line-height: 47px;
-    color: #000000;
 }
 
 .detail-box-body {
@@ -41,7 +26,7 @@
 
 .detail-box-button {
     position: absolute;
-    width: 279.73px;
+    width: 327px;
     height: 55.36px;
     left: 10%;
     top:-15%;
