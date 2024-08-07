@@ -1,10 +1,10 @@
 import React, { useContext, useState, memo } from 'react'
 import './ForgetPassword.css'
 import { useNavigate } from 'react-router-dom'
-import { UserLoginContext } from '../../Utils/Context/UserLoginContext'
+import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
 import { SVG } from '../../assets'
 
-const ForgetPasswordPage = () => {
+const ForgotPasswordPage = () => {
   const { setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
 
@@ -93,4 +93,4 @@ const ForgetPasswordPage = () => {
   )
 }
 
-export default memo(ForgetPasswordPage)
+export default memo(ForgotPasswordPage)

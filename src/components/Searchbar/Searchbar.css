@@ -21,4 +21,10 @@
     font-size: 1.5rem;
     font-weight: 600;
   }
+
+  .locationIcon{
+    width: 34px;
+    height: 41px;
+    cursor: pointer;
+  }
   

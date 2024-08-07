@@ -4,7 +4,7 @@ import Navbar from '../../NavBar/Navbar';
 import UserSideBar from '../UserSideBar/UserSideBar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { UserLoginContext } from '../../../Utils/Context/UserLoginContext';
+import { UserLoginContext } from '../../../Utils/Context/LoggedInUserContext';
 import { useNavigate } from 'react-router-dom';
 import Trip from '../../Trip/Trip';
 import './UserTrips.css';

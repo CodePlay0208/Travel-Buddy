@@ -4,7 +4,7 @@ import Navbar from '../NavBar/Navbar';
 import { useParams, useNavigate } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import "./TripPage.css";
-import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
+import { UserLoginContext } from "../../Utils/Context/LoggedInUserContext";
 import { ChatContext } from '../../Utils/Context/ChatContext';
 import DatePicker from '../DatePicker/DatePicker';
 import ImagesSection from './ImagesSection/ImagesSection';
