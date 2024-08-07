@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect , memo} from 'react';
 import './SearchMenu.css';
 import SearchBar from '../SearchBar/SearchBar';
 import DatePicker from '../DatePicker/DatePicker';
@@ -9,11 +9,12 @@ const SearchMenu = () => {
 
   useEffect(()=>{
     console.log("the input values are", inputValues);
+    console.log("the input context is" , InputValuesContext);
   }, [inputValues])
 
   return (
     <div className="SearchBar-Container">
-      <SearchBar/>
+      <SearchBar inputValues={inputValues.destination} setInputValues={setInputValues} onValue={"destination"} placeholderValue={"Enter Destination"}/>
      <DatePicker inputValues={inputValues.startDate} setInputValues={setInputValues} onValue={'startDate'} placeholderValue={"Select Travel date"}/>
       <div className="SearchBar-Searchbutton">
         <div className="SearchBar-button">Search</div>
@@ -22,4 +23,4 @@ const SearchMenu = () => {
   );
 };
 
-export default SearchMenu;
+export default memo(SearchMenu);

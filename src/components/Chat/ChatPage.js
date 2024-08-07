@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Chatbox from './ChatBox/ChatBox';
 import ChatSideBar from './ChatSideBar/ChatSideBar';
-import { UserLoginContext } from '../../Utils/Context/UserLoginContext';
+import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext';
 import { toast, ToastContainer } from "react-toastify";
 import "./ChatPage.css";
 

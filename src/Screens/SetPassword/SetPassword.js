@@ -1,6 +1,6 @@
 import React, { useContext, useState, memo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserLoginContext } from '../../Utils/Context/UserLoginContext'
+import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
 import { SVG } from '../../assets'
 import './SetPassword.css'
 

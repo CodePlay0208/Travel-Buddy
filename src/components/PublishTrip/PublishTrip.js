@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import Navbar from "../NavBar/Navbar";
-import Footer from "../Footer/Footer";
+import Navbar from '../NavBar/Navbar';
+import Footer from '../Footer/Footer';
 import "./PublishTrip.css";
-import SearchBar from "../SearchMenu/SearchMenu";
+import SearchBar from "../SearchBar/SearchBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
+import { UserLoginContext } from "../../Utils/Context/LoggedInUserContext";
 import axios from 'axios';
 
 
@@ -169,12 +169,7 @@ function validateForm(inputValues, isClickOnHeading) {
   const { loggedInUserValues } = useContext(UserLoginContext);
   const isUserLoggedIn = loggedInUserValues._id != "";
 
-  useEffect(() => {
-    if (!isUserLoggedIn) {
-      console.log("naivgating")
-      navigate("/login-page");
-    }
-  });
+
 
   function handleImageUpload(event) {
     if (event.target.files.length > 5) {

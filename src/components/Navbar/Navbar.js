@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, memo } from "react";
 import axios from "axios";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
-import { UserLoginContext } from "../../Utils/Context/UserLoginContext";
+import { UserLoginContext } from "../../Utils/Context/LoggedInUserContext";
 import { ChatContext } from "../../Utils/Context/ChatContext";
 
-const Navbar = (props) => {
+const Navbar = React.memo((props) => {
     const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext);
     console.log("the user is logged in navbar", loggedInUserValues);
     const isUserLoggedIn = true;
@@ -184,5 +184,6 @@ const Navbar = (props) => {
             </nav>
         </div>
     );
-};
-export default Navbar;
+});
+
+export default memo(Navbar);

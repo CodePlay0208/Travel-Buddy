@@ -45,3 +45,8 @@ export const isSameSenderMargin = (messages, m, i, userId) => {
   export const getSenderFull = (loggedUser, users) => {
     return users[0]._id === loggedUser._id ? users[1] : users[0];
   };
+
+  export const convertDateFormat = (dateStr) => {
+    const [day, month, year] = dateStr.split("-");
+    return `${year}-${month}-${day}`;
+  };

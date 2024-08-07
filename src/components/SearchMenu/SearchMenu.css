@@ -18,11 +18,7 @@
 
 .SearchBar-Image {
   padding-right: 7%;
-  svg{
-    width: 34px;
-    height: 41px;
-    cursor: pointer;
-  }
+
 }
 
 .SearchBar-DateContainer{

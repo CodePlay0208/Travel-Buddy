@@ -1,10 +1,10 @@
 import React, { useContext, useState, memo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
-import { UserLoginContext } from '../../Utils/Context/UserLoginContext'
+import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
 import { toast } from 'react-toastify'
 import { SVG } from '../../assets'
-import './LoginPage.css'
+import './loginPage.css'
 
 const LoginPage = () => {
   const { setLoggedInUserValues } = useContext(UserLoginContext)

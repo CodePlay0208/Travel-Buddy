@@ -1,26 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
-import "./SearchResultsPage.css";
-import Navbar from "../NavBar/Navbar";
-import { FilterContext } from "../../Utils/Context/FilterContext";
+import "./searchResultsPage.css";
 import { InputValuesContext } from "../../Utils/Context/InputValuesContext";
 import tripData from "../../data/data.json";
-import Header from "../Header/Header";
-import TripCard from "../TripCard/TripCard";
-import Footer from "../Footer/Footer"
+import Header from "../../components/Header/Header";
+import TripCard from "../../components/TripCard/TripCard";
+import Footer from "../../components/Footer/Footer";
+import { convertDateFormat } from "../../Utils/Config";
+
+
 const SearchResultsPage = () => {
-  const [filterData, setFilterData] = useState({
-    fromAge: 0,
-    toAge: 100,
-    gender: "",
-  });
 
   const { inputValues } = useContext(InputValuesContext);
   const [tripsData, setTripsData] = useState([]);
 
-  const convertDateFormat = (dateStr) => {
-    const [day, month, year] = dateStr.split("-");
-    return `${year}-${month}-${day}`;
-  };
+  
 
   useEffect(() => {
     const fetchTrips = async () => {
@@ -51,12 +44,6 @@ const SearchResultsPage = () => {
 
   return (
     <div>
-      <FilterContext.Provider
-        value={{
-          ...filterData,
-          setFilterData,
-        }}
-      >
         <Header isImageNavbar={true}/>
         <div className="trip-list">
       {tripData.map((trip) => (
@@ -80,7 +67,6 @@ const SearchResultsPage = () => {
     <button className='showMoreButton'>Show More</button>
     </div>
     <Footer/>
-      </FilterContext.Provider>
     </div>
   );
 };

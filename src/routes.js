@@ -1,15 +1,16 @@
 import React from "react";
 import LandingPage from "./Screens/LandingPage/landingPage";
-import SearchResultsPage from "./components/SearchResultsPage/SearchResultsPage";
+import SearchResultsPage from "./Screens/SearchResultsPage/searchResultsPage";
 import PublishTrip from "./components/PublishTrip/PublishTrip";
 import ChatPage from "./components/Chat/ChatPage";
-import LoginPage from "./components/LoginPage/LoginPage";
-import EnterEmail from "./components/LoginPage/EnterEmail";
-import VerifyOTP from "./components/LoginPage/VerifyOTP";
-import SignUp from "./components/SignUpPage/SignUp";
+import LoginPage from "./Screens/LoginPage/loginPage";
+import VerifyCode from "./Screens/VerifyCode/VerifyCode";
+import SignUp from "./Screens/SignUpPage/SignUp";
 import TripPage from "./components/TripPage/TripPage";
 import UserProfile from "./components/UserProfile/UserProfile";
 import UserTrips from "./components/UserProfile/UserTrips/UserTrips";
+import ForgotPassword from "./Screens/ForgotPassword/ForgotPassword";
+import SetPassword from "./Screens/SetPassword/SetPassword";
 
 export const routes = [ 
     {
@@ -51,12 +52,17 @@ export const routes = [
     },
     {
         "path": "/verify-otp",
-        "element": <VerifyOTP/>
+        "element": <VerifyCode/>
     },
 
     {
-        "path": "/enter-email",
-        "element": <EnterEmail/>
+        "path": "/forogt-password",
+        "element": <ForgotPassword/>
+    },
+
+    {
+        "path": "/set-password",
+        "element": <SetPassword/>
     },
 
     {

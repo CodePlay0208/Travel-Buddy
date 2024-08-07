@@ -1,4 +1,4 @@
-import React , {useState}from 'react';
+import React , {useState, memo , useMemo}from 'react';
 import './Header.css';
 import LandingPageImage from "../../data/Images/searchResult/header.png";
 import SearchMenu from '../SearchMenu/SearchMenu';
@@ -7,12 +7,14 @@ import { InputValuesContext } from '../../Utils/Context/InputValuesContext';
 
 const SearchResultHeader = (props) => {
 
-  const [inputValues , setInputValues] = useState({destination:'', startDate:''});
+  const [inputValues, setInputValues] = useState({
+    destination: '',
+    startDate: ''
+  });
+
+  const memocontext = useMemo(()=>({inputValues , setInputValues}) , [inputValues])
 
   return (
-    <InputValuesContext.Provider
-    value={{ inputValues , setInputValues}}
-  >
       <div className="HeaderContainer">
        {
         props.isImageNavbar && <Navbar isImageNavbar={props.isImageNavbar}/>
@@ -24,12 +26,15 @@ const SearchResultHeader = (props) => {
           <div className="HeaderDesHeading">Travmigoz</div>
           <div className="HeaderDesPara">Find Your Travel Amigos!</div>
         </div>
+        <InputValuesContext.Provider
+        value={memocontext}
+      >
         <div className="HeaderSearchBar">
           <SearchMenu />
         </div>
+        </InputValuesContext.Provider>
       </div>
-    </InputValuesContext.Provider>
   );
 }
 
-export default SearchResultHeader;
+export default memo(SearchResultHeader);

@@ -3,6 +3,8 @@ import BackButtonIcon from './backButtonIcon.svg'
 import GoogleIcon from './googleIcon.svg'
 import EyeIcon from './eyeIcon.svg'
 import EyeSlashIcon from './eyeSlashIcon.svg'
+import LocationIcon from './locationIcon.svg'
+
 import aeroPlane from './aeroPlane.svg'
 import age from './age.svg'
 import gender from './gender.svg'
