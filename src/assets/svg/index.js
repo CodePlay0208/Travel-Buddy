@@ -28,6 +28,7 @@ export const SVG = {
   budget,
 member,
 age,
-gender
+gender,
+LocationIcon
 
 }
