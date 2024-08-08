@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import Navbar from '../NavBar/Navbar';
+import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import "./PublishTrip.css";
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../Searchbar/Searchbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
