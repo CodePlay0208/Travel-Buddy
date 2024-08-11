@@ -1,6 +1,6 @@
 import React, {useContext, useEffect , memo} from 'react';
 import './SearchMenu.css';
-import SearchBar from '../SearchBar/SearchBar';
+import SearchBar from '../SearchBar/Searchbar';
 import DatePicker from '../DatePicker/DatePicker';
 import { InputValuesContext } from '../../Utils/Context/InputValuesContext';
 

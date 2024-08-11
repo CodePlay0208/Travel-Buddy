@@ -1,6 +1,6 @@
 .tripCard__container {
   width: 100%;
-  max-width: 650px;
+  max-width: 400px;
   background: #ffffff;
   border: 2px solid #FFFFFF;
   box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.418);
@@ -14,7 +14,8 @@
 
 .tripCard__leftContainer {
   width: 100%;
-  max-width: 244px;
+
+  max-width: 380px;
   position: relative;
   overflow: hidden;
   border-radius: 10px;
@@ -140,7 +141,7 @@
 /* Media Queries */
 @media (min-width: 768px) {
   .tripCard__container {
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .tripCard__leftContainer {
