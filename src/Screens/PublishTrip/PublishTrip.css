@@ -1,48 +1,67 @@
 .publish__trip__page {
   position: relative;
   width: 100%;
+
   background: #f5f7f9; /* Optional: Background for the whole page */
 }
+.input-field,
+.description-field {
+  display: block;
+  width: 100%;
+  padding: 13.95px;
+  border: 2.325px solid #0b87ac;
+  border-radius: 9.3px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16.275px;
+  color: #040f0f;
+}
 
+.input-field::placeholder,
+.description-field::placeholder {
+  color: #040f0f;
+  opacity: 0.7;
+}
 .publish__trip__container {
   position: relative;
-  width: 1604px;
-  left: calc(50% - 1604px / 2);
+  padding: 3%;
+  height: 100vh;
+  width: 90%; /* Adjusted to percentage */
+  max-width: 1604px; /* Set max-width to prevent it from stretching too much on larger screens */
+  margin: 0 auto; /* Center the container */
   background: #ffffff;
   border-radius: 10px;
 }
 
 .publish__trip__heading {
   position: relative;
-  width: 521px;
-  height: 105px;
+  
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 56.9492px;
-  line-height: 104px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #000000;
+  font-size: 3.5vw; /* Use vw for responsiveness */
+  line-height: 1.8;
+  
 }
 
 .publish__trip__content {
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  height: 80%;
 }
 
 .publish__trip__leftsection {
   width: 60%; /* Adjust based on design */
 }
+
 .left-section {
   position: relative;
-  width: 906px;
-  height: 730px;
+  width: 95%; /* Adjusted to percentage */
+  max-width: 906px; /* Max width */
+  height: 90%; /* Remove fixed height */
   background: #ffffff;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  padding: 30px;
+  padding: 3%;
 }
 
 .input-group {
@@ -55,8 +74,8 @@
   font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 16.275px;
-  line-height: 23px;
+  font-size: 1vw; /* Responsive font size */
+  line-height: 1.4;
   color: #040f0f;
   margin-bottom: 10px;
 }
@@ -64,9 +83,10 @@
 .input-field {
   display: flex;
   align-items: center;
-  width: 372px;
-  height: 51.9px;
-  padding: 13.95px;
+  width: 100%; /* Full width */
+  max-width: 372px; /* Max width */
+  height: 3vw; /* Responsive height */
+  padding: 0.8vw; /* Responsive padding */
   border: 2.325px solid #0b87ac;
   border-radius: 9.3px;
 }
@@ -75,73 +95,77 @@
   font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 16.275px;
-  line-height: 23px;
+  font-size: 1vw; /* Responsive font size */
+  line-height: 1.4;
   color: #040f0f;
 }
 
 .description-group .description-field {
-  width: 806px;
-  height: 151px;
+  width: 100%;
+  height: auto;
+  min-height: 10vw; /* Minimum height to maintain some size */
 }
 
 .description-field {
   display: flex;
   align-items: flex-start;
-  padding: 13.95px;
+  padding: 0.8vw;
   border: 2.325px solid #0b87ac;
   border-radius: 9.3px;
 }
+
 .toggleBetweenTripUser {
   position: relative;
   display: flex;
   justify-content: space-evenly;
-  width: 906px;
-  height: 110px;
+  align-items: center;
+  width: 95%; /* Adjusted to percentage */
+  max-width: 906px; /* Max width */
+  height: auto; /* Remove fixed height */
+  padding: 2% 0;
   background: #8dd3bb;
   box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.25);
   border-radius: 10px 10px 0px 0px;
 }
-/* Styles for active toggle button */
-.trip_detail, .user_detail {
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .trip_detail.active, .user_detail.active {
-    background-color: #559c84;
-    color: #ffffff;
-    border-radius: 10px 10px 0px 0px;
-  }
 
-.trip_detail {
+.trip_detail,
+.user_detail {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   position: relative;
-  width: 169px;
-  height: 44px;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
-  font-size: 30.1429px;
-  line-height: 43px;
+  font-size: 1.8vw; /* Responsive font size */
+  line-height: 2vw;
   color: #000000;
+  width: auto; /* Remove fixed width */
+  padding: 0 5%;
 }
 
-.user_detail {
-  position: relative;
-  width: 179px;
-  height: 44px;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 30.1429px;
-  line-height: 43px;
-  color: #000000;
+.trip_detail::after,
+.user_detail::after {
+  content: '';
+  position: absolute;
+  bottom: -8px; /* Adjust based on the spacing you want */
+  left: 50%;
+  right: 50%;
+  height: 0.5vw; /* Adjust the thickness of the underline */
+  background-color: #559c84; /* Color of the underline */
+  border-radius: 2px; /* Rounded edges for the underline */
+  transition: all 0.3s ease; /* Transition effect */
+}
+
+.trip_detail.active::after,
+.user_detail.active::after {
+  left: 0;
+  right: 0;
 }
 
 .divider {
   position: relative;
-  width: 5px;
-  height: 77px;
+  width: 0.5%;
+  height: 4vw;
   background: #ffffff;
   border-radius: 50px;
 }
@@ -155,13 +179,13 @@
 }
 
 .publish__trip__rightsection {
-  width: 40%; /* Adjust based on design */
+  width: 35%; /* Adjust based on design */
   position: relative;
   background: #ffffff;
   border: 3px solid rgba(179, 204, 252, 0.1);
   box-shadow: 0px 4px 21px 1px rgba(36, 99, 235, 0.25);
   border-radius: 12px;
-  padding: 20px;
+  padding: 3%;
 }
 
 .frame_2 {
@@ -171,19 +195,21 @@
 .upload_photos {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1.5vw; /* Responsive font size */
+  line-height: 1.5;
   color: #000000;
   margin-bottom: 20px;
 }
 
 .drop_image {
   position: relative;
-  width: 477px;
-  height: 188px;
+  width: 95%; /* Adjusted to percentage */
+  max-width: 477px; /* Max width */
+  height: auto;
+  min-height: 10vw; /* Minimum height */
   border: 1px dashed #b1bfd0;
   border-radius: 9px;
-  padding: 20px;
+  padding: 3%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -197,16 +223,16 @@
 .browse {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 18px;
+  font-size: 1vw; /* Responsive font size */
+  line-height: 1.4;
   color: #1f4690;
 }
 
 .drop_text {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: 12px;
-  line-height: 18px;
+  font-size: 1vw; /* Responsive font size */
+  line-height: 1.4;
   color: #132a00;
   margin-top: 10px;
 }
@@ -214,8 +240,99 @@
 .supports_text {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: 8px;
-  line-height: 12px;
+  font-size: 0.8vw; /* Responsive font size */
+  line-height: 1.2;
   color: #969db2;
   margin-top: 10px;
+}
+.input-field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 51.9px;
+  padding: 13.95px;
+  border: 2.325px solid #0b87ac;
+  border-radius: 9.3px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16.275px;
+  line-height: 23px;
+  color: #040f0f;
+}
+
+.description-field {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  height: 151px;
+  padding: 13.95px;
+  border: 2.325px solid #0b87ac;
+  border-radius: 9.3px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16.275px;
+  line-height: 23px;
+  color: #040f0f;
+}
+
+.next-button,
+.submit-button {
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  color: #559c84;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.submit-button {
+  background-color: #559c84;
+  color: white;
+}
+.publish__trip__button {
+  box-sizing: border-box;
+  width: 100%; /* Set to 100% for responsiveness */
+  max-width: 302px; /* Set a max-width to control size on larger screens */
+  height: 74.83px;
+  margin: 20px auto; /* Center the element and add margin for spacing */
+  background: #ffffff;
+  border: 3px solid #8dd3bb;
+  border-radius: 8.90855px;
+  display: flex;
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
+  position: relative; /* Use relative positioning for responsive layout */
+}
+.next-button:hover,
+.submit-button:hover {
+  background-color: #446c6a;
+}
+
+.input-row {
+  display: flex;
+  gap: 20px;
+  /* margin-bottom: 20px; */
+}
+
+.input-group {
+  flex: 1;
+  .SearchBar-DestinationContainer,
+  .date-picker {
+    width: 100%;
+    padding: 1%;
+  }
+  .SearchBar-DestinationContainer {
+    border: 3px solid #8dd3bb;
+  }
+  .date-picker {
+    input {
+      border: 3px solid #8dd3bb;
+    }
+  }
+}
+
+.description-group {
+  /* margin-top: 20px; */
 }
