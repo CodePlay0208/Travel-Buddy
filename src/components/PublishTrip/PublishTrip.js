@@ -131,12 +131,12 @@ function validateForm(inputValues, isClickOnHeading) {
   return false;
 }
 
-  const PublishTrip = (props) => {
+const PublishTrip = (props) => {
 
-    const {initialStartLocation, initialEndLocation} = props
-  
-    const [startLocation, setStartLocation] = useState(initialStartLocation || "");
-    const [endLocation, setEndLocation] = useState(initialEndLocation || "");
+  const { initialStartLocation, initialEndLocation } = props
+
+  const [startLocation, setStartLocation] = useState(initialStartLocation || "");
+  const [endLocation, setEndLocation] = useState(initialEndLocation || "");
   const navigate = useNavigate();
   const initialPublishTripValues = {
     id: 0,
@@ -395,8 +395,8 @@ function validateForm(inputValues, isClickOnHeading) {
               setInputValueFunction={setInputValues}
               setInputValueVariable={"startLocation"}
               setValuesFromLocalStorage={false}
-              inputValueForSearchBar = {startLocation}
-              setInputValueForSearchBar = {setStartLocation}
+              inputValueForSearchBar={startLocation}
+              setInputValueForSearchBar={setStartLocation}
 
 
             ></SearchBar>
@@ -415,8 +415,8 @@ function validateForm(inputValues, isClickOnHeading) {
               setInputValueFunction={setInputValues}
               setInputValueVariable={"endLocation"}
               setValuesFromLocalStorage={false}
-              inputValueForSearchBar = {endLocation}
-              setInputValueForSearchBar = {setEndLocation}
+              inputValueForSearchBar={endLocation}
+              setInputValueForSearchBar={setEndLocation}
             ></SearchBar>
           </div>
           <div className="input-element">
