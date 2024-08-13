@@ -5,7 +5,7 @@ import './PublishTrip.css';  // Link to the external CSS file
 import DatePicker from '../../components/DatePicker/DatePicker';
 import Searchbar from '../../components/SearchBar/Searchbar';
 import { InputValuesContext } from '../../Utils/Context/InputValuesContext';
-
+import firstImage from '../../data/Images/gallery.png'
 const PublishTrip = () => {
     const [activeSection, setActiveSection] = useState('trip'); // Default active section is 'trip'
     const [inputValues, setInputValues] = useState({
@@ -144,13 +144,15 @@ const PublishTrip = () => {
 
                     <div className="publish__trip__rightsection">
                         <div className="frame_2">
+
                             <div className="upload_photos">
                                 Upload Photos
                             </div>
                             <div className="drop_image">
                                 <div className="drop_image_inner">
                                     <div className="icon_picture">
-                                        {/* Icon goes here */}
+                                        <img src={firstImage} alt="" />
+
                                     </div>
                                     <div className="drop_text">
                                         Drop your image here, or
@@ -162,6 +164,17 @@ const PublishTrip = () => {
                                         Supports: PNG, JPG, JPEG, WEBP
                                     </div>
                                 </div>
+                            </div>
+
+                            <div className="file-uploader-container">
+                                <div className="file-upload-label">Add file</div>
+                                <div className="file-upload-box">
+                                    <div className="file-upload-placeholder">Add file</div>
+                                    <div className="upload-button-container">
+                                        <button className="upload-button">Choose File</button>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                         {/* Additional content for right section */}
