@@ -1,10 +1,19 @@
 import React, { useState, memo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
+import { connect } from 'react-redux'
+import { register } from '../../actions/auth.action'
+
 import { SVG } from '../../assets'
 import './SignUp.css'
 
-const SignUp = () => {
+const mapStateToProps = (state) => ({
+  user: state.user,
+  isLoading: state.isLoading
+})
+
+const SignUp = (props) => {
+  const { user, isLoading, register } = props
   const navigate = useNavigate()
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -65,78 +74,108 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Add validation logic here (e.g., check if passwords match)
-
     var validEmail = checkValueIsValid(formData.userEmail)
     var validPassword = checkValueIsValid(formData.password)
 
     if (!(validEmail && validPassword)) {
-      console.log('hello')
       toast.error('EmailId or Password Not Valid', {
         autoClose: 1500,
       })
       return
     }
-
     if (formData.password != formData.confirmPassword) {
       toast.error("Passwords Don't match", {
         autoClose: 1500,
       })
       return
     }
+    if (formData.password != formData.confirmPassword) {
+      toast.error("Passwords Don't match", {
+        autoClose: 1500,
+      })
+      return
+    }
+    register(formData)
+    // TODO: have to add toasts and handle different scenario
+    const previousURL = sessionStorage.getItem('redirectUrl') || '/'
+    sessionStorage.removeItem('redirectUrl')
 
-    console.log(formData)
-
-    console.log('came here')
-
-    fetch('http://localhost:4000/login/signUp', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userEmail: formData.userEmail,
-        password: formData.password,
-      }),
+    toast.success('User Signed In Successfully', {
+      autoClose: 1000,
     })
-      .then((response) => {
-        if (!response.ok) {
-          return response.json().then((error) => {
-            throw new Error(error)
-          })
-        }
-        return response.json()
-      })
-      .then((data) => {
-        if (!data.success) {
-          toast.error('User Already Exist', {
-            autoClose: 1000,
-          })
-          return
-        }
-        const previousURL = sessionStorage.getItem('redirectUrl') || '/'
-        sessionStorage.removeItem('redirectUrl')
-        // Handle successful login on frontend if needed
-        console.log(previousURL)
-        toast.success('User Signed In Successfully', {
-          autoClose: 1000,
-        })
 
-        setTimeout(() => {
-          navigate(previousURL)
-        }, 800)
-      })
-      .catch((err) => {
-        console.log('cant send OTP', err)
-        toast.error('User Already Exist', {
-          autoClose: 1500,
-        })
-        return
-      })
-
-    console.log(formData)
+    setTimeout(() => {
+      navigate(previousURL)
+    }, 800)
   }
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   // Add validation logic here (e.g., check if passwords match)
+  //
+  //   var validEmail = checkValueIsValid(formData.userEmail)
+  //   var validPassword = checkValueIsValid(formData.password)
+  //
+  //   if (!(validEmail && validPassword)) {
+  //     toast.error('EmailId or Password Not Valid', {
+  //       autoClose: 1500,
+  //     })
+  //     return
+  //   }
+  //
+  //   if (formData.password != formData.confirmPassword) {
+  //     toast.error("Passwords Don't match", {
+  //       autoClose: 1500,
+  //     })
+  //     return
+  //   }
+  //
+  //   fetch('http://localhost:4000/login/signUp', {
+  //     method: 'POST',
+  //     credentials: 'include',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       userEmail: formData.userEmail,
+  //       password: formData.password,
+  //     }),
+  //   })
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         return response.json().then((error) => {
+  //           throw new Error(error)
+  //         })
+  //       }
+  //       return response.json()
+  //     })
+  //     .then((data) => {
+  //       if (!data.success) {
+  //         toast.error('User Already Exist', {
+  //           autoClose: 1000,
+  //         })
+  //         return
+  //       }
+  //       const previousURL = sessionStorage.getItem('redirectUrl') || '/'
+  //       sessionStorage.removeItem('redirectUrl')
+  //       // Handle successful login on frontend if needed
+  //       console.log(previousURL)
+  //       toast.success('User Signed In Successfully', {
+  //         autoClose: 1000,
+  //       })
+  //
+  //       setTimeout(() => {
+  //         navigate(previousURL)
+  //       }, 800)
+  //     })
+  //     .catch((err) => {
+  //       console.log('cant send OTP', err)
+  //       toast.error('User Already Exist', {
+  //         autoClose: 1500,
+  //       })
+  //       return
+  //     })
+  // }
 
   return (
     <div className="SignUpContainer">
@@ -297,4 +336,4 @@ const SignUp = () => {
   )
 }
 
-export default memo(SignUp)
+export default connect(mapStateToProps, { register })(memo(SignUp))

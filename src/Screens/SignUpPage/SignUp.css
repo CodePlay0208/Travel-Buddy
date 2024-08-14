@@ -321,7 +321,9 @@ input::placeholder {
   font-size: 1rem;
   font-weight: 500;
   color: #ff8682;
-  transition: color 0SignUp3s ease, transform 0SignUp1s ease;
+  transition:
+    color 0SignUp3s ease,
+    transform 0SignUp1s ease;
   cursor: pointer;
   padding: 0px 4px;
 }
@@ -369,7 +371,9 @@ input::placeholder {
   font-size: 1rem;
   font-weight: 500;
   color: #ff8682;
-  transition: color 0SignUp3s ease, transform 0SignUp1s ease;
+  transition:
+    color 0SignUp3s ease,
+    transform 0SignUp1s ease;
   cursor: pointer;
 }
 

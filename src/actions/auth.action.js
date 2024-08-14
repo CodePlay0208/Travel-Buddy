@@ -40,6 +40,7 @@ export const register =
         type: REGISTER_SUCCESS,
         payload: res,
       })
+      dispatch(loadUser())
     } catch (e) {
       dispatch({
         type: REGISTER_FAIL,
