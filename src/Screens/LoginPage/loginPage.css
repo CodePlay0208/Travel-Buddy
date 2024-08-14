@@ -205,7 +205,9 @@ input:focus {
   font-size: 1rem;
   font-weight: 500;
   color: #ff8682;
-  transition: color 0.3s ease, transform 0.1s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.1s ease;
   cursor: pointer;
 }
 
@@ -264,7 +266,9 @@ input:focus {
   font-size: 1rem;
   font-weight: 500;
   color: #ff8682;
-  transition: color 0.3s ease, transform 0.1s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.1s ease;
   cursor: pointer;
   text-align: right;
 }

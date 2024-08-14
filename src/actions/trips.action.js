@@ -44,6 +44,4 @@ export const getUserTrips = () => async (dispatch) => {
   }
 }
 
-export const deleteUserTrips = (trip_id) => async (dispatch) => {
-
-}
+export const deleteUserTrips = (trip_id) => async (dispatch) => {}

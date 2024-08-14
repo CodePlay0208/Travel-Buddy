@@ -7,21 +7,19 @@
   height: 60%;
 }
 
-
-.SearchBar-location::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-  color:#787878;
+.SearchBar-location::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #787878;
   font-weight: 600; /* Responsive font size */
   font-family: Arial, sans-serif;
   font-size: 1.5rem;
 }
 
-
 .SearchBar-Image {
   padding-right: 7%;
-
 }
 
-.SearchBar-DateContainer{
+.SearchBar-DateContainer {
   border: grey 1.5px solid;
   border-radius: 10px;
   width: 30%;
@@ -43,7 +41,7 @@
 }
 
 .SearchBar-button {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 2rem; /* Responsive font size */
   font-weight: 600;
   line-height: 2.5rem; /* Responsive line height */
@@ -55,18 +53,17 @@
 /* Tablets and larger phones */
 @media (max-width: 768px) {
   .SearchBar-Container {
-    
     gap: 5%;
   }
 
   .SearchBar-Image {
     padding: 1%;
-    svg{
+    svg {
       width: 13px;
       height: 41px;
     }
   }
-  
+
   .SearchBar-date,
   .SearchBar-location,
   .SearchBar-button {
@@ -83,7 +80,7 @@
   }
   .SearchBar-Image {
     padding: 1%;
-    svg{
+    svg {
       width: 10px;
       height: 41px;
     }
