@@ -5,82 +5,124 @@ import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
 import { toast } from 'react-toastify'
 import { SVG } from '../../assets'
 import './loginPage.css'
+import { connect } from 'react-redux'
 import { setGoogleToken } from '../../api-services/api-services'
+import { login, loginWithGoogle } from '../../actions/auth.action'
+import { GOOGLE_CLIENT_ID } from '../../config/env'
+import { AuthApi } from '../../api-services/api-invokes'
 
-const LoginPage = () => {
+const mapStateToProps = (state) => ({
+  user: state.user,
+  isLoading: state.isLoading,
+})
+
+const LoginPage = (props) => {
+  const { user, isLoading, login, loginWithGoogle } = props
   const { setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
 
+  const loggedInUserInitialState = {
+    _id: '',
+    username: '',
+    emailId: '',
+    profilePic: '',
+  }
+
   const googleSignIn = useGoogleLogin({
-    clientId: '464876682696-pkm7moinvftntbnild9dq19378vu3ski.apps.googleusercontent.com',
-    onSuccess: (response) => {
-      console.log(response)
+    clientId: GOOGLE_CLIENT_ID,
+    onSuccess: async (response) => {
       const token = response.access_token
       setGoogleToken(token)
-
-      // Send the token to your backend for verification and user data fetching
-      fetch('http://localhost:4000/login/googleLogin', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            return response.json().then((error) => {
-              throw new Error(error)
-            })
-          }
-          return response.json()
-        })
-        .then((data) => {
-          console.log('the data is', data)
-          if (data.success) {
-            console.log('Login successful:', data)
-            const previousURL = sessionStorage.getItem('redirectUrl') || '/'
-            sessionStorage.removeItem('redirectUrl')
-            // Handle successful login on frontend if needed
-            console.log(previousURL)
-            navigate(previousURL)
-            setLoggedInUserValues(data.user)
-          } else {
-            console.error('Login failed:', data)
-            setLoggedInUserValues({
-              _id: '',
-              username: '',
-              emailId: '',
-              profilePic: '',
-            })
-          }
-        })
-        .catch((error) => {
-          console.error('Error during login:', error)
-          setLoggedInUserValues({
-            _id: '',
-            username: '',
-            emailId: '',
-            profilePic: '',
-          })
-        })
+      try {
+        const res = await AuthApi.loginUserWithGoogle()
+        if (res.success) {
+          const previousURL = sessionStorage.getItem('redirectUrl') || '/'
+          sessionStorage.removeItem('redirectUrl')
+          navigate(previousURL)
+          setLoggedInUserValues(res.data)
+        } else {
+          console.log('Login with Google failed')
+          setLoggedInUserValues(loggedInUserInitialState)
+        }
+      } catch (e) {
+        console.log('googleSignIn ERROR: ', e)
+        throw e
+      }
     },
     onError: (error) => {
-      console.error('Login failed:', error)
-      setLoggedInUserValues({
-        _id: '',
-        username: '',
-        emailId: '',
-        profilePic: '',
-      })
+      console.log('googleSignIn-onError ERROR: ', error)
     },
   })
-  const [isLoading, setLoading] = useState(false)
+
+  // const googleSignIn = useGoogleLogin({
+  //   clientId: '464876682696-pkm7moinvftntbnild9dq19378vu3ski.apps.googleusercontent.com',
+  //   onSuccess: (response) => {
+  //     console.log(response)
+  //     const token = response.access_token
+  //     setGoogleToken(token)
+  //
+  //     // Send the token to your backend for verification and user data fetching
+  //     fetch('http://localhost:4000/login/googleLogin', {
+  //       method: 'POST',
+  //       credentials: 'include',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ token }),
+  //     })
+  //       .then((response) => {
+  //         if (!response.ok) {
+  //           return response.json().then((error) => {
+  //             throw new Error(error)
+  //           })
+  //         }
+  //         return response.json()
+  //       })
+  //       .then((data) => {
+  //         console.log('the data is', data)
+  //         if (data.success) {
+  //           console.log('Login successful:', data)
+  //           const previousURL = sessionStorage.getItem('redirectUrl') || '/'
+  //           sessionStorage.removeItem('redirectUrl')
+  //           // Handle successful login on frontend if needed
+  //           console.log(previousURL)
+  //           navigate(previousURL)
+  //           setLoggedInUserValues(data.user)
+  //         } else {
+  //           console.error('Login failed:', data)
+  //           setLoggedInUserValues({
+  //             _id: '',
+  //             username: '',
+  //             emailId: '',
+  //             profilePic: '',
+  //           })
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error during login:', error)
+  //         setLoggedInUserValues({
+  //           _id: '',
+  //           username: '',
+  //           emailId: '',
+  //           profilePic: '',
+  //         })
+  //       })
+  //   },
+  //   onError: (error) => {
+  //     console.error('Login failed:', error)
+  //     setLoggedInUserValues({
+  //       _id: '',
+  //       username: '',
+  //       emailId: '',
+  //       profilePic: '',
+  //     })
+  //   },
+  // })
+  // const [isLoading, setLoading] = useState(false)
   const [userEmail, setUserEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isRemeberMeChecked, setIsRemeberMeChecked] = useState(false)
   const [secureTextEntry, setSecureTextEntry] = useState(true)
-  console.log('is remember me', isRemeberMeChecked)
 
   const handleEmailChange = (e) => {
     setUserEmail(e.target.value)
@@ -159,6 +201,22 @@ const LoginPage = () => {
       })
   }
 
+  // const handleLogin = (event) => {
+  //   event.preventDefault()
+  //
+  //   var validEmail = checkValueIsValid(userEmail)
+  //   var validPassword = checkValueIsValid(password)
+  //
+  //   if (!(validEmail && validPassword)) {
+  //     console.log('hello')
+  //     toast.error('EmailId or Password Not Valid', {
+  //       autoClose: 1500,
+  //     })
+  //     return
+  //   }
+  //
+  //   login(userEmail, password, isRemeberMeChecked)
+  // }
   const forgotPassWordHandler = () => {
     navigate('/enterEmail')
   }
@@ -282,4 +340,4 @@ const LoginPage = () => {
   )
 }
 
-export default memo(LoginPage)
+export default connect(mapStateToProps, { login, loginWithGoogle })(memo(LoginPage))
