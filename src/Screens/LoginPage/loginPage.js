@@ -8,7 +8,7 @@ import './loginPage.css'
 import { connect } from 'react-redux'
 import { setGoogleToken } from '../../api-services/api-services'
 import { login, loginWithGoogle } from '../../actions/auth.action'
-import { GOOGLE_CLIENT_ID } from '../../config/env'
+import { env } from '../../config/env'
 import { AuthApi } from '../../api-services/api-invokes'
 
 const mapStateToProps = (state) => ({
@@ -29,7 +29,7 @@ const LoginPage = (props) => {
   }
 
   const googleSignIn = useGoogleLogin({
-    clientId: GOOGLE_CLIENT_ID,
+    clientId: env.GOOGLE_CLIENT_ID,
     onSuccess: async (response) => {
       const token = response.access_token
       setGoogleToken(token)
