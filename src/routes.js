@@ -7,7 +7,7 @@ import LoginPage from "./Screens/LoginPage/loginPage";
 import VerifyCode from "./Screens/VerifyCode/VerifyCode";
 import SignUp from "./Screens/SignUpPage/SignUp";
 import TripPage from "./components/TripPage/TripPage";
-import UserProfile from "./components/UserProfile/UserProfile";
+import UserProfile from "./Screens/UserProfile/UserProfile";
 import UserTrips from "./components/UserProfile/UserTrips/UserTrips";
 import ForgotPassword from "./Screens/ForgotPassword/ForgotPassword";
 import SetPassword from "./Screens/SetPassword/SetPassword";

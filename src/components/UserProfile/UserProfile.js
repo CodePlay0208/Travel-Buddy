@@ -16,10 +16,10 @@ const UserProfile = () => {
 
   useEffect(() => {
     console.log("i am in profile url", loggedInUserValues);
-    if (loggedInUserValues._id == "") {
-      console.log("naivgating")
-      navigate("/login-page");
-    }
+    // if (loggedInUserValues._id == "") {
+    //   console.log("naivgating")
+    //   navigate("/login-page");
+    // }
   });
 
   return (
