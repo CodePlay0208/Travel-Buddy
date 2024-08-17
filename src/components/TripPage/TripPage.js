@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../NavBar/NavBar';
 import { useParams, useNavigate } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import "./TripPage.css";

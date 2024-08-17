@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Footer from '../../components/Footer/Footer';
-import Navbar from '../../components/NavBar/Navbar';
+import Navbar from '../../components/NavBar/NavBar';
 import './PublishTrip.css';  // Link to the external CSS file
 import DatePicker from '../../components/DatePicker/DatePicker';
 import Searchbar from '../../components/SearchBar/Searchbar';

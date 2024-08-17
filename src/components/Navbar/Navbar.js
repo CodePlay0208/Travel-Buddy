@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, memo } from "react";
 import axios from "axios";
-import "./Navbar.css";
+import "./NavBar.css";
 import { useNavigate } from "react-router-dom";
 import { UserLoginContext } from "../../Utils/Context/LoggedInUserContext";
 import { ChatContext } from "../../Utils/Context/ChatContext";

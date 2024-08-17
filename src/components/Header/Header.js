@@ -2,7 +2,7 @@ import React , {useState, memo , useMemo}from 'react';
 import './Header.css';
 import LandingPageImage from "../../data/Images/searchResult/header.png";
 import SearchMenu from '../SearchMenu/SearchMenu';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../NavBar/NavBar';
 import { InputValuesContext } from '../../Utils/Context/InputValuesContext';
 
 const SearchResultHeader = (props) => {
