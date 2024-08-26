@@ -5,9 +5,9 @@ const DetailBox = ({ heading, body, svg }) => {
     return (
         <div className="detail-box">
             <div className="detail-box-content">
-                <img className="detail-box-svg" src={svg}></img>
-                <div className="detail-box-body">{body}</div>
+                <img className="detail-box-profile-page" src='#' alt=''></img>
                 <div className="detail-box-button">{heading}</div>
+                <div className="detail-box-body">{body}</div>
             </div>
         </div>
     );

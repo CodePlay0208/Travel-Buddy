@@ -70,6 +70,7 @@ const DetailsSection = () => {
                 <div className="trippage_title map-title">Add Title Here</div>
                 <div className="trippage_map-image"></div>
             </div>
+            <div className="grey-line"></div>
             <div className="trippage_details-lower-section">
                 <div className="trippage_heading-container">
                     <div className="trippage_head-title">
@@ -78,11 +79,12 @@ const DetailsSection = () => {
                     <div className="trippage_create-more-button">
                         Create More
                     </div>
-                    <div className="trippage_profile-cards">
-                        <DetailBox heading={"Username"} body={"Username"} svg={""}></DetailBox>
-                        <DetailBox heading={"Username"} body={"Username"} svg={""}></DetailBox>
-                        <DetailBox heading={"Username"} body={"Username"} svg={""}></DetailBox>
-                    </div>
+                </div>
+
+                <div className="trippage_profile-cards">
+                    <DetailBox heading={"Username"} body={"Trip Publisher"} svg={""}></DetailBox>
+                    <DetailBox heading={"Username"} body={"Member 1"} svg={""}></DetailBox>
+                    <DetailBox heading={"Username"} body={"Member 2"} svg={""}></DetailBox>
                 </div>
             </div>
         </div>
