@@ -67,7 +67,7 @@ const DetailsSection = () => {
             </div>
             <div className="grey-line"></div>
             <div className="trippage_details-upper-section">
-                <div className="trippage_title">Add Title Here</div>
+                <div className="trippage_title map-title">Add Title Here</div>
                 <div className="trippage_map-image"></div>
             </div>
             <div className="trippage_details-lower-section">
