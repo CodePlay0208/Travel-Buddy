@@ -40,33 +40,34 @@ const DetailsSection = () => {
                             <div className="trippage_profile-picture"><img src="" alt="" /></div>
                             <div className="trippage_profileName">User</div>
                         </div>
+                        <div className="grey-line"></div>
                         <div className="trippage_date-section">
                             <div className="trippage_startdate trippage_details">
-                                <div className="trippage_box_heading">startDate</div>
+                                <div className="trippage_box_heading">Start Date</div>
                                 <div className="trippage_box_content">DD/MM/YYYY</div>
                             </div>
                             <div className="trippage_enddate trippage_details">
-                                <div className="trippage_box_heading">startDate</div>
+                                <div className="trippage_box_heading">End Date</div>
                                 <div className="trippage_box_content">DD/MM/YYYY</div>
                             </div>
                         </div>
                         <div className="trippage_info-section">
                             <div className="trippage_budget trippage_details">
-                                <div className="trippage_box_heading">startDate</div>
-                                <div className="trippage_box_content">DD/MM/YYYY</div>
+                                <div className="trippage_box_heading">Budget</div>
+                                <div className="trippage_box_content">6000</div>
                             </div>
                             <div className="trippage_totalMember trippage_details">
-                                <div className="trippage_box_heading">startDate</div>
-                                <div className="trippage_box_content">DD/MM/YYYY</div>
+                                <div className="trippage_box_heading">Members</div>
+                                <div className="trippage_box_content">10</div>
                             </div>
                         </div>
                         <div className="trippage_chat-now-button">Chat Now</div>
                     </div>
                 </div>
             </div>
-            
+            <div className="grey-line"></div>
             <div className="trippage_details-upper-section">
-                <div className="trippage_title"></div>
+                <div className="trippage_title">Add Title Here</div>
                 <div className="trippage_map-image"></div>
             </div>
             <div className="trippage_details-lower-section">
