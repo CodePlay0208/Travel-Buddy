@@ -1,89 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
 import firstImage from "../../../data/Images/aeroPlaneTripPage.png";
 import secondImage from "../../../data/Images/MapImage.png";
 import DetailBox from './DetailBox/DetailBox';
-import { SVG } from "../../../assets/svg"
-import "./DetailsSection.css"
-const DetailsSection = () => {
-    return (
-        <div className="details-section">
-            <div className="chat-bar">
-                <div className="detailSection__profileSection">
-                    <img src="" alt={`users profile`} className="detailSection__profileImg" />
-                    <h3 className="detailSection__username">UserName</h3>
-                </div>
-                <div className="detailSection__chatNow">
-                    <button className="detailSection__chatButton">
-                        <svg width="30" height="27" viewBox="0 0 30 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21.558 7.10815C20.8891 6.43923 20.2202 5.77031 19.3729 5.36897C18.3472 4.92302 17.1877 5.01221 16.1621 5.32437C15.0918 5.63653 14.1553 6.21626 13.1742 6.75139C10.454 8.3122 7.73372 9.9176 4.96886 11.4784C4.38913 11.8352 3.76481 12.1919 3.36346 12.727C2.56076 13.7527 2.60536 15.2243 3.14049 16.3838C3.67562 17.5432 4.6567 18.4351 5.68237 19.1932C6.70804 19.9513 7.77831 20.6648 8.71479 21.5567C9.56209 22.404 10.231 23.4297 11.0783 24.277C13.6202 26.8189 17.8566 27.5324 21.0674 25.927C23.4309 24.7675 25.0809 22.5824 26.6863 20.4865C27.8458 18.9703 29.0498 17.2757 29.0498 15.3581C29.0498 13.4851 27.8458 11.8797 26.1512 11.1662C24.3228 10.4973 22.9404 8.53517 21.558 7.10815Z" fill="url(#paint0_linear_167_296)" />
-                            <path d="M17.7234 11.9688V14.6891C17.7234 15.581 16.9653 16.2945 16.0734 16.2945H10.187L7.33293 18.3458L7.24374 16.2945C6.35185 16.2945 5.59375 15.5364 5.59375 14.6445V9.47153C5.59375 8.53504 6.30726 7.82153 7.24374 7.82153H13.7099" stroke="black" stroke-width="0.632349" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M17.7237 14.7338H20.9345C21.6926 14.7338 22.2724 15.3581 22.2724 16.1162V20.3973C22.2724 21.1554 21.648 21.7797 20.9345 21.7797L20.8453 23.4297L18.4818 21.7351H13.621C12.8629 21.7351 12.2832 21.1108 12.2832 20.3527V16.2946M24.1453 11.9689L24.0561 14.0203L21.2021 11.9689H15.3156C14.4237 11.9689 13.6656 11.2108 13.6656 10.3189V5.14596C13.6656 4.20948 14.3791 3.49597 15.3156 3.49597H24.1899C25.0818 3.49597 25.8399 4.25408 25.8399 5.14596V10.3189C25.8399 11.2554 25.0818 11.9689 24.1453 11.9689Z" stroke="black" stroke-width="0.632349" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M17.7237 14.7338H20.9345C21.6926 14.7338 22.2724 15.3581 22.2724 16.1162V20.3973C22.2724 21.1554 21.648 21.7797 20.9345 21.7797L20.8453 23.4297L18.4818 21.7351H13.621C12.8629 21.7351 12.2832 21.1108 12.2832 20.3527V16.2946L17.7237 14.7338Z" fill="#FF9D23" stroke="#0000DB" stroke-width="0.539592" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M15.2715 17.677H19.285M15.2715 19.4162H19.285" stroke="white" stroke-width="0.539592" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M17.7234 11.9688V14.6891C17.7234 15.581 16.9653 16.2945 16.0734 16.2945H10.187L7.33293 18.3458L7.24374 16.2945C6.35185 16.2945 5.59375 15.5364 5.59375 14.6445V9.47153C5.59375 8.53504 6.30726 7.82153 7.24374 7.82153H13.7099L17.7234 11.9688Z" fill="#9495FA" stroke="#0000DB" stroke-width="0.539592" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M24.1457 11.9689L24.0565 14.0203L21.2025 11.9689H15.316C14.4241 11.9689 13.666 11.2108 13.666 10.3189V5.14596C13.666 4.20948 14.3795 3.49597 15.316 3.49597H24.1903C25.0822 3.49597 25.8403 4.25408 25.8403 5.14596V10.3189C25.8403 11.2554 25.0822 11.9689 24.1457 11.9689Z" fill="#F86C66" stroke="#0000DB" stroke-width="0.539592" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M17.1895 6.7959H22.3178M17.1895 8.71346H22.3178" stroke="white" stroke-width="0.539592" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M26.9989 1.35543L26.0625 0.418945L25.2598 1.22164" stroke="#FF9D23" stroke-width="0.669362" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M2.74016 11.9243L1.89287 11.077L1.13477 11.8351" stroke="#0000DB" stroke-width="0.611835" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M28.4258 5.01221L29.6744 6.21626" stroke="#9495FA" stroke-width="0.669362" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M3.18555 4.96753L4.52338 6.26077M27.7571 22.4485L29.0949 23.7864" stroke="#FF4B4D" stroke-width="0.611835" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M3.85547 21.7797L5.1933 23.1175" stroke="#FF9D23" stroke-width="0.611835" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                            <defs>
-                                <linearGradient id="paint0_linear_167_296" x1="15.8847" y1="5.08891" x2="15.8847" y2="26.822" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="white" stop-opacity="0.25" />
-                                    <stop offset="1" stop-color="#FED3BE" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
+import { SVG } from "../../../assets/svg";
+import "./DetailsSection.css";
 
-                        Chat Now
-                    </button>
+const DetailsSection = () => {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
+    };
+
+    const content = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis id voluptatem accusamus ad mollitia iure aspernatur doloribus cum odio voluptatum, quibusdam quaerat porro eos, ipsam libero beatae sequi, odit dolore. Aut sint, ipsa iure inventore deleniti a voluptates repellat vitae, alias corporis illo! Corrupti impedit vitae maiores corporis neque ipsum iusto iste odit repellendus totam nihil, omnis incidunt ad rerum porro laboriosam repellat temporibus soluta minima quasi doloribus quae quam fugiat. Sapiente quidem minus nihil ex, voluptatibus totam consectetur laboriosam facilis fugiat iste. Tempora molestias qui, expedita pariatur eum commodi illum nihil veniam architecto in suscipit, accusantium corrupti nam fugit impedit doloribus assumenda ratione quod cumque dicta maxime error veritatis! Itaque placeat a nesciunt nostrum repudiandae esse sunt voluptate error. Modi molestias nobis explicabo tempore incidunt eum! Quo, accusantium quae! Vero qui maxime nostrum expedita unde? Quis at ipsam, magni nihil, dolore tempora minima voluptatem hic quaerat, porro cumque eligendi maxime! Nemo provident alias, fugit eius quis delectus voluptas est fugiat error iusto fuga laudantium dolore dolor nihil architecto natus tempora aut unde porro. Earum temporibus quae reprehenderit eaque similique voluptas facere repellat eius explicabo quod! Obcaecati iure est provident quae, officiis reprehenderit cumque quas cupiditate, pariatur perspiciatis eum deserunt adipisci corrupti ipsam. In illum optio nobis fugit assumenda error eum! Alias molestias doloribus sint voluptate nostrum quaerat hic corporis quibusdam sed labore, impedit sequi placeat, eveniet, sunt rerum nulla maiores? Omnis corrupti incidunt minima, quisquam quo nostrum sapiente dolores quis aspernatur veritatis, cupiditate mollitia nam iusto est? Laudantium fugit mollitia nam placeat fugiat, sed quidem alias impedit optio excepturi? Nisi doloremque ex necessitatibus quae fuga quibusdam, id soluta? Repellendus officiis optio, sed blanditiis iure aperiam dolore magnam. Expedita possimus optio quae a sed? Sint dolorem, sunt quam minima illum explicabo perspiciatis eligendi non ratione repellat atque pariatur facilis expedita voluptates ipsam ipsa nemo velit corrupti architecto dicta quia. Tempore sit id similique odit tempora nobis sint, aut natus consequuntur? Porro recusandae quod velit saepe repudiandae ipsa itaque voluptatem, dolores deserunt ducimus corporis natus soluta quia doloribus ab dicta pariatur tenetur tempora nihil, autem ea corrupti eum? Provident neque quasi eveniet earum? Iusto enim illum qui harum, tempore consectetur exercitationem reprehenderit a voluptates itaque animi tenetur neque ipsa fugiat quam aperiam optio expedita excepturi laudantium? A consequatur quo maxime minus cumque. Pariatur nemo tempora porro harum quia expedita, cumque nostrum, facere consequuntur distinctio optio natus beatae, obcaecati aliquid? Dolore, impedit.`;
+
+    const words = content.split(' ');
+    const displayedContent = isExpanded ? content : words.slice(0, 50).join(' ') + '...';
+
+    return (
+        <div className="trippage_details-section">
+            <div className="trippage_chat-bar">
+                <div className="trippage_title">Add Title Here</div>
+                <div className="trippage_des-chat-section">
+                    <div className="trippage_des">
+                        <div className="trippage_des-title">
+                            Description
+                        </div>
+                        <div className="trippage_des-content">
+                            {displayedContent}
+                            {words.length > 50 && (
+                                <span onClick={toggleExpand} className="trippage_toggle-button">
+                                    {isExpanded ? ' Show Less' : ' Show More'}
+                                </span>
+                            )}
+                        </div>
+                    </div>
+                    <div className="trippage_chat-section">
+                        <div className="trippage_profile-image">
+                            <div className="trippage_profile-picture"><img src="" alt="" /></div>
+                            <div className="trippage_profileName">User</div>
+                        </div>
+                        <div className="trippage_date-section">
+                            <div className="trippage_startdate trippage_details">
+                                <div className="trippage_box_heading">startDate</div>
+                                <div className="trippage_box_content">DD/MM/YYYY</div>
+                            </div>
+                            <div className="trippage_enddate trippage_details">
+                                <div className="trippage_box_heading">startDate</div>
+                                <div className="trippage_box_content">DD/MM/YYYY</div>
+                            </div>
+                        </div>
+                        <div className="trippage_info-section">
+                            <div className="trippage_budget trippage_details">
+                                <div className="trippage_box_heading">startDate</div>
+                                <div className="trippage_box_content">DD/MM/YYYY</div>
+                            </div>
+                            <div className="trippage_totalMember trippage_details">
+                                <div className="trippage_box_heading">startDate</div>
+                                <div className="trippage_box_content">DD/MM/YYYY</div>
+                            </div>
+                        </div>
+                        <div className="trippage_chat-now-button">Chat Now</div>
+                    </div>
                 </div>
             </div>
-            <div className="details-upper-section">
-                <div className="details-right">
-                    <div className="details-column">
-                        <div>
-                            <DetailBox heading="Start Location" body="This is the body text for detail box 1." svg={SVG.startLocation} />
-                        </div>
-                        <div>
-                            <DetailBox heading="Start Date" body="This is the body text for detail box 2." svg={SVG.startDate} />
-                        </div>
-                    </div>
-                    <img src={firstImage} alt="Trip" className="trip-image" />
-                    <div className="details-column">
-                        <div>
-                            <DetailBox heading="End Location" body="This is the body text for detail box 3." svg={SVG.endLocation} />
-                        </div>
-                        <div>
-                            <DetailBox heading="End Date" body="This is the body text for detail box 4." svg={SVG.endDate} />
-                        </div>
-                    </div>
-                </div>
-                <div className="details-left">
-                    <img src={secondImage} alt="" className='Map-image' />
-                </div>
+            
+            <div className="trippage_details-upper-section">
+                <div className="trippage_title"></div>
+                <div className="trippage_map-image"></div>
             </div>
-            <div className="details-lower-section">
-                <div className="details-right">
-                    <div className="details-column">
-                        <div>
-                            <DetailBox heading="Age" body="This is the body text for detail box 5." svg={SVG.age} />
-                        </div>
-                        <div>
-                            <DetailBox heading="Budget" body="This is the body text for detail box 6." svg={SVG.budget} />
-                        </div>
+            <div className="trippage_details-lower-section">
+                <div className="trippage_heading-container">
+                    <div className="trippage_head-title">
+                        Meet Your Travmigoz
                     </div>
-                    <div className="details-column">
-                        <div>
-                            <DetailBox heading="Total members" body="This is the body text for detail box 7." svg={SVG.member} />
-                        </div>
-                        <div>
-                            <DetailBox heading="Gender" body="This is the body text for detail box 8." svg={SVG.gender} />
-                        </div>
+                    <div className="trippage_create-more-button">
+                        Create More
+                    </div>
+                    <div className="trippage_profile-cards">
+                        <DetailBox heading={"Username"} body={"Username"} svg={""}></DetailBox>
+                        <DetailBox heading={"Username"} body={"Username"} svg={""}></DetailBox>
+                        <DetailBox heading={"Username"} body={"Username"} svg={""}></DetailBox>
                     </div>
                 </div>
-                <div className="details-left"></div>
             </div>
         </div>
     );
