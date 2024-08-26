@@ -1,244 +1,245 @@
 .trippage_details-section {
-    position: relative;
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .trippage_chat-bar {
-    width: 100%;
-    padding: 3%;
+  width: 100%;
+  padding: 3%;
 }
 
 .trippage_title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 50px;
-    line-height: 61px;
-    color: #18191a;
-    margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 4vw;
+  line-height: 1.2;
+  color: #18191a;
+  margin-bottom: 20px;
 }
 
 .map-title {
-    text-align: center;
+  text-align: center;
 }
 
 .trippage_des-chat-section {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap; /* Add wrap to handle smaller screens */
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .trippage_create-more-button {
-    position: relative;
-    padding: 1%;
-    background: #93D5BF;
-    border-radius: 10px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 32.78px;
-    line-height: 40px;
-    color: #000000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  position: relative;
+  padding: 1%;
+  background: #93d5bf;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 2vw;
+  line-height: 1.2;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .trippage_create-more-button:hover {
-    background-color: #82c5ab;
+  background-color: #82c5ab;
 }
 
 .trippage_des {
-    width: 50%;
-    box-sizing: border-box;
+  width: 48%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .trippage_des-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 44px;
-    color: #040f0f;
-    margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 3vw;
+  color: #040f0f;
+  margin-bottom: 10px;
 }
 
 .trippage_des-content {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 37px;
-    line-height: 45px;
-    color: #040f0f;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 2vw;
+  line-height: 1.5;
+  color: #040f0f;
 }
 
 .trippage_toggle-button {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 37px;
-    color: #007bff;
-    cursor: pointer;
-    margin-left: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 2vw;
+  color: #007bff;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 .trippage_chat-section {
-    width: 40%;
-    background: #ffffff;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
-    border-radius: 25px;
-    padding: 20px;
-    box-sizing: border-box;
+  width: 48%;
+  background: #ffffff;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .trippage_profile-image {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .trippage_profile-picture img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
 
 .trippage_profileName {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 50px;
-    color: #040f0f;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 3vw;
+  color: #040f0f;
 }
 
 .trippage_date-section,
 .trippage_info-section {
-    display: flex;
-    margin: 20px 0;
+  display: flex;
+  margin: 20px 0;
 }
 
 .trippage_details {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 22px;
-    color: #040f0f;
-    padding: 2% 5%;
-    width: 50%;
-    box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1.5vw;
+  color: #040f0f;
+  padding: 2% 5%;
+  width: 50%;
+  box-sizing: border-box;
 }
 
 .trippage_box_heading {
-    padding-bottom: 5%;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 34px;
+  padding-bottom: 5%;
+  font-size: 1.5vw;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .trippage_box_content {
-    padding-bottom: 5%;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 33px;
-    font-weight: 500;
-    line-height: 44px;
+  padding-bottom: 5%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5vw;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .trippage_startdate {
-    border: 1px solid grey;
-    border-right: 0.5px solid rgba(128, 128, 128, 1);
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+  border: 1px solid grey;
+  border-right: 0.5px solid rgba(128, 128, 128, 1);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .trippage_enddate {
-    border: 1px solid grey;
-    border-left: 0.5px solid rgba(128, 128, 128, 1);
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+  border: 1px solid grey;
+  border-left: 0.5px solid rgba(128, 128, 128, 1);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .trippage_chat-now-button {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 60px;
-    color: #000000;
-    text-align: center;
-    background: #8dd3bb;
-    padding: 10px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 4vw;
+  color: #000000;
+  text-align: center;
+  background: #8dd3bb;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .trippage_chat-now-button:hover {
-    background-color: #79bca7;
+  background-color: #79bca7;
 }
 
 .trippage_details-upper-section {
-    margin: 4%;
-    box-sizing: border-box;
+  margin: 4%;
+  box-sizing: border-box;
 }
 
 .trippage_map-image {
-    background: url('../../../data/Images/MapImage.png') no-repeat center;
-    background-size: cover;
-    width: 100%;
-    height: 800px;
+  background: url('../../../data/Images/MapImage.png') no-repeat center;
+  background-size: cover;
+  width: 100%;
+  height: 60vh;
 }
 
 .trippage_details-lower-section {
-    margin: 4%;
-    box-sizing: border-box;
+  margin: 4%;
+  box-sizing: border-box;
 }
 
 .trippage_heading-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .trippage_head-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 48px;
-    color: #18191a;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 3vw;
+  color: #18191a;
 }
 
 .grey-line {
-    height: 1px;
-    background-color: grey;
-    width: calc(100% + 40px);
-    margin: 0 -20px;
+  height: 1px;
+  background-color: grey;
+  width: calc(100% + 40px);
+  margin: 0 -20px;
 }
 
 .trippage_profile-cards {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
-    .trippage_des-chat-section {
-        flex-direction: column;
-    }
-    
-    .trippage_des,
-    .trippage_chat-section {
-        width: 100%;
-    }
-    
-    .trippage_details {
-        width: 100%;
-    }
+  .trippage_des-chat-section {
+    flex-direction: column;
+  }
 
-    .trippage_create-more-button {
-        font-size: 24px;
-        height: 35px;
-    }
+  .trippage_des,
+  .trippage_chat-section {
+    width: 100%;
+  }
 
-    .trippage_chat-now-button {
-        font-size: 48px;
-    }
-    
-    .trippage_map-image {
-        height: 400px;
-    }
+  .trippage_details {
+    width: 100%;
+  }
+
+  .trippage_create-more-button {
+    font-size: 4vw;
+    height: auto;
+  }
+
+  .trippage_chat-now-button {
+    font-size: 6vw;
+  }
+
+  .trippage_map-image {
+    height: 40vh;
+  }
 }
