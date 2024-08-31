@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import Navbar from '../../NavBar/NavBar';
+import Navbar from '../../Navbar/Navbar';
 import UserSideBar from '../UserSideBar/UserSideBar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

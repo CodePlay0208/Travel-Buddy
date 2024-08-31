@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import Footer from '../../components/Footer/Footer';
-import Navbar from '../../components/NavBar/NavBar';
+import Navbar from '../../components/Navbar/Navbar';
 import './PublishTrip.css';  // Link to the external CSS file
 import DatePicker from '../../components/DatePicker/DatePicker';
-import Searchbar from '../../components/SearchBar/Searchbar';
+import Searchbar from '../../components/Searchbar/Searchbar';
 import { InputValuesContext } from '../../Utils/Context/InputValuesContext';
 import firstImage from '../../data/Images/gallery.png'
 const PublishTrip = () => {
