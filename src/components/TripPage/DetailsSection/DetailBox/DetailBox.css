@@ -1,59 +1,54 @@
 .detail-box {
-    position: relative;
-    width: 387.44px;
-    height: 196.38px;
-    margin: 11% 32.93px;
-    background: #FFFFFF;
-    border: 3.23462px solid #8DD3BB;
-    border-radius: 8.62565px;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  width: 25%; /* Adjust width as needed */
+  height: auto;
+  padding: 2%; /* Add padding for internal spacing */
+  background: #ffffff;
+  border: 3px solid #8dd3bb;
+  box-shadow: 4px 4px 16px rgba(6, 64, 43, 0.25);
+  border-radius: 10%; /* Adjust border-radius */
+  margin: 2% auto; /* Center the box with some spacing */
+}
+
+.detail-box-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.detail-box-profile-page {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10%;
+  border-radius: 50%;
 }
 
 .detail-box-body {
-    position: absolute;
-    width: 352.01px;
-    height: 127.66px;
-    left: 5%;
-    bottom: 1%;
+  font-family: 'Montserrat', sans-serif;
 
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 29.1834px;
-    line-height: 36px;
-    color: #112211;
+  font-size: 38.38px;
+  font-weight: 500;
+  line-height: 46.78px;
+  text-align: center;
+
+  margin-bottom: 5%; /* Space between body text and button */
 }
 
 .detail-box-button {
-    position: absolute;
-    width: 327px;
-    height: 55.36px;
-    left: 10%;
-    top:-15%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 
-    background: #AFF4DD;
-    border-radius: 72.846px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  color: #000000;
+  font-family: Montserrat;
 
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 29.1834px;
-    line-height: 36px;
-    color: #112211;
-}
+  font-size: 38.38px;
+  font-weight: 500;
+  line-height: 46.78px;
+  text-align: left;
+  margin: 4% 0;
 
-.detail-box-svg {
-    position: absolute;
-    width: 127.66px;
-    height: 127.66px;
-    left: -10%;
-    top: -35%;
-    background: #FFFFFF;
-    border-radius: 50%;
-    z-index: 1;
-    padding: 10px;
-    border: 10px #8DD3BB solid;
+  cursor: pointer;
+  text-align: center;
 }

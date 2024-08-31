@@ -10,6 +10,7 @@ import DatePicker from '../DatePicker/DatePicker';
 import ImagesSection from './ImagesSection/ImagesSection';
 import data from "../../data/data.json"
 import DetailsSection from './DetailsSection/DetailsSection';
+import PopularSection from '../PopularSection/PopularSection';
 const TripPage = () => {
   const { id: tripId } = useParams();
   const { loggedInUserValues } = useContext(UserLoginContext);
@@ -162,6 +163,7 @@ const TripPage = () => {
     <div className='detailsSectionTrip'>
       <DetailsSection/>
     </div>
+    <PopularSection></PopularSection>
       {/* <Navbar visibilityForSearch={true} />
       <div className="trip-details-container">
         <div className="leftPanel">
@@ -283,6 +285,7 @@ const TripPage = () => {
         </div>
       </div>
       <Footer /> */}
+      <Footer/>
     </div>
   );
 };

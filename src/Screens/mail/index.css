@@ -1,0 +1,96 @@
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 1700px;
+    margin: 52px auto;
+    border-radius: 10px;
+    box-shadow: 1px 1px 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Adjust height as needed */
+    background-image: url('image.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white; /* Adjust text color as needed */
+}
+
+.heading {
+    font-size: 2.5rem; /* Adjust font size as needed */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.appre {
+    font-size: 4.5rem; /* Adjust font size as needed */
+}
+
+.backgroundImage {
+    display: none; /* Hide the image element */
+}
+
+.content {
+    padding: 20px 50px;
+    margin: 10px;
+}
+
+.hName {
+    font-size: 3rem; /* Adjust font size as needed */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.otp {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.otpBlocks {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.border {
+    padding: 20px;
+    border: 2px solid #8DD3BB;
+    border-radius: 10px;
+    margin: 0 10px; /* Adjust margin to space out the blocks */
+    font-size: 2rem; /* Adjust font size as needed */
+    width: 50px;
+    text-align: center;
+}
+
+.desc {
+    font-size: 3rem; /* Adjust font size as needed */
+    margin: 20px 0;
+    line-height: 1.5; /* Improve readability */
+}
+
+.button {
+    background-color:#8DD3BB ;/* Match the border color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color:#68fdc9; /* Darken on hover */
+}
