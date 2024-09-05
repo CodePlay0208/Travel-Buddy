@@ -24,7 +24,6 @@
 .publish__trip__container {
   position: relative;
   padding: 3%;
-  height: 100vh;
   width: 90%; /* Adjusted to percentage */
   max-width: 1604px; /* Set max-width to prevent it from stretching too much on larger screens */
   margin: 0 auto; /* Center the container */
