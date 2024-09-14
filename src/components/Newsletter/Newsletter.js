@@ -1,42 +1,49 @@
-import React from 'react';
-import './Newsletter.css';
-
-import firstImage from '../../data/Images/image.png';
+import React from 'react'
+import {
+  NewsletterContainer,
+  NewsletterWrapper,
+  NewsletterContent,
+  NewsletterHeader,
+  NewsletterLeft,
+  NewsletterText,
+  NewsletterForm,
+  TextField,
+  EmailInput,
+  NewsletterButton,
+  NewsletterRight,
+  NewsletterImage,
+} from '../styles/Newsletter.styles'
 
 const Newsletter = () => {
   return (
-    <div className="newsletter-container">
-      <div className="newsletter">
-        <div className="newsletter-content">
-          <div className="newsletter-left">
-            <div className="newsletter-header">
+    <NewsletterContainer>
+      <NewsletterWrapper>
+        <NewsletterContent>
+          <NewsletterLeft>
+            <NewsletterHeader>
               <div>Subscribe</div>
               <div>Newsletter</div>
-            </div>
-            <div className="newsletter-text">
+            </NewsletterHeader>
+            <NewsletterText>
               <h2>The Travel</h2>
               <p>Get inspired! Receive travel tips and behind the scenes stories.</p>
-            </div>
-            <div className="newsletter-form">
-              <div className="text-field">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="email-input"
-                />
-              </div>
-              <button className="newsletter-button">
+            </NewsletterText>
+            <NewsletterForm>
+              <TextField>
+                <EmailInput type="email" placeholder="Your email address" />
+              </TextField>
+              <NewsletterButton>
                 <span className="button-text">Subscribe</span>
-              </button>
-            </div>
-          </div>
-          <div className="newsletter-right">
-            <img src={firstImage} alt="Newsletter" className="newsletter-image" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+              </NewsletterButton>
+            </NewsletterForm>
+          </NewsletterLeft>
+          <NewsletterRight>
+            <NewsletterImage />
+          </NewsletterRight>
+        </NewsletterContent>
+      </NewsletterWrapper>
+    </NewsletterContainer>
+  )
+}
 
-export default Newsletter;
+export default Newsletter
