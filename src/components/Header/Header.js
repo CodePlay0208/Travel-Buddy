@@ -1,40 +1,47 @@
-import React , {useState, memo , useMemo}from 'react';
-import './Header.css';
-import LandingPageImage from "../../data/Images/searchResult/header.png";
-import SearchMenu from '../SearchMenu/SearchMenu';
-import Navbar from '../Navbar/Navbar';
-import { InputValuesContext } from '../../Utils/Context/InputValuesContext';
+import React, { useState, memo, useMemo } from 'react'
+import LandingPageImage from '../../data/Images/searchResult/header.png'
+import SearchMenu from '../SearchMenu/SearchMenu'
+import Navbar from '../Navbar/Navbar'
+import { InputValuesContext } from '../../Utils/Context/InputValuesContext'
+
+import {
+  HeaderContainer,
+  LandingHeader,
+  LandingImage,
+  HeaderSearchBar,
+  HeaderDescription,
+  HeaderDesHeading,
+  HeaderDesPara,
+} from '../styles/SearchResultHeader.styles'
 
 const SearchResultHeader = (props) => {
-
   const [inputValues, setInputValues] = useState({
     destination: '',
-    startDate: ''
-  });
+    startDate: '',
+  })
 
-  const memocontext = useMemo(()=>({inputValues , setInputValues}) , [inputValues])
+  const memocontext = useMemo(() => ({ inputValues, setInputValues }), [inputValues])
 
   return (
-      <div className="HeaderContainer">
-       {
-        props.isImageNavbar && <Navbar isImageNavbar={props.isImageNavbar}/>
-       }
-        <div className="LandingHeader">
-          <img src={LandingPageImage} alt="Landing Page" className="LandingImage" />
-        </div>
-        <div className="HeaderDescription">
-          <div className="HeaderDesHeading">Travmigo</div>
-          <div className="HeaderDesPara">Find Your Travel Amigos!!</div>
-        </div>
-        <InputValuesContext.Provider
-        value={memocontext}
-      >
-        <div className="HeaderSearchBar">
+    <HeaderContainer>
+      {props.isImageNavbar && <Navbar isImageNavbar={props.isImageNavbar} />}
+
+      <LandingHeader>
+        <LandingImage src={LandingPageImage} alt="Landing Page" />
+      </LandingHeader>
+
+      <HeaderDescription>
+        <HeaderDesHeading>Travmigoz</HeaderDesHeading>
+        <HeaderDesPara>Find Your Travel Amigos!</HeaderDesPara>
+      </HeaderDescription>
+
+      <InputValuesContext.Provider value={memocontext}>
+        <HeaderSearchBar>
           <SearchMenu />
-        </div>
-        </InputValuesContext.Provider>
-      </div>
-  );
+        </HeaderSearchBar>
+      </InputValuesContext.Provider>
+    </HeaderContainer>
+  )
 }
 
-export default memo(SearchResultHeader);
+export default memo(SearchResultHeader)
