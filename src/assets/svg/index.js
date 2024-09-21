@@ -18,6 +18,9 @@ import editButton from './editButton.svg'
 import ChatButton from './ChatButton.svg'
 import ProfileIcon from './ProfileIcon.svg'
 
+import CalenderIcon from './CalenderIcon.svg'
+import RightArrow from './RightArrow.svg'
+import LeftArrow from './LeftArrow.svg'
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -36,5 +39,8 @@ export const SVG = {
   LocationIcon,
   editButton,
   ChatButton,
-  ProfileIcon
+  ProfileIcon,
+  CalenderIcon,
+  RightArrow,
+  LeftArrow,
 }
