@@ -8,7 +8,6 @@ import VerifyCode from "./Screens/VerifyCode/VerifyCode";
 import SignUp from "./Screens/SignUpPage/SignUp";
 import TripPage from "./components/TripPage/TripPage";
 import UserProfile from "./Screens/UserProfile/UserProfile";
-import UserTrips from "./components/UserProfile/UserTrips/UserTrips";
 import ForgotPassword from "./Screens/ForgotPassword/ForgotPassword";
 import SetPassword from "./Screens/SetPassword/SetPassword";
 
@@ -41,10 +40,10 @@ export const routes = [
     element: <UserProfile />,
   },
 
-  {
-    path: '/user-trips',
-    element: <UserTrips />,
-  },
+    // {
+    //     "path": "/user-trips",
+    //     "element": <UserTrips/>
+    // },
 
   {
     path: '/trip/:id',

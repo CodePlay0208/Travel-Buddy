@@ -14,7 +14,6 @@ import firstImage from '../../data/image.png';
 const TopDestination = () => (
   <Frame>
     <BackgroundImage src={firstImage} alt="" />
-    <Rectangle40 />
     <Heading>Where do you want to go?</Heading>
     <LocationContainer>
       <LocationBox>Bangalore</LocationBox>
