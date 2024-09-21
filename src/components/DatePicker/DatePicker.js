@@ -213,13 +213,9 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
           </CalendarHeader>
           <div className="calendar-body">
             <DayNames>
-              <span>Sun</span>
-              <span>Mon</span>
-              <span>Tue</span>
-              <span>Wed</span>
-              <span>Thu</span>
-              <span>Fri</span>
-              <span>Sat</span>
+              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+                <span key={day}>{day}</span>
+              ))}
             </DayNames>
             <Days>{populateDays()}</Days>
           </div>
