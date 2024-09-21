@@ -1,6 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './DatePicker.css'
 import { SVG } from '../../assets'
+import {
+  DatePickerWrapper,
+  InputWrapper,
+  DatePickerInput,
+  CalendarIcon,
+  CalendarWrapper,
+  CalendarHeader,
+  NavButton,
+  MonthYear,
+  DayNames,
+  Days,
+  TodayButton,
+  SvgIcon,
+} from '../styles/DatePicker.styled'
+
 const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) => {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(inputValues)
@@ -146,11 +161,10 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
     }))
     setShowCalendar(false)
   }
-
   return (
-    <div className="date-picker">
-      <div className="input-wrapper">
-        <input
+    <DatePickerWrapper>
+      <InputWrapper>
+        <DatePickerInput
           type="text"
           ref={dateInputRef}
           value={selectedDate}
@@ -159,58 +173,46 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
           onClick={() => setShowCalendar(!showCalendar)}
           className="SearchBar-date"
         />
-
-        <img src={SVG.CalenderIcon} alt="Calender Icon" className="svgIcon calendar-icon" />
-      </div>
+        <CalendarIcon src={SVG.CalenderIcon} alt="Calender Icon" />
+      </InputWrapper>
       {showCalendar && (
-        <div className="calendar" ref={calendarRef}>
-          <div className="calendar-header">
-            <span
-              className={`nav-button ${new Date(currentDate.getFullYear(), currentDate.getMonth() - 1) < new Date(today.getFullYear(), today.getMonth(), 1) ? 'disabled' : ''}`}
+        <CalendarWrapper ref={calendarRef}>
+          <CalendarHeader>
+            <NavButton
+              disabled={
+                new Date(currentDate.getFullYear(), currentDate.getMonth() - 1) < new Date(today.getFullYear(), today.getMonth(), 1)
+              }
               onClick={handlePrevMonth}
             >
-              <div className="svgIcon" style={{ position: 'absolute', left: '18px' }}>
+              <SvgIcon>
                 <svg viewBox="0 0 24 24">
                   <g color="currentColor">
-                    <g color="currentColor">
-                      <path
-                        fill="currentColor"
-                        fillRule="evenodd"
-                        d="M10.707 4.293a1 1 0 0 1 0 1.414L5.414 11H21a1 1 0 1 1 0 2H5.414l5.293 5.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0"
-                        clipRule="evenodd"
-                      ></path>
-                    </g>
+                    <path
+                      fill="currentColor"
+                      d="M10.707 4.293a1 1 0 0 1 0 1.414L5.414 11H21a1 1 0 1 1 0 2H5.414l5.293 5.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0"
+                    />
                   </g>
                 </svg>
-                {/* <img src={SVG.LeftArrow} alt="Left Arrow" className="svgIcon" /> */}
-              </div>
-            </span>
-            <span id="month-year">
+              </SvgIcon>
+            </NavButton>
+            <MonthYear>
               {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()}
-            </span>
-            <span
-              className={`nav-button ${new Date(currentDate.getFullYear(), currentDate.getMonth() + 1) > oneYearLater ? 'disabled' : ''}`}
-              onClick={handleNextMonth}
-            >
-              <div className="svgIcon" style={{ position: 'absolute', right: '0' }}>
+            </MonthYear>
+            <NavButton disabled={new Date(currentDate.getFullYear(), currentDate.getMonth() + 1) > oneYearLater} onClick={handleNextMonth}>
+              <SvgIcon>
                 <svg viewBox="0 0 24 24">
                   <g color="currentColor">
-                    <g color="currentColor">
-                      <path
-                        fill="currentColor"
-                        fillRule="evenodd"
-                        d="M13.293 18.293a1 1 0 0 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 1 0-1.414 1.414L18.586 11H3a1 1 0 1 0 0 2h15.586z"
-                        clipRule="evenodd"
-                      ></path>
-                    </g>
+                    <path
+                      fill="currentColor"
+                      d="M13.293 18.293a1 1 0 0 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 1 0-1.414 1.414L18.586 11H3a1 1 0 1 0 0 2h15.586z"
+                    />
                   </g>
                 </svg>
-                {/* <img src={SVG.RightArrow} alt="Right Arrow" className="svgIcon" /> */}
-              </div>
-            </span>
-          </div>
+              </SvgIcon>
+            </NavButton>
+          </CalendarHeader>
           <div className="calendar-body">
-            <div className="day-names">
+            <DayNames>
               <span>Sun</span>
               <span>Mon</span>
               <span>Tue</span>
@@ -218,15 +220,15 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
               <span>Thu</span>
               <span>Fri</span>
               <span>Sat</span>
-            </div>
-            <div className="days">{populateDays()}</div>
+            </DayNames>
+            <Days>{populateDays()}</Days>
           </div>
-          <div className="today-button" onClick={handleTodayClick}>
+          <TodayButton onClick={handleTodayClick}>
             <button>Today</button>
-          </div>
-        </div>
+          </TodayButton>
+        </CalendarWrapper>
       )}
-    </div>
+    </DatePickerWrapper>
   )
 }
 
