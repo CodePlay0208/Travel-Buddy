@@ -113,8 +113,6 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
     } else if (dateValue.toDateString() === tomorrow.toDateString()) {
       return 'Tomorrow'
     } else {
-      const dayName = dateValue.toLocaleDateString('en-US', { weekday: 'long' }) // Get the day name
-      const formattedDate = dateToStringSimple(dateValue)
       return formatDate(dateValue)
     }
   }
