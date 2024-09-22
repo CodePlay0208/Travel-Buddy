@@ -1,7 +1,7 @@
 import React , {useContext} from 'react';
 import './PopularTrips.css';
 import { TopDestinationsContext } from "../../../Utils/Context/TopDestinationsContext";
-import { InputValuesContext } from "../../../Utils/Context/InputValuesContext";
+import { InputValuesContext } from "../../Utils/Context/InputValuesContext";
 import { useNavigate } from "react-router-dom";
 
 function getTodayDate() {

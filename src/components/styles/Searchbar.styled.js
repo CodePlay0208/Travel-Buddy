@@ -24,6 +24,7 @@ export const LocationInput = styled.input`
   outline: none;
 
   &::placeholder {
+    font-family: Arial, sans-serif;
     font-weight: 600;
     color: #787878;
   }
