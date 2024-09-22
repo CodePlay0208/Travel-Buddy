@@ -9,12 +9,12 @@ import sixthImage from '../../data/Images/heroSection/image6.png';
 
 const HeroSection = () => {
   const cardData = [
-    { id: 1, image: firstImage, rating: 3.5, name: 'Place name' },
-    { id: 2, image: secondImage, rating: 3.5, name: 'Place name' },
-    { id: 3, image: thirdImage, rating: 3.5, name: 'Place name' },
-    { id: 4, image: fourthImage, rating: 3.5, name: 'Place name' },
-    { id: 5, image: fifthImage, rating: 3.5, name: 'Place name' },
-    { id: 6, image: sixthImage, rating: 3.5, name: 'Place name' },
+    { id: 1, image: firstImage,  name: 'Place name' },
+    { id: 2, image: secondImage, name: 'Place name' },
+    { id: 3, image: thirdImage,  name: 'Place name' },
+    { id: 4, image: fourthImage, name: 'Place name' },
+    { id: 5, image: fifthImage,  name: 'Place name' },
+    { id: 6, image: sixthImage,  name: 'Place name' },
   ];
 
   return (
