@@ -1,18 +1,14 @@
-import styled from 'styled-components';
-import firstImage from '../../data/Images/aboutSection/image1.png';
-import secondImage from '../../data/Images/aboutSection/image2.png';
-import thirdImage from '../../data/Images/aboutSection/image.png';
+import styled from 'styled-components'
 
-// Styled components
 export const AboutSectionContainer = styled.div`
-  position: relative; /* Changed from absolute for responsiveness */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: auto;
   flex-wrap: wrap;
-  margin: 100px; /* Center the section */
-`;
+  margin: 100px;
+`
 
 export const Background = styled.div`
   position: absolute;
@@ -23,35 +19,35 @@ export const Background = styled.div`
   top: 0;
   background: rgba(141, 211, 187, 0.4);
   border-radius: 20px;
-`;
+`
 
 export const ContentFrame = styled.div`
-  position: relative; /* Changed from absolute for responsiveness */
+  position: relative;
   width: 425px;
   height: 388px;
   background: #ffffff;
   border-radius: 20px;
-  margin: 15px auto; /* Center the frame */
+  margin: 15px auto;
 
   &.first {
     box-shadow: -9px 10px 20px #d1ede4;
   }
-  
+
   &.second {
     box-shadow: 0px 10px 20px #d1ede4;
   }
-  
+
   &.third {
     box-shadow: 9px 10px 20px #d1ede4;
   }
-`;
+`
 
 export const ContentInnerFrame = styled.div`
-  position: relative; /* Changed from absolute for responsiveness */
+  position: relative;
   width: 100%;
   height: auto;
   padding: 20px;
-`;
+`
 
 export const Title = styled.div`
   width: 100%;
@@ -61,8 +57,8 @@ export const Title = styled.div`
   font-size: 2rem;
   line-height: 2.5rem;
   color: #000000;
-  text-align: center; /* Center align text */
-`;
+  text-align: center;
+`
 
 export const Description = styled.div`
   width: 100%;
@@ -72,20 +68,19 @@ export const Description = styled.div`
   font-size: 1.25rem;
   line-height: 1.5rem;
   color: #000000;
-  text-align: center; /* Center align text */
-  margin-top: 20px; /* Added margin for spacing */
-`;
+  text-align: center;
+  margin-top: 20px;
+`
 
 export const IconGroup = styled.div`
-  position: relative; /* Changed from absolute for responsiveness */
+  position: relative;
   height: 60px;
   display: flex;
-  justify-content: center; /* Center the icons */
-  margin: 20px; /* Added margin for spacing */
-`;
+  justify-content: center;
+  margin: 20px;
+`
 
-// Media Queries
 export const MediaQueries = {
   large: '@media (max-width: 768px)',
   small: '@media (max-width: 480px)',
-};
+}
