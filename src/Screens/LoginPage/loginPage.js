@@ -2,20 +2,61 @@ import React, { useContext, useState, memo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
-import { toast } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import { SVG } from '../../assets'
 import './loginPage.css'
+import { connect } from 'react-redux'
+import { setGoogleToken } from '../../api-services/api-services'
+import { login, loginWithGoogle } from '../../actions/auth.action'
+// import { env } from '../../config/env'
+// import { AuthApi } from '../../api-services/api-invokes'
 
-const LoginPage = () => {
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+const LoginPage = ({ login, isAuthenticated }) => {
+  const [userEmail, setUserEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
+  const [secureTextEntry, setSecureTextEntry] = useState(true)
   const { setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
+
+
+  // const googleSignIn = useGoogleLogin({
+  //   clientId: env.GOOGLE_CLIENT_ID,
+  //   onSuccess: async (response) => {
+  //     const token = response.access_token
+  //     setGoogleToken(token)
+  //     try {
+  //       const res = await AuthApi.loginUserWithGoogle()
+  //       console.log('RES', res)
+  //       if (res.success) {
+  //         const previousURL = sessionStorage.getItem('redirectUrl') || '/'
+  //         sessionStorage.removeItem('redirectUrl')
+  //         navigate(previousURL)
+  //       } else {
+  //         console.log('Login with Google failed')
+  //       }
+  //     } catch (e) {
+  //       console.log('googleSignIn ERROR: ', e)
+  //       throw e
+  //     }
+  //   },
+  //   onError: (error) => {
+  //     console.log('googleSignIn-onError ERROR: ', error)
+  //   },
+  // })
 
   const googleSignIn = useGoogleLogin({
     clientId: '464876682696-pkm7moinvftntbnild9dq19378vu3ski.apps.googleusercontent.com',
     onSuccess: (response) => {
       console.log(response)
       const token = response.access_token
-
+      setGoogleToken(token)
+  
       // Send the token to your backend for verification and user data fetching
       fetch('http://localhost:4000/login/googleLogin', {
         method: 'POST',
@@ -73,12 +114,6 @@ const LoginPage = () => {
       })
     },
   })
-  const [isLoading, setLoading] = useState(false)
-  const [userEmail, setUserEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isRemeberMeChecked, setIsRemeberMeChecked] = useState(false)
-  const [secureTextEntry, setSecureTextEntry] = useState(true)
-  console.log('is remember me', isRemeberMeChecked)
 
   const handleEmailChange = (e) => {
     setUserEmail(e.target.value)
@@ -89,76 +124,35 @@ const LoginPage = () => {
   }
 
   const toggleRemeberMeCheckbox = () => {
-    setIsRemeberMeChecked((prevState) => !prevState)
+    setRememberMe((prevState) => !prevState)
   }
 
   const checkValueIsValid = useCallback((value) => {
-    if (value == '' || value == undefined || value == null) {
+    if (value === '' || value === undefined || value === null) {
       return false
     }
     return true
   }, [])
 
-  const handleLogin = (event) => {
-    event.preventDefault()
+  const handleLogin = async (e) => {
+    e.preventDefault()
 
-    var validEmail = checkValueIsValid(userEmail)
-    var validPassword = checkValueIsValid(password)
+    const validEmail = checkValueIsValid(userEmail)
+    const validPassword = checkValueIsValid(password)
 
     if (!(validEmail && validPassword)) {
-      console.log('hello')
-      toast.error('EmailId or Password Not Valid', {
+      toast.error('Email-id or Password is not valid!', {
         autoClose: 1500,
       })
       return
     }
+    const isAuth = await login(userEmail, password, rememberMe)
 
-    fetch('http://localhost:4000/login/', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userEmail: userEmail,
-        password: password,
-        rememberMe: isRemeberMeChecked,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          return response.json().then((error) => {
-            throw new Error(error)
-          })
-        }
-        return response.json()
-      })
-
-      .then((data) => {
-        const previousURL = sessionStorage.getItem('redirectUrl') || '/'
-        sessionStorage.removeItem('redirectUrl')
-        // Handle successful login on frontend if needed
-        console.log(previousURL)
-        navigate(previousURL)
-        setLoggedInUserValues(data.user)
-      })
-      .catch((err) => {
-        console.log("Passwords don't match", err)
-        setLoggedInUserValues({
-          _id: '',
-          username: '',
-          emailId: '',
-          profilePic: '',
-        })
-        toast.error('Invalid Password', {
-          autoClose: 1500,
-        })
-        return
-      })
-  }
-
-  const forgotPassWordHandler = () => {
-    navigate('/enterEmail')
+    if (isAuth) {
+      // const previousURL = sessionStorage.getItem('redirectUrl') || '/'
+      // sessionStorage.removeItem('redirectUrl')
+      navigate('/')
+    }
   }
 
   const PasswordEyeComponent = memo((props) => {
@@ -212,7 +206,7 @@ const LoginPage = () => {
                   <label className="LoginPasswordText">Password</label>
                   <input
                     className="LoginPasswordInput"
-                    type={secureTextEntry ? 'password' : 'email'}
+                    type={secureTextEntry ? 'password' : 'text'}
                     name="password"
                     id="password"
                     value={password}
@@ -227,14 +221,14 @@ const LoginPage = () => {
                     <input
                       className="LoginRememberMeCheckbox"
                       type="checkbox"
-                      checked={isRemeberMeChecked}
+                      checked={rememberMe}
                       onClick={toggleRemeberMeCheckbox}
                     />
                     {/* <span className='CustomCheckbox' /> */}
                     <label className="LoginRememberMeText">Remember Me</label>
                   </div>
                   <div className="LoginForgetPasswordContainer">
-                    <a href="#" className="LoginForgetPasswordLink">
+                    <a href="/forget-password" className="LoginForgetPasswordLink">
                       <p className="LoginForgetPasswordText">Forgot Password</p>
                     </a>
                   </div>
@@ -246,7 +240,7 @@ const LoginPage = () => {
                 </div>
                 <div className="LoginDontHaveAccountContainer">
                   <p className="LoginDontHavaAccountText">Don't have an account?</p>
-                  <a href="#" className="LoginSignUpLink">
+                  <a href="/signup" className="LoginSignUpLink">
                     <p className="LoginSignUpText">Sign up</p>
                   </a>
                 </div>
@@ -276,8 +270,9 @@ const LoginPage = () => {
       <div className="LoginDesignContainer">
         <img src={SVG.AuthDesignSection} className="LoginAuthDesignImage" alt="AuthDesignImage" />
       </div>
+      <ToastContainer />
     </div>
   )
 }
 
-export default memo(LoginPage)
+export default connect(mapStateToProps, { login, loginWithGoogle })(memo(LoginPage))

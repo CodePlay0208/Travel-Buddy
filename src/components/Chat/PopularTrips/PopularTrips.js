@@ -1,5 +1,5 @@
 import React , {useContext} from 'react';
-import './PopularTrips.css'; // Import CSS file
+import './PopularTrips.css';
 import { TopDestinationsContext } from "../../../Utils/Context/TopDestinationsContext";
 import { InputValuesContext } from "../../../Utils/Context/InputValuesContext";
 import { useNavigate } from "react-router-dom";
