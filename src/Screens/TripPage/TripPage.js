@@ -1,143 +1,137 @@
-import React, { useContext, useState, useEffect } from 'react'
-import axios from 'axios'
-import Navbar from '../Navbar/Navbar'
-import { useParams, useNavigate } from 'react-router-dom'
-import Footer from '../Footer/Footer'
-import './TripPage.css'
-import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
-import { ChatContext } from '../../Utils/Context/ChatContext'
-import DatePicker from '../DatePicker/DatePicker'
-import ImagesSection from './ImagesSection/ImagesSection'
-import data from '../../data/data.json'
-import DetailsSection from './DetailsSection/DetailsSection'
-import PopularSection from '../PopularSection/PopularSection'
-
+import React, { useContext, useState, useEffect } from 'react';
+import axios from 'axios';
+import Navbar from '../../components/Navbar/Navbar';
+import { useParams, useNavigate } from 'react-router-dom';
+import Footer from '../../components/Footer/Footer';
+import "./TripPage.css";
+import { UserLoginContext } from "../../Utils/Context/LoggedInUserContext";
+import { ChatContext } from '../../Utils/Context/ChatContext';
+import DatePicker from '../../components/DatePicker/DatePicker';
+import ImagesSection from './ImagesSection/ImagesSection';
+import data from "../../data/data.json"
+import DetailsSection from './DetailsSection/DetailsSection';
+import PopularSection from '../../components/PopularSection/PopularSection';
 const TripPage = () => {
-  const { id: tripId } = useParams()
-  const { loggedInUserValues } = useContext(UserLoginContext)
-  const navigate = useNavigate()
-  const [trip, setTrip] = useState(null)
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [isEditing, setIsEditing] = useState(false)
-  const [inputValues, setInputValues] = useState(trip)
+  const { id: tripId } = useParams();
+  const { loggedInUserValues } = useContext(UserLoginContext);
+  const navigate = useNavigate();
+  const [trip, setTrip] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [inputValues, setInputValues] = useState(trip);
 
   useEffect(() => {
     const fetchTrip = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/trips/${tripId}`)
+        const response = await fetch(`http://localhost:4000/api/trips/${tripId}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch trip data')
+          throw new Error('Failed to fetch trip data');
         }
-        const result = await response.json()
-        setTrip({ ...result, startDate: formatDate(result.startDate), endDate: formatDate(result.endDate) })
-        setInputValues(result)
-        setLoading(false)
+        const result = await response.json();
+        setTrip({...result,startDate : formatDate(result.startDate),endDate : formatDate(result.endDate)});
+        setInputValues(result);
+        setLoading(false);
       } catch (error) {
-        setError(error.message)
-        setLoading(false)
+        setError(error.message);
+        setLoading(false);
       }
-    }
+    };
 
-    fetchTrip()
-  }, [tripId])
+    fetchTrip();
+  }, [tripId]);
 
   useEffect(() => {
     if (trip && trip.destinationImages && trip.destinationImages.length > 0) {
       const interval = setInterval(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % trip.destinationImages.length)
-      }, 2000)
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % trip.destinationImages.length);
+      }, 2000);
 
-      return () => clearInterval(interval)
+      return () => clearInterval(interval);
     }
-  }, [trip])
+  }, [trip]);
 
-  const { userChatValues, setUserChatValues } = useContext(ChatContext)
+  const { userChatValues, setUserChatValues } = useContext(ChatContext);
 
   const accessChat = async (userId) => {
     try {
       const config = {
         headers: {
-          'Content-type': 'application/json',
+          "Content-type": "application/json",
         },
-      }
-      const { data } = await axios.post(
-        `http://localhost:4000/chat/fetchOrCreateChats`,
-        { userId },
-        {
-          ...config,
-          withCredentials: true,
-        },
-      )
+      };
+      const { data } = await axios.post(`http://localhost:4000/chat/fetchOrCreateChats`, { userId }, {
+        ...config,
+        withCredentials: true
+      });
       setUserChatValues((currentValues) => ({
-        ...currentValues,
-        selectedChat: data,
-      }))
+        ...currentValues, selectedChat: data
+      }));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const formatDate = (isoString) => {
-    const date = new Date(isoString)
-    const day = String(date.getDate()).padStart(2, '0')
-    const month = String(date.getMonth() + 1).padStart(2, '0')
-    const year = date.getFullYear()
-    return `${day}-${month}-${year}`
-  }
+    const date = new Date(isoString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
 
   const handleClickOnChatButton = (userId) => {
-    if (loggedInUserValues._id !== '') {
-      accessChat(userId)
-      navigate('/chats')
+    if (loggedInUserValues._id !== "") {
+      accessChat(userId);
+      navigate("/chats");
     } else {
-      navigate('/login')
+      navigate("/login-page");
     }
-  }
+  };
 
   const handleNextImage = () => {
     if (trip && trip.destinationImages) {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % trip.destinationImages.length)
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % trip.destinationImages.length);
     }
-  }
+  };
 
   const handlePreviousImage = () => {
     if (trip && trip.destinationImages) {
-      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + trip.destinationImages.length) % trip.destinationImages.length)
+      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + trip.destinationImages.length) % trip.destinationImages.length);
     }
-  }
+  };
 
   const handleEditButtonClick = async () => {
     if (isEditing) {
       try {
-        const response = await axios.put(`http://localhost:4000/api/edit_trip/${tripId}`, trip, { withCredentials: true })
+        const response = await axios.put(`http://localhost:4000/api/edit_trip/${tripId}`, trip, { withCredentials: true });
         if (response.status !== 200) {
-          throw new Error('Failed to save trip data')
+          throw new Error('Failed to save trip data');
         }
-        setIsEditing(false)
+        setIsEditing(false);
       } catch (error) {
-        setError(error.message)
+        setError(error.message);
       }
     } else {
-      setIsEditing(true)
+      setIsEditing(true);
     }
-  }
+  };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setTrip((prevTrip) => ({
       ...prevTrip,
-      [name]: value,
-    }))
-  }
+      [name]: value
+    }));
+  };
 
   const handleDateChange = (date, name) => {
     setTrip((prevTrip) => ({
       ...prevTrip,
-      [name]: date,
-    }))
-  }
+      [name]: date
+    }));
+  };
 
   // if (loading) {
   //   return <div>Loading...</div>;
@@ -161,14 +155,15 @@ const TripPage = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="imagesSectionTrip">
-        <ImagesSection images={data[0].destinationImages} />
-      </div>
-      <div className="detailsSectionTrip">
-        <DetailsSection />
-      </div>
-      <PopularSection />
+    <Navbar/>
+    <div className="imagesSectionTrip">
+
+    <ImagesSection images={data[0].destinationImages}/>
+    </div>
+    <div className='detailsSectionTrip'>
+      <DetailsSection/>
+    </div>
+    <PopularSection></PopularSection>
       {/* <Navbar visibilityForSearch={true} />
       <div className="trip-details-container">
         <div className="leftPanel">
@@ -290,9 +285,9 @@ const TripPage = () => {
         </div>
       </div>
       <Footer /> */}
-      <Footer />
+      <Footer/>
     </div>
-  )
-}
+  );
+};
 
-export default TripPage
+export default TripPage;
