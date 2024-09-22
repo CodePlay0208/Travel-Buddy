@@ -22,6 +22,11 @@ export const LocationInput = styled.input`
   font-weight: 600;
   border: none;
   outline: none;
+
+  &::placeholder {
+    font-weight: 600;
+    color: #787878;
+  }
 `;
 
 export const LocationIcon = styled.img`
