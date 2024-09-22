@@ -1,6 +1,7 @@
 import React from 'react';
 import './ChatBox.css';
 import ChatInput from './ChatInput';
+import SingleChat from '../SingleChat/SingleChat';
 
 const ChatBox = () => {
   return (
@@ -12,9 +13,8 @@ const ChatBox = () => {
         </div>
       </div>
       <div className="chatbox-messages">
-        {/* Messages will go here */}
+        <SingleChat />
       </div>
-      <ChatInput />
     </div>
   );
 };
