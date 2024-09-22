@@ -21,6 +21,8 @@ import ProfileIcon from './ProfileIcon.svg'
 import CalenderIcon from './CalenderIcon.svg'
 import RightArrow from './RightArrow.svg'
 import LeftArrow from './LeftArrow.svg'
+import aeroplaneWithLocation from "./aeroplaneWithLocation.svg"
+import chatNow from "./chatNow.svg"
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -43,4 +45,6 @@ export const SVG = {
   CalenderIcon,
   RightArrow,
   LeftArrow,
+  aeroplaneWithLocation,
+  chatNow
 }
