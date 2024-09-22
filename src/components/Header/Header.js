@@ -23,7 +23,7 @@ const SearchResultHeader = (props) => {
           <img src={LandingPageImage} alt="Landing Page" className="LandingImage" />
         </div>
         <div className="HeaderDescription">
-          <div className="HeaderDesHeading">Travmigoz</div>
+          <div className="HeaderDesHeading">Travmigo</div>
           <div className="HeaderDesPara">Find Your Travel Amigos!</div>
         </div>
         <InputValuesContext.Provider
