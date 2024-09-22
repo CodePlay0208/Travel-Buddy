@@ -24,7 +24,7 @@ const SearchResultHeader = (props) => {
         </div>
         <div className="HeaderDescription">
           <div className="HeaderDesHeading">Travmigo</div>
-          <div className="HeaderDesPara">Find Your Travel Amigos!</div>
+          <div className="HeaderDesPara">Find Your Travel Amigos!!</div>
         </div>
         <InputValuesContext.Provider
         value={memocontext}
