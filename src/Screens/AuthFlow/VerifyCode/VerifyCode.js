@@ -1,9 +1,9 @@
 import React, { useEffect, useState, memo } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { SVG } from '../../assets'
+import { SVG } from '../../../assets'
 import './VerifyCode.css'
 import { connect } from 'react-redux'
-import { verifyOTP, resendOTP } from '../../actions/auth.action'
+import { verifyOTP, resendOTP } from '../../../actions/auth.action'
 import { ToastContainer } from 'react-toastify'
 
 const mapStateToProps = (state) => ({

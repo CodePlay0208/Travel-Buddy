@@ -2,9 +2,9 @@ import React, { useState, memo, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import { connect } from 'react-redux'
-import { register } from '../../actions/auth.action'
+import { register } from '../../../actions/auth.action'
 
-import { SVG } from '../../assets'
+import { SVG } from '../../../assets'
 import './SignUp.css'
 
 const mapStateToProps = (state) => ({

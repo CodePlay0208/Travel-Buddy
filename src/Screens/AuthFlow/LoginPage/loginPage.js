@@ -1,14 +1,14 @@
 import React, { useContext, useState, memo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
-import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
+import { UserLoginContext } from '../../../Utils/Context/LoggedInUserContext'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { SVG } from '../../assets'
+import { SVG } from '../../../assets'
 import './loginPage.css'
 import { connect } from 'react-redux'
-import { setGoogleToken } from '../../api-services/api-services'
-import { login, loginWithGoogle } from '../../actions/auth.action'
+import { setGoogleToken } from '../../../api-services/api-services'
+import { login, loginWithGoogle } from '../../../actions/auth.action'
 // import { env } from '../../config/env'
 // import { AuthApi } from '../../api-services/api-invokes'
 

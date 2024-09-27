@@ -1,9 +1,9 @@
 import React, { useState, memo, useEffect } from 'react'
 import './ForgotPassword.css'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { SVG } from '../../assets'
+import { SVG } from '../../../assets'
 import { connect } from 'react-redux'
-import { forgetPassword } from '../../actions/auth.action'
+import { forgetPassword } from '../../../actions/auth.action'
 
 const ForgotPasswordPage = (props) => {
   const { forgetPassword } = props
