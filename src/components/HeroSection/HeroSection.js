@@ -1,46 +1,56 @@
-import React from 'react';
-import './HeroSection.css';
-import firstImage from '../../data/Images/heroSection/image1.png';
-import secondImage from '../../data/Images/heroSection/image3.png';
-import thirdImage from '../../data/Images/heroSection/image4.png';
-import fourthImage from '../../data/Images/heroSection/image2.png';
-import fifthImage from '../../data/Images/heroSection/image5.png';
-import sixthImage from '../../data/Images/heroSection/image6.png';
+import React from 'react'
+import {
+  HeroSectionContainer,
+  HeroSectionText,
+  HeroSectionButtonGroup,
+  HeroSectionButton,
+  HeroSectionCards,
+  HeroSectionCard,
+  HeroSectionCardImg,
+  HeroSectionRating,
+  HeroSectionPlaceName,
+} from '../../Styles/HeroSection.styles'
+import firstImage from '../../data/Images/heroSection/image1.png'
+import secondImage from '../../data/Images/heroSection/image3.png'
+import thirdImage from '../../data/Images/heroSection/image4.png'
+import fourthImage from '../../data/Images/heroSection/image2.png'
+import fifthImage from '../../data/Images/heroSection/image5.png'
+import sixthImage from '../../data/Images/heroSection/image6.png'
 
 const HeroSection = () => {
   const cardData = [
-    { id: 1, image: firstImage,  name: 'Place name' },
+    { id: 1, image: firstImage, name: 'Place name' },
     { id: 2, image: secondImage, name: 'Place name' },
-    { id: 3, image: thirdImage,  name: 'Place name' },
+    { id: 3, image: thirdImage, name: 'Place name' },
     { id: 4, image: fourthImage, name: 'Place name' },
-    { id: 5, image: fifthImage,  name: 'Place name' },
-    { id: 6, image: sixthImage,  name: 'Place name' },
-  ];
+    { id: 5, image: fifthImage, name: 'Place name' },
+    { id: 6, image: sixthImage, name: 'Place name' },
+  ]
 
   return (
-    <section className="heroSection">
-      <div className="heroSection-text">
+    <HeroSectionContainer>
+      <HeroSectionText>
         <h1>Top Destinations</h1>
-        <div className="heroSection-buttonGroup">
-          <button className="heroSection-button heroSection-btnPrimary">Location</button>
-          <button className="heroSection-button heroSection-btnSecondary">Location</button>
-          <button className="heroSection-button heroSection-btnSecondary">Location</button>
-          <button className="heroSection-button heroSection-btnSecondary">Location</button>
-          <button className="heroSection-button heroSection-btnSecondary">Location</button>
-        </div>
-      </div>
-      <div className="heroSection-cards">
+        <HeroSectionButtonGroup>
+          <HeroSectionButton primary>Location</HeroSectionButton>
+          <HeroSectionButton>Location</HeroSectionButton>
+          <HeroSectionButton>Location</HeroSectionButton>
+          <HeroSectionButton>Location</HeroSectionButton>
+          <HeroSectionButton>Location</HeroSectionButton>
+        </HeroSectionButtonGroup>
+      </HeroSectionText>
+      <HeroSectionCards>
         {cardData.map((card) => (
-          <div key={card.id} className={`heroSection-card heroSection-card${card.id}`}>
-            <div className="heroSection-cardImg" style={{ backgroundImage: `url(${card.image})` }}>
-              <div className="heroSection-rating">{card.rating}</div>
-            </div>
-            <div className="heroSection-placeName">{card.name}</div>
-          </div>
+          <HeroSectionCard key={card.id}>
+            <HeroSectionCardImg image={card.image}>
+              <HeroSectionRating>{card.rating}</HeroSectionRating>
+            </HeroSectionCardImg>
+            <HeroSectionPlaceName>{card.name}</HeroSectionPlaceName>
+          </HeroSectionCard>
         ))}
-      </div>
-    </section>
-  );
-};
+      </HeroSectionCards>
+    </HeroSectionContainer>
+  )
+}
 
-export default HeroSection;
+export default HeroSection

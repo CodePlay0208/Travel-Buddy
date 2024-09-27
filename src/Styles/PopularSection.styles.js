@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import firstImage from '../../data/Images/aeroplaneBack.png'
+import firstImage from '../data/Images/aeroplaneBack.png'
 
 const mediaQueries = {
   large: '@media (max-width: 1024px)',
@@ -8,7 +8,6 @@ const mediaQueries = {
 }
 
 export const PopularTripContainer = styled.div`
-  max-width: 1726px;
   margin: 10% 0;
   background-image: url(${firstImage});
   background-size: contain;
@@ -38,7 +37,6 @@ export const PopularButtonDiv = styled.div`
 export const PopularTripHeading = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 1459px;
   margin: 5% 10% 0 10%;
   padding: 30px 0;
   flex-wrap: wrap;

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import firstImage from '../../data/Images/image.png'
+import firstImage from '../data/Images/image.png'
 
 export const NewsletterContainer = styled.div`
   display: flex;

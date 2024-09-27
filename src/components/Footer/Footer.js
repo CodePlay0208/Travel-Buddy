@@ -1,47 +1,48 @@
-import React from 'react';
-import './Footer.css';
+import React from 'react'
+import { FooterContainer, FooterTop, FooterSection, FooterHeading, FooterList, FooterListItem, FooterLink } from '../../Styles/Footer.styles'
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <div className="footer-top">
-        <div className="footer-section destinations">
-          <h2>Our Destinations</h2>
-          <ul>
-            <li><a href="/">Bangalore</a></li>
-            <li><a href="/">Delhi</a></li>
-            <li><a href="/">Tamil Nadu</a></li>
-            <li><a href="/">Mumbai</a></li>
-          </ul>
-        </div>
-        {/* <div className="footer-section blogs">
-          <h2>Travel Blogs</h2>
-          <ul>
-            <li><a href="/">Mumbai Travel Guide</a></li>
-            <li><a href="/">Delhi Travel Guide</a></li>
-            <li><a href="/">Tamil Nadu Travel Guide</a></li>
-            <li><a href="/">Bangalore Travel Guide</a></li>
-          </ul>
-        </div>
-        <div className="footer-section about">
-          <h2>About Us</h2>
-          <ul>
-            <li><a href="/">Our Story</a></li>
-            <li><a href="/">Work with us</a></li>
-          </ul>
-        </div> */}
-        <div className="footer-section contact">
-          <h2>Contact Us</h2>
-          <ul className="social-icons">
-            <li className="facebook"><a href="https://facebook.com" aria-label="Facebook"></a></li>
-            <li className="twitter"><a href="https://twitter.com" aria-label="Twitter"></a></li>
-            <li className="youtube"><a href="https://youtube.com" aria-label="YouTube"></a></li>
-            <li className="instagram"><a href="https://instagram.com" aria-label="Instagram"></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-};
+    <FooterContainer>
+      <FooterTop>
+        <FooterSection className="destinations">
+          <FooterHeading>Our Destinations</FooterHeading>
+          <FooterList>
+            <FooterListItem>
+              <FooterLink href="/">Bangalore</FooterLink>
+            </FooterListItem>
+            <FooterListItem>
+              <FooterLink href="/">Delhi</FooterLink>
+            </FooterListItem>
+            <FooterListItem>
+              <FooterLink href="/">Tamil Nadu</FooterLink>
+            </FooterListItem>
+            <FooterListItem>
+              <FooterLink href="/">Mumbai</FooterLink>
+            </FooterListItem>
+          </FooterList>
+        </FooterSection>
 
-export default Footer;
+        <FooterSection className="contact">
+          <FooterHeading>Contact Us</FooterHeading>
+          <FooterList className="social-icons">
+            <FooterListItem className="facebook">
+              <FooterLink href="https://facebook.com" aria-label="Facebook" >Facebook</FooterLink>
+            </FooterListItem>
+            <FooterListItem className="twitter">
+              <FooterLink href="https://twitter.com" aria-label="Twitter" >Twitter</FooterLink>
+            </FooterListItem>
+            <FooterListItem className="youtube">
+              <FooterLink href="https://youtube.com" aria-label="YouTube" >YouTube</FooterLink>
+            </FooterListItem>
+            <FooterListItem className="instagram">
+              <FooterLink href="https://instagram.com" aria-label="Instagram" >Instagram</FooterLink>
+            </FooterListItem>
+          </FooterList>
+        </FooterSection>
+      </FooterTop>
+    </FooterContainer>
+  )
+}
+
+export default Footer
