@@ -40,12 +40,6 @@ export const routes = [
     path: '/user-profile',
     element: <UserProfile />,
   },
-
-  {
-    path: '/user-trips',
-    element: <UserTrips />,
-  },
-
   {
     path: '/trip/:id',
     element: <TripPage />,
