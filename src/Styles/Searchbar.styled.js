@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-export const DestinationContainer = styled.div`
+export const SearchBarContainer = styled.div`
   border: grey 1.5px solid;
   border-radius: 10px;
   width: 30%;
@@ -9,9 +9,9 @@ export const DestinationContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
-`;
+`
 
-export const LocationInput = styled.input`
+export const SearchBarInput = styled.input`
   font-style: normal;
   line-height: 2.5rem;
   color: #686868;
@@ -28,13 +28,13 @@ export const LocationInput = styled.input`
     font-weight: 600;
     color: #787878;
   }
-`;
+`
 
 export const LocationIcon = styled.img`
   width: 34px;
   height: 41px;
   cursor: pointer;
-`;
+`
 
 export const Dropdown = styled.ul`
   position: absolute;
@@ -46,7 +46,7 @@ export const Dropdown = styled.ul`
   border-radius: 0px 0px 26.86px 26.86px;
   z-index: 10;
   overflow: hidden;
-`;
+`
 
 export const DropdownItem = styled.li`
   padding: 10px;
@@ -62,4 +62,4 @@ export const DropdownItem = styled.li`
   &:hover {
     background-color: #a1a1a1;
   }
-`;
+`

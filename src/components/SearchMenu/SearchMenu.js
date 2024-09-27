@@ -1,24 +1,23 @@
 import React, { memo, useState } from 'react'
-import './SearchMenu.css'
+import { useNavigate } from 'react-router-dom'
+import { connect } from 'react-redux'
 import Searchbar from '../Searchbar/Searchbar'
 import DatePicker from '../DatePicker/DatePicker'
-import { connect } from 'react-redux'
 import { getTrips } from '../../actions/trips.action'
-import { useNavigate } from 'react-router-dom'
+import { SearchBarContainer, SearchButtonContainer, SearchButton } from '../../Styles/SearchMenu.styled'
 
 const DEFAULT_SEARCH_FORM = {
   destination: '',
-  startDate: ''
+  startDate: '',
 }
 
 const mapStateToProps = (state) => ({
-  trips: state.trip.trips
+  trips: state.trip.trips,
 })
 
 const SearchMenu = (props) => {
   const { getTrips } = props
   const [searchForm, setSearchForm] = useState(DEFAULT_SEARCH_FORM)
-
   const navigate = useNavigate()
 
   const onSearchButton = async () => {
@@ -29,7 +28,7 @@ const SearchMenu = (props) => {
   }
 
   return (
-    <div className="SearchBar-Container">
+    <SearchBarContainer>
       <Searchbar
         inputValues={searchForm.destination}
         setInputValues={setSearchForm}
@@ -42,10 +41,10 @@ const SearchMenu = (props) => {
         onValue={'startDate'}
         placeholderValue={'Select Travel date'}
       />
-      <div className="SearchBar-Searchbutton" role='button' onClick={onSearchButton}>
-        <div className="SearchBar-button">Search</div>
-      </div>
-    </div>
+      <SearchButtonContainer onClick={onSearchButton} role="button">
+        <SearchButton>Search</SearchButton>
+      </SearchButtonContainer>
+    </SearchBarContainer>
   )
 }
 
