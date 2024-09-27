@@ -10,7 +10,7 @@ import {
   ArrowButton,
 } from '../../Styles/PopularSection.styles'
 import data from '../../data/data.json'
-import TripCard from '../TripsCard/TripCard'
+import TripCard from '../TripCard/TripCard'
 
 const PopularSection = () => {
   const scrollContainerRef = useRef(null)
