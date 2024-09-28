@@ -1,10 +1,28 @@
 import { memo, useEffect } from 'react'
-import './UserDashboard.css'
-import { SVG } from '../../../assets'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getProfile } from '../../../actions/profile.action'
 import { ToastContainer, toast } from 'react-toastify'
+import { SVG } from '../../../assets'
+import {
+  DashboardContainer,
+  ImageContainer,
+  BackgroundImage,
+  ProfilePic,
+  ImgProfile,
+  EditPic,
+  DashboardHeader,
+  HeaderTitle,
+  DashboardContent,
+  UserInfoColumns,
+  UserInfoColumn,
+  UserInfoItem,
+  Label,
+  Value,
+  DashboardActions,
+  EditButton,
+  DeleteButton,
+} from './UserDashboard.styled'
 
 const mapStateToProps = (state) => ({
   profile: state.profile.profile,
@@ -13,6 +31,7 @@ const mapStateToProps = (state) => ({
 
 const UserDashboard = ({ profile, getProfile }) => {
   const navigate = useNavigate()
+  
   const fetchUserProfile = () => {
     try {
       getProfile()
@@ -22,73 +41,70 @@ const UserDashboard = ({ profile, getProfile }) => {
     }
   }
 
-  const handleEditProfileButton = () => {
-    // navigate to edit profile page
-  }
-
   useEffect(() => {
     fetchUserProfile()
   }, [])
 
   return (
-    <>
-      <div className="image-container">
-        <div className="backgroundImage">
-          <img
-            className="backgroundImage"
-            src="https://s3-alpha-sig.figma.com/img/04aa/b0c2/af63e471ad6e8893e0055179442738fc?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=JH78agxc8kFWuZrH-7XFllzuV-QNoolPIXGoT~2llNqm~VWwqnJbkXslZm~Fn5DYxd7WTMKQSrOuMTFirTmZ5eSEx5L5F6MYbh06HQ1SaRFvfbbfZGPo1wfrN5H-BYWExQMG7PgwPz~mIzQ5GJf2I6wIbNIm4Du7pUHKEdO6D9uhR4700l6fw4Mrdb0YD7w5WAzUqCvcJ4H5lBJsgw7tKZdk6fPBbuOXin03cabNEu3RQ76kKNszbmlkDwFoG3dPFavf-amgZAIeZ9gk6Zp-gCUKjk307FvbHgy78eFIC9sc7gz-YpRUP1JtylWB0ZBjtyXGkLfjpjhtXvjKm81NCQ__"
-            alt=""
-          />
-        </div>
-        <div className="profilePic">
-          <img className="imgProfile" src={profile.profilePic} alt="UserProfilePic" />
-        </div>
-      </div>
-      <div className="dashboard-container">
-        <div className="dashboard-header">
-          <h1 className="header-title">Account</h1>
-        </div>
-        <div className="dashboard-content">
-          <div className="user-info-columns">
-            <div className="user-info-column">
-              <div className="user-info-item">
-                <span className="label">Name</span>
-                <span className="value">{profile.name}</span>
-              </div>
-              <div className="user-info-item">
-                <span className="label">Phone Number</span>
-                <span className="value">+91 {profile.phoneNumber}</span>
-              </div>
-              <div className="user-info-item">
-                <span className="label">Date of Birth</span>
-                <span className="value">01-01-1992</span>
-              </div>
-            </div>
-            <div className="user-info-column">
-              <div className="user-info-item">
-                <span className="label">Email</span>
-                <span className="value">{profile.emailId}</span>
-              </div>
-              <div className="user-info-item">
-                <span className="label">Address</span>
-                <span className="value">Sambalpur, Odisha</span>
-              </div>
-              <div className="user-info-item">
-                <span className="label">Persona</span>
-                <span className="value">Traveller</span>
-              </div>
-            </div>
-          </div>
-          <div className="dashboard-actions">
-            <button className="edit-button">
-              <img src={SVG.editButton} className="EditButtonSVG" />
-              Edit Your Profile
-            </button>
-          </div>
-        </div>
+    <DashboardContainer>
+      <ImageContainer>
+        <BackgroundImage
+          src="https://s3-alpha-sig.figma.com/img/04aa/b0c2/af63e471ad6e8893e0055179442738fc?Expires=1728259200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mu2sRh9hZ3dOJ0C45BqnAwBA6~fwz-iPNYffvhHcRILBbtOB07UuxiSuAv8cYzC~cLddAdp6gTnc8W2baB9bBLto0jRLNDUsNVWnNFHqEbBe2eRjToymtlva4bp8lhXWmORsVB~ShdrA36u19OLSmifT7ex3lXzjnkzqQrdS0pGxd4CwZABExLdUwsK~Y8DQmTK8KkM8criJFBlmJ6yRkfeqS5d-8e102e5nMxtCVDX58f2VfyUJJLzHrDzig05Q7lu5q6jzjFN4gdeD8dl4on6A7Qgew30I2bOQsL3JVQKCncrkqQUDz6QN9094qte9sHvLYC8Whdwy85Xt8BX09g__"
+          alt="Background"
+        />
+        <ProfilePic>
+          <ImgProfile src={profile?.profilePic} alt="User Profile" />
+          <EditPic src={SVG.editPic} alt="Edit" />
+        </ProfilePic>
+      </ImageContainer>
+
+      <DashboardContainer>
+        <DashboardHeader>
+          <HeaderTitle>Account</HeaderTitle>
+        </DashboardHeader>
+        <DashboardContent>
+          <UserInfoColumns>
+            <UserInfoColumn>
+              <UserInfoItem>
+                <Label>Name</Label>
+                <Value>{profile?.name}</Value>
+              </UserInfoItem>
+              <UserInfoItem>
+                <Label>Phone Number</Label>
+                <Value>+91 {profile?.phoneNumber}</Value>
+              </UserInfoItem>
+              <UserInfoItem>
+                <Label>Date of Birth</Label>
+                <Value>01-01-1992</Value>
+              </UserInfoItem>
+            </UserInfoColumn>
+            <UserInfoColumn>
+              <UserInfoItem>
+                <Label>Email</Label>
+                <Value>{profile?.emailId}</Value>
+              </UserInfoItem>
+              <UserInfoItem>
+                <Label>Address</Label>
+                <Value>Sambalpur, Odisha</Value>
+              </UserInfoItem>
+              <UserInfoItem>
+                <Label>Persona</Label>
+                <Value>Traveller</Value>
+              </UserInfoItem>
+            </UserInfoColumn>
+          </UserInfoColumns>
+          <DashboardActions>
+            <EditButton>
+              <img src={SVG.editButton} alt="Edit" /> Edit Your Profile
+            </EditButton>
+            <DeleteButton>
+              <img src={SVG.deleteIcon} alt="Delete" /> Delete Account
+            </DeleteButton>
+          </DashboardActions>
+        </DashboardContent>
         <ToastContainer />
-      </div>
-    </>
+      </DashboardContainer>
+    </DashboardContainer>
   )
 }
 

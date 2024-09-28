@@ -1,67 +1,61 @@
-.UserDashboardcontainer{
-    padding: 0 5%;
-}
-.dashboard-container {
-  position: relative;
-  width: 100%;
-  max-width: 1523px;
-  margin: 0 auto;
-  padding: 0 5% 2%;
-}
+import styled from 'styled-components'
 
-.image-container {
+export const DashboardContainer = styled.div`
+  padding: 0 5%;
+`
+
+export const ImageContainer = styled.div`
   width: 100%;
   margin: 0 0 7rem 0;
   position: relative;
   border-radius: 10px;
-}
+`
 
-.profilePic {
+export const BackgroundImage = styled.img`
+  width: 100%;
+  border-radius: 10px;
+  height: 23rem;
+  object-fit: cover;
+`
+
+export const ProfilePic = styled.div`
   position: absolute;
   bottom: -5rem;
   left: 4rem;
   width: 250px;
   height: 250px;
-  
   overflow: hidden;
-}
+`
 
-.imgProfile {
-    border-radius: 50%;
+export const ImgProfile = styled.img`
+  border-radius: 50%;
   border: 7px solid rgb(0, 199, 176);
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-.editPic{
-    position: absolute;
-    right: 0;
-    z-index: 3;
-    bottom: 0;
+`
 
-}
-.backgroundImage {
-  width: 100%;
-  border-radius: 10px;
-  height: 23rem;
-  object-fit: cover;
-}
+export const EditPic = styled.img`
+  position: absolute;
+  right: 0;
+  z-index: 3;
+  bottom: 0;
+`
 
-.dashboard-header {
+export const DashboardHeader = styled.div`
   position: relative;
   margin-bottom: 20px;
-}
+`
 
-.header-title {
+export const HeaderTitle = styled.h1`
   font-family: 'TradeGothic LT Extended';
-  font-style: normal;
   font-weight: 700;
   font-size: 40px;
   line-height: 51px;
   color: #000000;
-}
+`
 
-.dashboard-content {
+export const DashboardContent = styled.div`
   position: relative;
   background: #ffffff;
   box-shadow: 0px 5px 20px rgba(17, 34, 17, 0.25);
@@ -70,60 +64,54 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
+`
 
-.user-info-columns {
+export const UserInfoColumns = styled.div`
   display: flex;
   gap: 20px;
-}
+`
 
-.user-info-column {
+export const UserInfoColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
   gap: 20px;
-}
+`
 
-.user-info-item {
+export const UserInfoItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin: 1rem 0;
-}
+`
 
-.label {
+export const Label = styled.span`
   font-family: 'Montserrat';
-  font-style: normal;
   font-weight: 400;
   font-size: 22px;
-  line-height: 27px;
   color: #112211;
   opacity: 0.75;
-}
+`
 
-.value {
+export const Value = styled.span`
   font-family: 'Montserrat';
-  font-style: normal;
   font-weight: 600;
   font-size: 28px;
-  line-height: 34px;
   color: #112211;
-}
+`
 
-.dashboard-actions {
+export const DashboardActions = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
-  
-}
+`
 
-.edit-button {
+export const EditButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 16px 32px;
   font-family: 'Montserrat';
-  font-style: normal;
   font-weight: 500;
   font-size: 22px;
   color: #112211;
@@ -132,22 +120,20 @@
   background-color: transparent;
   cursor: pointer;
   margin: 0 1%;
-}
+`
 
-.delete-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 16px 32px;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 22px;
-    color: #e9e9e9;
-    border: 2px solid #DC2626;
-    border-radius: 8px;
-    background-color: #DC2626;
-    cursor: pointer;
-    margin: 0 1%;
-  }
-
+export const DeleteButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 22px;
+  color: #e9e9e9;
+  border: 2px solid #DC2626;
+  border-radius: 8px;
+  background-color: #DC2626;
+  cursor: pointer;
+  margin: 0 1%;
+`
