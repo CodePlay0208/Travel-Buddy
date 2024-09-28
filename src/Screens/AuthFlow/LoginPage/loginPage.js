@@ -11,8 +11,24 @@ import { setGoogleToken } from '../../../api-services/api-services'
 import { login, loginWithGoogle } from '../../../actions/auth.action'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
-// import { env } from '../../config/env'
-// import { AuthApi } from '../../api-services/api-invokes'
+import {
+  Container,
+  FormAndCopyrightContainer,
+  FormAndTitleContainer,
+  TitleContainer,
+  FormContainer,
+  FormHeadingContainer,
+  FormSubHeadingText,
+  DividerContainer,
+  Divider1,
+  Divider2,
+  OrLoginWithContainer,
+  DesignContainer,
+  AuthDesignImage,
+  GoogleSignUpButton,
+  ContinueWithText,
+  GoogleIcon,
+} from '../AuthFlow.styled' // Importing the styled components
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
@@ -124,15 +140,15 @@ const LoginPage = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <div className="Container">
-      <div className="FormAndCopyrightContainer">
-        <div className="FormAndTitleContainer">
-          <div className="TitleContainer">Travmigoz</div>
-          <div className="FormContainer">
-            <div className="FormHeadingContainer">Login</div>
-            <div className="FormSubHeadingText">Login to access your account</div>
+    <Container>
+      <FormAndCopyrightContainer>
+        <FormAndTitleContainer>
+          <TitleContainer>Travmigoz</TitleContainer>
+          <FormContainer>
+            <FormHeadingContainer>Login</FormHeadingContainer>
+            <FormSubHeadingText>Login to access your account</FormSubHeadingText>
 
-            <form action="post" onSubmit={handleLogin} className="LoginFormInputsContainer">
+            <form onSubmit={handleLogin}>
               <InputComponent
                 label="Email"
                 type="email"
@@ -155,48 +171,51 @@ const LoginPage = ({ login, isAuthenticated }) => {
                 secureTextState={secureTextEntry}
                 setSecureTextState={setSecureTextEntry}
               />
+
               <div className="LoginRememberMeAndForgetPasswordContainer">
                 <div className="LoginRememberMeContainer">
-                  <input className="LoginRememberMeCheckbox" type="checkbox" checked={rememberMe} onClick={toggleRemeberMeCheckbox} />
-
-                  <div className="LoginRememberMeText">Remember Me</div>
+                  <input type="checkbox" checked={rememberMe} onClick={toggleRemeberMeCheckbox} />
+                  <div>Remember Me</div>
                 </div>
 
                 <a href="/forget-password" className="LoginForgetPasswordLink">
-                  <p className="LoginForgetPasswordText">Forgot Password</p>
+                  <p>Forgot Password</p>
                 </a>
               </div>
+
               <div className="LoginLoginButtonContainer">
                 <button type="submit" className="LoginLoginButton">
                   <p className="LoginLoginButtonText">Login</p>
                 </button>
               </div>
+
               <div className="LoginDontHaveAccountContainer">
-                <p className="LoginDontHavaAccountText">Don't have an account?</p>
+                <p>Don't have an account?</p>
                 <a href="/signup" className="LoginSignUpLink">
-                  <p className="SignUpLoginLoginText">Login</p>
+                  <p>SignUp</p>
                 </a>
               </div>
-              <div className="DividerContainer">
-                <div className="Divider1" />
-                <div className="OrLoginWithText">Or login with</div>
-                <div className="Divider2" />
-              </div>
 
-              <div className="GoogleSignUpButton" role="button" onClick={googleSignIn}>
-                <p className="ContinueWithText">Continue with</p>
-                <img src={SVG.GoogleIcon} className="GoogleIcon" />
-              </div>
+              <DividerContainer>
+                <Divider1 />
+                <OrLoginWithContainer>Or login with</OrLoginWithContainer>
+                <Divider2 />
+              </DividerContainer>
+
+              <GoogleSignUpButton role="button" onClick={googleSignIn}>
+                <ContinueWithText>Continue with</ContinueWithText>
+                <GoogleIcon src={SVG.GoogleIcon} />
+              </GoogleSignUpButton>
             </form>
-          </div>
-        </div>
-        <Copyright></Copyright>
-      </div>
-      <div className="LoginDesignContainer">
-        <img src={SVG.AuthDesignSection} className="LoginAuthDesignImage" alt="AuthDesignImage" />
-      </div>
+          </FormContainer>
+        </FormAndTitleContainer>
+        <Copyright />
+      </FormAndCopyrightContainer>
+      <DesignContainer>
+        <AuthDesignImage src={SVG.AuthDesignSection} alt="AuthDesignImage" />
+      </DesignContainer>
       <ToastContainer />
-    </div>
+    </Container>
   )
 }
 

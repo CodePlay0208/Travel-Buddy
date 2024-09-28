@@ -1,71 +1,164 @@
 import styled from 'styled-components'
 
-export const LoginContainer = styled.div`
+export const Container = styled.div`
+  font-family: 'Montserrat', sans-serif;
+  flex: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
+  background-color: white;
+
+  @media (max-width: 550px) {
+    flex-direction: column;
+  }
 `
 
-export const LoginFormContainer = styled.div`
+export const FormAndCopyrightContainer = styled.div`
+  flex: 1.3 1;
   width: 50%;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
-`
+  margin: 2.35% 12% 0% 3.5%;
 
-export const FormInput = styled.input`
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  font-size: 1.125rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  &:focus {
-    border-color: #42a7c3;
-    outline: none;
+  @media (max-width: 550px) {
+    margin: 0 auto;
+    width: 100%;
   }
 `
 
-export const Label = styled.label`
-  font-size: 1rem;
-  font-weight: 600;
-  color: #333;
+export const FormAndTitleContainer = styled.div`
+  margin-bottom: 18%;
 `
 
-export const Button = styled.button`
-  width: 100%;
-  padding: 1rem;
-  margin-top: 1.5rem;
-  font-size: 1.125rem;
+export const TitleContainer = styled.div`
+  font-size: 2.5rem;
   font-weight: 600;
-  background-color: #42a7c3;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  &:hover {
-    background-color: #339fb5;
-  }
+  color: #42a7c3;
 `
 
-export const Divider = styled.div`
+export const FormContainer = styled.div`
+  margin: 6.8%;
+`
+
+export const BackButtonContainer = styled.div`
   display: flex;
+  width: fit-content;
   align-items: center;
-  justify-content: center;
-  margin: 1rem 0;
-  span {
-    padding: 0 1rem;
-    font-size: 0.875rem;
-    color: #333;
+  margin-bottom: 10px;
+  user-select: none;
+  cursor: pointer;
+
+  &:hover p,
+  &:active p {
+    color: #071007;
+    font-weight: 500;
   }
 `
 
-export const GoogleSignInButton = styled(Button)`
-  background-color: #db4437;
-  &:hover {
-    background-color: #c63830;
+export const BackButtonIcon = styled.img`
+  height: 12px;
+`
+
+export const BackButtonText = styled.p`
+  margin-left: 10px;
+`
+
+export const FormHeadingContainer = styled.div`
+  flex: 1;
+  margin-bottom: 1rem;
+  font-size: 3.125rem;
+  font-weight: 700;
+`
+
+export const FormSubHeadingText = styled.div`
+  font-size: 1.25rem;
+  font-weight: 400;
+`
+
+export const DividerContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 6% 0px;
+`
+
+export const Divider1 = styled.div`
+  height: 0.3px;
+  width: 40%;
+  background-color: #112211;
+`
+
+export const Divider2 = styled.div`
+  height: 0.3px;
+  width: 40%;
+  background-color: #112211;
+`
+
+export const OrLoginWithContainer = styled.div`
+  margin: 0px 8px;
+  text-align: center;
+  color: #112211;
+  font-size: 0.9rem;
+`
+
+export const DesignContainer = styled.div`
+  flex: 1 2;
+  max-width: 42%;
+  height: fit-content;
+  padding: 20px 0px 0px 0%;
+
+  @media (max-width: 550px) {
+    display: none;
+  }
+`
+
+export const AuthDesignImage = styled.img`
+  height: 95vh;
+
+  @media (max-width: 550px) {
+    display: none;
+  }
+`
+
+export const GoogleSignUpButton = styled.div`
+  padding: 1.4% 20%;
+  background-color: #8dd3bb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: none;
+
+  @media (max-width: 855px) {
+    padding: 1.4% 20%;
+    background-color: white;
+
+    p {
+      display: none;
+    }
+  }
+`
+
+export const ContinueWithText = styled.p`
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+
+  @media (max-width: 855px) {
+    display: none;
+  }
+`
+
+export const GoogleIcon = styled.img`
+  height: 40px;
+`
+
+export const responsiveStyles = styled.div`
+  input::placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    padding-left: 4px;
+  }
+
+  @media (max-width: 550px) {
+    input::placeholder {
+      font-size: 0.9rem;
+    }
   }
 `

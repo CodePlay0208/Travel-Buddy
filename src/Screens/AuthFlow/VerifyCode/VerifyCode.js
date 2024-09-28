@@ -3,12 +3,25 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { SVG } from '../../../assets'
 import './VerifyCode.css'
 
-import '../AuthFlow.css'
 import { connect } from 'react-redux'
 import { verifyOTP, resendOTP } from '../../../actions/auth.action'
 import { ToastContainer } from 'react-toastify'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
+import {
+  Container,
+  FormAndCopyrightContainer,
+  FormAndTitleContainer,
+  TitleContainer,
+  FormContainer,
+  BackButtonContainer,
+  BackButtonIcon,
+  BackButtonText,
+  FormHeadingContainer,
+  FormSubHeadingText,
+  DesignContainer,
+  AuthDesignImage,
+} from '../AuthFlow.styled' 
 
 const mapStateToProps = (state) => ({
   otpVerified: state.auth.otpVerified,
@@ -47,17 +60,17 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
   }, [otpVerified, navigate])
 
   return (
-    <div className="Container">
-      <div className="FormAndCopyrightContainer">
-        <div className="FormAndTitleContainer">
-          <div className="TitleContainer">Travmigoz</div>
-          <div className="FormContainer">
-            <div className="BackButtonContainer" role="button" onClick={handleBackButtonClick}>
-              <img src={SVG.BackButtonIcon} className="BackButtonIcon" alt="Back" />
-              <p className="BackButtonText">Back</p>
-            </div>
-            <div className="FormHeadingContainer">Verify code</div>
-            <div className="FormSubHeadingText">An authentication code has been sent to your email.</div>
+    <Container>
+      <FormAndCopyrightContainer>
+        <FormAndTitleContainer>
+          <TitleContainer>Travmigoz</TitleContainer>
+          <FormContainer>
+            <BackButtonContainer role="button" onClick={handleBackButtonClick}>
+              <BackButtonIcon src={SVG.BackButtonIcon} alt="Back" />
+              <BackButtonText>Back</BackButtonText>
+            </BackButtonContainer>
+            <FormHeadingContainer>Verify code</FormHeadingContainer>
+            <FormSubHeadingText>An authentication code has been sent to your email.</FormSubHeadingText>
             <div className="VerifyCodeFormInputsContainer">
               <form onSubmit={onSubmit}>
                 <InputComponent
@@ -83,15 +96,15 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
                 </div>
               </form>
             </div>
-          </div>
-        </div>
+          </FormContainer>
+        </FormAndTitleContainer>
         <Copyright />
-      </div>
-      <div className="DesignContainer">
-        <img src={SVG.AuthDesignSection} className="AuthDesignImage" alt="Auth Design" />
-      </div>
+      </FormAndCopyrightContainer>
+      <DesignContainer>
+        <AuthDesignImage src={SVG.AuthDesignSection} alt="Auth Design" />
+      </DesignContainer>
       <ToastContainer />
-    </div>
+    </Container>
   )
 }
 

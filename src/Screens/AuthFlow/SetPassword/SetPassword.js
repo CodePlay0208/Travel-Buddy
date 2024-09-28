@@ -3,13 +3,25 @@ import { useNavigate } from 'react-router-dom'
 import { SVG } from '../../../assets'
 import './SetPassword.css'
 
-import '../AuthFlow.css'
 import { connect } from 'react-redux'
 import { resetPassword } from '../../../actions/auth.action'
 import { toast, ToastContainer } from 'react-toastify'
 import InputComponent from '../../../components/InputComponent/InputComponent'
-import { Input } from 'antd'
 import Copyright from '../../../components/Copyright/Copyright'
+import {
+  Container,
+  FormAndCopyrightContainer,
+  FormAndTitleContainer,
+  TitleContainer,
+  FormContainer,
+  BackButtonContainer,
+  BackButtonIcon,
+  BackButtonText,
+  FormHeadingContainer,
+  FormSubHeadingText,
+  DesignContainer,
+  AuthDesignImage,
+} from '../AuthFlow.styled' // Importing the styled components
 
 const SetPassword = ({ resetPassword }) => {
   const navigate = useNavigate()
@@ -24,7 +36,7 @@ const SetPassword = ({ resetPassword }) => {
     e.preventDefault()
     if (formData.password !== formData.reEnterPassword) {
       toast.error('Passwords do not match', { autoClose: 1500 })
-    }
+          }
     const isResetComplete = await resetPassword(formData.password)
     if (isResetComplete) {
       navigate('/')
@@ -32,17 +44,17 @@ const SetPassword = ({ resetPassword }) => {
   }
 
   return (
-    <div className="Container">
-      <div className="FormAndCopyrightContainer">
-        <div className="FormAndTitleContainer">
-          <div className="TitleContainer">Travmigoz</div>
-          <div className="FormContainer">
-            <div className="BackButtonContainer" role="button" onClick={handleBackButtonClick}>
-              <img src={SVG.BackButtonIcon} className="BackButtonIcon" alt="Back" />
-              <p className="BackButtonText">Back</p>
-            </div>
-            <div className="FormHeadingContainer">Set a password</div>
-            <div className="FormSubHeadingText">Your previous password has been reseted. Please set a new password for your account.</div>
+    <Container>
+      <FormAndCopyrightContainer>
+        <FormAndTitleContainer>
+          <TitleContainer>Travmigoz</TitleContainer>
+          <FormContainer>
+            <BackButtonContainer role="button" onClick={handleBackButtonClick}>
+              <BackButtonIcon src={SVG.BackButtonIcon} alt="Back" />
+              <BackButtonText>Back</BackButtonText>
+            </BackButtonContainer>
+            <FormHeadingContainer>Set a password</FormHeadingContainer>
+            <FormSubHeadingText>Your previous password has been reset. Please set a new password for your account.</FormSubHeadingText>
             <div className="SetPassPageFormInputsContainer">
               <form onSubmit={onSubmit}>
                 <InputComponent
@@ -77,16 +89,16 @@ const SetPassword = ({ resetPassword }) => {
                 </div>
               </form>
             </div>
-          </div>
+          </FormContainer>
           <div className="SetPassPageCopyrightTextContainer"></div>
-        </div>
+        </FormAndTitleContainer>
         <Copyright />
-      </div>
-      <div className="DesignContainer">
-        <img src={SVG.AuthDesignSection} className="AuthDesignImage" alt="Auth Design" />
-      </div>
+      </FormAndCopyrightContainer>
+      <DesignContainer>
+        <AuthDesignImage src={SVG.AuthDesignSection} alt="Auth Design" />
+      </DesignContainer>
       <ToastContainer />
-    </div>
+    </Container>
   )
 }
 

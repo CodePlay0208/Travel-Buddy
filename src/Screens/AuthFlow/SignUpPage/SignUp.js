@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback } from 'react'
+import React, { useState, memo } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import { connect } from 'react-redux'
@@ -6,6 +6,24 @@ import { register } from '../../../actions/auth.action'
 
 import { SVG } from '../../../assets'
 import './SignUp.css'
+import {
+  Container,
+  FormAndCopyrightContainer,
+  FormAndTitleContainer,
+  TitleContainer,
+  FormContainer,
+  FormHeadingContainer,
+  FormSubHeadingText,
+  DividerContainer,
+  Divider1,
+  Divider2,
+  OrLoginWithContainer,
+  DesignContainer,
+  AuthDesignImage,
+  GoogleSignUpButton,
+  ContinueWithText,
+  GoogleIcon,
+} from '../AuthFlow.styled' // Make sure to adjust the import path if necessary
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 
@@ -68,15 +86,15 @@ const SignUp = (props) => {
   }
 
   return (
-    <div className="Container">
-      <div className="FormAndCopyrightContainer">
-        <div className="FormAndTitleContainer">
-          <div className="TitleContainer">Travmigoz</div>
-          <div className="FormContainer">
-            <div className="FormHeadingContainer">Sign Up</div>
-            <div className="FormSubHeadingText">Let’s get you all set up so you can access your account.</div>
+    <Container>
+      <FormAndCopyrightContainer>
+        <FormAndTitleContainer>
+          <TitleContainer>Travmigoz</TitleContainer>
+          <FormContainer>
+            <FormHeadingContainer>Sign Up</FormHeadingContainer>
+            <FormSubHeadingText>Let’s get you all set up so you can access your account.</FormSubHeadingText>
             <div className="SignUpFormInputsContainer">
-              <form action="post" onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 <div className="SignUpTwoInput">
                   <InputComponent
                     label="First Name"
@@ -101,7 +119,7 @@ const SignUp = (props) => {
                     type="email"
                     name="email"
                     id="email"
-                    placeholder="Enter Your First Name"
+                    placeholder="Enter Your Email"
                     user={formData}
                     setUser={setFormData}
                   />
@@ -109,7 +127,7 @@ const SignUp = (props) => {
                     label="Phone Number"
                     type="tel"
                     name="phoneNumber"
-                    placeholder="Enter Your Email"
+                    placeholder="Enter Your Phone Number"
                     user={formData}
                     setUser={setFormData}
                   />
@@ -169,28 +187,28 @@ const SignUp = (props) => {
                     <p className="SignUpLoginText">Login</p>
                   </a>
                 </div>
-                <div className="DividerContainer">
-                  <div className="Divider1" />
-                  <div className="OrLoginWithText">Or login with</div>
-                  <div className="Divider2" />
-                </div>
+                <DividerContainer>
+                <Divider1 />
+                <OrLoginWithContainer>Or login with</OrLoginWithContainer>
+                <Divider2 />
+              </DividerContainer>
 
-                <div className="GoogleSignUpButton" role="button">
-                  <p className="ContinueWithText">Continue with</p>
-                  <img src={SVG.GoogleIcon} className="GoogleIcon" />
-                </div>
+                <GoogleSignUpButton role="button">
+                  <ContinueWithText>Continue with</ContinueWithText>
+                  <GoogleIcon src={SVG.GoogleIcon} />
+                </GoogleSignUpButton>
               </form>
             </div>
-          </div>
+          </FormContainer>
           <div className="SignUpCopyrightTextContainer"></div>
-        </div>
+        </FormAndTitleContainer>
         <Copyright />
-      </div>
+      </FormAndCopyrightContainer>
       <div className="SignUpDesignContainer">
-        <img src={SVG.AuthDesignSection} className="SignUpAuthDesignImage" alt="AuthDesignImage" />
+        <img src={SVG.AuthDesignSection} className="SignUpAuthDesignImage" alt="Auth Design" />
       </div>
       <ToastContainer />
-    </div>
+    </Container>
   )
 }
 
