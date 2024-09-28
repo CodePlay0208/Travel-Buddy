@@ -2,95 +2,75 @@ import React, { useState, memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { SVG } from '../../../assets'
 import './SetPassword.css'
+
+import '../AuthFlow.css'
 import { connect } from 'react-redux'
 import { resetPassword } from '../../../actions/auth.action'
 import { toast, ToastContainer } from 'react-toastify'
+import InputComponent from '../InputComponent/InputComponent'
+import { Input } from 'antd'
+import Copyright from '../../../components/Copyright/Copyright'
 
 const SetPassword = ({ resetPassword }) => {
   const navigate = useNavigate()
 
-  const [password, setPassword] = useState('')
-  const [reEnterPassword, setReEnterPassword] = useState('')
+  const [formData, setFormData] = useState({ password: '',reEnterPassword:'' })
   const [securePasswordText, setSecurePasswordText] = useState(true)
   const [secureReEnterPasswordText, setSecureReEnterPasswordText] = useState(true)
 
-  const handleInputChange = (e, setInput) => {
-    setInput(e.target.value)
-  }
+
+  const handleBackButtonClick = () => navigate(-1)
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    if (password !== reEnterPassword) {
+    if (formData.password !== formData.reEnterPassword) {
       toast.error('Passwords do not match', { autoClose: 1500 })
     }
-    const isResetComplete = await resetPassword(password)
+    const isResetComplete = await resetPassword(formData.password)
     if (isResetComplete) {
       navigate('/')
     }
   }
 
-  const PasswordEyeComponent = memo((props) => {
-    const { secureTextState, setSecureTextState } = props
-
-    const handlePasswordEyeIconClick = () => {
-      setSecureTextState((prevState) => !prevState)
-    }
-
-    return (
-      <div className="SetPassPagePasswordEyeContainer" role="button" onClick={handlePasswordEyeIconClick}>
-        {secureTextState ? (
-          <img src={SVG.EyeIcon} className="SetPassPagePasswordEyeIcon" />
-        ) : (
-          <img src={SVG.EyeSlashIcon} className="SetPassPagePasswordEyeIcon" />
-        )}
-      </div>
-    )
-  })
-
   return (
-    <div className="SetPassPageContainer">
-      <div className="SetPassPageFormAndCopyrightContainer">
-        <div className="SetPassPageFormAndTitleContainer">
-          <div className="SetPassPageTitleContainer">
-            <p className="SetPassPageTitleText">Travmigoz</p>
-          </div>
-          <div className="SetPassPageFormContainer">
-            <div className="SetPassPageFormHeadingContainer">
-              <p className="SetPassPageFormHeadingText">Set a password</p>
+    <div className="Container">
+      <div className="FormAndCopyrightContainer">
+        <div className="FormAndTitleContainer">
+          <div className="TitleContainer">Travmigoz</div>
+          <div className="FormContainer">
+            <div className="BackButtonContainer" role="button" onClick={handleBackButtonClick}>
+              <img src={SVG.BackButtonIcon} className="BackButtonIcon" alt="Back" />
+              <p className="BackButtonText">Back</p>
             </div>
-            <div className="SetPassPageFormSubHeadingContainer">
-              <p className="SetPassPageFormSubHeadingText">
-                Your previous password has been reseted. Please set a new password for your account.
-              </p>
+            <div className="FormHeadingContainer">Set a password</div>
+            <div className="FormSubHeadingText">
+            Your previous password has been reseted. Please set a new password for your account.
             </div>
             <div className="SetPassPageFormInputsContainer">
               <form onSubmit={onSubmit}>
-                <div className="SetPassPagePasswordInputContainer">
-                  <label className="SetPassPagePasswordText">Create Password</label>
-                  <input
-                    className="SetPassPagePasswordInput"
+                <InputComponent 
+                  label="Create Password"
+                  
                     type={securePasswordText ? 'password' : 'text'}
                     name="password"
-                    value={password}
-                    onChange={(e) => handleInputChange(e, setPassword)}
+                    
+                    user={formData}
+                    setUser={setFormData}
+                    isPasswordField={true}
                     placeholder="Enter Your Password"
-                    required
-                  />
-                  <PasswordEyeComponent secureTextState={securePasswordText} setSecureTextState={setSecurePasswordText} />
-                </div>
-                <div className="SetPassPageReEnterPasswordInputContainer">
-                  <label className="SetPassPageReEnterPasswordText">Re-enter Password</label>
-                  <input
-                    className="SetPassPageReEnterPasswordInput"
+                    required secureTextState={securePasswordText} setSecureTextState={setSecurePasswordText} />
+                
+                <InputComponent
+                  label ='Re-enter Password'
+                  
                     type={secureReEnterPasswordText ? 'password' : 'text'}
-                    name="password"
-                    value={reEnterPassword}
-                    onChange={(e) => handleInputChange(e, setReEnterPassword)}
+                    name="reEnterPassword"
+                    user={formData}
+                    setUser={setFormData}
                     placeholder="Re-Enter Your Password"
-                    required
-                  />
-                  <PasswordEyeComponent secureTextState={secureReEnterPasswordText} setSecureTextState={setSecureReEnterPasswordText} />
-                </div>
+                    isPasswordField={true}
+                  secureTextState={secureReEnterPasswordText} setSecureTextState={setSecureReEnterPasswordText} />
+                
                 <div className="SetPassPageSetPasswordButtonContainer">
                   <button className="SetPassPageSetPasswordButton" type="submit">
                     <p className="SetPassPageSetPasswordText">Set password</p>
@@ -101,14 +81,10 @@ const SetPassword = ({ resetPassword }) => {
           </div>
           <div className="SetPassPageCopyrightTextContainer"></div>
         </div>
-        <div className="SetPassPageCopyrightTextContainer">
-          <p className="SetPassPageCopyrightText">
-            &copy; 2024 <span className="SetPassPageTravmigozCopyrightText">Travmigoz</span>. All Rights Reserved
-          </p>
-        </div>
+        <Copyright />
       </div>
-      <div className="SetPassPageDesignContainer">
-        <img src={SVG.AuthDesignSection} className="SetPassPageAuthDesignImage" alt="AuthDesignImage" />
+      <div className="DesignContainer">
+        <img src={SVG.AuthDesignSection} className="AuthDesignImage" alt="Auth Design" />
       </div>
       <ToastContainer />
     </div>
