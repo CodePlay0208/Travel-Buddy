@@ -1,11 +1,47 @@
-import React, { useState, memo, useCallback } from 'react'
+import React, { useState, memo } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import { connect } from 'react-redux'
 import { register } from '../../../actions/auth.action'
 
 import { SVG } from '../../../assets'
-import './SignUp.css'
+import {
+  Container,
+  FormAndCopyrightContainer,
+  FormAndTitleContainer,
+  TitleContainer,
+  FormContainer,
+  FormHeadingContainer,
+  FormSubHeadingText,
+  DividerContainer,
+  Divider1,
+  Divider2,
+  OrLoginWithContainer,
+  DesignContainer,
+  AuthDesignImage,
+  GoogleSignUpButton,
+  ContinueWithText,
+  GoogleIcon,
+} from '../AuthFlow.styled'
+import {
+  SignUpTwoInput,
+  SignUpFormInputsContainer,
+  SignUpTermsAgreementContainer,
+  SignUpTermsAgreementText,
+  SignUpTermsLink,
+  SignUpLinkText,
+  SignUpCreateAccountContainer,
+  SignUpCreateAccountButton,
+  SignUpAlreadyHaveContainer,
+  SignUpAlreadyHaveText,
+  SignUpLoginLink,
+  SignUpLoginText,
+  SignUpCopyrightTextContainer,
+  SignUpDesignContainer,
+  SignUpAuthDesignImage,
+  SignUpGoogleSignUpButton,
+  SignUpContinueWithText,
+} from './SignUp.styled'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 
@@ -25,6 +61,7 @@ const SignUp = (props) => {
   const toggleTermsAgreementCheck = () => {
     setIsTermsAggrementChecked((prevState) => !prevState)
   }
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -68,16 +105,16 @@ const SignUp = (props) => {
   }
 
   return (
-    <div className="Container">
-      <div className="FormAndCopyrightContainer">
-        <div className="FormAndTitleContainer">
-          <div className="TitleContainer">Travmigoz</div>
-          <div className="FormContainer">
-            <div className="FormHeadingContainer">Sign Up</div>
-            <div className="FormSubHeadingText">Let’s get you all set up so you can access your account.</div>
-            <div className="SignUpFormInputsContainer">
-              <form action="post" onSubmit={handleSubmit}>
-                <div className="SignUpTwoInput">
+    <Container>
+      <FormAndCopyrightContainer>
+        <FormAndTitleContainer>
+          <TitleContainer>Travmigoz</TitleContainer>
+          <FormContainer>
+            <FormHeadingContainer>Sign Up</FormHeadingContainer>
+            <FormSubHeadingText>Let’s get you all set up so you can access your account.</FormSubHeadingText>
+            <SignUpFormInputsContainer>
+              <form onSubmit={handleSubmit}>
+                <SignUpTwoInput>
                   <InputComponent
                     label="First Name"
                     type="text"
@@ -94,14 +131,14 @@ const SignUp = (props) => {
                     user={formData}
                     setUser={setFormData}
                   />
-                </div>
-                <div className="SignUpTwoInput">
+                </SignUpTwoInput>
+                <SignUpTwoInput>
                   <InputComponent
                     label="Email"
                     type="email"
                     name="email"
                     id="email"
-                    placeholder="Enter Your First Name"
+                    placeholder="Enter Your Email"
                     user={formData}
                     setUser={setFormData}
                   />
@@ -109,11 +146,11 @@ const SignUp = (props) => {
                     label="Phone Number"
                     type="tel"
                     name="phoneNumber"
-                    placeholder="Enter Your Email"
+                    placeholder="Enter Your Phone Number"
                     user={formData}
                     setUser={setFormData}
                   />
-                </div>
+                </SignUpTwoInput>
                 <InputComponent
                   label="Password"
                   type={securePasswordText ? 'password' : 'text'}
@@ -137,8 +174,7 @@ const SignUp = (props) => {
                   secureTextState={secureConfirmPasswordText}
                   setSecureTextState={setSecureConfirmPasswordText}
                 />
-
-                <div className="SignUpTermsAgreementContainer">
+                <SignUpTermsAgreementContainer>
                   <input
                     type="checkbox"
                     name="termsCheck"
@@ -147,50 +183,48 @@ const SignUp = (props) => {
                     onChange={toggleTermsAgreementCheck}
                     required
                   />
-                  <label className="SignUpTermsAgreementText">
+                  <SignUpTermsAgreementText>
                     I agree to all the{' '}
-                    <a href="#" className="SignUpTermsLink">
-                      <span className="SignUpLinkText"> Terms </span>
-                    </a>{' '}
+                    <SignUpTermsLink href="#">
+                      <SignUpLinkText>Terms</SignUpLinkText>
+                    </SignUpTermsLink>{' '}
                     and{' '}
-                    <a href="#" className="SignUpTermsLink">
-                      <span className="SignUpLinkText"> Privacy Policies </span>
-                    </a>
-                  </label>
-                </div>
-                <div className="SignUpCreateAccountContainer">
-                  <button type="submit" className="SignUpCreateAccountButton">
-                    Create Account
-                  </button>
-                </div>
-                <div className="SignUpAlreadyHaveContainer">
-                  <p className="SignUpAlreadyHaveText">Already have an account?</p>
-                  <a href="/login" className="SignUpLoginLink">
-                    <p className="SignUpLoginText">Login</p>
-                  </a>
-                </div>
-                <div className="DividerContainer">
-                  <div className="Divider1" />
-                  <div className="OrLoginWithText">Or login with</div>
-                  <div className="Divider2" />
-                </div>
+                    <SignUpTermsLink href="#">
+                      <SignUpLinkText>Privacy Policies</SignUpLinkText>
+                    </SignUpTermsLink>
+                  </SignUpTermsAgreementText>
+                </SignUpTermsAgreementContainer>
+                <SignUpCreateAccountContainer>
+                  <SignUpCreateAccountButton type="submit">Create Account</SignUpCreateAccountButton>
+                </SignUpCreateAccountContainer>
+                <SignUpAlreadyHaveContainer>
+                  <SignUpAlreadyHaveText>Already have an account?</SignUpAlreadyHaveText>
+                  <SignUpLoginLink href="/login">
+                    <SignUpLoginText>Login</SignUpLoginText>
+                  </SignUpLoginLink>
+                </SignUpAlreadyHaveContainer>
+                <DividerContainer>
+                  <Divider1 />
+                  <OrLoginWithContainer>Or login with</OrLoginWithContainer>
+                  <Divider2 />
+                </DividerContainer>
 
-                <div className="GoogleSignUpButton" role="button">
-                  <p className="ContinueWithText">Continue with</p>
-                  <img src={SVG.GoogleIcon} className="GoogleIcon" />
-                </div>
+                <GoogleSignUpButton role="button">
+                  <ContinueWithText>Continue with</ContinueWithText>
+                  <GoogleIcon src={SVG.GoogleIcon} />
+                </GoogleSignUpButton>
               </form>
-            </div>
-          </div>
-          <div className="SignUpCopyrightTextContainer"></div>
-        </div>
+            </SignUpFormInputsContainer>
+          </FormContainer>
+          <SignUpCopyrightTextContainer></SignUpCopyrightTextContainer>
+        </FormAndTitleContainer>
         <Copyright />
-      </div>
-      <div className="SignUpDesignContainer">
-        <img src={SVG.AuthDesignSection} className="SignUpAuthDesignImage" alt="AuthDesignImage" />
-      </div>
+      </FormAndCopyrightContainer>
+      <SignUpDesignContainer>
+        <SignUpAuthDesignImage src={SVG.AuthDesignSection} alt="Auth Design" />
+      </SignUpDesignContainer>
       <ToastContainer />
-    </div>
+    </Container>
   )
 }
 

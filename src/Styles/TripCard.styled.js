@@ -44,8 +44,8 @@ export const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px;
-  width: 100%;
+  padding: 1%;
+  width: 98%;
 `
 
 export const ProfileSection = styled.div`
