@@ -3,17 +3,19 @@ import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import { UserLoginContext } from '../../../Utils/Context/LoggedInUserContext'
 import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 import { SVG } from '../../../assets'
 import './loginPage.css'
 import { connect } from 'react-redux'
 import { setGoogleToken } from '../../../api-services/api-services'
 import { login, loginWithGoogle } from '../../../actions/auth.action'
+import InputComponent from '../InputComponent/InputComponent'
+import Copyright from '../../../components/Copyright/Copyright'
 // import { env } from '../../config/env'
 // import { AuthApi } from '../../api-services/api-invokes'
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
 })
 
 const LoginPage = ({ login, isAuthenticated }) => {
@@ -25,38 +27,13 @@ const LoginPage = ({ login, isAuthenticated }) => {
   const navigate = useNavigate()
 
 
-  // const googleSignIn = useGoogleLogin({
-  //   clientId: env.GOOGLE_CLIENT_ID,
-  //   onSuccess: async (response) => {
-  //     const token = response.access_token
-  //     setGoogleToken(token)
-  //     try {
-  //       const res = await AuthApi.loginUserWithGoogle()
-  //       console.log('RES', res)
-  //       if (res.success) {
-  //         const previousURL = sessionStorage.getItem('redirectUrl') || '/'
-  //         sessionStorage.removeItem('redirectUrl')
-  //         navigate(previousURL)
-  //       } else {
-  //         console.log('Login with Google failed')
-  //       }
-  //     } catch (e) {
-  //       console.log('googleSignIn ERROR: ', e)
-  //       throw e
-  //     }
-  //   },
-  //   onError: (error) => {
-  //     console.log('googleSignIn-onError ERROR: ', error)
-  //   },
-  // })
-
   const googleSignIn = useGoogleLogin({
     clientId: '464876682696-pkm7moinvftntbnild9dq19378vu3ski.apps.googleusercontent.com',
     onSuccess: (response) => {
       console.log(response)
       const token = response.access_token
       setGoogleToken(token)
-  
+
       // Send the token to your backend for verification and user data fetching
       fetch('http://localhost:4000/login/googleLogin', {
         method: 'POST',
@@ -115,14 +92,6 @@ const LoginPage = ({ login, isAuthenticated }) => {
     },
   })
 
-  const handleEmailChange = (e) => {
-    setUserEmail(e.target.value)
-  }
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
-  }
-
   const toggleRemeberMeCheckbox = () => {
     setRememberMe((prevState) => !prevState)
   }
@@ -149,89 +118,53 @@ const LoginPage = ({ login, isAuthenticated }) => {
     const isAuth = await login(userEmail, password, rememberMe)
 
     if (isAuth) {
-      // const previousURL = sessionStorage.getItem('redirectUrl') || '/'
-      // sessionStorage.removeItem('redirectUrl')
       navigate('/')
     }
   }
 
-  const PasswordEyeComponent = memo((props) => {
-    const { secureTextState, setSecureTextState } = props
-
-    const handlePasswordEyeIconClick = () => {
-      setSecureTextState((prevState) => !prevState)
-    }
-
-    return (
-      <div className="LoginPasswordEyeContainer" role="button" onClick={handlePasswordEyeIconClick}>
-        {secureTextState ? (
-          <img src={SVG.EyeIcon} className="LoginPasswordEyeIcon" />
-        ) : (
-          <img src={SVG.EyeSlashIcon} className="LoginPasswordEyeIcon" />
-        )}
-      </div>
-    )
-  })
 
   return (
     <div className="LoginContainer">
       <div className="LoginLoginFormAndCopyrightContainer">
         <div className="LoginFormAndTitleContainer">
-          <div className="LoginTitleContainer">
-            <p className="LoginTitleText">Travmigoz</p>
-          </div>
+          <div className="LoginTitleText">Travmigoz</div>
           <div className="LoginFormContainer">
-            <div className="LoginFormHeadingContainer">
-              <p className="LoginFormHeadingText">Login</p>
-            </div>
-            <div className="LoginFormSubHeadingContainer">
-              <p className="LoginFormSubHeadingText">Login to access your account</p>
-            </div>
-            <div className="LoginFormInputsContainer">
-              <form action="post" onSubmit={handleLogin}>
-                <div className="LoginEmailInputContainer">
-                  <label className="LoginEmailText">Email</label>
-                  <input
-                    className="LoginEmailInput"
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={userEmail}
-                    onChange={(e) => handleEmailChange(e)}
-                    placeholder="Enter Your Email"
-                    required
-                  />
-                </div>
-                <div className="LoginPasswordInputContainer">
-                  <label className="LoginPasswordText">Password</label>
-                  <input
-                    className="LoginPasswordInput"
-                    type={secureTextEntry ? 'password' : 'text'}
-                    name="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => handlePasswordChange(e)}
-                    placeholder="Enter Your Password"
-                    required
-                  />
-                  <PasswordEyeComponent secureTextState={secureTextEntry} setSecureTextState={setSecureTextEntry} />
-                </div>
+            <div className="LoginFormHeadingContainer">Login</div>
+            <div className="LoginFormSubHeadingText">Login to access your account</div>
+            
+              <form action="post" onSubmit={handleLogin} className="LoginFormInputsContainer">
+                <InputComponent
+                  label="Email"
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Enter Your Email"
+                  user={userEmail}
+                  setUser={setUserEmail}
+                />
+
+                <InputComponent
+                  label="Password"
+                  type={secureTextEntry ? 'password' : 'text'}
+                  name="password"
+                  id="password"
+                  user={password}
+                  setUser={setPassword}
+                  placeholder="Enter Your Password"
+                  isPasswordField={true}
+                  secureTextState={secureTextEntry}
+                  setSecureTextState={setSecureTextEntry}
+                />
                 <div className="LoginRememberMeAndForgetPasswordContainer">
                   <div className="LoginRememberMeContainer">
-                    <input
-                      className="LoginRememberMeCheckbox"
-                      type="checkbox"
-                      checked={rememberMe}
-                      onClick={toggleRemeberMeCheckbox}
-                    />
-                    {/* <span className='CustomCheckbox' /> */}
-                    <label className="LoginRememberMeText">Remember Me</label>
+                    <input className="LoginRememberMeCheckbox" type="checkbox" checked={rememberMe} onClick={toggleRemeberMeCheckbox} />
+
+                    <div className="LoginRememberMeText">Remember Me</div>
                   </div>
-                  <div className="LoginForgetPasswordContainer">
-                    <a href="/forget-password" className="LoginForgetPasswordLink">
-                      <p className="LoginForgetPasswordText">Forgot Password</p>
-                    </a>
-                  </div>
+
+                  <a href="/forget-password" className="LoginForgetPasswordLink">
+                    <p className="LoginForgetPasswordText">Forgot Password</p>
+                  </a>
                 </div>
                 <div className="LoginLoginButtonContainer">
                   <button type="submit" className="LoginLoginButton">
@@ -241,31 +174,24 @@ const LoginPage = ({ login, isAuthenticated }) => {
                 <div className="LoginDontHaveAccountContainer">
                   <p className="LoginDontHavaAccountText">Don't have an account?</p>
                   <a href="/signup" className="LoginSignUpLink">
-                    <p className="LoginSignUpText">Sign up</p>
+                    Sign up
                   </a>
                 </div>
                 <div className="LoginDividerContainer">
                   <div className="LoginDivider1" />
-                  <div className="LoginOrLoginWithContainer">
-                    <p className="LoginOrLoginWithText">Or login with</p>
-                  </div>
+                  <div className="LoginOrLoginWithText">Or login with</div>
                   <div className="LoginDivider2" />
                 </div>
-                <div className="LoginMoreSignUpButtonContainer">
-                  <div className="LoginGoogleSignUpButton" role="button" onClick={googleSignIn}>
-                    <p className="LoginContinueWithText">Continue with</p>
-                    <img src={SVG.GoogleIcon} className="LoginGoogleIcon" />
-                  </div>
+
+                <div className="LoginGoogleSignUpButton" role="button" onClick={googleSignIn}>
+                  <p className="LoginContinueWithText">Continue with</p>
+                  <img src={SVG.GoogleIcon} className="LoginGoogleIcon" />
                 </div>
               </form>
-            </div>
+            
           </div>
         </div>
-        <div className="LoginCopyrightTextContainer">
-          <p className="LoginCopyrightText">
-            &copy; 2024 <span className="LoginTravmigozCopyrightText">Travmigoz</span>. All Rights Reserved
-          </p>
-        </div>
+        <Copyright></Copyright>
       </div>
       <div className="LoginDesignContainer">
         <img src={SVG.AuthDesignSection} className="LoginAuthDesignImage" alt="AuthDesignImage" />

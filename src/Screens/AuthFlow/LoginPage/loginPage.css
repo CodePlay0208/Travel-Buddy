@@ -1,14 +1,3 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-p,
-label {
-  font-family: 'Montserrat', sans-serif;
-}
-
 input::placeholder {
   font-family: 'Montserrat', sans-serif;
   font-weight: 200;
@@ -33,8 +22,6 @@ input::placeholder {
   margin-bottom: 5%;
 }
 
-.LoginTitleContainer {
-}
 
 .LoginTitleText {
   font-size: 2.5rem;
@@ -51,14 +38,9 @@ input::placeholder {
 .LoginFormHeadingContainer {
   flex: 1;
   margin-bottom: 1rem;
-}
 
-.LoginFormHeadingText {
   font-size: 3.125rem;
   font-weight: 700;
-}
-
-.LoginFormSubHeadingContainer {
 }
 
 .LoginFormSubHeadingText {
@@ -70,82 +52,8 @@ input::placeholder {
   margin-top: 6.25%;
 }
 
-.LoginEmailInputContainer {
-  border-width: 1px;
-  border-radius: 5px;
-  border-color: #112211;
-  border-style: solid;
-  position: relative;
-  padding: 1px;
-}
-
-.LoginEmailText {
-  font-size: 1rem;
-  padding-right: 3px;
-  padding-left: 3px;
-  margin-left: 10px;
-  position: absolute;
-  top: -23%;
-  background-color: white;
-}
-
-.LoginEmailInput {
-  width: 100%;
-  height: 3rem;
-  border: none;
-  padding: 5px;
-  font-size: 1.125rem;
-  padding-left: 0.625rem;
-  color: #1c1b1f;
-  border-color: #112211;
-}
-
 input:focus {
   outline: none;
-}
-
-.LoginPasswordInputContainer {
-  border-width: 1px;
-  border-radius: 5px;
-  border-color: #112211;
-  border-style: solid;
-
-  margin-top: 4.5%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 1px;
-}
-
-.LoginPasswordText {
-  font-size: 1rem;
-  padding-right: 3px;
-  padding-left: 3px;
-  margin-left: 10px;
-  position: absolute;
-  top: -23%;
-  background-color: white;
-}
-
-.LoginPasswordInput {
-  width: 100%;
-  border: none;
-  padding: 5px;
-  height: 3rem;
-  font-size: 1.125rem;
-  padding-left: 0.625rem;
-  color: #1c1b1f;
-  border-color: #112211;
-}
-
-.LoginPasswordEyeContainer {
-  justify-content: center;
-  align-items: center;
-  padding-right: 10px;
-}
-
-.LoginPasswordEyeIcon {
-  height: 20px;
 }
 
 .LoginRememberMeAndForgetPasswordContainer {
@@ -168,9 +76,6 @@ input:focus {
   font-size: 1rem;
   font-weight: 500;
   padding-top: 4px;
-}
-
-.LoginForgetPasswordContainer {
 }
 
 .LoginForgetPasswordLink {
@@ -234,9 +139,7 @@ input:focus {
 
 .LoginSignUpLink {
   text-decoration: none;
-}
 
-.LoginSignUpText {
   margin-left: 5px;
   font-size: 1rem;
   font-weight: 500;
@@ -283,12 +186,6 @@ input:focus {
   font-size: 0.9rem;
 }
 
-.LoginMoreSignUpButtonContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .LoginGoogleSignUpButton {
   padding: 1.4% 20%;
   border-style: solid;
@@ -318,23 +215,6 @@ input:focus {
 
 .LoginGoogleIcon {
   height: 40px;
-}
-
-.LoginCopyrightTextContainer {
-  width: fit-content;
-
-  left: -2%;
-  bottom: -3%;
-  z-index: 2;
-}
-
-.LoginCopyrightText {
-  font-size: 1rem;
-  font-weight: 400;
-}
-
-.LoginTravmigozCopyrightText {
-  font-weight: 500;
 }
 
 .LoginDesignContainer {
