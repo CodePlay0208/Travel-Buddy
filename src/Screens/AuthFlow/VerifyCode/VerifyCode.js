@@ -7,7 +7,7 @@ import '../AuthFlow.css'
 import { connect } from 'react-redux'
 import { verifyOTP, resendOTP } from '../../../actions/auth.action'
 import { ToastContainer } from 'react-toastify'
-import InputComponent from '../InputComponent/InputComponent'
+import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 
 const mapStateToProps = (state) => ({

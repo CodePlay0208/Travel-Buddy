@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { SVG } from '../../../assets'
 import { connect } from 'react-redux'
 import { forgetPassword } from '../../../actions/auth.action'
-import InputComponent from '../InputComponent/InputComponent'
+import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 
 const ForgotPasswordPage = (props) => {
@@ -36,9 +36,7 @@ const ForgotPasswordPage = (props) => {
               <p className="BackButtonText">Back</p>
             </div>
             <div className="FormHeadingContainer">Forgot your password?</div>
-            <div className="FormSubHeadingText">
-              Don’t worry, happens to all of us. Enter your email below to recover your password.
-            </div>
+            <div className="FormSubHeadingText">Don’t worry, happens to all of us. Enter your email below to recover your password.</div>
             <form onSubmit={onSubmitClick} className="ForgetPassFormInputsContainer">
               <InputComponent type="email" name="email" id="email" user={formData} setUser={setFormData} placeholder="Enter Your Email" />
               <div className="ForgetPassSubmitButtonContainer">

@@ -1,7 +1,7 @@
 import React, { useContext, useState, memo, useCallback } from 'react'
 import './InputComponent.css'
 
-import { SVG } from '../../../assets'
+import { SVG } from '../../assets'
 
 const InputComponent = ({
   label,
@@ -16,10 +16,9 @@ const InputComponent = ({
   secureTextState,
   setSecureTextState,
 }) => {
-  
-    const handleChange = (e) => {
-        setUser({ ...user, [e.target.name]: e.target.value })
-      }
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
   const PasswordEyeComponent = memo(() => {
     const handlePasswordEyeIconClick = () => {
       setSecureTextState((prevState) => !prevState)
@@ -27,11 +26,7 @@ const InputComponent = ({
 
     return (
       <div className="inputEyeContainer" role="button" onClick={handlePasswordEyeIconClick}>
-        {secureTextState ? (
-          <img src={SVG.EyeIcon} className="inputEyeIcon" />
-        ) : (
-          <img src={SVG.EyeSlashIcon} className="inputEyeIcon" />
-        )}
+        {secureTextState ? <img src={SVG.EyeIcon} className="inputEyeIcon" /> : <img src={SVG.EyeSlashIcon} className="inputEyeIcon" />}
       </div>
     )
   })

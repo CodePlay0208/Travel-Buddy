@@ -7,17 +7,16 @@ import '../AuthFlow.css'
 import { connect } from 'react-redux'
 import { resetPassword } from '../../../actions/auth.action'
 import { toast, ToastContainer } from 'react-toastify'
-import InputComponent from '../InputComponent/InputComponent'
+import InputComponent from '../../../components/InputComponent/InputComponent'
 import { Input } from 'antd'
 import Copyright from '../../../components/Copyright/Copyright'
 
 const SetPassword = ({ resetPassword }) => {
   const navigate = useNavigate()
 
-  const [formData, setFormData] = useState({ password: '',reEnterPassword:'' })
+  const [formData, setFormData] = useState({ password: '', reEnterPassword: '' })
   const [securePasswordText, setSecurePasswordText] = useState(true)
   const [secureReEnterPasswordText, setSecureReEnterPasswordText] = useState(true)
-
 
   const handleBackButtonClick = () => navigate(-1)
 
@@ -43,34 +42,34 @@ const SetPassword = ({ resetPassword }) => {
               <p className="BackButtonText">Back</p>
             </div>
             <div className="FormHeadingContainer">Set a password</div>
-            <div className="FormSubHeadingText">
-            Your previous password has been reseted. Please set a new password for your account.
-            </div>
+            <div className="FormSubHeadingText">Your previous password has been reseted. Please set a new password for your account.</div>
             <div className="SetPassPageFormInputsContainer">
               <form onSubmit={onSubmit}>
-                <InputComponent 
-                  label="Create Password"
-                  
-                    type={securePasswordText ? 'password' : 'text'}
-                    name="password"
-                    
-                    user={formData}
-                    setUser={setFormData}
-                    isPasswordField={true}
-                    placeholder="Enter Your Password"
-                    required secureTextState={securePasswordText} setSecureTextState={setSecurePasswordText} />
-                
                 <InputComponent
-                  label ='Re-enter Password'
-                  
-                    type={secureReEnterPasswordText ? 'password' : 'text'}
-                    name="reEnterPassword"
-                    user={formData}
-                    setUser={setFormData}
-                    placeholder="Re-Enter Your Password"
-                    isPasswordField={true}
-                  secureTextState={secureReEnterPasswordText} setSecureTextState={setSecureReEnterPasswordText} />
-                
+                  label="Create Password"
+                  type={securePasswordText ? 'password' : 'text'}
+                  name="password"
+                  user={formData}
+                  setUser={setFormData}
+                  isPasswordField={true}
+                  placeholder="Enter Your Password"
+                  required
+                  secureTextState={securePasswordText}
+                  setSecureTextState={setSecurePasswordText}
+                />
+
+                <InputComponent
+                  label="Re-enter Password"
+                  type={secureReEnterPasswordText ? 'password' : 'text'}
+                  name="reEnterPassword"
+                  user={formData}
+                  setUser={setFormData}
+                  placeholder="Re-Enter Your Password"
+                  isPasswordField={true}
+                  secureTextState={secureReEnterPasswordText}
+                  setSecureTextState={setSecureReEnterPasswordText}
+                />
+
                 <div className="SetPassPageSetPasswordButtonContainer">
                   <button className="SetPassPageSetPasswordButton" type="submit">
                     <p className="SetPassPageSetPasswordText">Set password</p>

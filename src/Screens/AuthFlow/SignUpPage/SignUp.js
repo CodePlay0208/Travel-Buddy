@@ -6,7 +6,7 @@ import { register } from '../../../actions/auth.action'
 
 import { SVG } from '../../../assets'
 import './SignUp.css'
-import InputComponent from '../InputComponent/InputComponent'
+import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 
 const mapStateToProps = (state) => ({

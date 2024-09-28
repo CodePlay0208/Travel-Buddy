@@ -9,7 +9,7 @@ import './loginPage.css'
 import { connect } from 'react-redux'
 import { setGoogleToken } from '../../../api-services/api-services'
 import { login, loginWithGoogle } from '../../../actions/auth.action'
-import InputComponent from '../InputComponent/InputComponent'
+import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 // import { env } from '../../config/env'
 // import { AuthApi } from '../../api-services/api-invokes'
@@ -20,16 +20,13 @@ const mapStateToProps = (state) => ({
 
 const LoginPage = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
-
     email: '',
     password: '',
-    
   })
   const [rememberMe, setRememberMe] = useState(false)
   const [secureTextEntry, setSecureTextEntry] = useState(true)
   const { setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
-
 
   const googleSignIn = useGoogleLogin({
     clientId: '464876682696-pkm7moinvftntbnild9dq19378vu3ski.apps.googleusercontent.com',
@@ -126,7 +123,6 @@ const LoginPage = ({ login, isAuthenticated }) => {
     }
   }
 
-
   return (
     <div className="Container">
       <div className="FormAndCopyrightContainer">
@@ -135,64 +131,63 @@ const LoginPage = ({ login, isAuthenticated }) => {
           <div className="FormContainer">
             <div className="FormHeadingContainer">Login</div>
             <div className="FormSubHeadingText">Login to access your account</div>
-            
-              <form action="post" onSubmit={handleLogin} className="LoginFormInputsContainer">
-                <InputComponent
-                  label="Email"
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Enter Your Email"
-                  user={formData}
-                  setUser={setFormData}
-                />
 
-                <InputComponent
-                  label="Password"
-                  type={secureTextEntry ? 'password' : 'text'}
-                  name="password"
-                  id="password"
-                  user={formData}
-                  setUser={setFormData}
-                  placeholder="Enter Your Password"
-                  isPasswordField={true}
-                  secureTextState={secureTextEntry}
-                  setSecureTextState={setSecureTextEntry}
-                />
-                <div className="LoginRememberMeAndForgetPasswordContainer">
-                  <div className="LoginRememberMeContainer">
-                    <input className="LoginRememberMeCheckbox" type="checkbox" checked={rememberMe} onClick={toggleRemeberMeCheckbox} />
+            <form action="post" onSubmit={handleLogin} className="LoginFormInputsContainer">
+              <InputComponent
+                label="Email"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter Your Email"
+                user={formData}
+                setUser={setFormData}
+              />
 
-                    <div className="LoginRememberMeText">Remember Me</div>
-                  </div>
+              <InputComponent
+                label="Password"
+                type={secureTextEntry ? 'password' : 'text'}
+                name="password"
+                id="password"
+                user={formData}
+                setUser={setFormData}
+                placeholder="Enter Your Password"
+                isPasswordField={true}
+                secureTextState={secureTextEntry}
+                setSecureTextState={setSecureTextEntry}
+              />
+              <div className="LoginRememberMeAndForgetPasswordContainer">
+                <div className="LoginRememberMeContainer">
+                  <input className="LoginRememberMeCheckbox" type="checkbox" checked={rememberMe} onClick={toggleRemeberMeCheckbox} />
 
-                  <a href="/forget-password" className="LoginForgetPasswordLink">
-                    <p className="LoginForgetPasswordText">Forgot Password</p>
-                  </a>
+                  <div className="LoginRememberMeText">Remember Me</div>
                 </div>
-                <div className="LoginLoginButtonContainer">
-                  <button type="submit" className="LoginLoginButton">
-                    <p className="LoginLoginButtonText">Login</p>
-                  </button>
-                </div>
-                <div className="LoginDontHaveAccountContainer">
-                  <p className="LoginDontHavaAccountText">Don't have an account?</p>
-                  <a href="/signup" className="LoginSignUpLink">
+
+                <a href="/forget-password" className="LoginForgetPasswordLink">
+                  <p className="LoginForgetPasswordText">Forgot Password</p>
+                </a>
+              </div>
+              <div className="LoginLoginButtonContainer">
+                <button type="submit" className="LoginLoginButton">
+                  <p className="LoginLoginButtonText">Login</p>
+                </button>
+              </div>
+              <div className="LoginDontHaveAccountContainer">
+                <p className="LoginDontHavaAccountText">Don't have an account?</p>
+                <a href="/signup" className="LoginSignUpLink">
                   <p className="SignUpLoginLoginText">Login</p>
-                  </a>
-                </div>
-                <div className="DividerContainer">
-                  <div className="Divider1" />
-                  <div className="OrLoginWithText">Or login with</div>
-                  <div className="Divider2" />
-                </div>
+                </a>
+              </div>
+              <div className="DividerContainer">
+                <div className="Divider1" />
+                <div className="OrLoginWithText">Or login with</div>
+                <div className="Divider2" />
+              </div>
 
-                <div className="GoogleSignUpButton" role="button" onClick={googleSignIn}>
-                  <p className="ContinueWithText">Continue with</p>
-                  <img src={SVG.GoogleIcon} className="GoogleIcon" />
-                </div>
-              </form>
-            
+              <div className="GoogleSignUpButton" role="button" onClick={googleSignIn}>
+                <p className="ContinueWithText">Continue with</p>
+                <img src={SVG.GoogleIcon} className="GoogleIcon" />
+              </div>
+            </form>
           </div>
         </div>
         <Copyright></Copyright>
