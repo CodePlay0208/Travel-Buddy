@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
-import './searchResultsPage.css'
 import Header from '../../components/Header/Header'
 import TripCard from '../../components/TripCard/TripCard'
 import Footer from '../../components/Footer/Footer'
 import { connect } from 'react-redux'
+import { SearchResultsPageContainer, TripList, SearchResultButtonDiv, ShowMoreButton } from './SearchResultsPage.styled'
 
 const mapStateToProps = (state) => ({
   trips: state.trip.trips,
@@ -15,9 +15,9 @@ const SearchResultsPage = (props) => {
   const { trips } = props
 
   return (
-    <div>
+    <SearchResultsPageContainer>
       <Header isImageNavbar={true} />
-      <div className="trip-list">
+      <TripList>
         {trips.map((trip) => (
           <TripCard
             key={trip.id}
@@ -32,12 +32,12 @@ const SearchResultsPage = (props) => {
             destinationImages={trip.destinationImages}
           />
         ))}
-      </div>
-      <div className="search-result-button-div">
-        <button className="showMoreButton">Show More</button>
-      </div>
+      </TripList>
+      <SearchResultButtonDiv>
+        <ShowMoreButton>Show More</ShowMoreButton>
+      </SearchResultButtonDiv>
       <Footer />
-    </div>
+    </SearchResultsPageContainer>
   )
 }
 

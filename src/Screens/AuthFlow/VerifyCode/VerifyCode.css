@@ -1,0 +1,121 @@
+
+.VerifyCodeFormInputsContainer {
+  margin-top: 5%;
+}
+
+.VerifyCodeCodeInputContainer {
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: #112211;
+  border-style: solid;
+  position: relative;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+}
+
+.VerifyCodeResendCodeContainer {
+  display: flex;
+  margin-top: 2.5%;
+}
+
+.VerifyCodeDidntRecieveText {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.VerifyCodeResendLink {
+  text-decoration: none;
+}
+
+.VerifyCodeResendText {
+  margin-left: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ff8682;
+  cursor: pointer;
+  padding: 0px 1px;
+}
+
+.VerifyCodeResendLink:hover .VerifyCodeResendText {
+  color: #e14944;
+}
+
+.VerifyCodeResendLink:active .VerifyCodeResendText {
+  color: #ca2c27;
+  transform: scale(0VerifyCode98);
+}
+
+.VerifyCodeVerifyButtonContainer {
+  margin-top: 4.5%;
+  border-style: none;
+  border-width: 0px;
+}
+
+.VerifyCodeVerifyButton {
+  background-color: #8dd3bb;
+  padding: 15px;
+  font-size: 1.1rem;
+  width: 100%;
+  border-width: 0px;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.VerifyCodeVerifyButton:active {
+  font-size: 1.125px;
+}
+
+
+@media (max-width: 1024px) {
+  .VerifyCodeCodeInputContainer {
+    margin-top: 7%;
+  }
+  .VerifyCodeResendCodeContainer {
+    margin-top: 6%;
+  }
+  .VerifyCodeVerifyButtonContainer {
+    margin-top: 8%;
+  }
+}
+
+@media (max-width: 950px) {
+  .VerifyCodeFormHeadingText {
+    font-size: 2rem;
+  }
+  .VerifyCodeFormSubHeadingText {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .VerifyCodeCodeInputContainer {
+    margin-top: 8.5%;
+  }
+  .VerifyCodeVerifyButtonContainer {
+    margin-top: 10%;
+  }
+}
+@media (max-width: 320px) {
+  .VerifyCodeCodeInputContainer {
+    margin-top: 12%;
+  }
+  .VerifyCodeVerifyButtonContainer {
+    margin-top: 12%;
+  }
+}
+
+@media (max-width: 550px) {
+  .VerifyCodeDesignContainer {
+    display: none;
+  }
+  input::placeholder {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .VerifyCodeInputsContainer {
+    margin-top: 20px;
+  }
+}

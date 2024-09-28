@@ -1,12 +1,12 @@
 import React, { useState, memo } from 'react'
-import './Searchbar.css'
 import { SVG } from '../../assets'
 import axios from 'axios'
 import { getLocationSuggestions } from '../../actions/location.action'
 import { connect } from 'react-redux'
+import { SearchBarContainer, SearchBarInput, LocationIcon, Dropdown, DropdownItem } from '../../Styles/Searchbar.styled'
 
 const mapStateToProps = (state) => ({
-  suggestions: state.location.suggestions
+  suggestions: state.location.suggestions,
 })
 
 const Searchbar = (props) => {
@@ -22,7 +22,7 @@ const Searchbar = (props) => {
 
     if (value.length > 2) {
       try {
-        const suggestionSuccess = await getLocationSuggestions(value)
+        await getLocationSuggestions(value)
         setDropdownVisible(true)
       } catch (error) {
         console.error('Error fetching location suggestions:', error)
@@ -31,46 +31,42 @@ const Searchbar = (props) => {
       setDropdownVisible(false)
     }
   }
+
   const selectSuggestion = (suggestion) => {
     setInputValues((currentInputValues) => ({
       ...currentInputValues,
       [onValue]: `${suggestion.city}, ${suggestion.state}`,
     }))
-
     setTimeout(() => setDropdownVisible(false), 0)
   }
 
   const customId = `searchbar-input-${onValue}`
 
   return (
-    <div
-      className="SearchBar-DestinationContainer"
+    <SearchBarContainer
       onClick={() => {
-        document.getElementById(`searchbar-input-${onValue}`).focus()
+        document.getElementById(customId).focus()
       }}
     >
-      <input
+      <SearchBarInput
         type="text"
-        className="SearchBar-location"
         placeholder={placeholderValue}
         id={customId}
         value={inputValues}
         onChange={searchBarChangeHandler}
         autoComplete="off"
       />
-      <div className="SearchBar-Image">
-        <img src={SVG.LocationIcon} className="locationIcon" alt="Location Icon" />
-      </div>
+      <LocationIcon src={SVG.LocationIcon} alt="Location Icon" />
       {isDropdownVisible && suggestions.length > 0 && (
-        <ul className="SearchBar-Dropdown">
+        <Dropdown>
           {suggestions.map((suggestion, index) => (
-            <li key={index} className="SearchBar-DropdownItem" onClick={() => selectSuggestion(suggestion)}>
+            <DropdownItem key={index} onClick={() => selectSuggestion(suggestion)}>
               {suggestion.city}, {suggestion.state}
-            </li>
+            </DropdownItem>
           ))}
-        </ul>
+        </Dropdown>
       )}
-    </div>
+    </SearchBarContainer>
   )
 }
 

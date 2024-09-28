@@ -3,14 +3,13 @@ import LandingPage from "./Screens/LandingPage/landingPage";
 import SearchResultsPage from "./Screens/SearchResultsPage/searchResultsPage";
 import PublishTrip from "./Screens/PublishTrip/PublishTrip";
 import ChatPage from "./components/Chat/ChatPage";
-import LoginPage from "./Screens/LoginPage/loginPage";
-import VerifyCode from "./Screens/VerifyCode/VerifyCode";
-import SignUp from "./Screens/SignUpPage/SignUp";
+import LoginPage from "./Screens/AuthFlow/LoginPage/loginPage";
+import VerifyCode from "./Screens/AuthFlow/VerifyCode/VerifyCode";
+import SignUp from "./Screens/AuthFlow/SignUpPage/SignUp";
 import TripPage from "./components/TripPage/TripPage";
 import UserProfile from "./Screens/UserProfile/UserProfile";
-import UserTrips from "./components/UserProfile/UserTrips/UserTrips";
-import ForgotPassword from "./Screens/ForgotPassword/ForgotPassword";
-import SetPassword from "./Screens/SetPassword/SetPassword";
+import ForgotPassword from "./Screens/AuthFlow/ForgotPassword/ForgotPassword";
+import SetPassword from "./Screens/AuthFlow/SetPassword/SetPassword";
 
 export const routes = [
   {
@@ -40,12 +39,6 @@ export const routes = [
     path: '/user-profile',
     element: <UserProfile />,
   },
-
-  {
-    path: '/user-trips',
-    element: <UserTrips />,
-  },
-
   {
     path: '/trip/:id',
     element: <TripPage />,

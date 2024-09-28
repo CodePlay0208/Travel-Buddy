@@ -1,0 +1,43 @@
+.inputContainer {
+    width: 99.5%;
+    margin-right: 0.5%;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #112211;
+    border-style: solid;
+    margin-top: 4.5%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1px;
+}
+
+.inputLabel {
+  font-size: 1rem;
+  padding-right: 3px;
+  padding-left: 3px;
+  margin-left: 10px;
+  position: absolute;
+  top: -23%;
+  background-color: white;
+}
+
+.inputComponent {
+  width: 100%;
+  height: 3rem;
+  border: none;
+  padding: 5px;
+  font-size: 1.125rem;
+  padding-left: 0.625rem;
+  color: #1c1b1f;
+  border-color: #112211;
+}
+.inputEyeContainer {
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+  }
+  
+  .inputEyeIcon {
+    height: 20px;
+  }

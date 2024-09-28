@@ -1,0 +1,181 @@
+.SignUpTwoInput{
+  display: flex;
+  flex: 1 1;
+  width: 100%;
+}
+
+
+input::placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  padding-left: 4px;
+}
+
+.SignUpFormInputsContainer {
+  margin-top: 6.25%;
+}
+
+.SignUpTermsAgreementContainer {
+  display: flex;
+  align-items: center;
+  align-items: center;
+  margin-top: 3.5%;
+  cursor: pointer;
+  padding: 0px 4px;
+}
+
+.SignUpTermsAgreementText {
+  flex: 1;
+  display: flex;
+  padding-top: 4px;
+  margin-left: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.SignUpTermsLink {
+  text-decoration: none;
+}
+
+.SignUpLinkText {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ff8682;
+  transition:
+    color 0SignUp3s ease,
+    transform 0SignUp1s ease;
+  cursor: pointer;
+  padding: 0px 4px;
+}
+
+.SignUpTermsLink:hover .SignUpLinkText {
+  color: #e14944;
+}
+
+.SignUpTermsLink:active .SignUpLinkText {
+  color: #ca2c27;
+  transform: scale(0SignUp98);
+}
+
+.SignUpCreateAccountContainer {
+  margin-top: 5%;
+  border-style: none;
+  border-width: 0px;
+}
+
+.SignUpCreateAccountButton {
+  background-color: #8dd3bb;
+  padding: 15px;
+  font-size: 1.1rem;
+  width: 100%;
+  border-width: 0px;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.SignUpAlreadyHaveContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+  align-items: center;
+}
+
+.SignUpAlreadyHaveText {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.SignUpLoginText {
+  margin-left: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ff8682;
+  transition:
+    color 0SignUp3s ease,
+    transform 0SignUp1s ease;
+  cursor: pointer;
+}
+
+.SignUpLoginLink {
+  text-decoration: none;
+}
+
+.SignUpLoginLink:hover .SignUpLoginText {
+  color: #e14944;
+}
+
+.SignUpLoginLink:active .SignUpLoginText {
+  color: #ca2c27;
+  transform: scale(0SignUp98);
+}
+
+.SignUpCopyrightTextContainer {
+  width: fit-content;
+
+  left: -2%;
+  bottom: -3%;
+  z-index: 2;
+}
+
+
+.SignUpDesignContainer {
+  flex: 1 2;
+
+  max-width: 42%;
+
+  min-width: 0%;
+  height: fit-content;
+  padding: 20px 50px 0px 0%;
+}
+
+.SignUpAuthDesignImage {
+  height: 110vh;
+
+  min-height: 90vh;
+  margin-right: 50px;
+}
+
+@media (max-width: 1024px) {
+  .SignUpTwoInput {
+    flex-direction: column;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .SignUpTwoInput {
+    flex-direction: column;
+  }
+  
+}
+
+@media (max-width: 550px) {
+  .SignUpDesignContainer {
+    display: none;
+  }
+  .SignUpFormAndCopyrightContainer {
+    margin-right: 12%;
+  }
+  input::placeholder {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 855px) {
+  .SignUpGoogleSignUpButton {
+    padding: 1.4% 20%;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 2px;
+    border-color: #8dd3bb;
+    background-color: white;
+  }
+
+  .SignUpGoogleSignUpButton:active {
+    border-width: 2.5px;
+  }
+
+  .SignUpContinueWithText {
+    display: none;
+  }
+}
