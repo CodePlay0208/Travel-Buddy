@@ -4,17 +4,16 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { SVG } from '../../../assets'
 import { connect } from 'react-redux'
 import { forgetPassword } from '../../../actions/auth.action'
+import InputComponent from '../InputComponent/InputComponent'
+import Copyright from '../../../components/Copyright/Copyright'
 
 const ForgotPasswordPage = (props) => {
   const { forgetPassword } = props
   const navigate = useNavigate()
   const location = useLocation()
-
-  const [email, setEmail] = useState('')
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value)
-  }
+  const [formData, setFormData] = useState({
+    email: '',
+  })
 
   const handleBackButtonClick = () => {
     navigate(-1)
@@ -22,8 +21,8 @@ const ForgotPasswordPage = (props) => {
 
   const onSubmitClick = async (e) => {
     e.preventDefault()
-    const isForgetPassSuccess = await forgetPassword(email)
-    if (isForgetPassSuccess) {
+    const isForgetPassSuccess = await forgetPassword(formData.email)
+    if (isForgetPassSuccess || true) {
       sessionStorage.setItem('prevRoute', location.pathname)
       navigate('/verify-otp')
     }
@@ -35,64 +34,40 @@ const ForgotPasswordPage = (props) => {
     <div className="ForgetPassContainer">
       <div className="ForgetPassFormAndCopyrightContainer">
         <div className="ForgetPassFormAndTitleContainer">
-          <div className="ForgetPassTitleContainer">
-            <p className="ForgetPassTitleText">Travmigoz</p>
-          </div>
+          <div className="ForgetPassTitleContainer">Travmigoz</div>
           <div className="ForgetPassFormContainer">
             <div className="ForgetPassBackButtonContainer" role="button" onClick={handleBackButtonClick}>
               <img src={SVG.BackButtonIcon} className="ForgetPassBackButtonIcon" />
               <p className="ForgetPassBackButtonText">Back</p>
             </div>
-            <div className="ForgetPassFormHeadingContainer">
-              <p className="ForgetPassFormHeadingText">Forgot your password?</p>
+            <div className="ForgetPassFormHeadingContainer">Forgot your password?</div>
+
+            <div className="ForgetPassFormSubHeadingText">
+              Don’t worry, happens to all of us. Enter your email below to recover your password
             </div>
-            <div className="ForgetPassFormSubHeadingContainer">
-              <p className="ForgetPassFormSubHeadingText">
-                Don’t worry, happens to all of us. Enter your email below to recover your password
-              </p>
-            </div>
-            <div className="ForgetPassFormInputsContainer">
-              <form onSubmit={onSubmitClick}>
-                <div className="ForgetPassEmailInputContainer">
-                  <label className="ForgetPassEmailText">Email</label>
-                  <input
-                    className="ForgetPassEmailInput"
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => handleEmailChange(e)}
-                    placeholder="Enter Your Email"
-                  />
-                </div>
-                <div className="ForgetPassSubmitButtonContainer">
-                  <button className="ForgetPassSubmitButton" type="submit">
-                    Submit
-                  </button>
-                </div>
-                <div className="ForgetPassDividerContainer">
-                  <div className="ForgetPassDivider1" />
-                  <div className="ForgetPassOrLoginWithContainer">
-                    <p className="ForgetPassOrLoginWithText">Or login with</p>
-                  </div>
-                  <div className="ForgetPassDivider2" />
-                </div>
-                <div className="ForgetPassMoreSignUpButtonContainer">
-                  <div className="ForgetPassGoogleSignUpButton">
-                    <p className="ForgetPassContinueWithText">Continue with</p>
-                    <img src={SVG.GoogleIcon} className="ForgetPassGoogleIcon" />
-                  </div>
-                </div>
-              </form>
-            </div>
+
+            <form onSubmit={onSubmitClick} className="ForgetPassFormInputsContainer">
+              <InputComponent type="email" name="email" id="email" user={formData} setUser={setFormData} placeholder="Enter Your Email" />
+              <div className="ForgetPassSubmitButtonContainer">
+                <button className="ForgetPassSubmitButton" type="submit">
+                  Submit
+                </button>
+              </div>
+              <div className="ForgetPassDividerContainer">
+                <div className="ForgetPassDivider1" />
+                <div className="ForgetPassOrLoginWithContainer">Or login with</div>
+                <div className="ForgetPassDivider2" />
+              </div>
+
+              <div className="ForgetPassGoogleSignUpButton">
+                <p className="ForgetPassContinueWithText">Continue with</p>
+                <img src={SVG.GoogleIcon} className="ForgetPassGoogleIcon" />
+              </div>
+            </form>
           </div>
           <div className="ForgetPassCopyrightTextContainer"></div>
         </div>
-        <div className="ForgetPassCopyrightTextContainer">
-          <p className="ForgetPassCopyrightText">
-            &copy; 2024 <span className="ForgetPassTravmigozCopyrightText">Travmigoz</span>. All Rights Reserved
-          </p>
-        </div>
+        <Copyright />
       </div>
       <div className="ForgetPassDesignContainer">
         <img src={SVG.AuthDesignSection} className="ForgetPassAuthDesignImage" alt="AuthDesignImage" />
