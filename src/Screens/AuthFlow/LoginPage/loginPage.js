@@ -19,8 +19,12 @@ const mapStateToProps = (state) => ({
 })
 
 const LoginPage = ({ login, isAuthenticated }) => {
-  const [userEmail, setUserEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [formData, setFormData] = useState({
+
+    email: '',
+    password: '',
+    
+  })
   const [rememberMe, setRememberMe] = useState(false)
   const [secureTextEntry, setSecureTextEntry] = useState(true)
   const { setLoggedInUserValues } = useContext(UserLoginContext)
@@ -106,8 +110,8 @@ const LoginPage = ({ login, isAuthenticated }) => {
   const handleLogin = async (e) => {
     e.preventDefault()
 
-    const validEmail = checkValueIsValid(userEmail)
-    const validPassword = checkValueIsValid(password)
+    const validEmail = checkValueIsValid(formData.email)
+    const validPassword = checkValueIsValid(formData.password)
 
     if (!(validEmail && validPassword)) {
       toast.error('Email-id or Password is not valid!', {
@@ -115,7 +119,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
       })
       return
     }
-    const isAuth = await login(userEmail, password, rememberMe)
+    const isAuth = await login(formData.email, formData.password, rememberMe)
 
     if (isAuth) {
       navigate('/')
@@ -139,8 +143,8 @@ const LoginPage = ({ login, isAuthenticated }) => {
                   name="email"
                   id="email"
                   placeholder="Enter Your Email"
-                  user={userEmail}
-                  setUser={setUserEmail}
+                  user={formData}
+                  setUser={setFormData}
                 />
 
                 <InputComponent
@@ -148,8 +152,8 @@ const LoginPage = ({ login, isAuthenticated }) => {
                   type={secureTextEntry ? 'password' : 'text'}
                   name="password"
                   id="password"
-                  user={password}
-                  setUser={setPassword}
+                  user={formData}
+                  setUser={setFormData}
                   placeholder="Enter Your Password"
                   isPasswordField={true}
                   secureTextState={secureTextEntry}

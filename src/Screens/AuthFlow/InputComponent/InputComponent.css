@@ -1,4 +1,6 @@
 .inputContainer {
+    width: 99.5%;
+    margin-right: 0.5%;
     border-width: 1px;
     border-radius: 5px;
     border-color: #112211;

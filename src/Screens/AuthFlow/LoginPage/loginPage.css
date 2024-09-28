@@ -12,16 +12,13 @@ input::placeholder {
 
 .LoginLoginFormAndCopyrightContainer {
   flex: 1.3 1;
-
   width: 50%;
-
   margin: 2.35% 12% 0% 3.5%;
 }
 
 .LoginFormAndTitleContainer {
   margin-bottom: 5%;
 }
-
 
 .LoginTitleText {
   font-size: 2.5rem;
@@ -31,14 +28,12 @@ input::placeholder {
 
 .LoginFormContainer {
   margin-top: 4.6%;
-
   margin-left: 9%;
 }
 
 .LoginFormHeadingContainer {
   flex: 1;
   margin-bottom: 1rem;
-
   font-size: 3.125rem;
   font-weight: 700;
 }
@@ -60,7 +55,6 @@ input:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   margin-top: 3.5%;
   padding: 0px 4px;
 }
@@ -86,9 +80,7 @@ input:focus {
   font-size: 1rem;
   font-weight: 500;
   color: #ff8682;
-  transition:
-    color 0.3s ease,
-    transform 0.1s ease;
+  transition: color 0.3s ease, transform 0.1s ease;
   cursor: pointer;
 }
 
@@ -128,7 +120,6 @@ input:focus {
 .LoginDontHaveAccountContainer {
   display: flex;
   justify-content: center;
-
   margin-top: 2%;
 }
 
@@ -139,14 +130,11 @@ input:focus {
 
 .LoginSignUpLink {
   text-decoration: none;
-
   margin-left: 5px;
   font-size: 1rem;
   font-weight: 500;
   color: #ff8682;
-  transition:
-    color 0.3s ease,
-    transform 0.1s ease;
+  transition: color 0.3s ease, transform 0.1s ease;
   cursor: pointer;
   text-align: right;
 }
@@ -159,11 +147,11 @@ input:focus {
   color: #ca2c27;
   transform: scale(0.98);
 }
+
 .LoginDividerContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-
   margin: 6% 0px;
 }
 
@@ -172,13 +160,6 @@ input:focus {
   height: 0.3px;
   width: 40%;
   background-color: #112211;
-}
-
-.LoginOrLoginWithContainer {
-  margin: 0px 8px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 .LoginOrLoginWithText {
@@ -219,9 +200,7 @@ input:focus {
 
 .LoginDesignContainer {
   flex: 1 2;
-
   max-width: 42%;
-
   min-width: 0%;
   height: fit-content;
   padding: 20px 0px 0px 0%;

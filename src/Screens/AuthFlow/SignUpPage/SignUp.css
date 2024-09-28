@@ -1,14 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.SignUpTwoInput{
+  display: flex;
+  flex: 1 1;
+  width: 100%;
 }
 
-p,
-label {
-  font-family: 'Montserrat', sans-serif;
-}
 
 input::placeholder {
   font-family: 'Montserrat', sans-serif;
@@ -20,33 +15,19 @@ input::placeholder {
   flex: 1;
   display: flex;
   background-color: white;
-  /* display: flex;
-  background-color: white;
-  height: 100vh; */
 }
 
 .SignUpFormAndCopyrightContainer {
   flex: 1.3 1;
-  /* height: 90%; */
+
   width: 50%;
-  /* margin-top: 5vh; */
-  /* margin-top: 2.35%; */
-  /* margin-left: 6.8vh; */
-  /* margin-left: 3.5%; */
-  /* margin-right: 12%; */
+
   margin: 2.35% 6% 1% 3.5%;
 }
 
 .SignUpFormAndTitleContainer {
-  /* height: 100%;
-  width: 50%;
-  margin-top: 40px;
-  margin-left: 55px; */
   margin-bottom: 6.5%;
 }
-/* 
-.SignUpTitleContainer {
-} */
 
 .SignUpTitleText {
   font-size: 2.5rem;
@@ -56,7 +37,7 @@ input::placeholder {
 
 .SignUpFormContainer {
   margin-top: 4.6%;
-  /* margin-left: 5rem; */
+
   margin-left: 9%;
 }
 
@@ -69,9 +50,6 @@ input::placeholder {
   font-size: 3.125rem;
   font-weight: 700;
 }
-/* 
-.SignUpFormSubHeadingContainer {
-} */
 
 .SignUpFormSubHeadingText {
   font-size: 1.25rem;
@@ -338,7 +316,6 @@ input::placeholder {
 }
 
 .SignUpCreateAccountContainer {
-  /* margin-top: 35px; */
   margin-top: 5%;
   border-style: none;
   border-width: 0px;
@@ -424,7 +401,6 @@ input::placeholder {
 }
 
 .SignUpGoogleSignUpButton {
-  /* padding: 10px 100px; */
   padding: 1.4% 20%;
   border-style: solid;
   border-width: 2px;
@@ -435,7 +411,6 @@ input::placeholder {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  /* margin-bottom: 40px; */
 }
 
 .SignUpContinueWithText {
@@ -458,7 +433,7 @@ input::placeholder {
 
 .SignUpCopyrightTextContainer {
   width: fit-content;
-  /* position: static; */
+
   left: -2%;
   bottom: -3%;
   z-index: 2;
@@ -474,13 +449,10 @@ input::placeholder {
 }
 
 .SignUpDesignContainer {
-  /* padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 0px; */
   flex: 1 2;
-  /* width: 40%; */
+
   max-width: 42%;
-  /* max-width: 40%; */
+
   min-width: 0%;
   height: fit-content;
   padding: 20px 50px 0px 0%;
@@ -488,44 +460,23 @@ input::placeholder {
 
 .SignUpAuthDesignImage {
   height: 110vh;
-  /* width: 40vw; */
+
   min-height: 90vh;
   margin-right: 50px;
 }
 
 @media (max-width: 1024px) {
-  .SignUpEmailAndPhoneContainer {
+  .SignUpTwoInput {
     flex-direction: column;
   }
-  .SignUpEmailInputContainer {
-    width: 100%;
-  }
-  .SignUpPhoneInputContainer {
-    width: 100%;
-    margin-left: 0px;
-    margin-top: 4.1%;
-  }
+  
 }
 
 @media (max-width: 768px) {
-  .SignUpNameInputContainer {
+  .SignUpTwoInput {
     flex-direction: column;
   }
-  .SignUpFirstNameInputContainer {
-    width: 100%;
-  }
-  .SignUpLastNameInputContainer {
-    width: 100%;
-    margin-left: 0px;
-    margin-top: 4.1%;
-  }
-  .SignUpFirstNameInputContainer,
-  .SignUpLastNameInputContainer,
-  .SignUpPhoneInputContainer,
-  .SignUpPasswordInputContainer,
-  .SignUpConfirmPasswordInputContainer {
-    margin-top: 7%;
-  }
+  
 }
 
 @media (max-width: 550px) {

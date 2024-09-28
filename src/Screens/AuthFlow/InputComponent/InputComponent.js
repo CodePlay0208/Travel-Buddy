@@ -16,9 +16,10 @@ const InputComponent = ({
   secureTextState,
   setSecureTextState,
 }) => {
-  const handleChange = (e) => {
-    setUser(e.target.value)
-  }
+  
+    const handleChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value })
+      }
   const PasswordEyeComponent = memo(() => {
     const handlePasswordEyeIconClick = () => {
       setSecureTextState((prevState) => !prevState)
@@ -42,7 +43,7 @@ const InputComponent = ({
         type={type}
         name={name}
         id={id}
-        value={user}
+        value={user[name]}
         onChange={(e) => handleChange(e)}
         placeholder={placeholder}
         required

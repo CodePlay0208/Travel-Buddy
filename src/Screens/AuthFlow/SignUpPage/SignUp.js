@@ -6,6 +6,8 @@ import { register } from '../../../actions/auth.action'
 
 import { SVG } from '../../../assets'
 import './SignUp.css'
+import InputComponent from '../InputComponent/InputComponent'
+import Copyright from '../../../components/Copyright/Copyright'
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
@@ -33,34 +35,12 @@ const SignUp = (props) => {
     termsCheck: isTermsAggrementChecked,
   })
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
   const checkValueIsValid = (value) => {
     if (value === '' || value === undefined || value === null) {
       return false
     }
     return true
   }
-
-  const PasswordEyeComponent = memo((props) => {
-    const { secureTextState, setSecureTextState } = props
-
-    const handlePasswordEyeIconClick = () => {
-      setSecureTextState((prevState) => !prevState)
-    }
-
-    return (
-      <div className="SignUpPasswordEyeContainer" role="button" onClick={handlePasswordEyeIconClick}>
-        {secureTextState ? (
-          <img src={SVG.EyeIcon} className="SignUpPasswordEyeIcon" />
-        ) : (
-          <img src={SVG.EyeSlashIcon} className="SignUpPasswordEyeIcon" />
-        )}
-      </div>
-    )
-  })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -87,75 +67,6 @@ const SignUp = (props) => {
     }
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //
-  //   var validEmail = checkValueIsValid(formData.email)
-  //   var validPassword = checkValueIsValid(formData.password)
-  //   console.log(validEmail, validPassword)
-  //   console.log(formData.password, formData.confirmPassword)
-  //
-  //   if (!(validEmail && validPassword)) {
-  //     toast.error('EmailId or Password Not Valid', {
-  //       autoClose: 1500,
-  //     })
-  //     return
-  //   }
-  //
-  //   if (formData.password !== formData.confirmPassword) {
-  //     toast.error("Passwords Don't match", {
-  //       autoClose: 1500,
-  //     })
-  //     return
-  //   }
-  //
-  //   fetch('http://localhost:4000/login/signUp', {
-  //     method: 'POST',
-  //     credentials: 'include',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       userEmail: formData.email,
-  //       password: formData.password,
-  //     }),
-  //   })
-  //     .then((response) => {
-  //       console.log('asa')
-  //       if (!response.ok) {
-  //         return response.json().then((error) => {
-  //           throw new Error(error)
-  //         })
-  //       }
-  //       return response.json()
-  //     })
-  //     .then((data) => {
-  //       if (!data.success) {
-  //         toast.error('User Already Exist', {
-  //           autoClose: 1000,
-  //         })
-  //         return
-  //       }
-  //       const previousURL = sessionStorage.getItem('redirectUrl') || '/'
-  //       sessionStorage.removeItem('redirectUrl')
-  //       // Handle successful login on frontend if needed
-  //       console.log(previousURL)
-  //       toast.success('User Signed In Successfully', {
-  //         autoClose: 1000,
-  //       })
-  //
-  //       setTimeout(() => {
-  //         navigate(previousURL)
-  //       }, 800)
-  //     })
-  //     .catch((err) => {
-  //       console.log('cant send OTP', err)
-  //       toast.error('User Already Exist', {
-  //         autoClose: 1500,
-  //       })
-  //       return
-  //     })
-  // }
   return (
     <div className="SignUpContainer">
       <div className="SignUpFormAndCopyrightContainer">
@@ -172,87 +83,67 @@ const SignUp = (props) => {
             </div>
             <div className="SignUpFormInputsContainer">
               <form action="post" onSubmit={handleSubmit}>
-                <div className="SignUpNameInputContainer">
-                  <div className="SignUpFirstNameInputContainer">
-                    <label className="SignUpFirstNameLabel">First Name</label>
-                    <input
-                      className="SignUpFirstNameInput"
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      placeholder="Enter Your First Name"
-                      required
-                    />
-                  </div>
-                  <div className="SignUpLastNameInputContainer">
-                    <label className="SignUpLastNameLabel">Last Name</label>
-                    <input
-                      className="SignUpLastNameInput"
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      placeholder="Enter Your Last Name"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="SignUpEmailAndPhoneContainer">
-                  <div className="SignUpEmailInputContainer">
-                    <label className="SignUpEmailText">Email</label>
-                    <input
-                      className="SignUpEmailInput"
-                      type="email"
-                      name="email"
-                      id="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Enter Your Email"
-                      required
-                    />
-                  </div>
-                  <div className="SignUpPhoneInputContainer">
-                    <label className="SignUpPhoneNumberLabel">Phone Number</label>
-                    <input
-                      className="SignUpPhoneNumberInput"
-                      type="tel"
-                      name="phoneNumber"
-                      value={formData.phoneNumber}
-                      onChange={handleChange}
-                      pattern="[0-9]{10}"
-                      placeholder="Enter Your Phone Number"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="SignUpPasswordInputContainer">
-                  <label className="SignUpPasswordText">Password</label>
-                  <input
-                    className="SignUpPasswordInput"
-                    type={securePasswordText ? 'password' : 'text'}
-                    name="password"
-                    id="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="Enter Your Password"
-                    required
+                <div className="SignUpTwoInput">
+                  <InputComponent
+                    label="First Name"
+                    type="text"
+                    name="firstName"
+                    placeholder="Enter Your First Name"
+                    user={formData}
+                    setUser={setFormData}
                   />
-                  <PasswordEyeComponent secureTextState={securePasswordText} setSecureTextState={setSecurePasswordText} />
-                </div>
-                <div className="SignUpConfirmPasswordInputContainer">
-                  <label className="SignUpConfirmPasswordText">Confirm Password</label>
-                  <input
-                    className="SignUpConfirmPasswordInput"
-                    type={secureConfirmPasswordText ? 'password' : 'text'}
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    placeholder="Confirm Your Password"
-                    required
+                  <InputComponent
+                    label="Last Name"
+                    type="text"
+                    name="lastName"
+                    placeholder="Enter Your Last Name"
+                    user={formData}
+                    setUser={setFormData}
                   />
-                  <PasswordEyeComponent secureTextState={secureConfirmPasswordText} setSecureTextState={setSecureConfirmPasswordText} />
                 </div>
+                <div className="SignUpTwoInput">
+                  <InputComponent
+                    label="Email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Enter Your First Name"
+                    user={formData}
+                    setUser={setFormData}
+                  />
+                  <InputComponent
+                    label="Phone Number"
+                    type="tel"
+                    name="phoneNumber"
+                    placeholder="Enter Your Email"
+                    user={formData}
+                    setUser={setFormData}
+                  />
+                </div>
+                <InputComponent
+                  label="Password"
+                  type={securePasswordText ? 'password' : 'text'}
+                  name="password"
+                  id="password"
+                  placeholder="Enter Your Password"
+                  user={formData}
+                  setUser={setFormData}
+                  isPasswordField={true}
+                  secureTextState={securePasswordText}
+                  setSecureTextState={setSecurePasswordText}
+                />
+                <InputComponent
+                  label="Confirm Password"
+                  type={secureConfirmPasswordText ? 'password' : 'text'}
+                  name="confirmPassword"
+                  placeholder="Confirm Your Password"
+                  user={formData}
+                  setUser={setFormData}
+                  isPasswordField={true}
+                  secureTextState={secureConfirmPasswordText}
+                  setSecureTextState={setSecureConfirmPasswordText}
+                />
+
                 <div className="SignUpTermsAgreementContainer">
                   <input
                     type="checkbox"
@@ -302,11 +193,7 @@ const SignUp = (props) => {
           </div>
           <div className="SignUpCopyrightTextContainer"></div>
         </div>
-        <div className="SignUpCopyrightTextContainer">
-          <p className="SignUpCopyrightText">
-            &copy; 2024 <span className="SignUpTravmigozCopyrightText">Travmigoz</span>. All Rights Reserved
-          </p>
-        </div>
+        <Copyright />
       </div>
       <div className="SignUpDesignContainer">
         <img src={SVG.AuthDesignSection} className="SignUpAuthDesignImage" alt="AuthDesignImage" />
