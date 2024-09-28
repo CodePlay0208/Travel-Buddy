@@ -5,7 +5,6 @@ import { UserLoginContext } from '../../../Utils/Context/LoggedInUserContext'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { SVG } from '../../../assets'
-import './loginPage.css'
 import { connect } from 'react-redux'
 import { setGoogleToken } from '../../../api-services/api-services'
 import { login, loginWithGoogle } from '../../../actions/auth.action'
@@ -28,7 +27,17 @@ import {
   GoogleSignUpButton,
   ContinueWithText,
   GoogleIcon,
-} from '../AuthFlow.styled' // Importing the styled components
+} from '../AuthFlow.styled'
+import {
+  LoginRememberMeAndForgetPasswordContainer,
+  LoginRememberMeContainer,
+  LoginForgetPasswordLink,
+  LoginLoginButtonContainer,
+  LoginLoginButton,
+  LoginDontHaveAccountContainer,
+  LoginSignUpLink,
+  InputPlaceholder,
+} from './loginPage.styled'
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
@@ -172,29 +181,29 @@ const LoginPage = ({ login, isAuthenticated }) => {
                 setSecureTextState={setSecureTextEntry}
               />
 
-              <div className="LoginRememberMeAndForgetPasswordContainer">
-                <div className="LoginRememberMeContainer">
+              <LoginRememberMeAndForgetPasswordContainer>
+                <LoginRememberMeContainer>
                   <input type="checkbox" checked={rememberMe} onClick={toggleRemeberMeCheckbox} />
                   <div>Remember Me</div>
-                </div>
+                </LoginRememberMeContainer>
 
-                <a href="/forget-password" className="LoginForgetPasswordLink">
+                <LoginForgetPasswordLink href="/forget-password">
                   <p>Forgot Password</p>
-                </a>
-              </div>
+                </LoginForgetPasswordLink>
+              </LoginRememberMeAndForgetPasswordContainer>
 
-              <div className="LoginLoginButtonContainer">
-                <button type="submit" className="LoginLoginButton">
-                  <p className="LoginLoginButtonText">Login</p>
-                </button>
-              </div>
+              <LoginLoginButtonContainer>
+                <LoginLoginButton type="submit">
+                  <p>Login</p>
+                </LoginLoginButton>
+              </LoginLoginButtonContainer>
 
-              <div className="LoginDontHaveAccountContainer">
+              <LoginDontHaveAccountContainer>
                 <p>Don't have an account?</p>
-                <a href="/signup" className="LoginSignUpLink">
+                <LoginSignUpLink href="/signup">
                   <p>SignUp</p>
-                </a>
-              </div>
+                </LoginSignUpLink>
+              </LoginDontHaveAccountContainer>
 
               <DividerContainer>
                 <Divider1 />

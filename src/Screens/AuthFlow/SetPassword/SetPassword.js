@@ -8,6 +8,7 @@ import { resetPassword } from '../../../actions/auth.action'
 import { toast, ToastContainer } from 'react-toastify'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
+
 import {
   Container,
   FormAndCopyrightContainer,
@@ -19,9 +20,21 @@ import {
   BackButtonText,
   FormHeadingContainer,
   FormSubHeadingText,
-  DesignContainer,
+  DesignContainer as AuthDesignContainer,
   AuthDesignImage,
-} from '../AuthFlow.styled' // Importing the styled components
+} from '../AuthFlow.styled' // Common styled components
+import {
+  InputContainer,
+  BtnContainer,
+  SubmitBtn,
+  BtnText,
+  CopyTextContainer,
+  Input,
+  Heading,
+  SubHeading,
+  ReEnterPasswordContainer,
+  DesignContainer,
+} from './SetPassword.styled' // Newly imported short-named styled components
 
 const SetPassword = ({ resetPassword }) => {
   const navigate = useNavigate()
@@ -36,7 +49,7 @@ const SetPassword = ({ resetPassword }) => {
     e.preventDefault()
     if (formData.password !== formData.reEnterPassword) {
       toast.error('Passwords do not match', { autoClose: 1500 })
-          }
+    }
     const isResetComplete = await resetPassword(formData.password)
     if (isResetComplete) {
       navigate('/')
@@ -55,7 +68,7 @@ const SetPassword = ({ resetPassword }) => {
             </BackButtonContainer>
             <FormHeadingContainer>Set a password</FormHeadingContainer>
             <FormSubHeadingText>Your previous password has been reset. Please set a new password for your account.</FormSubHeadingText>
-            <div className="SetPassPageFormInputsContainer">
+            <InputContainer>
               <form onSubmit={onSubmit}>
                 <InputComponent
                   label="Create Password"
@@ -82,15 +95,15 @@ const SetPassword = ({ resetPassword }) => {
                   setSecureTextState={setSecureReEnterPasswordText}
                 />
 
-                <div className="SetPassPageSetPasswordButtonContainer">
-                  <button className="SetPassPageSetPasswordButton" type="submit">
-                    <p className="SetPassPageSetPasswordText">Set password</p>
-                  </button>
-                </div>
+                <BtnContainer>
+                  <SubmitBtn type="submit">
+                    <BtnText>Set password</BtnText>
+                  </SubmitBtn>
+                </BtnContainer>
               </form>
-            </div>
+            </InputContainer>
           </FormContainer>
-          <div className="SetPassPageCopyrightTextContainer"></div>
+          <CopyTextContainer />
         </FormAndTitleContainer>
         <Copyright />
       </FormAndCopyrightContainer>

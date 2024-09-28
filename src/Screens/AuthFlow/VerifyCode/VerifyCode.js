@@ -1,7 +1,6 @@
 import React, { useEffect, useState, memo } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { SVG } from '../../../assets'
-import './VerifyCode.css'
 
 import { connect } from 'react-redux'
 import { verifyOTP, resendOTP } from '../../../actions/auth.action'
@@ -21,8 +20,16 @@ import {
   FormSubHeadingText,
   DesignContainer,
   AuthDesignImage,
-} from '../AuthFlow.styled' 
-
+} from '../AuthFlow.styled'
+import {
+  VerifyCodeFormInputsContainer,
+  VerifyCodeResendCodeContainer,
+  VerifyCodeDidntRecieveText,
+  VerifyCodeResendLink,
+  VerifyCodeResendText,
+  VerifyCodeVerifyButtonContainer,
+  VerifyCodeVerifyButton,
+} from './VerifyCode.styled'
 const mapStateToProps = (state) => ({
   otpVerified: state.auth.otpVerified,
 })
@@ -71,7 +78,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
             </BackButtonContainer>
             <FormHeadingContainer>Verify code</FormHeadingContainer>
             <FormSubHeadingText>An authentication code has been sent to your email.</FormSubHeadingText>
-            <div className="VerifyCodeFormInputsContainer">
+            <VerifyCodeFormInputsContainer>
               <form onSubmit={onSubmit}>
                 <InputComponent
                   label="Enter Code"
@@ -83,19 +90,17 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
                   secureTextState={secureVerificationCode}
                   setSecureTextState={setSecureVerificationCode}
                 />
-                <div className="VerifyCodeResendCodeContainer">
-                  <p className="VerifyCodeDidntRecieveText">Didn’t receive a code?</p>
-                  <a href="#" className="VerifyCodeResendLink" onClick={onResendClick}>
-                    <p className="VerifyCodeResendText">Resend</p>
-                  </a>
-                </div>
-                <div className="VerifyCodeVerifyButtonContainer">
-                  <button type="submit" className="VerifyCodeVerifyButton">
-                    Verify
-                  </button>
-                </div>
+                <VerifyCodeResendCodeContainer>
+                  <VerifyCodeDidntRecieveText>Didn’t receive a code?</VerifyCodeDidntRecieveText>
+                  <VerifyCodeResendLink href="#" onClick={onResendClick}>
+                    <VerifyCodeResendText>Resend</VerifyCodeResendText>
+                  </VerifyCodeResendLink>
+                </VerifyCodeResendCodeContainer>
+                <VerifyCodeVerifyButtonContainer>
+                  <VerifyCodeVerifyButton type="submit">Verify</VerifyCodeVerifyButton>
+                </VerifyCodeVerifyButtonContainer>
               </form>
-            </div>
+            </VerifyCodeFormInputsContainer>
           </FormContainer>
         </FormAndTitleContainer>
         <Copyright />
