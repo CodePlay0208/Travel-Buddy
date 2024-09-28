@@ -128,13 +128,13 @@ const LoginPage = ({ login, isAuthenticated }) => {
 
 
   return (
-    <div className="LoginContainer">
-      <div className="LoginLoginFormAndCopyrightContainer">
-        <div className="LoginFormAndTitleContainer">
-          <div className="LoginTitleText">Travmigoz</div>
-          <div className="LoginFormContainer">
-            <div className="LoginFormHeadingContainer">Login</div>
-            <div className="LoginFormSubHeadingText">Login to access your account</div>
+    <div className="Container">
+      <div className="FormAndCopyrightContainer">
+        <div className="FormAndTitleContainer">
+          <div className="TitleContainer">Travmigoz</div>
+          <div className="FormContainer">
+            <div className="FormHeadingContainer">Login</div>
+            <div className="FormSubHeadingText">Login to access your account</div>
             
               <form action="post" onSubmit={handleLogin} className="LoginFormInputsContainer">
                 <InputComponent
@@ -181,15 +181,15 @@ const LoginPage = ({ login, isAuthenticated }) => {
                     Sign up
                   </a>
                 </div>
-                <div className="LoginDividerContainer">
-                  <div className="LoginDivider1" />
-                  <div className="LoginOrLoginWithText">Or login with</div>
-                  <div className="LoginDivider2" />
+                <div className="DividerContainer">
+                  <div className="Divider1" />
+                  <div className="OrLoginWithText">Or login with</div>
+                  <div className="Divider2" />
                 </div>
 
-                <div className="LoginGoogleSignUpButton" role="button" onClick={googleSignIn}>
-                  <p className="LoginContinueWithText">Continue with</p>
-                  <img src={SVG.GoogleIcon} className="LoginGoogleIcon" />
+                <div className="GoogleSignUpButton" role="button" onClick={googleSignIn}>
+                  <p className="ContinueWithText">Continue with</p>
+                  <img src={SVG.GoogleIcon} className="GoogleIcon" />
                 </div>
               </form>
             

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { SVG } from '../../../assets'
 import './SetPassword.css'
 import { connect } from 'react-redux'
-import { resetPassword} from '../../../actions/auth.action'
+import { resetPassword } from '../../../actions/auth.action'
 import { toast, ToastContainer } from 'react-toastify'
 
 const SetPassword = ({ resetPassword }) => {
@@ -25,9 +25,6 @@ const SetPassword = ({ resetPassword }) => {
     }
     const isResetComplete = await resetPassword(password)
     if (isResetComplete) {
-      // const previousURL = sessionStorage.getItem('redirectUrl') || '/'
-      // sessionStorage.removeItem('redirectUrl')
-      // navigate(previousURL)
       navigate('/')
     }
   }

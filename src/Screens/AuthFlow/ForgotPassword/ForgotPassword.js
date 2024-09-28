@@ -1,5 +1,6 @@
-import React, { useState, memo, useEffect } from 'react'
+import React, { useState, memo } from 'react'
 import './ForgotPassword.css'
+import '../AuthFlow.css'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { SVG } from '../../../assets'
 import { connect } from 'react-redux'
@@ -11,41 +12,33 @@ const ForgotPasswordPage = (props) => {
   const { forgetPassword } = props
   const navigate = useNavigate()
   const location = useLocation()
-  const [formData, setFormData] = useState({
-    email: '',
-  })
+  const [formData, setFormData] = useState({ email: '' })
 
-  const handleBackButtonClick = () => {
-    navigate(-1)
-  }
+  const handleBackButtonClick = () => navigate(-1)
 
   const onSubmitClick = async (e) => {
     e.preventDefault()
     const isForgetPassSuccess = await forgetPassword(formData.email)
-    if (isForgetPassSuccess || true) {
+    if (isForgetPassSuccess) {
       sessionStorage.setItem('prevRoute', location.pathname)
       navigate('/verify-otp')
     }
   }
 
-  useEffect(() => {}, [])
-
   return (
-    <div className="ForgetPassContainer">
-      <div className="ForgetPassFormAndCopyrightContainer">
-        <div className="ForgetPassFormAndTitleContainer">
-          <div className="ForgetPassTitleContainer">Travmigoz</div>
-          <div className="ForgetPassFormContainer">
-            <div className="ForgetPassBackButtonContainer" role="button" onClick={handleBackButtonClick}>
-              <img src={SVG.BackButtonIcon} className="ForgetPassBackButtonIcon" />
-              <p className="ForgetPassBackButtonText">Back</p>
+    <div className="Container">
+      <div className="FormAndCopyrightContainer">
+        <div className="FormAndTitleContainer">
+          <div className="TitleContainer">Travmigoz</div>
+          <div className="FormContainer">
+            <div className="BackButtonContainer" role="button" onClick={handleBackButtonClick}>
+              <img src={SVG.BackButtonIcon} className="BackButtonIcon" alt="Back" />
+              <p className="BackButtonText">Back</p>
             </div>
-            <div className="ForgetPassFormHeadingContainer">Forgot your password?</div>
-
-            <div className="ForgetPassFormSubHeadingText">
-              Don’t worry, happens to all of us. Enter your email below to recover your password
+            <div className="FormHeadingContainer">Forgot your password?</div>
+            <div className="FormSubHeadingText">
+              Don’t worry, happens to all of us. Enter your email below to recover your password.
             </div>
-
             <form onSubmit={onSubmitClick} className="ForgetPassFormInputsContainer">
               <InputComponent type="email" name="email" id="email" user={formData} setUser={setFormData} placeholder="Enter Your Email" />
               <div className="ForgetPassSubmitButtonContainer">
@@ -53,24 +46,22 @@ const ForgotPasswordPage = (props) => {
                   Submit
                 </button>
               </div>
-              <div className="ForgetPassDividerContainer">
-                <div className="ForgetPassDivider1" />
-                <div className="ForgetPassOrLoginWithContainer">Or login with</div>
-                <div className="ForgetPassDivider2" />
+              <div className="DividerContainer">
+                <div className="Divider1" />
+                <div className="OrLoginWithContainer">Or login with</div>
+                <div className="Divider2" />
               </div>
-
-              <div className="ForgetPassGoogleSignUpButton">
-                <p className="ForgetPassContinueWithText">Continue with</p>
-                <img src={SVG.GoogleIcon} className="ForgetPassGoogleIcon" />
+              <div className="GoogleSignUpButton">
+                <p className="ContinueWithText">Continue with</p>
+                <img src={SVG.GoogleIcon} className="GoogleIcon" alt="Google" />
               </div>
             </form>
           </div>
-          <div className="ForgetPassCopyrightTextContainer"></div>
         </div>
         <Copyright />
       </div>
-      <div className="ForgetPassDesignContainer">
-        <img src={SVG.AuthDesignSection} className="ForgetPassAuthDesignImage" alt="AuthDesignImage" />
+      <div className="DesignContainer">
+        <img src={SVG.AuthDesignSection} className="AuthDesignImage" alt="Auth Design" />
       </div>
     </div>
   )
