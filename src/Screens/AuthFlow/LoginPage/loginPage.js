@@ -178,7 +178,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
                 <div className="LoginDontHaveAccountContainer">
                   <p className="LoginDontHavaAccountText">Don't have an account?</p>
                   <a href="/signup" className="LoginSignUpLink">
-                    Sign up
+                  <p className="SignUpLoginLoginText">Login</p>
                   </a>
                 </div>
                 <div className="DividerContainer">

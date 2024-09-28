@@ -68,19 +68,13 @@ const SignUp = (props) => {
   }
 
   return (
-    <div className="SignUpContainer">
-      <div className="SignUpFormAndCopyrightContainer">
-        <div className="SignUpFormAndTitleContainer">
-          <div className="SignUpTitleContainer">
-            <p className="SignUpTitleText">Travmigoz</p>
-          </div>
-          <div className="SignUpFormContainer">
-            <div className="SignUpFormHeadingContainer">
-              <p className="SignUpFormHeadingText">Sign Up</p>
-            </div>
-            <div className="SignUpFormSubHeadingContainer">
-              <p className="SignUpFormSubHeadingText">Let’s get you all set up so you can access your account.</p>
-            </div>
+    <div className="Container">
+      <div className="FormAndCopyrightContainer">
+        <div className="FormAndTitleContainer">
+          <div className="TitleContainer">Travmigoz</div>
+          <div className="FormContainer">
+            <div className="FormHeadingContainer">Sign Up</div>
+            <div className="FormSubHeadingText">Let’s get you all set up so you can access your account.</div>
             <div className="SignUpFormInputsContainer">
               <form action="post" onSubmit={handleSubmit}>
                 <div className="SignUpTwoInput">
@@ -175,18 +169,15 @@ const SignUp = (props) => {
                     <p className="SignUpLoginText">Login</p>
                   </a>
                 </div>
-                <div className="SignUpDividerContainer">
-                  <div className="SignUpDivider1" />
-                  <div className="SignUpOrLoginWithContainer">
-                    <p className="SignUpOrLoginWithText">Or login with</p>
-                  </div>
-                  <div className="SignUpDivider2" />
+                <div className="DividerContainer">
+                  <div className="Divider1" />
+                  <div className="OrLoginWithText">Or login with</div>
+                  <div className="Divider2" />
                 </div>
-                <div className="SignUpMoreSignUpButtonContainer">
-                  <div className="SignUpGoogleSignUpButton">
-                    <p className="SignUpContinueWithText">Continue with</p>
-                    <img src={SVG.GoogleIcon} className="SignUpGoogleIcon" />
-                  </div>
+
+                <div className="GoogleSignUpButton" role="button">
+                  <p className="ContinueWithText">Continue with</p>
+                  <img src={SVG.GoogleIcon} className="GoogleIcon" />
                 </div>
               </form>
             </div>
