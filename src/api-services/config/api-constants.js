@@ -1,7 +1,7 @@
 export const API_PATH = {
   AUTH_SIGNUP_API: '/login/signUp',
   AUTH_LOGOUT_API: '/login/logout',
-  AUTH_VERIFY_RESET_PASS: '/login/verifyResetPassword',
+  AUTH_VERIFY_RESET_PASS: '/login/resetPassword',
   AUTH_LOGIN_API: '/login/login',
   AUTH_GOOGLE_LOGIN_API: '/login/googleLogin',
   AUTH_USER_LOAD_API: '/login/isUserLoggedIn',

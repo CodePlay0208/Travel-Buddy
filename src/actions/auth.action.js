@@ -38,7 +38,7 @@ export const loadUser = () => async (dispatch) => {
 
 export const register = (formData) => async (dispatch) => {
   const { firstName, lastName, email, password, phoneNumber } = formData
-  const body = JSON.stringify({ userName: `${firstName}  ${lastName}`, userEmail: email, password, phoneNumber })
+  const body = JSON.stringify({ username: `${firstName}  ${lastName}`, useremail: email, password, phoneNumber })
   try {
     const res = await AuthApi.registerUser(body)
     dispatch({
@@ -60,8 +60,8 @@ export const register = (formData) => async (dispatch) => {
   }
 }
 
-export const login = (userEmail, password, rememberMe) => async (dispatch) => {
-  const body = JSON.stringify({ userEmail, password, rememberMe })
+export const login = (useremail, password, rememberMe) => async (dispatch) => {
+  const body = JSON.stringify({ useremail, password, rememberMe })
   try {
     const res = await AuthApi.loginUser(body)
     dispatch({
@@ -104,10 +104,14 @@ export const verifyOTP = (userOtp, isSignUpRequest) => async (dispatch) => {
     setAuthToken(localStorage.token)
   }
   try {
-    await AuthApi.verifyOTP(body)
+    const res = await AuthApi.verifyOTP(body)
     dispatch({
       type: VERIFY_OTP_SUCCESS,
     })
+    console.log(res);
+
+    console.log(res.data.token);
+    localStorage.setItem("token",res.data.token)
     toast.success('OTP Verified!', { autoClose: 1500 })
 
     dispatch(loadUser())
@@ -147,8 +151,11 @@ export const resendOTP = () => async (dispatch) => {
   }
 }
 
-export const forgetPassword = (userEmail) => async (dispatch) => {
-  const body = JSON.stringify({ userEmail })
+export const forgetPassword = (useremail) => async (dispatch) => {
+  const body = JSON.stringify({ useremail })
+  if (localStorage.token) {
+    setAuthToken(localStorage.token)
+  }
   try {
     const res = await AuthApi.forgetPassword(body)
     dispatch({

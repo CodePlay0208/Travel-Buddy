@@ -25,7 +25,7 @@ import {
 } from '../../Styles/TripCard.styled'
 
 const TripCard = ({ trip }) => {
-  const { name, profileImg, startDate, endDate, startLocation, endLocation, totalMembers, age, gender, description, destinationImages } =
+  const { name=`name`, profileImg, startDate, endDate, startLocation, endLocation, totalMembers, age, gender, description, destinationImages } =
     trip
   const settings = {
     infinite: true,
@@ -55,8 +55,8 @@ const TripCard = ({ trip }) => {
       </LeftContainer>
       <RightContainer>
         <ProfileSection>
-          <ProfileImg src={profileImg} alt={`${name}'s profile`} />
-          <Username>{name}</Username>
+          <ProfileImg src={profileImg} alt={` profile`} />
+          <Username>{`name`}</Username>
         </ProfileSection>
         <Details>
           <SeparatorLine />

@@ -20,13 +20,13 @@ const SearchResultsPage = (props) => {
       <TripList>
         {trips.map((trip) => (
           <TripCard
-            key={trip.id}
-            name={trip.name}
-            profileImg={trip.profileImg}
-            startLocation={trip.startLocation}
-            endLocation={trip.endLocation}
-            totalMembers={trip.totalMembers}
-            age={trip.age}
+            key={trip._id}
+            name={trip?.name}
+            profileImg={trip?.profileImg}
+            startLocation={trip?.startLocation}
+            endLocation={trip?.endLocation}
+            totalMembers={trip?.totalMembers}
+            age={trip?.age}
             gender={trip.gender}
             description={trip.description}
             destinationImages={trip.destinationImages}
