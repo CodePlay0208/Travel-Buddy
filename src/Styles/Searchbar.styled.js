@@ -36,7 +36,7 @@ export const LocationIcon = styled.img`
   cursor: pointer;
 `
 
-export const Dropdown = styled.ul`
+export const Dropdown = styled.div`
   position: absolute;
   top: 100%;
   left: 0;
@@ -48,13 +48,13 @@ export const Dropdown = styled.ul`
   overflow: hidden;
 `
 
-export const DropdownItem = styled.li`
+export const DropdownItem = styled.div`
   padding: 10px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 23px;
   color: #1b1717;
-  background-color: #b6f0dc;
+  background-color: #B6F0DC;
   border-radius: 13.43px;
   margin: 5px 24px;
   cursor: pointer;

@@ -4,6 +4,10 @@
 *{
   box-sizing:border-box;
 }
+
+input:focus {
+  outline: none;
+}
 .App {
   text-align: center;
 }
