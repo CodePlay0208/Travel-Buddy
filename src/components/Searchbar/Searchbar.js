@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 })
 
 const Searchbar = (props) => {
-  const { suggestions, getLocationSuggestions, inputValues, setInputValues, onValue, placeholderValue} = props
+  const { suggestions, getLocationSuggestions, inputValues, setInputValues, onValue, placeholderValue } = props
   const [isDropdownVisible, setDropdownVisible] = useState(false)
 
   const searchBarChangeHandler = async (event) => {
@@ -43,7 +43,11 @@ const Searchbar = (props) => {
   const customId = `searchbar-input-${onValue}`
 
   return (
-    <SearchBarContainer  widthValue={props.width?props.width:`100%`} heightValue={props.height?props.height:`100%`}
+    <SearchBarContainer
+      widthValue={props.width ? props.width : `100%`}
+      heightValue={props.height ? props.height : `100%`}
+      
+      borderColor={props.borderColor ? props.borderColor : `grey`}
       onClick={() => {
         document.getElementById(customId).focus()
       }}
@@ -55,6 +59,8 @@ const Searchbar = (props) => {
         value={inputValues}
         onChange={searchBarChangeHandler}
         autoComplete="off"
+        fontSize={props.fontSize ? props.fontSize : `inherit`}
+        fontWeight={props.fontWeight ? props.fontWeight : `600`}
       />
       <LocationIcon src={SVG.LocationIcon} alt="Location Icon" />
       {isDropdownVisible && suggestions.length > 0 && (

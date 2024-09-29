@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const SearchBarContainer = styled.div`
-  border: grey 1.5px solid;
+  border: ${(props) => props.borderColor} 2px solid;
   border-radius: 10px;
   width: ${(props) => props.widthValue};
   height: ${(props) => props.heightValue};
@@ -19,14 +19,14 @@ export const SearchBarInput = styled.input`
   padding-left: 5%;
   width: 70%;
   font-family: Arial, sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: ${(props) => props.fontSize};
+  font-weight: ${(props) => props.fontWeight};
   border: none;
   outline: none;
 
   &::placeholder {
     font-family: Arial, sans-serif;
-    font-weight: 600;
+    font-weight: ${(props) => props.fontWeight};
     color: #787878;
   }
 `

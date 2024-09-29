@@ -56,20 +56,20 @@
   height: 90%;
   background: #ffffff;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  padding: 2% 4% ;
+  border-radius: 0 0 10px 10px;
+  padding: 2% 4%;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin: 0 2% 2% 2%;
 }
 
 .input-label {
   font-family: 'Poppins', sans-serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1vw;
   line-height: 1.4;
   color: #040f0f;
@@ -80,10 +80,9 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 372px;
   height: 3vw;
   padding: 0.8vw;
-  border: 2.325px solid #0b87ac;
+  border: 2px solid #0b87ac;
   border-radius: 9.3px;
 }
 
@@ -147,7 +146,7 @@
   left: 50%;
   right: 50%;
   height: 0.5vw;
-  background-color: #559C84;
+  background-color: #559c84;
   border-radius: 2px;
   transition: all 0.4s ease;
 }
@@ -227,8 +226,8 @@
   transition: background-color 0.3s ease;
 }
 .submit-button {
-  background-color: #559c84;
-  color: white;
+  background-color: #8DD3BB;
+  color: rgb(0, 0, 0);
 }
 .publish__trip__button {
   box-sizing: border-box;
@@ -246,7 +245,7 @@
 }
 .next-button:hover,
 .submit-button:hover {
-  background-color: #446c6a;
+  background-color: #559c84;
 }
 
 .input-row {

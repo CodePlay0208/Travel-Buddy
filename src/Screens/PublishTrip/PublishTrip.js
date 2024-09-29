@@ -60,7 +60,6 @@ const PublishTrip = (props) => {
     }
   }
 
-
   useEffect(() => {
     getProfile()
   }, [getProfile])
@@ -95,6 +94,9 @@ const PublishTrip = (props) => {
                         onValue={'startLocation'}
                         placeholderValue={'Enter Start Location'}
                         style={{ width: '100%' }}
+                        height={`51px`}
+                        fontWeight={`500`}
+                        borderColor={`#0b87ac`}
                       />
                     </div>
                     <div className="input-group">
@@ -105,6 +107,9 @@ const PublishTrip = (props) => {
                         onValue={'destination'}
                         placeholderValue={'Enter Destination'}
                         style={{ width: '100%' }}
+                        height={`51px`}
+                        fontWeight={`500`}
+                        borderColor={`#0b87ac`}
                       />
                     </div>
                   </div>
@@ -117,7 +122,8 @@ const PublishTrip = (props) => {
                         setInputValues={setTripData}
                         onValue={'startDate'}
                         placeholderValue={'Select Start date'}
-                        style={{ width: '100%' }}
+                        fontWeight={`500`}
+                        borderColor={`#0b87ac`}
                       />
                     </div>
                     <div className="input-group">
@@ -127,7 +133,9 @@ const PublishTrip = (props) => {
                         setInputValues={setTripData}
                         onValue={'endDate'}
                         placeholderValue={'Select End date'}
-                        style={{ width: '100%' }}
+                        height={`51px`}
+                        fontWeight={`500`}
+                        borderColor={`#0b87ac`}
                       />
                     </div>
                   </div>
@@ -249,7 +257,7 @@ const PublishTrip = (props) => {
 
                   <div className="publish__trip__button">
                     <button className="submit-button" onClick={handleSubmit}>
-                      Submit
+                      Publish
                     </button>
                   </div>
                 </>
@@ -258,7 +266,7 @@ const PublishTrip = (props) => {
           </div>
 
           <div className="publish__trip__rightsection">
-            <ImageUpload tripData={tripData} setTripData={setTripData}/>
+            <ImageUpload tripData={tripData} setTripData={setTripData} />
             {/* Additional content for right section */}
           </div>
         </div>

@@ -28,8 +28,8 @@ const ImageUpload = ({ tripData, setTripData }) => {
                 <div className="icon_picture">
                   <img src={firstImage} alt="" />
                 </div>
-                <div className="drop_text">Drop your image here, or</div>
-                <div className="browse">Browse</div>
+                <span className="drop_text">Drop your image here, or </span>
+                <span className="browse">Browse</span>
                 <div className="supports_text">Supports: PNG, JPG, JPEG, WEBP</div>
               </div>
             </div>
