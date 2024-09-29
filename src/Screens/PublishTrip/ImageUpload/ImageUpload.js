@@ -1,18 +1,41 @@
-import React from 'react'
-import ImageUploading from 'react-images-uploading'
-import firstImage from '../../../data/Images/gallery.png'
-import './ImageUpload.css'
-const MAX_IMAGE_UPLOAD_LIMIT = 5
+import React from 'react';
+import ImageUploading from 'react-images-uploading';
+import firstImage from '../../../data/Images/gallery.png';
+import {
+  Frame,
+  UploadPhotos,
+  IconPicture,
+  DropImage,
+  DropImageInner,
+  Browse,
+  DropText,
+  SupportsText,
+  FileUploaderContainer,
+  FileUploadLabel,
+  FileUploadBox,
+  FileUploadPlaceholder,
+  UploadButtonContainer,
+  UploadButton,
+  ImagePreviewSection,
+  PreviewImageItemContainer,
+  PreviewImageItem,
+  PreviewImageCrossContainer,
+  PreviewImageRemoveButton,
+  UploadContainer,
+} from './ImageUpload.styled';
+
+const MAX_IMAGE_UPLOAD_LIMIT = 5;
 
 const ImageUpload = ({ tripData, setTripData }) => {
   const onImagesChange = (imageList, addUpdatedIndex) => {
     setTripData((prevTripData) => ({
       ...prevTripData,
       destinationImages: imageList,
-    }))
-  }
+    }));
+  };
+
   return (
-    <div className='upload_container'>
+    <UploadContainer>
       <ImageUploading
         multiple
         value={tripData.destinationImages}
@@ -21,47 +44,44 @@ const ImageUpload = ({ tripData, setTripData }) => {
         dataURLKey="data_url"
       >
         {({ imageList, onImageUpload, onImageRemove, onImageUpdate, isDragging, dragProps }) => (
-          <div className="frame_2">
-            <div className="upload_photos">Upload Photos</div>
-            <div className="drop_image">
-              <div className="drop_image_inner" role="button" onClick={onImageUpload} {...dragProps}>
-                <div className="icon_picture">
+          <Frame>
+            <UploadPhotos>Upload Photos</UploadPhotos>
+            <DropImage>
+              <DropImageInner role="button" onClick={onImageUpload} {...dragProps}>
+                <IconPicture>
                   <img src={firstImage} alt="" />
-                </div>
-                <span className="drop_text">Drop your image here, or </span>
-                <span className="browse">Browse</span>
-                <div className="supports_text">Supports: PNG, JPG, JPEG, WEBP</div>
-              </div>
-            </div>
+                </IconPicture>
+                <DropText>Drop your image here, or </DropText>
+                <Browse>Browse</Browse>
+                <SupportsText>Supports: PNG, JPG, JPEG, WEBP</SupportsText>
+              </DropImageInner>
+            </DropImage>
 
-            <div className="file-uploader-container">
-              <div className="file-upload-label">Add file</div>
-              <div className="file-upload-box">
-                <div className="file-upload-placeholder">Add file</div>
-                <div className="upload-button-container">
-                  <button className="upload-button" onClick={onImageUpload}>
-                    Choose File
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="image-preview-section">
+            <FileUploaderContainer>
+              <FileUploadLabel>Add file</FileUploadLabel>
+              <FileUploadBox>
+                <FileUploadPlaceholder>Add file</FileUploadPlaceholder>
+                <UploadButtonContainer>
+                  <UploadButton onClick={onImageUpload}>Choose File</UploadButton>
+                </UploadButtonContainer>
+              </FileUploadBox>
+            </FileUploaderContainer>
+
+            <ImagePreviewSection>
               {imageList.map((image, index) => (
-                <div key={index} className="preview-image-item-container">
-                  <img onClick={() => onImageUpdate(index)} className="preview-image-item" src={image} />
-                  <div className="preview-image-cross-container">
-                    <button className="preview-image-remove-button" onClick={() => onImageRemove(index)}>
-                      x
-                    </button>
-                  </div>
-                </div>
+                <PreviewImageItemContainer key={index}>
+                  <PreviewImageItem onClick={() => onImageUpdate(index)} src={image.data_url} alt="" />
+                  <PreviewImageCrossContainer>
+                    <PreviewImageRemoveButton onClick={() => onImageRemove(index)}>x</PreviewImageRemoveButton>
+                  </PreviewImageCrossContainer>
+                </PreviewImageItemContainer>
               ))}
-            </div>
-          </div>
+            </ImagePreviewSection>
+          </Frame>
         )}
       </ImageUploading>
-    </div>
-  )
-}
+    </UploadContainer>
+  );
+};
 
-export default ImageUpload
+export default ImageUpload;
