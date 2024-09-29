@@ -12,7 +12,8 @@ import {
 
 import { SVG } from '../../assets'
 
-const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) => {
+const DatePicker = (props) => {
+  const { inputValues, setInputValues, onValue, placeholderValue } = props
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(inputValues)
   const [showCalendar, setShowCalendar] = useState(false)
@@ -154,8 +155,14 @@ const DatePicker = ({ inputValues, setInputValues, onValue, placeholderValue }) 
     setShowCalendar(false)
   }
   return (
-    <DatePickerWrapper>
-      <InputWrapper>
+    <DatePickerWrapper
+      fontSize={props.fontSize ? props.fontSize : `inherit`}
+      fontWeight={props.fontWeight ? props.fontWeight : `600`}
+      widthValue={props.width ? props.width : `100%`}
+      heightValue={props.height ? props.height : `100%`}
+      
+    >
+      <InputWrapper borderColor={props.borderColor ? props.borderColor : `grey`}>
         <input
           type="text"
           ref={dateInputRef}

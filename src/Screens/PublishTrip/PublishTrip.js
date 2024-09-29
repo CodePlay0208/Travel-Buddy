@@ -1,15 +1,33 @@
 import React, { useEffect, useState, memo } from 'react'
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
-import './PublishTrip.css'
 import DatePicker from '../../components/DatePicker/DatePicker'
 import Searchbar from '../../components/Searchbar/Searchbar'
-import firstImage from '../../data/Images/gallery.png'
 import { connect } from 'react-redux'
 import { getProfile } from '../../actions/profile.action'
 import { createTrip } from '../../actions/trips.action'
 import { ToastContainer } from 'react-toastify'
-import ImageUploading from 'react-images-uploading'
+import ImageUpload from './ImageUpload/ImageUpload'
+import {
+  PublishTripPage,
+  PublishTripContainer,
+  PublishTripHeading,
+  PublishTripContent,
+  PublishTripLeftSection,
+  LeftSection,
+  InputGroup,
+  InputLabel,
+  InputField,
+  DescriptionField,
+  ToggleBetweenTripUser,
+  ToggleTab,
+  Divider,
+  PublishTripButton,
+  NextButton,
+  SubmitButton,
+  InputRow,
+  PublishTripRightSection,
+} from './PublishTrip.styled'
 
 const mapStateToProps = (state) => ({
   profile: state.profile.profile,
@@ -19,8 +37,6 @@ const TABS = {
   TRIP: 'trip',
   USER: 'user',
 }
-
-const MAX_IMAGE_UPLOAD_LIMIT = 5
 
 const DEFAULT_TRIP_DATA = {
   destination: '',
@@ -61,178 +77,170 @@ const PublishTrip = (props) => {
     }
   }
 
-  const onImagesChange = (imageList, addUpdatedIndex) => {
-    setTripData((prevTripData) => ({
-      ...prevTripData,
-      destinationImages: imageList,
-    }))
-  }
-
   useEffect(() => {
     getProfile()
   }, [getProfile])
 
   return (
-    <div className="publish__trip__page">
+    <PublishTripPage>
       <Navbar />
-      <div className="publish__trip__container">
-        <div className="publish__trip__heading">Publish Your Trip!</div>
-        <div className="publish__trip__content">
-          <div className="publish__trip__leftsection">
-            <div className="toggleBetweenTripUser">
-              <div className={`trip_detail ${activeSection === TABS.TRIP ? 'active' : ''}`} onClick={() => handleToggle(TABS.TRIP)}>
+      <PublishTripContainer>
+        <PublishTripHeading>Publish Your Trip!</PublishTripHeading>
+        <PublishTripContent>
+          <PublishTripLeftSection>
+            <ToggleBetweenTripUser>
+              <ToggleTab className={activeSection === TABS.TRIP ? 'active' : ''} onClick={() => handleToggle(TABS.TRIP)}>
                 Trip Details
-              </div>
-              <div className="divider"></div>
-              <div className={`user_detail ${activeSection === TABS.USER ? 'active' : ''}`} onClick={() => handleToggle(TABS.USER)}>
+              </ToggleTab>
+              <Divider />
+              <ToggleTab className={activeSection === TABS.USER ? 'active' : ''} onClick={() => handleToggle(TABS.USER)}>
                 User Details
-              </div>
-            </div>
+              </ToggleTab>
+            </ToggleBetweenTripUser>
 
-            {/* Conditionally render forms based on the active section */}
-            <div className="left-section">
-              {activeSection === 'trip' ? (
+            <LeftSection>
+              {activeSection === TABS.TRIP ? (
                 <>
-                  <div className="input-row">
-                    <div className="input-group">
-                      <label className="input-label">Start Location</label>
+                  <InputRow>
+                    <InputGroup>
+                      <InputLabel>Start Location</InputLabel>
                       <Searchbar
                         inputValues={tripData.startLocation}
                         setInputValues={setTripData}
                         onValue={'startLocation'}
                         placeholderValue={'Enter Start Location'}
                         style={{ width: '100%' }}
-                      />
-                    </div>
-                    <div className="input-group">
-                      <label className="input-label">Destination</label>
+                        height={`51px`}
+                        fontWeight={`500`}
+                        borderColor={`#0b87ac`}
+                      />{' '}
+                    </InputGroup>
+                    <InputGroup>
+                      <InputLabel>Destination</InputLabel>
                       <Searchbar
                         inputValues={tripData.destination}
                         setInputValues={setTripData}
                         onValue={'destination'}
                         placeholderValue={'Enter Destination'}
                         style={{ width: '100%' }}
+                        height={`51px`}
+                        fontWeight={`500`}
+                        borderColor={`#0b87ac`}
                       />
-                    </div>
-                  </div>
-
-                  <div className="input-row">
-                    <div className="input-group">
-                      <label className="input-label">Start Date</label>
+                    </InputGroup>
+                  </InputRow>
+                  <InputRow>
+                    <InputGroup>
+                      <InputLabel>Start Date</InputLabel>
                       <DatePicker
                         inputValues={tripData.startDate}
                         setInputValues={setTripData}
                         onValue={'startDate'}
                         placeholderValue={'Select Start date'}
-                        style={{ width: '100%' }}
+                        fontWeight={`500`}
+                        borderColor={`#0b87ac`}
                       />
-                    </div>
-                    <div className="input-group">
-                      <label className="input-label">End Date</label>
+                    </InputGroup>
+                    <InputGroup>
+                      <InputLabel>End Date</InputLabel>
                       <DatePicker
                         inputValues={tripData.endDate}
                         setInputValues={setTripData}
                         onValue={'endDate'}
                         placeholderValue={'Select End date'}
-                        style={{ width: '100%' }}
+                        height={`51px`}
+                        fontWeight={`500`}
+                        borderColor={`#0b87ac`}
                       />
-                    </div>
-                  </div>
-
-                  <div className="input-row">
-                    <div className="input-group">
-                      <label className="input-label">Budget</label>
-                      <input
-                        name="budget"
-                        type="text"
-                        className="input-field"
-                        placeholder="Enter budget"
-                        onChange={handleChange}
-                        value={tripData.budget}
-                      />
-                    </div>
-                    <div className="input-group">
-                      <label className="input-label">Total Members</label>
-                      <input
-                        name="totalMembers"
+                    </InputGroup>
+                  </InputRow>
+                  <InputRow>
+                    <InputGroup>
+                      <InputLabel>Total Members</InputLabel>
+                      <InputField
                         type="number"
-                        className="input-field"
-                        placeholder="Enter number of members"
+                        name="totalMembers"
+                        value={tripData.totalMembers || ''}
                         onChange={handleChange}
-                        value={tripData.totalMembers}
+                        placeholder="Enter Total Members"
                       />
-                    </div>
-                  </div>
-
-                  <div className="input-group description-group">
-                    <label className="input-label">Description</label>
-                    <textarea
+                    </InputGroup>
+                    <InputGroup>
+                      <InputLabel>Budget</InputLabel>
+                      <InputField
+                        type="number"
+                        name="budget"
+                        value={tripData.budget || ''}
+                        onChange={handleChange}
+                        placeholder="Enter Budget"
+                      />
+                    </InputGroup>
+                  </InputRow>
+                  <InputGroup>
+                    <InputLabel>Description</InputLabel>
+                    <DescriptionField
                       name="description"
-                      className="description-field"
-                      placeholder="Enter trip description"
-                      onChange={handleChange}
                       value={tripData.description}
-                    ></textarea>
-                  </div>
+                      onChange={handleChange}
+                      placeholder="Enter Trip Description"
+                    />
+                  </InputGroup>
 
-                  <div className="publish__trip__button">
-                    <button className="next-button" onClick={handleNext}>
-                      Next
-                    </button>
-                  </div>
+                  <PublishTripButton>
+                    <NextButton onClick={handleNext}>Next</NextButton>
+                  </PublishTripButton>
                 </>
               ) : (
                 <>
-                  <div className="input-row">
-                    <div className="input-group">
-                      <label className="input-label">Full Name</label>
-                      <input
+                  <InputRow>
+                    <InputGroup>
+                      <InputLabel>Full Name</InputLabel>
+                      <InputField
                         name="name"
                         type="text"
                         className="input-field"
                         placeholder="Enter full name"
                         value={profile.name !== null ? profile.name : ''}
                       />
-                    </div>
-
-                    <div className="input-group">
-                      <label className="input-label">Email</label>
-                      <input
+                    </InputGroup>
+                    <InputGroup>
+                      <InputLabel>Email</InputLabel>
+                      <InputField
                         name="emailId"
                         type="email"
                         className="input-field"
                         placeholder="Enter email address"
                         value={profile.emailId !== null ? profile.emailId : ''}
                       />
-                    </div>
-                  </div>
-                  <div className="input-row">
-                    <div className="input-group">
-                      <label className="input-label">Phone Number</label>
-                      <input
+                    </InputGroup>
+                  </InputRow>
+                  <InputRow>
+                    <InputGroup>
+                      <InputLabel>Phone Number</InputLabel>
+                      <InputField
                         name="phoneNumber"
                         type="text"
                         className="input-field"
                         placeholder="Enter phone number"
                         value={profile.phoneNumber !== null ? profile.phoneNumber : ''}
                       />
-                    </div>
-                    <div className="input-group">
-                      <label className="input-label">Age</label>
-                      <input
-                        name="age"
+                    </InputGroup>
+                    <InputGroup>
+                      <InputLabel>Age</InputLabel>
+                      <InputField
+                       name="age"
                         type="number"
                         className="input-field"
                         placeholder="Enter age"
                         onChange={handleChange}
                         value={tripData.age}
                       />
-                    </div>
-                  </div>
-                  <div className="input-row">
-                    <div className="input-group">
-                      <label className="input-label">Gender</label>
-                      <input
+                    </InputGroup>
+                  </InputRow>
+                  <InputRow>
+                    <InputGroup>
+                      <InputLabel>Gender</InputLabel>
+                      <InputField
                         name="gender"
                         type="text"
                         className="input-field"
@@ -240,10 +248,10 @@ const PublishTrip = (props) => {
                         onChange={handleChange}
                         value={tripData.gender}
                       />
-                    </div>
-                    <div className="input-group">
-                      <label className="input-label">Persona</label>
-                      <input
+                    </InputGroup>
+                    <InputGroup>
+                      <InputLabel>Persona</InputLabel>
+                      <InputField
                         name="persona"
                         type="text"
                         className="input-field"
@@ -251,73 +259,26 @@ const PublishTrip = (props) => {
                         onChange={handleChange}
                         value={tripData.persona}
                       />
-                    </div>
-                  </div>
+                    </InputGroup>
+                  </InputRow>
 
-                  <div className="publish__trip__button">
-                    <button className="submit-button" onClick={handleSubmit}>
-                      Submit
-                    </button>
-                  </div>
+                  <PublishTripButton>
+                    <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
+                  </PublishTripButton>
                 </>
               )}
-            </div>
-          </div>
+            </LeftSection>
+          </PublishTripLeftSection>
 
-          <div className="publish__trip__rightsection">
-            <ImageUploading
-              multiple
-              value={tripData.destinationImages}
-              onChange={onImagesChange}
-              maxNumber={MAX_IMAGE_UPLOAD_LIMIT}
-              dataURLKey="data_url"
-            >
-              {({ imageList, onImageUpload, onImageRemove, onImageUpdate, isDragging, dragProps }) => (
-                <div className="frame_2">
-                  <div className="upload_photos">Upload Photos</div>
-                  <div className="drop_image">
-                    <div className="drop_image_inner" role="button" onClick={onImageUpload} {...dragProps}>
-                      <div className="icon_picture">
-                        <img src={firstImage} alt="" />
-                      </div>
-                      <div className="drop_text">Drop your image here, or</div>
-                      <div className="browse">Browse</div>
-                      <div className="supports_text">Supports: PNG, JPG, JPEG, WEBP</div>
-                    </div>
-                  </div>
-
-                  <div className="file-uploader-container">
-                    <div className="file-upload-label">Add file</div>
-                    <div className="file-upload-box">
-                      <div className="file-upload-placeholder">Add file</div>
-                      <div className="upload-button-container">
-                        <button className="upload-button" onClick={onImageUpload}>
-                          Choose File
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="image-preview-section">
-                    {imageList.map((image, index) => (
-                      <div key={index} className="preview-image-item-container">
-                        <img onClick={() => onImageUpdate(index)} className="preview-image-item" src={image} />
-                        <div className="preview-image-cross-container">
-                          <button className='preview-image-remove-button' onClick={() => onImageRemove(index)}>x</button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </ImageUploading>
-            {/* Additional content for right section */}
-          </div>
-        </div>
-      </div>
+          <PublishTripRightSection>
+            <ImageUpload tripData={tripData} setTripData={setTripData} />
+          </PublishTripRightSection>
+        </PublishTripContent>
+      </PublishTripContainer>
       <Footer />
       <ToastContainer />
-    </div>
+    </PublishTripPage>
   )
 }
 
-export default connect(mapStateToProps, { getProfile, createTrip })(memo(PublishTrip))
+export default memo(connect(mapStateToProps, { getProfile, createTrip })(PublishTrip))

@@ -1,0 +1,150 @@
+
+.frame_2 {
+    position: relative;
+  }
+  
+  .upload_photos {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.5vw;
+    line-height: 1.5;
+    color: #000000;
+    margin-bottom: 20px;
+  }
+  .icon_picture{
+    
+    img{
+        width: 5rem;
+    aspect-ratio: 1/1;
+    }
+  }
+  .drop_image {
+    position: relative;
+    width: 95%;
+    max-width: 477px;
+    height: auto;
+    min-height: 10vw;
+    border: 1px dashed #b1bfd0;
+    border-radius: 9px;
+    padding: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .drop_image_inner {
+    text-align: center;
+  }
+  
+  .browse {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 1.4;
+    color: #1f4690;
+  }
+  
+  .drop_text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 1.4;
+    color: #132a00;
+    margin-top: 10px;
+  }
+  
+  .supports_text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 0.8vw;
+    line-height: 1.2;
+    color: #969db2;
+    margin-top: 10px;
+  }
+
+  .file-uploader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 3%;
+    position: relative;
+  }
+  
+  .file-upload-label {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #000000;
+  }
+  
+  .file-upload-box {
+    background: #f1f4f9;
+    border-radius: 6px;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    padding: 0 0 0 10px;
+    align-items: center;
+  }
+  
+  .file-upload-placeholder {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #aab6c1;
+  }
+  
+  .upload-button-container {
+    margin-left: auto;
+  }
+  
+  .upload-button {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    background-color: #8dd3bb;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 12px;
+    border-radius: 6px;
+    border: 0;
+    color: #3c3c3c;
+  }
+  
+  .image-preview-section {
+    flex: 1;
+    flex-direction: row;
+  }
+  
+  .preview-image-item-container {
+    margin: 5px;
+  }
+  
+  .preview-image-item {
+    width: 95px;
+    height: 95px;
+  }
+  
+  .preview-image-cross-container {
+    position: relative;
+    top: -100px;
+    right: -90px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .preview-image-remove-button {
+    height: 15px;
+    width: 15px;
+    border-radius: 10px;
+  }
+  .upload_container{
+    width: 100%;
+  }

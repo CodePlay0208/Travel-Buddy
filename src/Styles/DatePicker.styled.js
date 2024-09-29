@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 export const DatePickerWrapper = styled.div`
-  box-sizing:border-box;
+  box-sizing: border-box;
   position: relative;
   display: inline-block;
-  height: 100%;
-  width: 30%;
+  height: ${(props) => props.heightValue};
+  width: ${(props) => props.widthValue};
 
   input {
     height: 100%;
@@ -14,9 +14,10 @@ export const DatePickerWrapper = styled.div`
 
   .SearchBar-date::-webkit-input-placeholder {
     color: #787878;
-    font-weight: 600;
+    font-size: ${(props) => props.fontSize};
+    font-weight: ${(props) => props.fontWeight};
     font-family: Arial, sans-serif;
-    font-size: 1.5rem;
+    
   }
 `
 
@@ -27,18 +28,17 @@ export const InputWrapper = styled.div`
 
   input {
     width: 100%;
-    box-sizing:border-box;
-    padding: 20px;
+    box-sizing: border-box;
+    padding: 1% 5%;
     cursor: pointer;
     transition: border-color 0.2s;
     border-radius: 10px;
-    font-weight: 400;
     font-family: Arial, sans-serif;
     color: #787878;
-    border: 1.5px solid grey;
+    border: 2px solid ${(props) => props.borderColor};
     line-height: 2.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: inherit;
+    font-weight: inherit;
   }
 
   input:focus {

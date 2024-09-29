@@ -44,6 +44,10 @@ const Searchbar = (props) => {
 
   return (
     <SearchBarContainer
+      widthValue={props.width ? props.width : `100%`}
+      heightValue={props.height ? props.height : `100%`}
+      
+      borderColor={props.borderColor ? props.borderColor : `grey`}
       onClick={() => {
         document.getElementById(customId).focus()
       }}
@@ -55,6 +59,8 @@ const Searchbar = (props) => {
         value={inputValues}
         onChange={searchBarChangeHandler}
         autoComplete="off"
+        fontSize={props.fontSize ? props.fontSize : `inherit`}
+        fontWeight={props.fontWeight ? props.fontWeight : `600`}
       />
       <LocationIcon src={SVG.LocationIcon} alt="Location Icon" />
       {isDropdownVisible && suggestions.length > 0 && (

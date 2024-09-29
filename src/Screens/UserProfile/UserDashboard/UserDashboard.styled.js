@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const DashboardContainer = styled.div`
   padding: 0 5%;
+  margin-bottom: 4%;
 `
 
 export const ImageContainer = styled.div`
@@ -60,7 +61,7 @@ export const DashboardContent = styled.div`
   background: #ffffff;
   box-shadow: 0px 5px 20px rgba(17, 34, 17, 0.25);
   border-radius: 20px;
-  padding: 20px;
+  padding: 1% 5%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -131,9 +132,9 @@ export const DeleteButton = styled.button`
   font-weight: 500;
   font-size: 22px;
   color: #e9e9e9;
-  border: 2px solid #DC2626;
+  border: 2px solid #dc2626;
   border-radius: 8px;
-  background-color: #DC2626;
+  background-color: #dc2626;
   cursor: pointer;
   margin: 0 1%;
 `
