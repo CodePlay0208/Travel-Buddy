@@ -3,8 +3,8 @@ import styled from 'styled-components'
 export const SearchBarContainer = styled.div`
   border: grey 1.5px solid;
   border-radius: 10px;
-  width: 30%;
-  height: 100%;
+  width: ${(props) => props.widthValue};
+  height: ${(props) => props.heightValue};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,6 +12,7 @@ export const SearchBarContainer = styled.div`
 `
 
 export const SearchBarInput = styled.input`
+  border-radius: inherit;
   font-style: normal;
   line-height: 2.5rem;
   color: #686868;
@@ -54,7 +55,7 @@ export const DropdownItem = styled.div`
   font-weight: 600;
   font-size: 23px;
   color: #1b1717;
-  background-color: #B6F0DC;
+  background-color: #b6f0dc;
   border-radius: 13.43px;
   margin: 5px 24px;
   cursor: pointer;

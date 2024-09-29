@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 export const DatePickerWrapper = styled.div`
-  box-sizing:border-box;
+  box-sizing: border-box;
   position: relative;
   display: inline-block;
-  height: 100%;
-  width: 30%;
+  height: ${(props) => props.heightValue};
+  width: ${(props) => props.widthValue};
 
   input {
     height: 100%;
@@ -27,8 +27,8 @@ export const InputWrapper = styled.div`
 
   input {
     width: 100%;
-    box-sizing:border-box;
-    padding: 20px;
+    box-sizing: border-box;
+    padding: 1% 5%;
     cursor: pointer;
     transition: border-color 0.2s;
     border-radius: 10px;

@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 })
 
 const Searchbar = (props) => {
-  const { suggestions, getLocationSuggestions, inputValues, setInputValues, onValue, placeholderValue } = props
+  const { suggestions, getLocationSuggestions, inputValues, setInputValues, onValue, placeholderValue} = props
   const [isDropdownVisible, setDropdownVisible] = useState(false)
 
   const searchBarChangeHandler = async (event) => {
@@ -43,7 +43,7 @@ const Searchbar = (props) => {
   const customId = `searchbar-input-${onValue}`
 
   return (
-    <SearchBarContainer
+    <SearchBarContainer  widthValue={props.width?props.width:`100%`} heightValue={props.height?props.height:`100%`}
       onClick={() => {
         document.getElementById(customId).focus()
       }}

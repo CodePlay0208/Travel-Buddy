@@ -4,12 +4,13 @@ import Navbar from '../../components/Navbar/Navbar'
 import './PublishTrip.css'
 import DatePicker from '../../components/DatePicker/DatePicker'
 import Searchbar from '../../components/Searchbar/Searchbar'
-import firstImage from '../../data/Images/gallery.png'
+
 import { connect } from 'react-redux'
 import { getProfile } from '../../actions/profile.action'
 import { createTrip } from '../../actions/trips.action'
 import { ToastContainer } from 'react-toastify'
-import ImageUploading from 'react-images-uploading'
+
+import ImageUpload from './ImageUpload/ImageUpload'
 
 const mapStateToProps = (state) => ({
   profile: state.profile.profile,
@@ -19,8 +20,6 @@ const TABS = {
   TRIP: 'trip',
   USER: 'user',
 }
-
-const MAX_IMAGE_UPLOAD_LIMIT = 5
 
 const DEFAULT_TRIP_DATA = {
   destination: '',
@@ -61,12 +60,6 @@ const PublishTrip = (props) => {
     }
   }
 
-  const onImagesChange = (imageList, addUpdatedIndex) => {
-    setTripData((prevTripData) => ({
-      ...prevTripData,
-      destinationImages: imageList,
-    }))
-  }
 
   useEffect(() => {
     getProfile()
@@ -265,51 +258,7 @@ const PublishTrip = (props) => {
           </div>
 
           <div className="publish__trip__rightsection">
-            <ImageUploading
-              multiple
-              value={tripData.destinationImages}
-              onChange={onImagesChange}
-              maxNumber={MAX_IMAGE_UPLOAD_LIMIT}
-              dataURLKey="data_url"
-            >
-              {({ imageList, onImageUpload, onImageRemove, onImageUpdate, isDragging, dragProps }) => (
-                <div className="frame_2">
-                  <div className="upload_photos">Upload Photos</div>
-                  <div className="drop_image">
-                    <div className="drop_image_inner" role="button" onClick={onImageUpload} {...dragProps}>
-                      <div className="icon_picture">
-                        <img src={firstImage} alt="" />
-                      </div>
-                      <div className="drop_text">Drop your image here, or</div>
-                      <div className="browse">Browse</div>
-                      <div className="supports_text">Supports: PNG, JPG, JPEG, WEBP</div>
-                    </div>
-                  </div>
-
-                  <div className="file-uploader-container">
-                    <div className="file-upload-label">Add file</div>
-                    <div className="file-upload-box">
-                      <div className="file-upload-placeholder">Add file</div>
-                      <div className="upload-button-container">
-                        <button className="upload-button" onClick={onImageUpload}>
-                          Choose File
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="image-preview-section">
-                    {imageList.map((image, index) => (
-                      <div key={index} className="preview-image-item-container">
-                        <img onClick={() => onImageUpdate(index)} className="preview-image-item" src={image} />
-                        <div className="preview-image-cross-container">
-                          <button className='preview-image-remove-button' onClick={() => onImageRemove(index)}>x</button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </ImageUploading>
+            <ImageUpload tripData={tripData} setTripData={setTripData}/>
             {/* Additional content for right section */}
           </div>
         </div>
