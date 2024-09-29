@@ -67,7 +67,7 @@ const UserDashboard = ({ profile, getProfile }) => {
             <UserInfoColumn>
               <UserInfoItem>
                 <Label>Name</Label>
-                <Value>{profile?.name}</Value>
+                <Value>{profile?.username}</Value>
               </UserInfoItem>
               <UserInfoItem>
                 <Label>Phone Number</Label>
