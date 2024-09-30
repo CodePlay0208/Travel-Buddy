@@ -15,8 +15,8 @@ export const TripCardContainer = styled.div`
 `
 
 export const LeftContainer = styled.div`
-  width: 100%;
-  max-width: 380px;
+  width: 380px;
+  aspect-ratio: 4 / 3;
   position: relative;
   overflow: hidden;
   border-radius: 10px;
@@ -26,6 +26,7 @@ export const LeftContainer = styled.div`
 export const CarouselItem = styled.div`
   position: relative;
   width: 100%;
+  aspect-ratio: 4 / 3;
   padding-top: 100%;
 `
 
@@ -34,7 +35,8 @@ export const DestinationImg = styled.img`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  min-width:400px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 10px;
 `

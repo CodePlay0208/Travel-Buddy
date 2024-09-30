@@ -162,7 +162,7 @@ const DatePicker = (props) => {
       heightValue={props.height ? props.height : `100%`}
       
     >
-      <InputWrapper borderColor={props.borderColor ? props.borderColor : `grey`}>
+      <InputWrapper fontSize={props.fontSize ? props.fontSize : `inherit`} fontWeight={props.fontWeight ? props.fontWeight : `600`} borderColor={props.borderColor ? props.borderColor : `grey`}>
         <input
           type="text"
           ref={dateInputRef}

@@ -57,6 +57,8 @@ export const HeroSectionCards = styled.div`
 export const HeroSectionCard = styled.div`
   flex: 1 1 calc(33.333% - 40px);
   position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
   border-radius: 24px;
   overflow: hidden;
   margin: 10px;
@@ -72,7 +74,8 @@ export const HeroSectionCard = styled.div`
 
 export const HeroSectionCardImg = styled.div`
   position: relative;
-  padding-top: 100%;
+  width: 100%;
+  aspect-ratio:4/3;
   background-size: cover;
   background-position: center;
   background-image: ${({ image }) => `url(${image})`};
@@ -83,7 +86,7 @@ export const HeroSectionCardImg = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    aspect-ratio:4/3;
     background: linear-gradient(180deg, rgba(54, 53, 48, 0) 72.87%, rgba(36, 36, 33, 0.9) 101.17%);
     border-radius: 24px;
   }
