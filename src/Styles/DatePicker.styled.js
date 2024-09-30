@@ -37,12 +37,11 @@ export const InputWrapper = styled.div`
     color: #787878;
     border: 2px solid ${(props) => props.borderColor};
     line-height: 2.5rem;
-    font-size: inherit;
-    font-weight: inherit;
+    font-size: ${(props) => props.fontSize};
+    font-weight: ${(props) => props.fontWeight};
   }
 
   input:focus {
-    border-color: #007bff;
     outline: none;
   }
 
