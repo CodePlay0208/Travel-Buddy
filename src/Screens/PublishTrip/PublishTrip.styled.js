@@ -81,7 +81,7 @@ export const LeftSection = styled.div`
 `
 
 export const InputGroup = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin: 0 2% 2% 2%;
@@ -127,13 +127,9 @@ export const ToggleTab = styled.div`
     bottom: -12px;
     left: 0;
     right: 0;
-    height: 0.5vw;
+    height: 0.4vw;
     background-color: #559c84;
-    border-radius: 2px;
-  }
-
-  &:hover {
-    background-color: #559c84;
+    border-radius: 10px;
   }
 `
 
@@ -160,8 +156,8 @@ export const PublishTripButton = styled.div`
 
 export const NextButton = styled.button`
   width: 100%;
-  
-  height:100%;
+
+  height: 100%;
   padding: 10px 20px;
   color: #559c84;
   background-color: white;
@@ -174,13 +170,13 @@ export const NextButton = styled.button`
 
   &:hover {
     background-color: #559c84;
-    color:white;
+    color: white;
   }
 `
 
 export const SubmitButton = styled(NextButton)`
   background-color: #8dd3bb;
-  height:100%;
+  height: 100%;
   color: black;
 `
 

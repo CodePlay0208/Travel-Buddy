@@ -17,7 +17,6 @@ export const DatePickerWrapper = styled.div`
     font-size: ${(props) => props.fontSize};
     font-weight: ${(props) => props.fontWeight};
     font-family: Arial, sans-serif;
-    
   }
 `
 
@@ -51,7 +50,7 @@ export const InputWrapper = styled.div`
     top: 50%;
     transform: translateY(-50%);
     width: 34px;
-    height: 41px;
+    height: 30px;
     pointer-events: none;
   }
 `
