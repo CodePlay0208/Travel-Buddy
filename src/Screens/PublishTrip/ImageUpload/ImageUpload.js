@@ -1,6 +1,7 @@
-import React from 'react';
-import ImageUploading from 'react-images-uploading';
-import firstImage from '../../../data/Images/gallery.png';
+import React, { useState } from 'react'
+import ImageUploading from 'react-images-uploading'
+import firstImage from '../../../data/Images/gallery.png'
+import ImageOverlay from '../ImageOverlay/ImageOverlay'
 import {
   Frame,
   UploadPhotos,
@@ -22,17 +23,45 @@ import {
   PreviewImageCrossContainer,
   PreviewImageRemoveButton,
   UploadContainer,
-} from './ImageUpload.styled';
+  ShowAllImageContainer,
+} from './ImageUpload.styled'
 
-const MAX_IMAGE_UPLOAD_LIMIT = 5;
+const MAX_IMAGE_UPLOAD_LIMIT = 5
 
 const ImageUpload = ({ tripData, setTripData }) => {
+  const [overlay, setOverlay] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [displayedImage, setDisplayedImage] = useState(firstImage)
+
   const onImagesChange = (imageList, addUpdatedIndex) => {
     setTripData((prevTripData) => ({
       ...prevTripData,
       destinationImages: imageList,
-    }));
-  };
+    }))
+
+    if (imageList.length > 0) {
+      setDisplayedImage(imageList[0].data_url)
+    } else {
+      setDisplayedImage(firstImage)
+    }
+  }
+
+  const handleImageClick = (index) => {
+    setDisplayedImage(tripData.destinationImages[index].data_url)
+  }
+
+  const handleImageDoubleClick = (index) => {
+    setCurrentIndex(index)
+    setOverlay(true)
+  }
+
+  const handleImageRemove = (index, onImageRemove) => {
+    onImageRemove(index)
+
+    if (tripData.destinationImages.length === 1) {
+      setDisplayedImage(firstImage)
+    }
+  }
 
   return (
     <UploadContainer>
@@ -43,36 +72,48 @@ const ImageUpload = ({ tripData, setTripData }) => {
         maxNumber={MAX_IMAGE_UPLOAD_LIMIT}
         dataURLKey="data_url"
       >
-        {({ imageList, onImageUpload, onImageRemove, onImageUpdate, isDragging, dragProps }) => (
+        {({ imageList, onImageUpload, onImageRemove, isDragging, dragProps }) => (
           <Frame>
             <UploadPhotos>Upload Photos</UploadPhotos>
-            <DropImage>
-              <DropImageInner role="button" onClick={onImageUpload} {...dragProps}>
+
+            <DropImageInner role="button" onClick={onImageUpload} {...dragProps}>
+              {imageList.length > 0 ? (
                 <IconPicture>
-                  <img src={firstImage} alt="" />
+                  <img src={displayedImage} alt="Uploaded Preview" />
                 </IconPicture>
-                <DropText>Drop your image here, or </DropText>
-                <Browse>Browse</Browse>
-                <SupportsText>Supports: PNG, JPG, JPEG, WEBP</SupportsText>
-              </DropImageInner>
-            </DropImage>
-
-            <FileUploaderContainer>
-              <FileUploadLabel>Add file</FileUploadLabel>
-              <FileUploadBox>
-                <FileUploadPlaceholder>Add file</FileUploadPlaceholder>
-                <UploadButtonContainer>
-                  <UploadButton onClick={onImageUpload}>Choose File</UploadButton>
-                </UploadButtonContainer>
-              </FileUploadBox>
-            </FileUploaderContainer>
-
+              ) : (
+                <DropImage>
+                  <IconPicture>
+                    <img src={firstImage} alt="Uploaded Preview" />
+                  </IconPicture>
+                  <DropText>Drop your image here, or </DropText>
+                  <Browse>Browse</Browse>
+                  <SupportsText>Supports: PNG, JPG, JPEG, WEBP</SupportsText>
+                </DropImage>
+              )}
+              <FileUploaderContainer>
+                <FileUploadLabel>Add file</FileUploadLabel>
+                <FileUploadBox>
+                  <FileUploadPlaceholder>Drop your image here, or Browse</FileUploadPlaceholder>
+                  <UploadButtonContainer>
+                    <UploadButton onClick={onImageUpload}>Choose File</UploadButton>
+                  </UploadButtonContainer>
+                </FileUploadBox>
+              </FileUploaderContainer>
+            </DropImageInner>
             <ImagePreviewSection>
               {imageList.map((image, index) => (
                 <PreviewImageItemContainer key={index}>
-                  <PreviewImageItem onClick={() => onImageUpdate(index)} src={image.data_url} alt="" />
+                  <PreviewImageItem
+                    src={image.data_url}
+                    alt=""
+                    onClick={() => handleImageClick(index)}
+                    onDoubleClick={() => handleImageDoubleClick(index)}
+                  />
                   <PreviewImageCrossContainer>
-                    <PreviewImageRemoveButton onClick={() => onImageRemove(index)}>x</PreviewImageRemoveButton>
+                    <PreviewImageRemoveButton onClick={() => handleImageRemove(index, onImageRemove)} aria-label="Remove image">
+                      x
+                    </PreviewImageRemoveButton>
                   </PreviewImageCrossContainer>
                 </PreviewImageItemContainer>
               ))}
@@ -80,8 +121,25 @@ const ImageUpload = ({ tripData, setTripData }) => {
           </Frame>
         )}
       </ImageUploading>
+      <ShowAllImageContainer>
+        <UploadButton
+          onClick={() => {
+            setOverlay(true)
+          }}
+        >
+          Show all photos
+        </UploadButton>
+      </ShowAllImageContainer>
+      {overlay && (
+        <ImageOverlay
+          images={tripData.destinationImages.map((image) => image.data_url)}
+          overlay={overlay}
+          setOverlay={setOverlay}
+          currentIndex={currentIndex}
+        />
+      )}
     </UploadContainer>
-  );
-};
+  )
+}
 
-export default ImageUpload;
+export default ImageUpload

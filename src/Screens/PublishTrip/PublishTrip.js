@@ -158,7 +158,7 @@ const PublishTrip = (props) => {
                     <InputGroup>
                       <InputLabel>Total Members</InputLabel>
                       <InputField
-                        type="number"
+                        type="text"
                         name="totalMembers"
                         value={tripData.totalMembers || ''}
                         onChange={handleChange}
@@ -168,7 +168,7 @@ const PublishTrip = (props) => {
                     <InputGroup>
                       <InputLabel>Budget</InputLabel>
                       <InputField
-                        type="number"
+                        type="text"
                         name="budget"
                         value={tripData.budget || ''}
                         onChange={handleChange}
@@ -200,7 +200,7 @@ const PublishTrip = (props) => {
                         type="text"
                         className="input-field"
                         placeholder="Enter full name"
-                        value={profile.name !== null ? profile.name : ''}
+                        value={profile?.name !== null ? profile.name : ''}
                       />
                     </InputGroup>
                     <InputGroup>
@@ -210,7 +210,7 @@ const PublishTrip = (props) => {
                         type="email"
                         className="input-field"
                         placeholder="Enter email address"
-                        value={profile.emailId !== null ? profile.emailId : ''}
+                        value={profile?.emailId !== null ? profile.emailId : ''}
                       />
                     </InputGroup>
                   </InputRow>
@@ -222,14 +222,14 @@ const PublishTrip = (props) => {
                         type="text"
                         className="input-field"
                         placeholder="Enter phone number"
-                        value={profile.phoneNumber !== null ? profile.phoneNumber : ''}
+                        value={profile?.phoneNumber !== null ? profile.phoneNumber : ''}
                       />
                     </InputGroup>
                     <InputGroup>
                       <InputLabel>Age</InputLabel>
                       <InputField
-                       name="age"
-                        type="number"
+                        name="text"
+                        type="text"
                         className="input-field"
                         placeholder="Enter age"
                         onChange={handleChange}

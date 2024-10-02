@@ -15,20 +15,19 @@ export const UploadPhotos = styled.div`
 
 export const IconPicture = styled.div`
   img {
-    width: 5rem;
-    aspect-ratio: 1/1;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
   }
 `
 
 export const DropImage = styled.div`
   position: relative;
-  width: 95%;
   max-width: 477px;
   height: auto;
   min-height: 10vw;
   border: 1px dashed #b1bfd0;
   border-radius: 9px;
-  padding: 3%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,7 +104,9 @@ export const FileUploadPlaceholder = styled.div`
 export const UploadButtonContainer = styled.div`
   margin-left: auto;
 `
-
+export const ShowAllImageContainer = styled.div`
+  margin: 2%;
+`
 export const UploadButton = styled.button`
   display: flex;
   flex-direction: row;
@@ -121,26 +122,32 @@ export const UploadButton = styled.button`
 `
 
 export const ImagePreviewSection = styled.div`
-  flex: 1;
-  flex-direction: row;
+  display: flex;
+  overflow-x: auto;
+  gap: 5%;
+  padding-top: 5%;
+  width: 100%;
 `
 
-export const PreviewImageItemContainer = styled.span`
+export const PreviewImageItemContainer = styled.div`
+  flex: 0 0 auto;
+  width: 150px;
+  aspect-ratio: 4/3;
   position: relative;
-  margin: 5px;
 `
 
 export const PreviewImageItem = styled.img`
-  width: 150px;
+  width: 100%;
+
   aspect-ratio: 4/3;
   object-fit: cover;
   background-position: center;
 `
 
 export const PreviewImageCrossContainer = styled.button`
-  position: relative;
-  top: -105px;
-  right: 10px;
+  position: absolute;
+  top: -10%;
+  right: -10%;
   background-color: #d10000;
   border: none;
   border-radius: 100%;
@@ -151,9 +158,8 @@ export const PreviewImageCrossContainer = styled.button`
 export const PreviewImageRemoveButton = styled.span`
   height: 15px;
   width: 15px;
-  color:white;
+  color: white;
   border-radius: 10px;
-
 `
 
 export const UploadContainer = styled.div`
@@ -166,11 +172,11 @@ export const ProgressBarContainer = styled.div`
   border-radius: 5px;
   margin-top: 10px;
   position: relative;
-`;
+`
 
 export const ProgressBar = styled.div`
   height: 10px;
   background-color: #4caf50;
   border-radius: 5px;
   transition: width 0.2s ease;
-`;
+`
