@@ -66,7 +66,7 @@ export const PublishTripContent = styled.div`
 `
 
 export const PublishTripLeftSection = styled.div`
-  width: 65%;
+  width: 58%;
 `
 
 export const LeftSection = styled.div`
@@ -114,7 +114,7 @@ export const ToggleTab = styled.div`
   cursor: pointer;
   transition: background-color 0.4s ease;
   font-family: 'Poppins';
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.8vw;
   line-height: 2vw;
   color: #000000;
@@ -127,7 +127,7 @@ export const ToggleTab = styled.div`
     bottom: -12px;
     left: 0;
     right: 0;
-    height: 0.4vw;
+    height: 0.4vh;
     background-color: #559c84;
     border-radius: 10px;
   }
@@ -186,7 +186,7 @@ export const InputRow = styled.div`
 `
 
 export const PublishTripRightSection = styled.div`
-  width: 35%;
+  width: 42%;
   position: relative;
   background: #ffffff;
   border: 3px solid rgba(179, 204, 252, 0.1);

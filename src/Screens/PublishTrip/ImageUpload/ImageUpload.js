@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ImageUploading from 'react-images-uploading'
 import firstImage from '../../../data/Images/gallery.png'
+import secondImage from '../../../data/Images/placeholder.png'
 import ImageOverlay from '../ImageOverlay/ImageOverlay'
 import {
   Frame,
@@ -78,16 +79,20 @@ const ImageUpload = ({ tripData, setTripData }) => {
 
             <DropImageInner role="button" onClick={onImageUpload} {...dragProps}>
               {imageList.length > 0 ? (
-                <IconPicture>
-                  <img src={displayedImage} alt="Uploaded Preview" />
-                </IconPicture>
+                <DropImage>
+                  <IconPicture >
+                    <img src={displayedImage} alt="Uploaded Preview" />
+                  </IconPicture>
+                </DropImage>
               ) : (
                 <DropImage>
-                  <IconPicture>
+                  <IconPicture width={`70%`}>
                     <img src={firstImage} alt="Uploaded Preview" />
                   </IconPicture>
-                  <DropText>Drop your image here, or </DropText>
-                  <Browse>Browse</Browse>
+                  <DropText>
+                    Drop your image here, or <Browse>Browse</Browse>
+                  </DropText>
+
                   <SupportsText>Supports: PNG, JPG, JPEG, WEBP</SupportsText>
                 </DropImage>
               )}
@@ -96,27 +101,34 @@ const ImageUpload = ({ tripData, setTripData }) => {
                 <FileUploadBox>
                   <FileUploadPlaceholder>Drop your image here, or Browse</FileUploadPlaceholder>
                   <UploadButtonContainer>
-                    <UploadButton onClick={onImageUpload}>Choose File</UploadButton>
+                    <UploadButton>Choose File</UploadButton>
                   </UploadButtonContainer>
                 </FileUploadBox>
               </FileUploaderContainer>
             </DropImageInner>
             <ImagePreviewSection>
-              {imageList.map((image, index) => (
-                <PreviewImageItemContainer key={index}>
-                  <PreviewImageItem
-                    src={image.data_url}
-                    alt=""
-                    onClick={() => handleImageClick(index)}
-                    onDoubleClick={() => handleImageDoubleClick(index)}
-                  />
-                  <PreviewImageCrossContainer>
-                    <PreviewImageRemoveButton onClick={() => handleImageRemove(index, onImageRemove)} aria-label="Remove image">
-                      x
-                    </PreviewImageRemoveButton>
-                  </PreviewImageCrossContainer>
-                </PreviewImageItemContainer>
-              ))}
+              {imageList.length > 0
+                ? imageList.map((image, index) => (
+                    <PreviewImageItemContainer key={index}>
+                      <PreviewImageItem
+                        src={image.data_url}
+                        alt="Preview"
+                        onClick={() => handleImageClick(index)}
+                        onDoubleClick={() => handleImageDoubleClick(index)}
+                      />
+                      <PreviewImageCrossContainer>
+                        <PreviewImageRemoveButton onClick={() => handleImageRemove(index, onImageRemove)} aria-label="Remove image">
+                          x
+                        </PreviewImageRemoveButton>
+                      </PreviewImageCrossContainer>
+                    </PreviewImageItemContainer>
+                  ))
+                :
+                  Array.from({ length: 5 }).map((_, index) => (
+                    <PreviewImageItemContainer key={index}>
+                      <PreviewImageItem src={secondImage} alt="Placeholder Preview" />
+                    </PreviewImageItemContainer>
+                  ))}
             </ImagePreviewSection>
           </Frame>
         )}
@@ -127,7 +139,7 @@ const ImageUpload = ({ tripData, setTripData }) => {
             setOverlay(true)
           }}
         >
-          Show all photos
+          See All Photos
         </UploadButton>
       </ShowAllImageContainer>
       {overlay && (

@@ -20,8 +20,28 @@ const CarouselContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 95%;
+    max-height: 95vh;
+`;
+
+const StyledImage = styled.img`
+    max-width: 90%;
+    max-height: 90vh;
     object-fit: contain;
-    width: 80%;
+`;
+
+const CustomCarousel = styled(Carousel)`
+    .control-arrow {
+        background-color: black;
+        opacity: 0.8;
+    }
+    .control-arrow:hover {
+        background-color: black;
+        opacity: 1;
+    }
+    .control-arrow:before {
+        border-color: white;
+    }
 `;
 
 const ImageOverlay = ({ images, overlay, setOverlay, currentIndex }) => {
@@ -30,19 +50,19 @@ const ImageOverlay = ({ images, overlay, setOverlay, currentIndex }) => {
     return (
         <Overlay onClick={() => setOverlay(false)}>
             <CarouselContainer onClick={(e) => e.stopPropagation()}>
-                <Carousel
-                    selectedItem={currentIndex} // Start from the clicked image
+                <CustomCarousel
+                    selectedItem={currentIndex}
                     showThumbs={false}
                     dynamicHeight={true}
                     infiniteLoop={true}
                     dots={false}
                 >
                     {images.map((image, index) => (
-                        <div key={index}>
-                            <img src={image} alt={`carousel-${index}`} />
+                        <div key={index} className='imagesa '>
+                            <StyledImage src={image} alt={`carousel-${index}`} />
                         </div>
                     ))}
-                </Carousel>
+                </CustomCarousel>
             </CarouselContainer>
         </Overlay>
     );
