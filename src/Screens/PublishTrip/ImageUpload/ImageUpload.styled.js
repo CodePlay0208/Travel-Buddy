@@ -15,7 +15,7 @@ export const UploadPhotos = styled.div`
 
 export const IconPicture = styled.div`
   img {
-    width: 100%;
+    width: ${(props) => (props.width ? props.width : '100%')};
     aspect-ratio: 4/3;
     object-fit: cover;
   }
@@ -23,25 +23,30 @@ export const IconPicture = styled.div`
 
 export const DropImage = styled.div`
   position: relative;
-  max-width: 477px;
   height: auto;
+  width: 380px;
   min-height: 10vw;
+  aspect-ratio: 4/3;
   border: 1px dashed #b1bfd0;
   border-radius: 9px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 1;
 `
 
 export const DropImageInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 `
 
 export const Browse = styled.span`
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 1vw;
+  font-size: 100%;
   line-height: 1.4;
   color: #1f4690;
 `
@@ -49,7 +54,7 @@ export const Browse = styled.span`
 export const DropText = styled.span`
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: 1vw;
+  font-size: 100%;
   line-height: 1.4;
   color: #132a00;
   margin-top: 10px;
@@ -58,17 +63,18 @@ export const DropText = styled.span`
 export const SupportsText = styled.div`
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: 0.8vw;
+  font-size: 0.6vw;
   line-height: 1.2;
   color: #969db2;
   margin-top: 10px;
 `
 
 export const FileUploaderContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 3%;
+  margin: 8% 3% 3%;
   position: relative;
 `
 
@@ -105,7 +111,10 @@ export const UploadButtonContainer = styled.div`
   margin-left: auto;
 `
 export const ShowAllImageContainer = styled.div`
-  margin: 2%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30%;
 `
 export const UploadButton = styled.button`
   display: flex;
@@ -118,20 +127,20 @@ export const UploadButton = styled.button`
   padding: 0px 12px;
   border-radius: 6px;
   border: 0;
-  color: #3c3c3c;
+  color: #ffffffd9;
 `
 
 export const ImagePreviewSection = styled.div`
   display: flex;
   overflow-x: auto;
-  gap: 5%;
+  gap: 2.5%;
   padding-top: 5%;
   width: 100%;
 `
 
 export const PreviewImageItemContainer = styled.div`
   flex: 0 0 auto;
-  width: 150px;
+  width: 100px;
   aspect-ratio: 4/3;
   position: relative;
 `
@@ -148,7 +157,7 @@ export const PreviewImageCrossContainer = styled.button`
   position: absolute;
   top: -10%;
   right: -10%;
-  background-color: #d10000;
+  background-color: #fef1f1;
   border: none;
   border-radius: 100%;
   justify-content: center;
@@ -158,12 +167,14 @@ export const PreviewImageCrossContainer = styled.button`
 export const PreviewImageRemoveButton = styled.span`
   height: 15px;
   width: 15px;
-  color: white;
+  color: #ef4343;
   border-radius: 10px;
 `
 
 export const UploadContainer = styled.div`
+  position: relative;
   width: 100%;
+  height: 100%;
 `
 
 export const ProgressBarContainer = styled.div`
