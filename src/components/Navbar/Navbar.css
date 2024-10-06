@@ -72,15 +72,6 @@
   filter: drop-shadow(3px 3px 4px #228BE6);
 }
 
-.profilePicSvg{
-  height: 60px;
-  width: 60px;
-  position: relative;
-  top:5px;
-  fill:rgb(39, 167, 218);
-  cursor: pointer;
-}
-
 .listItemValueForIdx {
   position: relative;
   cursor: pointer;
