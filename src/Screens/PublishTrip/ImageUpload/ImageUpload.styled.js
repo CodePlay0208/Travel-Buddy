@@ -15,7 +15,8 @@ export const UploadPhotos = styled.div`
 
 export const IconPicture = styled.div`
   img {
-    width: ${(props) => (props.width ? props.width : '100%')};
+    width: ${(props) => (props.width ? props.width : '374px')};
+    border-radius: 10px;
     aspect-ratio: 4/3;
     object-fit: cover;
   }
@@ -147,6 +148,7 @@ export const PreviewImageItemContainer = styled.div`
 
 export const PreviewImageItem = styled.img`
   width: 100%;
+  border-radius: 10px;
 
   aspect-ratio: 4/3;
   object-fit: cover;
