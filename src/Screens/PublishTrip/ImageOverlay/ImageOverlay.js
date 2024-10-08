@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import styled from 'styled-components'
@@ -22,13 +22,16 @@ const CarouselContainer = styled.div`
   justify-content: center;
   width: 80%;
   height: 95vh;
+  position: relative;
 `
 
 const StyledImage = styled.img`
-  width: max-content;
-  max-width: 90%;
-  max-height: 90vh;
-  object-fit: contain;
+  &&& {
+    width: max-content;
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+  }
 `
 
 const CustomCarousel = styled(Carousel)`
@@ -36,8 +39,8 @@ const CustomCarousel = styled(Carousel)`
     background-color: black;
     opacity: 0.8;
   }
-  .control-arrow:hover {
-    background-color: black;
+  .carousel .control-arrow:hover {
+    background-color: transparent;
     opacity: 1;
   }
   .control-arrow:before {
@@ -45,19 +48,57 @@ const CustomCarousel = styled(Carousel)`
   }
 `
 
+const CloseButton = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+
+  &:hover {
+    color: red;
+  }
+`
+
 const ImageOverlay = ({ images, overlay, setOverlay, currentIndex }) => {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setOverlay(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [setOverlay])
+
   if (!overlay) return null
 
   return (
     <Overlay onClick={() => setOverlay(false)}>
       <CarouselContainer onClick={(e) => e.stopPropagation()}>
-        <CustomCarousel selectedItem={currentIndex} showThumbs={false} dynamicHeight={true} infiniteLoop={true} showIndicators={false}>
+        <CustomCarousel
+          selectedItem={currentIndex}
+          showThumbs={false}
+          dynamicHeight={true}
+          infiniteLoop={true}
+          showIndicators={false}
+          useKeyboardArrows={true}
+        >
           {images.map((image, index) => (
-            <div key={index} className="imagesa ">
+            <div key={index}>
               <StyledImage src={image} alt={`carousel-${index}`} />
             </div>
           ))}
         </CustomCarousel>
+        <CloseButton onClick={() => setOverlay(false)}>&times;</CloseButton>
       </CarouselContainer>
     </Overlay>
   )
