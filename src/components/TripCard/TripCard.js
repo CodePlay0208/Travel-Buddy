@@ -11,22 +11,32 @@ import {
   ProfileImg,
   Username,
   Details,
-  Locations,
-  DetailsLeft,
-  DetailsRight,
-  DetailsContainer,
-  DateLabel,
-  SeparatorLine,
+  Duration,
+  Date,
+  Title,
   Description,
   ChatNow,
   ChatButton,
   CarouselItem,
   DestinationImg,
+  Budget,
+  SubTitle,
+  Price,
 } from '../../Styles/TripCard.styled'
 
 const TripCard = ({ trip }) => {
-  const { name=`name`, profileImg, startDate, endDate, startLocation, endLocation, totalMembers, age, gender, description, destinationImages } =
-    trip
+  const {
+    name = `name`,
+    profileImg,
+    startDate,
+    endDate,
+    duration,
+    startLocation,
+    endLocation,
+    budget,
+    description,
+    destinationImages,
+  } = trip
   const settings = {
     infinite: true,
     speed: 500,
@@ -46,6 +56,7 @@ const TripCard = ({ trip }) => {
     <TripCardContainer>
       <LeftContainer>
         <Slider {...settings}>
+          {console.log(destinationImages)}
           {destinationImages.map((img, index) => (
             <CarouselItem key={index}>
               <DestinationImg src={img} alt={`Destination ${index + 1}`} />
@@ -54,36 +65,26 @@ const TripCard = ({ trip }) => {
         </Slider>
       </LeftContainer>
       <RightContainer>
-        <ProfileSection>
+        {/* <ProfileSection>
           <ProfileImg src={profileImg} alt={` profile`} />
           <Username>{`name`}</Username>
-        </ProfileSection>
+        </ProfileSection> */}
         <Details>
-          <SeparatorLine />
-          <Locations>
-            <DetailsLeft>
-              <DateLabel>Start date: {startDate}</DateLabel>
-              <SeparatorLine />
-              <DateLabel>End date: {endDate}</DateLabel>
-            </DetailsLeft>
-            <DetailsContainer>
-              <img src={SVG.aeroplaneWithLocation} alt="" />
-              <DetailsRight>
-                <DateLabel>Start Location: {startLocation}</DateLabel>
-                <SeparatorLine />
-                <DateLabel>End Location: {endLocation}</DateLabel>
-                <SeparatorLine />
-              </DetailsRight>
-            </DetailsContainer>
-          </Locations>
-          <Description>Desc. {truncateDescription(description, 50)}</Description>
-        </Details>
-        <ChatNow>
-          <ChatButton>
+          <Duration>
             <img src={SVG.ChatNow} alt="" />
-            Chat Now
-          </ChatButton>
-        </ChatNow>
+            {duration}
+          </Duration>
+          <Title>{`${startLocation} to ${endLocation}`}</Title>
+          <Date>{`${startDate} - ${endDate}`}</Date>
+          <Description>{truncateDescription(description, 150)}</Description>
+          <ChatNow>
+            <Budget>
+              <SubTitle>Approx Budget</SubTitle>
+              <Price>Rs {budget}</Price>
+            </Budget>
+            <ChatButton>Chat Now</ChatButton>
+          </ChatNow>
+        </Details>
       </RightContainer>
     </TripCardContainer>
   )
