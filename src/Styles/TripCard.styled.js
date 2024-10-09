@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const TripCardContainer = styled.div`
-  width: 100%;
-  max-width: 400px;
+  width: 400px;
+  height: 600px;
   background: #ffffff;
   border: 2px solid #ffffff;
   box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.418);
@@ -15,12 +15,11 @@ export const TripCardContainer = styled.div`
 `
 
 export const LeftContainer = styled.div`
-  width: 380px;
+  width: 400px;
   aspect-ratio: 4 / 3;
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  margin: 10px auto;
 `
 
 export const CarouselItem = styled.div`
@@ -28,17 +27,26 @@ export const CarouselItem = styled.div`
   width: 100%;
   aspect-ratio: 4 / 3;
   padding-top: 100%;
+  &:focus,
+  &:active {
+    border: none;
+    outline: none;
+  }
 `
-
 export const DestinationImg = styled.img`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  min-width:400px;
+  width: 396.5px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 10px;
+  &:focus,
+  &:active {
+    border: none;
+    outline: none;
+  }
+
 `
 
 export const RightContainer = styled.div`
@@ -74,73 +82,96 @@ export const Username = styled.h3`
 export const Details = styled.div`
   flex: 1;
   display: flex;
+  padding: 3%;
   flex-direction: column;
 `
 
-export const Locations = styled.div`
+export const Duration = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2%;
+  font-family: Montserrat;
+  font-size: 10.43px;
+  font-weight: 500;
+  line-height: 12.72px;
+  text-align: left;
+  padding: 1% 0;
+`
+
+export const Date = styled.div`
+  font-family: Montserrat;
+  font-size: 23.53px;
+  font-weight: 700;
+  line-height: 28.69px;
+  color: #009965;
+  padding: 1% 0;
+`
+
+export const Title = styled.div`
+  font-family: Montserrat;
+  font-size: 25.3px;
+  font-weight: 700;
+  line-height: 30.84px;
+  text-align: left;
+  color: #363434;
+  padding: 1% 0;
+`
+
+export const Description = styled.div`
+  font-family: Montserrat;
+  font-size: 12.91px;
+  font-weight: 500;
+  line-height: 20.65px;
+  text-align: left;
+  color: #1f1d1d;
+  padding: 2% 0;
+`
+
+export const Budget = styled.div``
+
+export const SubTitle = styled.div`
+  font-family: Montserrat;
+  font-size: 14.71px;
+  font-weight: 700;
+  line-height: 17.93px;
+  text-align: left;
+
+  color: #009965;
+`
+
+export const Price = styled.div`
+  font-family: Montserrat;
+  font-size: 22.16px;
+  font-weight: 500;
+  line-height: 27.02px;
+  text-align: left;
+
+  color: #191717;
+`
+export const ChatNow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `
 
-export const DetailsLeft = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-export const DetailsRight = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-export const DetailsContainer = styled.div`
-  display: flex;
-`
-
-export const DateLabel = styled.div`
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 18px;
-  color: #312e2e;
-  margin: 4px 0;
-`
-
-export const SeparatorLine = styled.div`
-  width: 100%;
-  height: 1px;
-  background: #d9d9d9;
-  margin: 8px 0;
-`
-
-export const Description = styled.div`
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 16.7305px;
-  line-height: 20px;
-  color: #333333;
-`
-
-export const ChatNow = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`
-
 export const ChatButton = styled.button`
-  width: 88px;
+  width: 130px;
   height: 48.36px;
+  padding: 3% 8%;
   background: #8dd3bb;
   border-radius: 7.92793px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  font-size: 12.41px;
-  line-height: 15px;
+  font-size: 13.41px;
+  line-height: 16px;
   color: #292222;
+
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   @media (max-width: 767px) {
     width: 100%;
