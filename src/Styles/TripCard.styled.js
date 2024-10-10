@@ -5,7 +5,7 @@ export const TripCardContainer = styled.div`
   height: 600px;
   background: #ffffff;
   border: 2px solid #ffffff;
-  box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.418);
+  box-shadow: 0px 4px 25px 0px #8DD3BB40;
   border-radius: 16px;
   box-sizing: border-box;
   display: flex;
@@ -19,7 +19,7 @@ export const LeftContainer = styled.div`
   aspect-ratio: 4 / 3;
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 15px;
 `
 
 export const CarouselItem = styled.div`
@@ -40,7 +40,7 @@ export const DestinationImg = styled.img`
   width: 396.5px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 15px;
   &:focus,
   &:active {
     border: none;
@@ -82,7 +82,7 @@ export const Username = styled.h3`
 export const Details = styled.div`
   flex: 1;
   display: flex;
-  padding: 3%;
+  padding: 3% 5%;
   flex-direction: column;
 `
 
@@ -125,7 +125,7 @@ export const Description = styled.div`
   line-height: 20.65px;
   text-align: left;
   color: #1f1d1d;
-  padding: 2% 0;
+  padding: 4% 0 10%;
 `
 
 export const Budget = styled.div``
