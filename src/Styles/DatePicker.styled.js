@@ -24,17 +24,23 @@ export const InputWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
 
+  border: 2px solid ${(props) => props.borderColor};
+  transition: border-color 0.2s;
+  border-radius: 10px;
   input {
     width: 100%;
+    height: 100%;
     box-sizing: border-box;
     padding: 1% 5%;
+    border-radius: inherit;
     cursor: pointer;
-    transition: border-color 0.2s;
-    border-radius: 10px;
+    border: none;
     font-family: Arial, sans-serif;
     color: #787878;
-    border: 2px solid ${(props) => props.borderColor};
+
     line-height: 2.5rem;
     font-size: ${(props) => props.fontSize};
     font-weight: ${(props) => props.fontWeight};
@@ -45,12 +51,9 @@ export const InputWrapper = styled.div`
   }
 
   img {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 34px;
-    height: 30px;
+    width: min(100%, 34px);
+    height: min(100%, 30px);
+    cursor: pointer;
     pointer-events: none;
   }
 `
