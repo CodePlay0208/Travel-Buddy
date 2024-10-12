@@ -1,12 +1,6 @@
 import styled from 'styled-components'
 import firstImage from '../data/Images/aeroplaneBack.png'
 
-const mediaQueries = {
-  large: '@media (max-width: 1024px)',
-  medium: '@media (max-width: 768px)',
-  small: '@media (max-width: 480px)',
-}
-
 export const PopularTripContainer = styled.div`
   margin: 10% 0;
   background-image: url(${firstImage});
@@ -14,18 +8,7 @@ export const PopularTripContainer = styled.div`
   background-position: -30px;
   background-repeat: no-repeat;
   margin-bottom: 2%;
-
-  ${mediaQueries.large} {
-    margin: 50px auto 0 auto;
-  }
-
-  ${mediaQueries.medium} {
-    background-position: center;
-  }
-
-  ${mediaQueries.small} {
-    background-size: cover;
-  }
+  font-size: 5.2vw;
 `
 
 export const PopularButtonDiv = styled.div`
@@ -40,15 +23,6 @@ export const PopularTripHeading = styled.div`
   margin: 5% 10% 0 10%;
   padding: 30px 0;
   flex-wrap: wrap;
-
-  ${mediaQueries.large} {
-    margin: 50px auto 0 auto;
-    padding: 20px 0;
-  }
-
-  ${mediaQueries.medium} {
-    align-items: center;
-  }
 `
 
 export const PopularTripContent = styled.div`
@@ -73,38 +47,14 @@ export const PopularTripContent = styled.div`
   &::-webkit-scrollbar-track {
     background: transparent;
   }
-
-  ${mediaQueries.large} {
-    margin: 0 0 0 5%;
-  }
-
-  ${mediaQueries.medium} {
-    margin: 0;
-  }
 `
 
 export const PopularHeadingLeft = styled.div`
   font-family: 'Inter', sans-serif;
-  font-size: 56px;
+  font-size: 100%;
   font-weight: 600;
   line-height: 66px;
   text-align: left;
-
-  ${mediaQueries.large} {
-    font-size: 3rem;
-    line-height: 50px;
-  }
-
-  ${mediaQueries.medium} {
-    font-size: 2rem;
-    line-height: 40px;
-    text-align: center;
-  }
-
-  ${mediaQueries.small} {
-    font-size: 1.5rem;
-    line-height: 30px;
-  }
 `
 
 export const PopularHeadingRight = styled.div`
@@ -115,13 +65,6 @@ export const PopularHeadingRight = styled.div`
     background-color: white;
     color: black;
     border: black 1px solid;
-  }
-
-  ${mediaQueries.large} {
-    .left {
-      width: 40px;
-      height: 40px;
-    }
   }
 `
 
@@ -136,11 +79,6 @@ export const PopularButton = styled.button`
   border: none;
   color: rgb(0, 0, 0);
   margin-top: 5%;
-
-  ${mediaQueries.small} {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-  }
 `
 
 export const ArrowButton = styled.button`
@@ -156,10 +94,4 @@ export const ArrowButton = styled.button`
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-
-  ${mediaQueries.small} {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
 `

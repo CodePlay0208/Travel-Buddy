@@ -159,7 +159,7 @@ const Navbar = React.memo((props) => {
             </NavContents>
             <ProfileImageContainer onClick={handleClickOnProfilePic}>
               <img src={SVG.ProfileIcon} alt="Profile" />
-              {!showUserProfileDropDownList && <Dropdown data={userProfileDropDownData} selectSuggestion={selectSuggestion}></Dropdown>}
+              {showUserProfileDropDownList && <Dropdown data={userProfileDropDownData} selectSuggestion={selectSuggestion}></Dropdown>}
             </ProfileImageContainer>
           </OtherContentsOfNavBar>
         ) : (
