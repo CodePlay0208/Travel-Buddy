@@ -11,13 +11,13 @@ import {
   NavContainer,
   NavContents,
   Signup,
-  NavLink,
   NavButton,
   ListItemValueForIdx,
   UserProfileDropDownList,
   ListItemValueForUserProfileData,
   ProfileImageContainer,
 } from '../../Styles/Navbar.styles'
+import Dropdown from '../Dropdown/Dropdown'
 const Navbar = React.memo((props) => {
   const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
   const isUserLoggedIn = true
@@ -113,6 +113,15 @@ const Navbar = React.memo((props) => {
       console.log(error)
     }
   }
+  
+  const selectSuggestion = (suggestion) => {
+    setShowUserProfileDropDownList(false);
+    if (suggestion.path === 'signOut') {
+      handleSignOutLogic();
+    } else {
+      navigate(suggestion.path);
+    }
+  };
   function handleChat() {
     // console.log('current user is', UserLoginContext)
     accessChat('6690ab18c2d9d0a71a4533da')
@@ -130,54 +139,37 @@ const Navbar = React.memo((props) => {
         >
           Travmigoz
         </WebAppNameAndLogo>
-        <OtherContentsOfNavBar>
-          {isUserLoggedIn ? (
-            <OtherContentsOfNavBar>
-              <NavButton
-                onClick={() => {
-                  navigate('/Chats')
-                }}
-              >
-                <img src={SVG.ChatButton} alt="Chat" />
-              </NavButton>
-              <NavLink
-                onClick={() => {
-                  localStorage.removeItem('inputValues')
-                  navigate('/publish-trip')
-                }}
-              >
-                Publish Trip
-              </NavLink>
-              <ProfileImageContainer onClick={handleClickOnProfilePic}>
-                <img src={SVG.ProfileIcon} alt="Profile" />
-                {showUserProfileDropDownList && (
-                  <UserProfileDropDownList>
-                    {userProfileDropDownData.map((data) => (
-                      <ListItemValueForIdx
-                        key={data.value}
-                        onClick={() => {
-                          setShowUserProfileDropDownList(false)
-                          if (data.path === 'signOut') {
-                            handleSignOutLogic()
-                          } else {
-                            navigate(data.path)
-                          }
-                        }}
-                      >
-                        <ListItemValueForUserProfileData>{data.value}</ListItemValueForUserProfileData>
-                      </ListItemValueForIdx>
-                    ))}
-                  </UserProfileDropDownList>
-                )}
-              </ProfileImageContainer>
-            </OtherContentsOfNavBar>
-          ) : (
-            <OtherContentsOfNavBar>
-              <NavContents onClick={() => navigate('/login')}>Login</NavContents>
-              <Signup onClick={() => navigate('/publish-trip')}>Publish Trip</Signup>
-            </OtherContentsOfNavBar>
-          )}
-        </OtherContentsOfNavBar>
+
+        {!isUserLoggedIn ? (
+          <OtherContentsOfNavBar>
+            <NavButton
+              onClick={() => {
+                navigate('/Chats')
+              }}
+            >
+              <img src={SVG.ChatButton} alt="Chat" />
+            </NavButton>
+            <NavButton
+              onClick={() => {
+                localStorage.removeItem('inputValues')
+                navigate('/publish-trip')
+              }}
+            >
+              Publish Trip
+            </NavButton>
+            <ProfileImageContainer onClick={handleClickOnProfilePic}>
+              <img src={SVG.ProfileIcon} alt="Profile" />
+              {!showUserProfileDropDownList && (
+                <Dropdown data={userProfileDropDownData} selectSuggestion={selectSuggestion}></Dropdown>
+              )}
+            </ProfileImageContainer>
+          </OtherContentsOfNavBar>
+        ) : (
+          <OtherContentsOfNavBar>
+            <NavContents onClick={() => navigate('/publish-trip')}>Publish a Trip</NavContents>
+            <Signup onClick={() => navigate('/login')}>Login</Signup>
+          </OtherContentsOfNavBar>
+        )}
       </Nav>
     </NavContainer>
   )

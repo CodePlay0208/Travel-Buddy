@@ -10,7 +10,7 @@ export const HeaderContainer = styled.div`
 export const LandingHeader = styled.div`
   position: relative;
   width: 100%;
-  height: 60vh;
+  height: 40vw;
   border-radius: 25px;
   overflow: hidden;
 
@@ -56,7 +56,7 @@ export const HeaderDescription = styled.div`
   width: 80%;
   max-width: 753px;
   height: auto;
-  top: 35vh;
+  top: 50%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -64,9 +64,8 @@ export const HeaderDescription = styled.div`
 `
 
 export const HeaderDesHeading = styled.div`
-  font-family: 'TradeGothic LT Extended', sans-serif;
   font-weight: 700;
-  font-size: 5rem;
+  font-size: 7vw;
   transform: translate(0, -100%);
   color: white;
 `
@@ -74,65 +73,11 @@ export const HeaderDesHeading = styled.div`
 export const HeaderDesPara = styled.div`
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 2vw;
   transform: translate(0, -300%);
   color: white;
 `
 
 export const HeaderNavRightLogin = styled.div`
   color: white;
-`
-
-export const Media768 = styled.div`
-  @media (max-width: 768px) {
-    ${LandingHeader} {
-      height: 50vh;
-    }
-
-    ${HeaderSearchBar} {
-      width: 90%;
-      height: 50px;
-      top: 45vh;
-    }
-
-    ${HeaderDescription} {
-      top: 30vh;
-      width: 90%;
-    }
-
-    ${HeaderDesHeading} {
-      font-size: 1.5rem;
-    }
-
-    ${HeaderDesPara} {
-      font-size: 1rem;
-    }
-  }
-`
-
-export const Media480 = styled.div`
-  @media (max-width: 480px) {
-    ${LandingHeader} {
-      height: 40vh;
-    }
-
-    ${HeaderSearchBar} {
-      width: 95%;
-      height: 40px;
-      top: 40vh;
-    }
-
-    ${HeaderDescription} {
-      top: 25vh;
-      width: 95%;
-    }
-
-    ${HeaderDesHeading} {
-      font-size: 1.2rem;
-    }
-
-    ${HeaderDesPara} {
-      font-size: 0.9rem;
-    }
-  }
 `
