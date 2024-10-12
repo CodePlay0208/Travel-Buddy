@@ -140,7 +140,7 @@ const Navbar = React.memo((props) => {
           Travmigoz
         </WebAppNameAndLogo>
 
-        {!isUserLoggedIn ? (
+        {isUserLoggedIn ? (
           <OtherContentsOfNavBar>
             <NavButton
               onClick={() => {
@@ -159,7 +159,7 @@ const Navbar = React.memo((props) => {
             </NavButton>
             <ProfileImageContainer onClick={handleClickOnProfilePic}>
               <img src={SVG.ProfileIcon} alt="Profile" />
-              {!showUserProfileDropDownList && (
+              {showUserProfileDropDownList && (
                 <Dropdown data={userProfileDropDownData} selectSuggestion={selectSuggestion}></Dropdown>
               )}
             </ProfileImageContainer>
