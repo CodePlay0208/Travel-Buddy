@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+const breakpoints = {
+  mobile: '480px',
+  tablet: '768px',
+  desktop: '1024px',
+}
 export const NavContainer = styled.div`
   font-size: 2vw;
   padding: ${(props) => (props.isImageNavbar ? `1%` : `0px`)};
@@ -23,7 +28,6 @@ export const WebAppNameAndLogo = styled.div`
   font-size: 100%;
   padding: 0.5%;
   cursor: pointer;
-  
 `
 
 export const OtherContentsOfNavBar = styled.div`
@@ -31,34 +35,41 @@ export const OtherContentsOfNavBar = styled.div`
   justify-content: center;
   align-items: center;
   color: #fff;
-  position:relative;
-  width: 12.5%;
-  font-size:50%;
-  img{
-    width:100%;
-    height:100%;
+  position: relative;
+  width: 25%;
+  font-size: 75%;
+  margin-right: 1%;
+  gap: 5%;
+  img {
+    width: 100%;
+    height: 100%;
   }
 `
-
 
 export const NavContents = styled.div`
   padding: 0.5%;
   cursor: pointer;
+  color: rgb(39, 167, 218);
+  border: none;
+  position: relative;
+  &:hover {
+    filter: drop-shadow(3px 3px 4px #228be6);
+  }
 `
 
 export const NavButton = styled.div`
   color: rgb(39, 167, 218);
   border: none;
   font-weight: 500;
-  
+  text-align: center;
   cursor: pointer;
   margin: 2.5%;
-
+  width: 80%;
+  position: relative;
   &:hover {
     filter: drop-shadow(3px 3px 4px #228be6);
   }
 `
-
 
 export const Signup = styled.div`
   background-color: white;
@@ -72,7 +83,6 @@ export const Signup = styled.div`
   text-decoration: none;
   margin: 0 10px;
 `
-
 
 export const ProfileImageContainer = styled.div`
   cursor: pointer;

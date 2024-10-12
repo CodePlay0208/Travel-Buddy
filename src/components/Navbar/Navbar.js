@@ -113,15 +113,15 @@ const Navbar = React.memo((props) => {
       console.log(error)
     }
   }
-  
+
   const selectSuggestion = (suggestion) => {
-    setShowUserProfileDropDownList(false);
+    setShowUserProfileDropDownList(false)
     if (suggestion.path === 'signOut') {
-      handleSignOutLogic();
+      handleSignOutLogic()
     } else {
-      navigate(suggestion.path);
+      navigate(suggestion.path)
     }
-  };
+  }
   function handleChat() {
     // console.log('current user is', UserLoginContext)
     accessChat('6690ab18c2d9d0a71a4533da')
@@ -144,24 +144,22 @@ const Navbar = React.memo((props) => {
           <OtherContentsOfNavBar>
             <NavButton
               onClick={() => {
-                navigate('/Chats')
-              }}
-            >
-              <img src={SVG.ChatButton} alt="Chat" />
-            </NavButton>
-            <NavButton
-              onClick={() => {
                 localStorage.removeItem('inputValues')
                 navigate('/publish-trip')
               }}
             >
               Publish Trip
             </NavButton>
+            <NavContents
+              onClick={() => {
+                navigate('/Chats')
+              }}
+            >
+              <img src={SVG.ChatButton} alt="Chat" />
+            </NavContents>
             <ProfileImageContainer onClick={handleClickOnProfilePic}>
               <img src={SVG.ProfileIcon} alt="Profile" />
-              {showUserProfileDropDownList && (
-                <Dropdown data={userProfileDropDownData} selectSuggestion={selectSuggestion}></Dropdown>
-              )}
+              {showUserProfileDropDownList && <Dropdown data={userProfileDropDownData} selectSuggestion={selectSuggestion}></Dropdown>}
             </ProfileImageContainer>
           </OtherContentsOfNavBar>
         ) : (

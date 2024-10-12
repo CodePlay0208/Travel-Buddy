@@ -1,10 +1,9 @@
-import React from 'react';
-import { DropdownContainer, DropdownItem } from "./Dropdown.styled.js";
-import { useNavigate } from 'react-router-dom'; // If you're using react-router for navigation
+import React from 'react'
+import { DropdownContainer, DropdownItem } from './Dropdown.styled.js'
+import { useNavigate } from 'react-router-dom'
 
-const Dropdown = ({ data, selectSuggestion}) => {
-  const navigate = useNavigate();
-
+const Dropdown = ({ data, selectSuggestion }) => {
+  const navigate = useNavigate()
 
   return (
     <DropdownContainer>
@@ -14,7 +13,7 @@ const Dropdown = ({ data, selectSuggestion}) => {
         </DropdownItem>
       ))}
     </DropdownContainer>
-  );
-};
+  )
+}
 
-export default Dropdown;
+export default Dropdown

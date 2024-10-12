@@ -17,13 +17,13 @@ const PopularSection = () => {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -380, behavior: 'smooth' })
+      scrollContainerRef.current.scrollBy({ left: -400, behavior: 'smooth' })
     }
   }
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 380, behavior: 'smooth' })
+      scrollContainerRef.current.scrollBy({ left: 400, behavior: 'smooth' })
     }
   }
 

@@ -12,9 +12,11 @@ export const SearchBarContainer = styled.div`
 `
 
 export const SearchBarInput = styled.input`
+  position: relative;
   border-radius: inherit;
   font-style: normal;
   line-height: 2.5rem;
+  height: 100%;
   color: #686868;
   padding-left: 5%;
   width: 90%;
@@ -26,14 +28,15 @@ export const SearchBarInput = styled.input`
 
   &::placeholder {
     font-family: Arial, sans-serif;
+    font-size: ${(props) => props.fontSize};
     font-weight: ${(props) => props.fontWeight};
     color: #787878;
   }
 `
 
 export const LocationIcon = styled.img`
-  width: 34px;
-  height: 30px;
+  width: min(100%, 34px);
+  height: min(100%, 30px);
   cursor: pointer;
 `
 
@@ -48,23 +51,35 @@ export const Dropdown = styled.div`
   z-index: 10;
   padding: 2% 0px;
   overflow: hidden;
+  @media (max-width: 768px) {
+    border-radius: 0px 0px 15x 15px;
+  }
+  @media (max-width: 480px) {
+    border-radius: 0px 0px 5px 5px;
+  }
 `
 
 export const DropdownItem = styled.div`
-  padding: 10px;
+  padding: 4%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   display: flex;
   align-items: center;
-  height: 60px;
-  font-size: 23px;
+  height: max(100%, 60px);
+  font-size: 75%;
   color: #1b1717;
   background-color: #b6f0dc;
   border-radius: 13.43px;
-  margin: 5px 24px;
+  margin: 2% 5%;
   cursor: pointer;
 
   &:hover {
     background-color: #a1a1a1;
+  }
+  @media (max-width: 768px) {
+    border-radius: 7.5px;
+  }
+  @media (max-width: 480px) {
+    border-radius: 2.5px;
   }
 `
