@@ -84,6 +84,7 @@ export const Details = styled.div`
   display: flex;
   padding: 3% 5%;
   flex-direction: column;
+  position: relative;
 `
 
 export const Duration = styled.div`
@@ -134,6 +135,7 @@ export const SubTitle = styled.div`
   font-family: Montserrat;
   font-size: 14.71px;
   font-weight: 700;
+  padding-bottom:5%;
   line-height: 17.93px;
   text-align: left;
 
@@ -153,6 +155,9 @@ export const ChatNow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: auto;
+  position: relative;
+  bottom: 0px;
 `
 
 export const ChatButton = styled.button`
