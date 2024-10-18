@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { SVG } from '../../assets'
 import { connect } from 'react-redux'
 import { forgetPassword } from '../../actions/auth.action'
+import { ToastContainer } from 'react-toastify'
 
 const ForgotPasswordPage = (props) => {
   const { forgetPassword } = props
@@ -97,6 +98,7 @@ const ForgotPasswordPage = (props) => {
       <div className="ForgetPassDesignContainer">
         <img src={SVG.AuthDesignSection} className="ForgetPassAuthDesignImage" alt="AuthDesignImage" />
       </div>
+      <ToastContainer />
     </div>
   )
 }

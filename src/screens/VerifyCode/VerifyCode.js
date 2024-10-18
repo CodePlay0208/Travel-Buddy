@@ -7,7 +7,7 @@ import { verifyOTP, resendOTP } from '../../actions/auth.action'
 import { ToastContainer } from 'react-toastify'
 
 const mapStateToProps = (state) => ({
-  otpVerified: state.auth.otpVerified,
+  otpVerified: state.authReducer.otpVerified,
 })
 
 const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {

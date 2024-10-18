@@ -51,6 +51,7 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
       }
     case VERIFY_OTP_SUCCESS:
+      localStorage.setItem("token", payload.token)
       return {
         ...state,
         otpVerified: true,

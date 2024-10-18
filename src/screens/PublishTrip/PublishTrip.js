@@ -30,7 +30,7 @@ import {
 } from './PublishTrip.styled'
 
 const mapStateToProps = (state) => ({
-  profile: state.profile.profile,
+  profile: state.profileReducer.profile,
 })
 
 const TABS = {

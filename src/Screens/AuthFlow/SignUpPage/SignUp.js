@@ -46,8 +46,8 @@ import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user,
-  isLoading: state.auth.isLoading,
+  user: state.authReducer.user,
+  isLoading: state.authReducer.isLoading,
 })
 
 const SignUp = (props) => {

@@ -1,22 +1,23 @@
 import React, { useContext, useState, memo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
-import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
+import { UserLoginContext } from '../../utils/Context/LoggedInUserContext'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { SVG } from '../../assets'
-import './loginPage.css'
+import './LoginPage.css'
 import { connect } from 'react-redux'
-import { setGoogleToken } from '../../api-services/api-services'
+import { setGoogleToken } from '../../services/api-services/api-services'
 import { login, loginWithGoogle } from '../../actions/auth.action'
 // import { env } from '../../config/env'
 // import { AuthApi } from '../../api-services/api-invokes'
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.authReducer.isAuthenticated
 })
 
-const LoginPage = ({ login, isAuthenticated }) => {
+const LoginPage = (props) => {
+  const { login, isAuthenticated } = props
   const [userEmail, setUserEmail] = useState('')
   const [password, setPassword] = useState('')
   const [rememberMe, setRememberMe] = useState(false)
@@ -55,6 +56,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
     onSuccess: (response) => {
       console.log(response)
       const token = response.access_token
+      console.log('token', token)
       setGoogleToken(token)
   
       // Send the token to your backend for verification and user data fetching
