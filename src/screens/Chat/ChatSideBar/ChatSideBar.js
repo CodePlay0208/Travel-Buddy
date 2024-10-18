@@ -1,45 +1,42 @@
-import { useEffect, memo } from 'react'
+import { memo } from 'react'
 import './ChatSideBar.css'
-import ChatItem from './ChatItem'
 import { connect } from 'react-redux'
-import { getAllChats } from '../../../actions/chats.action'
-import { toast } from 'react-toastify'
-import { getSender } from '../utils/chat-utils'
+import { setSelectedChat } from '../../../actions/chats.action'
+import { getSenderName } from '../utils/chat-utils'
+import ChatItem from './components/ChatItem/ChatItem'
 
 const mapStateToProps = (state) => ({
-  user: state.profileReducer.profile,
+  user: state.authReducer.user,
   chats: state.chatsReducer.chats,
-  selectedChat: state.chatsReducer.selectedChat
+  selectedChat: state.chatsReducer.selectedChat,
 })
 
-const Sidebar = (props) => {
-  const { user, chats, selectedChat } = props
-
-  useEffect(() => {
-    getAllChats()
-  }, [])
-
+const ChatSidebar = (props) => {
+  const { user, selectedChat, setSelectedChat, chats } = props
   return (
     <div className="chat-sidebar-container">
-      {
-        chats ? (
-          <div className='chat-items-container'>
-            {
-              chats.map((chat) => (
+      {chats ? (
+        <div className="chat-items-container">
+          {chats.map((chat) => {
+            const isChatUserCorrect = chat.users.length > 1
+            if (isChatUserCorrect) {
+              return (
                 <ChatItem
-                  key={chat._id}
-                  active={selectedChat === chat}
-                  name={getSender(user, chat.users)}
-                  latestMessage={chat.latestMessage}
+                  key={chat?.chatId}
+                  active={selectedChat?.chatId === chat?.chatId}
+                  name={getSenderName(user, chat.users)}
+                  latestMessage={chat?.latestMessage}
+                  onClick={() => setSelectedChat(chat)}
                 />
-              ))
+              )
             }
-          </div>
-        ) : (<>
-        </>)
-      }
+          })}
+        </div>
+      ) : (
+        <>No Chats Currently</>
+      )}
     </div>
   )
 }
 
-export default connect(mapStateToProps, { getAllChats })(memo(Sidebar))
+export default connect(mapStateToProps, { setSelectedChat })(memo(ChatSidebar))

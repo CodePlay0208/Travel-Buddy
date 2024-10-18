@@ -12,7 +12,7 @@ const DEFAULT_SEARCH_FORM = {
 }
 
 const mapStateToProps = (state) => ({
-  trips: state.trip.trips,
+  trips: state.tripReducer.trips
 })
 
 const SearchMenu = () => {

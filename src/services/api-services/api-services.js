@@ -17,6 +17,7 @@ const getAuthToken = () => {
 const setGoogleToken = (googleToken) => {
   if (googleToken) {
     API_CONFIG.headers.GoogleAuthorization = `Bearer ${googleToken}`
+    console.log('API_CONFIG', API_CONFIG)
   }
 }
 

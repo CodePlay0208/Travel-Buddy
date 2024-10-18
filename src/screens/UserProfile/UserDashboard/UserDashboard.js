@@ -25,8 +25,8 @@ import {
 } from './UserDashboard.styled'
 
 const mapStateToProps = (state) => ({
-  profile: state.profile.profile,
-  loading: state.profile.loading,
+  profile: state.profileReducer.profile,
+  loading: state.profileReducer.loading,
 })
 
 const UserDashboard = ({ profile, getProfile }) => {

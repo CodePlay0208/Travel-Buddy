@@ -21,6 +21,14 @@ export const API_PATH = {
   EDIT_PROFILE_API: '/edit_user',
   CHATS_API: '/message/getAllMessages',
 
+  MESSAGE_BASE: '/message',
+  GET_ALL_MESSAGES_API: '/getAllMessages',
+  CREATE_NEW_MESSAGE: '/createNewMessage',
+
+  CHAT_BASE: '/chat',
+  CREATE_CHAT_API: '/fetchOrCreateChats',
+  GET_CHATS_API: '/getChats',
+
   NEWSLETTER_API: '/misc/subscribeToNewsletter',
 
   LOCATION_API: '/location/getLocationByName',

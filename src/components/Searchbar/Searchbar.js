@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { SearchBarContainer, SearchBarInput, LocationIcon, Dropdown, DropdownItem } from '../../Styles/Searchbar.styled'
 
 const mapStateToProps = (state) => ({
-  suggestions: state.location.suggestions,
+  suggestions: state.locationReducer.suggestions
 })
 
 const Searchbar = (props) => {

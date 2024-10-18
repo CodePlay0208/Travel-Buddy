@@ -8,8 +8,8 @@ import { SVG } from '../../assets'
 import './SignUp.css'
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user,
-  isLoading: state.auth.isLoading,
+  user: state.authReducer.user,
+  isLoading: state.authReducer.isLoading,
 })
 
 const SignUp = (props) => {
