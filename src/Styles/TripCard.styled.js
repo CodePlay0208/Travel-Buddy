@@ -5,13 +5,13 @@ export const TripCardContainer = styled.div`
   height: 600px;
   background: #ffffff;
   border: 2px solid #ffffff;
-  box-shadow: 0px 4px 25px 0px #8DD3BB40;
+  box-shadow: 0px 4px 25px 0px #8dd3bb40;
   border-radius: 16px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 3%;
+  /* margin: 1%; */
 `
 
 export const LeftContainer = styled.div`
@@ -46,7 +46,6 @@ export const DestinationImg = styled.img`
     border: none;
     outline: none;
   }
-
 `
 
 export const RightContainer = styled.div`
@@ -135,7 +134,7 @@ export const SubTitle = styled.div`
   font-family: Montserrat;
   font-size: 14.71px;
   font-weight: 700;
-  padding-bottom:5%;
+  padding-bottom: 5%;
   line-height: 17.93px;
   text-align: left;
 

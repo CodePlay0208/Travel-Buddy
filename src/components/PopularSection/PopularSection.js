@@ -12,7 +12,7 @@ import {
 import data from '../../data/data.json'
 import TripCard from '../TripCard/TripCard'
 
-const PopularSection = () => {
+const PopularSection = (props) => {
   const scrollContainerRef = useRef(null)
 
   const scrollLeft = () => {
@@ -40,7 +40,7 @@ const PopularSection = () => {
           </ArrowButton>
         </PopularHeadingRight>
       </PopularTripHeading>
-      <PopularTripContent ref={scrollContainerRef}>
+      <PopularTripContent ref={scrollContainerRef} margin={props?.margin ? props.margin : `0 5.5%`}>
         {data.map((d, index) => (
           <TripCard key={index} trip={d} />
         ))}

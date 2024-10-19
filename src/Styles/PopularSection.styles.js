@@ -28,7 +28,7 @@ export const PopularTripHeading = styled.div`
 export const PopularTripContent = styled.div`
   display: flex;
   overflow-x: auto;
-  margin: 0 0 0 5.5%;
+  margin: ${(props) => props.margin};
   padding: 30px 0;
   gap: 20px;
   scrollbar-width: none;
