@@ -66,8 +66,8 @@ const LoginPage = ({ login, isAuthenticated }) => {
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
+          'googletoken': `Bearer ${token}`
         },
-        body: JSON.stringify({ token }),
       })
         .then((response) => {
           if (!response.ok) {

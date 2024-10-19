@@ -19,12 +19,12 @@ import sixthImage from '../../data/Images/heroSection/image6.png'
 
 const HeroSection = () => {
   const cardData = [
-    { id: 1, image: firstImage, name: 'Place name' },
-    { id: 2, image: secondImage, name: 'Place name' },
-    { id: 3, image: thirdImage, name: 'Place name' },
-    { id: 4, image: fourthImage, name: 'Place name' },
-    { id: 5, image: fifthImage, name: 'Place name' },
-    { id: 6, image: sixthImage, name: 'Place name' },
+    { id: 1, image: firstImage, name: 'Manali' },
+    { id: 2, image: secondImage, name: 'Ooty' },
+    { id: 3, image: thirdImage, name: 'Shimla' },
+    { id: 4, image: fourthImage, name: 'Udaipur' },
+    { id: 5, image: fifthImage, name: 'Rameshwaram' },
+    { id: 6, image: sixthImage, name: 'Nanital' },
   ]
 
   return (
@@ -32,18 +32,17 @@ const HeroSection = () => {
       <HeroSectionText>
         <h1>Top Destinations</h1>
         <HeroSectionButtonGroup>
-          <HeroSectionButton primary>Location</HeroSectionButton>
-          <HeroSectionButton>Location</HeroSectionButton>
-          <HeroSectionButton>Location</HeroSectionButton>
-          <HeroSectionButton>Location</HeroSectionButton>
-          <HeroSectionButton>Location</HeroSectionButton>
+          <HeroSectionButton primary>Manali</HeroSectionButton>
+          <HeroSectionButton>Ooty</HeroSectionButton>
+          <HeroSectionButton>Shimla</HeroSectionButton>
+          <HeroSectionButton>Udaipur</HeroSectionButton>
+          <HeroSectionButton>Rameshwaram</HeroSectionButton>
         </HeroSectionButtonGroup>
       </HeroSectionText>
       <HeroSectionCards>
         {cardData.map((card) => (
           <HeroSectionCard key={card.id}>
             <HeroSectionCardImg image={card.image}>
-              <HeroSectionRating>{card.rating}</HeroSectionRating>
             </HeroSectionCardImg>
             <HeroSectionPlaceName>{card.name}</HeroSectionPlaceName>
           </HeroSectionCard>
