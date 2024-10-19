@@ -20,9 +20,10 @@ export const PopularButtonDiv = styled.div`
 export const PopularTripHeading = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 5% 10% 0 10%;
+  margin: ${(props) => props.margin};
   padding: 30px 0;
   flex-wrap: wrap;
+  font-size: ${(props) => props.fontSize};
 `
 
 export const PopularTripContent = styled.div`

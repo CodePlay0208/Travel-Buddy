@@ -29,8 +29,8 @@ const PopularSection = (props) => {
 
   return (
     <PopularTripContainer>
-      <PopularTripHeading>
-        <PopularHeadingLeft>Find Popular Destination</PopularHeadingLeft>
+      <PopularTripHeading margin={props?.margin ? props.margin : `5% 10% 0 10%`} fontSize={props?.fontSize ? props.fontSize : `100%`}>
+        <PopularHeadingLeft>{props?.title ? props.title : `Find Popular Destination`} </PopularHeadingLeft>
         <PopularHeadingRight>
           <ArrowButton className="left" onClick={scrollLeft} aria-label="Scroll Left">
             {'<'}

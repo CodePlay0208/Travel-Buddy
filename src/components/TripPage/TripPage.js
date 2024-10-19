@@ -63,7 +63,7 @@ const TripPage = () => {
         <ImagesSection images={data[0].destinationImages} />
         <DetailsSection />
       </Container>
-      <PopularSection margin={`0 12.5%`} />
+      <PopularSection title="Similar Trip"  margin={`0 15%`} fontSize={`40px`}/>
       <Footer />
     </>
   )
