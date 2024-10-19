@@ -45,6 +45,11 @@ export const HeroSectionButton = styled.button`
   background-color: ${({ primary }) => (primary ? '#2D3134' : 'white')};
   color: ${({ primary }) => (primary ? '#FFFFFF' : '#2D3134')};
   border: ${({ primary }) => (primary ? 'none' : '1px solid #3D3D3D')};
+
+  &:hover {
+    background-color: #a1a1a1;
+    cursor: pointer;
+  }
 `
 
 export const HeroSectionCards = styled.div`
@@ -79,6 +84,10 @@ export const HeroSectionCardImg = styled.div`
   background-size: cover;
   background-position: center;
   background-image: ${({ image }) => `url(${image})`};
+
+  &:hover {
+    cursor: pointer;
+  }
 
   &::after {
     content: '';
