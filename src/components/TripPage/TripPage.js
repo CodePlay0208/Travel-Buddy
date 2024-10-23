@@ -60,7 +60,7 @@ const TripPage = () => {
     <>
       <Navbar />
       <Container>
-        <ImagesSection images={data[0].destinationImages} />
+        <ImagesSection images={data[tripId-1].destinationImages} />
         <DetailsSection />
       </Container>
       <PopularSection title="Similar Trip"  margin={`0 15%`} fontSize={`40px`}/>
