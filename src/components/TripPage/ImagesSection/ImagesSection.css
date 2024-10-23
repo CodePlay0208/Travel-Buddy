@@ -1,7 +1,7 @@
 .image-section {
   display: flex;
   width: 100%;
-  height: 450px;
+  aspect-ratio: 8/3;
   justify-content: center;
   position: relative;
   margin: 5% auto;
@@ -11,89 +11,62 @@
   display: flex;
   width: 100%;
   height: 100%;
-  gap: 15px;
+  gap: 1.2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
-
-.two-images .image-item {
-  width: calc(50% - 7.5px); /* Two images side by side */
+.only-image{
+  aspect-ratio: 2;
+}
+.main-image {
+  width: calc(50% - 0.6%); 
+  
   height: 100%;
   object-fit: cover;
 }
 
-.three-images .main-image {
-  width: 592.5px;
-  height: 450px;
-  object-fit: cover;
-}
-
-.three-images .right-images {
+.right-images {
+  width: calc(50% - 0.6%); 
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  gap: 2.4%;
 }
 
 .three-images .right-images .image-item {
-  width: calc(100% - 7.5px);
-  height: 50%;
+  width: calc(50% - 1.2%);
   object-fit: cover;
-}
-
-.four-images .main-image {
-  width: 592.5px;
-  height: 450px;
-  object-fit: cover;
-}
-
-.four-images .right-images {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
 }
 
 .four-images .tall-image {
-  width: calc(50% - 7.5px);
+  width: calc(50% - 1.2%);
   height: 100%;
   object-fit: cover;
 }
 
 .four-images .stacked-images {
+  width: calc(50% - 1.2%);
+  height: 100%;
+  object-fit: cover;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 4%;
 }
 
 .four-images .stacked-images .image-item {
-  width: calc(50% - 7.5px);
-  height: calc(50% - 7.5px);
+  width: 100%;
+  height: calc(50% - 2%);
   object-fit: cover;
 }
-
-.five-images .main-image {
-  width: 592.5px;
-  height: 450px;
-  object-fit: cover;
-}
-
-.five-images .right-images {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.five-images .tall-image {
-  width: calc(50% - 7.5px);
+.llSection,.lrSection {
+  width: calc(50% - 1.2%);
   height: 100%;
   object-fit: cover;
-}
-
-.five-images .stacked-images {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 4%;
 }
-
-.five-images .stacked-images .image-item {
-  width: calc(50% - 7.5px);
-  height: calc(33.33% - 7.5px);
+.llSection  .tall-image,.lrSection .tall-image {
+  width: 100%;
+  height: calc(50% - 2%);
   object-fit: cover;
 }
