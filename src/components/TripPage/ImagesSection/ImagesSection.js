@@ -3,10 +3,12 @@ import './ImagesSection.css'
 
 const ImageSection = ({ images }) => {
   const renderImages = () => {
-    if(images.length==1){
-      return <div className="image-row">
-        <img src={images[0]} alt="Main Image" className="only-image" />
-      </div>
+    if (images.length == 1) {
+      return (
+        <div className="image-row">
+          <img src={images[0]} alt="Main Image" className="only-image" />
+        </div>
+      )
     }
     if (images.length === 2) {
       return (
@@ -52,8 +54,8 @@ const ImageSection = ({ images }) => {
             </div>
 
             <div className="lrSection">
-            <img src={images[3]} alt="Tall Image" className="tall-image" />
-            <img src={images[4]} alt="Tall Image" className="tall-image" />
+              <img src={images[3]} alt="Tall Image" className="tall-image" />
+              <img src={images[4]} alt="Tall Image" className="tall-image" />
             </div>
           </div>
         </div>

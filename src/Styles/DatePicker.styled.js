@@ -53,6 +53,7 @@ export const InputWrapper = styled.div`
   img {
     width: min(100%, 34px);
     height: min(100%, 30px);
+    margin-right: 0.5rem;
     cursor: pointer;
     pointer-events: none;
   }
