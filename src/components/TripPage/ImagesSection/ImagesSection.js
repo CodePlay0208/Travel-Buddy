@@ -1,52 +1,69 @@
-import React, { useState } from 'react';
-import './ImagesSection.css';
+import React from 'react'
+import './ImagesSection.css'
 
 const ImageSection = ({ images }) => {
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
-  const handleImageClick = (index) => {
-    setSelectedImageIndex(index);
-  };
-
-  const handleNextImage = () => {
-    setSelectedImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  const handlePrevImage = () => {
-    setSelectedImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
-
-  return (
-    <div className="image-section">
-      {images.length > 0 ? (
-        <>
-          <div className="selected-image-container">
-            <img src={images[selectedImageIndex]} alt="Selected" className="selected-image" />
-            {images.length > 1 && (
-              <div className="navigation-arrows">
-                <button onClick={handlePrevImage} className="arrow-button">◀</button>
-                <button onClick={handleNextImage} className="arrow-button">▶</button>
-              </div>
-            )}
-          </div>
-          <div className={`thumbnail-container thumbnails-${images.length}`}>
-            {images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Thumbnail ${index + 1}`}
-                onClick={() => handleImageClick(index)}
-                className={`thumbnail ${index === selectedImageIndex ? 'selected' : ''}`}
-              />
-              
+  const renderImages = () => {
+    if (images.length == 1) {
+      return (
+        <div className="image-row">
+          <img src={images[0]} alt="Main Image" className="only-image" />
+        </div>
+      )
+    }
+    if (images.length === 2) {
+      return (
+        <div className="image-row two-images">
+          {images.map((image, index) => (
+            <img key={index} src={image} alt={`Image ${index + 1}`} className="main-image" />
+          ))}
+        </div>
+      )
+    } else if (images.length === 3) {
+      return (
+        <div className="image-row three-images">
+          <img src={images[0]} alt="Main Image" className="main-image" />
+          <div className="right-images">
+            {images.slice(1).map((image, index) => (
+              <img key={index} src={image} alt={`Image ${index + 2}`} className="image-item" />
             ))}
           </div>
-        </>
-      ) : (
-        <div className="no-images">No Images Available</div>
-      )}
-    </div>
-  );
-};
+        </div>
+      )
+    } else if (images.length === 4) {
+      return (
+        <div className="image-row four-images">
+          <img src={images[0]} alt="Main Image" className="main-image" />
+          <div className="right-images">
+            <img src={images[1]} alt="Tall Image" className="tall-image" />
+            <div className="stacked-images">
+              {images.slice(2).map((image, index) => (
+                <img key={index} src={image} alt={`Image ${index + 3}`} className="image-item" />
+              ))}
+            </div>
+          </div>
+        </div>
+      )
+    } else if (images.length >= 5) {
+      return (
+        <div className="image-row five-images">
+          <img src={images[0]} alt="Main Image" className="main-image" />
+          <div className="right-images">
+            <div className="llSection">
+              <img src={images[1]} alt="Tall Image" className="tall-image" />
+              <img src={images[2]} alt="Tall Image" className="tall-image" />
+            </div>
 
-export default ImageSection;
+            <div className="lrSection">
+              <img src={images[3]} alt="Tall Image" className="tall-image" />
+              <img src={images[4]} alt="Tall Image" className="tall-image" />
+            </div>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  return <div className="image-section">{images.length > 0 ? renderImages() : <div className="no-images">No Images Available</div>}</div>
+}
+
+export default ImageSection

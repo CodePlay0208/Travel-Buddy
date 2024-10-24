@@ -12,7 +12,7 @@ import {
 import data from '../../data/data.json'
 import TripCard from '../TripCard/TripCard'
 
-const PopularSection = () => {
+const PopularSection = (props) => {
   const scrollContainerRef = useRef(null)
 
   const scrollLeft = () => {
@@ -29,8 +29,8 @@ const PopularSection = () => {
 
   return (
     <PopularTripContainer>
-      <PopularTripHeading>
-        <PopularHeadingLeft>Find Popular Destination</PopularHeadingLeft>
+      <PopularTripHeading margin={props?.margin ? props.margin : `5% 10% 0 10%`} fontSize={props?.fontSize ? props.fontSize : `100%`}>
+        <PopularHeadingLeft>{props?.title ? props.title : `Find Popular Destination`} </PopularHeadingLeft>
         <PopularHeadingRight>
           <ArrowButton className="left" onClick={scrollLeft} aria-label="Scroll Left">
             {'<'}
@@ -40,7 +40,7 @@ const PopularSection = () => {
           </ArrowButton>
         </PopularHeadingRight>
       </PopularTripHeading>
-      <PopularTripContent ref={scrollContainerRef}>
+      <PopularTripContent ref={scrollContainerRef} margin={props?.margin ? props.margin : `0 5.5%`}>
         {data.map((d, index) => (
           <TripCard key={index} trip={d} />
         ))}

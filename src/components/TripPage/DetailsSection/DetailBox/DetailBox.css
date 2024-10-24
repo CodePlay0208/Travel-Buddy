@@ -1,14 +1,12 @@
 .detail-box {
   box-sizing: border-box;
   position: relative;
-  width: 25%; /* Adjust width as needed */
+  width: 28%;
   height: auto;
-  padding: 2%; /* Add padding for internal spacing */
   background: #ffffff;
   border: 3px solid #8dd3bb;
   box-shadow: 4px 4px 16px rgba(6, 64, 43, 0.25);
-  border-radius: 10%; /* Adjust border-radius */
-  margin: 2% auto; /* Center the box with some spacing */
+  border-radius: 10%;
 }
 
 .detail-box-content {
@@ -21,34 +19,24 @@
 .detail-box-profile-page {
   width: 250px;
   height: 250px;
-  margin-bottom: 10%;
   border-radius: 50%;
 }
 
 .detail-box-body {
-  font-family: 'Montserrat', sans-serif;
-
   font-size: 38.38px;
   font-weight: 500;
   line-height: 46.78px;
   text-align: center;
-
-  margin-bottom: 5%; /* Space between body text and button */
+  margin: 0 0 15% 0;
 }
 
-.detail-box-button {
-  font-family: 'Montserrat', sans-serif;
+.detail-box-heading {
   font-weight: 600;
 
   color: #000000;
-  font-family: Montserrat;
 
   font-size: 38.38px;
-  font-weight: 500;
-  line-height: 46.78px;
-  text-align: left;
-  margin: 4% 0;
-
+  margin: 7.5% 0;
   cursor: pointer;
   text-align: center;
 }

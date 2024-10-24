@@ -1,90 +1,74 @@
 .image-section {
   display: flex;
   width: 100%;
-  height: 100%; /* Set the height to 50% of the viewport height */
-  padding:1%;
+  aspect-ratio: 8/3;
   justify-content: center;
   position: relative;
+  margin: 5% auto;
 }
 
-.selected-image-container {
+.image-row {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 1.2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.only-image {
+  aspect-ratio: 2;
+}
+.main-image {
+  width: calc(50% - 0.6%);
+
+  height: 100%;
+  object-fit: cover;
+}
+
+.right-images {
+  width: calc(50% - 0.6%);
+  display: flex;
+  gap: 2.4%;
+}
+
+.three-images .right-images .image-item {
+  width: calc(50% - 1.2%);
+  object-fit: cover;
+}
+
+.four-images .tall-image {
+  width: calc(50% - 1.2%);
+  height: 100%;
+  object-fit: cover;
+}
+
+.four-images .stacked-images {
+  width: calc(50% - 1.2%);
+  height: 100%;
+  object-fit: cover;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 40%;
+  gap: 4%;
+}
+
+.four-images .stacked-images .image-item {
+  width: 100%;
+  height: calc(50% - 2%);
   object-fit: cover;
+}
+.llSection,
+.lrSection {
+  width: calc(50% - 1.2%);
   height: 100%;
-}
-
-.selected-image {
-  position: relative;
-  width: 95%;
-  height: 95%;
-  margin: 2.5%;
-  border-radius: 5%;
-
-}
-
-.navigation-arrows {
-  display: flex;
-  justify-content: space-between;
-  width: 3%;
-}
-
-.arrow-button {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.thumbnail-container {
-  
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-  width: 55%;
-  height: 95%;
-  margin: 1%;
-  
-}
-
-.thumbnail {
-  width: 98%;
-  margin: 1%;
-  border-radius: 5%;
-  aspect-ratio: 1 / 1;
   object-fit: cover;
-  cursor: pointer;
-}
-
-.thumbnail.selected {
-  border: 2px solid blue;
-}
-
-/* Custom grid styles based on number of images */
-.thumbnail-container.thumbnails-1 {
-  grid-template-columns: 1fr;
-}
-.thumbnail-container.thumbnails-2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-.thumbnail-container.thumbnails-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-.thumbnail-container.thumbnails-4,
-.thumbnail-container.thumbnails-5,
-.thumbnail-container.thumbnails-6 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.no-images {
-  flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  font-size: 18px;
-  color: gray;
+  flex-direction: column;
+  gap: 3%;
+}
+.llSection .tall-image,
+.lrSection .tall-image {
+  width: 100%;
+  height: calc(50% - 1.5%);
+  object-fit: cover;
 }
