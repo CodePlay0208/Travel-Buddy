@@ -24,7 +24,7 @@ const SearchResultHeader = (props) => {
 
   return (
     <HeaderContainer>
-      {props.isImageNavbar && <Navbar isImageNavbar={props.isImageNavbar} />}
+      {props.isImageNavbar && <Navbar isImageNavbar={props.isImageNavbar} isLandingPage={props.isLandingPage} />}
 
       <LandingHeader>
         <LandingImage src={LandingPageImage} alt="Landing Page" />

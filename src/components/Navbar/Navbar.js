@@ -137,7 +137,7 @@ const Navbar = React.memo((props) => {
             navigate('/')
           }}
         >
-          Travmigoz
+          {props.isLandingPage? "": "Travmigoz"}
         </WebAppNameAndLogo>
 
         {isUserLoggedIn ? (
