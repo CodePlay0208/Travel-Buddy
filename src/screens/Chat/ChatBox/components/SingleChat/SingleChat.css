@@ -1,0 +1,86 @@
+/* SingleChat.css */
+.single-chat-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #e8e8e8;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .chat-header-text {
+    font-size: 28px;
+    font-family: 'Work sans', sans-serif;
+    display: flex;
+    align-items: center;
+  }
+  
+  .chat-header-text button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .messages-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+  
+  .message {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  
+  .message-content {
+    font-size: 14px;
+  }
+  
+  .message-sender {
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+  
+  .message-typing {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .message-typing-text {
+    font-size: 14px;
+    margin-left: 0.5rem;
+  }
+  
+  .message-input {
+    padding: 1rem;
+    background-color: #e0e0e0;
+    border-top: 1px solid #ccc;
+  }
+  
+  .message-input input {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 0.5rem;
+  }
+  
+  .n-chat-selected{
+    width: 100%;
+    height: 100%;
+    color: black;
+  }

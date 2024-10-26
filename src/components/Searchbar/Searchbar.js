@@ -1,12 +1,11 @@
 import React, { useState, memo } from 'react'
 import { SVG } from '../../assets'
-import axios from 'axios'
 import { getLocationSuggestions } from '../../actions/location.action'
 import { connect } from 'react-redux'
 import { SearchBarContainer, SearchBarInput, LocationIcon, Dropdown, DropdownItem } from '../../Styles/Searchbar.styled'
 
 const mapStateToProps = (state) => ({
-  suggestions: state.location.suggestions,
+  suggestions: state.locationReducer.suggestions
 })
 
 const Searchbar = (props) => {
@@ -15,10 +14,7 @@ const Searchbar = (props) => {
 
   const searchBarChangeHandler = async (event) => {
     const value = event.target.value
-    setInputValues((currentInputValues) => ({
-      ...currentInputValues,
-      [onValue]: value,
-    }))
+    setInputValues(value)
 
     if (value.length > 2) {
       try {
@@ -33,10 +29,7 @@ const Searchbar = (props) => {
   }
 
   const selectSuggestion = (suggestion) => {
-    setInputValues((currentInputValues) => ({
-      ...currentInputValues,
-      [onValue]: `${suggestion.city}, ${suggestion.state}`,
-    }))
+    setInputValues(`${suggestion.city}, ${suggestion.state}`)
     setTimeout(() => setDropdownVisible(false), 0)
   }
 

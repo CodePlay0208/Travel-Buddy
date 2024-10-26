@@ -1,4 +1,4 @@
-import { GET_PROFILE, UPDATE_PROFILE, DELETE_PROFILE, PROFILE_ERROR } from '../constants'
+import { GET_PROFILE, UPDATE_PROFILE, DELETE_PROFILE, PROFILE_ERROR } from '../constants/action-types/profile.constants'
 
 const initialState = {
   profile: null,

@@ -6,8 +6,8 @@ import { getProfile } from '../../../actions/profile.action'
 import { ToastContainer, toast } from 'react-toastify'
 
 const mapStateToProps = (state) => ({
-  profile: state.profile.profile,
-  loading: state.profile.loading,
+  profile: state.profileReducer.profile,
+  loading: state.profileReducer.loading,
 })
 
 const UserProfileDashBoard = ({ profile }) => {
