@@ -1,4 +1,4 @@
-import { GET_TRIPS, GET_USER_TRIPS, GET_TRIP, TRIPS_ERROR, UPDATE_USER_TRIP } from '../constants'
+import { GET_TRIPS, GET_USER_TRIPS, GET_TRIP, TRIPS_ERROR, UPDATE_USER_TRIP } from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
 

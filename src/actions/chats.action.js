@@ -28,7 +28,7 @@ import {
   CLEAR_MESSAGES,
   SET_FETCH_AGAIN,
   DISCONNECT_SOCKET
-} from '../constants'
+} from '../constants/action-types/chats.constants'
 import { toast } from 'react-toastify'
 import { setAuthToken } from '../services/api-services/api-services'
 

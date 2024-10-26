@@ -3,7 +3,7 @@ import {
   GET_TRIP,
   GET_USER_TRIPS,
   TRIPS_ERROR,
-} from '../constants'
+} from '../constants/action-types/trips.constants'
 
 const initialState = {
   trips: [],

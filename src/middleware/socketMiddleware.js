@@ -1,20 +1,6 @@
-import {
-  GET_MESSAGES_SUCCESS,
-  LOGIN_SUCCESS,
-  LOGOUT,
-  SEND_MESSAGE_SUCCESS,
-  USER_LOADED,
-  EMIT_TYPING,
-  EMIT_STOP_TYPING,
-  OFF_MESSAGE_RECEIVED,
-  ON_MESSAGE_RECEIVED,
-  ON_TYPING_EVENT,
-  ON_STOP_TYPING_EVENT,
-  OFF_TYPING_EVENT,
-  OFF_STOP_TYPING_EVENT,
-  DISCONNECT_SOCKET,
-} from '../constants'
+import { LOGOUT, USER_LOADED } from '../constants/action-types/auth.constants'
 import { setFetchAgain, setSocketState, setTypingState, updateMessages, updateNotifications } from '../actions/chats.action'
+import { DISCONNECT_SOCKET, EMIT_STOP_TYPING, EMIT_TYPING, GET_MESSAGES_SUCCESS, OFF_MESSAGE_RECEIVED, ON_MESSAGE_RECEIVED, SEND_MESSAGE_SUCCESS } from '../constants/action-types/chats.constants'
 
 const socketMiddleware = (socket) => {
   return (store) => (next) => (action) => {

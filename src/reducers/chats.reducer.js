@@ -22,7 +22,7 @@ import {
   SET_FETCH_AGAIN,
   ON_TYPING_EVENT,
   DISCONNECT_SOCKET
-} from '../constants'
+} from '../constants/action-types/chats.constants'
 
 const initialState = {
   isLoading: true,

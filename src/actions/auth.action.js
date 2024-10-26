@@ -14,7 +14,7 @@ import {
   VERIFY_OTP_FAIL,
   RESEND_OTP_SUCCESS,
   RESEND_OTP_FAIL,
-} from '../constants'
+} from '../constants/action-types/auth.constants'
 import { AuthApi, ProfileApi } from '../services/api-services/api-invokes'
 import { setAuthToken } from '../services/api-services/api-services'
 import { toast } from 'react-toastify'
