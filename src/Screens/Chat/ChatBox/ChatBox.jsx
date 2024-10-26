@@ -31,7 +31,7 @@ let selectedChatCompare
 const ChatBox = (props) => {
   const { selectedChat, notifications, user, messages, chats, fetchAgain, isOtherTyping } = props
   const { getMessagesForChat, onStopTypingEvent, onTypingEvent, onMessageReceivedEvent, clearMessages, offMessageReceivedEvent } = props
-  
+
   const onMessageReceivedEventFunction = useRef(() => {
     onMessageReceivedEvent()
   }).current
@@ -64,7 +64,7 @@ const ChatBox = (props) => {
     }
     // }, [selectedChatCompare, notifications, fetchAgain])
   }, [])
- 
+
   return (
     <>
       {true ? (

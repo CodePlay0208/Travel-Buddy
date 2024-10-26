@@ -93,7 +93,7 @@ const TripCard = (props) => {
             <img src={SVG.ChatNow} alt="" />
             {`${duration} ago`}
           </Duration>
-          <Title>{`${startLocation} To ${endLocation}`}</Title>
+          <Title>{`${startLocation} To ${destination}`}</Title>
           <DateComp>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</DateComp>
           <Description>{truncateDescription(description, 150)}</Description>
           <ChatNow>

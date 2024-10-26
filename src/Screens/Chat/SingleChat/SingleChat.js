@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import io from 'socket.io-client';
 import './SingleChat.css';
-import { ChatContext } from '../../../Utils/Context/ChatContext';
+import { ChatContext } from '../../../utils/Context/ChatContext';
 import {toast, ToastContainer} from "react-toastify";
 import { UserLoginContext } from '../../../Utils/Context/UserLoginContext';
-import ScrollableChat from "../ScrollableChat/ScrollableChat";
+import ScrollableChat from "../../../components/Chat/ScrollableChat/ScrollableChat";
 
 
 const ENDPOINT = 'http://localhost:4000'; // Replace with your server endpoint
