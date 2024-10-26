@@ -16,9 +16,9 @@ const mapStateToProps = (state) => ({
 const SearchResultsPage = (props) => {
   const { trips, getTrips } = props
 
-  useEffect(async ()=>{
-    await getTrips(searchForm)
-  },[searchForm]);
+  // useEffect(async ()=>{
+  //   await getTrips(searchForm)
+  // },[searchForm]);
 
   return (
     <SearchResultsPageContainer>

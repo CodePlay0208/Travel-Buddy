@@ -15,8 +15,7 @@ const mapStateToProps = (state) => ({
   trips: state.trip.trips,
 })
 
-const SearchMenu = (props) => {
-  const { getTrips } = props
+const SearchMenu = () => {
   const [searchForm, setSearchForm] = useState(DEFAULT_SEARCH_FORM)
   const navigate = useNavigate()
 
