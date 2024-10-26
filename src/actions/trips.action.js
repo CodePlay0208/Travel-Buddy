@@ -1,5 +1,5 @@
-import { GET_TRIPS, GET_USER_TRIPS, GET_TRIP, TRIPS_ERROR, UPDATE_USER_TRIP } from '../constants'
-import { TripsApi } from '../services/api-services/api-invokes'
+import { GET_TRIPS, GET_USER_TRIPS, GET_TRIP, CREATE_TRIP, TRIPS_ERROR, UPDATE_USER_TRIP, DELETE_USER_TRIP } from '../constants'
+import { TripsApi } from '../api-services/api-invokes'
 import { toast } from 'react-toastify'
 
 export const getTrips = (searchForm) => async (dispatch) => {

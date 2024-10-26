@@ -2,19 +2,17 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import { routes } from './routes'
 import { Provider } from 'react-redux'
-import { persistor, store } from './store'
-import { PersistGate } from 'redux-persist/integration/react'
+import store from './store'
 
 const App = () => {
+
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Routes>
-          {routes.map((route) => (
-            <Route exact path={route.path} element={route.element} />
-          ))}
-        </Routes>
-      </PersistGate>
+      <Routes>
+        {routes.map((route) => (
+          <Route exact path={route.path} element={route.element} />
+        ))}
+      </Routes>
     </Provider>
   )
 }

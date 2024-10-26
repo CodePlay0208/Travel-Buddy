@@ -1,16 +1,15 @@
-import React from 'react'
-import LandingPage from './Screens/LandingPage/LandingPage'
-import SearchResultsPage from './Screens/SearchResultsPage/SearchResultsPage'
-import PublishTrip from './Screens/PublishTrip/PublishTrip'
-import ChatPage from './Screens/Chat/ChatPage'
-import LoginPage from './Screens/AuthFlow/LoginPage/loginPage'
-import VerifyCode from './Screens/AuthFlow/VerifyCode/VerifyCode'
-import SignUp from './Screens/AuthFlow/SignUpPage/SignUp'
-// import SignUp from './Screens/SignUpPage/SignUp'
-import TripPage from './components/TripPage/TripPage'
-import UserProfile from './Screens/UserProfile/UserProfile'
-import ForgotPassword from './Screens/AuthFlow/ForgotPassword/ForgotPassword'
-import SetPassword from './Screens/AuthFlow/SetPassword/SetPassword'
+import React from "react";
+import LandingPage from "./Screens/LandingPage/landingPage";
+import SearchResultsPage from "./Screens/SearchResultsPage/searchResultsPage";
+import PublishTrip from "./Screens/PublishTrip/PublishTrip";
+import ChatPage from "./components/Chat/ChatPage";
+import LoginPage from "./Screens/AuthFlow/LoginPage/loginPage";
+import VerifyCode from "./Screens/AuthFlow/VerifyCode/VerifyCode";
+import SignUp from "./Screens/AuthFlow/SignUpPage/SignUp";
+import TripPage from "./components/TripPage/TripPage";
+import UserProfile from "./Screens/UserProfile/UserProfile";
+import ForgotPassword from "./Screens/AuthFlow/ForgotPassword/ForgotPassword";
+import SetPassword from "./Screens/AuthFlow/SetPassword/SetPassword";
 
 export const routes = [
   {

@@ -15,8 +15,8 @@ import {
   RESEND_OTP_SUCCESS,
   RESEND_OTP_FAIL,
 } from '../constants'
-import { AuthApi, ProfileApi } from '../services/api-services/api-invokes'
-import { setAuthToken } from '../services/api-services/api-services'
+import { AuthApi, ProfileApi } from '../api-services/api-invokes'
+import { setAuthToken } from '../api-services/api-services'
 import { toast } from 'react-toastify'
 
 export const loadUser = () => async (dispatch) => {
@@ -30,11 +30,6 @@ export const loadUser = () => async (dispatch) => {
       payload: res.data,
     })
   } catch (e) {
-    if (e.response && e.response.status === 401) {
-      toast.error('Invalid User!', { autoClose: 1500 })
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
-    }
     dispatch({
       type: USER_LOAD_ERROR,
     })
@@ -43,7 +38,7 @@ export const loadUser = () => async (dispatch) => {
 
 export const register = (formData) => async (dispatch) => {
   const { firstName, lastName, email, password, phoneNumber } = formData
-  const body = JSON.stringify({ username: `${firstName}_${lastName}`, useremail: email, password, phoneNumber })
+  const body = JSON.stringify({ username: `${firstName}  ${lastName}`, useremail: email, password, phoneNumber })
   try {
     const res = await AuthApi.registerUser(body)
     dispatch({
@@ -112,7 +107,6 @@ export const verifyOTP = (userOtp, isSignUpRequest) => async (dispatch) => {
     const res = await AuthApi.verifyOTP(body)
     dispatch({
       type: VERIFY_OTP_SUCCESS,
-      payload: res.data
     })
     console.log(res);
 

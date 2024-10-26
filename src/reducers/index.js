@@ -1,15 +1,14 @@
 import { combineReducers } from 'redux'
-import authReducer from './auth.reducer'
-import profileReducer from './profile.reducer'
-import tripReducer from './trips.reducer'
-import locationReducer from './location.reducer'
-import chatsReducer from './chats.reducer'
+import auth from './auth.reducer'
+import profile from './profile.reducer'
+import trip from './trips.reducer'
+import location from './location.reducer'
 import newsletterReducer from './newsletter.reducer'
 
 export default combineReducers({
-  authReducer,
-  profileReducer,
-  tripReducer,
-  locationReducer,
-  chatsReducer
+  auth,
+  profile,
+  trip,
+  location,
+  // newsletterReducer,
 })

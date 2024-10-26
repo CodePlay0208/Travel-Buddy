@@ -1,11 +1,12 @@
 import React, { useContext, useState, memo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
+import { UserLoginContext } from '../../../Utils/Context/LoggedInUserContext'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { SVG } from '../../../assets'
 import { connect } from 'react-redux'
-import { setGoogleToken } from '../../../services/api-services/api-services'
+import { setGoogleToken } from '../../../api-services/api-services'
 import { login, loginWithGoogle } from '../../../actions/auth.action'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
@@ -37,14 +38,12 @@ import {
   LoginSignUpLink,
   InputPlaceholder,
 } from './loginPage.styled'
-import { UserLoginContext } from '../../../utils/Context/LoggedInUserContext'
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.authReducer.isAuthenticated,
+  isAuthenticated: state.auth.isAuthenticated,
 })
 
-const LoginPage = (props) => {
-  const { login, isAuthenticated } = props
+const LoginPage = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
