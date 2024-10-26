@@ -1,9 +1,10 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import Header from '../../components/Header/Header'
 import TripCard from '../../components/TripCard/TripCard'
 import Footer from '../../components/Footer/Footer'
 import { connect } from 'react-redux'
 import { SearchResultsPageContainer, TripList, SearchResultButtonDiv, ShowMoreButton } from './SearchResultsPage.styled'
+import { getTrips } from '../../actions/trips.action'
 
 const mapStateToProps = (state) => ({
   trips: state.trip.trips,
@@ -11,8 +12,13 @@ const mapStateToProps = (state) => ({
   error: state.trip.error,
 })
 
+
 const SearchResultsPage = (props) => {
-  const { trips } = props
+  const { trips, getTrips } = props
+
+  useEffect(async ()=>{
+    await getTrips(searchForm)
+  },[searchForm]);
 
   return (
     <SearchResultsPageContainer>
@@ -20,16 +26,8 @@ const SearchResultsPage = (props) => {
       <TripList>
         {trips.map((trip) => (
           <TripCard
-            key={trip._id}
-            name={trip?.name}
-            profileImg={trip?.profileImg}
-            startLocation={trip?.startLocation}
-            endLocation={trip?.endLocation}
-            totalMembers={trip?.totalMembers}
-            age={trip?.age}
-            gender={trip.gender}
-            description={trip.description}
-            destinationImages={trip.destinationImages}
+            key={trip.tripId}
+            trip={trip}
           />
         ))}
       </TripList>
@@ -41,4 +39,4 @@ const SearchResultsPage = (props) => {
   )
 }
 
-export default connect(mapStateToProps, null)(memo(SearchResultsPage))
+export default connect(mapStateToProps, {getTrips})(memo(SearchResultsPage))

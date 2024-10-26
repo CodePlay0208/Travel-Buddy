@@ -11,6 +11,8 @@ export const TripCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: 3.5%;
+  margin-bottom: 3.5%;
   /* margin: 1%; */
 `
 
@@ -99,9 +101,9 @@ export const Duration = styled.div`
   padding: 1% 0;
 `
 
-export const Date = styled.div`
+export const DateComp = styled.div`
   font-family: Montserrat;
-  font-size: 23.53px;
+  font-size: 1.7vw;
   font-weight: 700;
   line-height: 28.69px;
   color: #009965;
@@ -110,7 +112,7 @@ export const Date = styled.div`
 
 export const Title = styled.div`
   font-family: Montserrat;
-  font-size: 25.3px;
+  font-size: 2vw;
   font-weight: 700;
   line-height: 30.84px;
   text-align: left;

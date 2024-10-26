@@ -7,12 +7,9 @@ import {
   TripCardContainer,
   LeftContainer,
   RightContainer,
-  ProfileSection,
-  ProfileImg,
-  Username,
   Details,
   Duration,
-  Date,
+  DateComp,
   Title,
   Description,
   ChatNow,
@@ -24,10 +21,8 @@ import {
   Price,
 } from '../../Styles/TripCard.styled'
 
-const TripCard = ({ trip }) => {
+const TripCard = (props) => {
   const {
-    name = `name`,
-    profileImg,
     startDate,
     endDate,
     duration,
@@ -35,8 +30,8 @@ const TripCard = ({ trip }) => {
     endLocation,
     budget,
     description,
-    destinationImages,
-  } = trip
+    croppedDestinationImages: destinationImages,
+  } = props.trip
   const settings = {
     infinite: true,
     speed: 500,
@@ -46,18 +41,27 @@ const TripCard = ({ trip }) => {
   }
 
   const truncateDescription = (text, maxLength) => {
+    if(!text){
+      return "";
+    }
     if (text.length <= maxLength) {
       return text
     }
     return text.slice(0, maxLength) + '...'
   }
 
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getUTCDate();
+    const month = date.toLocaleString('default', { month: 'long' });
+    return `${day} ${month}`;
+  }
+  
   return (
     <TripCardContainer>
       <LeftContainer>
         <Slider {...settings}>
-          {console.log(destinationImages)}
-          {destinationImages.map((img, index) => (
+          {destinationImages?.map((img, index) => (
             <CarouselItem key={index}>
               <DestinationImg src={img} alt={`Destination ${index + 1}`} />
             </CarouselItem>
@@ -65,17 +69,13 @@ const TripCard = ({ trip }) => {
         </Slider>
       </LeftContainer>
       <RightContainer>
-        {/* <ProfileSection>
-          <ProfileImg src={profileImg} alt={` profile`} />
-          <Username>{`name`}</Username>
-        </ProfileSection> */}
         <Details>
           <Duration>
             <img src={SVG.ChatNow} alt="" />
             {duration}
           </Duration>
-          <Title>{`${startLocation} to ${endLocation}`}</Title>
-          <Date>{`${startDate} - ${endDate}`}</Date>
+          <Title>{`${startLocation} To ${endLocation}`}</Title>
+          <DateComp>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</DateComp>
           <Description>{truncateDescription(description, 150)}</Description>
           <ChatNow>
             <Budget>

@@ -19,7 +19,7 @@ export const getTrips = (searchForm) => async (dispatch) => {
       },
       {
         key: 'limit',
-        value: 2
+        value: 50
       }
     ]
 

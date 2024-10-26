@@ -14,6 +14,7 @@ export const TripList = styled.div`
   flex-wrap: wrap;
   margin-top: 5%;
   width: 100%;
+  gap: 3%
 `
 
 export const SearchResultButtonDiv = styled.div`
@@ -33,7 +34,7 @@ export const ShowMoreButton = styled.button`
   border: none;
   color: rgb(0, 0, 0);
   padding: 2%;
-
+  margin-bottom: 3%;
   &:hover {
     background-color: #7cc2a9;
   }

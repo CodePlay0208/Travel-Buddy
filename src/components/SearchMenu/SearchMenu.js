@@ -21,10 +21,7 @@ const SearchMenu = (props) => {
   const navigate = useNavigate()
 
   const onSearchButton = async () => {
-    const searchSuccess = await getTrips(searchForm)
-    if (searchSuccess) {
       navigate('/search-results-page')
-    }
   }
 
   return (
