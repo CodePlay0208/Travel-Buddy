@@ -35,7 +35,7 @@ const SearchMenu = (props) => {
         onValue={'destination'}
         placeholderValue={'Enter Destination'}
         width={`30%`}
-        fontSize={`2vw`}
+        fontSize={`1.7vw`}
         fontWeight={`600`}
       />
       <DatePicker
@@ -44,7 +44,7 @@ const SearchMenu = (props) => {
         onValue={'startDate'}
         placeholderValue={'Select Travel date'}
         width={`30%`}
-        fontSize={`2vw`}
+        fontSize={`1.7vw`}
         fontWeight={`600`}
       />
       <SearchButtonContainer onClick={onSearchButton} role="button">

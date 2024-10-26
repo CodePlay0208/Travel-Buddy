@@ -87,7 +87,7 @@ export const CalendarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px;
+  padding: 15px;
   background-color: #f8f9fa;
   border-bottom: 1px solid #ccc;
   border-radius: 25px 25px 0 0;
@@ -120,12 +120,12 @@ export const NavButton = styled.span`
 export const DayNames = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
+  padding: 2.5px;
 
   span {
     width: 14.28%;
     text-align: center;
-    padding: 10px 0;
+    padding: 2.5px 0;
     font-weight: bold;
     color: #333;
   }
@@ -134,12 +134,12 @@ export const DayNames = styled.div`
 export const Days = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
+  padding: 2.5px;
 
   span {
     width: 14.28%;
     text-align: center;
-    padding: 10px 0;
+    padding: 2.5px 0;
     cursor: pointer;
     border-radius: 4px;
     transition:
