@@ -9,7 +9,7 @@ import {
   RightContainer,
   Details,
   Duration,
-  Date,
+  DateComp,
   Title,
   Description,
   ChatNow,
@@ -20,40 +20,18 @@ import {
   SubTitle,
   Price,
 } from '../../Styles/TripCard.styled'
-import { useNavigate } from "react-router-dom";
-import { memo } from 'react'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import './TripCard.css'
-import { connect } from 'react-redux'
-import { getOrCreateChat } from '../../actions/chats.action'
-import { computeDateAndTimeUntilNowInString, formatDate } from '../../utils/DateUtils'
-
-const mapStateToProps = (state) => ({
-})
 
 const TripCard = (props) => {
   const {
-    profileImg,
-    startLocation,
-    destination,
-    totalMembers,
-    age,
-    gender,
-    description,
-    destinationImages,
-    budget,
     startDate,
     endDate,
-    tripMembers,
-    publisherId,
-    publishedTime
-  } = props || {}
-
-  const duration = computeDateAndTimeUntilNowInString(publishedTime)
-  const navigate = useNavigate()
-
-  const { getOrCreateChat } = props
+    duration,
+    startLocation,
+    endLocation,
+    budget,
+    description,
+    croppedDestinationImages: destinationImages,
+  } = props.trip
   const settings = {
     infinite: true,
     speed: 500,
@@ -63,28 +41,27 @@ const TripCard = (props) => {
   }
 
   const truncateDescription = (text, maxLength) => {
-    if (text) {
-      if (text.length <= maxLength) {
-        return text
-      }
-      return text.slice(0, maxLength) + '...'
+    if(!text){
+      return "";
     }
-    return ''
+    if (text.length <= maxLength) {
+      return text
+    }
+    return text.slice(0, maxLength) + '...'
   }
 
-  const onChatNowClick = async () => {
-    const isChatCreated = await getOrCreateChat(publisherId)
-    if (isChatCreated) {
-      navigate('/chats')
-    }
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getUTCDate();
+    const month = date.toLocaleString('default', { month: 'long' });
+    return `${day} ${month}`;
   }
-
-
+  
   return (
     <TripCardContainer>
       <LeftContainer>
         <Slider {...settings}>
-          {destinationImages && destinationImages.map((img, index) => (
+          {destinationImages?.map((img, index) => (
             <CarouselItem key={index}>
               <DestinationImg src={img} alt={`Destination ${index + 1}`} />
             </CarouselItem>
@@ -95,17 +72,17 @@ const TripCard = (props) => {
         <Details>
           <Duration>
             <img src={SVG.ChatNow} alt="" />
-            {`${duration} ago`}
+            {duration}
           </Duration>
-          <Title>{`${startLocation} to ${destination}`}</Title>
-          <Date>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</Date>
+          <Title>{`${startLocation} To ${endLocation}`}</Title>
+          <DateComp>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</DateComp>
           <Description>{truncateDescription(description, 150)}</Description>
           <ChatNow>
             <Budget>
               <SubTitle>Approx Budget</SubTitle>
               <Price>Rs {budget}</Price>
             </Budget>
-            <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>
+            <ChatButton>Chat Now</ChatButton>
           </ChatNow>
         </Details>
       </RightContainer>
@@ -113,4 +90,4 @@ const TripCard = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { getOrCreateChat })(memo(TripCard))
+export default TripCard

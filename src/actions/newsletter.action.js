@@ -1,5 +1,5 @@
 import { NEWSLETTER_SUBSCRIBE_SUCCESS, NEWSLETTER_SUBSCRIBE_FAIL } from '../constants'
-import { NewsletterApi } from '../services/api-services/api-invokes'
+import { NewsletterApi } from '../api-services/api-invokes'
 
 export const subscribeNewsletter = (payload) => async(dispatch) => {
   try {

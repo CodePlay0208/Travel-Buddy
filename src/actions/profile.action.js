@@ -1,6 +1,6 @@
 import { GET_PROFILE, UPDATE_PROFILE, DELETE_PROFILE, PROFILE_ERROR } from '../constants'
-import { ProfileApi } from '../services/api-services/api-invokes'
-import { setAuthToken } from '../services/api-services/api-services'
+import { ProfileApi } from '../api-services/api-invokes'
+import { setAuthToken } from '../api-services/api-services'
 import { toast } from 'react-toastify'
 
 export const getProfile = () => async (dispatch) => {

@@ -101,7 +101,7 @@ export const Duration = styled.div`
   padding: 1% 0;
 `
 
-export const Date = styled.div`
+export const DateComp = styled.div`
   font-family: Montserrat;
   font-size: 1.7vw;
   font-weight: 700;

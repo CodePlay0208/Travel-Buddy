@@ -2,7 +2,7 @@ import React, { useState, memo, useMemo } from 'react'
 import LandingPageImage from '../../data/Images/searchResult/header.png'
 import SearchMenu from '../SearchMenu/SearchMenu'
 import Navbar from '../Navbar/Navbar'
-import { InputValuesContext } from '../../utils/Context/InputValuesContext'
+import { InputValuesContext } from '../../Utils/Context/InputValuesContext'
 
 import {
   HeaderContainer,

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { UserLoginContext } from '../../utils/Context/LoggedInUserContext'
+import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
 import './Trip.css'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
