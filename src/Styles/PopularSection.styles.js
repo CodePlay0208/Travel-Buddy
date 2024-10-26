@@ -71,7 +71,7 @@ export const PopularHeadingRight = styled.div`
 
 export const PopularButton = styled.button`
   font-size: 36px;
-  padding: 10px 20px;
+  padding: 20px 20px;
   cursor: pointer;
   background-color: #8dd3bb;
   width: 268px;
@@ -79,7 +79,7 @@ export const PopularButton = styled.button`
   font-weight: 700;
   border: none;
   color: rgb(0, 0, 0);
-  margin-top: 5%;
+  margin-top: 3%;
 `
 
 export const ArrowButton = styled.button`
