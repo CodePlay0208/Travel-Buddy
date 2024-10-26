@@ -1,0 +1,131 @@
+.trippage_des-chat-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .trippage_des {
+    width: 49%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  .trippage_title{
+    font-size: 3.5vw;
+    font-weight: 600;
+    line-height: 5vw;
+    margin: 5% 0;
+  }
+  .trippage_des-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 3vw;
+    margin: 5% 0;
+    color: #040f0f;
+  }
+  
+  .trippage_des-content {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 40.32px;
+  }
+  
+  .trippage_toggle-button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 2vw;
+    color: #007bff;
+    cursor: pointer;
+  }
+  .trippage_date-container {
+    margin: 5%;
+  }
+  .trippage_chat-section {
+    width: 43%;
+    background: #ffffff;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    box-sizing: border-box;
+  }
+  
+  .trippage_profile-image {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 4.25%;
+  }
+  
+  .trippage_profile-picture img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+  }
+  
+  .trippage_profileName {
+    margin: 5%;
+    font-size: 37.93px;
+    font-weight: 500;
+    line-height: 24.46px;
+  }
+  
+  .trippage_date-section,
+  .trippage_info-section {
+    display: flex;
+  }
+  
+  .trippage_details {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.5vw;
+    color: #040f0f;
+    padding: 2% 5%;
+    width: 50%;
+    box-sizing: border-box;
+  }
+  
+  .trippage_box_heading {
+    padding-bottom: 5%;
+    font-size: 16.69px;
+    font-weight: 500;
+    line-height: 25.59px;
+  }
+  
+  .trippage_box_content {
+    padding-bottom: 5%;
+    font-size: 24.64px;
+    font-weight: 500;
+    line-height: 33.69px;
+  }
+  
+  .trippage_startdate {
+    border: 1px solid grey;
+    border-right: 0.5px solid rgba(128, 128, 128, 0.453);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  .trippage_enddate {
+    border: 1px solid grey;
+    border-left: 0.5px solid rgba(128, 128, 128, 0.453);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  .trippage_chat-now-button {
+    font-size: 39.63px;
+    font-weight: 500;
+    line-height: 25.56px;
+    margin: 5% 0;
+  
+    color: #000000;
+    text-align: center;
+    background: #8dd3bb;
+    padding: 25px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .trippage_chat-now-button:hover {
+    background-color: #79bca7;
+  }
+  
