@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState, memo } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { UserLoginContext } from '../../Utils/Context/LoggedInUserContext'
-import { ChatContext } from '../../Utils/Context/ChatContext'
+import { UserLoginContext } from '../../utils/Context/LoggedInUserContext'
+import { ChatContext } from '../../utils/Context/ChatContext'
 import { SVG } from '../../assets'
 import {
   Nav,
@@ -18,30 +18,27 @@ import {
   ProfileImageContainer,
 } from '../../Styles/Navbar.styles'
 import Dropdown from '../Dropdown/Dropdown'
-const Navbar = React.memo((props) => {
+import { connect } from 'react-redux'
+import { logout } from '../../actions/auth.action'
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.authReducer.isAuthenticated,
+  user: state.authReducer.user
+})
+
+const Navbar = (props) => {
+  const { isAuthenticated, user, logout } = props
+  const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
   const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
-  const isUserLoggedIn = true
+  const navigate = useNavigate()
+
   const userProfileDropDownData = [
     { value: 'My Profile', path: '/user-profile' },
     { value: 'My Trips', path: '/user-trips' },
     { value: 'Sign Out', path: 'signOut' },
   ]
-  const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
-  const navigate = useNavigate()
-  useEffect(() => {
-    const removeDropDownList = (event) => {
-      const isUserProfile = document.getElementById('imgForUserProfile')
-      const hasTheUserClickedOnProfilePic = isUserProfile && document.getElementById('imgForUserProfile').contains(event.target)
-      if (!hasTheUserClickedOnProfilePic) {
-        setShowUserProfileDropDownList(false)
-      }
-    }
 
-    document.addEventListener('click', removeDropDownList)
-    return () => document.removeEventListener('click', removeDropDownList)
-  }, [])
   const handleClickOnProfilePic = () => {
-    console.log('login status', loggedInUserValues)
     if (loggedInUserValues._id != '') {
       setShowUserProfileDropDownList((currentValue) => !currentValue)
     } else {
@@ -49,6 +46,7 @@ const Navbar = React.memo((props) => {
       navigate('/login')
     }
   }
+
   const handleSignOutLogic = () => {
     //TODO: do all the necessary stuff
     fetch('http://localhost:4000/login/logout', {
@@ -57,7 +55,6 @@ const Navbar = React.memo((props) => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('Logged out successfully')
           setLoggedInUserValues({
             _id: '',
             username: '',
@@ -81,9 +78,9 @@ const Navbar = React.memo((props) => {
       })
     navigate('/')
   }
+
   const { userChatValues, setUserChatValues } = useContext(ChatContext)
   const accessChat = async (userId) => {
-    console.log(userId)
     try {
       const config = {
         headers: {
@@ -108,7 +105,6 @@ const Navbar = React.memo((props) => {
         ...currentValues,
         selectedChat: data,
       }))
-      console.log(userChatValues)
     } catch (error) {
       console.log(error)
     }
@@ -122,8 +118,7 @@ const Navbar = React.memo((props) => {
       navigate(suggestion.path)
     }
   }
-  function handleChat() {
-    // console.log('current user is', UserLoginContext)
+  const handleChat = () => {
     accessChat('6690ab18c2d9d0a71a4533da')
     navigate('/chats')
   }
@@ -140,7 +135,11 @@ const Navbar = React.memo((props) => {
           {props.isLandingPage? "": "Travmigoz"}
         </WebAppNameAndLogo>
 
-        {isUserLoggedIn ? (
+        {/* <button onClick={() => {
+          logout()
+        }}>LOGOUT</button> */}
+
+        {isAuthenticated ? (
           <OtherContentsOfNavBar>
             <NavButton
               onClick={() => {
@@ -152,7 +151,7 @@ const Navbar = React.memo((props) => {
             </NavButton>
             <NavContents
               onClick={() => {
-                navigate('/Chats')
+                navigate('/chats')
               }}
             >
               <img src={SVG.ChatButton} alt="Chat" />
@@ -171,6 +170,6 @@ const Navbar = React.memo((props) => {
       </Nav>
     </NavContainer>
   )
-})
+}
 
-export default memo(Navbar)
+export default connect(mapStateToProps, { logout })(memo(Navbar))

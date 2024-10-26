@@ -9,9 +9,9 @@ import { connect } from 'react-redux'
 import { getUserTrips, deleteUserTrip } from '../../../actions/trips.action'
 
 const mapStateToProps = (state) => ({
-  user: state.trip.user,
-  loading: state.trip.loading,
-  error: state.trip.error,
+  user: state.tripReducer.user,
+  loading: state.tripReducer.loading,
+  error: state.tripReducer.error,
 })
 
 const UserTrips = (props) => {

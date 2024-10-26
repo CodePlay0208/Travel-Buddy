@@ -49,8 +49,13 @@ export const LoginLoginButton = styled.button`
   border-width: 0px;
   border-radius: 5px;
 
+  p {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
   &:active {
-    font-size: 1.125px;
+    font-size: 1.6rem;
   }
 `
 
