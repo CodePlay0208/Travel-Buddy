@@ -1,4 +1,4 @@
-import { GET_TRIPS, GET_USER_TRIPS, GET_TRIP, TRIPS_ERROR, UPDATE_USER_TRIP } from '../constants/action-types/trips.constants'
+import { GET_TRIP, GET_TRIPS, GET_USER_TRIPS, TRIPS_ERROR, UPDATE_USER_TRIP, SET_SEARCH_FORM_SUCCESS, DEFAULT_STATE } from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
 
@@ -152,6 +152,19 @@ export const deleteUserTrip = (trip_id) => async (dispatch) => {
     dispatch({
       type: TRIPS_ERROR,
       payload: e,
+    })
+  }
+}
+
+export const setSearchForm = (newSearchForm) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SET_SEARCH_FORM_SUCCESS,
+      payload: newSearchForm
+    })
+  } catch (e) {
+    dispatch({
+      type: DEFAULT_STATE
     })
   }
 }

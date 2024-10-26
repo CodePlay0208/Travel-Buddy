@@ -1,33 +1,37 @@
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Searchbar from '../Searchbar/Searchbar'
 import DatePicker from '../DatePicker/DatePicker'
-import { getTrips } from '../../actions/trips.action'
 import { SearchBarContainer, SearchButtonContainer, SearchButton } from '../../Styles/SearchMenu.styled'
-
-const DEFAULT_SEARCH_FORM = {
-  destination: '',
-  startDate: '',
-}
+import { setSearchForm } from '../../actions/trips.action'
 
 const mapStateToProps = (state) => ({
-  trips: state.tripReducer.trips
+  searchForm: state.tripReducer.searchForm
 })
 
-const SearchMenu = () => {
-  const [searchForm, setSearchForm] = useState(DEFAULT_SEARCH_FORM)
+const SearchMenu = (props) => {
+  const { searchForm, setSearchForm } = props
   const navigate = useNavigate()
 
-  const onSearchButton = async () => {
-      navigate('/search-results-page')
+  const handleInputChange = (field, value) => {
+    setSearchForm({ 
+      ...searchForm,
+      [field]: value 
+    })
   }
+
+  const onSearchButton = async () => {
+    navigate('/search-results-page')
+  }
+
+  console.log('searchForm', searchForm)
 
   return (
     <SearchBarContainer>
       <Searchbar
         inputValues={searchForm.destination}
-        setInputValues={setSearchForm}
+        setInputValues={(value) => handleInputChange('destination', value)}
         onValue={'destination'}
         placeholderValue={'Enter Destination'}
         width={`30%`}
@@ -36,7 +40,7 @@ const SearchMenu = () => {
       />
       <DatePicker
         inputValues={searchForm.startDate}
-        setInputValues={setSearchForm}
+        setInputValues={(value) => handleInputChange('startDate', value)}
         onValue={'startDate'}
         placeholderValue={'Select Travel date'}
         width={`30%`}
@@ -50,4 +54,4 @@ const SearchMenu = () => {
   )
 }
 
-export default connect(mapStateToProps, { getTrips })(memo(SearchMenu))
+export default connect(mapStateToProps, { setSearchForm })(memo(SearchMenu))

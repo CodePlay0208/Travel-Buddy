@@ -3,6 +3,8 @@ import {
   GET_TRIP,
   GET_USER_TRIPS,
   TRIPS_ERROR,
+  SET_SEARCH_FORM_SUCCESS,
+  DEFAULT_STATE,
 } from '../constants/action-types/trips.constants'
 
 const initialState = {
@@ -13,6 +15,10 @@ const initialState = {
     trips: []
   },
   error: {},
+  searchForm: {
+    destination: '',
+    startDate: ''
+  }
 }
 
 const tripReducer = (state = initialState, action) => {
@@ -37,12 +43,21 @@ const tripReducer = (state = initialState, action) => {
         user: { ...state.user, trips: payload },
         loading: false,
       }
+    case SET_SEARCH_FORM_SUCCESS:
+      return {
+        ...state,
+        searchForm: {
+          ...state.searchForm,
+          ...payload
+        }
+      }
     case TRIPS_ERROR:
       return {
         ...state,
         loading: false,
         error: payload,
       }
+    case DEFAULT_STATE:
     default:
       return state
   }

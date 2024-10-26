@@ -8,17 +8,15 @@ import { getTrips } from '../../actions/trips.action'
 
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
-  loading: state.tripReducer.loading,
-  error: state.tripReducer.error,
+  searchForm: state.tripReducer.searchForm
 })
 
-
 const SearchResultsPage = (props) => {
-  const { trips, getTrips } = props
+  const { trips, getTrips, searchForm } = props
 
-  // useEffect(async ()=>{
-  //   await getTrips(searchForm)
-  // },[searchForm]);
+  useEffect(() => {
+    getTrips(searchForm)
+  },[searchForm]);
 
   return (
     <SearchResultsPageContainer>
@@ -52,4 +50,4 @@ const SearchResultsPage = (props) => {
   )
 }
 
-export default connect(mapStateToProps, {getTrips})(memo(SearchResultsPage))
+export default connect(mapStateToProps, { getTrips })(memo(SearchResultsPage))
