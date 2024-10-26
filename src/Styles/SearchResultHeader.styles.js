@@ -109,9 +109,10 @@ export const HeaderDescription = styled.div`
 
 export const HeaderDesHeading = styled.div`
   font-weight: 700;
-  font-size: 7vw;
+  font-size: 5vw;
   transform: translate(0, -100%);
   color: white;
+  margin-bottom: 2vw;
 `
 
 export const HeaderDesPara = styled.div`

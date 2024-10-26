@@ -27,7 +27,7 @@ export const SearchButtonContainer = styled.div`
 
 export const SearchButton = styled.div`
   font-family: 'Montserrat', sans-serif;
-  font-size: 100%;
+  font-size: 2vw;
   font-weight: 600;
   line-height: 100%;
   text-align: left;

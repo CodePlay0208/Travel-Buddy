@@ -52,7 +52,7 @@ export const PopularTripContent = styled.div`
 
 export const PopularHeadingLeft = styled.div`
   font-family: 'Inter', sans-serif;
-  font-size: 100%;
+  font-size: 70%;
   font-weight: 600;
   line-height: 66px;
   text-align: left;
