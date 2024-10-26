@@ -9,7 +9,7 @@ import {
   RightContainer,
   Details,
   Duration,
-  DateComp,
+  Date,
   Title,
   Description,
   ChatNow,
@@ -32,7 +32,6 @@ import { computeDateAndTimeUntilNowInString, formatDate } from '../../utils/Date
 const mapStateToProps = (state) => ({
 })
 
-const TripCard = (props) => {
 const TripCard = (props) => {
   const {
     profileImg,
@@ -80,13 +79,7 @@ const TripCard = (props) => {
     }
   }
 
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    const day = date.getUTCDate();
-    const month = date.toLocaleString('default', { month: 'long' });
-    return `${day} ${month}`;
-  }
-  
+
   return (
     <TripCardContainer>
       <LeftContainer>
