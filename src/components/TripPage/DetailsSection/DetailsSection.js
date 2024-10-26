@@ -1,8 +1,4 @@
 import React, { useState } from 'react'
-import firstImage from '../../../data/Images/aeroPlaneTripPage.png'
-import secondImage from '../../../data/Images/MapImage.png'
-import DetailBox from './DetailBox/DetailBox'
-import { SVG } from '../../../assets/svg'
 import './DetailsSection.css'
 import AddMembers from './AddMembers/AddMembers'
 
