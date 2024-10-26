@@ -1,12 +1,13 @@
 .detail-box {
   box-sizing: border-box;
   position: relative;
-  width: 28%;
+  width: 100%;
   height: auto;
   background: #ffffff;
   border: 3px solid #8dd3bb;
   box-shadow: 4px 4px 16px rgba(6, 64, 43, 0.25);
-  border-radius: 10%;
+  border-radius: 25px;
+  padding: 4% 5%;
 }
 
 .detail-box-content {
@@ -17,25 +18,25 @@
 }
 
 .detail-box-profile-page {
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
   border-radius: 50%;
 }
 
 .detail-box-body {
-  font-size: 38.38px;
+  font-size: 1.75vw;
   font-weight: 500;
   line-height: 46.78px;
   text-align: center;
-  margin: 0 0 15% 0;
 }
 
 .detail-box-heading {
-  font-weight: 600;
+  font-weight: 500;
 
   color: #000000;
 
-  font-size: 38.38px;
+  font-size: 2vw;
   margin: 7.5% 0;
   cursor: pointer;
   text-align: center;

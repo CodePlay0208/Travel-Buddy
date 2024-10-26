@@ -5,6 +5,9 @@
   justify-content: center;
   position: relative;
   margin: 5% auto;
+  img{
+    border-radius: 5px;
+  }
 }
 
 .image-row {

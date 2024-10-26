@@ -37,8 +37,7 @@
 
 .trippage_profile-cards {
   display: flex;
-  gap: 8%;
-  flex-wrap: wrap;
+  gap: 5%;
 }
 @media (max-width: 768px) {
   .trippage_create-more-button {
