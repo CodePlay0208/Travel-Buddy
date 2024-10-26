@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../Navbar/Navbar'
 import { useParams } from 'react-router-dom'
 import Footer from '../Footer/Footer'
-import './TripPage.css'
 import ImagesSection from './ImagesSection/ImagesSection'
 import data from '../../data/data.json'
 import DetailsSection from './DetailsSection/DetailsSection'
@@ -60,10 +59,10 @@ const TripPage = () => {
     <>
       <Navbar />
       <Container>
-        <ImagesSection images={data[tripId-1].destinationImages} />
+        <ImagesSection images={data[tripId - 1].destinationImages} />
         <DetailsSection />
       </Container>
-      <PopularSection title="Similar Trip"  margin={`0 15%`} fontSize={`40px`}/>
+      <PopularSection title="Similar Trip" margin={`0 15%`} fontSize={`40px`} />
       <Footer />
     </>
   )
