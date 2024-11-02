@@ -1,17 +1,6 @@
 import React, { useEffect, useRef, memo } from 'react'
 import './ScrollableChat.css'
 import { connect } from 'react-redux'
-import { loadUser } from '../../../../../actions/auth.action'
-import {
-  getMessagesForChat,
-  onMessageReceivedEvent,
-  onStopTypingEvent,
-  onTypingEvent,
-  offTypingEvent,
-  offStopTypingEvent,
-  offMessageReceivedEvent,
-  clearMessages,
-} from '../../../../../actions/chats.action'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
@@ -21,20 +10,17 @@ const mapStateToProps = (state) => ({
 
 const ScrollableChat = (props) => {
   const { user, messages, selectedChat, isOtherTyping } = props
-  const { getMessagesForChat, onStopTypingEvent, onTypingEvent, onMessageReceivedEvent, clearMessages } = props
 
-  const scrollRef = useRef()
+  // const scrollRef = useRef()
 
   const getMessageSender = (senderId) => {
     if (!senderId) return null
     return selectedChat?.users[0]?.userId === senderId ? selectedChat?.users[0] : selectedChat?.users[1]
   }
 
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [])
-
-  // console.log('messages', messages)
+  // useEffect(() => {
+  //   scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
+  // }, [])
 
   return (
     <div className="scrollable-chat-container">
@@ -43,7 +29,7 @@ const ScrollableChat = (props) => {
         messages.reverse().map((m, i) => {
           const sender = getMessageSender(m?.senderId)
           return (
-            <div key={i} className={`message-container ${sender?.userId === user?.userId ? 'user' : 'sender'}`} ref={scrollRef}>
+            <div key={i} className={`message-container ${sender?.userId === user?.userId ? 'user' : 'sender'}`}>
               {/* {(isSameSender(messages, m, i, user.userId) || isLastMessage(messages, i, user.userId)) && (
                 <div className="message-tooltip">
                   <img className="message-avatar" alt={m.sender.name} src={m.sender.pic} />
@@ -73,11 +59,4 @@ const ScrollableChat = (props) => {
   )
 }
 
-export default connect(mapStateToProps, {
-  loadUser,
-  getMessagesForChat,
-  onStopTypingEvent,
-  onTypingEvent,
-  onMessageReceivedEvent,
-  clearMessages,
-})(memo(ScrollableChat))
+export default connect(mapStateToProps, null)(memo(ScrollableChat))

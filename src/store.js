@@ -9,9 +9,10 @@ import thunk from 'redux-thunk'
 import socketMiddleware from './middleware/socketMiddleware'
 import Socket from './services/socket/socket'
 
-const socket = new Socket()
+// const socket = new Socket()
 const initialState = {}
-const middleWare = [socketMiddleware(socket), thunk]
+// const middleWare = [socketMiddleware(socket), thunk]
+const middleWare = [thunk]
 
 const persistConfig = {
   key: 'root',

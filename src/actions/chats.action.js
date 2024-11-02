@@ -58,7 +58,6 @@ export const getMessagesForChat = (chatId, user) => async (dispatch) => {
   const query = { chatId: chatId }
   try {
     const res = await ChatsApi.getMessagesForSingleChat(query)
-    console.log('---------------getMessagesForChat CALLED-------------------')
     dispatch({
       type: GET_MESSAGES_SUCCESS,
       payload: { messageData: res.data, selectedChatId: chatId, user: user },
@@ -82,7 +81,7 @@ export const sendMessage = (selectedChatId, messageData) => async (dispatch) => 
       type: SEND_MESSAGE_SUCCESS,
       payload: res.data,
     })
-    return false
+    return res.data
   } catch (e) {
     dispatch({
       type: SEND_MESSAGE_FAIL,
@@ -160,7 +159,6 @@ export const setSocketState = (isSocketConnected) => async (dispatch) => {
 export const setTypingState = (isOtherTyping) => async (dispatch) => {
   try {
     if (!isOtherTyping) {
-      // console.log('------------setTypingState---------------')
       dispatch({
         type: USER_NOT_TYPING,
         payload: false,

@@ -1,7 +1,7 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import './ChatSideBar.css'
 import { connect } from 'react-redux'
-import { setSelectedChat } from '../../../actions/chats.action'
+import { getAllChats, setSelectedChat } from '../../../actions/chats.action'
 import { getSenderName } from '../utils/chat-utils'
 import ChatItem from './components/ChatItem/ChatItem'
 
@@ -11,32 +11,38 @@ const mapStateToProps = (state) => ({
   selectedChat: state.chatsReducer.selectedChat,
 })
 
-const ChatSidebar = (props) => {
+const ChatSideBar = (props) => {
   const { user, selectedChat, setSelectedChat, chats } = props
+
+  useEffect(() => {
+    props.getAllChats()
+  }, [props.getAllChats])
+
   return (
     <div className="chat-sidebar-container">
-      {chats ? (
+      {chats && Array.isArray(chats) ? (
         <div className="chat-items-container">
           {chats.map((chat) => {
             const isChatUserCorrect = chat.users.length > 1
             if (isChatUserCorrect) {
               return (
                 <ChatItem
-                  key={chat?.chatId}
-                  active={selectedChat?.chatId === chat?.chatId}
+                  key={chat.chatId}
+                  active={selectedChat?.chatId === chat.chatId}
                   name={getSenderName(user, chat.users)}
-                  latestMessage={chat?.latestMessage}
+                  latestMessage={chat.latestMessage}
                   onClick={() => setSelectedChat(chat)}
                 />
               )
             }
+            return null
           })}
         </div>
       ) : (
-        <>No Chats Currently</>
+        <div>No Chats Currently</div>
       )}
     </div>
   )
 }
 
-export default connect(mapStateToProps, { setSelectedChat })(memo(ChatSidebar))
+export default connect(mapStateToProps, { setSelectedChat, getAllChats })(memo(ChatSideBar))

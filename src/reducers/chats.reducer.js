@@ -26,7 +26,7 @@ import {
 
 const initialState = {
   isLoading: true,
-  // socketConnected: false,
+  socketConnected: false,
   chats: [],
   messages: [],
   selectedChat: null,
@@ -38,16 +38,16 @@ const initialState = {
 const chatsReducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
-    // case SOCKET_CONNECTED:
-    //   return {
-    //     ...state,
-    //     socketConnected: payload,
-    //   }
-    // case SOCKET_DISCONNECTED:
-    //   return {
-    //     ...state,
-    //     socketConnected: payload,
-    //   }
+    case SOCKET_CONNECTED:
+      return {
+        ...state,
+        socketConnected: payload,
+      }
+    case SOCKET_DISCONNECTED:
+      return {
+        ...state,
+        socketConnected: payload,
+      }
     case GET_MESSAGES_SUCCESS:
       return {
         ...state,
@@ -56,7 +56,6 @@ const chatsReducer = (state = initialState, action) => {
       }
     case SEND_MESSAGE_SUCCESS:
     case UPDATE_MESSAGES:
-      console.log('---------messager in reducer-----------', state.messages, payload)
       return {
         ...state,
         messages: [...state.messages, payload],
