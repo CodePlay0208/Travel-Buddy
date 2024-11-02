@@ -23,12 +23,12 @@ import { debounce } from 'lodash'
 const mapStateToProps = (state) => ({
   selectedChat: state.chatsReducer.selectedChat,
   user: state.authReducer.user,
-  isLoading: state.chatsReducer.isLoading,
-  notifications: state.chatsReducer.notifications,
+  // isLoading: state.chatsReducer.isLoading,
+  // notifications: state.chatsReducer.notifications,
   messages: state.chatsReducer.messages,
-  isOtherTyping: state.chatsReducer.isOtherTyping,
-  fetchAgain: state.chatsReducer.fetchAgain,
-  socketConnected: state.chatsReducer.socketConnected,
+  // isOtherTyping: state.chatsReducer.isOtherTyping,
+  // fetchAgain: state.chatsReducer.fetchAgain,
+  // socketConnected: state.chatsReducer.socketConnected,
 })
 
 const socket = new Socket()
@@ -38,9 +38,11 @@ const ChatBox = (props) => {
   const [messageText, setMessageText] = useState('')
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [isSelfTyping, setIsSelfTyping] = useState(false)
-  const { selectedChat, notifications, user, messages, fetchAgain, isOtherTyping, socketConnected } = props
-  const { getMessagesForChat, setSocketState, setTypingState, updateNotifications, setFetchAgain, updateMessages, sendMessage } = props
-
+  const { selectedChat, user, messages } = props
+  const { getMessagesForChat, updateMessages} = props
+  const [isOtherTyping, setIsOtherTyping] = useState(false);
+  // const [messages, setMessages] = useState([]);
+  const [socketConnected, setSocketConnected] = useState(false);
   // const onMessageReceivedEventFunction = useRef(() => {
   //   onMessageReceivedEvent()
   // }).current
@@ -111,7 +113,7 @@ const ChatBox = (props) => {
       try {
         const res = await ChatsApi.postNewMessage(body)
         socket.emit('new message', res.data)
-        updateMessages(res.data)
+        updateMessages(res.data);
         setMessageText('')
       } catch (e) {
         console.log('eeeeeeeee', e)
@@ -122,9 +124,9 @@ const ChatBox = (props) => {
   useEffect(() => {
     socket.connect()
     socket.emit('setup', user)
-    socket.on('connected', () => setSocketState(true))
-    socket.on('typing', () => setTypingState(true))
-    socket.on('stop typing', () => setTypingState(false))
+    socket.on('connected', () => setSocketConnected(true))
+    socket.on('typing', () => setIsOtherTyping(true))
+    socket.on('stop typing', () => setIsOtherTyping(false))
   }, [])
 
   useEffect(() => {
@@ -134,17 +136,17 @@ const ChatBox = (props) => {
 
   useEffect(() => {
     socket.on('message received', (newMessageRecieved) => {
-      if (
-        !selectedChatCompare || // if chat is not selected or doesn't match current chat
-        selectedChatCompare.chatId !== newMessageRecieved.chatId
-      ) {
-        if (!notifications.includes(newMessageRecieved)) {
-          updateNotifications(newMessageRecieved)
-          setFetchAgain(!fetchAgain)
-        }
-      } else {
-        updateMessages(newMessageRecieved)
-      }
+      // if (
+      //   !selectedChatCompare || // if chat is not selected or doesn't match current chat
+      //   selectedChatCompare.chatId !== newMessageRecieved.chatId
+      // ) {
+      //   if (!notifications.includes(newMessageRecieved)) {
+      //     updateNotifications(newMessageRecieved)
+      //     setFetchAgain(!fetchAgain)
+      //   }
+      // } else {
+        updateMessages(newMessageRecieved);
+    //   }
     })
   })
 
@@ -263,11 +265,6 @@ const ChatBox = (props) => {
 
 export default connect(mapStateToProps, {
   getMessagesForChat,
-  setSocketState,
-  setTypingState,
-  updateNotifications,
-  setFetchAgain,
-  updateMessages,
-  sendMessage,
+  updateMessages
 })(memo(ChatBox))
 // export default memo(ChatBox)
