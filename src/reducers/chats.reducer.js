@@ -55,10 +55,15 @@ const chatsReducer = (state = initialState, action) => {
         isLoading: false,
       }
     case SEND_MESSAGE_SUCCESS:
-    case UPDATE_MESSAGES:
       return {
         ...state,
         messages: [...state.messages, payload],
+        isLoading: false,
+      }
+    case UPDATE_MESSAGES:
+      return {
+        ...state,
+        messages: payload,
         isLoading: false,
       }
     case UPDATE_NOTIFICATIONS:

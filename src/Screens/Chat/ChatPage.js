@@ -4,7 +4,7 @@ import ChatSideBar from './ChatSideBar/ChatSideBar'
 import { ToastContainer } from 'react-toastify'
 import './ChatPage.css'
 
-const ChatPage = (props) => {
+const ChatPage = () => {
   return (
     <div className="chatpage-container">
       <ChatSideBar />

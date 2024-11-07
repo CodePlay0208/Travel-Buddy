@@ -2,21 +2,22 @@ import { memo, useEffect } from 'react'
 import './ChatSideBar.css'
 import { connect } from 'react-redux'
 import { getAllChats, setSelectedChat } from '../../../actions/chats.action'
-import { getSenderName } from '../utils/chat-utils'
+import { getSenderFull } from '../utils/chat-utils'
 import ChatItem from './components/ChatItem/ChatItem'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
   chats: state.chatsReducer.chats,
   selectedChat: state.chatsReducer.selectedChat,
+  fetchAgain: state.chatsReducer.fetchAgain
 })
 
 const ChatSideBar = (props) => {
-  const { user, selectedChat, setSelectedChat, chats } = props
+  const { user, selectedChat, setSelectedChat, chats, fetchAgain } = props
 
   useEffect(() => {
     props.getAllChats()
-  }, [props.getAllChats])
+  }, [fetchAgain, props.getAllChats])
 
   return (
     <div className="chat-sidebar-container">
@@ -29,7 +30,7 @@ const ChatSideBar = (props) => {
                 <ChatItem
                   key={chat.chatId}
                   active={selectedChat?.chatId === chat.chatId}
-                  name={getSenderName(user, chat.users)}
+                  user={getSenderFull(user, chat.users)}
                   latestMessage={chat.latestMessage}
                   onClick={() => setSelectedChat(chat)}
                 />

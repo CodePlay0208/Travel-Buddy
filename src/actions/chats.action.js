@@ -62,7 +62,7 @@ export const getMessagesForChat = (chatId, user) => async (dispatch) => {
       type: GET_MESSAGES_SUCCESS,
       payload: { messageData: res.data, selectedChatId: chatId, user: user },
     })
-    return true
+    return res.data
   } catch (e) {
     dispatch({
       type: GET_MESSAGES_FAIL,
@@ -70,17 +70,18 @@ export const getMessagesForChat = (chatId, user) => async (dispatch) => {
   }
 }
 
-export const sendMessage = (selectedChatId, messageData) => async (dispatch) => {
+export const sendMessage = (selectedChatId, messageData, socket) => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token)
   }
   const body = JSON.stringify({ chatId: selectedChatId, content: messageData })
   try {
     const res = await ChatsApi.postNewMessage(body)
-    dispatch({
-      type: SEND_MESSAGE_SUCCESS,
-      payload: res.data,
-    })
+    socket.emit("new message", res.data)
+    // dispatch({
+    //   type: SEND_MESSAGE_SUCCESS,
+    //   payload: res.data,
+    // })
     return res.data
   } catch (e) {
     dispatch({
