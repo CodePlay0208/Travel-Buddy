@@ -19,6 +19,11 @@ export const InputField = styled.input`
     color: #040f0f;
     opacity: 0.7;
   }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 14px;
+  }
 `
 
 export const DescriptionField = styled.textarea`
@@ -37,6 +42,12 @@ export const DescriptionField = styled.textarea`
     color: #040f0f;
     opacity: 0.7;
   }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    font-size: 14px;
+    height: 120px;
+  }
 `
 
 export const PublishTripContainer = styled.div`
@@ -47,6 +58,10 @@ export const PublishTripContainer = styled.div`
   margin: 0 auto;
   background: #ffffff;
   border-radius: 10px;
+
+  @media (max-width: 768px) {
+    padding: 5%;
+  }
 `
 
 export const PublishTripHeading = styled.div`
@@ -56,6 +71,12 @@ export const PublishTripHeading = styled.div`
   font-weight: 500;
   font-size: 3.5vw;
   line-height: 1.8;
+
+  @media (max-width: 768px) {
+    font-size: 5vw;
+    padding-left: 0;
+    text-align: center;
+  }
 `
 
 export const PublishTripContent = styled.div`
@@ -63,10 +84,18 @@ export const PublishTripContent = styled.div`
   justify-content: space-between;
   padding: 20px;
   height: 80%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 export const PublishTripLeftSection = styled.div`
   width: 58%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const LeftSection = styled.div`
@@ -78,6 +107,11 @@ export const LeftSection = styled.div`
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
   border-radius: 0 0 10px 10px;
   padding: 2% 4%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 3% 5%;
+  }
 `
 
 export const InputGroup = styled.div`
@@ -85,16 +119,23 @@ export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 2% 2% 2%;
+
+  @media (max-width: 768px) {
+    margin: 0 0 10px 0;
+  }
 `
 
 export const InputLabel = styled.label`
   font-family: 'Poppins', sans-serif;
-  font-style: normal;
   font-weight: 600;
   font-size: 1vw;
   line-height: 1.4;
   color: #040f0f;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `
 
 export const ToggleBetweenTripUser = styled.div`
@@ -108,6 +149,11 @@ export const ToggleBetweenTripUser = styled.div`
   background: #8dd3bb;
   box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.25);
   border-radius: 10px 10px 0px 0px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 3% 0;
+  }
 `
 
 export const ToggleTab = styled.div`
@@ -131,6 +177,10 @@ export const ToggleTab = styled.div`
     background-color: #559c84;
     border-radius: 10px;
   }
+
+  @media (max-width: 768px) {
+    font-size: 4vw;
+  }
 `
 
 export const Divider = styled.div`
@@ -138,6 +188,10 @@ export const Divider = styled.div`
   height: 4vw;
   background: #ffffff;
   border-radius: 50px;
+
+  @media (max-width: 768px) {
+    height: 20px;
+  }
 `
 
 export const PublishTripButton = styled.div`
@@ -152,11 +206,14 @@ export const PublishTripButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `
 
 export const NextButton = styled.button`
   width: 100%;
-
   height: 100%;
   padding: 10px 20px;
   color: #559c84;
@@ -172,17 +229,25 @@ export const NextButton = styled.button`
     background-color: #559c84;
     color: white;
   }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `
 
 export const SubmitButton = styled(NextButton)`
   background-color: #8dd3bb;
-  height: 100%;
   color: black;
 `
 
 export const InputRow = styled.div`
   display: flex;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `
 
 export const PublishTripRightSection = styled.div`
@@ -193,4 +258,9 @@ export const PublishTripRightSection = styled.div`
   box-shadow: 0px 4px 21px 1px rgba(36, 99, 235, 0.25);
   border-radius: 12px;
   padding: 3%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 20px;
+  }
 `
