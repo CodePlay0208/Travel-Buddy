@@ -14,7 +14,7 @@ import {
   VERIFY_OTP_FAIL,
   RESEND_OTP_SUCCESS,
   RESEND_OTP_FAIL,
-} from '../constants'
+} from '../constants/action-types/auth.constants'
 
 const initialState = {
   token: localStorage.getItem('token'),
@@ -51,6 +51,7 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
       }
     case VERIFY_OTP_SUCCESS:
+      localStorage.setItem("token", payload.token)
       return {
         ...state,
         otpVerified: true,

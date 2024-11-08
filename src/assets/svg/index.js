@@ -21,6 +21,9 @@ import CalendarIcon from './CalenderIcon.svg'
 import ChatNow from './chatNow.svg'
 import deleteIcon from './deleteIcon.svg'
 import editPic from './editPic.svg'
+import ChatInputIcon from './chatInputIcon.svg'
+import AddEmojiIcon from './addEmojiIcon.svg'
+
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -43,5 +46,7 @@ export const SVG = {
   CalendarIcon,
   ChatNow,
   deleteIcon,
-  editPic
+  editPic,
+  ChatInputIcon,
+  AddEmojiIcon
 }

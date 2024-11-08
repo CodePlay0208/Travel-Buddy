@@ -1,1 +1,1 @@
-export * from './actionTypes.constants'
+export * from './action-types'

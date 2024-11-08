@@ -123,11 +123,7 @@ const DatePicker = (props) => {
 
   const handleDateSelect = (date) => {
     const dateString = dateToStringSimple(date)
-
-    setInputValues((currentInputValues) => ({
-      ...currentInputValues,
-      [onValue]: dateString,
-    }))
+    setInputValues(dateString)
     setShowCalendar(false)
   }
 
@@ -148,10 +144,7 @@ const DatePicker = (props) => {
   const handleTodayClick = () => {
     setSelectedDate('Today')
     setCurrentDate(new Date())
-    setInputValues((currentInputValues) => ({
-      ...currentInputValues,
-      [onValue]: dateToStringSimple(new Date()),
-    }))
+    setInputValues(dateToStringSimple(new Date()))
     setShowCalendar(false)
   }
   return (

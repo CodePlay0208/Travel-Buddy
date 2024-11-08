@@ -1,4 +1,4 @@
-import { GET_LOCATION_SUCCESS, GET_LOCATION_FAIL } from '../constants'
+import { GET_LOCATION_SUCCESS, GET_LOCATION_FAIL } from '../constants/action-types/location.constants'
 
 const initialState = {
   suggestions: [],
