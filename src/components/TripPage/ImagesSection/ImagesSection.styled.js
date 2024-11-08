@@ -19,14 +19,14 @@ export const ImageRow = styled.div`
 
 export const OnlyImage = styled.img`
   aspect-ratio: 2;
-  border-radius: 5px;
+  border-radius: 10px;
 `;
 
 export const MainImage = styled.img`
   width: calc(50% - 0.6%);
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 10px;
 `;
 
 export const RightImages = styled.div`
@@ -38,20 +38,20 @@ export const RightImages = styled.div`
 export const ImageItem = styled.img`
   width: calc(50% - 1.2%);
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 10px;
 `;
 
 export const TallImage = styled.img`
   width: calc(50% - 1.2%);
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 10px;
 `;
 
 export const StackedImages = styled.img`
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 10px;
 `;
 
 export const LLSection = styled.div`

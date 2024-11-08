@@ -8,6 +8,7 @@ import { SVG } from '../../../assets'
 import { setAuthToken } from '../../../services/api-services/api-services'
 import { ChatsApi } from '../../../services/api-services/api-invokes'
 import { updateNotifications, setFetchAgain } from '../../../actions/chats.action'
+import { getSenderFull } from '../utils/chat-utils'
 
 const mapStateToProps = (state) => ({
   selectedChat: state.chatsReducer.selectedChat,
@@ -128,21 +129,18 @@ const ChatBox = (props) => {
 
   return (
     <>
-      {true ? (
+      {selectedChat ? (
         <>
           <div className="chatbox">
-            <ChatBoxHeader />
+            <ChatBoxHeader chatUser={getSenderFull(user, selectedChat?.users)} />
             <div className="chatbox-messages">
               {false ? (
                 <div>Loading</div>
               ) : (
                 <div className="scrollable-chat-container">
                   {messages &&
-                    messages.length &&
                     messages.map((m, i) => {
                       const sender = getMessageSender(m?.senderId)
-                      console.log('sender', sender)
-                      console.log('selectedChat', selectedChat)
                       return (
                         <div key={i} className={`message-container ${sender?.userId === user?.userId ? 'user' : 'sender'}`}>
                           <div className={`message-content ${sender?.userId === user.userId ? 'user' : 'sender'}`}>

@@ -30,7 +30,7 @@ export const PopularTripContent = styled.div`
   display: flex;
   overflow-x: auto;
   margin: ${(props) => props.margin};
-  padding: 30px 0;
+  padding: ${(props) => props.padding};
   gap: 20px;
   scrollbar-width: none;
   overflow-y: hidden;

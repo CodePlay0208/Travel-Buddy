@@ -124,11 +124,7 @@ const ImageUpload = ({ tripData, setTripData }) => {
                     </PreviewImageItemContainer>
                   ))
                 :
-                  Array.from({ length: 5 }).map((_, index) => (
-                    <PreviewImageItemContainer key={index}>
-                      <PreviewImageItem src={secondImage} alt="Placeholder Preview" />
-                    </PreviewImageItemContainer>
-                  ))}
+                <></>}
             </ImagePreviewSection>
           </Frame>
         )}

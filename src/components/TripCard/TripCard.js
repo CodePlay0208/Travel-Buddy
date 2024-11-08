@@ -31,6 +31,7 @@ import { computeDateAndTimeUntilNowInString, formatDate } from '../../utils/Date
 
 const TripCard = (props) => {
   const {
+    tripId,
     profileImg,
     startLocation,
     destination,
@@ -69,15 +70,20 @@ const TripCard = (props) => {
     return ''
   }
 
-  const onChatNowClick = async () => {
+  const onChatNowClick = async (e) => {
+    e.stopPropagation()
     const isChatCreated = await getOrCreateChat(publisherId)
     if (isChatCreated) {
       navigate('/chats')
     }
   }
+
+  const onCardPress = () => {
+    navigate(`/trip/${tripId}`)
+  }
   
   return (
-    <TripCardContainer>
+    <TripCardContainer onClick={onCardPress} >
       <LeftContainer>
         <Slider {...settings}>
           {destinationImages && destinationImages.map((img, index) => (
@@ -93,7 +99,7 @@ const TripCard = (props) => {
             <img src={SVG.ChatNow} alt="" />
             {`${duration} ago`}
           </Duration>
-          <Title>{`${startLocation} To ${destination}`}</Title>
+          <Title>{`${startLocation?.split(',')[0]} To ${destination?.split(',')[0]}`}</Title>
           <DateComp>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</DateComp>
           <Description>{truncateDescription(description, 150)}</Description>
           <ChatNow>

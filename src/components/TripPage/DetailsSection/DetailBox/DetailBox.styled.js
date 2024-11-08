@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const BoxContainer = styled.div`
   box-sizing: border-box;
   position: relative;
-  width: 100%;
+  width: 350px;
   background: #ffffff;
   border: 3px solid #8dd3bb;
   box-shadow: 4px 4px 16px rgba(6, 64, 43, 0.25);

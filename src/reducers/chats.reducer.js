@@ -95,6 +95,7 @@ const chatsReducer = (state = initialState, action) => {
         fetchAgain: payload,
       }
     case GET_ALL_CHATS_SUCCESS:
+    case GET_CREATE_CHAT_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -115,12 +116,6 @@ const chatsReducer = (state = initialState, action) => {
       return {
         ...state,
         messages: [],
-      }
-    case GET_CREATE_CHAT_SUCCESS:
-      return {
-        ...state,
-        chats: [...state.chats, payload],
-        isLoading: false,
       }
     case GET_CREATE_CHAT_FAIL:
       return {

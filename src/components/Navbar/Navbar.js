@@ -163,7 +163,6 @@ const Navbar = (props) => {
           </OtherContentsOfNavBar>
         ) : (
           <OtherContentsOfNavBar>
-            <NavContents onClick={() => navigate('/publish-trip')}>Publish a Trip</NavContents>
             <Signup onClick={() => navigate('/login')}>Login</Signup>
           </OtherContentsOfNavBar>
         )}
