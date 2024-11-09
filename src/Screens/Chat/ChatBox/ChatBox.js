@@ -24,11 +24,10 @@ const ChatBox = (props) => {
   const [messageText, setMessageText] = useState('')
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [isSelfTyping, setIsSelfTyping] = useState(false)
-  const { selectedChat, user, setFetchAgain, fetchAgain } = props
+  const { selectedChat, user, setFetchAgain, fetchAgain, notifications, setNotifications } = props
   const [isOtherTyping, setIsOtherTyping] = useState(false)
   const [messages, setMessages] = useState([])
   const [socketConnected, setSocketConnected] = useState(false)
-  const [notifications, setNotifications] = useState([])
 
   const onEmojiClick = useRef((event, emojiObject) => {
     setMessageText((prevState) => prevState + emojiObject.emoji)

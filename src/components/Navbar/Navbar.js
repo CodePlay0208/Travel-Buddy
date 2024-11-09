@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, memo } from 'react'
+import React, { useContext, useState, memo } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { UserLoginContext } from '../../utils/Context/LoggedInUserContext'
@@ -12,22 +12,18 @@ import {
   NavContents,
   Signup,
   NavButton,
-  ListItemValueForIdx,
-  UserProfileDropDownList,
-  ListItemValueForUserProfileData,
   ProfileImageContainer,
 } from '../../Styles/Navbar.styles'
 import Dropdown from '../Dropdown/Dropdown'
 import { connect } from 'react-redux'
-import { logout } from '../../actions/auth.action'
+import './Navbar.css'
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
-  user: state.authReducer.user
 })
 
 const Navbar = (props) => {
-  const { isAuthenticated, user, logout } = props
+  const { isAuthenticated, notifications = [], setNotifications = () => {} } = props
   const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
   const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
@@ -39,7 +35,7 @@ const Navbar = (props) => {
   ]
 
   const handleClickOnProfilePic = () => {
-    if (loggedInUserValues._id != '') {
+    if (loggedInUserValues._id !== '') {
       setShowUserProfileDropDownList((currentValue) => !currentValue)
     } else {
       sessionStorage.setItem('redirectUrl', '/userProfile')
@@ -51,7 +47,7 @@ const Navbar = (props) => {
     //TODO: do all the necessary stuff
     fetch('http://localhost:4000/login/logout', {
       method: 'POST',
-      credentials: 'include', // Ensure cookies are sent with the request
+      credentials: 'include',
     })
       .then((response) => {
         if (response.ok) {
@@ -61,10 +57,8 @@ const Navbar = (props) => {
             emailId: '',
             profilePic: '',
           })
-          // Optionally redirect or update UI after logout
         } else {
           console.error('Logout failed:', response.statusText)
-          // Handle logout failure, if needed
           if (!response.ok) {
             return response.json().then((error) => {
               throw new Error(error)
@@ -74,7 +68,6 @@ const Navbar = (props) => {
       })
       .catch((error) => {
         console.error('Error logging out:', error)
-        // Handle network errors or other issues
       })
     navigate('/')
   }
@@ -118,8 +111,8 @@ const Navbar = (props) => {
       navigate(suggestion.path)
     }
   }
-  const handleChat = () => {
-    accessChat('6690ab18c2d9d0a71a4533da')
+  const onChatClick = () => {
+    setNotifications([])
     navigate('/chats')
   }
 
@@ -132,7 +125,7 @@ const Navbar = (props) => {
             navigate('/')
           }}
         >
-          {props.isLandingPage? "": "Travmigoz"}
+          {props.isLandingPage ? '' : 'Travmigoz'}
         </WebAppNameAndLogo>
 
         {/* <button onClick={() => {
@@ -149,12 +142,9 @@ const Navbar = (props) => {
             >
               Publish Trip
             </NavButton>
-            <NavContents
-              onClick={() => {
-                navigate('/chats')
-              }}
-            >
+            <NavContents onClick={onChatClick}>
               <img src={SVG.ChatButton} alt="Chat" />
+              {notifications?.length > 0 && <div className="notification-badge" />}
             </NavContents>
             <ProfileImageContainer onClick={handleClickOnProfilePic}>
               <img src={SVG.ProfileIcon} alt="Profile" />
@@ -171,4 +161,4 @@ const Navbar = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { logout })(memo(Navbar))
+export default connect(mapStateToProps, null)(memo(Navbar))
