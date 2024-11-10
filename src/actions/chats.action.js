@@ -58,12 +58,11 @@ export const getMessagesForChat = (chatId, user) => async (dispatch) => {
   const query = { chatId: chatId }
   try {
     const res = await ChatsApi.getMessagesForSingleChat(query)
-    console.log('---------------getMessagesForChat CALLED-------------------')
     dispatch({
       type: GET_MESSAGES_SUCCESS,
       payload: { messageData: res.data, selectedChatId: chatId, user: user },
     })
-    return true
+    return res.data
   } catch (e) {
     dispatch({
       type: GET_MESSAGES_FAIL,
@@ -71,18 +70,19 @@ export const getMessagesForChat = (chatId, user) => async (dispatch) => {
   }
 }
 
-export const sendMessage = (selectedChatId, messageData) => async (dispatch) => {
+export const sendMessage = (selectedChatId, messageData, socket) => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token)
   }
   const body = JSON.stringify({ chatId: selectedChatId, content: messageData })
   try {
     const res = await ChatsApi.postNewMessage(body)
-    dispatch({
-      type: SEND_MESSAGE_SUCCESS,
-      payload: res.data,
-    })
-    return false
+    socket.emit("new message", res.data)
+    // dispatch({
+    //   type: SEND_MESSAGE_SUCCESS,
+    //   payload: res.data,
+    // })
+    return res.data
   } catch (e) {
     dispatch({
       type: SEND_MESSAGE_FAIL,
@@ -160,7 +160,6 @@ export const setSocketState = (isSocketConnected) => async (dispatch) => {
 export const setTypingState = (isOtherTyping) => async (dispatch) => {
   try {
     if (!isOtherTyping) {
-      // console.log('------------setTypingState---------------')
       dispatch({
         type: USER_NOT_TYPING,
         payload: false,

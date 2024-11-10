@@ -9,7 +9,7 @@ const DetailsSection = () => {
     <SectionContainer>
       <TripDescription />
       <UpperSection>
-        <Title>Title Here</Title>
+        <Title>Your Destination</Title>
         <Divider />
         <MapImage />
         <Divider />

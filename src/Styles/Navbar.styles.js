@@ -61,7 +61,7 @@ export const NavButton = styled.div`
   color: rgb(39, 167, 218);
   border: none;
   font-weight: 500;
-  text-align: center;
+  text-align: right;
   cursor: pointer;
   margin: 2.5%;
   width: 80%;

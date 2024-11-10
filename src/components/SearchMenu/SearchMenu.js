@@ -25,8 +25,6 @@ const SearchMenu = (props) => {
     navigate('/search-results-page')
   }
 
-  console.log('searchForm', searchForm)
-
   return (
     <SearchBarContainer>
       <Searchbar

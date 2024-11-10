@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import {
   SectionContainer,
   DescriptionContainer,
@@ -21,22 +21,42 @@ import {
   StartDate,
   EndDate,
 } from './TripDescription.styled'
+import { connect } from 'react-redux'
+import { formatDate } from '../../../../utils/DateUtils'
+import { getOrCreateChat } from '../../../../actions/chats.action'
+import { useNavigate } from 'react-router-dom'
+import { images } from '../../../../assets/images'
 
-const TripDescription = () => {
+const mapStateToProps = (state) => ({
+  trip: state.tripReducer.trip
+})
+
+const TripDescription = (props) => {
+  const { trip, getOrCreateChat } = props
   const [isExpanded, setIsExpanded] = useState(false)
+  const navigate = useNavigate()
+
+  const publisher = trip?.tripMembers.filter((user) => user?.userId === trip?.userId)[0]
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded)
   }
 
-  const content = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ...`
+  const onChatNowClick = async () => {
+    const isChatCreated = await getOrCreateChat(publisher?.userId)
+    if (isChatCreated) {
+      navigate('/chats')
+    }
+  }
+
+  const content = trip?.description
   const words = content.split(' ')
   const displayedContent = isExpanded ? content : words.slice(0, 40).join(' ') + '...'
 
   return (
     <SectionContainer>
       <DescriptionContainer>
-        <Title>Add Title Here</Title>
+        <Title>{`${trip?.startLocation} To ${trip?.destination}`}</Title>
         <DescriptionTitle>Description</DescriptionTitle>
         <GreyLine />
         <DescriptionContent>
@@ -46,36 +66,36 @@ const TripDescription = () => {
       </DescriptionContainer>
       <ChatSection>
         <ProfileImage>
-          <ProfilePicture src="" alt="" />
-          <ProfileName>User</ProfileName>
+          <ProfilePicture src={publisher?.profilePic?.[0] || images.defaultProfileImg } alt="" />
+          <ProfileName>{publisher?.username}</ProfileName>
         </ProfileImage>
         <GreyLine />
         <DateContainer>
           <DateSection>
             <StartDate>
               <BoxHeading>Start Date</BoxHeading>
-              <BoxContent>DD/MM/YYYY</BoxContent>
+              <BoxContent>{formatDate(trip?.startDate)}</BoxContent>
             </StartDate>
             <EndDate>
               <BoxHeading>End Date</BoxHeading>
-              <BoxContent>DD/MM/YYYY</BoxContent>
+              <BoxContent>{formatDate(trip?.endDate)}</BoxContent>
             </EndDate>
           </DateSection>
           <InfoSection>
             <DetailsBox>
               <BoxHeading>Budget</BoxHeading>
-              <BoxContent>6000</BoxContent>
+              <BoxContent>{trip?.budget}</BoxContent>
             </DetailsBox>
             <DetailsBox>
               <BoxHeading>Members</BoxHeading>
-              <BoxContent>10</BoxContent>
+              <BoxContent>{trip?.totalMembers}</BoxContent>
             </DetailsBox>
           </InfoSection>
-          <ChatButton>Chat Now</ChatButton>
+          <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>
         </DateContainer>
       </ChatSection>
     </SectionContainer>
   )
 }
 
-export default TripDescription
+export default connect(mapStateToProps, { getOrCreateChat })(memo(TripDescription))

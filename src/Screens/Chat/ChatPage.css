@@ -1,4 +1,5 @@
 .chatpage-container {
-    display: flex;
-    overflow: hidden;
+  display: flex;
+  overflow: hidden;
+  justify-content: 'space-between';
 }

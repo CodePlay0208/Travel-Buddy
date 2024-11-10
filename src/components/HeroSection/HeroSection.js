@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo, useCallback } from 'react'
 import {
   HeroSectionContainer,
   HeroSectionText,
@@ -16,15 +16,33 @@ import thirdImage from '../../data/Images/heroSection/image4.png'
 import fourthImage from '../../data/Images/heroSection/image2.png'
 import fifthImage from '../../data/Images/heroSection/image5.png'
 import sixthImage from '../../data/Images/heroSection/image6.png'
+import { setSearchForm } from '../../actions/trips.action'
+import { connect } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
-const HeroSection = () => {
+const mapStateToProps = (state) => ({
+  searchForm: state.tripReducer.searchForm
+})
+
+const HeroSection = (props) => {
+  const { searchForm, setSearchForm } = props
+  const navigate = useNavigate()
+
+  const onHeroItemClick = useCallback((value) => {
+    setSearchForm({ 
+      ...searchForm,
+      'destination': value 
+    })
+    navigate('/search-results-page')
+  }, [])
+
   const cardData = [
-    { id: 1, image: firstImage, name: 'Manali' },
-    { id: 2, image: secondImage, name: 'Ooty' },
-    { id: 3, image: thirdImage, name: 'Shimla' },
-    { id: 4, image: fourthImage, name: 'Udaipur' },
-    { id: 5, image: fifthImage, name: 'Rameshwaram' },
-    { id: 6, image: sixthImage, name: 'Nanital' },
+    { id: 1, image: firstImage, searchQuery: 'Manali, Himachal Pradesh', displayName: 'Manali' },
+    { id: 2, image: secondImage, searchQuery: 'Ooty, Tamil Nadu', displayName: 'Ooty' },
+    { id: 3, image: thirdImage, searchQuery: 'Shimla, Himachal Pradesh', displayName: 'Shimla' },
+    { id: 4, image: fourthImage, searchQuery: 'Udaipur, Rasjasthan', displayName: 'Udaipur' },
+    { id: 5, image: fifthImage, searchQuery: 'Rameswaram, Tamil Nadu', displayName: 'Rameswaram' },
+    { id: 6, image: sixthImage, searchQuery: 'Nanital, Uttarakhand', displayName: 'Nanital' },
   ]
 
   return (
@@ -32,19 +50,18 @@ const HeroSection = () => {
       <HeroSectionText>
         <h1>Top Destinations</h1>
         <HeroSectionButtonGroup>
-          <HeroSectionButton primary>Manali</HeroSectionButton>
-          <HeroSectionButton>Ooty</HeroSectionButton>
-          <HeroSectionButton>Shimla</HeroSectionButton>
-          <HeroSectionButton>Udaipur</HeroSectionButton>
-          <HeroSectionButton>Rameshwaram</HeroSectionButton>
+        {cardData.map((card, index) => (
+          index === 0 
+            ? <HeroSectionButton primary key={index} onClick={() => onHeroItemClick(card?.searchQuery)}>{card?.displayName}</HeroSectionButton>
+            : <HeroSectionButton key={index} onClick={() => onHeroItemClick(card?.searchQuery)}>{card?.displayName}</HeroSectionButton>
+        ))}
         </HeroSectionButtonGroup>
       </HeroSectionText>
       <HeroSectionCards>
         {cardData.map((card) => (
-          <HeroSectionCard key={card.id}>
-            <HeroSectionCardImg image={card.image}>
-            </HeroSectionCardImg>
-            <HeroSectionPlaceName>{card.name}</HeroSectionPlaceName>
+          <HeroSectionCard key={card.id} onClick={() => onHeroItemClick(card?.searchQuery)}>
+            <HeroSectionCardImg image={card.image}></HeroSectionCardImg>
+            <HeroSectionPlaceName>{card.displayName}</HeroSectionPlaceName>
           </HeroSectionCard>
         ))}
       </HeroSectionCards>
@@ -52,4 +69,4 @@ const HeroSection = () => {
   )
 }
 
-export default HeroSection
+export default connect(mapStateToProps, { setSearchForm })(memo(HeroSection))

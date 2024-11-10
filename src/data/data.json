@@ -1,15 +1,16 @@
 [
   {
     "id": 1,
-    "name": "Trip to Paris",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "01 Sept",
-    "endDate": "10 Sept",
-    "duration": "10 Hours",
-    "startLocation": "Sambalpur",
-    "endLocation": "Dehradun",
-    "budget": 5000,
-    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+    "tripId": 1,
+    "name": "Serene Getaway to Manali",
+    "profileImg": "https://example.com/images/manali-profile.jpg",
+    "startDate": "15 Dec",
+    "endDate": "20 Dec",
+    "duration": "6 days",
+    "startLocation": "Delhi",
+    "destination": "Manali",
+    "budget": 15000,
+    "description": "Experience the tranquility of Manali with breathtaking views, snow-clad mountains, and enchanting forests.",
     "destinationImages": [
       "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -20,15 +21,16 @@
   },
   {
     "id": 2,
-    "name": "Beach Vacation in Hawaii",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "15 Aug",
-    "endDate": "22 Aug",
-    "duration": "7 days",
-    "startLocation": "Los Angeles, USA",
-    "endLocation": "Maui, Hawaii",
-    "budget": 3500,
-    "description": "Relaxing on the beaches of Maui, with adventures including snorkeling and hiking volcanoes.",
+    "tripId": 2,
+    "name": "Nature Trails in Munnar",
+    "profileImg": "https://example.com/images/munnar-profile.jpg",
+    "startDate": "05 Jan",
+    "endDate": "12 Jan",
+    "duration": "8 days",
+    "startLocation": "Kochi",
+    "destination": "Munnar",
+    "budget": 18000,
+    "description": "Explore the lush green tea plantations, misty hills, and vibrant wildlife in the pristine landscapes of Munnar.",
     "destinationImages": [
       "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -38,15 +40,16 @@
   },
   {
     "id": 3,
-    "name": "Cultural Tour of Japan",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "05 Apr",
-    "endDate": "15 Apr",
-    "duration": "10 days",
-    "startLocation": "Tokyo, Japan",
-    "endLocation": "Kyoto, Japan",
-    "budget": 4000,
-    "description": "An immersive cultural tour across Japan, visiting ancient temples, shrines, and the bustling cityscape of Tokyo.",
+    "tripId": 3,
+    "name": "Mystical Retreat in Darjeeling",
+    "profileImg": "https://example.com/images/darjeeling-profile.jpg",
+    "startDate": "20 Feb",
+    "endDate": "25 Feb",
+    "duration": "5 days",
+    "startLocation": "Siliguri",
+    "destination": "Darjeeling",
+    "budget": 14000,
+    "description": "Discover the charm of Darjeeling with stunning views of the Kanchenjunga, tea estates, and the famous Toy Train ride.",
     "destinationImages": [
       "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -55,15 +58,16 @@
   },
   {
     "id": 4,
-    "name": "Safari Adventure in Kenya",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "10 Jun",
-    "endDate": "18 Jun",
-    "duration": "8 days",
-    "startLocation": "Nairobi, Kenya",
-    "endLocation": "Maasai Mara, Kenya",
-    "budget": 5000,
-    "description": "A thrilling safari through the Maasai Mara, experiencing wildlife and the vast savannah landscapes.",
+    "tripId": 4,
+    "name": "Adventure Escape to Ooty",
+    "profileImg": "https://example.com/images/ooty-profile.jpg",
+    "startDate": "10 Mar",
+    "endDate": "16 Mar",
+    "duration": "7 days",
+    "startLocation": "Bangalore",
+    "destination": "Ooty",
+    "budget": 16000,
+    "description": "Relish the cool weather and scenic beauty of Ooty with its lakes, gardens, and misty mountain trails.",
     "destinationImages": [
       "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -71,137 +75,19 @@
   },
   {
     "id": 5,
-    "name": "Mountain Trekking in Nepal",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "01 Sep",
-    "endDate": "12 Sep",
-    "duration": "11 days",
-    "startLocation": "Kathmandu, Nepal",
-    "endLocation": "Everest Base Camp, Nepal",
-    "budget": 3000,
-    "description": "A challenging trek to Everest Base Camp, enjoying breathtaking views and rugged terrain.",
-    "destinationImages": [
-      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1,https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
-  },
-  {
-    "id": 6,
-    "name": "Road Trip through Australia",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "20 Oct",
-    "endDate": "30 Oct",
-    "duration": "10 days",
-    "startLocation": "Sydney, Australia",
-    "endLocation": "Melbourne, Australia",
-    "budget": 2700,
-    "description": "A scenic road trip along the Australian coastline, with stops in iconic cities and stunning beaches.",
-    "destinationImages": [
-      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1,https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
-  },
-  {
-    "id": 7,
-    "name": "Exploring the Canadian Rockies",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "05 Aug",
-    "endDate": "12 Aug",
-    "duration": "7 days",
-    "startLocation": "Calgary, Canada",
-    "endLocation": "Banff, Canada",
-    "budget": 3200,
-    "description": "A breathtaking journey through the Canadian Rockies, exploring lakes, glaciers, and wildlife.",
-    "destinationImages": [
-      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1,https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
-  },
-  {
-    "id": 8,
-    "name": "Cultural Exploration in Morocco",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "12 Nov",
-    "endDate": "22 Nov",
-    "duration": "10 days",
-    "startLocation": "Casablanca, Morocco",
-    "endLocation": "Marrakech, Morocco",
-    "budget": 2000,
-    "description": "A vibrant exploration of Morocco's culture, from Casablanca's modernity to Marrakech's historic souks.",
-    "destinationImages": [
-      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1,https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
-  },
-  {
-    "id": 9,
-    "name": "Winter Wonderland in Switzerland",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "20 Dec",
+    "tripId": 5,
+    "name": "Snowy Escapade in Gulmarg",
+    "profileImg": "https://example.com/images/gulmarg-profile.jpg",
+    "startDate": "25 Dec",
     "endDate": "30 Dec",
-    "duration": "10 days",
-    "startLocation": "Zurich, Switzerland",
-    "endLocation": "Zermatt, Switzerland",
-    "budget": 4500,
-    "description": "A snowy adventure in Switzerland, with skiing, snowboarding, and the beauty of the Alps.",
+    "duration": "6 days",
+    "startLocation": "Srinagar",
+    "destination": "Gulmarg",
+    "budget": 20000,
+    "description": "Enjoy the winter wonderland of Gulmarg, with snow-filled landscapes, skiing, and breathtaking Himalayan views.",
     "destinationImages": [
-      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1,https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
-  },
-  {
-    "id": 10,
-    "name": "Caribbean Cruise",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "15 Jan",
-    "endDate": "25 Jan",
-    "duration": "10 days",
-    "startLocation": "Miami, USA",
-    "endLocation": "Bahamas, Caribbean",
-    "budget": 2800,
-    "description": "A relaxing cruise through the Caribbean islands, visiting stunning beaches and enjoying tropical sunsets.",
-    "destinationImages": [
-      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1,https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
-  },
-  {
-    "id": 11,
-    "name": "Exploring the Amazon Rainforest",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "02 May",
-    "endDate": "12 May",
-    "duration": "10 days",
-    "startLocation": "Manaus, Brazil",
-    "endLocation": "Amazon Rainforest, Brazil",
-    "budget": 3500,
-    "description": "An adventurous trip into the heart of the Amazon, exploring wildlife, rivers, and indigenous cultures.",
-    "destinationImages": [
-      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1,https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
-  },
-  {
-    "id": 12,
-    "name": "Historical Tour of Rome",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "08 Sep",
-    "endDate": "15 Sep",
-    "duration": "7 days",
-    "startLocation": "Rome, Italy",
-    "endLocation": "Vatican City, Italy",
-    "budget": 2300,
-    "description": "Discovering the ancient history of Rome, from the Colosseum to the Vatican.",
-    "destinationImages": [
-      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1,https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    ]
-  },
-  {
-    "id": 13,
-    "name": "Ski Trip in Aspen",
-    "profileImg": "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
-    "startDate": "20 Feb",
-    "endDate": "27 Feb",
-    "duration": "7 days",
-    "startLocation": "Denver, USA",
-    "endLocation": "Aspen, USA",
-    "budget": 5000,
-    "description": "An exhilarating ski trip to Aspen, enjoying world-class slopes and luxury lodges.",
-    "destinationImages": [
-      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1,https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.unsplash.com/photo-1517517966484-49836a7ccf26?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     ]
   }
 ]
