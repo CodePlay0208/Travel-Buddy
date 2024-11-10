@@ -72,7 +72,6 @@ const Searchbar = (props) => {
             </DropdownItem>
           ))}
         </Dropdown>
-      )}
     </SearchBarContainer>
   )
 }
