@@ -8,7 +8,7 @@ import {
   DayNames,
   Days,
   TodayButton,
-} from '../../Styles/DatePicker.styled'
+} from '../../xyzStyles/DatePicker.styled'
 
 import { SVG } from '../../assets'
 

@@ -19,7 +19,7 @@ import {
   Budget,
   SubTitle,
   Price,
-} from '../../Styles/TripCard.styled'
+} from '../../xyzStyles/TripCard.styled'
 import { useNavigate } from "react-router-dom";
 import { memo } from 'react'
 import 'slick-carousel/slick/slick.css'

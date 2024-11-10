@@ -11,7 +11,7 @@ import {
   HeaderDescription,
   HeaderDesHeading,
   HeaderDesPara,
-} from '../../Styles/SearchResultHeader.styles'
+} from '../../xyzStyles/SearchResultHeader.styles'
 
 const SearchResultHeader = (props) => {
   return (

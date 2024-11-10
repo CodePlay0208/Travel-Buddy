@@ -1,5 +1,5 @@
 import React from 'react';
-import { AboutSectionWrapper, ContentFrame, IconGroup, Title, Description, Background } from '../../Styles/AboutSection.styled';
+import { AboutSectionWrapper, ContentFrame, IconGroup, Title, Description, Background } from '../../xyzStyles/AboutSection.styled';
 
 // Ensure you import images correctly
 import firstImage from '../../data/Images/aboutSection/image1.png';

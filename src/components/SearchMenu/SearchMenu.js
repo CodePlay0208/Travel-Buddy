@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Searchbar from '../Searchbar/Searchbar'
 import DatePicker from '../DatePicker/DatePicker'
-import { SearchBarContainer, SearchButtonContainer, SearchButton } from '../../Styles/SearchMenu.styled'
+import { SearchBarContainer, SearchButtonContainer, SearchButton } from '../../xyzStyles/SearchMenu.styled'
 import { setSearchForm } from '../../actions/trips.action'
 
 const mapStateToProps = (state) => ({

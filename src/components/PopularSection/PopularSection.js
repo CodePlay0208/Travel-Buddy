@@ -8,7 +8,7 @@ import {
   PopularHeadingRight,
   PopularButton,
   ArrowButton,
-} from '../../Styles/PopularSection.styles'
+} from '../../xyzStyles/PopularSection.styles'
 import data from '../../data/data.json'
 import TripCard from '../TripCard/TripCard'
 import { useNavigate } from 'react-router-dom'
