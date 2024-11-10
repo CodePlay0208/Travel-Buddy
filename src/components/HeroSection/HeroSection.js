@@ -9,7 +9,7 @@ import {
   HeroSectionCardImg,
   HeroSectionRating,
   HeroSectionPlaceName,
-} from '../../xyzStyles/HeroSection.styles'
+} from '../../styles/HeroSection.styles'
 import firstImage from '../../data/Images/heroSection/image1.png'
 import secondImage from '../../data/Images/heroSection/image3.png'
 import thirdImage from '../../data/Images/heroSection/image4.png'

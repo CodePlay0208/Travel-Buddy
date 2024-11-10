@@ -2,7 +2,7 @@ import React, { useState, memo } from 'react'
 import { SVG } from '../../assets'
 import { getLocationSuggestions } from '../../actions/location.action'
 import { connect } from 'react-redux'
-import { SearchBarContainer, SearchBarInput, LocationIcon, Dropdown, DropdownItem } from '../../xyzStyles/Searchbar.styled'
+import { SearchBarContainer, SearchBarInput, LocationIcon, Dropdown, DropdownItem } from '../../styles/Searchbar.styled'
 
 const mapStateToProps = (state) => ({
   suggestions: state.locationReducer.suggestions

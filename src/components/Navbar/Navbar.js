@@ -13,7 +13,7 @@ import {
   Signup,
   NavButton,
   ProfileImageContainer,
-} from '../../xyzStyles/Navbar.styles'
+} from '../../styles/Navbar.styles'
 import Dropdown from '../Dropdown/Dropdown'
 import { connect } from 'react-redux'
 import './Navbar.css'

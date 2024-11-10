@@ -7,7 +7,7 @@ import {
   LocationContainer,
   LocationBox,
   ExploreButton,
-} from '../../xyzStyles/TopDestination.styled.js'
+} from '../../styles/TopDestination.styled.js'
 import firstImage from '../../data/image.png'
 import { connect } from 'react-redux'
 import { setSearchForm } from '../../actions/trips.action'
