@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Searchbar from '../Searchbar/Searchbar'
 import DatePicker from '../DatePicker/DatePicker'
-import { SearchBarContainer, SearchButtonContainer, SearchButton } from '../../Styles/SearchMenu.styled'
+import { SearchBarContainer, SearchButtonContainer, SearchButton } from '../../styles/SearchMenu.styled'
 import { setSearchForm } from '../../actions/trips.action'
 
 const mapStateToProps = (state) => ({
@@ -25,8 +25,6 @@ const SearchMenu = (props) => {
     navigate('/search-results-page')
   }
 
-  console.log('searchForm', searchForm)
-
   return (
     <SearchBarContainer>
       <Searchbar
@@ -37,6 +35,7 @@ const SearchMenu = (props) => {
         width={`30%`}
         fontSize={`1.7vw`}
         fontWeight={`600`}
+        dropDownFontSize={'45%'}
       />
       <DatePicker
         inputValues={searchForm.startDate}

@@ -2,6 +2,7 @@ import { memo, useCallback } from 'react'
 import './ChatBoxHeader.css'
 import { connect } from 'react-redux'
 import { getSenderName } from '../../../utils/chat-utils'
+import { images } from '../../../../../assets/images'
 
 const mapStateToProps = (state) => ({
   selectedChat: state.chatsReducer.selectedChat,
@@ -10,7 +11,8 @@ const mapStateToProps = (state) => ({
 })
 
 const ChatBoxHeader = (props) => {
-  const { selectedChat, user, chats } = props
+  const { selectedChat, user, chats, chatUser } = props
+  const userProfileImg = chatUser?.profilePic?.[0] || images.defaultProfileImg
 
   const getChatUserName = useCallback(() => {
     if (selectedChat) {
@@ -25,7 +27,7 @@ const ChatBoxHeader = (props) => {
   return (
     <div className="chatbox-header-top-bar">
       <div className="chatbox-header-user-info">
-        <div className="chatbox-header-user-avatar"></div>
+        <img src={userProfileImg} className="avatar" />
         <div className="chatbox-header-user-name">{getChatUserName()}</div>
       </div>
     </div>

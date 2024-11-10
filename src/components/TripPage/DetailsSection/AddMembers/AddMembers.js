@@ -1,22 +1,41 @@
-import React from 'react'
+import { memo } from 'react'
 import DetailBox from '../DetailBox/DetailBox'
 import { LowerSection, HeadingContainer, Title, CreateButton, ProfileCardsContainer } from './AddMembers.styled'
+import { connect } from 'react-redux'
+import { images } from '../../../../assets/images'
 
-const AddMembers = () => {
+const mapStateToProps = (state) => ({
+  trip: state.tripReducer.trip,
+})
+
+const AddMembers = (props) => {
+  const { trip } = props
+
   return (
     <LowerSection>
       <HeadingContainer>
         <Title>Meet Your Travmigoz</Title>
-        <CreateButton>Create More</CreateButton>
+        <CreateButton>Add Members</CreateButton>
       </HeadingContainer>
 
       <ProfileCardsContainer>
-        <DetailBox heading={'Username'} body={'Trip Publisher'} svg={''} />
+        {trip?.tripMembers &&
+          trip?.tripMembers.map((item, index) => {
+            return (
+              <DetailBox
+                key={index}
+                heading={item?.username}
+                body={item?.userId === trip?.userId ? 'Trip Publisher' : 'Traveller'}
+                profilePic={item?.profilePic?.[0] || images.defaultProfileImg}
+              />
+            )
+          })}
+        {/* <DetailBox heading={'Username'} body={'Trip Publisher'} svg={''} />
         <DetailBox heading={'Username'} body={'Member 1'} svg={''} />
-        <DetailBox heading={'Username'} body={'Member 2'} svg={''} />
+        <DetailBox heading={'Username'} body={'Member 2'} svg={''} /> */}
       </ProfileCardsContainer>
     </LowerSection>
   )
 }
 
-export default AddMembers
+export default connect(mapStateToProps, null)(memo(AddMembers))

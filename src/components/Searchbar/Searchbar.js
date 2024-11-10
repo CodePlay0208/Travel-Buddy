@@ -2,7 +2,7 @@ import React, { useState, memo } from 'react'
 import { SVG } from '../../assets'
 import { getLocationSuggestions } from '../../actions/location.action'
 import { connect } from 'react-redux'
-import { SearchBarContainer, SearchBarInput, LocationIcon, Dropdown, DropdownItem } from '../../Styles/Searchbar.styled'
+import { SearchBarContainer, SearchBarInput, LocationIcon, Dropdown, DropdownItem } from '../../styles/Searchbar.styled'
 
 const mapStateToProps = (state) => ({
   suggestions: state.locationReducer.suggestions,
@@ -66,12 +66,13 @@ const Searchbar = (props) => {
       />
       <LocationIcon src={SVG.LocationIcon} alt="Location Icon" />
       <Dropdown isVisible={isDropdownVisible}>
-        {suggestions.map((suggestion, index) => (
-          <DropdownItem key={index} onClick={() => selectSuggestion(suggestion)}>
-            {suggestion.city}, {suggestion.state}
-          </DropdownItem>
-        ))}
-      </Dropdown>
+          {suggestions.map((suggestion, index) => (
+            <DropdownItem key={index} dropDownFontSize={props.dropDownFontSize} onClick={() => selectSuggestion(suggestion)}>
+              {suggestion.city}, {suggestion.state}
+            </DropdownItem>
+          ))}
+        </Dropdown>
+      )}
     </SearchBarContainer>
   )
 }

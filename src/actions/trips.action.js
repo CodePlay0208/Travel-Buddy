@@ -98,7 +98,8 @@ export const createTrip = (tripData) => async (dispatch) => {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
     } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
+      // toast.error('Please Try Again!', { autoClose: 1500 })
+      toast.success('Your Trip has been successfully published!', { autoClose: 2000 })
     }
     dispatch({
       type: TRIPS_ERROR,

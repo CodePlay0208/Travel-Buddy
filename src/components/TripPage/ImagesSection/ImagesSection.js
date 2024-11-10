@@ -12,7 +12,8 @@ import {
   LRSection,
 } from './ImagesSection.styled'
 
-const ImageSection = ({ images }) => {
+const ImageSection = (props) => {
+  const { images } = props
   const renderImages = () => {
     if (images.length === 1) {
       return (

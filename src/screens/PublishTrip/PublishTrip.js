@@ -28,6 +28,7 @@ import {
   InputRow,
   PublishTripRightSection,
 } from './PublishTrip.styled'
+import { useNavigate } from 'react-router-dom'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -56,6 +57,7 @@ const PublishTrip = (props) => {
   const { profile, getProfile, createTrip } = props
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const updatedTripData = { ...tripData, [e.target.name]: e.target.value }
@@ -75,6 +77,14 @@ const PublishTrip = (props) => {
     if (isTripPublished) {
       setTripData(DEFAULT_TRIP_DATA)
     }
+    navigate('/')
+  }
+
+  const handleTripDataChange = (field, value) => {
+    setTripData({
+      ...tripData,
+      [field]: value
+    })
   }
 
   useEffect(() => {
@@ -106,20 +116,21 @@ const PublishTrip = (props) => {
                       <InputLabel>Start Location</InputLabel>
                       <Searchbar
                         inputValues={tripData.startLocation}
-                        setInputValues={setTripData}
+                        setInputValues={(value) => handleTripDataChange('startLocation', value)}
                         onValue={'startLocation'}
                         placeholderValue={'Enter Start Location'}
                         style={{ width: '100%' }}
                         height={`51px`}
                         fontWeight={`500`}
                         borderColor={`#0b87ac`}
+                        dropDownFontSize={'75%'}
                       />{' '}
                     </InputGroup>
                     <InputGroup>
                       <InputLabel>Destination</InputLabel>
                       <Searchbar
                         inputValues={tripData.destination}
-                        setInputValues={setTripData}
+                        setInputValues={(value) => handleTripDataChange('destination', value)}
                         onValue={'destination'}
                         placeholderValue={'Enter Destination'}
                         style={{ width: '100%' }}
@@ -134,7 +145,7 @@ const PublishTrip = (props) => {
                       <InputLabel>Start Date</InputLabel>
                       <DatePicker
                         inputValues={tripData.startDate}
-                        setInputValues={setTripData}
+                        setInputValues={(value) => handleTripDataChange('startDate', value)}
                         onValue={'startDate'}
                         placeholderValue={'Select Start date'}
                         fontWeight={`500`}
@@ -145,7 +156,7 @@ const PublishTrip = (props) => {
                       <InputLabel>End Date</InputLabel>
                       <DatePicker
                         inputValues={tripData.endDate}
-                        setInputValues={setTripData}
+                        setInputValues={(value) => handleTripDataChange('endDate', value)}
                         onValue={'endDate'}
                         placeholderValue={'Select End date'}
                         height={`51px`}
@@ -200,7 +211,7 @@ const PublishTrip = (props) => {
                         type="text"
                         className="input-field"
                         placeholder="Enter full name"
-                        value={profile?.name !== null ? profile.name : ''}
+                        value={profile?.username !== null ? profile.username : ''}
                       />
                     </InputGroup>
                     <InputGroup>
@@ -228,7 +239,7 @@ const PublishTrip = (props) => {
                     <InputGroup>
                       <InputLabel>Age</InputLabel>
                       <InputField
-                        name="text"
+                        name="age"
                         type="text"
                         className="input-field"
                         placeholder="Enter age"

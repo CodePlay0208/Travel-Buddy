@@ -75,7 +75,7 @@ export const TripsApi = {
   },
   getTripById: async (tripId) => {
     try {
-      const result = await ApiService.get(`${API_PATH.TRIP_BY_ID_API}/:${tripId}`, {
+      const result = await ApiService.get(`${API_PATH.TRIP_BY_ID_API}/${tripId}`, {
         baseURL: env.BASE_API_URL,
       })
       console.log('getTripById SUCCESS', result)

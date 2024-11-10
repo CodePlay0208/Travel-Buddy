@@ -17,6 +17,7 @@ export const Title = styled.div`
 export const UpperSection = styled.div`
   box-sizing: border-box;
   margin: 2.5% 0;
+  margin-top: 10%
 `
 
 export const MapImage = styled.div`
@@ -24,6 +25,7 @@ export const MapImage = styled.div`
   background-size: cover;
   width: 100%;
   height: 60vh;
+  border-radius: 10px;
 
   @media (max-width: 1080px) {
     height: 40vh;

@@ -12,7 +12,7 @@ import {
   NewsletterButton,
   NewsletterRight,
   NewsletterImage,
-} from '../../Styles/Newsletter.styles'
+} from '../../styles/Newsletter.styles'
 
 const Newsletter = () => {
   return (

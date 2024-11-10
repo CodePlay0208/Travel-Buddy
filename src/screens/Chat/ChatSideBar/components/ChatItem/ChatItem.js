@@ -1,17 +1,19 @@
 import { memo } from 'react'
 import './ChatItem.css'
+import { images } from '../../../../../assets/images'
 
 const ChatItem = (props) => {
-  const { active, name, latestMessage, onClick, newMessages = 1 } = props
+  const { active, user, latestMessage, onClick, newMessages } = props
 
+  const userProfileImg = user?.profilePic?.[0] || images.defaultProfileImg
   return (
     <div className={`chat-item ${active ? 'active' : ''}`} onClick={onClick}>
       <div className="chat-item-sub-container">
-        <div className="avatar"></div>
         <div className="chat-item-name-and-text">
+          <img src={userProfileImg} className="avatar" />
           <div className="chat-name">
             <span>
-              <p className="chat-item-name-text">{name}</p>
+              <p className="chat-item-name-text">{user?.username}</p>
             </span>
           </div>
           {latestMessage && (

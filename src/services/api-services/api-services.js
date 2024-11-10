@@ -2,8 +2,6 @@ import axios from 'axios'
 import { API_CONFIG } from './config/api-constants'
 import { env } from './config/env'
 
-let token = null
-
 const setAuthToken = (token) => {
   if (token) {
     API_CONFIG.headers.Authorization = `Bearer ${token}`

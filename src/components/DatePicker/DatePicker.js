@@ -8,7 +8,7 @@ import {
   DayNames,
   Days,
   TodayButton,
-} from '../../Styles/DatePicker.styled'
+} from '../../styles/DatePicker.styled'
 
 import { SVG } from '../../assets'
 
@@ -82,12 +82,20 @@ const DatePicker = (props) => {
   }
 
   const parseDatestring = (dateString) => {
+    if (!dateString) return ''
     const [day, month, year] = dateString.split('-').map(Number)
     return new Date(year, month - 1, day)
   }
 
+  const formatDate = (date) => {
+    if (!date) return ''
+    const options = { weekday: 'short', day: 'numeric', month: 'short' }
+    const parts = date.toLocaleDateString('en-US', options).split(' ')
+    return `${parts[0]} ${parts[2]} ${parts[1]}`
+  }
+
   const dateToString = (dateString) => {
-    if (dateString === '') {
+    if (!dateString || dateString === '') {
       return ''
     }
     const today = new Date()
@@ -96,11 +104,6 @@ const DatePicker = (props) => {
 
     const dateValue = parseDatestring(dateString)
 
-    const formatDate = (date) => {
-      const options = { weekday: 'short', day: 'numeric', month: 'short' }
-      const parts = date.toLocaleDateString('en-US', options).split(' ')
-      return `${parts[0]} ${parts[2]} ${parts[1]}`
-    }
     if (dateValue.toDateString() === today.toDateString()) {
       return 'Today'
     } else if (dateValue.toDateString() === tomorrow.toDateString()) {

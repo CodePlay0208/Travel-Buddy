@@ -39,6 +39,7 @@ export const ChatsApi = {
         baseURL: env.BASE_API_URL,
         headers: {
           withCredentials: true,
+          contentType: 'application/json'
         },
       })
       console.log('postNewMessage SUCCESS: ', result)

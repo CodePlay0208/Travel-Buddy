@@ -26,7 +26,7 @@ import {
 
 const initialState = {
   isLoading: true,
-  // socketConnected: false,
+  socketConnected: false,
   chats: [],
   messages: [],
   selectedChat: null,
@@ -38,16 +38,16 @@ const initialState = {
 const chatsReducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
-    // case SOCKET_CONNECTED:
-    //   return {
-    //     ...state,
-    //     socketConnected: payload,
-    //   }
-    // case SOCKET_DISCONNECTED:
-    //   return {
-    //     ...state,
-    //     socketConnected: payload,
-    //   }
+    case SOCKET_CONNECTED:
+      return {
+        ...state,
+        socketConnected: payload,
+      }
+    case SOCKET_DISCONNECTED:
+      return {
+        ...state,
+        socketConnected: payload,
+      }
     case GET_MESSAGES_SUCCESS:
       return {
         ...state,
@@ -55,11 +55,15 @@ const chatsReducer = (state = initialState, action) => {
         isLoading: false,
       }
     case SEND_MESSAGE_SUCCESS:
-    case UPDATE_MESSAGES:
-      console.log('---------messager in reducer-----------', state.messages, payload)
       return {
         ...state,
         messages: [...state.messages, payload],
+        isLoading: false,
+      }
+    case UPDATE_MESSAGES:
+      return {
+        ...state,
+        messages: payload,
         isLoading: false,
       }
     case UPDATE_NOTIFICATIONS:
@@ -91,6 +95,7 @@ const chatsReducer = (state = initialState, action) => {
         fetchAgain: payload,
       }
     case GET_ALL_CHATS_SUCCESS:
+    case GET_CREATE_CHAT_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -111,12 +116,6 @@ const chatsReducer = (state = initialState, action) => {
       return {
         ...state,
         messages: [],
-      }
-    case GET_CREATE_CHAT_SUCCESS:
-      return {
-        ...state,
-        chats: [...state.chats, payload],
-        isLoading: false,
       }
     case GET_CREATE_CHAT_FAIL:
       return {

@@ -8,11 +8,13 @@ import {
   PopularHeadingRight,
   PopularButton,
   ArrowButton,
-} from '../../Styles/PopularSection.styles'
+} from '../../styles/PopularSection.styles'
 import data from '../../data/data.json'
 import TripCard from '../TripCard/TripCard'
+import { useNavigate } from 'react-router-dom'
 
 const PopularSection = (props) => {
+  const navigate = useNavigate()
   const scrollContainerRef = useRef(null)
 
   const scrollLeft = () => {
@@ -29,7 +31,11 @@ const PopularSection = (props) => {
 
   return (
     <PopularTripContainer>
-      <PopularTripHeading margin={props?.margin ? props.margin : `5% 10% 0 10%`} fontSize={props?.fontSize ? props.fontSize : `100%`}>
+      <PopularTripHeading
+        margin={props?.margin ? props.margin : `5% 10% 0 10%`}
+        fontSize={props?.fontSize ? props.fontSize : `100%`}
+        padding={props?.padding ? props.padding : '30px 0'}
+      >
         <PopularHeadingLeft>{props?.title ? props.title : `Find Popular Destination`} </PopularHeadingLeft>
         <PopularHeadingRight>
           <ArrowButton className="left" onClick={scrollLeft} aria-label="Scroll Left">
@@ -41,12 +47,35 @@ const PopularSection = (props) => {
         </PopularHeadingRight>
       </PopularTripHeading>
       <PopularTripContent ref={scrollContainerRef} margin={props?.margin ? props.margin : `0 5.5%`}>
-        {data.map((d, index) => (
-          <TripCard key={index} trip={d} />
+        {data.map((trip) => (
+          <TripCard
+            key={trip?.id}
+            tripId={trip?.tripId}
+            profileImg={trip?.profileImg || null}
+            startLocation={trip?.startLocation}
+            destination={trip?.destination}
+            totalMembers={trip?.totalMembers}
+            age={trip?.age}
+            gender={trip?.gender}
+            description={trip?.description}
+            destinationImages={trip?.croppedDestinationImages || []}
+            budget={trip?.budget}
+            startDate={trip?.startDate}
+            endDate={trip?.endDate}
+            tripMembers={trip?.tripMembers}
+            publisherId={trip?.userId}
+            publishedTime={trip?.createdAt}
+          />
         ))}
       </PopularTripContent>
       <PopularButtonDiv>
-        <PopularButton>Show More</PopularButton>
+        <PopularButton
+          onClick={() => {
+            navigate('/search-results-page')
+          }}
+        >
+          Show More
+        </PopularButton>
       </PopularButtonDiv>
     </PopularTripContainer>
   )

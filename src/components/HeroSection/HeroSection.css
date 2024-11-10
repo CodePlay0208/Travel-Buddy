@@ -120,7 +120,7 @@
   color: #FFFFFF;
 }
 
-/* Responsive Styles */
+/* Responsive styles */
 @media (max-width: 1200px) {
   .heroSection-card {
     flex: 1 1 calc(50% - 40px);

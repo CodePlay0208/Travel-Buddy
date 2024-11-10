@@ -67,7 +67,7 @@ const socketMiddleware = (socket) => {
           // } else {
           //   console.log('------newMessage--------', newMessageReceived)
           // }
-          dispatch(updateMessages(newMessageReceived))
+          // dispatch(updateMessages(newMessageReceived))
         })
         console.log('Socket-ON-message received: ON_MESSAGE_RECEIVED', payload)
         break
