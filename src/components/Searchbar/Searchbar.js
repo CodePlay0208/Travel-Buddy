@@ -59,7 +59,7 @@ const Searchbar = (props) => {
       {isDropdownVisible && suggestions.length > 0 && (
         <Dropdown>
           {suggestions.map((suggestion, index) => (
-            <DropdownItem key={index} onClick={() => selectSuggestion(suggestion)}>
+            <DropdownItem key={index} dropDownFontSize={props.dropDownFontSize} onClick={() => selectSuggestion(suggestion)}>
               {suggestion.city}, {suggestion.state}
             </DropdownItem>
           ))}

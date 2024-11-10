@@ -123,6 +123,7 @@ const PublishTrip = (props) => {
                         height={`51px`}
                         fontWeight={`500`}
                         borderColor={`#0b87ac`}
+                        dropDownFontSize={'75%'}
                       />{' '}
                     </InputGroup>
                     <InputGroup>

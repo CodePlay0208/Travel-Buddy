@@ -35,6 +35,7 @@ const SearchMenu = (props) => {
         width={`30%`}
         fontSize={`1.7vw`}
         fontWeight={`600`}
+        dropDownFontSize={'45%'}
       />
       <DatePicker
         inputValues={searchForm.startDate}

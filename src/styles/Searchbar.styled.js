@@ -66,7 +66,7 @@ export const DropdownItem = styled.div`
   display: flex;
   align-items: center;
   height: max(100%, 60px);
-  font-size: 75%;
+  font-size: ${(props) => props.dropDownFontSize};
   color: #1b1717;
   background-color: #b6f0dc;
   border-radius: 13.43px;
