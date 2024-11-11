@@ -31,10 +31,11 @@ export const DescriptionTitle = styled.div`
   color: #040f0f;
 `
 
-export const DescriptionContent = styled.div`
+export const DescriptionContent = styled.p`
   font-size: 1.5vw;
   font-weight: 500;
   line-height: 2.5vw;
+  white-space: pre-line;
 `
 
 export const ToggleButton = styled.span`
