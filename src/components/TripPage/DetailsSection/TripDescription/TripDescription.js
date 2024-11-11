@@ -49,8 +49,10 @@ const TripDescription = (props) => {
     }
   }
 
+  console.log('trip', JSON.stringify(trip, null, 2))
+
   const content = trip?.description || ''
-  const words = content?.split(' ') || ''
+  const words = content ? content.split(' ') : []
   const displayedContent = isExpanded ? content : words?.slice(0, 40).join(' ') + '...'
 
   return (
