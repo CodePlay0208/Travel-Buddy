@@ -5,8 +5,8 @@ export const FooterContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  padding: 20px;
-  gap: 20px;
+  padding: 2%;
+  gap: 2%;
   background: #8dd3bb;
   width: 100%;
 `
@@ -16,29 +16,15 @@ export const FooterTop = styled.div`
   max-width: 1729px;
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 2% 5%;
   background: #8dd3bb;
-  border-radius: 36px;
-  flex-direction: column;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
+  justify-content: center;
 `
 
 export const FooterSection = styled.div`
-  height: 215px;
   width: 50%;
   background: #8dd3bb;
-  border-radius: 24px;
-  padding: 20px;
-  margin-bottom: 20px;
-
-  @media (min-width: 768px) {
-    width: calc(25% - 20px);
-    margin: 0 10px;
-  }
+  padding: 2% 5%;
 `
 
 export const FooterHeading = styled.h2`
@@ -47,35 +33,38 @@ export const FooterHeading = styled.h2`
   font-weight: 700;
   font-size: 1.75rem;
   color: #112211;
-  margin-bottom: 10px;
+  @media (max-width: 1080px) {
+    font-size: 2.75vw;
+  }
 `
 
 export const FooterList = styled.ul`
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
   padding: 0;
 `
 
-export const FooterListItem = styled.li`
+export const FooterLink = styled.a`
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
   color: #112211;
-  margin-bottom: 5px;
-`
-
-export const FooterLink = styled.a`
+  margin-bottom: 1%;
   color: #112211;
   text-decoration: none;
 
   &:hover {
     text-decoration: underline;
   }
+  @media (max-width: 1080px) {
+    font-size: 1.75vw;
+  }
 `
 
 export const SocialIcons = styled.ul`
   display: flex;
-  gap: 10px;
 `
 
 export const SocialIcon = styled.li`
