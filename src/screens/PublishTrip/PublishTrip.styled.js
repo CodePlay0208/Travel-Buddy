@@ -179,17 +179,15 @@ export const ToggleTab = styled.div`
     border-radius: 10px;
   }
 
-  @media (max-width: 1080px) {
-    font-size: 4vw;
-  }
 `
 
 export const Divider = styled.div`
   width: 0.5%;
   height: 4vw;
+  
   background: #ffffff;
   border-radius: 50px;
-
+  
   @media (max-width: 1080px) {
     height: 20px;
   }
