@@ -245,7 +245,7 @@ export const InputRow = styled.div`
   display: flex;
   gap: 20px;
 
-  @media (max-width: 1080px) {
+  @media (max-width: 720px) {
     flex-direction: column;
     gap: 10px;
   }

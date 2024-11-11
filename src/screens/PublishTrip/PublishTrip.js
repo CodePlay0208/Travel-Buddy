@@ -148,6 +148,7 @@ const PublishTrip = (props) => {
                         setInputValues={(value) => handleTripDataChange('startDate', value)}
                         onValue={'startDate'}
                         placeholderValue={'Select Start date'}
+                        height={`51px`}
                         fontWeight={`500`}
                         borderColor={`#0b87ac`}
                       />

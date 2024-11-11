@@ -11,14 +11,28 @@ export const UploadPhotos = styled.div`
   line-height: 1.5;
   color: #000000;
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 2.5vw;
+  }
+  @media (max-width: 500px) {
+    font-size: 4vw;
+  }
 `
 
 export const IconPicture = styled.div`
   img {
     width: ${(props) => (props.width ? props.width : '374px')};
     border-radius: 10px;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
+
+    @media (max-width: 768px) {
+      border-radius: 8px;
+    }
+    @media (max-width: 500px) {
+      border-radius: 6px;
+    }
   }
 `
 
@@ -27,7 +41,7 @@ export const DropImage = styled.div`
   height: auto;
   width: 380px;
   min-height: 10vw;
-  aspect-ratio: 4/3;
+  aspect-ratio: 4 / 3;
   border: 1px dashed #b1bfd0;
   border-radius: 9px;
   display: flex;
@@ -35,6 +49,14 @@ export const DropImage = styled.div`
   align-items: center;
   flex-direction: column;
   z-index: 1;
+
+  @media (max-width: 768px) {
+    border-radius: 7px;
+  }
+  @media (max-width: 500px) {
+    border-radius: 5px;
+    width: 100%;
+  }
 `
 
 export const DropImageInner = styled.div`
@@ -59,6 +81,13 @@ export const DropText = styled.span`
   line-height: 1.4;
   color: #132a00;
   margin-top: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 90%;
+  }
+  @media (max-width: 500px) {
+    font-size: 80%;
+  }
 `
 
 export const SupportsText = styled.div`
@@ -68,6 +97,13 @@ export const SupportsText = styled.div`
   line-height: 1.2;
   color: #969db2;
   margin-top: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 1vw;
+  }
+  @media (max-width: 500px) {
+    font-size: 1.2vw;
+  }
 `
 
 export const FileUploaderContainer = styled.div`
@@ -112,15 +148,15 @@ export const UploadButtonContainer = styled.div`
   margin-left: auto;
 `
 export const ShowAllImageContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 30%;
+  display: flex;
+  justify-content: end;
+
+  width: 100%;
 `
 export const UploadButton = styled.button`
   display: flex;
   flex-direction: row;
-  width: 100%;
+
   height: 40px;
   background-color: #8dd3bb;
   justify-content: center;
