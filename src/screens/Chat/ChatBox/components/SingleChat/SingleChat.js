@@ -8,7 +8,7 @@
 // import { connect } from 'react-redux'
 // import Socket from '../../../services/socket/socket'
 
-// const ENDPOINT = 'http://localhost:4000'
+// const ENDPOINT = 'https://api.travmigoz.com'
 
 // const socket = new Socket()
 // let selectedChatCompare
@@ -46,7 +46,7 @@
 //         }
 //         setNewMessage('')
 //         const { data } = await axios.post(
-//           'http://localhost:4000/message/createNewMessage',
+//           'https://api.travmigoz.com/message/createNewMessage',
 //           {
 //             content: newMessage,
 //             chatId: userChatValues.selectedChat,

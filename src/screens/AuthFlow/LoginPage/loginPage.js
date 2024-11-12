@@ -62,12 +62,12 @@ const LoginPage = (props) => {
       setGoogleToken(token)
 
       // Send the token to your backend for verification and user data fetching
-      fetch('http://localhost:4000/login/googleLogin', {
+      fetch('https://api.travmigoz.com/login/googleLogin', {
         method: 'POST',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
-          'googletoken': `Bearer ${token}`
+          'googletoken': `Bearer ${token}`,
         },
       })
         .then((response) => {

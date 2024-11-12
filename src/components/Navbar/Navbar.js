@@ -45,7 +45,7 @@ const Navbar = (props) => {
 
   const handleSignOutLogic = () => {
     //TODO: do all the necessary stuff
-    fetch('http://localhost:4000/login/logout', {
+    fetch('https://api.travmigoz.com/login/logout', {
       method: 'POST',
       credentials: 'include',
     })
@@ -81,7 +81,7 @@ const Navbar = (props) => {
         },
       }
       const { data } = await axios.post(
-        `http://localhost:4000/chat/fetchOrCreateChats`,
+        `https://api.travmigoz.com/chat/fetchOrCreateChats`,
         { userId },
         {
           ...config,

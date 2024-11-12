@@ -33,7 +33,7 @@ const UserProfileDashBoard = ({ profile }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/user/getUserProfile', { withCredentials: true })
+        const response = await axios.get('https://api.travmigoz.com/user/getUserProfile', { withCredentials: true })
         // const data = await response.json();
         setUserData(response.data)
         // console.log(response);

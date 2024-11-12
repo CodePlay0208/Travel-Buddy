@@ -24,7 +24,7 @@ const DeleteProfile = ({ profile }) => {
 
   const handleSignOutLogic = () => {
     //TODO: do all the necessary stuff
-    fetch('http://localhost:4000/login/logout', {
+    fetch('https://api.travmigoz.com/login/logout', {
       method: 'POST',
       credentials: 'include', // Ensure cookies are sent with the request
     })
@@ -86,7 +86,7 @@ const DeleteProfile = ({ profile }) => {
     setLoading(true)
 
     try {
-      const response = await axios.delete('http://localhost:4000/delete/deleteUser', { withCredentials: true })
+      const response = await axios.delete('https://api.travmigoz.com/delete/deleteUser', { withCredentials: true })
       if (response.status === 200) {
         toast.success('Profile deleted successfully')
         handleProfileDeleted()

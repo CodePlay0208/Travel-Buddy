@@ -30,7 +30,7 @@ const Trip = ({ trip, showDeleteButton, onDeleteTrip }) => {
 
   // const handleDelete = async () => {
   //   try {
-  //     await axios.delete(`http://localhost:4000/tripDelete/deleteTrip/${trip._id}`, { withCredentials: true })
+  //     await axios.delete(`https://api.travmigoz.com/tripDelete/deleteTrip/${trip._id}`, { withCredentials: true })
   //     toast.success('Trip deleted successfully.')
   //     onDeleteSuccess(trip._id)
   //   } catch (error) {
