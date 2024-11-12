@@ -5,27 +5,37 @@ import { connect } from 'react-redux'
 import { SearchBarContainer, SearchBarInput, LocationIcon, Dropdown, DropdownItem } from '../../styles/Searchbar.styled'
 
 const mapStateToProps = (state) => ({
-  suggestions: state.locationReducer.suggestions
+  suggestions: state.locationReducer.suggestions,
 })
 
 const Searchbar = (props) => {
   const { suggestions, getLocationSuggestions, inputValues, setInputValues, onValue, placeholderValue } = props
   const [isDropdownVisible, setDropdownVisible] = useState(false)
+  const [timeoutId, setTimeoutId] = useState(null)
 
-  const searchBarChangeHandler = async (event) => {
+  const searchBarChangeHandler = (event) => {
     const value = event.target.value
     setInputValues(value)
 
-    if (value.length > 2) {
-      try {
-        await getLocationSuggestions(value)
-        setDropdownVisible(true)
-      } catch (error) {
-        console.error('Error fetching location suggestions:', error)
-      }
-    } else {
-      setDropdownVisible(false)
+    // Clear the previous timeout if the user is still typing
+    if (timeoutId) {
+      clearTimeout(timeoutId)
     }
+
+    // Set a new timeout
+    const newTimeoutId = setTimeout(async () => {
+      if (value.length > 2 && value.length < 25) {
+        try {
+          await getLocationSuggestions(value)
+          setDropdownVisible(true)
+        } catch (error) {
+          console.error('Error fetching location suggestions:', error)
+        }
+      } else {
+        setDropdownVisible(false)
+      }
+    }, 300)
+    setTimeoutId(newTimeoutId)
   }
 
   const selectSuggestion = (suggestion) => {
@@ -39,7 +49,6 @@ const Searchbar = (props) => {
     <SearchBarContainer
       widthValue={props.width ? props.width : `100%`}
       heightValue={props.height ? props.height : `100%`}
-      
       borderColor={props.borderColor ? props.borderColor : `grey`}
       onClick={() => {
         document.getElementById(customId).focus()
@@ -56,15 +65,13 @@ const Searchbar = (props) => {
         fontWeight={props.fontWeight ? props.fontWeight : `600`}
       />
       <LocationIcon src={SVG.LocationIcon} alt="Location Icon" />
-      {isDropdownVisible && suggestions.length > 0 && (
-        <Dropdown>
+      <Dropdown isVisible={isDropdownVisible}>
           {suggestions.map((suggestion, index) => (
             <DropdownItem key={index} dropDownFontSize={props.dropDownFontSize} onClick={() => selectSuggestion(suggestion)}>
               {suggestion.city}, {suggestion.state}
             </DropdownItem>
           ))}
         </Dropdown>
-      )}
     </SearchBarContainer>
   )
 }

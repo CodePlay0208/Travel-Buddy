@@ -51,6 +51,10 @@ export const Dropdown = styled.div`
   z-index: 10;
   padding: 2% 0px;
   overflow: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  transform: ${(props) => (props.isVisible ? 'translateY(0)' : 'translateY(-10px)')};
+  pointer-events: ${(props) => (props.isVisible ? 'auto' : 'none')};
   @media (max-width: 768px) {
     border-radius: 0px 0px 15x 15px;
   }
