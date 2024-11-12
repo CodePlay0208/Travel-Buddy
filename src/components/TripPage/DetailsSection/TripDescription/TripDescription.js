@@ -49,9 +49,11 @@ const TripDescription = (props) => {
     }
   }
 
-  const content = trip?.description
-  const words = content.split(' ')
-  const displayedContent = isExpanded ? content : words.slice(0, 40).join(' ') + '...'
+  console.log('trip', JSON.stringify(trip, null, 2))
+
+  const content = trip?.description || ''
+  const words = content ? content.split(' ') : []
+  const displayedContent = isExpanded ? content : words?.slice(0, 40).join(' ') + '...'
 
   return (
     <SectionContainer>
@@ -61,7 +63,7 @@ const TripDescription = (props) => {
         <GreyLine />
         <DescriptionContent>
           {displayedContent}
-          {words.length > 40 && <ToggleButton onClick={toggleExpand}>{isExpanded ? ' Show Less' : ' Show More'}</ToggleButton>}
+          {words?.length > 40 && <ToggleButton onClick={toggleExpand}>{isExpanded ? ' Show Less' : ' Show More'}</ToggleButton>}
         </DescriptionContent>
       </DescriptionContainer>
       <ChatSection>
