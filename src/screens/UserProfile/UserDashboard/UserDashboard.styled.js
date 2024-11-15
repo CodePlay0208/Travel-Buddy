@@ -7,24 +7,30 @@ export const DashboardContainer = styled.div`
 
 export const ImageContainer = styled.div`
   width: 100%;
-  margin: 0 0 7rem 0;
+  margin: 0 0 7% 0;
   position: relative;
   border-radius: 10px;
+  @media (max-width: 786px) {
+    border-radius: 3px;
+  }
 `
 
 export const BackgroundImage = styled.img`
   width: 100%;
   border-radius: 10px;
-  height: 23rem;
+  aspect-ratio: 4;
   object-fit: cover;
+  @media (max-width: 786px) {
+    border-radius: 3px;
+  }
 `
 
 export const ProfilePic = styled.div`
   position: absolute;
-  bottom: -5rem;
-  left: 4rem;
-  width: 250px;
-  height: 250px;
+  bottom: -20%;
+  left: 5%;
+  width: 15%;
+  aspect-ratio: 1;
   overflow: hidden;
 `
 
@@ -38,6 +44,7 @@ export const ImgProfile = styled.img`
 
 export const EditPic = styled.img`
   position: absolute;
+  width: 30%;
   right: 0;
   z-index: 3;
   bottom: 0;
@@ -45,7 +52,7 @@ export const EditPic = styled.img`
 
 export const DashboardHeader = styled.div`
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 2.5%;
 `
 
 export const HeaderTitle = styled.h1`
@@ -54,6 +61,9 @@ export const HeaderTitle = styled.h1`
   font-size: 40px;
   line-height: 51px;
   color: #000000;
+  @media (max-width: 786px) {
+    font-size: 5vw;
+  }
 `
 
 export const DashboardContent = styled.div`
@@ -64,25 +74,35 @@ export const DashboardContent = styled.div`
   padding: 1% 5%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 2.5%;
+  margin: 2.5% 0;
+  @media (max-width: 786px) {
+    border-radius: 7.5px;
+  }
 `
 
 export const UserInfoColumns = styled.div`
   display: flex;
   gap: 5%;
+  @media (max-width: 786px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const UserInfoColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  @media (max-width: 786px) {
+    width: 100%;
+  }
 `
 
 export const UserInfoItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 1rem 0;
+  margin: 3% 0;
 `
 
 export const Label = styled.span`
@@ -91,6 +111,9 @@ export const Label = styled.span`
   font-size: 20px;
   color: #112211;
   opacity: 0.75;
+  @media (max-width: 786px) {
+    font-size: 2.5vw;
+  }
 `
 
 export const Value = styled.span`
@@ -98,42 +121,58 @@ export const Value = styled.span`
   font-weight: 600;
   font-size: 20px;
   color: #112211;
+  @media (max-width: 786px) {
+    font-size: 2.5vw;
+  }
 `
 
 export const DashboardActions = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin-top: 2.5%;
 `
 
 export const EditButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 16px 32px;
+  padding: 2% 4%;
   font-family: 'Montserrat';
   font-weight: 500;
-  font-size: 22px;
+  font-size: 20px;
   color: #112211;
   border: 2px solid #8dd3bb;
   border-radius: 8px;
   background-color: transparent;
   cursor: pointer;
   margin: 0 1%;
+  @media (max-width: 786px) {
+    font-size: 2.5vw;
+    border-radius: 2px;
+    img {
+      width: 2.5vw;
+    }
+  }
 `
 
 export const DeleteButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 16px 32px;
-  font-family: 'Montserrat';
+  padding: 2% 4%;
   font-weight: 500;
-  font-size: 22px;
+  font-size: 20px;
   color: #e9e9e9;
   border: 2px solid #dc2626;
   border-radius: 8px;
   background-color: #dc2626;
   cursor: pointer;
   margin: 0 1%;
+  @media (max-width: 786px) {
+    font-size: 2.5vw;
+    border-radius: 2px;
+    img {
+      width: 2.5vw;
+    }
+  }
 `
