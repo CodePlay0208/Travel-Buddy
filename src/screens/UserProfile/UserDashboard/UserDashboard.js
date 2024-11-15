@@ -1,10 +1,12 @@
-import { memo, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { memo } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getProfile } from '../../../actions/profile.action'
+import { getProfile, updateProfile } from '../../../actions/profile.action'
 import { ToastContainer, toast } from 'react-toastify'
 import { SVG } from '../../../assets'
 import { images } from '../../../assets/images'
+import profileBackground from '../../../data/Images/profileBackground.png'
 import {
   DashboardContainer,
   ImageContainer,
@@ -20,8 +22,11 @@ import {
   UserInfoItem,
   Label,
   Value,
+  Input,
   DashboardActions,
   EditButton,
+  SaveButton,
+  CancelButton,
   DeleteButton,
 } from './UserDashboard.styled'
 
@@ -30,31 +35,46 @@ const mapStateToProps = (state) => ({
   loading: state.profileReducer.loading,
 })
 
-const UserDashboard = ({ profile, getProfile }) => {
+const UserDashboard = ({ profile, getProfile, updateProfile }) => {
   const navigate = useNavigate()
-  
-  const fetchUserProfile = () => {
+  const [isEditing, setIsEditing] = useState(false)
+  const [formData, setFormData] = useState({})
+
+  useEffect(() => {
+    getProfile()
+  }, [getProfile])
+
+  useEffect(() => {
+    setFormData(profile) 
+  }, [profile])
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
+
+  const handleSave = async () => {
     try {
-      getProfile()
+      await updateProfile(formData) 
+      toast.success('Profile updated successfully!', { autoClose: 1500 })
+      setIsEditing(false) 
     } catch (e) {
-      toast.error('Unable to fetch user profile, Please try again!', { autoClose: 1500 })
-      console.error('Error fetching user profile:', e)
+      toast.error('Failed to update profile. Please try again.', { autoClose: 1500 })
+      console.error('Error updating profile:', e)
     }
   }
 
-  useEffect(() => {
-    fetchUserProfile()
-  }, [])
+  const handleCancel = () => {
+    setIsEditing(false) 
+    setFormData(profile) 
+  }
 
   return (
     <DashboardContainer>
       <ImageContainer>
-        <BackgroundImage
-          src="https://s3-alpha-sig.figma.com/img/04aa/b0c2/af63e471ad6e8893e0055179442738fc?Expires=1732492800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=R3z~bjqHlHSykfZ1Sc8gNj7xMGo6PQpLm4eKTY21zVHtM07huTrnAoIRXlclsP5DksxuGABZd554VfMkMLJ1v4dtbPrYMubRtdOgbUE0b9q6~q6FVs8V-XbSrQeeA5HOu9NauVuXcFuhRr9Rf-fJ1W8p6gdSRtPM6-wLfm2Aq1ndEA4JaaydF2fLFNKf0n7tR3HBhXAACUGTCkDRYOO~fMBj5HFXTShV1XCSmgeHkrVQWW1L50XUQzFr2-CastqtTtDEnHCwysyjmjPVlPgwx3SeUENa-t~0E668xdzqzhKivMSOffFLuzf4E72ioJsl~I85WbilLAH435JjL4TFTg__"
-          alt="Background"
-        />
+        <BackgroundImage src={profileBackground} alt="Background" />
         <ProfilePic>
-          <ImgProfile src={profile.ProfilePic??images.defaultProfileImg} alt="User Profile" />
+          <ImgProfile src={profile?.ProfilePic ?? images.defaultProfileImg} alt="User Profile" />
           <EditPic src={SVG.editPic} alt="Edit" />
         </ProfilePic>
       </ImageContainer>
@@ -68,39 +88,72 @@ const UserDashboard = ({ profile, getProfile }) => {
             <UserInfoColumn>
               <UserInfoItem>
                 <Label>Name</Label>
-                <Value>{profile?.username}</Value>
+                {isEditing ? (
+                  <Input name="username" value={formData.username || ''} onChange={handleChange} />
+                ) : (
+                  <Value>{profile?.username}</Value>
+                )}
               </UserInfoItem>
               <UserInfoItem>
                 <Label>Phone Number</Label>
-                <Value>+91 {profile?.phoneNumber}</Value>
+                {isEditing ? (
+                  <Input name="phoneNumber" value={formData.phoneNumber || ''} onChange={handleChange} />
+                ) : (
+                  <Value>+91 {profile?.phoneNumber}</Value>
+                )}
               </UserInfoItem>
               <UserInfoItem>
                 <Label>Date of Birth</Label>
-                <Value>{profile.dob??'01-01-2000'}</Value>
+                {isEditing ? (
+                  <Input type="date" name="dob" value={formData.dob || ''} onChange={handleChange} />
+                ) : (
+                  <Value>{profile.dob ?? '01-01-2000'}</Value>
+                )}
               </UserInfoItem>
             </UserInfoColumn>
             <UserInfoColumn>
               <UserInfoItem>
                 <Label>Email</Label>
-                <Value>{profile?.emailId}</Value>
+                {isEditing ? (
+                  <Input name="emailId" value={formData.emailId || ''} onChange={handleChange} />
+                ) : (
+                  <Value>{profile?.emailId}</Value>
+                )}
               </UserInfoItem>
               <UserInfoItem>
                 <Label>Address</Label>
-                <Value>{profile.address??'Sambalpur, Odisha'}</Value>
+                {isEditing ? (
+                  <Input name="address" value={formData.address || ''} onChange={handleChange} />
+                ) : (
+                  <Value>{profile.address ?? 'Sambalpur, Odisha'}</Value>
+                )}
               </UserInfoItem>
               <UserInfoItem>
                 <Label>Persona</Label>
-                <Value>{profile.persona??'Traveller'}</Value>
+                {isEditing ? (
+                  <Input name="persona" value={formData.persona || ''} onChange={handleChange} />
+                ) : (
+                  <Value>{profile.persona ?? 'Traveller'}</Value>
+                )}
               </UserInfoItem>
             </UserInfoColumn>
           </UserInfoColumns>
           <DashboardActions>
-            <EditButton>
-              <img src={SVG.editButton} alt="Edit" /> Edit Your Profile
-            </EditButton>
-            <DeleteButton>
-              <img src={SVG.deleteIcon} alt="Delete" /> Delete Account
-            </DeleteButton>
+            {isEditing ? (
+              <>
+                <SaveButton onClick={handleSave}>Save Changes</SaveButton>
+                <CancelButton onClick={handleCancel}>Cancel</CancelButton>
+              </>
+            ) : (
+              <>
+                <EditButton onClick={() => setIsEditing(true)}>
+                  <img src={SVG.editButton} alt="Edit" /> Edit Your Profile
+                </EditButton>
+                <DeleteButton>
+                  <img src={SVG.deleteIcon} alt="Delete" /> Delete Account
+                </DeleteButton>
+              </>
+            )}
           </DashboardActions>
         </DashboardContent>
         <ToastContainer />
@@ -109,4 +162,4 @@ const UserDashboard = ({ profile, getProfile }) => {
   )
 }
 
-export default connect(mapStateToProps, { getProfile })(memo(UserDashboard))
+export default connect(mapStateToProps, { getProfile, updateProfile })(memo(UserDashboard))

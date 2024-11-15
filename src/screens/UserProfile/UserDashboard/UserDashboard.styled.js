@@ -132,7 +132,7 @@ export const DashboardActions = styled.div`
   margin-top: 2.5%;
 `
 
-export const EditButton = styled.button`
+const BaseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,8 +140,7 @@ export const EditButton = styled.button`
   font-family: 'Montserrat';
   font-weight: 500;
   font-size: 20px;
-  color: #112211;
-  border: 2px solid #8dd3bb;
+
   border-radius: 8px;
   background-color: transparent;
   cursor: pointer;
@@ -153,26 +152,41 @@ export const EditButton = styled.button`
       width: 2.5vw;
     }
   }
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`
+export const EditButton = styled(BaseButton)`
+  color: #112211;
+  border: 2px solid #8dd3bb;
 `
 
-export const DeleteButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2% 4%;
-  font-weight: 500;
-  font-size: 20px;
+export const DeleteButton = styled(BaseButton)`
   color: #e9e9e9;
   border: 2px solid #dc2626;
-  border-radius: 8px;
   background-color: #dc2626;
-  cursor: pointer;
-  margin: 0 1%;
-  @media (max-width: 786px) {
-    font-size: 2.5vw;
-    border-radius: 2px;
-    img {
-      width: 2.5vw;
-    }
-  }
+`
+export const Input = styled.input`
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`
+
+export const SaveButton = styled(BaseButton)`
+  background-color: #28a745;
+  color: white;
+  border: 2px solid #28a745;
+`
+
+export const CancelButton = styled(BaseButton)`
+  background-color: #dc2626;
+
+  border: 2px solid #dc2626;
+  color: white;
 `
