@@ -172,10 +172,15 @@ export const DeleteButton = styled(BaseButton)`
 `
 export const Input = styled.input`
   width: 100%;
-  padding: 8px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 2.5%;
+  font-size: 1.25vw;
+  border: 2px solid #808080;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #7C7878;
+  @media (max-width: 786px) {
+    border-radius: 3px;
+  }
 `
 
 export const SaveButton = styled(BaseButton)`

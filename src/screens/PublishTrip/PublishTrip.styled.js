@@ -34,7 +34,6 @@ export const DescriptionField = styled.textarea`
   padding: 13.95px;
   border: 2.325px solid #0b87ac;
   border-radius: 9.3px;
-  font-family: 'Poppins', sans-serif;
   font-size: 16.275px;
   color: #040f0f;
 

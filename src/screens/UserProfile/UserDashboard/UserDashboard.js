@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import { SVG } from '../../../assets'
 import { images } from '../../../assets/images'
 import profileBackground from '../../../data/Images/profileBackground.png'
+import DatePicker from '../../../components/DatePicker/DatePicker'
 import {
   DashboardContainer,
   ImageContainer,
@@ -45,7 +46,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
   }, [getProfile])
 
   useEffect(() => {
-    setFormData(profile) 
+    setFormData(profile)
   }, [profile])
 
   const handleChange = (e) => {
@@ -53,11 +54,18 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
     setFormData({ ...formData, [name]: value })
   }
 
+  const handleInputChange = (field, value) => {
+    setFormData({ 
+      ...formData,
+      [field]: value 
+    })
+  }
+
   const handleSave = async () => {
     try {
-      await updateProfile(formData) 
+      await updateProfile(formData)
       toast.success('Profile updated successfully!', { autoClose: 1500 })
-      setIsEditing(false) 
+      setIsEditing(false)
     } catch (e) {
       toast.error('Failed to update profile. Please try again.', { autoClose: 1500 })
       console.error('Error updating profile:', e)
@@ -65,8 +73,8 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
   }
 
   const handleCancel = () => {
-    setIsEditing(false) 
-    setFormData(profile) 
+    setIsEditing(false)
+    setFormData(profile)
   }
 
   return (
@@ -105,7 +113,14 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
               <UserInfoItem>
                 <Label>Date of Birth</Label>
                 {isEditing ? (
-                  <Input type="date" name="dob" value={formData.dob || ''} onChange={handleChange} />
+                  <DatePicker
+                    inputValues={formData.dob}
+                    setInputValues={(value) => handleInputChange('dob', value)}
+                    onValue={'dob'}
+                    placeholderValue={'Select Your Date of Birth'}
+                    fontSize={`1.25vw`}
+                    padding={`2.5%`}
+                  />
                 ) : (
                   <Value>{profile.dob ?? '01-01-2000'}</Value>
                 )}

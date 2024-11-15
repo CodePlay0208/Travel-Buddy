@@ -30,11 +30,14 @@ export const InputWrapper = styled.div`
   border: 2px solid ${(props) => props.borderColor};
   transition: border-color 0.2s;
   border-radius: 10px;
+  @media (max-width: 786px) {
+    border-radius: 3px;
+  }
   input {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 1% 5%;
+    padding:  ${(props) => props.padding};
     border-radius: inherit;
     cursor: pointer;
     border: none;
@@ -51,8 +54,8 @@ export const InputWrapper = styled.div`
   }
 
   img {
-    width: min(100%, 34px);
-    height: min(100%, 30px);
+    width: min(100%, 1.5*${(props) => props.fontSize});
+    height: min(100%, 1.5*${(props) => props.fontSize});
     margin-right: 0.5rem;
     cursor: pointer;
     pointer-events: none;

@@ -156,9 +156,13 @@ const DatePicker = (props) => {
       fontWeight={props.fontWeight ? props.fontWeight : `600`}
       widthValue={props.width ? props.width : `100%`}
       heightValue={props.height ? props.height : `100%`}
-      
     >
-      <InputWrapper fontSize={props.fontSize ? props.fontSize : `inherit`} fontWeight={props.fontWeight ? props.fontWeight : `600`} borderColor={props.borderColor ? props.borderColor : `grey`}>
+      <InputWrapper
+        fontSize={props.fontSize ? props.fontSize : `inherit`}
+        fontWeight={props.fontWeight ? props.fontWeight : `600`}
+        borderColor={props.borderColor ? props.borderColor : `grey`}
+        padding={props.padding ?? `1% 5%`}
+      >
         <input
           type="text"
           ref={dateInputRef}
