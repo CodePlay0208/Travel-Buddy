@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const DashboardContainer = styled.div`
-  padding: 0 5%;
-  margin-bottom: 4%;
+  padding: 0 3%;
+  margin: 1% 0%;
 `
 
 export const ImageContainer = styled.div`
@@ -49,7 +49,7 @@ export const DashboardHeader = styled.div`
 `
 
 export const HeaderTitle = styled.h1`
-  font-family: 'TradeGothic LT Extended';
+  padding: 0 3%;
   font-weight: 700;
   font-size: 40px;
   line-height: 51px;
@@ -69,14 +69,13 @@ export const DashboardContent = styled.div`
 
 export const UserInfoColumns = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 5%;
 `
 
 export const UserInfoColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  gap: 20px;
 `
 
 export const UserInfoItem = styled.div`
@@ -87,9 +86,9 @@ export const UserInfoItem = styled.div`
 `
 
 export const Label = styled.span`
-  font-family: 'Montserrat';
+  margin: 1.75% 0%;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 20px;
   color: #112211;
   opacity: 0.75;
 `
@@ -97,7 +96,7 @@ export const Label = styled.span`
 export const Value = styled.span`
   font-family: 'Montserrat';
   font-weight: 600;
-  font-size: 28px;
+  font-size: 20px;
   color: #112211;
 `
 

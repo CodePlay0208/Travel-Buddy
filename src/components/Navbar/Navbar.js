@@ -35,12 +35,8 @@ const Navbar = (props) => {
   ]
 
   const handleClickOnProfilePic = () => {
-    if (loggedInUserValues._id !== '') {
-      setShowUserProfileDropDownList((currentValue) => !currentValue)
-    } else {
-      sessionStorage.setItem('redirectUrl', '/userProfile')
-      navigate('/login')
-    }
+    setShowUserProfileDropDownList(!showUserProfileDropDownList);
+    
   }
 
   const handleSignOutLogic = () => {

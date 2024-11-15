@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { getProfile } from '../../../actions/profile.action'
 import { ToastContainer, toast } from 'react-toastify'
 import { SVG } from '../../../assets'
+import { images } from '../../../assets/images'
 import {
   DashboardContainer,
   ImageContainer,
@@ -49,11 +50,11 @@ const UserDashboard = ({ profile, getProfile }) => {
     <DashboardContainer>
       <ImageContainer>
         <BackgroundImage
-          src="https://s3-alpha-sig.figma.com/img/04aa/b0c2/af63e471ad6e8893e0055179442738fc?Expires=1728259200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mu2sRh9hZ3dOJ0C45BqnAwBA6~fwz-iPNYffvhHcRILBbtOB07UuxiSuAv8cYzC~cLddAdp6gTnc8W2baB9bBLto0jRLNDUsNVWnNFHqEbBe2eRjToymtlva4bp8lhXWmORsVB~ShdrA36u19OLSmifT7ex3lXzjnkzqQrdS0pGxd4CwZABExLdUwsK~Y8DQmTK8KkM8criJFBlmJ6yRkfeqS5d-8e102e5nMxtCVDX58f2VfyUJJLzHrDzig05Q7lu5q6jzjFN4gdeD8dl4on6A7Qgew30I2bOQsL3JVQKCncrkqQUDz6QN9094qte9sHvLYC8Whdwy85Xt8BX09g__"
+          src="https://s3-alpha-sig.figma.com/img/04aa/b0c2/af63e471ad6e8893e0055179442738fc?Expires=1732492800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=R3z~bjqHlHSykfZ1Sc8gNj7xMGo6PQpLm4eKTY21zVHtM07huTrnAoIRXlclsP5DksxuGABZd554VfMkMLJ1v4dtbPrYMubRtdOgbUE0b9q6~q6FVs8V-XbSrQeeA5HOu9NauVuXcFuhRr9Rf-fJ1W8p6gdSRtPM6-wLfm2Aq1ndEA4JaaydF2fLFNKf0n7tR3HBhXAACUGTCkDRYOO~fMBj5HFXTShV1XCSmgeHkrVQWW1L50XUQzFr2-CastqtTtDEnHCwysyjmjPVlPgwx3SeUENa-t~0E668xdzqzhKivMSOffFLuzf4E72ioJsl~I85WbilLAH435JjL4TFTg__"
           alt="Background"
         />
         <ProfilePic>
-          <ImgProfile src={profile?.profilePic} alt="User Profile" />
+          <ImgProfile src={profile.ProfilePic??images.defaultProfileImg} alt="User Profile" />
           <EditPic src={SVG.editPic} alt="Edit" />
         </ProfilePic>
       </ImageContainer>
@@ -75,7 +76,7 @@ const UserDashboard = ({ profile, getProfile }) => {
               </UserInfoItem>
               <UserInfoItem>
                 <Label>Date of Birth</Label>
-                <Value>01-01-1992</Value>
+                <Value>{profile.dob??'01-01-2000'}</Value>
               </UserInfoItem>
             </UserInfoColumn>
             <UserInfoColumn>
@@ -85,11 +86,11 @@ const UserDashboard = ({ profile, getProfile }) => {
               </UserInfoItem>
               <UserInfoItem>
                 <Label>Address</Label>
-                <Value>Sambalpur, Odisha</Value>
+                <Value>{profile.address??'Sambalpur, Odisha'}</Value>
               </UserInfoItem>
               <UserInfoItem>
                 <Label>Persona</Label>
-                <Value>Traveller</Value>
+                <Value>{profile.persona??'Traveller'}</Value>
               </UserInfoItem>
             </UserInfoColumn>
           </UserInfoColumns>
