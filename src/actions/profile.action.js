@@ -26,28 +26,30 @@ export const getProfile = () => async (dispatch) => {
   }
 }
 
-export const updateProfile = (profileData) => async (dispatch) => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token)
-  }
-  try {
-    const res = await ProfileApi.editUserProfile(profileData)
-    dispatch({
-      type: UPDATE_PROFILE,
-      payload: res.data,
-    })
-  } catch (e) {
-    if (e.response && e.response.status === 401) {
-      toast.error('Invalid User!', { autoClose: 1500 })
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
+export const updateProfile =
+  (profileData, isFormData = false) =>
+  async (dispatch) => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token)
     }
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: e,
-    })
+    try {
+      const res = await ProfileApi.editUserProfile(profileData, isFormData)
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: res.data,
+      })
+    } catch (e) {
+      if (e.response && e.response.status === 401) {
+        toast.error('Invalid User!', { autoClose: 1500 })
+      } else {
+        toast.error('Please Try Again!', { autoClose: 1500 })
+      }
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: e,
+      })
+    }
   }
-}
 
 export const deleteProfile = () => async (dispatch) => {
   if (localStorage.token) {

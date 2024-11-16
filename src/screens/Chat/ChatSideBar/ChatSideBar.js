@@ -9,18 +9,18 @@ const mapStateToProps = (state) => ({
   user: state.authReducer.user,
   chats: state.chatsReducer.chats,
   selectedChat: state.chatsReducer.selectedChat,
-  fetchAgain: state.chatsReducer.fetchAgain
+  fetchAgain: state.chatsReducer.fetchAgain,
 })
 
 const ChatSideBar = (props) => {
-  const { user, selectedChat, setSelectedChat, chats, fetchAgain } = props
+  const { user, selectedChat, setSelectedChat, chats, fetchAgain, className, toggleSidebar } = props
 
   useEffect(() => {
     props.getAllChats()
   }, [fetchAgain, props.getAllChats])
 
   return (
-    <div className="chat-sidebar-container">
+    <div className={`chat-sidebar-container ${className}`}>
       {chats && Array.isArray(chats) ? (
         <div className="chat-items-container">
           {chats.map((chat) => {
@@ -32,7 +32,10 @@ const ChatSideBar = (props) => {
                   active={selectedChat?.chatId === chat.chatId}
                   user={getSenderFull(user, chat.users)}
                   latestMessage={chat.latestMessage}
-                  onClick={() => setSelectedChat(chat)}
+                  onClick={() => {
+                    toggleSidebar()
+                    setSelectedChat(chat)
+                  }}
                 />
               )
             }

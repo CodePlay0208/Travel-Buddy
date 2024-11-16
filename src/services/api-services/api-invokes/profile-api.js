@@ -8,8 +8,8 @@ export const ProfileApi = {
       const result = await ApiService.get(API_PATH.USER_PROFILE_API, {
         baseURL: env.BASE_API_URL,
         headers: {
-          withCredentials: true
-        }
+          withCredentials: true,
+        },
       })
       console.log('getUserProfile SUCCESS: ', result)
 
@@ -19,11 +19,17 @@ export const ProfileApi = {
       throw e
     }
   },
-  editUserProfile: async (payload) => {
+  editUserProfile: async (payload, isFormData) => {
     try {
-      const result = await ApiService.put(API_PATH.EDIT_PROFILE_API, payload, {
+      const config = {
         baseURL: env.BASE_API_URL,
-      })
+      }
+      if (isFormData) {
+        config.headers = {
+          'Content-Type': 'multipart/form-data',
+        }
+      }
+      const result = await ApiService.put(API_PATH.EDIT_PROFILE_API, payload, config)
       console.log('editUserProfile SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
