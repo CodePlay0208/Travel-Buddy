@@ -40,6 +40,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
   const navigate = useNavigate()
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({})
+  const [selectedProfilePic, setSelectedProfilePic] = useState(null)
 
   useEffect(() => {
     getProfile()
@@ -55,17 +56,24 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
   }
 
   const handleInputChange = (field, value) => {
-    setFormData({ 
+    setFormData({
       ...formData,
-      [field]: value 
+      [field]: value,
     })
   }
 
   const handleSave = async () => {
     try {
-      await updateProfile(formData)
+      if (selectedProfilePic) {
+        const formDataNew = { ...formData, profilePic: selectedProfilePic }
+        await updateProfile(formDataNew, true)
+      } else {
+        await updateProfile(formData)
+      }
+
       toast.success('Profile updated successfully!', { autoClose: 1500 })
       setIsEditing(false)
+      setSelectedProfilePic(null)
     } catch (e) {
       toast.error('Failed to update profile. Please try again.', { autoClose: 1500 })
       console.error('Error updating profile:', e)
@@ -77,13 +85,25 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
     setFormData(profile)
   }
 
+  const handleProfilePicChange = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        setSelectedProfilePic(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
   return (
     <DashboardContainer>
       <ImageContainer>
         <BackgroundImage src={profileBackground} alt="Background" />
         <ProfilePic>
-          <ImgProfile src={profile?.ProfilePic ?? images.defaultProfileImg} alt="User Profile" />
-          <EditPic src={SVG.editPic} alt="Edit" />
+          <ImgProfile src={selectedProfilePic || profile?.ProfilePic || images.defaultProfileImg} alt="User Profile" />
+          {isEditing && <EditPic src={SVG.editPic} alt="Edit" onClick={() => document.getElementById('profilePicInput').click()} />}
+          <input id="profilePicInput" type="file" style={{ display: 'none' }} accept="image/*" onChange={handleProfilePicChange} />
         </ProfilePic>
       </ImageContainer>
 
