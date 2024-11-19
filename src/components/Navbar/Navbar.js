@@ -17,13 +17,14 @@ import {
 import Dropdown from '../Dropdown/Dropdown'
 import { connect } from 'react-redux'
 import './Navbar.css'
+import { logout } from '../../actions/auth.action'
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
 })
 
 const Navbar = (props) => {
-  const { isAuthenticated, notifications = [], setNotifications = () => {} } = props
+  const { isAuthenticated, notifications = [], setNotifications = () => {},logout } = props
   const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
   const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
@@ -41,30 +42,8 @@ const Navbar = (props) => {
 
   const handleSignOutLogic = () => {
     //TODO: do all the necessary stuff
-    fetch('https://api.travmigoz.com/login/logout', {
-      method: 'POST',
-      credentials: 'include',
-    })
-      .then((response) => {
-        if (response.ok) {
-          setLoggedInUserValues({
-            _id: '',
-            username: '',
-            emailId: '',
-            profilePic: '',
-          })
-        } else {
-          console.error('Logout failed:', response.statusText)
-          if (!response.ok) {
-            return response.json().then((error) => {
-              throw new Error(error)
-            })
-          }
-        }
-      })
-      .catch((error) => {
-        console.error('Error logging out:', error)
-      })
+    logout();
+    localStorage.removeItem('token')
     navigate('/')
   }
 
@@ -157,4 +136,4 @@ const Navbar = (props) => {
   )
 }
 
-export default connect(mapStateToProps, null)(memo(Navbar))
+export default connect(mapStateToProps, {logout})(memo(Navbar))

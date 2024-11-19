@@ -202,5 +202,8 @@ export const resetPassword = (newPassword) => async (dispatch) => {
 }
 
 export const logout = () => (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken("")
+  }
   dispatch({ type: LOGOUT })
 }
