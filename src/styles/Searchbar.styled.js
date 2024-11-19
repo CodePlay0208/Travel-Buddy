@@ -9,6 +9,9 @@ export const SearchBarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
+  @media (max-width: 786px) {
+    border-radius: 3px;
+  }
 `
 
 export const SearchBarInput = styled.input`

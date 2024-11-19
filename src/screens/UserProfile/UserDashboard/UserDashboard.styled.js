@@ -40,6 +40,9 @@ export const ImgProfile = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  @media (max-width: 786px) {
+    border: 2px solid rgb(0, 199, 176);
+  }
 `
 
 export const EditPic = styled.img`
@@ -177,7 +180,7 @@ export const Input = styled.input`
   border: 2px solid #808080;
   border-radius: 10px;
   font-weight: 600;
-  color: #7C7878;
+  color: #7c7878;
   @media (max-width: 786px) {
     border-radius: 3px;
   }
