@@ -37,6 +37,8 @@ export const API_PATH = {
 export const API_CONFIG = {
   headers: {
     'Authorization': '',
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
     'GoogleAuthorization': '',
   },
 }

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { API_CONFIG, API_CONFIG_IMG } from './config/api-constants'
+import { API_CONFIG } from './config/api-constants'
 import { env } from './config/env'
 
 const setAuthToken = (token) => {
@@ -42,7 +42,7 @@ const ApiService = {
     try {
       const res = await axios.post(apiPath, payload, {
         baseURL: options.baseURL || env.BASE_API_URL,
-        headers: { ...API_CONFIG_IMG.headers, ...options.headers },
+        headers: { ...API_CONFIG.headers, ...options.headers },
       })
       console.log('POST RES: ', res)
       return res
