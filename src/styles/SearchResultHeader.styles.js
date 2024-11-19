@@ -90,7 +90,6 @@ export const HeaderSearchBar = styled.div`
 export const HeaderDescription = styled.div`
   position: absolute;
   width: 80%;
-  max-width: 753px;
   height: auto;
   top: 50%;
   left: 50%;
