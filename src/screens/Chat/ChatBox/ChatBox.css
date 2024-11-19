@@ -8,7 +8,7 @@
 
 .chatbox-messages {
   overflow-y: auto;
-  height: 80%;
+  height: 75%;
 }
 
 .chatinput-bar {

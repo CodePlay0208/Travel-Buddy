@@ -42,21 +42,7 @@
     display: block;
   }
 
-  .chat-sidebar-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  }
-
   .sidebar-overlay {
     display: block;
-  }
-}
-
-@media (min-width: 769px) {
-  .chat-sidebar-container {
-    transform: translateX(0);
   }
 }

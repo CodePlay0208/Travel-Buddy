@@ -41,6 +41,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({})
   const [selectedProfilePic, setSelectedProfilePic] = useState(null)
+  const [imageFile, setImageFile] = useState(null)
 
   useEffect(() => {
     getProfile()
@@ -64,8 +65,12 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
 
   const handleSave = async () => {
     try {
-      if (selectedProfilePic) {
-        const formDataNew = { ...formData, profilePic: selectedProfilePic }
+      if (imageFile) {
+        const formDataNew = new FormData()
+        formDataNew.append('profilePic', imageFile)
+        Object.entries(formData).forEach(([key, value]) => {
+          formDataNew.append(key, value)
+        })
         await updateProfile(formDataNew, true)
       } else {
         await updateProfile(formData)
@@ -87,6 +92,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
 
   const handleProfilePicChange = (e) => {
     const file = e.target.files[0]
+    setImageFile(file)
     if (file) {
       const reader = new FileReader()
       reader.onload = () => {
@@ -101,7 +107,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
       <ImageContainer>
         <BackgroundImage src={profileBackground} alt="Background" />
         <ProfilePic>
-          <ImgProfile src={selectedProfilePic || profile?.ProfilePic || images.defaultProfileImg} alt="User Profile" />
+          <ImgProfile src={selectedProfilePic || profile?.profilePic[0] || images.defaultProfileImg} alt="User Profile" />
           {isEditing && <EditPic src={SVG.editPic} alt="Edit" onClick={() => document.getElementById('profilePicInput').click()} />}
           <input id="profilePicInput" type="file" style={{ display: 'none' }} accept="image/*" onChange={handleProfilePicChange} />
         </ProfilePic>

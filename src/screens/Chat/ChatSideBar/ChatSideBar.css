@@ -5,6 +5,9 @@
   border-width: 0px 0.5px 0px 0px;
   border-right-color: #dcdada;
   overflow-y: auto;
+  @media (max-width:768px) {
+    width: 100%;
+  }
 }
 .chat-sidebar-container {
  

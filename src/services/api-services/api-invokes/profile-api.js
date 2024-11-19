@@ -24,11 +24,6 @@ export const ProfileApi = {
       const config = {
         baseURL: env.BASE_API_URL,
       }
-      if (isFormData) {
-        config.headers = {
-          'Content-Type': 'multipart/form-data',
-        }
-      }
       const result = await ApiService.put(API_PATH.EDIT_PROFILE_API, payload, config)
       console.log('editUserProfile SUCCESS: ', result)
 
