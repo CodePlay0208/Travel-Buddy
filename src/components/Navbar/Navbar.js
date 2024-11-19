@@ -24,7 +24,7 @@ const mapStateToProps = (state) => ({
 })
 
 const Navbar = (props) => {
-  const { isAuthenticated, notifications = [], setNotifications = () => {},logout } = props
+  const { isAuthenticated, notifications = [], setNotifications = () => {}, logout } = props
   const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
   const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
@@ -36,15 +36,14 @@ const Navbar = (props) => {
   ]
 
   const handleClickOnProfilePic = () => {
-    setShowUserProfileDropDownList(!showUserProfileDropDownList);
-    
+    setShowUserProfileDropDownList(!showUserProfileDropDownList)
   }
 
-  const handleSignOutLogic = () => {
+  const handleSignOutLogic = async () => {
     //TODO: do all the necessary stuff
-    logout();
-    localStorage.removeItem('token')
+    await logout()
     navigate('/')
+    window.location.reload();
   }
 
   const { userChatValues, setUserChatValues } = useContext(ChatContext)
@@ -136,4 +135,4 @@ const Navbar = (props) => {
   )
 }
 
-export default connect(mapStateToProps, {logout})(memo(Navbar))
+export default connect(mapStateToProps, { logout })(memo(Navbar))

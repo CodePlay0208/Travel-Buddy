@@ -205,5 +205,9 @@ export const logout = () => (dispatch) => {
   if (localStorage.token) {
     setAuthToken("")
   }
+  if (localStorage.persist) {
+    setAuthToken("")
+  }
+  
   dispatch({ type: LOGOUT })
 }
