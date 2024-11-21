@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { memo } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getProfile, updateProfile } from '../../../actions/profile.action'
+import { getProfile, updateProfile, deleteProfile } from '../../../actions/profile.action'
 import { ToastContainer, toast } from 'react-toastify'
 import { SVG } from '../../../assets'
 import { images } from '../../../assets/images'
@@ -30,18 +30,22 @@ import {
   CancelButton,
   DeleteButton,
 } from './UserDashboard.styled'
+import Modal from '../../../components/Modal/Modal'
+
+import { logout } from '../../../actions/auth.action'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
   loading: state.profileReducer.loading,
 })
 
-const UserDashboard = ({ profile, getProfile, updateProfile }) => {
+const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) => {
   const navigate = useNavigate()
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({})
   const [selectedProfilePic, setSelectedProfilePic] = useState(null)
   const [imageFile, setImageFile] = useState(null)
+  const [deleteModal, setDeleteModal] = useState(false)
 
   useEffect(() => {
     getProfile()
@@ -101,7 +105,18 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
       reader.readAsDataURL(file)
     }
   }
+  const handleDeleteAccount = async () => {
+    setDeleteModal(false)
+    await deleteProfile()
+    logout()
+    navigate('/')
+    window.location.reload()
+    toast.success('Account deleted successfully!', { autoClose: 1500 })
+  }
 
+  const handleCancelDelete = () => {
+    setDeleteModal(false)
+  }
   return (
     <DashboardContainer>
       <ImageContainer>
@@ -190,7 +205,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
                 <EditButton onClick={() => setIsEditing(true)}>
                   <img src={SVG.editButton} alt="Edit" /> Edit Your Profile
                 </EditButton>
-                <DeleteButton>
+                <DeleteButton onClick={() => setDeleteModal(true)}>
                   <img src={SVG.deleteIcon} alt="Delete" /> Delete Account
                 </DeleteButton>
               </>
@@ -199,8 +214,15 @@ const UserDashboard = ({ profile, getProfile, updateProfile }) => {
         </DashboardContent>
         <ToastContainer />
       </DashboardContainer>
+      {deleteModal && (
+        <Modal
+          message="Are you sure you want to delete your account? This action cannot be undone."
+          onConfirm={handleDeleteAccount}
+          onCancel={handleCancelDelete}
+        />
+      )}
     </DashboardContainer>
   )
 }
 
-export default connect(mapStateToProps, { getProfile, updateProfile })(memo(UserDashboard))
+export default connect(mapStateToProps, { getProfile, updateProfile, deleteProfile })(memo(UserDashboard))
