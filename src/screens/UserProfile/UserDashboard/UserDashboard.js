@@ -155,15 +155,15 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                 <Label>Date of Birth</Label>
                 {isEditing ? (
                   <DatePicker
-                    inputValues={formData.dob}
-                    setInputValues={(value) => handleInputChange('dob', value)}
-                    onValue={'dob'}
+                    inputValues={formData?.dateOfBirth || ''}
+                    setInputValues={(value) => handleInputChange('dateOfBirth', value)}
+                    onValue={'dateOfBirth'}
                     placeholderValue={'Select Your Date of Birth'}
                     fontSize={`1.25vw`}
                     padding={`2.5%`}
                   />
                 ) : (
-                  <Value>{profile.dob ?? '01-01-2000'}</Value>
+                  <Value>{profile?.dateOfBirth ?? '01-01-2000'}</Value>
                 )}
               </UserInfoItem>
             </UserInfoColumn>
@@ -177,19 +177,19 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                 )}
               </UserInfoItem>
               <UserInfoItem>
-                <Label>Address</Label>
+                <Label>Age</Label>
                 {isEditing ? (
-                  <Input name="address" value={formData.address || ''} onChange={handleChange} />
+                  <Input name="age" value={formData?.age || ''} onChange={handleChange} />
                 ) : (
-                  <Value>{profile.address ?? 'Sambalpur, Odisha'}</Value>
+                  <Value>{profile?.age ?? '18'}</Value>
                 )}
               </UserInfoItem>
               <UserInfoItem>
                 <Label>Persona</Label>
                 {isEditing ? (
-                  <Input name="persona" value={formData.persona || ''} onChange={handleChange} />
+                  <Input name="persona" value={formData?.persona || ''} onChange={handleChange} />
                 ) : (
-                  <Value>{profile.persona ?? 'Traveller'}</Value>
+                  <Value>{profile?.persona ?? 'Traveller'}</Value>
                 )}
               </UserInfoItem>
             </UserInfoColumn>

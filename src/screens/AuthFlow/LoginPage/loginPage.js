@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { SVG } from '../../../assets'
 import { connect } from 'react-redux'
 import { setGoogleToken } from '../../../services/api-services/api-services'
-import { login, loginWithGoogle } from '../../../actions/auth.action'
+import { login, loginWithGoogle, loadUser } from '../../../actions/auth.action'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 import {
@@ -80,23 +80,9 @@ const LoginPage = (props) => {
         })
         .then((data) => {
           console.log('the data is', data)
-          if (data.success) {
-            console.log('Login successful:', data)
-            const previousURL = sessionStorage.getItem('redirectUrl') || '/'
-            sessionStorage.removeItem('redirectUrl')
-            // Handle successful login on frontend if needed
-            console.log(previousURL)
-            navigate(previousURL)
-            setLoggedInUserValues(data.user)
-          } else {
-            console.error('Login failed:', data)
-            setLoggedInUserValues({
-              _id: '',
-              username: '',
-              emailId: '',
-              profilePic: '',
-            })
-          }
+          localStorage.setItem("token",data.token)
+          loadUser()
+          navigate('/')
         })
         .catch((error) => {
           console.error('Error during login:', error)
@@ -229,4 +215,4 @@ const LoginPage = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { login, loginWithGoogle })(memo(LoginPage))
+export default connect(mapStateToProps, { login, loginWithGoogle,loadUser })(memo(LoginPage))
