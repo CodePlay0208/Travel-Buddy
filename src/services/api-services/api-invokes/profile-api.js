@@ -1,5 +1,5 @@
 import { ApiService } from '../api-services'
-import { API_CONFIG_IMG, API_PATH } from '../config/api-constants'
+import { API_CONFIG, API_CONFIG_IMG, API_PATH } from '../config/api-constants'
 import { env } from '../config/env'
 
 export const ProfileApi = {
@@ -23,7 +23,7 @@ export const ProfileApi = {
     try {
       const config = {
         baseURL: env.BASE_API_URL,
-        headers: API_CONFIG_IMG.headers,
+        headers: API_CONFIG.headers,
       }
       const result = await ApiService.put(API_PATH.EDIT_PROFILE_API, payload, config)
       console.log('editUserProfile SUCCESS: ', result)

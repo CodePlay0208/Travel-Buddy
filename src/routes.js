@@ -10,6 +10,7 @@ import TripPage from './components/TripPage/TripPage'
 import UserProfile from './screens/UserProfile/UserProfile'
 import ForgotPassword from './screens/AuthFlow/ForgotPassword/ForgotPassword'
 import SetPassword from './screens/AuthFlow/SetPassword/SetPassword'
+import UserTrips from './screens/UserTrips/UserTrips'
 
 export const routes = [
   {
@@ -72,5 +73,10 @@ export const routes = [
     path: '/signup',
     element: <SignUp />,
     isPrivate: false
+  },
+  {
+    path: '/user-trip',
+    element: <UserTrips />,
+    isPrivate: true
   },
 ]
