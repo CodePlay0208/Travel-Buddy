@@ -31,7 +31,7 @@ import {
   VerifyCodeVerifyButton,
 } from './VerifyCode.styled'
 const mapStateToProps = (state) => ({
-  otpVerified: state.auth.otpVerified,
+  otpVerified: state.authReducer.otpVerified,
 })
 
 const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
