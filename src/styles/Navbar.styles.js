@@ -90,4 +90,24 @@ export const ProfileImageContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  img {
+    width: 100%;
+    max-width: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    img {
+      max-width: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    img {
+      max-width: 20px;
+    }
+  }
 `

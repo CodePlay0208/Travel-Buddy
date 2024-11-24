@@ -18,17 +18,20 @@ import Dropdown from '../Dropdown/Dropdown'
 import { connect } from 'react-redux'
 import './Navbar.css'
 import { logout } from '../../actions/auth.action'
-
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.authReducer.isAuthenticated,
-})
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    isAuthenticated: state.authReducer.isAuthenticated,
+    profilePic: state.profileReducer.profile.profilePic,
+  }
+}
 
 const Navbar = (props) => {
-  const { isAuthenticated, notifications = [], setNotifications = () => {}, logout } = props
+  const { isAuthenticated, notifications = [], setNotifications = () => {}, logout, profilePic } = props
   const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
   const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
-
+  console.log(profilePic)
   const userProfileDropDownData = [
     { value: 'My Profile', path: '/user-profile' },
     { value: 'My Trips', path: '/user-trips' },
@@ -43,7 +46,7 @@ const Navbar = (props) => {
     //TODO: do all the necessary stuff
     await logout()
     navigate('/')
-    window.location.reload();
+    window.location.reload()
   }
 
   const { userChatValues, setUserChatValues } = useContext(ChatContext)
@@ -121,7 +124,7 @@ const Navbar = (props) => {
               {notifications?.length > 0 && <div className="notification-badge" />}
             </NavContents>
             <ProfileImageContainer onClick={handleClickOnProfilePic}>
-              <img src={SVG.ProfileIcon} alt="Profile" />
+              <img src={profilePic ?? SVG.ProfileIcon} alt="Profile" />
               {showUserProfileDropDownList && <Dropdown data={userProfileDropDownData} selectSuggestion={selectSuggestion}></Dropdown>}
             </ProfileImageContainer>
           </OtherContentsOfNavBar>
