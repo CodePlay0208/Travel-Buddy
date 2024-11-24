@@ -23,7 +23,7 @@ import deleteIcon from './deleteIcon.svg'
 import editPic from './editPic.svg'
 import ChatInputIcon from './chatInputIcon.svg'
 import AddEmojiIcon from './addEmojiIcon.svg'
-
+import Ninedots from './nineDots.svg'
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -48,5 +48,6 @@ export const SVG = {
   deleteIcon,
   editPic,
   ChatInputIcon,
-  AddEmojiIcon
+  AddEmojiIcon,
+  Ninedots
 }

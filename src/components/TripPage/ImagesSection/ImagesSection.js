@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   ImageSectionWrapper,
   ImageRow,
@@ -10,10 +10,14 @@ import {
   StackedImages,
   LLSection,
   LRSection,
+  ShowAllPhotos,
 } from './ImagesSection.styled'
+import ImageOverlay from '../../ImageOverlay/ImageOverlay'
+import { SVG } from '../../../assets'
 
 const ImageSection = (props) => {
   const { images } = props
+  const [overlay, setOverlay] = useState(false)
   const renderImages = () => {
     if (images.length === 1) {
       return (
@@ -48,7 +52,7 @@ const ImageSection = (props) => {
           <RightImages>
             <TallImage src={images[1]} alt="Tall Image" />
             <LRSection>
-              <StackedImages src={images[2]}  />
+              <StackedImages src={images[2]} />
               <StackedImages src={images[3]} />
             </LRSection>
           </RightImages>
@@ -74,7 +78,16 @@ const ImageSection = (props) => {
   }
 
   return (
-    <ImageSectionWrapper>{images.length > 0 ? renderImages() : <div className="no-images">No Images Available</div>}</ImageSectionWrapper>
+    <ImageSectionWrapper>
+      {images.length > 0 ? renderImages() : <div className="no-images">No Images Available</div>}
+      <ShowAllPhotos onClick={() => setOverlay(true)}>
+        <img src={SVG.Ninedots} alt="☰" />
+        <div>
+          Show All Photos
+        </div>
+      </ShowAllPhotos>
+      {overlay && <ImageOverlay images={images} overlay={overlay} setOverlay={setOverlay} currentIndex={0} />}
+    </ImageSectionWrapper>
   )
 }
 

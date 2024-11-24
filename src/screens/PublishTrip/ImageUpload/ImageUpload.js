@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ImageUploading from 'react-images-uploading'
 import firstImage from '../../../data/Images/gallery.png'
 import secondImage from '../../../data/Images/placeholder.png'
-import ImageOverlay from '../ImageOverlay/ImageOverlay'
+import ImageOverlay from '../../../components/ImageOverlay/ImageOverlay'
 import {
   Frame,
   UploadPhotos,
