@@ -19,13 +19,14 @@ export const ProfileApi = {
       throw e
     }
   },
-  editUserProfile: async (payload, isFormData) => {
+  editUserProfile: async (payload, isMultiMedia) => {
+    console.log(payload)
     try {
       const config = {
         baseURL: env.BASE_API_URL,
-        headers: API_CONFIG.headers,
+        headers: isMultiMedia ? API_CONFIG_IMG.headers : API_CONFIG.headers,
       }
-      const result = await ApiService.put(API_PATH.EDIT_PROFILE_API, payload, config)
+      const result = await ApiService.put(API_PATH.EDIT_PROFILE_API, payload, config, isMultiMedia)
       console.log('editUserProfile SUCCESS: ', result)
 
       return { status: result.status, data: result.data }

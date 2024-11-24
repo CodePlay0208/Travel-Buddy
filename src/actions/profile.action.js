@@ -1,6 +1,6 @@
 import { GET_PROFILE, UPDATE_PROFILE, DELETE_PROFILE, PROFILE_ERROR } from '../constants/action-types/profile.constants'
 import { ProfileApi } from '../services/api-services/api-invokes'
-import { setAuthToken } from '../services/api-services/api-services'
+import { setAuthToken, setAuthTokenImg } from '../services/api-services/api-services'
 import { toast } from 'react-toastify'
 
 export const getProfile = () => async (dispatch) => {
@@ -27,13 +27,17 @@ export const getProfile = () => async (dispatch) => {
 }
 
 export const updateProfile =
-  (profileData, isFormData = false) =>
+  (profileData, isMultiMedia = false) =>
   async (dispatch) => {
     if (localStorage.token) {
       setAuthToken(localStorage.token)
+      if (isMultiMedia) {
+        setAuthTokenImg(localStorage.token)
+      }
     }
+
     try {
-      const res = await ProfileApi.editUserProfile(profileData, isFormData)
+      const res = await ProfileApi.editUserProfile(profileData, isMultiMedia)
       dispatch({
         type: UPDATE_PROFILE,
         payload: res.data,

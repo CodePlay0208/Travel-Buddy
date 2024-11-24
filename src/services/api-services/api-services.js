@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { API_CONFIG } from './config/api-constants'
+import { API_CONFIG, API_CONFIG_IMG } from './config/api-constants'
 import { env } from './config/env'
 
 const setAuthToken = (token) => {
@@ -8,10 +8,18 @@ const setAuthToken = (token) => {
   }
 }
 
+const setAuthTokenImg = (token) => {
+  if (token) {
+    API_CONFIG_IMG.headers.Authorization = `Bearer ${token}`
+  }
+}
+
 const getAuthToken = () => {
   return API_CONFIG.headers.Authorization
 }
-
+const getAuthTokenImg = () => {
+  return API_CONFIG_IMG.headers.Authorization
+}
 const setGoogleToken = (googleToken) => {
   if (googleToken) {
     API_CONFIG.headers.GoogleAuthorization = `Bearer ${googleToken}`
@@ -66,11 +74,11 @@ const ApiService = {
     }
   },
 
-  put: async (apiPath, payload, options) => {
+  put: async (apiPath, payload, options, isMultiMedia) => {
     try {
       const res = await axios.put(apiPath, payload, {
         baseURL: options.baseURL || env.BASE_API_URL,
-        headers: { ...API_CONFIG.headers, ...options.headers },
+        headers: { ...(isMultiMedia ? API_CONFIG_IMG.headers : API_CONFIG.headers), ...options.headers },
       })
       console.log('PUT RES: ', res)
       return res
@@ -81,4 +89,4 @@ const ApiService = {
   },
 }
 
-export { setAuthToken, getAuthToken, setGoogleToken, getGoogleToken, ApiService }
+export { setAuthToken, setAuthTokenImg, getAuthToken, getAuthTokenImg, setGoogleToken, getGoogleToken, ApiService }

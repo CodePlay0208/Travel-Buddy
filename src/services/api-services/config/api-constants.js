@@ -44,7 +44,7 @@ export const API_CONFIG = {
 }
 export const API_CONFIG_IMG = {
   headers: {
-    Authorization: '',
-    GoogleAuthorization: '',
+    'Authorization': '',
+    'GoogleAuthorization': '',
   },
 }
