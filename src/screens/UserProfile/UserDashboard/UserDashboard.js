@@ -66,7 +66,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
       [field]: value,
     })
   }
-
+  
   const handleSave = async () => {
     try {
       if (imageFile) {
@@ -88,7 +88,6 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
       console.error('Error updating profile:', e)
     }
   }
-
   const handleCancel = () => {
     setIsEditing(false)
     setFormData(profile)

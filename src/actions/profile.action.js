@@ -14,15 +14,11 @@ export const getProfile = () => async (dispatch) => {
       payload: res.data,
     })
   } catch (e) {
-    if (e.response && e.response.status === 401) {
-      toast.error('Invalid User!', { autoClose: 1500 })
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
-    }
     dispatch({
       type: PROFILE_ERROR,
       payload: e,
     })
+    throw e
   }
 }
 
@@ -43,15 +39,11 @@ export const updateProfile =
         payload: res.data,
       })
     } catch (e) {
-      if (e.response && e.response.status === 401) {
-        toast.error('Invalid User!', { autoClose: 1500 })
-      } else {
-        toast.error('Please Try Again!', { autoClose: 1500 })
-      }
       dispatch({
         type: PROFILE_ERROR,
         payload: e,
       })
+      throw e
     }
   }
 
@@ -66,14 +58,10 @@ export const deleteProfile = () => async (dispatch) => {
       payload: res.data,
     })
   } catch (e) {
-    if (e.response && e.response.status === 401) {
-      toast.error('Invalid User!', { autoClose: 1500 })
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
-    }
     dispatch({
       type: PROFILE_ERROR,
       payload: e,
     })
+    throw e
   }
 }
