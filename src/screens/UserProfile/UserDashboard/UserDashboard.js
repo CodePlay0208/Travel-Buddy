@@ -69,13 +69,16 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
 
   const handleSave = async () => {
     try {
-      const formDataNew = new FormData()
-      formDataNew.append('profilePic', imageFile)
-      Object.entries(formData).forEach(([key, value]) => {
-        formDataNew.append(key, value)
-      })
-      await updateProfile(formDataNew, true)
-
+      if (imageFile) {
+        const formDataNew = new FormData()
+        formDataNew.append('profilePic', imageFile)
+        Object.entries(formData).forEach(([key, value]) => {
+          formDataNew.append(key, value)
+        })
+        await updateProfile(formDataNew, true)
+      } else {
+        await updateProfile(formData)
+      }
       toast.success('Profile updated successfully!', { autoClose: 1500 })
       setIsEditing(false)
       setSelectedProfilePic(null)
