@@ -75,7 +75,7 @@ export const routes = [
     isPrivate: false
   },
   {
-    path: '/user-trip',
+    path: '/user-trips',
     element: <UserTrips />,
     isPrivate: true
   },

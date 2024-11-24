@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
   selectedChat: state.chatsReducer.selectedChat,
   user: state.authReducer.user,
   // notifications: state.chatsReducer.notifications,
-  fetchAgain: state.chatsReducer.fetchAgain
+  fetchAgain: state.chatsReducer.fetchAgain,
 })
 
 const socket = new Socket()
@@ -49,10 +49,13 @@ const ChatBox = (props) => {
     }
   }
 
-  const getMessageSender = useCallback((senderId) => {
-    if (!senderId) return null
-    return selectedChat?.users[0]?.userId === senderId ? selectedChat?.users[0] : selectedChat?.users[1]
-  }, [selectedChat])
+  const getMessageSender = useCallback(
+    (senderId) => {
+      if (!senderId) return null
+      return selectedChat?.users[0]?.userId === senderId ? selectedChat?.users[0] : selectedChat?.users[1]
+    },
+    [selectedChat],
+  )
 
   const onSendMessage = async (e) => {
     e.preventDefault()
@@ -170,7 +173,9 @@ const ChatBox = (props) => {
             </div>
           </div>
         </>
-      ) : null}
+      ) : (
+        <div>Please Select Person to Chat</div>
+      )}
     </>
   )
 }
