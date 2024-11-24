@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const TripCardContainer = styled.div`
-  width: 400px;
+  width: 375px;
   height: 600px;
   background: #ffffff;
   border: 2px solid #ffffff;
@@ -18,7 +18,7 @@ export const TripCardContainer = styled.div`
 `
 
 export const LeftContainer = styled.div`
-  width: 400px;
+  width: 375px;
   aspect-ratio: 4 / 3;
   position: relative;
   overflow: hidden;
@@ -40,7 +40,7 @@ export const DestinationImg = styled.img`
   position: absolute;
   top: 0;
   left: 0;
-  width: 396.5px;
+  width: 375px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 15px;
