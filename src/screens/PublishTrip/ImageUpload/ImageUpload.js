@@ -80,7 +80,7 @@ const ImageUpload = ({ tripData, setTripData }) => {
             <DropImageInner role="button" onClick={onImageUpload} {...dragProps}>
               {imageList.length > 0 ? (
                 <DropImage>
-                  <IconPicture >
+                  <IconPicture>
                     <img src={displayedImage} alt="Uploaded Preview" />
                   </IconPicture>
                 </DropImage>
@@ -107,24 +107,25 @@ const ImageUpload = ({ tripData, setTripData }) => {
               </FileUploaderContainer>
             </DropImageInner>
             <ImagePreviewSection>
-              {imageList.length > 0
-                ? imageList.map((image, index) => (
-                    <PreviewImageItemContainer key={index}>
-                      <PreviewImageItem
-                        src={image.data_url}
-                        alt="Preview"
-                        onClick={() => handleImageClick(index)}
-                        onDoubleClick={() => handleImageDoubleClick(index)}
-                      />
-                      <PreviewImageCrossContainer>
-                        <PreviewImageRemoveButton onClick={() => handleImageRemove(index, onImageRemove)} aria-label="Remove image">
-                          x
-                        </PreviewImageRemoveButton>
-                      </PreviewImageCrossContainer>
-                    </PreviewImageItemContainer>
-                  ))
-                :
-                <></>}
+              {imageList.length > 0 ? (
+                imageList.map((image, index) => (
+                  <PreviewImageItemContainer key={index}>
+                    <PreviewImageItem
+                      src={image.data_url}
+                      alt="Preview"
+                      onClick={() => handleImageClick(index)}
+                      onDoubleClick={() => handleImageDoubleClick(index)}
+                    />
+                    <PreviewImageCrossContainer>
+                      <PreviewImageRemoveButton onClick={() => handleImageRemove(index, onImageRemove)} aria-label="Remove image">
+                        x
+                      </PreviewImageRemoveButton>
+                    </PreviewImageCrossContainer>
+                  </PreviewImageItemContainer>
+                ))
+              ) : (
+                <></>
+              )}
             </ImagePreviewSection>
           </Frame>
         )}

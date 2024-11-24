@@ -73,7 +73,12 @@ const PublishTrip = (props) => {
   }
 
   const handleSubmit = async () => {
-    const isTripPublished = await createTrip(tripData)
+    const formDataNew = new FormData()
+
+    Object.entries(tripData).forEach(([key, value]) => {
+      formDataNew.append(key, value)
+    })
+    const isTripPublished = await createTrip(formDataNew, true)
     if (isTripPublished) {
       setTripData(DEFAULT_TRIP_DATA)
     }
@@ -83,7 +88,7 @@ const PublishTrip = (props) => {
   const handleTripDataChange = (field, value) => {
     setTripData({
       ...tripData,
-      [field]: value
+      [field]: value,
     })
   }
 

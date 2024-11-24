@@ -60,11 +60,16 @@ export const TripsApi = {
       throw e
     }
   },
-  createTrip: async (payload) => {
+  createTrip: async (payload, isMultiMedia) => {
     try {
-      const result = await ApiService.post(API_PATH.CREATE_TRIPS_API, payload, {
-        baseURL: env.BASE_API_URL,
-      })
+      const result = await ApiService.post(
+        API_PATH.CREATE_TRIPS_API,
+        payload,
+        {
+          baseURL: env.BASE_API_URL,
+        },
+        isMultiMedia,
+      )
       console.log('createTrip SUCCESS: ', result)
 
       return { status: result.status, data: result.data }

@@ -1,52 +1,59 @@
-import { GET_TRIP, GET_TRIPS, GET_USER_TRIPS, TRIPS_ERROR, UPDATE_USER_TRIP, SET_SEARCH_FORM_SUCCESS, DEFAULT_STATE } from '../constants/action-types/trips.constants'
+import {
+  GET_TRIP,
+  GET_TRIPS,
+  GET_USER_TRIPS,
+  TRIPS_ERROR,
+  UPDATE_USER_TRIP,
+  SET_SEARCH_FORM_SUCCESS,
+  DEFAULT_STATE,
+} from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
 
 export const getTrips = (searchForm) => async (dispatch) => {
-    const { destination, startDate } = searchForm
-    const params = [
-      {
-        key: 'destination',
-        value: destination,
-      },
-      {
-        key: 'date',
-        value: startDate,
-      },
-      {
-        key: 'offset',
-        value: 0
-      },
-      {
-        key: 'limit',
-        value: 50
-      }
-    ]
+  const { destination, startDate } = searchForm
+  const params = [
+    {
+      key: 'destination',
+      value: destination,
+    },
+    {
+      key: 'date',
+      value: startDate,
+    },
+    {
+      key: 'offset',
+      value: 0,
+    },
+    {
+      key: 'limit',
+      value: 50,
+    },
+  ]
 
-    try {
-      const res = await TripsApi.getTrips(params)
-      dispatch({
-        type: GET_TRIPS,
-        payload: res.data.trips,
-      })
+  try {
+    const res = await TripsApi.getTrips(params)
+    dispatch({
+      type: GET_TRIPS,
+      payload: res.data.trips,
+    })
 
+    return true
+  } catch (e) {
+    if (e.response && e.response.status === 401) {
+      toast.error('Invalid User!', { autoClose: 1500 })
+    } else if (e.response && e.response.status === 404) {
       return true
-    } catch (e) {
-      if (e.response && e.response.status === 401) {
-        toast.error('Invalid User!', { autoClose: 1500 })
-      } else if (e.response && e.response.status === 404) {
-        return true
-      }
-       else {
-        toast.error('Please Try Again!', { autoClose: 1500 })
-      }
-      dispatch({
-        type: TRIPS_ERROR,
-        payload: e,
-      })
-
-      return false
+    } else {
+      toast.error('Please Try Again!', { autoClose: 1500 })
     }
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+
+    return false
+  }
 }
 
 export const getTrip = (tripId) => async (dispatch) => {
@@ -84,9 +91,9 @@ export const getUserTrips = () => async (dispatch) => {
   }
 }
 
-export const createTrip = (tripData) => async (dispatch) => {
+export const createTrip = (tripData, isMultiMedia=false) => async (dispatch) => {
   try {
-    const res = await TripsApi.createTrip(tripData)
+    const res = await TripsApi.createTrip(tripData, isMultiMedia)
     if (res.status === 201) {
       toast.success('Your Trip has been successfully published!', { autoClose: 1500 })
     }
@@ -127,9 +134,9 @@ export const editTrip = (trip_id, tripData) => async (dispatch) => {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
     } else if (e.response && e.response.status === 403) {
-      toast.error('You don\'t have access to edit this trip!', { autoClose: 1500 })
+      toast.error("You don't have access to edit this trip!", { autoClose: 1500 })
     } else if (e.response && e.response.status === 404) {
-      toast.error('The Trip doesn\'t exists!', { autoClose: 1500 })
+      toast.error("The Trip doesn't exists!", { autoClose: 1500 })
     } else {
       toast.error('Please Try Again!', { autoClose: 1500 })
     }
@@ -161,11 +168,11 @@ export const setSearchForm = (newSearchForm) => async (dispatch) => {
   try {
     dispatch({
       type: SET_SEARCH_FORM_SUCCESS,
-      payload: newSearchForm
+      payload: newSearchForm,
     })
   } catch (e) {
     dispatch({
-      type: DEFAULT_STATE
+      type: DEFAULT_STATE,
     })
   }
 }
