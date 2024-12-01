@@ -76,9 +76,16 @@ const PublishTrip = (props) => {
     const formDataNew = new FormData()
 
     Object.entries(tripData).forEach(([key, value]) => {
-      formDataNew.append(key, value)
+      if (key === 'destinationImages' && Array.isArray(value)) {
+        value.forEach((image) => {
+          formDataNew.append('destinationImages', image.file)
+        })
+      } else {
+        formDataNew.append(key, value)
+      }
     })
-    const isTripPublished = await createTrip(formDataNew, true)
+
+    const isTripPublished = await createTrip(formDataNew, false)
     if (isTripPublished) {
       setTripData(DEFAULT_TRIP_DATA)
     }

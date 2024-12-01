@@ -9,6 +9,7 @@ import {
 } from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
+import { setAuthTokenImg } from '../services/api-services/api-services'
 
 export const getTrips = (searchForm) => async (dispatch) => {
   const { destination, startDate } = searchForm
@@ -93,6 +94,9 @@ export const getUserTrips = () => async (dispatch) => {
 
 export const createTrip = (tripData, isMultiMedia=false) => async (dispatch) => {
   try {
+    // if (isMultiMedia&&localStorage.token) {
+    //   setAuthTokenImg(localStorage.token)
+    // }
     const res = await TripsApi.createTrip(tripData, isMultiMedia)
     if (res.status === 201) {
       toast.success('Your Trip has been successfully published!', { autoClose: 1500 })
