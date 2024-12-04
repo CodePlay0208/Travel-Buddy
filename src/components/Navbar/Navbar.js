@@ -124,7 +124,7 @@ const Navbar = (props) => {
               {notifications?.length > 0 && <div className="notification-badge" />}
             </NavContents>
             <ProfileImageContainer onClick={handleClickOnProfilePic}>
-              <img src={profilePic ?? SVG.ProfileIcon} alt="Profile" />
+              <img src={profilePic[0] ? profilePic : SVG.ProfileIcon} alt="Profile" />
               {showUserProfileDropDownList && <Dropdown data={userProfileDropDownData} selectSuggestion={selectSuggestion}></Dropdown>}
             </ProfileImageContainer>
           </OtherContentsOfNavBar>

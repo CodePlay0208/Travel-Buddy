@@ -175,11 +175,11 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                 )}
               </UserInfoItem>
               <UserInfoItem>
-                <Label>Age</Label>
+                <Label>Gender</Label>
                 {isEditing ? (
-                  <Input name="age" value={formData?.age || ''} onChange={handleChange} />
+                  <Input name="gender" value={formData?.gender || ''} onChange={handleChange} />
                 ) : (
-                  <Value>{profile?.age ?? '18'}</Value>
+                  <Value>{profile?.gender ?? 'Prefer not to say'}</Value>
                 )}
               </UserInfoItem>
               <UserInfoItem>

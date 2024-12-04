@@ -43,7 +43,7 @@ export const LocationIcon = styled.img`
   cursor: pointer;
 `
 
-export const Dropdown = styled.div`
+export const DropdownSC = styled.div`
   position: absolute;
   top: 100%;
   left: 0;
