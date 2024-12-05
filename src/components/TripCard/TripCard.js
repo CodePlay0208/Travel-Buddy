@@ -20,7 +20,7 @@ import {
   SubTitle,
   Price,
 } from '../../styles/TripCard.styled'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 import { memo } from 'react'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -28,6 +28,8 @@ import './TripCard.css'
 import { connect } from 'react-redux'
 import { getOrCreateChat } from '../../actions/chats.action'
 import { computeDateAndTimeUntilNowInString, formatDate } from '../../utils/DateUtils'
+import { DeleteButton } from '../../screens/UserProfile/UserDashboard/UserDashboard.styled'
+import { deleteUserTrip } from '../../actions/trips.action'
 
 const TripCard = (props) => {
   const {
@@ -45,7 +47,10 @@ const TripCard = (props) => {
     endDate,
     tripMembers,
     publisherId,
-    publishedTime
+    publishedTime,
+    deleteUserTrip,
+    deleteEnable = false,
+    onDelete = () => {},
   } = props || {}
 
   const duration = computeDateAndTimeUntilNowInString(publishedTime)
@@ -81,16 +86,17 @@ const TripCard = (props) => {
   const onCardPress = () => {
     navigate(`/trip/${tripId}`)
   }
-  
+
   return (
-    <TripCardContainer onClick={onCardPress} >
+    <TripCardContainer onClick={onCardPress}>
       <LeftContainer>
         <Slider {...settings}>
-          {destinationImages && destinationImages.map((img, index) => (
-            <CarouselItem key={index}>
-              <DestinationImg src={img} alt={`Destination ${index + 1}`} />
-            </CarouselItem>
-          ))}
+          {destinationImages &&
+            destinationImages.map((img, index) => (
+              <CarouselItem key={index}>
+                <DestinationImg src={img} alt={`Destination ${index + 1}`} />
+              </CarouselItem>
+            ))}
         </Slider>
       </LeftContainer>
       <RightContainer>
@@ -107,7 +113,8 @@ const TripCard = (props) => {
               <SubTitle>Approx Budget</SubTitle>
               <Price>Rs {budget}</Price>
             </Budget>
-            <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>
+            {!deleteEnable && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
+            {deleteEnable && <DeleteButton onClick={onDelete}>Delete Trip</DeleteButton>}
           </ChatNow>
         </Details>
       </RightContainer>
@@ -115,4 +122,4 @@ const TripCard = (props) => {
   )
 }
 
-export default connect(null, { getOrCreateChat })(memo(TripCard))
+export default connect(null, { getOrCreateChat, deleteUserTrip })(memo(TripCard))

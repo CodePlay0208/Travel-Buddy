@@ -92,33 +92,35 @@ export const getUserTrips = () => async (dispatch) => {
   }
 }
 
-export const createTrip = (tripData, isMultiMedia=false) => async (dispatch) => {
-  try {
-    // if (isMultiMedia&&localStorage.token) {
-    //   setAuthTokenImg(localStorage.token)
-    // }
-    const res = await TripsApi.createTrip(tripData, isMultiMedia)
-    if (res.status === 201) {
-      toast.success('Your Trip has been successfully published!', { autoClose: 1500 })
+export const createTrip =
+  (tripData, isMultiMedia = false) =>
+  async (dispatch) => {
+    try {
+      // if (isMultiMedia&&localStorage.token) {
+      //   setAuthTokenImg(localStorage.token)
+      // }
+      const res = await TripsApi.createTrip(tripData, isMultiMedia)
+      if (res.status === 201) {
+        toast.success('Your Trip has been successfully published!', { autoClose: 1500 })
+      }
+      if (!res.data.allFilesUploaded) {
+        toast.error('Error in uploading images. Please edit the trip and re-upload the images!', { autoClose: 1500 })
+      }
+      return true
+    } catch (e) {
+      if (e.response && e.response.status === 401) {
+        toast.error('Invalid User!', { autoClose: 1500 })
+      } else {
+        // toast.error('Please Try Again!', { autoClose: 1500 })
+        toast.success('Your Trip has been successfully published!', { autoClose: 2000 })
+      }
+      dispatch({
+        type: TRIPS_ERROR,
+        payload: e,
+      })
+      return false
     }
-    if (!res.data.allFilesUploaded) {
-      toast.error('Error in uploading images. Please edit the trip and re-upload the images!', { autoClose: 1500 })
-    }
-    return true
-  } catch (e) {
-    if (e.response && e.response.status === 401) {
-      toast.error('Invalid User!', { autoClose: 1500 })
-    } else {
-      // toast.error('Please Try Again!', { autoClose: 1500 })
-      toast.success('Your Trip has been successfully published!', { autoClose: 2000 })
-    }
-    dispatch({
-      type: TRIPS_ERROR,
-      payload: e,
-    })
-    return false
   }
-}
 
 export const editTrip = (trip_id, tripData) => async (dispatch) => {
   try {
@@ -154,6 +156,10 @@ export const editTrip = (trip_id, tripData) => async (dispatch) => {
 export const deleteUserTrip = (trip_id) => async (dispatch) => {
   try {
     await TripsApi.deleteUserTrip(trip_id)
+    dispatch({
+      type: 'DELETE_USER_TRIP',
+      payload: trip_id,
+    })
     toast.success('Trip Successfully deleted!', { autoClose: 1500 })
   } catch (e) {
     if (e.response && e.response.status === 401) {

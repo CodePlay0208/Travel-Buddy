@@ -34,9 +34,10 @@ const getGoogleToken = () => {
 const ApiService = {
   get: async (apiPath, options) => {
     try {
+      const headerValue = { ...API_CONFIG.headers, ...options.headers }
       const res = await axios.get(apiPath, {
         baseURL: options.baseURL || env.BASE_API_URL,
-        headers: { ...API_CONFIG.headers, ...options.headers },
+        headers: headerValue,
       })
       console.log('GET RES: ', res)
       return res

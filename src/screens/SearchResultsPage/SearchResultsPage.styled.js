@@ -14,7 +14,7 @@ export const TripList = styled.div`
   flex-wrap: wrap;
   margin-top: 5%;
   width: 100%;
-  gap: 3%
+  gap: 4%;
 `
 
 export const SearchResultButtonDiv = styled.div`

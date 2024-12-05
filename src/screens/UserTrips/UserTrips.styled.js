@@ -5,5 +5,5 @@ export const TripList = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
-  gap: 3%
+  gap: 4%;
 `

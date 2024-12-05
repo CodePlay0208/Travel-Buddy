@@ -17,7 +17,7 @@ export const API_PATH = {
 
   USER_PROFILE_API: '/user/getUserProfile',
   DELETE_PROFILE_API: 'user/deleteUserProfile',
-  DELETE_TRIP_API: '/tripDelete/deleteTrip',
+  DELETE_TRIP_API: '/trips/deleteTrip',
   EDIT_PROFILE_API: '/user/editUserProfile',
   CHATS_API: '/message/getAllMessages',
 
@@ -44,7 +44,7 @@ export const API_CONFIG = {
 }
 export const API_CONFIG_IMG = {
   headers: {
-    'Authorization': '',
-    'GoogleAuthorization': '',
+    Authorization: '',
+    GoogleAuthorization: '',
   },
 }

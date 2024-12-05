@@ -4,6 +4,7 @@ import {
   GET_USER_TRIPS,
   TRIPS_ERROR,
   SET_SEARCH_FORM_SUCCESS,
+  DELETE_USER_TRIP,
   DEFAULT_STATE,
 } from '../constants/action-types/trips.constants'
 
@@ -12,13 +13,16 @@ const initialState = {
   trip: null,
   loading: true,
   user: {
-    trips: []
+    trips: [],
+  },
+  userTrip: {
+    trips: [],
   },
   error: {},
   searchForm: {
     destination: '',
-    startDate: ''
-  }
+    startDate: '',
+  },
 }
 
 const tripReducer = (state = initialState, action) => {
@@ -41,6 +45,7 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         user: { ...state.user, trips: payload },
+        userTrip: payload,
         loading: false,
       }
     case SET_SEARCH_FORM_SUCCESS:
@@ -48,8 +53,16 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         searchForm: {
           ...state.searchForm,
-          ...payload
-        }
+          ...payload,
+        },
+      }
+    case DELETE_USER_TRIP:
+      return {
+        ...state,
+        userTrip: {
+          ...state.userTrip,
+          trips: state.userTrip.trips.filter((trip) => trip.tripId !== action.payload),
+        },
       }
     case TRIPS_ERROR:
       return {
