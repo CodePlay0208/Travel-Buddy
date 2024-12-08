@@ -102,6 +102,7 @@ export const UserInfoColumn = styled.div`
 `
 
 export const UserInfoItem = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -174,6 +175,7 @@ export const DeleteButton = styled(BaseButton)`
   background-color: #dc2626;
 `
 export const Input = styled.input`
+  position: relative;
   width: 100%;
   padding: 2.5%;
   font-size: 1.25vw;

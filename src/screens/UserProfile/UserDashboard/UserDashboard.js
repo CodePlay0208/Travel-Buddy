@@ -33,6 +33,7 @@ import {
 import Modal from '../../../components/Modal/Modal'
 
 import { logout } from '../../../actions/auth.action'
+import Dropdown from '../../../components/Dropdown/Dropdown'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -46,6 +47,8 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
   const [selectedProfilePic, setSelectedProfilePic] = useState(null)
   const [imageFile, setImageFile] = useState(null)
   const [deleteModal, setDeleteModal] = useState(false)
+  const [showPersonaDropDown, setShowPersonaDropDown] = useState(false)
+  const [showGenderDropDown, setShowGenderDropDown] = useState(false)
 
   useEffect(() => {
     getProfile()
@@ -57,7 +60,10 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+    setFormData((prevData) => ({
+      ...formData,
+      [name]: value,
+    }))
   }
 
   const handleInputChange = (field, value) => {
@@ -177,7 +183,28 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
               <UserInfoItem>
                 <Label>Gender</Label>
                 {isEditing ? (
-                  <Input name="gender" value={formData?.gender || ''} onChange={handleChange} />
+                  <>
+                    <Input
+                      name="gender"
+                      value={formData?.gender || ''}
+                      onChange={handleChange}
+                      onFocus={() => setShowGenderDropDown(true)}
+                      onBlur={(e) => {
+                        setTimeout(() => setShowGenderDropDown(false), 1000)
+                      }}
+                    />
+                    {showGenderDropDown && (
+                      <Dropdown
+                        data={[{ value: 'Male' }, { value: 'Female' }, { value: 'Others' }]}
+                        selectSuggestion={(selected) => {
+                          handleChange({
+                            target: { name: 'gender', value: selected.value },
+                          })
+                          setShowGenderDropDown(false)
+                        }}
+                      />
+                    )}
+                  </>
                 ) : (
                   <Value>{profile?.gender ?? 'Prefer not to say'}</Value>
                 )}
@@ -185,7 +212,28 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
               <UserInfoItem>
                 <Label>Persona</Label>
                 {isEditing ? (
-                  <Input name="persona" value={formData?.persona || ''} onChange={handleChange} />
+                  <>
+                    <Input
+                      name="persona"
+                      value={formData?.persona || ''}
+                      onChange={handleChange}
+                      onFocus={() => setShowPersonaDropDown(true)}
+                      onBlur={(e) => {
+                        setTimeout(() => setShowPersonaDropDown(false), 1000)
+                      }}
+                    />
+                    {showPersonaDropDown && (
+                      <Dropdown
+                        data={[{ value: 'Traveller' }, { value: 'Agent' }]}
+                        selectSuggestion={(selected) => {
+                          handleChange({
+                            target: { name: 'persona', value: selected.value },
+                          })
+                          setShowPersonaDropDown(false)
+                        }}
+                      />
+                    )}
+                  </>
                 ) : (
                   <Value>{profile?.persona ?? 'Traveller'}</Value>
                 )}

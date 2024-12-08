@@ -16,12 +16,10 @@ export const InputField = styled.input`
   font-size: 16.275px;
   color: #040f0f;
 
-  
-
   @media (max-width: 1080px) {
     font-size: 14px;
   }
-  
+
   @media (max-width: 786px) {
     border-radius: 3px;
   }
@@ -43,7 +41,7 @@ export const DescriptionField = styled.textarea`
     height: 120px;
     padding: 1% 5%;
   }
-  
+
   @media (max-width: 786px) {
     border-radius: 3px;
   }
@@ -119,6 +117,7 @@ export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 2% 2% 2%;
+  position: relative;
 
   @media (max-width: 1080px) {
     margin: 0 0 10px 0;
@@ -177,16 +176,15 @@ export const ToggleTab = styled.div`
     background-color: #559c84;
     border-radius: 10px;
   }
-
 `
 
 export const Divider = styled.div`
   width: 0.5%;
   height: 4vw;
-  
+
   background: #ffffff;
   border-radius: 50px;
-  
+
   @media (max-width: 1080px) {
     height: 20px;
   }
@@ -239,6 +237,7 @@ export const SubmitButton = styled(NextButton)`
 `
 
 export const InputRow = styled.div`
+  position: relative;
   display: flex;
   gap: 20px;
 

@@ -66,12 +66,12 @@ const Searchbar = (props) => {
       />
       <LocationIcon src={SVG.LocationIcon} alt="Location Icon" />
       <DropdownSC isVisible={isDropdownVisible}>
-          {suggestions.map((suggestion, index) => (
-            <DropdownItem key={index} dropDownFontSize={props.dropDownFontSize} onClick={() => selectSuggestion(suggestion)}>
-              {suggestion.city}, {suggestion.state}
-            </DropdownItem>
-          ))}
-        </DropdownSC>
+        {suggestions.map((suggestion, index) => (
+          <DropdownItem key={index} dropDownFontSize={props.dropDownFontSize} onClick={() => selectSuggestion(suggestion)}>
+            {suggestion.city}, {suggestion.state}
+          </DropdownItem>
+        ))}
+      </DropdownSC>
     </SearchBarContainer>
   )
 }

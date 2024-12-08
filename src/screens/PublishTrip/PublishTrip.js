@@ -29,6 +29,7 @@ import {
   PublishTripRightSection,
 } from './PublishTrip.styled'
 import { useNavigate } from 'react-router-dom'
+import Dropdown from '../../components/Dropdown/Dropdown'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -57,12 +58,22 @@ const PublishTrip = (props) => {
   const { profile, getProfile, createTrip } = props
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
+  const [showPersonaDropDown, setShowPersonaDropDown] = useState(false)
+  const [showGenderDropDown, setShowGenderDropDown] = useState(false)
   const navigate = useNavigate()
-
   const handleChange = (e) => {
-    const updatedTripData = { ...tripData, [e.target.name]: e.target.value }
-    setTripData(updatedTripData)
+    // console.log(e)
+    const { name, value } = e.target
+    setTripData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }))
+    // console.log(tripData)
   }
+
+  useEffect(() => {
+    console.log('Trip Data updated:', tripData)
+  }, [tripData])
 
   const handleToggle = (section) => {
     setActiveSection(section)
@@ -271,8 +282,24 @@ const PublishTrip = (props) => {
                         placeholder="Enter gender"
                         onChange={handleChange}
                         value={tripData.gender}
+                        onFocus={() => setShowGenderDropDown(true)}
+                        onBlur={(e) => {
+                          setTimeout(() => setShowGenderDropDown(false), 1000)
+                        }}
                       />
+                      {showGenderDropDown && (
+                        <Dropdown
+                          data={[{ value: 'Male' }, { value: 'Female' }, { value: 'Others' }]}
+                          selectSuggestion={(selected) => {
+                            handleChange({
+                              target: { name: 'gender', value: selected.value },
+                            })
+                            setShowGenderDropDown(false)
+                          }}
+                        />
+                      )}
                     </InputGroup>
+
                     <InputGroup>
                       <InputLabel>Persona</InputLabel>
                       <InputField
@@ -282,7 +309,22 @@ const PublishTrip = (props) => {
                         placeholder="Enter persona"
                         onChange={handleChange}
                         value={tripData.persona}
+                        onFocus={() => setShowPersonaDropDown(true)}
+                        onBlur={(e) => {
+                          setTimeout(() => setShowPersonaDropDown(false), 1000)
+                        }}
                       />
+                      {showPersonaDropDown && (
+                        <Dropdown
+                          data={[{ value: 'Traveller' }, { value: 'Agent' }]}
+                          selectSuggestion={(selected) => {
+                            handleChange({
+                              target: { name: 'persona', value: selected.value },
+                            })
+                            setShowPersonaDropDown(false)
+                          }}
+                        />
+                      )}
                     </InputGroup>
                   </InputRow>
 
