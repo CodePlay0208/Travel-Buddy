@@ -16,7 +16,6 @@ export const DatePickerWrapper = styled.div`
     color: #787878;
     font-size: ${(props) => props.fontSize};
     font-weight: ${(props) => props.fontWeight};
-    font-family: Arial, sans-serif;
   }
 `
 

@@ -8,21 +8,22 @@ export const PublishTripPage = styled.div`
 export const InputField = styled.input`
   display: block;
   width: 100%;
-  padding: 13.95px;
+  height: 51px;
+  padding: 1% 5%;
   border: 2.325px solid #0b87ac;
   border-radius: 9.3px;
   font-family: 'Poppins', sans-serif;
   font-size: 16.275px;
   color: #040f0f;
 
-  ::placeholder {
-    color: #040f0f;
-    opacity: 0.7;
-  }
+  
 
   @media (max-width: 1080px) {
-    padding: 10px;
     font-size: 14px;
+  }
+  
+  @media (max-width: 786px) {
+    border-radius: 3px;
   }
 `
 
@@ -31,21 +32,20 @@ export const DescriptionField = styled.textarea`
   align-items: flex-start;
   width: 100%;
   height: 151px;
-  padding: 13.95px;
+  padding: 1% 2.5%;
   border: 2.325px solid #0b87ac;
   border-radius: 9.3px;
   font-size: 16.275px;
   color: #040f0f;
 
-  ::placeholder {
-    color: #040f0f;
-    opacity: 0.7;
-  }
-
   @media (max-width: 1080px) {
-    padding: 10px;
     font-size: 14px;
     height: 120px;
+    padding: 1% 5%;
+  }
+  
+  @media (max-width: 786px) {
+    border-radius: 3px;
   }
 `
 

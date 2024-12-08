@@ -10,8 +10,39 @@
 input:focus {
   outline: none;
 }
+textarea:focus {
+  outline: none;
+}
 .App {
   text-align: center;
+}
+input::placeholder,
+textarea::placeholder {
+  font-weight: 500 !important;
+  color: #787878;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #787878;
+  font-weight: 500 !important;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #787878;
+  font-weight: 500 !important;
+}
+
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  color: #787878;
+  font-weight: 500 !important;
+}
+
+input,
+textarea {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .App-logo {

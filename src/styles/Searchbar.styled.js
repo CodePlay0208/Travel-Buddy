@@ -29,12 +29,6 @@ export const SearchBarInput = styled.input`
   border: none;
   outline: none;
 
-  &::placeholder {
-    font-family: Arial, sans-serif;
-    font-size: ${(props) => props.fontSize};
-    font-weight: ${(props) => props.fontWeight};
-    color: #787878;
-  }
 `
 
 export const LocationIcon = styled.img`
