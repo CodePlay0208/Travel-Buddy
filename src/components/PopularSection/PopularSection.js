@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { memo, useEffect, useRef } from 'react'
 import {
   PopularTripContainer,
   PopularButtonDiv,
@@ -12,10 +12,22 @@ import {
 import data from '../../data/data.json'
 import TripCard from '../TripCard/TripCard'
 import { useNavigate } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getTrips } from '../../actions/trips.action'
 
+const mapStateToProps = (state) => ({
+  trips: state.tripReducer.trips,
+
+  searchForm: state.tripReducer.searchForm,
+})
 const PopularSection = (props) => {
+  const { trips, searchForm, getTrips } = props
   const navigate = useNavigate()
   const scrollContainerRef = useRef(null)
+
+  useEffect(() => {
+    getTrips(searchForm)
+  }, [])
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -47,9 +59,9 @@ const PopularSection = (props) => {
         </PopularHeadingRight>
       </PopularTripHeading>
       <PopularTripContent ref={scrollContainerRef} margin={props?.margin ? props.margin : `0 5.5%`}>
-        {data.map((trip) => (
+        {trips.map((trip) => (
           <TripCard
-            key={trip?.id}
+            key={trip?.tripId}
             tripId={trip?.tripId}
             profileImg={trip?.profileImg || null}
             startLocation={trip?.startLocation}
@@ -81,4 +93,4 @@ const PopularSection = (props) => {
   )
 }
 
-export default PopularSection
+export default connect(mapStateToProps, { getTrips })(memo(PopularSection))

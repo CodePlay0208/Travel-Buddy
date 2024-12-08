@@ -73,7 +73,7 @@ export const ProfilePicture = styled.img`
 
 export const ProfileName = styled.div`
   margin: 2.5% 0 0;
-  font-size: 32px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 2vw;
 `
