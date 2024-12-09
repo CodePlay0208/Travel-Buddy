@@ -34,11 +34,16 @@ export const TripsApi = {
       throw e
     }
   },
-  editTrip: async (payload, tripId) => {
+  editTrip: async (payload, tripId, isMultiMedia = false) => {
     try {
-      const result = await ApiService.put(`${API_PATH.EDIT_TRIPS_API}/:${tripId}`, payload, {
-        baseURL: env.BASE_API_URL,
-      })
+      const result = await ApiService.put(
+        `${API_PATH.EDIT_TRIPS_API}/${tripId}`,
+        payload,
+        {
+          baseURL: env.BASE_API_URL,
+        },
+        isMultiMedia,
+      )
       console.log('editTrip SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
@@ -68,8 +73,8 @@ export const TripsApi = {
         {
           baseURL: env.BASE_API_URL,
           headers: {
-            'Content-Type':""
-          }
+            'Content-Type': '',
+          },
         },
         isMultiMedia,
       )

@@ -5,9 +5,10 @@ import DatePicker from '../../components/DatePicker/DatePicker'
 import Searchbar from '../../components/Searchbar/Searchbar'
 import { connect } from 'react-redux'
 import { getProfile } from '../../actions/profile.action'
-import { createTrip } from '../../actions/trips.action'
+import { createTrip, editTrip } from '../../actions/trips.action'
 import { ToastContainer } from 'react-toastify'
 import ImageUpload from './ImageUpload/ImageUpload'
+import { useLocation } from 'react-router-dom'
 import {
   PublishTripPage,
   PublishTripContainer,
@@ -55,20 +56,45 @@ const DEFAULT_TRIP_DATA = {
 }
 
 const PublishTrip = (props) => {
-  const { profile, getProfile, createTrip } = props
+  const { profile, getProfile, createTrip, editTrip } = props
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
   const [showPersonaDropDown, setShowPersonaDropDown] = useState(false)
   const [showGenderDropDown, setShowGenderDropDown] = useState(false)
+
   const navigate = useNavigate()
+  const location = useLocation()
+
+  const editTripData = location.state?.trip || {}
+  const [toEditTrip, setToEditTrip] = useState(false)
+
+  const formatDate = (dateString) => {
+    if (!dateString) return ''
+    const date = new Date(dateString)
+    const day = String(date.getDate()).padStart(2, '0') // Ensures 2-digit day
+    const month = String(date.getMonth() + 1).padStart(2, '0') // Month is 0-indexed
+    const year = date.getFullYear()
+    return `${day}-${month}-${year}`
+  }
+
+  useEffect(() => {
+    if (Object.keys(editTripData).length > 0) {
+      const formattedTripData = {
+        ...editTripData,
+        startDate: formatDate(editTripData.startDate),
+        endDate: formatDate(editTripData.endDate),
+      }
+      setTripData(formattedTripData)
+      setToEditTrip(true)
+    }
+  }, [editTripData])
+
   const handleChange = (e) => {
-    // console.log(e)
     const { name, value } = e.target
     setTripData((prevData) => ({
       ...prevData,
       [name]: value,
     }))
-    // console.log(tripData)
   }
 
   useEffect(() => {
@@ -82,25 +108,35 @@ const PublishTrip = (props) => {
   const handleNext = () => {
     setActiveSection(TABS.USER)
   }
-
   const handleSubmit = async () => {
-    const formDataNew = new FormData()
+    try {
+      const formDataNew = new FormData()
 
-    Object.entries(tripData).forEach(([key, value]) => {
-      if (key === 'destinationImages' && Array.isArray(value)) {
-        value.forEach((image) => {
-          formDataNew.append('destinationImages', image.file)
-        })
+      Object.entries(tripData).forEach(([key, value]) => {
+        if (!toEditTrip && key === 'destinationImages' && Array.isArray(value)) {
+          value.forEach((image) => {
+            formDataNew.append('destinationImages', image.file)
+          })
+        } else {
+          formDataNew.append(key, value)
+        }
+      })
+
+      let isTripPublished
+      if (toEditTrip) {
+        isTripPublished = await editTrip(tripData.tripId, formDataNew, true)
       } else {
-        formDataNew.append(key, value)
+        isTripPublished = await createTrip(formDataNew, false)
       }
-    })
 
-    const isTripPublished = await createTrip(formDataNew, false)
-    if (isTripPublished) {
-      setTripData(DEFAULT_TRIP_DATA)
+      if (isTripPublished) {
+        console.log('Trip successfully published!')
+      } else {
+        console.error('Failed to publish trip.')
+      }
+    } catch (error) {
+      console.error('Error during trip submission:', error)
     }
-    navigate('/')
   }
 
   const handleTripDataChange = (field, value) => {
@@ -167,7 +203,7 @@ const PublishTrip = (props) => {
                     <InputGroup>
                       <InputLabel>Start Date</InputLabel>
                       <DatePicker
-                        inputValues={tripData.startDate}
+                        inputValues={tripData?.startDate}
                         setInputValues={(value) => handleTripDataChange('startDate', value)}
                         onValue={'startDate'}
                         placeholderValue={'Select Start date'}
@@ -179,7 +215,7 @@ const PublishTrip = (props) => {
                     <InputGroup>
                       <InputLabel>End Date</InputLabel>
                       <DatePicker
-                        inputValues={tripData.endDate}
+                        inputValues={tripData?.endDate}
                         setInputValues={(value) => handleTripDataChange('endDate', value)}
                         onValue={'endDate'}
                         placeholderValue={'Select End date'}
@@ -336,9 +372,11 @@ const PublishTrip = (props) => {
             </LeftSection>
           </PublishTripLeftSection>
 
-          <PublishTripRightSection>
-            <ImageUpload tripData={tripData} setTripData={setTripData} />
-          </PublishTripRightSection>
+          {!toEditTrip && (
+            <PublishTripRightSection>
+              <ImageUpload tripData={tripData} setTripData={setTripData} />
+            </PublishTripRightSection>
+          )}
         </PublishTripContent>
       </PublishTripContainer>
       <Footer />
@@ -347,4 +385,4 @@ const PublishTrip = (props) => {
   )
 }
 
-export default memo(connect(mapStateToProps, { getProfile, createTrip })(PublishTrip))
+export default memo(connect(mapStateToProps, { getProfile, createTrip, editTrip })(PublishTrip))

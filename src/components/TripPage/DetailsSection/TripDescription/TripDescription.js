@@ -20,6 +20,7 @@ import {
   GreyLine,
   StartDate,
   EndDate,
+  EditButton,
 } from './TripDescription.styled'
 import { connect } from 'react-redux'
 import { formatDate } from '../../../../utils/DateUtils'
@@ -28,11 +29,11 @@ import { useNavigate } from 'react-router-dom'
 import { images } from '../../../../assets/images'
 
 const mapStateToProps = (state) => ({
-  trip: state.tripReducer.trip
+  trip: state.tripReducer.trip,
 })
 
 const TripDescription = (props) => {
-  const { trip, getOrCreateChat } = props
+  const { trip, getOrCreateChat, isUserTrip } = props
   const [isExpanded, setIsExpanded] = useState(false)
   const navigate = useNavigate()
 
@@ -47,6 +48,12 @@ const TripDescription = (props) => {
     if (isChatCreated) {
       navigate('/chats')
     }
+  }
+
+  const onEditTripClick = async () => {
+   
+    navigate('/publish-trip', { state: { trip } });
+    
   }
 
   console.log('trip', JSON.stringify(trip, null, 2))
@@ -68,7 +75,7 @@ const TripDescription = (props) => {
       </DescriptionContainer>
       <ChatSection>
         <ProfileImage>
-          <ProfilePicture src={publisher?.profilePic?.[0] || images.defaultProfileImg } alt="" />
+          <ProfilePicture src={publisher?.profilePic?.[0] || images.defaultProfileImg} alt="" />
           <ProfileName>{publisher?.username}</ProfileName>
         </ProfileImage>
         <GreyLine />
@@ -93,7 +100,8 @@ const TripDescription = (props) => {
               <BoxContent>{trip?.totalMembers}</BoxContent>
             </DetailsBox>
           </InfoSection>
-          <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>
+          {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
+          {isUserTrip && <EditButton onClick={onEditTripClick}>Edit Trip</EditButton>}
         </DateContainer>
       </ChatSection>
     </SectionContainer>

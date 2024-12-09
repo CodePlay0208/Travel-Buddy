@@ -75,7 +75,7 @@ const ApiService = {
     }
   },
 
-  put: async (apiPath, payload, options, isMultiMedia) => {
+  put: async (apiPath, payload, options, isMultiMedia = false) => {
     try {
       const res = await axios.put(apiPath, payload, {
         baseURL: options.baseURL || env.BASE_API_URL,

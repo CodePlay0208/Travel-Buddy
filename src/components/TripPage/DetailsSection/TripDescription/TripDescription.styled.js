@@ -153,6 +153,24 @@ export const ChatButton = styled.div`
   }
 `
 
+export const EditButton = styled.div`
+  font-size: 2.5vw;
+  font-weight: 500;
+  line-height: 2vw;
+  margin: 5% 0;
+  color: #000000;
+  text-align: center;
+  background: #00ec99;
+  padding: 5%;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #79bca7;
+  }
+`
+
 export const GreyLine = styled.div`
   height: 0.25px;
   background-color: rgba(128, 128, 128, 0.608);

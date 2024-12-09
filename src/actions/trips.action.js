@@ -122,36 +122,41 @@ export const createTrip =
     }
   }
 
-export const editTrip = (trip_id, tripData) => async (dispatch) => {
-  try {
-    const res = await TripsApi.editTrip(trip_id, tripData)
-    dispatch({
-      type: UPDATE_USER_TRIP,
-      payload: res.data,
-    })
-    if (res.status === 200) {
-      toast.success('Your changes are saved!', { autoClose: 1500 })
+export const editTrip =
+  (trip_id, tripData, isMultiMedia = false) =>
+  async (dispatch) => {
+    if (localStorage.token) {
+      setAuthTokenImg(localStorage.token)
     }
-    //TODO: there should be a button that redirect to edit page.
-    if (res.data && !res.data.allFilesUploaded) {
-      toast.error('Error in uploading images. Please edit the trip and re-upload the images!', { autoClose: 1500 })
+    try {
+      const res = await TripsApi.editTrip(tripData, trip_id, isMultiMedia)
+      dispatch({
+        type: UPDATE_USER_TRIP,
+        payload: res.data,
+      })
+      if (res.status === 200) {
+        toast.success('Your changes are saved!', { autoClose: 1500 })
+      }
+      //TODO: there should be a button that redirect to edit page.
+      if (res.data && !res.data.allFilesUploaded) {
+        toast.error('Error in uploading images. Please edit the trip and re-upload the images!', { autoClose: 1500 })
+      }
+    } catch (e) {
+      if (e.response && e.response.status === 401) {
+        toast.error('Invalid User!', { autoClose: 1500 })
+      } else if (e.response && e.response.status === 403) {
+        toast.error("You don't have access to edit this trip!", { autoClose: 1500 })
+      } else if (e.response && e.response.status === 404) {
+        toast.error("The Trip doesn't exists!", { autoClose: 1500 })
+      } else {
+        toast.error('Please Try Again!', { autoClose: 1500 })
+      }
+      dispatch({
+        type: TRIPS_ERROR,
+        payload: e,
+      })
     }
-  } catch (e) {
-    if (e.response && e.response.status === 401) {
-      toast.error('Invalid User!', { autoClose: 1500 })
-    } else if (e.response && e.response.status === 403) {
-      toast.error("You don't have access to edit this trip!", { autoClose: 1500 })
-    } else if (e.response && e.response.status === 404) {
-      toast.error("The Trip doesn't exists!", { autoClose: 1500 })
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
-    }
-    dispatch({
-      type: TRIPS_ERROR,
-      payload: e,
-    })
   }
-}
 
 export const deleteUserTrip = (trip_id) => async (dispatch) => {
   try {
