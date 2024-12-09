@@ -4,10 +4,10 @@ import { SectionContainer, Title, UpperSection, MapImage, Divider } from './Deta
 import AddMembers from './AddMembers/AddMembers'
 import TripDescription from './TripDescription/TripDescription'
 
-const DetailsSection = () => {
+const DetailsSection = ({ isUserTrip }) => {
   return (
     <SectionContainer>
-      <TripDescription />
+      <TripDescription isUserTrip={isUserTrip} />
       <UpperSection>
         <Title>Your Destination</Title>
         <Divider />

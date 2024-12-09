@@ -13,13 +13,15 @@ import { getTrip } from '../../actions/trips.action'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
+
+  profile: state.profileReducer.profile,
 })
 
 const TripPage = (props) => {
-  const { trip, getTrip } = props
+  const { trip, getTrip, profile } = props
   const { id: tripId } = useParams()
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
+  const isUserTrip = trip.userId === profile.userId
   const fetchTrip = useCallback(() => {
     getTrip(tripId)
   }, [tripId])
@@ -43,7 +45,7 @@ const TripPage = (props) => {
       <Navbar />
       <Container>
         <ImagesSection images={trip?.destinationImages || []} />
-        <DetailsSection />
+        <DetailsSection isUserTrip={isUserTrip} />
       </Container>
       <PopularSection title="Similar Trip" margin={`0 15%`} fontSize={`80px`} padding={`10px 0`} />
       <Footer />
