@@ -120,14 +120,11 @@ export const createTrip =
       })
       return false
     }
-  }
+}
 
 export const editTrip =
   (trip_id, tripData, isMultiMedia = false) =>
   async (dispatch) => {
-    if (localStorage.token) {
-      setAuthTokenImg(localStorage.token)
-    }
     try {
       const res = await TripsApi.editTrip(tripData, trip_id, isMultiMedia)
       dispatch({

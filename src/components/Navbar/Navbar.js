@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
   console.log(state)
   return {
     isAuthenticated: state.authReducer.isAuthenticated,
-    profilePic: state.profileReducer.profile.profilePic,
+    profilePic: state.profileReducer.profile?.profilePic,
   }
 }
 

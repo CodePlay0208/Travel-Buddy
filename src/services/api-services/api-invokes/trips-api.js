@@ -1,4 +1,4 @@
-import { ApiService } from '../api-services'
+import { ApiService, setAuthTokenImg } from '../api-services'
 import { API_PATH } from '../config/api-constants'
 import { env } from '../config/env'
 import { getQueryString } from '../utils/api-utils'
@@ -35,6 +35,9 @@ export const TripsApi = {
     }
   },
   editTrip: async (payload, tripId, isMultiMedia = false) => {
+    if (localStorage.token) {
+      setAuthTokenImg(localStorage.token)
+    }
     try {
       const result = await ApiService.put(
         `${API_PATH.EDIT_TRIPS_API}/${tripId}`,
