@@ -11,6 +11,7 @@ export const HeaderContainer = styled.div`
   width: 95%;
   height: auto;
   margin: 2.5%;
+  margin-bottom: 7.5%;
 `
 
 export const LandingHeader = styled.div`

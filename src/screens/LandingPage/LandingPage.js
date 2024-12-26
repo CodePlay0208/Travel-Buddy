@@ -10,6 +10,7 @@ import Footer from '../../components/Footer/Footer'
 import { connect } from 'react-redux'
 import { setSearchForm } from '../../actions/trips.action'
 import { loadUser } from '../../actions/auth.action'
+import SlidingSection from '../../components/SlidingSection/SlidingSection'
 
 const LandingPage = (props) => {
   const { setSearchForm, loadUser } = props
@@ -22,16 +23,16 @@ const LandingPage = (props) => {
     })
   }, [])
 
-
   return (
     <div className="LandingContainer">
-      <Header isImageNavbar={true} isLandingPage={true}/>
-      <PopularSection/>
-        <AboutSection/>
-        <HeroSection/>
-        <TopDestination/>
-        <Newsletter/>
-        <Footer/>
+      <Header isImageNavbar={true} isLandingPage={true} />
+      <SlidingSection />
+      <HeroSection />
+      <AboutSection />
+      <PopularSection />
+      <TopDestination />
+      <Newsletter />
+      <Footer />
     </div>
   )
 }
