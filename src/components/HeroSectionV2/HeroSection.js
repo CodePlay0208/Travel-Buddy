@@ -17,7 +17,7 @@ import { Flex } from 'antd'
 
 const HeroSection = () => {
   return (
-    <FlexContainer gap="20px" direction="row">
+    <FlexContainer margin='2.5%' gap="20px" direction="row">
       {/* Left Section */}
       <Section>
         <FlexContainer direction="column" gap="20px">

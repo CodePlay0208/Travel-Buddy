@@ -59,8 +59,10 @@ export const PopularHeadingLeft = styled.div`
 `
 
 export const PopularHeadingRight = styled.div`
+justify-content: space-between;
   display: flex;
   align-items: center;
+  width: 30%;
 
   .left {
     background-color: white;
@@ -70,18 +72,22 @@ export const PopularHeadingRight = styled.div`
 `
 
 export const PopularButton = styled.button`
-  font-size: 36px;
+  font-size: 20px;
   padding: 20px 20px;
   cursor: pointer;
-  background-color: #8dd3bb;
-  width: 268px;
-  border-radius: 10px;
+  background-color: #000000;
+  border-radius: 50px;
   font-weight: 700;
   border: none;
-  color: rgb(0, 0, 0);
-  margin-top: 3%;
+  color: rgb(255, 255, 255);
 `
 
+export const ArrowButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+ArrowButtonContainer
 export const ArrowButton = styled.button`
   background: #2d3134;
   color: #faf8ed;

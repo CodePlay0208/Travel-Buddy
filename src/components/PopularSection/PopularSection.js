@@ -8,6 +8,7 @@ import {
   PopularHeadingRight,
   PopularButton,
   ArrowButton,
+  ArrowButtonContainer
 } from '../../styles/PopularSection.styles'
 import data from '../../data/data.json'
 import TripCard from '../TripCard/TripCard'
@@ -44,18 +45,30 @@ const PopularSection = (props) => {
   return (
     <PopularTripContainer>
       <PopularTripHeading
-        margin={props?.margin ? props.margin : `5% 10% 0 10%`}
+        margin={props?.margin ? props.margin : `5% 10% 0 5%`}
         fontSize={props?.fontSize ? props.fontSize : `100%`}
         padding={props?.padding ? props.padding : '30px 0'}
       >
         <PopularHeadingLeft>{props?.title ? props.title : `Find Popular Destination`} </PopularHeadingLeft>
         <PopularHeadingRight>
+        <ArrowButtonContainer>
+
           <ArrowButton className="left" onClick={scrollLeft} aria-label="Scroll Left">
             {'<'}
           </ArrowButton>
           <ArrowButton className="right" onClick={scrollRight} aria-label="Scroll Right">
             {'>'}
           </ArrowButton>
+        </ArrowButtonContainer>
+        <PopularButtonDiv>
+        <PopularButton
+          onClick={() => {
+            navigate('/search-results-page')
+          }}
+        >
+          Explore Now
+        </PopularButton>
+      </PopularButtonDiv>
         </PopularHeadingRight>
       </PopularTripHeading>
       <PopularTripContent ref={scrollContainerRef} margin={props?.margin ? props.margin : `0 5.5%`}>
@@ -80,15 +93,7 @@ const PopularSection = (props) => {
           />
         ))}
       </PopularTripContent>
-      <PopularButtonDiv>
-        <PopularButton
-          onClick={() => {
-            navigate('/search-results-page')
-          }}
-        >
-          Show More
-        </PopularButton>
-      </PopularButtonDiv>
+      
     </PopularTripContainer>
   )
 }

@@ -101,6 +101,7 @@ export const FlexContainer = styled.div`
   align-items: center;
   gap: ${(props) => props.gap || '10px'};
   padding: ${(props) => props.padding || '0'};
+  margin: ${(props) => props.margin || '0'};
   aspect-ratio: ${(props) => props.aspectRatio || 'none'};
   background-image: ${(props) => (props.backgroundImage ? `url(${props.backgroundImage})` : 'none')};
   background-size: cover;
