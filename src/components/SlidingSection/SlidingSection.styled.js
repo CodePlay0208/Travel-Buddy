@@ -15,7 +15,7 @@ export const Container = styled.div`
   display: flex;
   overflow: hidden;
   width: 100%;
-  height: 208px;
+  height: 18vw;
   position: relative;
   margin: 5% 0;
 `
@@ -26,7 +26,7 @@ export const SliderHeading = styled.div`
   justify-content: center;
   width: 35vw;
   padding: 2% 0 2% 2%;
-  height: 208px;
+  height: 100%;
   position: absolute;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
