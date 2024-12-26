@@ -29,7 +29,7 @@ export const TextWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  padding: 20px;
+  padding: 3%;
   width: ${(props) => props.width || 'auto'};
   position: relative;
   border-radius: ${(props) => props.borderRadius || '0'};
@@ -42,6 +42,11 @@ export const Heading = styled.h1`
   position: absolute;
   bottom: 0;
   left: 0;
+  margin: 10px;
+  color: white;
+`
+export const PublishHeading = styled.h1`
+  font-size: 2.5rem;
   margin: 10px;
   color: white;
 `
@@ -64,11 +69,11 @@ export const SubText = styled.p`
 `
 export const LeftText = styled.p`
   font-size: 1rem;
+  text-align: right;
 `
 
 export const RightSubText = styled.p`
-padding: 5%
-;
+  padding: 5%;
   font-size: 1rem;
   font-weight: 800;
   width: 30%;
@@ -94,6 +99,18 @@ export const BackgroundImage = styled.div`
     border-radius: 15px;
   }
 `
+export const PublishButton = styled.button`
+  height: 135px;
+  font-size: 36px;
+  padding:1%;
+  cursor: pointer;
+  background-color: #8dd3bb;
+  width: ${(props) => props.width || 'auto'};
+  border-radius: 10px;
+  font-weight: 700;
+  border: none;
+  color: rgb(0, 0, 0);
+`
 export const FlexContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.direction === 'column' ? 'column' : 'row')};
@@ -107,6 +124,8 @@ export const FlexContainer = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: ${(props) => props.borderRadius || '0'};
+  color: ${(props) => props.color || 'black'};
   width: ${(props) => props.width || 'auto'};
+  height: ${(props) => props.height || 'auto'};
   position: relative;
 `

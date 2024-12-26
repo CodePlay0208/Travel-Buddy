@@ -87,7 +87,6 @@ export const ArrowButtonContainer = styled.div`
   align-items: center;
 `
 
-ArrowButtonContainer
 export const ArrowButton = styled.button`
   background: #2d3134;
   color: #faf8ed;
