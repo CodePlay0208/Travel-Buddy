@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
+export const Container = styled.div`
+  display: flex;
+`
+
 export const DashboardContainer = styled.div`
+  width: 70%;
   padding: 0 3%;
   margin: 1% 0%;
 `
@@ -26,10 +31,9 @@ export const BackgroundImage = styled.img`
 `
 
 export const ProfilePic = styled.div`
-  position: absolute;
-  bottom: -20%;
-  left: 5%;
-  width: 15%;
+  position: relative;
+
+  width: 30%;
   aspect-ratio: 1;
   overflow: hidden;
 `

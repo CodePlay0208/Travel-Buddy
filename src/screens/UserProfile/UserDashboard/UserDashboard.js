@@ -29,6 +29,7 @@ import {
   SaveButton,
   CancelButton,
   DeleteButton,
+  Container,
 } from './UserDashboard.styled'
 import Modal from '../../../components/Modal/Modal'
 
@@ -122,15 +123,8 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
     setDeleteModal(false)
   }
   return (
-    <DashboardContainer>
-      <ImageContainer>
-        <BackgroundImage src={profileBackground} alt="Background" />
-        <ProfilePic>
-          <ImgProfile src={selectedProfilePic || profile?.profilePic[0] || images.defaultProfileImg} alt="User Profile" />
-          {isEditing && <EditPic src={SVG.editPic} alt="Edit" onClick={() => document.getElementById('profilePicInput').click()} />}
-          <input id="profilePicInput" type="file" style={{ display: 'none' }} accept="image/*" onChange={handleProfilePicChange} />
-        </ProfilePic>
-      </ImageContainer>
+    <Container>
+        
 
       <DashboardContainer>
         <DashboardHeader>
@@ -260,6 +254,11 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
         </DashboardContent>
         <ToastContainer />
       </DashboardContainer>
+        <ProfilePic>
+          <ImgProfile src={selectedProfilePic || profile?.profilePic[0] || images.defaultProfileImg} alt="User Profile" />
+          {isEditing && <EditPic src={SVG.editPic} alt="Edit" onClick={() => document.getElementById('profilePicInput').click()} />}
+          <input id="profilePicInput" type="file" style={{ display: 'none' }} accept="image/*" onChange={handleProfilePicChange} />
+        </ProfilePic>
       {deleteModal && (
         <Modal
           message="Are you sure you want to delete your account? This action cannot be undone."
@@ -267,7 +266,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
           onCancel={handleCancelDelete}
         />
       )}
-    </DashboardContainer>
+    </Container>
   )
 }
 
