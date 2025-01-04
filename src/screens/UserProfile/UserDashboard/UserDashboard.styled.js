@@ -140,10 +140,9 @@ export const UserInfoItem = styled.div`
 
 export const Label = styled.span`
   margin: 2% 0% 1%;
-  font-weight: 400;
-  font-size: 20px;
-  color: #112211;
-  opacity: 0.75;
+  font-weight: 500;
+  font-size: 16px;
+  color: #252525;
   width: ${(props) => props.width};
   @media (max-width: 786px) {
     font-size: 2.5vw;
@@ -221,10 +220,11 @@ export const Input = styled.input`
   width: 100%;
   padding: 2.5%;
   font-size: 1vw;
-  border: 2px solid #808080;
+  border: 2px solid #f4f4f4;
   border-radius: 20px;
   font-weight: 600;
   color: #7c7878;
+  background-color: #f4f4f4;
   @media (max-width: 786px) {
     border-radius: 3px;
   }

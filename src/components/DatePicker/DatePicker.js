@@ -163,6 +163,8 @@ const DatePicker = (props) => {
         borderColor={props.borderColor ? props.borderColor : `grey`}
         padding={props.padding ?? `1% 5%`}
         borderRadius={props.borderRadius ?? `10px`}
+        border={props.border }
+        backgroundColor={props.backgroundColor}
       >
         <input
           type="text"
@@ -173,7 +175,7 @@ const DatePicker = (props) => {
           onClick={() => setShowCalendar(!showCalendar)}
           className="SearchBar-date"
         />
-        <img src={SVG.CalendarIcon} alt="Calender Icon" />
+        {/* <img src={SVG.CalendarIcon} alt="Calender Icon" /> */}
       </InputWrapper>
       {showCalendar && (
         <Calendar ref={calendarRef}>

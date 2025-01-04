@@ -181,6 +181,8 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                     fontSize={`1vw`}
                     padding={`2.5%`}
                     borderRadius={'20px'}
+                    backgroundColor={'#f4f4f4'}
+                    border={'2px solid #f4f4f4'}
                   />
                 ) : (
                   <Value>{profile?.dateOfBirth ?? '01-01-2000'}</Value>

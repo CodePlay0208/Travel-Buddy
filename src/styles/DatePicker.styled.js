@@ -26,7 +26,9 @@ export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  border: 2px solid ${(props) => props.borderColor};
+  background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : `white`)};
+  border-color: ${(props) => props.borderColor};
+  border: none;
   transition: border-color 0.2s;
   border-radius: ${(props) => props.borderRadius};
   @media (max-width: 786px) {
@@ -36,13 +38,15 @@ export const InputWrapper = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding:  ${(props) => props.padding};
+    padding: ${(props) => props.padding};
     border-radius: inherit;
     cursor: pointer;
     border: none;
     font-family: Arial, sans-serif;
     color: #787878;
-
+    background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : `white`)};
+    border-color: ${(props) => props.borderColor};
+    border: ${(props) => (props.border ? props.border : `2px solid grey`)};
     line-height: 2.5rem;
     font-size: ${(props) => props.fontSize};
     font-weight: ${(props) => props.fontWeight};
@@ -54,7 +58,7 @@ export const InputWrapper = styled.div`
 
   img {
     width: 1.75vw;
-    height:  1.75vw;
+    height: 1.75vw;
     margin-right: 0.5rem;
     cursor: pointer;
     pointer-events: none;
