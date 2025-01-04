@@ -28,7 +28,7 @@ export const InputWrapper = styled.div`
 
   border: 2px solid ${(props) => props.borderColor};
   transition: border-color 0.2s;
-  border-radius: 10px;
+  border-radius: ${(props) => props.borderRadius};
   @media (max-width: 786px) {
     border-radius: 3px;
   }

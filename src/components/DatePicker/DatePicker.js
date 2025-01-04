@@ -162,6 +162,7 @@ const DatePicker = (props) => {
         fontWeight={props.fontWeight ? props.fontWeight : `600`}
         borderColor={props.borderColor ? props.borderColor : `grey`}
         padding={props.padding ?? `1% 5%`}
+        borderRadius={props.borderRadius ?? `10px`}
       >
         <input
           type="text"

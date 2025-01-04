@@ -1,0 +1,11 @@
+.heading {
+  margin: 1% 3%;
+  padding: 0 3%;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 51px;
+  color: #000000;
+  @media (max-width: 786px) {
+    font-size: 5vw;
+  }
+}

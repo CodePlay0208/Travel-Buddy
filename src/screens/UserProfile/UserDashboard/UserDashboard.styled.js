@@ -5,7 +5,7 @@ export const Container = styled.div`
 `
 
 export const DashboardContainer = styled.div`
-  width: 70%;
+  width: 100%;
   padding: 0 3%;
   margin: 1% 0%;
 `
@@ -30,12 +30,27 @@ export const BackgroundImage = styled.img`
   }
 `
 
+export const ProfilePicContainer = styled.div`
+  position: relative;
+  width: 20%;
+  @media (max-width: 786px) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+`
+
 export const ProfilePic = styled.div`
   position: relative;
-
-  width: 30%;
+  width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
+  @media (max-width: 786px) {
+    width: 300px;
+    height: 300px;
+  }
 `
 
 export const ImgProfile = styled.img`
@@ -51,7 +66,6 @@ export const ImgProfile = styled.img`
 
 export const EditPic = styled.img`
   position: absolute;
-  width: 30%;
   right: 0;
   z-index: 3;
   bottom: 0;
@@ -59,11 +73,12 @@ export const EditPic = styled.img`
 
 export const DashboardHeader = styled.div`
   position: relative;
-  margin-bottom: 2.5%;
+  margin-bottom: 0.5%;
 `
 
 export const HeaderTitle = styled.h1`
   padding: 0 3%;
+  margin-bottom: 0.5%;
   font-weight: 700;
   font-size: 40px;
   line-height: 51px;
@@ -76,23 +91,29 @@ export const HeaderTitle = styled.h1`
 export const DashboardContent = styled.div`
   position: relative;
   background: #ffffff;
-  box-shadow: 0px 5px 20px rgba(17, 34, 17, 0.25);
-  border-radius: 20px;
-  padding: 1% 5%;
+  padding: 0 3%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
   gap: 2.5%;
-  margin: 2.5% 0;
+  margin: 0.5% 0;
   @media (max-width: 786px) {
     border-radius: 7.5px;
+    flex-wrap: wrap-reverse;
   }
 `
 
 export const UserInfoColumns = styled.div`
   display: flex;
+  width: 70%;
+  box-shadow: 0px 0px 9px 0px #11221136;
+
+  border-radius: 20px;
+  padding: 1% 3%;
   gap: 5%;
   @media (max-width: 786px) {
     flex-wrap: wrap;
+    width: 100%;
   }
 `
 
@@ -110,21 +131,27 @@ export const UserInfoItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 3% 0;
+  width: 100%;
+  margin: 4% 0;
+  @media (max-width: 786px) {
+    margin: 2% 0;
+  }
 `
 
 export const Label = styled.span`
-  margin: 1.75% 0%;
+  margin: 2% 0% 1%;
   font-weight: 400;
   font-size: 20px;
   color: #112211;
   opacity: 0.75;
+  width: ${(props) => props.width};
   @media (max-width: 786px) {
     font-size: 2.5vw;
   }
 `
 
 export const Value = styled.span`
+  margin: 1% 0 0;
   font-family: 'Montserrat';
   font-weight: 600;
   font-size: 20px;
@@ -133,7 +160,18 @@ export const Value = styled.span`
     font-size: 2.5vw;
   }
 `
-
+export const NameContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 4% 0;
+  @media (max-width: 786px) {
+    margin: 2% 0;
+    padding: 1% 3%;
+  }
+`
 export const DashboardActions = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -144,12 +182,12 @@ const BaseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2% 4%;
+  padding: 0.3% 1%;
   font-family: 'Montserrat';
   font-weight: 500;
-  font-size: 20px;
+  font-size: 15px;
 
-  border-radius: 8px;
+  border-radius: 30px;
   background-color: transparent;
   cursor: pointer;
   margin: 0 1%;
@@ -157,7 +195,7 @@ const BaseButton = styled.button`
     font-size: 2.5vw;
     border-radius: 2px;
     img {
-      width: 2.5vw;
+      width: 1.5vw;
     }
   }
   &:hover {
@@ -182,9 +220,9 @@ export const Input = styled.input`
   position: relative;
   width: 100%;
   padding: 2.5%;
-  font-size: 1.25vw;
+  font-size: 1vw;
   border: 2px solid #808080;
-  border-radius: 10px;
+  border-radius: 20px;
   font-weight: 600;
   color: #7c7878;
   @media (max-width: 786px) {

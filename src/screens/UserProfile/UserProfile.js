@@ -1,5 +1,6 @@
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
+import './UserProfile.css'
 import UserDashboard from './UserDashboard/UserDashboard'
 import React, { memo, useEffect, useState } from 'react'
 import { TripList } from '../UserTrips/UserTrips.styled'
@@ -75,7 +76,7 @@ const UserProfile = (props) => {
     <div>
       <Navbar />
       <UserDashboard />
-      <h1>My Trips</h1>
+      <h1 className='heading'>My Trips</h1>
       <TripList>{tripContent}</TripList>
       <Footer />
       {modalState.isOpen && (
