@@ -8,6 +8,7 @@ const breakpoints = {
 
 export const HeaderContainer = styled.div`
   position: relative;
+
   width: 95%;
   height: auto;
   margin: 2.5%;
@@ -16,42 +17,13 @@ export const HeaderContainer = styled.div`
 
 export const LandingHeader = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   width: 100%;
-  height: min(40vw, 60vh);
-  border-radius: 25px;
-  overflow: hidden;
+  overflow: visible;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, #000000ac 0%, #00000000 60%);
-    z-index: 1;
-    border-radius: 25px;
-  }
-
-  @media (max-width: ${breakpoints.tablet}) {
-    border-radius: 20px;
-
-    &::before {
-      content: '';
-
-      border-radius: 20px;
-    }
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    border-radius: 15px;
-
-    &::before {
-      content: '';
-
-      border-radius: 15px;
-    }
-  }
 `
 
 export const LandingImage = styled.img`
@@ -63,19 +35,18 @@ export const LandingImage = styled.img`
 `
 
 export const HeaderSearchBar = styled.div`
-  position: absolute;
+  position: relative;
   width: 80%;
   max-width: 1339px;
-  height: 24%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  height: 1000%;
+  margin: 2.5%;
   border-radius: 10px;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
-  box-shadow: 1px 4px 13px;
+  box-shadow: 0px 0px 12px 0px #00000033;
 
   @media (max-width: ${breakpoints.tablet}) {
     height: 22%;
@@ -89,14 +60,10 @@ export const HeaderSearchBar = styled.div`
 `
 
 export const HeaderDescription = styled.div`
-  position: absolute;
-  width: 80%;
-  height: auto;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   text-align: center;
   z-index: 1;
+  margin: 1%;
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 90%;
@@ -108,19 +75,22 @@ export const HeaderDescription = styled.div`
 `
 
 export const HeaderDesHeading = styled.div`
-  font-weight: 700;
-  font-size: 5vw;
-  transform: translate(0, -100%);
-  color: white;
-  margin-bottom: 2vw;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-align: center;
+
+  font-size: 6vw;
+  color: #8dd3bb;
 `
 
 export const HeaderDesPara = styled.div`
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  font-family: Montserrat;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-align: center;
+
   font-size: 2vw;
-  transform: translate(0, -300%);
-  color: white;
+  color: #000000;
 `
 
 export const HeaderNavRightLogin = styled.div`

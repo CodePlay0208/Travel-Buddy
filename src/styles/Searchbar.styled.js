@@ -9,6 +9,8 @@ export const SearchBarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
+  overflow: visible;
+  
   @media (max-width: 786px) {
     border-radius: 3px;
   }
@@ -47,7 +49,7 @@ export const DropdownSC = styled.div`
   border-radius: 0px 0px 26.86px 26.86px;
   z-index: 10;
   padding: 2% 0px;
-  overflow: hidden;
+  overflow: visible;
   transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   transform: ${(props) => (props.isVisible ? 'translateY(0)' : 'translateY(-10px)')};

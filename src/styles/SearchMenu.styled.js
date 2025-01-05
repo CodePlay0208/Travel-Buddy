@@ -9,6 +9,7 @@ export const SearchBarContainer = styled.div`
   height: 60%;
   font-size: 3vw;
   line-height: 2.5vw;
+  position:relative;
   @media (max-width: 768px) {
     gap: 1%;
   }
