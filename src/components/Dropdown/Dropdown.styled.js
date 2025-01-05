@@ -11,6 +11,8 @@ export const DropdownContainer = styled.div`
   right: 0;
   width: 100%;
   background-color: #ffffff;
+  box-shadow: 0px 4px 10px 0px #00000026;
+
   border-radius: 20px;
   z-index: 10;
   padding: 2% 0px;
@@ -23,20 +25,21 @@ export const DropdownContainer = styled.div`
 `
 
 export const DropdownItem = styled.div`
-  padding: 3%;
+  padding: 1%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   display: flex;
-  align-items: center;
+  align-items: start;
+  height: max(100%, 60px);
   font-size: inherit;
-  color: #1b1717;
-  background-color: #b6f0dc;
-  border-radius: 10px;
-  margin: 2.5% 5%;
+  color: #afafaf;
+  background-color: #ffffff;
+  border-radius: 7px;
+  margin: 1% 5%;
   cursor: pointer;
 
   &:hover {
-    background-color: #a1a1a1;
+    background-color: #f1f1f1;
   }
   @media (max-width: ${breakpoints.tablet}) {
     border-radius: 5px;

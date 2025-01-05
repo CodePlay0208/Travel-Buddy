@@ -102,7 +102,7 @@ export const BackgroundImage = styled.div`
 export const PublishButton = styled.button`
   height: 135px;
   font-size: 36px;
-  padding:1%;
+  padding: 1%;
   cursor: pointer;
   background-color: #8dd3bb;
   width: ${(props) => props.width || 'auto'};
@@ -115,7 +115,7 @@ export const FlexContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.direction === 'column' ? 'column' : 'row')};
   justify-content: space-between;
-  align-items: center;
+  align-items: ${(props) => props.alignItems || 'center'};
   gap: ${(props) => props.gap || '10px'};
   padding: ${(props) => props.padding || '0'};
   margin: ${(props) => props.margin || '0'};
