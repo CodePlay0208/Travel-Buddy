@@ -49,13 +49,10 @@ export const HeaderSearchBar = styled.div`
   box-shadow: 0px 0px 12px 0px #00000033;
 
   @media (max-width: ${breakpoints.tablet}) {
-    height: 22%;
-    border-radius: 8px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    height: 20%;
-    border-radius: 6px;
+    
   }
 `
 

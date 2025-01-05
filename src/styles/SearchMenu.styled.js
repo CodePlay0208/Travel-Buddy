@@ -10,7 +10,7 @@ export const SearchBarContainer = styled.div`
   height: 60%;
   font-size: 3vw;
   line-height: 2.5vw;
-  position:relative;
+  position: relative;
   @media (max-width: 768px) {
     gap: 1%;
   }
@@ -23,6 +23,10 @@ export const SearchButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  img {
+    width: 4vw;
+    aspect-ratio: 1;
+  }
 `
 
 export const SearchButton = styled.div`
