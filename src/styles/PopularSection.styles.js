@@ -9,6 +9,7 @@ export const PopularTripContainer = styled.div`
   background-repeat: no-repeat;
   margin-bottom: 2%;
   font-size: 5.2vw;
+  position: relative;
 `
 
 export const PopularButtonDiv = styled.div`
@@ -21,7 +22,7 @@ export const PopularTripHeading = styled.div`
   display: flex;
   justify-content: space-between;
   margin: ${(props) => props.margin};
-  padding: 30px 0;
+  padding: 3% 0;
   flex-wrap: wrap;
   font-size: ${(props) => props.fontSize};
 `
@@ -29,6 +30,7 @@ export const PopularTripHeading = styled.div`
 export const PopularTripContent = styled.div`
   display: flex;
   overflow-x: auto;
+
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   gap: 20px;
@@ -59,7 +61,7 @@ export const PopularHeadingLeft = styled.div`
 `
 
 export const PopularHeadingRight = styled.div`
-justify-content: space-between;
+  justify-content: space-between;
   display: flex;
   align-items: center;
   width: 30%;
@@ -72,8 +74,8 @@ justify-content: space-between;
 `
 
 export const PopularButton = styled.button`
-  font-size: 20px;
-  padding: 20px 20px;
+  font-size: 2vw;
+  padding: 15px;
   cursor: pointer;
   background-color: #000000;
   border-radius: 50px;
@@ -92,12 +94,24 @@ export const ArrowButton = styled.button`
   color: #faf8ed;
   border: none;
   border-radius: 50%;
-  width: 54px;
-  height: 54px;
-  margin: 0 10px;
+  width: 3%;
+  aspect-ratio: 1;
+  margin: 0 0.5%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 2vw;
+  &.left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &.right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 `

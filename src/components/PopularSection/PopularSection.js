@@ -32,13 +32,13 @@ const PopularSection = (props) => {
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -400, behavior: 'smooth' })
+      scrollContainerRef.current.scrollBy({ left: -390, behavior: 'smooth' })
     }
   }
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 400, behavior: 'smooth' })
+      scrollContainerRef.current.scrollBy({ left: 390, behavior: 'smooth' })
     }
   }
 
@@ -51,14 +51,7 @@ const PopularSection = (props) => {
       >
         <PopularHeadingLeft>{props?.title ? props.title : `Find Popular Destination`} </PopularHeadingLeft>
         <PopularHeadingRight>
-          <ArrowButtonContainer>
-            <ArrowButton className="left" onClick={scrollLeft} aria-label="Scroll Left">
-              {'<'}
-            </ArrowButton>
-            <ArrowButton className="right" onClick={scrollRight} aria-label="Scroll Right">
-              {'>'}
-            </ArrowButton>
-          </ArrowButtonContainer>
+          
           <PopularButtonDiv>
             <PopularButton
               onClick={() => {
@@ -71,6 +64,13 @@ const PopularSection = (props) => {
         </PopularHeadingRight>
       </PopularTripHeading>
       <PopularTripContent ref={scrollContainerRef} margin={props?.margin ? props.margin : `0 5.5%`}>
+     
+            <ArrowButton className="left" onClick={scrollLeft} aria-label="Scroll Left">
+              {'<'}
+            </ArrowButton>
+            <ArrowButton className="right" onClick={scrollRight} aria-label="Scroll Right">
+              {'>'}
+            </ArrowButton>
         {trips.map((trip) => (
           <TripCard
             key={trip?.tripId}
