@@ -77,10 +77,8 @@ export const Badge = styled.div`
 `
 
 export const BadgeText = styled.span`
-  font-family: 'Lufga', sans-serif;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 1vw;
   color: #000000;
   text-align: center;
 `

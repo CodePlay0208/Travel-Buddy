@@ -38,58 +38,76 @@ export const TextWrapper = styled.div`
 `
 
 export const Heading = styled.h1`
-  font-size: 2.5rem;
+  font-size: 3vw;
   position: absolute;
   bottom: 0;
   left: 0;
   margin: 10px;
   color: white;
+  @media (max-width: 786px) {
+    font-size: 6vw;
+  }
 `
 export const PublishHeading = styled.h1`
-  font-size: 2.5rem;
+  font-size: 3vw;
   margin: 10px;
   color: white;
+  @media (max-width: 786px) {
+    font-size: 6vw;
+  }
 `
 export const BottomHeading = styled.h1`
-  font-size: 2.5rem;
+  font-size: 3vw;
   bottom: -40%;
   left: 0;
   margin: 10px;
   position: relative;
   width: 70%;
+  @media (max-width: 786px) {
+    font-size: 6vw;
+  }
 `
 
 export const SubText = styled.p`
   width: 50%;
-  font-size: 1rem;
+  font-size: 1.25vw;
   position: absolute;
   bottom: 15%;
   left: 10px;
   color: white;
+  @media (max-width: 786px) {
+    font-size: 2.5vw;
+  }
 `
 export const LeftText = styled.p`
-  font-size: 1rem;
+  font-size: 1.25vw;
   text-align: right;
+  @media (max-width: 786px) {
+    font-size: 2.5vw;
+  }
 `
 
 export const RightSubText = styled.p`
-  padding: 5%;
-  font-size: 1rem;
+  padding: 5% 5% 5% 0%;
+  font-size: 1.25vw;
   font-weight: 800;
   width: 30%;
   right: 0;
   text-align: right;
+  @media (max-width: 786px) {
+    font-size: 2.5vw;
+  }
 `
 
 export const SmallText = styled.span`
   font-family: Montserrat;
   font-weight: 700;
-  line-height: 48px;
   text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
 
-  font-size: 3rem;
+  font-size: 3vw;
+  @media (max-width: 786px) {
+    font-size: 6vw;
+  }
 `
 
 export const BackgroundImage = styled.div`
@@ -101,7 +119,7 @@ export const BackgroundImage = styled.div`
 `
 export const PublishButton = styled.button`
   height: 135px;
-  font-size: 36px;
+  font-size: 3vw;
   padding: 1%;
   cursor: pointer;
   background-color: #8dd3bb;
@@ -128,4 +146,10 @@ export const FlexContainer = styled.div`
   width: ${(props) => props.width || 'auto'};
   height: ${(props) => props.height || 'auto'};
   position: relative;
+
+  &.main {
+    @media (max-width: 786px) {
+      flex-direction: column-reverse;
+    }
+  }
 `

@@ -24,6 +24,7 @@ import editPic from './editPic.svg'
 import ChatInputIcon from './chatInputIcon.svg'
 import AddEmojiIcon from './addEmojiIcon.svg'
 import Ninedots from './nineDots.svg'
+import searchIcon from './searchIcon.svg'
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -49,5 +50,6 @@ export const SVG = {
   editPic,
   ChatInputIcon,
   AddEmojiIcon,
-  Ninedots
+  Ninedots,
+  searchIcon,
 }

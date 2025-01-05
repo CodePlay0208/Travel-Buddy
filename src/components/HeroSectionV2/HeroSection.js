@@ -32,10 +32,10 @@ const HeroSection = () => {
         </FlexContainer>
         <PublishButton width="30%">Publish Now</PublishButton>
       </FlexContainer>
-      <FlexContainer gap="20px" direction="row">
+      <FlexContainer gap="20px" direction="row" className="main">
         {/* Left Section */}
         <Section>
-          <FlexContainer direction="column" gap="20px">
+          <FlexContainer direction="column" gap="20px" className="main">
             {/* Upper Section */}
             <FlexContainer width="100%">
               <FlexContainer
@@ -71,18 +71,20 @@ const HeroSection = () => {
         </Section>
 
         {/* Right Section */}
-        <FlexContainer
-          width="50%"
-          aspectRatio="1"
-          borderRadius="15px"
-          backgroundImage="https://s3-alpha-sig.figma.com/img/4296/88d2/cfd004fddfa302694d92a11ae1db55bf?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CMf07cp0L-elbvWXJ3WntRxk1dCd7KagiC4ZteJOiSOOk9WCMPHYNEO~PKEact6BeHs5mDKAkSQCt3-DV3FYypFYap~rn3MDQYWXd2oXnL64x6roD1UmMp4fjTzHs1W1Ts6YH8EpBWVcT8D9MCYJudn2SQGNVUo7SCriN2OBU4tOTN3I6vMkrfVHsRLpwo1hczuNTnM28t7L70mABrGrZ0KhgnZLKxLttEWFeb8SpvKgZxaq2zyUGZZsfO76gh6KCer5-gTFnsc5uHQn0AG2~Nleh2yghXNSJKu--V-SpO~8la7aAeMpO3FCFIT4mTD5LD4MbX3q90lFHt-3NXv~bw__"
-        >
-          <BottomHeading>Trust who you travel with</BottomHeading>
-          <RightSubText>
-            We take the time to get to know each of our trip publishers and members. We check reviews, profiles and IDs, so you know who
-            you’re travelling with and can find a group at ease on our secure platform.
-          </RightSubText>
-        </FlexContainer>
+        <Section>
+          <FlexContainer
+            width="100%%"
+            aspectRatio="1"
+            borderRadius="15px"
+            backgroundImage="https://s3-alpha-sig.figma.com/img/4296/88d2/cfd004fddfa302694d92a11ae1db55bf?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CMf07cp0L-elbvWXJ3WntRxk1dCd7KagiC4ZteJOiSOOk9WCMPHYNEO~PKEact6BeHs5mDKAkSQCt3-DV3FYypFYap~rn3MDQYWXd2oXnL64x6roD1UmMp4fjTzHs1W1Ts6YH8EpBWVcT8D9MCYJudn2SQGNVUo7SCriN2OBU4tOTN3I6vMkrfVHsRLpwo1hczuNTnM28t7L70mABrGrZ0KhgnZLKxLttEWFeb8SpvKgZxaq2zyUGZZsfO76gh6KCer5-gTFnsc5uHQn0AG2~Nleh2yghXNSJKu--V-SpO~8la7aAeMpO3FCFIT4mTD5LD4MbX3q90lFHt-3NXv~bw__"
+          >
+            <BottomHeading>Trust who you travel with</BottomHeading>
+            <RightSubText>
+              We take the time to get to know each of our trip publishers and members. We check reviews, profiles and IDs, so you know who
+              you’re travelling with and can find a group at ease on our secure platform.
+            </RightSubText>
+          </FlexContainer>
+        </Section>
       </FlexContainer>
     </FlexContainer>
   )

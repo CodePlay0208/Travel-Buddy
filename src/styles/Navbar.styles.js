@@ -66,6 +66,7 @@ export const NavButton = styled.div`
   text-align: center;
   cursor: pointer;
   margin: 2.5%;
+  padding: 1%;
   width: 80%;
   position: relative;
   &:hover {

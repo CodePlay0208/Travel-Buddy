@@ -48,10 +48,10 @@ const SlidingSection = () => {
   return (
     <Container>
       <SliderHeading>
-        <h2>
+        <h2 style={{ fontSize: '2vw' }}>
           More than 2500 trips are live <span>&deg;</span>
         </h2>
-        <p>Find your amigos and travel now!</p>
+        <p  style={{ fontSize: '1.5vw' }}>Find your amigos and travel now!</p>
       </SliderHeading>
       <Slider cardCount={cardData.length}>
         {cardData.map((card, index) => (

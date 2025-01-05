@@ -28,7 +28,6 @@ const LandingPage = (props) => {
       <Header isImageNavbar={true} isLandingPage={true} />
       <SlidingSection />
       <HeroSection />
-      <AboutSection />
       <PopularSection />
       <TopDestination />
       <Newsletter />
