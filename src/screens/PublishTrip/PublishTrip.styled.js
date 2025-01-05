@@ -25,14 +25,16 @@ export const InputField = styled.input`
   }
 `
 
+
 export const DescriptionField = styled.textarea`
   display: flex;
   align-items: flex-start;
   width: 100%;
-  height: 151px;
+  height: 100px;
   padding: 1% 2.5%;
-  border: 2.325px solid #0b87ac;
-  border-radius: 9.3px;
+  border: none;
+  background-color: #f4f4f4;
+  border-radius: 20px;
   font-size: 16.275px;
   color: #040f0f;
 
@@ -125,7 +127,7 @@ export const InputGroup = styled.div`
 `
 
 export const InputLabel = styled.label`
-  font-family: 'Poppins', sans-serif;
+  
   font-weight: 600;
   font-size: 1vw;
   line-height: 1.4;

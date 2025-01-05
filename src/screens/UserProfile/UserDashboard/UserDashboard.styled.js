@@ -138,27 +138,6 @@ export const UserInfoItem = styled.div`
   }
 `
 
-export const Label = styled.span`
-  margin: 2% 0% 1%;
-  font-weight: 500;
-  font-size: 16px;
-  color: #252525;
-  width: ${(props) => props.width};
-  @media (max-width: 786px) {
-    font-size: 2.5vw;
-  }
-`
-
-export const Value = styled.span`
-  margin: 1% 0 0;
-  font-family: 'Montserrat';
-  font-weight: 600;
-  font-size: 20px;
-  color: #112211;
-  @media (max-width: 786px) {
-    font-size: 2.5vw;
-  }
-`
 export const NameContainer = styled.div`
   position: relative;
   display: flex;
@@ -214,20 +193,6 @@ export const DeleteButton = styled(BaseButton)`
   color: #e9e9e9;
   border: 2px solid #dc2626;
   background-color: #dc2626;
-`
-export const Input = styled.input`
-  position: relative;
-  width: 100%;
-  padding: 2.5%;
-  font-size: 1vw;
-  border: 2px solid #f4f4f4;
-  border-radius: 20px;
-  font-weight: 600;
-  color: #7c7878;
-  background-color: #f4f4f4;
-  @media (max-width: 786px) {
-    border-radius: 3px;
-  }
 `
 
 export const SaveButton = styled(BaseButton)`

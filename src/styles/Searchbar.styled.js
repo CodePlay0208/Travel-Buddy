@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const SearchBarContainer = styled.div`
-  border: ${(props) => props.borderColor} 2px solid;
+  border: none;
   border-radius: 10px;
   width: ${(props) => props.widthValue};
   height: ${(props) => props.heightValue};

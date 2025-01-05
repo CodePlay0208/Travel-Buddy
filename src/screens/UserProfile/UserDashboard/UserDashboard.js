@@ -21,9 +21,6 @@ import {
   UserInfoColumns,
   UserInfoColumn,
   UserInfoItem,
-  Label,
-  Value,
-  Input,
   DashboardActions,
   EditButton,
   SaveButton,
@@ -37,6 +34,7 @@ import Modal from '../../../components/Modal/Modal'
 
 import { logout } from '../../../actions/auth.action'
 import Dropdown from '../../../components/Dropdown/Dropdown'
+import { Input, Label, Value } from '../../../styles/Global'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,

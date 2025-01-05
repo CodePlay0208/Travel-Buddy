@@ -3,6 +3,7 @@ import { SVG } from '../../assets'
 import { getLocationSuggestions } from '../../actions/location.action'
 import { connect } from 'react-redux'
 import { SearchBarContainer, SearchBarInput, LocationIcon, DropdownSC, DropdownItem } from '../../styles/Searchbar.styled'
+import { Input } from '../../styles/Global'
 
 const mapStateToProps = (state) => ({
   suggestions: state.locationReducer.suggestions,
@@ -54,7 +55,7 @@ const Searchbar = (props) => {
         document.getElementById(customId).focus()
       }}
     >
-      <SearchBarInput
+      <Input
         type="text"
         placeholder={placeholderValue}
         id={customId}
@@ -64,7 +65,7 @@ const Searchbar = (props) => {
         fontSize={props.fontSize ? props.fontSize : `inherit`}
         fontWeight={props.fontWeight ? props.fontWeight : `600`}
       />
-      <LocationIcon src={SVG.LocationIcon} alt="Location Icon" />
+      {/* <LocationIcon src={SVG.LocationIcon} alt="Location Icon" /> */}
       <DropdownSC isVisible={isDropdownVisible}>
         {suggestions.map((suggestion, index) => (
           <DropdownItem key={index} dropDownFontSize={props.dropDownFontSize} onClick={() => selectSuggestion(suggestion)}>
