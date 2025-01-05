@@ -12,7 +12,7 @@ export const NavContainer = styled.div`
   position: ${(props) => (props.isImageNavbar ? `absolute` : `relative`)};
   width: 100%;
   padding-top: 0;
-  box-shadow: ${(props) => (props.isImageNavbar ? `none` : `0px -13px 20px;`)};
+  box-shadow: ${(props) => (props.isImageNavbar ? `none` : `none`)};
 `
 export const Nav = styled.nav`
   display: flex;
@@ -24,7 +24,7 @@ export const Nav = styled.nav`
 
 export const WebAppNameAndLogo = styled.div`
   font-weight: 500;
-  color: #42a7c3;
+  color: #000000;
   font-size: 100%;
   padding: 0.5%;
   cursor: pointer;
@@ -58,10 +58,12 @@ export const NavContents = styled.div`
 `
 
 export const NavButton = styled.div`
-  color: rgb(39, 167, 218);
+  color: rgb(0, 0, 0);
   border: none;
+  border-radius: 20px;
+  background-color: #8dd3bb;
   font-weight: 500;
-  text-align: right;
+  text-align: center;
   cursor: pointer;
   margin: 2.5%;
   width: 80%;
