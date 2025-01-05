@@ -35,11 +35,11 @@ export const DescriptionField = styled.textarea`
   border: none;
   background-color: #f4f4f4;
   border-radius: 20px;
-  font-size: 16.275px;
+  font-size: 1vw;
   color: #040f0f;
 
   @media (max-width: 1080px) {
-    font-size: 14px;
+    
     height: 120px;
     padding: 1% 5%;
   }
@@ -102,7 +102,7 @@ export const LeftSection = styled.div`
   position: relative;
   width: 95%;
   max-width: 906px;
-  height: 90%;
+  height: 80%;
   background: #ffffff;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
   border-radius: 0 0 10px 10px;
@@ -135,7 +135,7 @@ export const InputLabel = styled.label`
   margin-bottom: 10px;
 
   @media (max-width: 1080px) {
-    font-size: 14px;
+    
   }
 `
 
@@ -162,7 +162,7 @@ export const ToggleTab = styled.div`
   transition: background-color 0.4s ease;
   font-family: 'Poppins';
   font-weight: 500;
-  font-size: 1.8vw;
+  font-size: 1.5vw;
   line-height: 2vw;
   color: #000000;
   margin: 0 4%;
@@ -257,7 +257,7 @@ export const PublishTripRightSection = styled.div`
   border: 3px solid rgba(179, 204, 252, 0.1);
   box-shadow: 0px 4px 21px 1px rgba(36, 99, 235, 0.25);
   border-radius: 12px;
-  padding: 3%;
+  padding: 1% 3%;
 
   @media (max-width: 1080px) {
     width: 100%;

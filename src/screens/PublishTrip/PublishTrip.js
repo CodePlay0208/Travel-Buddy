@@ -257,10 +257,6 @@ const PublishTrip = (props) => {
                       />
                     </InputGroup>
                   </InputRow>
-
-                  <PublishTripButton>
-                    <NextButton onClick={handleNext}>Next</NextButton>
-                  </PublishTripButton>
                 </>
               ) : (
                 <>
@@ -364,10 +360,6 @@ const PublishTrip = (props) => {
                       )}
                     </InputGroup>
                   </InputRow>
-
-                  <PublishTripButton>
-                    <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
-                  </PublishTripButton>
                 </>
               )}
             </LeftSection>
@@ -379,6 +371,15 @@ const PublishTrip = (props) => {
             </PublishTripRightSection>
           )}
         </PublishTripContent>
+        {activeSection === TABS.TRIP ? (
+          <PublishTripButton>
+            <NextButton onClick={handleNext}>Next</NextButton>
+          </PublishTripButton>
+        ) : (
+          <PublishTripButton>
+            <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
+          </PublishTripButton>
+        )}
       </PublishTripContainer>
       <Footer />
       <ToastContainer />

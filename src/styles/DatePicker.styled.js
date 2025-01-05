@@ -11,12 +11,6 @@ export const DatePickerWrapper = styled.div`
     height: 100%;
     width: 100%;
   }
-
-  .SearchBar-date::-webkit-input-placeholder {
-    color: #787878;
-    font-size: ${(props) => props.fontSize};
-    font-weight: ${(props) => props.fontWeight};
-  }
 `
 
 export const InputWrapper = styled.div`
@@ -55,7 +49,11 @@ export const InputWrapper = styled.div`
   input:focus {
     outline: none;
   }
-
+  input::placeholder {
+    color: #787878;
+    font-size: ${(props) => props.fontSize};
+    font-weight: ${(props) => props.fontWeight};
+  }
   img {
     width: 1.75vw;
     height: 1.75vw;

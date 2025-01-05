@@ -25,10 +25,9 @@ export const Value = styled.span`
   font-size: 20px;
   color: #112211;
   @media (max-width: 786px) {
-    font-size: 2.5vw;
+    font-size: 1.5vw;
   }
 `
-
 export const Input = styled.input`
   position: relative;
   width: 100%;
@@ -39,8 +38,16 @@ export const Input = styled.input`
   font-weight: 600;
   color: #7c7878;
   background-color: #f4f4f4;
+
   @media (max-width: 786px) {
     border-radius: 3px;
   }
+
+  &&::placeholder {
+    color: #787878;
+    font-size: 1vw;
+    font-weight: 500;
+  }
 `
+
 export default GlobalStyles

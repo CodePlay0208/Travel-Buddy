@@ -31,7 +31,7 @@ export const SliderHeading = styled.div`
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
   background-color: white;
-  z-index: 3;
+  z-index: 2;
   h2 {
     margin: 0;
   }
@@ -47,8 +47,8 @@ export const SliderHeading = styled.div`
 export const Slider = styled.div`
   display: flex;
   display: flex;
-  width: calc(${(props) => props.cardCount} * 25vw); /* Total width depends on card count */
-  animation: ${(props) => getSlideAnimation(props.cardCount)} 12s linear infinite;
+  width: calc(${(props) => props.cardCount} * 25vw); 
+  animation: ${(props) => getSlideAnimation(props.cardCount)} 30s linear infinite;
   position: relative;
 `
 
