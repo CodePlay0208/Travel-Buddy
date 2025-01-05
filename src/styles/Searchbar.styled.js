@@ -10,7 +10,7 @@ export const SearchBarContainer = styled.div`
   align-items: center;
   position: relative;
   overflow: visible;
-  
+
   @media (max-width: 786px) {
     border-radius: 3px;
   }
@@ -30,7 +30,6 @@ export const SearchBarInput = styled.input`
   font-weight: ${(props) => props.fontWeight};
   border: none;
   outline: none;
-
 `
 
 export const LocationIcon = styled.img`
@@ -50,7 +49,9 @@ export const DropdownSC = styled.div`
   z-index: 10;
   padding: 2% 0px;
   overflow: visible;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   transform: ${(props) => (props.isVisible ? 'translateY(0)' : 'translateY(-10px)')};
   pointer-events: ${(props) => (props.isVisible ? 'auto' : 'none')};
