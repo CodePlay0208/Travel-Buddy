@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { SVG } from '../../../assets'
+import { images } from '../../../assets'
 import { connect } from 'react-redux'
 import { setGoogleToken } from '../../../services/api-services/api-services'
 import { login, loginWithGoogle, loadUser } from '../../../actions/auth.action'
@@ -18,26 +18,26 @@ import {
   FormHeadingContainer,
   FormSubHeadingText,
   DividerContainer,
-  Divider1,
-  Divider2,
   OrLoginWithContainer,
   DesignContainer,
   AuthDesignImage,
   GoogleSignUpButton,
   ContinueWithText,
-  GoogleIcon,
+  ImageGoogleIcon,
+  ButtonAlt,
+  MainButtonAuth
 } from '../AuthFlow.styled'
 import {
   LoginRememberMeAndForgetPasswordContainer,
   LoginRememberMeContainer,
   LoginForgetPasswordLink,
-  LoginLoginButtonContainer,
-  LoginLoginButton,
-  LoginDontHaveAccountContainer,
   LoginSignUpLink,
-  InputPlaceholder,
+  InputFieldsContainer,
+  Divider,
+  LoginButtonsContainer
 } from './loginPage.styled'
 import { UserLoginContext } from '../../../utils/Context/LoggedInUserContext'
+import { css } from 'styled-components'
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
@@ -80,7 +80,7 @@ const LoginPage = (props) => {
         })
         .then((data) => {
           console.log('the data is', data)
-          localStorage.setItem("token",data.token)
+          localStorage.setItem('token', data.token)
           loadUser()
           navigate('/')
         })
@@ -141,32 +141,42 @@ const LoginPage = (props) => {
         <FormAndTitleContainer>
           <TitleContainer>Travmigoz</TitleContainer>
           <FormContainer>
-            <FormHeadingContainer>Login</FormHeadingContainer>
-            <FormSubHeadingText>Login to access your account</FormSubHeadingText>
+            <FormHeadingContainer>Log into Your Account</FormHeadingContainer>
+              <FormSubHeadingText>
+                New at Travmigoz?
+                <LoginSignUpLink href='/signup'> Sign up</LoginSignUpLink>
+              </FormSubHeadingText>
 
             <form onSubmit={handleLogin}>
-              <InputComponent
-                label="Email"
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Enter Your Email"
-                user={formData}
-                setUser={setFormData}
-              />
-
-              <InputComponent
-                label="Password"
-                type={secureTextEntry ? 'password' : 'text'}
-                name="password"
-                id="password"
-                user={formData}
-                setUser={setFormData}
-                placeholder="Enter Your Password"
-                isPasswordField={true}
-                secureTextState={secureTextEntry}
-                setSecureTextState={setSecureTextEntry}
-              />
+              <InputFieldsContainer>
+                <InputComponent
+                  label="Email"
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Enter Your Email"
+                  user={formData}
+                  setUser={setFormData}
+                  customInputFieldStyles={css`
+                    flex: 1;
+                  `}
+                />
+                <InputComponent
+                  label="Password"
+                  type={secureTextEntry ? 'password' : 'text'}
+                  name="password"
+                  id="password"
+                  user={formData}
+                  setUser={setFormData}
+                  placeholder="Enter Your Password"
+                  isPasswordField={true}
+                  secureTextState={secureTextEntry}
+                  setSecureTextState={setSecureTextEntry}
+                  customInputFieldStyles={css`
+                    flex: 1;
+                  `}
+                />
+              </InputFieldsContainer>
 
               <LoginRememberMeAndForgetPasswordContainer>
                 <LoginRememberMeContainer>
@@ -175,44 +185,43 @@ const LoginPage = (props) => {
                 </LoginRememberMeContainer>
 
                 <LoginForgetPasswordLink href="/forget-password">
-                  <p>Forgot Password</p>
+                  <p>Forgot Password?</p>
                 </LoginForgetPasswordLink>
               </LoginRememberMeAndForgetPasswordContainer>
 
-              <LoginLoginButtonContainer>
-                <LoginLoginButton type="submit">
-                  <p>Login</p>
-                </LoginLoginButton>
-              </LoginLoginButtonContainer>
-
-              <LoginDontHaveAccountContainer>
-                <p>Don't have an account?</p>
-                <LoginSignUpLink href="/signup">
-                  <p>SignUp</p>
-                </LoginSignUpLink>
-              </LoginDontHaveAccountContainer>
+              <MainButtonAuth type="submit">
+                <p>Log In</p>
+              </MainButtonAuth>
 
               <DividerContainer>
-                <Divider1 />
-                <OrLoginWithContainer>Or login with</OrLoginWithContainer>
-                <Divider2 />
+                <Divider />
+                <p>Or</p>
+                <Divider />
               </DividerContainer>
 
-              <GoogleSignUpButton role="button" onClick={googleSignIn}>
-                <ContinueWithText>Continue with</ContinueWithText>
-                <GoogleIcon src={SVG.GoogleIcon} />
-              </GoogleSignUpButton>
+              <LoginButtonsContainer>
+                <ButtonAlt role="button" onClick={googleSignIn}>
+                  <ImageGoogleIcon src={images.google_icon_black} alt='Log In With Google' />
+                  <ContinueWithText>Log In With Google</ContinueWithText>
+                </ButtonAlt>
+
+                <ButtonAlt role="button" onClick={googleSignIn}>
+                  <ImageGoogleIcon src={images.phone_icon_black} alt='Log In With Phone' />
+                  <ContinueWithText>Log In With Phone</ContinueWithText>
+                </ButtonAlt>
+              </LoginButtonsContainer>
+
             </form>
           </FormContainer>
         </FormAndTitleContainer>
         <Copyright />
       </FormAndCopyrightContainer>
       <DesignContainer>
-        <AuthDesignImage src={SVG.AuthDesignSection} alt="AuthDesignImage" />
+        <AuthDesignImage src={images.auth_side_image} alt="AuthDesignImage" />
       </DesignContainer>
       <ToastContainer />
     </Container>
   )
 }
 
-export default connect(mapStateToProps, { login, loginWithGoogle,loadUser })(memo(LoginPage))
+export default connect(mapStateToProps, { login, loginWithGoogle, loadUser })(memo(LoginPage))

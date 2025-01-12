@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 
 export const VerifyCodeFormInputsContainer = styled.div`
-  margin-top: 5%;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
 `
 
 export const VerifyCodeResendCodeContainer = styled.div`

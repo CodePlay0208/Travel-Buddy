@@ -5,6 +5,8 @@ export const SignUpTwoInput = styled.div`
   flex: 1 1;
   width: 100%;
 
+  gap: 1.5rem;
+
   @media (max-width: 1024px) {
     flex-direction: column;
   }
@@ -12,10 +14,12 @@ export const SignUpTwoInput = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
   }
+
+  ${({ customStyles }) => customStyles && customStyles}
 `
 
 export const SignUpFormInputsContainer = styled.div`
-  margin-top: 6.25%;
+  margin-top: 1%;
 `
 
 export const SignUpTermsAgreementContainer = styled.div`
@@ -77,18 +81,23 @@ export const SignUpCreateAccountButton = styled.button`
 
 export const SignUpAlreadyHaveContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 2%;
   align-items: center;
 `
 
-export const SignUpAlreadyHaveText = styled.p`
-  font-size: 1rem;
+export const SignUpAlreadyHaveText = styled.div`
+  display: flex;
+  font-size: 0.875rem;
   font-weight: 500;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `
 
 export const SignUpLoginLink = styled.a`
   text-decoration: none;
+  margin-left: 5px;
 
   &:hover .SignUpLoginText {
     color: #e14944;
@@ -101,10 +110,10 @@ export const SignUpLoginLink = styled.a`
 `
 
 export const SignUpLoginText = styled.p`
-  margin-left: 5px;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #ff8682;
+  // margin-left: 5px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #000000;
   transition:
     color 0.3s ease,
     transform 0.1s ease;
@@ -131,7 +140,7 @@ export const SignUpDesignContainer = styled.div`
 `
 
 export const SignUpAuthDesignImage = styled.img`
-  height: 110vh;
+  height: 95vh;
   min-height: 90vh;
   margin-right: 50px;
 
