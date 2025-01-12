@@ -38,7 +38,6 @@ const TopDestination = (props) => {
   return (
     <Frame>
       <BackgroundImage src={firstImage} alt="" />
-      <Rectangle40></Rectangle40>
       <Heading>Where do you want to go?</Heading>
       <LocationContainer>
         {cardData.map((card, index) => (
