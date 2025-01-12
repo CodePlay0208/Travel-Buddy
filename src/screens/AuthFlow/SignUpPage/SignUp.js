@@ -4,7 +4,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import { connect } from 'react-redux'
 import { register } from '../../../actions/auth.action'
 
-import { SVG } from '../../../assets'
+import { SVG, images } from '../../../assets'
 import {
   Container,
   FormAndCopyrightContainer,
@@ -14,14 +14,14 @@ import {
   FormHeadingContainer,
   FormSubHeadingText,
   DividerContainer,
-  Divider1,
-  Divider2,
+  Divider,
   OrLoginWithContainer,
   DesignContainer,
   AuthDesignImage,
   GoogleSignUpButton,
   ContinueWithText,
-  GoogleIcon,
+  ImageGoogleIcon,
+  MainButtonAuth,
 } from '../AuthFlow.styled'
 import {
   SignUpTwoInput,
@@ -44,6 +44,7 @@ import {
 } from './SignUp.styled'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
+import { css } from 'styled-components'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
@@ -63,8 +64,7 @@ const SignUp = (props) => {
   }
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    username: '',
     email: '',
     phoneNumber: '',
     password: '',
@@ -110,35 +110,18 @@ const SignUp = (props) => {
         <FormAndTitleContainer>
           <TitleContainer>Travmigoz</TitleContainer>
           <FormContainer>
-            <FormHeadingContainer>Sign Up</FormHeadingContainer>
-            <FormSubHeadingText>Let’s get you all set up so you can access your account.</FormSubHeadingText>
+            <FormHeadingContainer>Get Started</FormHeadingContainer>
+            <FormSubHeadingText>
+              Welcome to <span>Travmigoz</span>- Create your account.
+            </FormSubHeadingText>
             <SignUpFormInputsContainer>
               <form onSubmit={handleSubmit}>
                 <SignUpTwoInput>
                   <InputComponent
-                    label="First Name"
+                    label="Name"
                     type="text"
-                    name="firstName"
-                    placeholder="Enter Your First Name"
-                    user={formData}
-                    setUser={setFormData}
-                  />
-                  <InputComponent
-                    label="Last Name"
-                    type="text"
-                    name="lastName"
-                    placeholder="Enter Your Last Name"
-                    user={formData}
-                    setUser={setFormData}
-                  />
-                </SignUpTwoInput>
-                <SignUpTwoInput>
-                  <InputComponent
-                    label="Email"
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Enter Your Email"
+                    name="username"
+                    placeholder="Enter Your Name"
                     user={formData}
                     setUser={setFormData}
                   />
@@ -151,68 +134,55 @@ const SignUp = (props) => {
                     setUser={setFormData}
                   />
                 </SignUpTwoInput>
-                <InputComponent
-                  label="Password"
-                  type={securePasswordText ? 'password' : 'text'}
-                  name="password"
-                  id="password"
-                  placeholder="Enter Your Password"
-                  user={formData}
-                  setUser={setFormData}
-                  isPasswordField={true}
-                  secureTextState={securePasswordText}
-                  setSecureTextState={setSecurePasswordText}
-                />
-                <InputComponent
-                  label="Confirm Password"
-                  type={secureConfirmPasswordText ? 'password' : 'text'}
-                  name="confirmPassword"
-                  placeholder="Confirm Your Password"
-                  user={formData}
-                  setUser={setFormData}
-                  isPasswordField={true}
-                  secureTextState={secureConfirmPasswordText}
-                  setSecureTextState={setSecureConfirmPasswordText}
-                />
-                <SignUpTermsAgreementContainer>
-                  <input
-                    type="checkbox"
-                    name="termsCheck"
-                    value={formData.termsCheck}
-                    checked={isTermsAggrementChecked}
-                    onChange={toggleTermsAgreementCheck}
-                    required
+                <SignUpTwoInput
+                  customStyles={css`
+                    margin-top: 1.5%;
+                  `}
+                >
+                  <InputComponent
+                    label="Password"
+                    type={securePasswordText ? 'password' : 'text'}
+                    name="password"
+                    id="password"
+                    placeholder="Enter Your Password"
+                    user={formData}
+                    setUser={setFormData}
+                    isPasswordField={true}
+                    secureTextState={securePasswordText}
+                    setSecureTextState={setSecurePasswordText}
                   />
-                  <SignUpTermsAgreementText>
-                    I agree to all the{' '}
-                    <SignUpTermsLink href="#">
-                      <SignUpLinkText>Terms</SignUpLinkText>
-                    </SignUpTermsLink>{' '}
-                    and{' '}
-                    <SignUpTermsLink href="#">
-                      <SignUpLinkText>Privacy Policies</SignUpLinkText>
-                    </SignUpTermsLink>
-                  </SignUpTermsAgreementText>
-                </SignUpTermsAgreementContainer>
-                <SignUpCreateAccountContainer>
-                  <SignUpCreateAccountButton type="submit">Create Account</SignUpCreateAccountButton>
-                </SignUpCreateAccountContainer>
+                  <InputComponent
+                    label="Confirm Password"
+                    type={secureConfirmPasswordText ? 'password' : 'text'}
+                    name="confirmPassword"
+                    placeholder="Confirm Your Password"
+                    user={formData}
+                    setUser={setFormData}
+                    isPasswordField={true}
+                    secureTextState={secureConfirmPasswordText}
+                    setSecureTextState={setSecureConfirmPasswordText}
+                  />
+                </SignUpTwoInput>
+                <MainButtonAuth
+                  type="submit"
+                  mainButtonStyles={css`
+                    margin-top: 4.5%;
+                  `}
+                >
+                  <p>Sign up</p>
+                </MainButtonAuth>
                 <SignUpAlreadyHaveContainer>
-                  <SignUpAlreadyHaveText>Already have an account?</SignUpAlreadyHaveText>
-                  <SignUpLoginLink href="/login">
-                    <SignUpLoginText>Login</SignUpLoginText>
-                  </SignUpLoginLink>
-                </SignUpAlreadyHaveContainer>
-                <DividerContainer>
-                  <Divider1 />
-                  <OrLoginWithContainer>Or login with</OrLoginWithContainer>
-                  <Divider2 />
-                </DividerContainer>
+                  <SignUpAlreadyHaveText>
+                    Already have an account? 
+                    <SignUpLoginLink href="/login">
+                      <SignUpLoginText> Login</SignUpLoginText>
+                    </SignUpLoginLink>
+                  </SignUpAlreadyHaveText>
 
-                <GoogleSignUpButton role="button">
-                  <ContinueWithText>Continue with</ContinueWithText>
-                  <GoogleIcon src={SVG.GoogleIcon} />
-                </GoogleSignUpButton>
+                    <SignUpLoginLink href="/login">
+                      <SignUpLoginText>Sign in with email instead</SignUpLoginText>
+                    </SignUpLoginLink>
+                </SignUpAlreadyHaveContainer>
               </form>
             </SignUpFormInputsContainer>
           </FormContainer>
@@ -221,7 +191,7 @@ const SignUp = (props) => {
         <Copyright />
       </FormAndCopyrightContainer>
       <SignUpDesignContainer>
-        <SignUpAuthDesignImage src={SVG.AuthDesignSection} alt="Auth Design" />
+        <SignUpAuthDesignImage src={images.auth_side_image} alt="Auth Design" />
       </SignUpDesignContainer>
       <ToastContainer />
     </Container>

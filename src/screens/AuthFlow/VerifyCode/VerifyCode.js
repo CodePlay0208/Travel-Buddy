@@ -1,6 +1,6 @@
 import React, { useEffect, useState, memo } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { SVG } from '../../../assets'
+import { SVG, images } from '../../../assets'
 
 import { connect } from 'react-redux'
 import { verifyOTP, resendOTP } from '../../../actions/auth.action'
@@ -20,6 +20,7 @@ import {
   FormSubHeadingText,
   DesignContainer,
   AuthDesignImage,
+  MainButtonAuth
 } from '../AuthFlow.styled'
 import {
   VerifyCodeFormInputsContainer,
@@ -79,7 +80,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
             <FormHeadingContainer>Verify code</FormHeadingContainer>
             <FormSubHeadingText>An authentication code has been sent to your email.</FormSubHeadingText>
             <VerifyCodeFormInputsContainer>
-              <form onSubmit={onSubmit}>
+              <form onSubmit={onSubmit} style={{ flex: 1 }}>
                 <InputComponent
                   label="Enter Code"
                   type={secureVerificationCode ? 'password' : 'text'}
@@ -96,17 +97,16 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
                     <VerifyCodeResendText>Resend</VerifyCodeResendText>
                   </VerifyCodeResendLink>
                 </VerifyCodeResendCodeContainer>
-                <VerifyCodeVerifyButtonContainer>
-                  <VerifyCodeVerifyButton type="submit">Verify</VerifyCodeVerifyButton>
-                </VerifyCodeVerifyButtonContainer>
+                  <MainButtonAuth type="submit"><p>Verify</p></MainButtonAuth>
               </form>
+              <img src={images.verify_code_image} style={{ width: '30%', height: '100%', marginLeft: '40px' }} />
             </VerifyCodeFormInputsContainer>
           </FormContainer>
         </FormAndTitleContainer>
         <Copyright />
       </FormAndCopyrightContainer>
       <DesignContainer>
-        <AuthDesignImage src={SVG.AuthDesignSection} alt="Auth Design" />
+        <AuthDesignImage src={images.auth_side_image} alt="Auth Design" />
       </DesignContainer>
       <ToastContainer />
     </Container>

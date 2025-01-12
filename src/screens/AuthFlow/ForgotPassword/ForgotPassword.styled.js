@@ -1,7 +1,18 @@
 import styled from 'styled-components'
 
+export const ForgetPasswordContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+export const ForgetPasswordImage = styled.image`
+  display: flex;
+  width: 50%;
+  height: 100%;
+`
+
 export const ForgetPassFormInputsContainer = styled.div`
-  margin-top: 6%;
+  margin-top: 2%;
 `
 
 export const ForgetPassSubmitButtonContainer = styled.div`

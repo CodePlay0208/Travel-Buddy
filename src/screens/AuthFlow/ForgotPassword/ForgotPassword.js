@@ -1,11 +1,17 @@
 import React, { useState, memo } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { SVG } from '../../../assets'
+import { images, SVG } from '../../../assets'
 import { connect } from 'react-redux'
 import { forgetPassword } from '../../../actions/auth.action'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
-import { ForgetPassFormInputsContainer, ForgetPassSubmitButtonContainer, ForgetPassSubmitButton } from './ForgotPassword.styled'
+import {
+  ForgetPassFormInputsContainer,
+  ForgetPassSubmitButtonContainer,
+  ForgetPassSubmitButton,
+  ForgetPasswordContainer,
+  ForgetPasswordImage,
+} from './ForgotPassword.styled'
 import {
   Container,
   FormAndCopyrightContainer,
@@ -18,15 +24,17 @@ import {
   FormHeadingContainer,
   FormSubHeadingText,
   DividerContainer,
-  Divider1,
-  Divider2,
+  Divider,
   OrLoginWithContainer,
   DesignContainer,
   AuthDesignImage,
   GoogleSignUpButton,
   ContinueWithText,
-  GoogleIcon,
+  ImageGoogleIcon,
+  MainButtonAuth,
+  ButtonAlt,
 } from '../AuthFlow.styled'
+import { css } from 'styled-components'
 
 const ForgotPasswordPage = (props) => {
   const { forgetPassword } = props
@@ -55,31 +63,57 @@ const ForgotPasswordPage = (props) => {
               <BackButtonIcon src={SVG.BackButtonIcon} alt="Back" />
               <BackButtonText>Back</BackButtonText>
             </BackButtonContainer>
-            <FormHeadingContainer>Forgot your password?</FormHeadingContainer>
-            <FormSubHeadingText>Don’t worry, happens to all of us. Enter your email below to recover your password.</FormSubHeadingText>
-            <form onSubmit={onSubmitClick}>
-              <ForgetPassFormInputsContainer>
-                <InputComponent type="email" name="email" id="email" user={formData} setUser={setFormData} placeholder="Enter Your Email" />
-              </ForgetPassFormInputsContainer>
-              <ForgetPassSubmitButtonContainer>
-                <ForgetPassSubmitButton type="submit">Submit</ForgetPassSubmitButton>
-              </ForgetPassSubmitButtonContainer>
-              <DividerContainer>
-                <Divider1 />
-                <OrLoginWithContainer>Or login with</OrLoginWithContainer>
-                <Divider2 />
-              </DividerContainer>
-              <GoogleSignUpButton>
-                <ContinueWithText>Continue with</ContinueWithText>
-                <GoogleIcon src={SVG.GoogleIcon} alt="Google" />
-              </GoogleSignUpButton>
-            </form>
+            <FormHeadingContainer
+              customStyles={css`
+                font-size: 3.125rem;
+              `}
+            >
+              Forgot your password?
+            </FormHeadingContainer>
+            <FormSubHeadingText>Don’t worry, happens to all of us. Enter your email below to recover your password</FormSubHeadingText>
+            <ForgetPasswordContainer>
+              <form onSubmit={onSubmitClick} style={{ flex: 1 }}>
+                <ForgetPassFormInputsContainer>
+                  <InputComponent
+                    label="Email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    user={formData}
+                    setUser={setFormData}
+                    placeholder="Enter Your Email"
+                  />
+                </ForgetPassFormInputsContainer>
+                <MainButtonAuth
+                  mainButtonStyles={css`
+                    margin-top: 3.5%;
+                  `}
+                  type="submit"
+                >
+                  <p>Submit</p>
+                </MainButtonAuth>
+                <DividerContainer>
+                  <Divider
+                    customStyles={css`
+                      width: 48%;
+                    `}
+                  />
+                  <OrLoginWithContainer>Or</OrLoginWithContainer>
+                  <Divider />
+                </DividerContainer>
+                <ButtonAlt role="button">
+                  <ImageGoogleIcon src={images.google_icon_black} alt="Log In With Google" />
+                  <ContinueWithText>Log In With Google</ContinueWithText>
+                </ButtonAlt>
+              </form>
+              <img src={images.forgot_password_image} style={{ width: '40%', height: '90%', marginTop: '30px', marginLeft: '70px'}} />
+            </ForgetPasswordContainer>
           </FormContainer>
         </FormAndTitleContainer>
         <Copyright />
       </FormAndCopyrightContainer>
       <DesignContainer>
-        <AuthDesignImage src={SVG.AuthDesignSection} alt="Auth Design" />
+        <AuthDesignImage src={images.auth_side_image} alt="Auth Design" />
       </DesignContainer>
     </Container>
   )

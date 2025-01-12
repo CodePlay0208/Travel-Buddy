@@ -4,8 +4,15 @@ export const LoginRememberMeAndForgetPasswordContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 3.5%;
+  margin-top: 1.5%;
   padding: 0px 4px;
+`
+
+export const InputFieldsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
 `
 
 export const LoginRememberMeContainer = styled.div`
@@ -16,9 +23,9 @@ export const LoginRememberMeContainer = styled.div`
 
 export const LoginForgetPasswordLink = styled.a`
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #ff8682;
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #252525;
   transition:
     color 0.3s ease,
     transform 0.1s ease;
@@ -32,45 +39,13 @@ export const LoginForgetPasswordLink = styled.a`
     color: #ca2c27;
     transform: scale(0.98);
   }
-`
-
-export const LoginLoginButtonContainer = styled.div`
-  margin-top: 5%;
-  border-style: none;
-  border-width: 0px;
-`
-
-export const LoginLoginButton = styled.button`
-  background-color: #8dd3bb;
-  padding: 15px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  width: 100%;
-  border-width: 0px;
-  border-radius: 5px;
-
-  p {
-    font-weight: 600;
-    font-size: 1.5rem;
-  }
-
-  &:active {
-    font-size: 1.6rem;
-  }
-`
-
-export const LoginDontHaveAccountContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 2%;
 `
 
 export const LoginSignUpLink = styled.a`
   text-decoration: none;
-  margin-left: 5px;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #ff8682;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #252525;
   transition:
     color 0.3s ease,
     transform 0.1s ease;
@@ -86,23 +61,12 @@ export const LoginSignUpLink = styled.a`
   }
 `
 
-export const DividerContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 6% 0px;
-`
-
 export const Divider = styled.div`
-  height: 0.3px;
-  width: 40%;
+  height: 0.5px;
+  width: 45%;
   background-color: #112211;
 `
 
-export const OrLoginWithContainer = styled.div`
-  color: #112211;
-  font-size: 0.9rem;
-`
 
 export const GoogleSignUpButton = styled.button`
   padding: 1.4% 20%;
@@ -127,14 +91,6 @@ export const ContinueWithText = styled.span`
   font-size: 1.5rem;
 `
 
-export const GoogleIcon = styled.img`
-  height: 40px;
-
-  ${GoogleSignUpButton}:active & {
-    height: 44px;
-  }
-`
-
 export const DesignContainer = styled.div`
   flex: 1 2;
   max-width: 42%;
@@ -151,22 +107,9 @@ export const AuthDesignImage = styled.img`
   height: 95vh;
 `
 
-export const InputPlaceholder = styled.input`
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
-  padding-left: 4px;
+export const LoginButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
 
-  &::placeholder {
-    font-size: 0.9rem;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  @media (max-width: 950px) {
-    &::placeholder {
-      font-size: 0.9rem;
-    }
-  }
 `
