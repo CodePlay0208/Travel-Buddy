@@ -47,7 +47,7 @@ export const SliderHeading = styled.div`
 export const Slider = styled.div`
   display: flex;
   display: flex;
-  width: calc(${(props) => props.cardCount} * 25vw); 
+  width: calc(${(props) => props.cardCount} * 25vw);
   animation: ${(props) => getSlideAnimation(props.cardCount)} 30s linear infinite;
   position: relative;
 `
@@ -70,7 +70,7 @@ export const Badge = styled.div`
   background: #8dd3bb;
   border: 2px solid #8dd3bb;
   border-radius: 21px;
-  padding: 5px 15px;
+  padding: 1% 3%;
   display: flex;
   align-items: center;
   justify-content: center;

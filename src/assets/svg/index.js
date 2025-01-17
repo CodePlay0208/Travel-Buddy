@@ -25,6 +25,10 @@ import ChatInputIcon from './chatInputIcon.svg'
 import AddEmojiIcon from './addEmojiIcon.svg'
 import Ninedots from './nineDots.svg'
 import searchIcon from './searchIcon.svg'
+import hyderabad from './hyderabad.svg'
+import banglore from './banglore.svg'
+import mumbai from './mumbai.svg'
+import delhi from './delhi.svg'
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -52,4 +56,9 @@ export const SVG = {
   AddEmojiIcon,
   Ninedots,
   searchIcon,
+  hyderabad,
+  banglore,
+  mumbai,
+  delhi,
+
 }
