@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const Frame = styled.div`
   position: relative;
   width: 100%;
-  max-width: 1730px;
   margin: 10% auto;
   padding-top: 20px;
   padding-bottom: 20px;
