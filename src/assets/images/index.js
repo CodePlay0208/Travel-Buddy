@@ -4,5 +4,9 @@ export const images = {
   google_icon_black: require('./google-icon-black.webp'),
   phone_icon_black: require('./phone-icon-black.webp'),
   forgot_password_image: require('./forgot-password-image.webp'),
-  verify_code_image: require('./verify-code-image.webp')
+  verify_code_image: require('./verify-code-image.webp'),
+  heroSection_1: require('./image1.webp'),
+  heroSection_2: require('./image2.webp'),
+  heroSection_3: require('./image3.webp'),
+  heroSection_4: require('./image4.webp'),
 }
