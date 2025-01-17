@@ -110,7 +110,6 @@ export const SignUpLoginLink = styled.a`
 `
 
 export const SignUpLoginText = styled.p`
-  // margin-left: 5px;
   font-size: 0.875rem;
   font-weight: 700;
   color: #000000;
@@ -118,6 +117,7 @@ export const SignUpLoginText = styled.p`
     color 0.3s ease,
     transform 0.1s ease;
   cursor: pointer;
+  
 `
 
 export const SignUpCopyrightTextContainer = styled.div`

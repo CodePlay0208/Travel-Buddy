@@ -152,6 +152,9 @@ export const ContinueWithText = styled.p`
   font-weight: 400;
   font-size: 1rem;
 
+  &:hover{
+    background-color: #e0fff4;
+  }
   @media (max-width: 855px) {
     display: none;
   }
@@ -194,6 +197,11 @@ export const ButtonAlt = styled.button`
     font-weight: 400;
     color: #252525;
   }
+
+  
+  &:hover{
+    background-color: #e0fff4;
+  }
 `
 
 export const MainButtonAuth = styled.button`
@@ -211,6 +219,9 @@ export const MainButtonAuth = styled.button`
 
   &:active {
     font-size: 1.6rem;
+  }
+  &:hover{
+    background-color: #7abba4;
   }
 
   ${({ mainButtonStyles }) => mainButtonStyles && mainButtonStyles}
