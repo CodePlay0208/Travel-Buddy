@@ -58,7 +58,7 @@ const HeroSection = () => {
             <FlexContainer
               direction="column"
               gap="20px"
-              backgroundImage={images.heroSection_2}
+              backgroundImage="https://travmigoz-assethosting.s3.ap-south-1.amazonaws.com/assets/assetstravmigoz.jpeg"
               width="100%"
               aspectRatio="2"
               borderRadius="15px"
