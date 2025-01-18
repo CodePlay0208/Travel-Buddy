@@ -11,6 +11,7 @@ import {
 } from '../../styles/DatePicker.styled'
 
 import { SVG } from '../../assets'
+import { Input } from '../../styles/Global'
 
 const DatePicker = (props) => {
   const { inputValues, setInputValues, onValue, placeholderValue } = props
@@ -152,18 +153,10 @@ const DatePicker = (props) => {
   }
   return (
     <DatePickerWrapper
-      fontSize={props.fontSize ? props.fontSize : `inherit`}
-      fontWeight={props.fontWeight ? props.fontWeight : `600`}
       widthValue={props.width ? props.width : `100%`}
       heightValue={props.height ? props.height : `100%`}
     >
-      <InputWrapper
-        fontSize={props.fontSize ? props.fontSize : `inherit`}
-        fontWeight={props.fontWeight ? props.fontWeight : `600`}
-        borderColor={props.borderColor ? props.borderColor : `grey`}
-        padding={props.padding ?? `1% 5%`}
-      >
-        <input
+      <Input
           type="text"
           ref={dateInputRef}
           value={selectedDate}
@@ -172,8 +165,8 @@ const DatePicker = (props) => {
           onClick={() => setShowCalendar(!showCalendar)}
           className="SearchBar-date"
         />
-        <img src={SVG.CalendarIcon} alt="Calender Icon" />
-      </InputWrapper>
+        {/* <img src={SVG.CalendarIcon} alt="Calender Icon" /> */}
+      
       {showCalendar && (
         <Calendar ref={calendarRef}>
           <CalendarHeader>
@@ -185,16 +178,7 @@ const DatePicker = (props) => {
               }
               onClick={handlePrevMonth}
             >
-              <div className="svgIcon">
-                <svg viewBox="0 0 24 24">
-                  <g color="currentColor">
-                    <path
-                      fill="currentColor"
-                      d="M10.707 4.293a1 1 0 0 1 0 1.414L5.414 11H21a1 1 0 1 1 0 2H5.414l5.293 5.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0"
-                    />
-                  </g>
-                </svg>
-              </div>
+              <div className="svgIcon">&lt;</div>
             </NavButton>
             <span id="month-year">
               {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()}
@@ -203,16 +187,7 @@ const DatePicker = (props) => {
               className={new Date(currentDate.getFullYear(), currentDate.getMonth() + 1) > oneYearLater ? 'disabled' : ''}
               onClick={handleNextMonth}
             >
-              <div className="svgIcon">
-                <svg viewBox="0 0 24 24">
-                  <g color="currentColor">
-                    <path
-                      fill="currentColor"
-                      d="M13.293 18.293a1 1 0 0 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 1 0-1.414 1.414L18.586 11H3a1 1 0 1 0 0 2h15.586z"
-                    />
-                  </g>
-                </svg>
-              </div>
+              <div className="svgIcon">&gt;</div>
             </NavButton>
           </CalendarHeader>
           <div className="calendar-body">

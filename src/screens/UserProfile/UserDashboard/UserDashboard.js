@@ -21,19 +21,20 @@ import {
   UserInfoColumns,
   UserInfoColumn,
   UserInfoItem,
-  Label,
-  Value,
-  Input,
   DashboardActions,
   EditButton,
   SaveButton,
   CancelButton,
   DeleteButton,
+  Container,
+  ProfilePicContainer,
+  NameContainer,
 } from './UserDashboard.styled'
 import Modal from '../../../components/Modal/Modal'
 
 import { logout } from '../../../actions/auth.action'
 import Dropdown from '../../../components/Dropdown/Dropdown'
+import { Input, Label, Value } from '../../../styles/Global'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -122,29 +123,41 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
     setDeleteModal(false)
   }
   return (
-    <DashboardContainer>
-      <ImageContainer>
-        <BackgroundImage src={profileBackground} alt="Background" />
-        <ProfilePic>
-          <ImgProfile src={selectedProfilePic || profile?.profilePic[0] || images.defaultProfileImg} alt="User Profile" />
-          {isEditing && <EditPic src={SVG.editPic} alt="Edit" onClick={() => document.getElementById('profilePicInput').click()} />}
-          <input id="profilePicInput" type="file" style={{ display: 'none' }} accept="image/*" onChange={handleProfilePicChange} />
-        </ProfilePic>
-      </ImageContainer>
-
+    <Container>
       <DashboardContainer>
         <DashboardHeader>
-          <HeaderTitle>Account</HeaderTitle>
+          <HeaderTitle>User Profile</HeaderTitle>
         </DashboardHeader>
         <DashboardContent>
           <UserInfoColumns>
             <UserInfoColumn>
               <UserInfoItem>
-                <Label>Name</Label>
+                <Label>Persona</Label>
                 {isEditing ? (
-                  <Input name="username" value={formData.username || ''} onChange={handleChange} />
+                  <>
+                    <Input
+                      name="persona"
+                      value={formData?.persona || ''}
+                      onChange={handleChange}
+                      onFocus={() => setShowPersonaDropDown(true)}
+                      onBlur={(e) => {
+                        setTimeout(() => setShowPersonaDropDown(false), 1000)
+                      }}
+                    />
+                    {showPersonaDropDown && (
+                      <Dropdown
+                        data={[{ value: 'Traveller' }, { value: 'Agent' }]}
+                        selectSuggestion={(selected) => {
+                          handleChange({
+                            target: { name: 'persona', value: selected.value },
+                          })
+                          setShowPersonaDropDown(false)
+                        }}
+                      />
+                    )}
+                  </>
                 ) : (
-                  <Value>{profile?.username}</Value>
+                  <Value>{profile?.persona ?? 'Traveller'}</Value>
                 )}
               </UserInfoItem>
               <UserInfoItem>
@@ -163,8 +176,11 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                     setInputValues={(value) => handleInputChange('dateOfBirth', value)}
                     onValue={'dateOfBirth'}
                     placeholderValue={'Select Your Date of Birth'}
-                    fontSize={`1.25vw`}
+                    fontSize={`1vw`}
                     padding={`2.5%`}
+                    borderRadius={'20px'}
+                    backgroundColor={'#f4f4f4'}
+                    border={'2px solid #f4f4f4'}
                   />
                 ) : (
                   <Value>{profile?.dateOfBirth ?? '01-01-2000'}</Value>
@@ -209,57 +225,44 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                   <Value>{profile?.gender ?? 'Prefer not to say'}</Value>
                 )}
               </UserInfoItem>
-              <UserInfoItem>
-                <Label>Persona</Label>
-                {isEditing ? (
-                  <>
-                    <Input
-                      name="persona"
-                      value={formData?.persona || ''}
-                      onChange={handleChange}
-                      onFocus={() => setShowPersonaDropDown(true)}
-                      onBlur={(e) => {
-                        setTimeout(() => setShowPersonaDropDown(false), 1000)
-                      }}
-                    />
-                    {showPersonaDropDown && (
-                      <Dropdown
-                        data={[{ value: 'Traveller' }, { value: 'Agent' }]}
-                        selectSuggestion={(selected) => {
-                          handleChange({
-                            target: { name: 'persona', value: selected.value },
-                          })
-                          setShowPersonaDropDown(false)
-                        }}
-                      />
-                    )}
-                  </>
-                ) : (
-                  <Value>{profile?.persona ?? 'Traveller'}</Value>
-                )}
-              </UserInfoItem>
             </UserInfoColumn>
           </UserInfoColumns>
-          <DashboardActions>
-            {isEditing ? (
-              <>
-                <SaveButton onClick={handleSave}>Save Changes</SaveButton>
-                <CancelButton onClick={handleCancel}>Cancel</CancelButton>
-              </>
-            ) : (
-              <>
-                <EditButton onClick={() => setIsEditing(true)}>
-                  <img src={SVG.editButton} alt="Edit" /> Edit Your Profile
-                </EditButton>
-                <DeleteButton onClick={() => setDeleteModal(true)}>
-                  <img src={SVG.deleteIcon} alt="Delete" /> Delete Account
-                </DeleteButton>
-              </>
-            )}
-          </DashboardActions>
+          <ProfilePicContainer>
+            <ProfilePic>
+              <ImgProfile src={selectedProfilePic || profile?.profilePic[0] || images.defaultProfileImg} alt="User Profile" />
+              {isEditing && <EditPic src={SVG.editPic} alt="Edit" onClick={() => document.getElementById('profilePicInput').click()} />}
+              <input id="profilePicInput" type="file" style={{ display: 'none' }} accept="image/*" onChange={handleProfilePicChange} />
+            </ProfilePic>
+            <NameContainer>
+              <Label width={isEditing ? '100%' : 'auto'}>Name</Label>
+              {isEditing ? (
+                <Input name="username" value={formData.username || ''} onChange={handleChange} />
+              ) : (
+                <Value>{profile?.username}</Value>
+              )}
+            </NameContainer>
+          </ProfilePicContainer>
         </DashboardContent>
+        <DashboardActions>
+          {isEditing ? (
+            <>
+              <CancelButton onClick={handleCancel}>Cancel</CancelButton>
+              <SaveButton onClick={handleSave}>Save Changes</SaveButton>
+            </>
+          ) : (
+            <>
+              <DeleteButton onClick={() => setDeleteModal(true)}>
+                <img src={SVG.deleteIcon} alt="Delete" /> Delete Account
+              </DeleteButton>
+              <EditButton onClick={() => setIsEditing(true)}>
+                <img src={SVG.editButton} alt="Edit" /> Edit Your Profile
+              </EditButton>
+            </>
+          )}
+        </DashboardActions>
         <ToastContainer />
       </DashboardContainer>
+
       {deleteModal && (
         <Modal
           message="Are you sure you want to delete your account? This action cannot be undone."
@@ -267,7 +270,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
           onCancel={handleCancelDelete}
         />
       )}
-    </DashboardContainer>
+    </Container>
   )
 }
 

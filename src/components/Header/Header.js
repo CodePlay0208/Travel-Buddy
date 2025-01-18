@@ -15,22 +15,21 @@ import {
 
 const SearchResultHeader = (props) => {
   return (
-    <HeaderContainer>
-      {props.isImageNavbar && <Navbar isImageNavbar={props.isImageNavbar} isLandingPage={props.isLandingPage} />}
+    <>
+      <Navbar />
+      <HeaderContainer>
+        <LandingHeader>
+          <HeaderDescription>
+            <HeaderDesHeading>Travmigoz</HeaderDesHeading>
+            <HeaderDesPara>Find Your Travel Amigos!</HeaderDesPara>
+          </HeaderDescription>
 
-      <LandingHeader>
-        <LandingImage src={LandingPageImage} alt="Landing Page" />
-      </LandingHeader>
-
-      <HeaderDescription>
-        <HeaderDesHeading>Travmigoz</HeaderDesHeading>
-        <HeaderDesPara>Find Your Travel Amigos!</HeaderDesPara>
-      </HeaderDescription>
-
-      <HeaderSearchBar>
-        <SearchMenu />
-      </HeaderSearchBar>
-    </HeaderContainer>
+          <HeaderSearchBar>
+            <SearchMenu />
+          </HeaderSearchBar>
+        </LandingHeader>
+      </HeaderContainer>
+    </>
   )
 }
 

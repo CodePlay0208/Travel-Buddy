@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const SearchBarContainer = styled.div`
-  border: ${(props) => props.borderColor} 2px solid;
+  border: none;
   border-radius: 10px;
   width: ${(props) => props.widthValue};
   height: ${(props) => props.heightValue};
@@ -9,6 +9,8 @@ export const SearchBarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
+  overflow: visible;
+
   @media (max-width: 786px) {
     border-radius: 3px;
   }
@@ -28,7 +30,6 @@ export const SearchBarInput = styled.input`
   font-weight: ${(props) => props.fontWeight};
   border: none;
   outline: none;
-
 `
 
 export const LocationIcon = styled.img`
@@ -43,12 +44,15 @@ export const DropdownSC = styled.div`
   left: 0;
   width: 100%;
   background-color: #ffffff;
-  box-shadow: 0px 10.74px 42.97px rgba(0, 0, 0, 0.25);
-  border-radius: 0px 0px 26.86px 26.86px;
+  box-shadow: 0px 4px 10px 0px #00000026;
+
+  border-radius: 0px 0px 27px 27px;
   z-index: 10;
   padding: 2% 0px;
-  overflow: hidden;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  overflow: visible;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   transform: ${(props) => (props.isVisible ? 'translateY(0)' : 'translateY(-10px)')};
   pointer-events: ${(props) => (props.isVisible ? 'auto' : 'none')};
@@ -61,7 +65,7 @@ export const DropdownSC = styled.div`
 `
 
 export const DropdownItem = styled.div`
-  padding: 4%;
+  padding: 1%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   display: flex;
@@ -69,13 +73,13 @@ export const DropdownItem = styled.div`
   height: max(100%, 60px);
   font-size: ${(props) => props.dropDownFontSize};
   color: #1b1717;
-  background-color: #b6f0dc;
-  border-radius: 13.43px;
-  margin: 2% 5%;
+  background-color: #ffffff;
+  border-radius: 7px;
+  margin: 1% 5%;
   cursor: pointer;
 
   &:hover {
-    background-color: #a1a1a1;
+    background-color: #f1f1f1;
   }
   @media (max-width: 768px) {
     border-radius: 7.5px;
@@ -83,4 +87,11 @@ export const DropdownItem = styled.div`
   @media (max-width: 480px) {
     border-radius: 2.5px;
   }
+`
+
+export const City = styled.div`
+  color: #8dd3bb;
+`
+export const State = styled.div`
+  color: #afafaf;
 `

@@ -31,6 +31,7 @@ import {
 } from './PublishTrip.styled'
 import { useNavigate } from 'react-router-dom'
 import Dropdown from '../../components/Dropdown/Dropdown'
+import { Input, Label } from '../../styles/Global'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -172,63 +173,68 @@ const PublishTrip = (props) => {
                 <>
                   <InputRow>
                     <InputGroup>
-                      <InputLabel>Start Location</InputLabel>
+                      <Label>Start Location</Label>
                       <Searchbar
                         inputValues={tripData.startLocation}
                         setInputValues={(value) => handleTripDataChange('startLocation', value)}
                         onValue={'startLocation'}
                         placeholderValue={'Enter Start Location'}
                         style={{ width: '100%' }}
-                        height={`51px`}
                         fontWeight={`500`}
                         borderColor={`#0b87ac`}
                         dropDownFontSize={'75%'}
                       />{' '}
                     </InputGroup>
                     <InputGroup>
-                      <InputLabel>Destination</InputLabel>
+                      <Label>Destination</Label>
                       <Searchbar
                         inputValues={tripData.destination}
                         setInputValues={(value) => handleTripDataChange('destination', value)}
                         onValue={'destination'}
                         placeholderValue={'Enter Destination'}
                         style={{ width: '100%' }}
-                        height={`51px`}
                         fontWeight={`500`}
                         borderColor={`#0b87ac`}
+                        dropDownFontSize={'75%'}
                       />
                     </InputGroup>
                   </InputRow>
                   <InputRow>
                     <InputGroup>
-                      <InputLabel>Start Date</InputLabel>
+                      <Label>Start Date</Label>
                       <DatePicker
                         inputValues={tripData?.startDate}
                         setInputValues={(value) => handleTripDataChange('startDate', value)}
                         onValue={'startDate'}
                         placeholderValue={'Select Start date'}
-                        height={`51px`}
                         fontWeight={`500`}
-                        borderColor={`#0b87ac`}
+                        fontSize={`1vw`}
+                        padding={`2.5%`}
+                        borderRadius={'30px'}
+                        backgroundColor={'#f4f4f4'}
+                        border={'2px solid #f4f4f4'}
                       />
                     </InputGroup>
                     <InputGroup>
-                      <InputLabel>End Date</InputLabel>
+                      <Label>End Date</Label>
                       <DatePicker
                         inputValues={tripData?.endDate}
                         setInputValues={(value) => handleTripDataChange('endDate', value)}
                         onValue={'endDate'}
                         placeholderValue={'Select End date'}
-                        height={`51px`}
                         fontWeight={`500`}
-                        borderColor={`#0b87ac`}
+                        fontSize={`1vw`}
+                        padding={`2.5%`}
+                        borderRadius={'30px'}
+                        backgroundColor={'#f4f4f4'}
+                        border={'2px solid #f4f4f4'}
                       />
                     </InputGroup>
                   </InputRow>
                   <InputRow>
                     <InputGroup>
-                      <InputLabel>Total Members</InputLabel>
-                      <InputField
+                      <Label>Total Members</Label>
+                      <Input
                         type="text"
                         name="totalMembers"
                         value={tripData.totalMembers || ''}
@@ -237,36 +243,28 @@ const PublishTrip = (props) => {
                       />
                     </InputGroup>
                     <InputGroup>
-                      <InputLabel>Budget</InputLabel>
-                      <InputField
-                        type="text"
-                        name="budget"
-                        value={tripData.budget || ''}
+                      <Label>Budget</Label>
+                      <Input type="text" name="budget" value={tripData.budget || ''} onChange={handleChange} placeholder="Enter Budget" />
+                    </InputGroup>
+                  </InputRow>
+                  <InputRow>
+                    <InputGroup>
+                      <Label>Description</Label>
+                      <DescriptionField
+                        name="description"
+                        value={tripData.description}
                         onChange={handleChange}
-                        placeholder="Enter Budget"
+                        placeholder="Enter Trip Description"
                       />
                     </InputGroup>
                   </InputRow>
-                  <InputGroup>
-                    <InputLabel>Description</InputLabel>
-                    <DescriptionField
-                      name="description"
-                      value={tripData.description}
-                      onChange={handleChange}
-                      placeholder="Enter Trip Description"
-                    />
-                  </InputGroup>
-
-                  <PublishTripButton>
-                    <NextButton onClick={handleNext}>Next</NextButton>
-                  </PublishTripButton>
                 </>
               ) : (
                 <>
                   <InputRow>
                     <InputGroup>
-                      <InputLabel>Full Name</InputLabel>
-                      <InputField
+                      <Label>Full Name</Label>
+                      <Input
                         name="name"
                         type="text"
                         className="input-field"
@@ -275,8 +273,8 @@ const PublishTrip = (props) => {
                       />
                     </InputGroup>
                     <InputGroup>
-                      <InputLabel>Email</InputLabel>
-                      <InputField
+                      <Label>Email</Label>
+                      <Input
                         name="emailId"
                         type="email"
                         className="input-field"
@@ -287,8 +285,8 @@ const PublishTrip = (props) => {
                   </InputRow>
                   <InputRow>
                     <InputGroup>
-                      <InputLabel>Phone Number</InputLabel>
-                      <InputField
+                      <Label>Phone Number</Label>
+                      <Input
                         name="phoneNumber"
                         type="text"
                         className="input-field"
@@ -297,8 +295,8 @@ const PublishTrip = (props) => {
                       />
                     </InputGroup>
                     <InputGroup>
-                      <InputLabel>Age</InputLabel>
-                      <InputField
+                      <Label>Age</Label>
+                      <Input
                         name="age"
                         type="text"
                         className="input-field"
@@ -310,8 +308,8 @@ const PublishTrip = (props) => {
                   </InputRow>
                   <InputRow>
                     <InputGroup>
-                      <InputLabel>Gender</InputLabel>
-                      <InputField
+                      <Label>Gender</Label>
+                      <Input
                         name="gender"
                         type="text"
                         className="input-field"
@@ -337,8 +335,8 @@ const PublishTrip = (props) => {
                     </InputGroup>
 
                     <InputGroup>
-                      <InputLabel>Persona</InputLabel>
-                      <InputField
+                      <Label>Persona</Label>
+                      <Input
                         name="persona"
                         type="text"
                         className="input-field"
@@ -363,10 +361,6 @@ const PublishTrip = (props) => {
                       )}
                     </InputGroup>
                   </InputRow>
-
-                  <PublishTripButton>
-                    <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
-                  </PublishTripButton>
                 </>
               )}
             </LeftSection>
@@ -378,6 +372,15 @@ const PublishTrip = (props) => {
             </PublishTripRightSection>
           )}
         </PublishTripContent>
+        {activeSection === TABS.TRIP ? (
+          <PublishTripButton>
+            <NextButton onClick={handleNext}>Next</NextButton>
+          </PublishTripButton>
+        ) : (
+          <PublishTripButton>
+            <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
+          </PublishTripButton>
+        )}
       </PublishTripContainer>
       <Footer />
       <ToastContainer />

@@ -5,6 +5,7 @@ import Searchbar from '../Searchbar/Searchbar'
 import DatePicker from '../DatePicker/DatePicker'
 import { SearchBarContainer, SearchButtonContainer, SearchButton } from '../../styles/SearchMenu.styled'
 import { setSearchForm } from '../../actions/trips.action'
+import { SVG } from '../../assets'
 
 const mapStateToProps = (state) => ({
   searchForm: state.tripReducer.searchForm
@@ -32,7 +33,6 @@ const SearchMenu = (props) => {
         setInputValues={(value) => handleInputChange('destination', value)}
         onValue={'destination'}
         placeholderValue={'Enter Destination'}
-        width={`30%`}
         fontSize={`1.7vw`}
         fontWeight={`600`}
         dropDownFontSize={'45%'}
@@ -42,12 +42,11 @@ const SearchMenu = (props) => {
         setInputValues={(value) => handleInputChange('startDate', value)}
         onValue={'startDate'}
         placeholderValue={'Select Travel date'}
-        width={`30%`}
         fontSize={`1.7vw`}
         fontWeight={`600`}
       />
       <SearchButtonContainer onClick={onSearchButton} role="button">
-        <SearchButton>Search</SearchButton>
+        <img src={SVG.searchIcon} alt="searchIcon" />
       </SearchButtonContainer>
     </SearchBarContainer>
   )

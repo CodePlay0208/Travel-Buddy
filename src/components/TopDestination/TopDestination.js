@@ -12,6 +12,7 @@ import firstImage from '../../data/image.png'
 import { connect } from 'react-redux'
 import { setSearchForm } from '../../actions/trips.action'
 import { useNavigate } from 'react-router-dom'
+import { SVG } from '../../assets/index.js'
 
 const mapStateToProps = (state) => ({
   searchForm: state.tripReducer.searchForm,
@@ -30,30 +31,30 @@ const TopDestination = (props) => {
   }, [])
 
   const cardData = [
-    { id: 1, searchQuery: 'Delhi, India', displayName: 'Delhi' },
-    { id: 2, searchQuery: 'Bangalore, Karnataka', displayName: 'Bangalore' },
-    { id: 3, searchQuery: 'Mumbai, Maharashtra', displayName: 'Mumbai' },
+    { id: 1, searchQuery: 'Delhi, India', displayName: 'Delhi', icon: SVG.delhi },
+    { id: 2, searchQuery: 'Bangalore, Karnataka', displayName: 'Bangalore', icon: SVG.banglore },
+    { id: 3, searchQuery: 'Mumbai, Maharashtra', displayName: 'Mumbai', icon: SVG.mumbai },
+    { id: 4, searchQuery: 'Hyderabad, Telangana', displayName: 'Hyderabad', icon: SVG.hyderabad },
   ]
 
   return (
     <Frame>
       <BackgroundImage src={firstImage} alt="" />
-      <Rectangle40></Rectangle40>
       <Heading>Where do you want to go?</Heading>
       <LocationContainer>
         {cardData.map((card, index) => (
           <LocationBox key={index} onClick={() => onHeroItemClick(card?.searchQuery)}>
-            {card?.displayName}
+            <img src={card?.icon} alt={card?.displayName} /> {card?.displayName}
           </LocationBox>
         ))}
+        <ExploreButton
+          onClick={() => {
+            navigate('/search-results-page')
+          }}
+        >
+          Explore more places
+        </ExploreButton>
       </LocationContainer>
-      <ExploreButton
-        onClick={() => {
-          navigate('/search-results-page')
-        }}
-      >
-        Explore more places
-      </ExploreButton>
     </Frame>
   )
 }

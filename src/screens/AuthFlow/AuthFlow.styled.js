@@ -1,11 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
   font-family: 'Montserrat', sans-serif;
   flex: 1;
   display: flex;
   background-color: white;
-
   @media (max-width: 550px) {
     flex-direction: column;
   }
@@ -14,7 +13,8 @@ export const Container = styled.div`
 export const FormAndCopyrightContainer = styled.div`
   flex: 1.3 1;
   width: 50%;
-  margin: 2.35% 12% 0% 3.5%;
+  // margin: 2.35% 12% 0% 2.35%;
+  margin: 2.35%;
 
   @media (max-width: 550px) {
     margin: 0 auto;
@@ -33,7 +33,7 @@ export const TitleContainer = styled.div`
 `
 
 export const FormContainer = styled.div`
-  margin: 6.8%;
+  margin: 4.8% 6.8%;
 `
 
 export const BackButtonContainer = styled.div`
@@ -62,32 +62,44 @@ export const BackButtonText = styled.p`
 export const FormHeadingContainer = styled.div`
   flex: 1;
   margin-bottom: 1rem;
-  font-size: 3.125rem;
+  font-size: 3.5rem;
   font-weight: 700;
+
+  ${({ customStyles }) => customStyles && customStyles};
 `
 
 export const FormSubHeadingText = styled.div`
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   font-weight: 400;
+  color: #848282;
+
+  padding-bottom: 1.25rem;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+
+  span {
+    color: #000000;
+  }
 `
 
 export const DividerContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  margin: 6% 0px;
+  margin: 2% 0px;
+  color: #112211;
+
+  p {
+    font-size: 0.9rem;
+  }
 `
 
-export const Divider1 = styled.div`
+export const Divider = styled.div`
   height: 0.3px;
   width: 40%;
   background-color: #112211;
-`
 
-export const Divider2 = styled.div`
-  height: 0.3px;
-  width: 40%;
-  background-color: #112211;
+  ${({ customStyles }) => customStyles && customStyles}
 `
 
 export const OrLoginWithContainer = styled.div`
@@ -101,7 +113,7 @@ export const DesignContainer = styled.div`
   flex: 1 2;
   max-width: 42%;
   height: fit-content;
-  padding: 20px 0px 0px 0%;
+  padding: 40px 0px 0px 0%;
 
   @media (max-width: 550px) {
     display: none;
@@ -109,7 +121,7 @@ export const DesignContainer = styled.div`
 `
 
 export const AuthDesignImage = styled.img`
-  height: 95vh;
+  height: 92vh;
 
   @media (max-width: 550px) {
     display: none;
@@ -137,16 +149,20 @@ export const GoogleSignUpButton = styled.div`
 
 export const ContinueWithText = styled.p`
   color: white;
-  font-weight: 700;
-  font-size: 1.5rem;
+  font-weight: 400;
+  font-size: 1rem;
 
+  &:hover{
+    background-color: #e0fff4;
+  }
   @media (max-width: 855px) {
     display: none;
   }
 `
 
-export const GoogleIcon = styled.img`
-  height: 40px;
+export const ImageGoogleIcon = styled.img`
+  height: 1rem;
+  margin-right: 8px;
 `
 
 export const responsiveStyles = styled.div`
@@ -161,4 +177,52 @@ export const responsiveStyles = styled.div`
       font-size: 0.9rem;
     }
   }
+`
+
+export const ButtonAlt = styled.button`
+  display: flex;
+  flex: 1;
+  border-radius: 32px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #252525;
+  background-color: #ffffff;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #252525;
+  }
+
+  
+  &:hover{
+    background-color: #e0fff4;
+  }
+`
+
+export const MainButtonAuth = styled.button`
+  background-color: #8dd3bb;
+  border-style: none;
+  width: 100%;
+  border-radius: 30px;
+  margin-top: 1.5%;
+
+  p {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #ffffff;
+  }
+
+  &:active {
+    font-size: 1.6rem;
+  }
+  &:hover{
+    background-color: #7abba4;
+  }
+
+  ${({ mainButtonStyles }) => mainButtonStyles && mainButtonStyles}
 `

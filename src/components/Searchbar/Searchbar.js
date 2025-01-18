@@ -2,7 +2,10 @@ import React, { useState, memo } from 'react'
 import { SVG } from '../../assets'
 import { getLocationSuggestions } from '../../actions/location.action'
 import { connect } from 'react-redux'
-import { SearchBarContainer, SearchBarInput, LocationIcon, DropdownSC, DropdownItem } from '../../styles/Searchbar.styled'
+import { SearchBarContainer, SearchBarInput, LocationIcon, DropdownSC, DropdownItem, City, State } from '../../styles/Searchbar.styled'
+import { Input } from '../../styles/Global'
+import { FlexContainer } from '../HeroSectionV2/HeroSection.styled'
+import LineBorder from '../../styles/Line.styled'
 
 const mapStateToProps = (state) => ({
   suggestions: state.locationReducer.suggestions,
@@ -54,7 +57,7 @@ const Searchbar = (props) => {
         document.getElementById(customId).focus()
       }}
     >
-      <SearchBarInput
+      <Input
         type="text"
         placeholder={placeholderValue}
         id={customId}
@@ -64,11 +67,15 @@ const Searchbar = (props) => {
         fontSize={props.fontSize ? props.fontSize : `inherit`}
         fontWeight={props.fontWeight ? props.fontWeight : `600`}
       />
-      <LocationIcon src={SVG.LocationIcon} alt="Location Icon" />
+      {/* <LocationIcon src={SVG.LocationIcon} alt="Location Icon" /> */}
       <DropdownSC isVisible={isDropdownVisible}>
         {suggestions.map((suggestion, index) => (
           <DropdownItem key={index} dropDownFontSize={props.dropDownFontSize} onClick={() => selectSuggestion(suggestion)}>
-            {suggestion.city}, {suggestion.state}
+            <FlexContainer direction="column" alignItems="start" gap="0px" width="100%">
+              <City>{suggestion.city}</City>
+              <State>{suggestion.state}</State>
+              <LineBorder></LineBorder>
+            </FlexContainer>
           </DropdownItem>
         ))}
       </DropdownSC>

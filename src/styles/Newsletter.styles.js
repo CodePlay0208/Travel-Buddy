@@ -7,37 +7,28 @@ export const NewsletterContainer = styled.div`
   align-items: center;
   width: 100%;
   background: linear-gradient(to bottom, #ffffff 50%, #8dd3bb 50%);
-  padding: 20px;
+  padding: 5%;
 `
 
 export const NewsletterWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 84%;
   max-width: 1470px;
   background: #cdeae1;
   box-shadow: 0px 4.8px 19.2px rgba(17, 34, 17, 0.05);
   border-radius: 24px;
   overflow: hidden;
-`
-
-export const NewsletterContent = styled.div`
-  display: flex;
-  flex-direction: row;
   align-items: flex-start;
-  width: 100%;
-  padding: 2% 2% 0;
+  width: 80%;
+  padding: 2%;
 `
 
 export const NewsletterHeader = styled.div`
   font-family: 'TradeGothic LT Extended';
   font-style: normal;
   font-weight: 700;
-  font-size: 52px;
-  line-height: 65px;
+  font-size: 3.5vw;
   color: #112211;
-  margin-bottom: 7%;
+  margin-bottom: 5%;
 `
 
 export const NewsletterLeft = styled.div`
@@ -49,15 +40,14 @@ export const NewsletterLeft = styled.div`
 export const NewsletterText = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 3%;
 
   h2 {
     margin: 0;
     font-family: 'TradeGothic LT Extended';
     font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 30px;
+    font-weight: 600;
+    font-size: 1.5vw;
     color: #112211;
     opacity: 0.8;
   }
@@ -67,8 +57,7 @@ export const NewsletterText = styled.div`
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 19px;
-    line-height: 23px;
+    font-size: 1vw;
     color: #112211;
     opacity: 0.7;
   }
@@ -78,7 +67,7 @@ export const NewsletterForm = styled.div`
   padding: 10px 0 0;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 5%;
 `
 
 export const TextField = styled.div`
@@ -87,7 +76,7 @@ export const TextField = styled.div`
   width: 100%;
   background: #ffffff;
   border-radius: 5px;
-  padding: 10px;
+  padding: 2.5%;
 `
 
 export const EmailInput = styled.input`
@@ -97,28 +86,26 @@ export const EmailInput = styled.input`
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
-  font-size: 19px;
+  font-size: 1.5vw;
   line-height: 23px;
   color: #1c1b1f;
   background: transparent;
-  margin: 10px;
+  margin: 2.5%;
 `
 
 export const NewsletterButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
   background: #112211;
-  border-radius: 5px;
+  border-radius: 25px;
   color: #ffffff;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 1vw;
   cursor: pointer;
-  padding: 20px;
+  padding: 2%;
 `
 
 export const NewsletterRight = styled.div`
@@ -132,8 +119,7 @@ export const NewsletterImage = styled.img.attrs({
   src: firstImage,
   alt: 'Newsletter',
 })`
-  max-width: 100%;
-  width: 480.28px;
-  height: 366.21px;
+  width: 80%;
+  aspect-ratio: 4/3;
   border-radius: 5px;
 `

@@ -3,19 +3,18 @@ import styled from 'styled-components'
 export const DatePickerWrapper = styled.div`
   box-sizing: border-box;
   position: relative;
-  display: inline-block;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: visible;
   height: ${(props) => props.heightValue};
   width: ${(props) => props.widthValue};
 
   input {
     height: 100%;
     width: 100%;
-  }
-
-  .SearchBar-date::-webkit-input-placeholder {
-    color: #787878;
-    font-size: ${(props) => props.fontSize};
-    font-weight: ${(props) => props.fontWeight};
   }
 `
 
@@ -26,9 +25,11 @@ export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  border: 2px solid ${(props) => props.borderColor};
+  background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : `white`)};
+  border-color: ${(props) => props.borderColor};
+  border: none;
   transition: border-color 0.2s;
-  border-radius: 10px;
+  border-radius: ${(props) => props.borderRadius};
   @media (max-width: 786px) {
     border-radius: 3px;
   }
@@ -36,13 +37,15 @@ export const InputWrapper = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding:  ${(props) => props.padding};
+    padding: ${(props) => props.padding};
     border-radius: inherit;
     cursor: pointer;
     border: none;
     font-family: Arial, sans-serif;
     color: #787878;
-
+    background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : `white`)};
+    border-color: ${(props) => props.borderColor};
+    border: ${(props) => (props.border ? props.border : `2px solid grey`)};
     line-height: 2.5rem;
     font-size: ${(props) => props.fontSize};
     font-weight: ${(props) => props.fontWeight};
@@ -51,10 +54,14 @@ export const InputWrapper = styled.div`
   input:focus {
     outline: none;
   }
-
+  input::placeholder {
+    color: #787878;
+    font-size: ${(props) => props.fontSize};
+    font-weight: ${(props) => props.fontWeight};
+  }
   img {
     width: 1.75vw;
-    height:  1.75vw;
+    height: 1.75vw;
     margin-right: 0.5rem;
     cursor: pointer;
     pointer-events: none;
@@ -63,15 +70,14 @@ export const InputWrapper = styled.div`
 
 export const Calendar = styled.div`
   position: absolute;
-  top: 45px;
+  top: 100%;
   left: 0;
-  width: 370px;
   border: 1px solid #ccc;
   border-radius: 25px;
   background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 10px 0px #00000026;
   z-index: 1000;
-  margin: 20px 0;
+  margin: 1% 0;
   animation: fadeIn 0.2s;
   font-size: 16px;
 
@@ -89,16 +95,19 @@ export const CalendarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #ccc;
+  padding: 3%;
+  background-color: #ffffff;
   border-radius: 25px 25px 0 0;
+  span {
+    color: #8dd3bb;
+    font-weight: 600;
+  }
 `
 
 export const NavButton = styled.span`
   position: relative;
   cursor: pointer;
-  color: #007bff;
+  color: #797b86;
   font-weight: bold;
   transition: color 0.2s;
   display: flex;
@@ -110,12 +119,15 @@ export const NavButton = styled.span`
   }
 
   &:hover:not(.disabled) {
-    color: #0056b3;
+    color: #797b86;
   }
 
   .svgIcon {
-    width: 35px;
-    height: 30px;
+    font-size: 2vw;
+    color: #797b86;
+  }
+  .svgIcon:hover {
+    color: #8dd3bb;
   }
 `
 
@@ -149,11 +161,11 @@ export const Days = styled.div`
       color 0.2s;
 
     &:hover:not(.disabled) {
-      background-color: #f1f1f1;
+      background-color: #8dd3bb;
     }
 
     &.selected {
-      background-color: #53a2f6;
+      background-color: #8dd3bb;
       color: white;
     }
 
@@ -171,14 +183,14 @@ export const TodayButton = styled.div`
   button {
     padding: 13px 36px;
     border: none;
-    background-color: #007bff;
+    background-color: #8dd3bb;
     color: white;
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 10px;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: #7bc4aa;
     }
   }
 `
