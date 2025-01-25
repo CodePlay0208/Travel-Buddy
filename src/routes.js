@@ -8,75 +8,60 @@ import VerifyCode from './screens/AuthFlow/VerifyCode/VerifyCode'
 import SignUp from './screens/AuthFlow/SignUpPage/SignUp'
 import TripPage from './components/TripPage/TripPage'
 import UserProfile from './screens/UserProfile/UserProfile'
-import ForgotPassword from './screens/AuthFlow/ForgotPassword/ForgotPassword'
-import SetPassword from './screens/AuthFlow/SetPassword/SetPassword'
 import UserTrips from './screens/UserTrips/UserTrips'
 
 export const routes = [
   {
     path: '/',
     element: <LandingPage />,
-    isPrivate: false
+    isPrivate: false,
   },
 
   {
     path: '/search-results-page',
     element: <SearchResultsPage />,
-    isPrivate: false
+    isPrivate: false,
   },
   {
     path: '/publish-trip',
     element: <PublishTrip />,
-    isPrivate: true
+    isPrivate: true,
   },
   {
     path: '/chats',
     element: <ChatPage />,
-    isPrivate: true
+    isPrivate: true,
   },
 
   {
     path: '/login',
     element: <LoginPage />,
-    isPrivate: false
+    isPrivate: false,
   },
 
   {
     path: '/user-profile',
     element: <UserProfile />,
-    isPrivate: true
+    isPrivate: true,
   },
   {
     path: '/trip/:id',
     element: <TripPage />,
-    isPrivate: false
+    isPrivate: false,
   },
   {
     path: '/verify-otp',
     element: <VerifyCode />,
-    isPrivate: false
+    isPrivate: false,
   },
-
-  {
-    path: '/forget-password',
-    element: <ForgotPassword />,
-    isPrivate: false
-  },
-
-  {
-    path: '/set-password',
-    element: <SetPassword />,
-    isPrivate: false
-  },
-
   {
     path: '/signup',
     element: <SignUp />,
-    isPrivate: false
+    isPrivate: false,
   },
   {
     path: '/user-trips',
     element: <UserTrips />,
-    isPrivate: true
+    isPrivate: true,
   },
 ]

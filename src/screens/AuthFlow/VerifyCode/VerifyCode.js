@@ -1,5 +1,5 @@
 import React, { useEffect, useState, memo } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { SVG, images } from '../../../assets'
 
 import { connect } from 'react-redux'
@@ -20,7 +20,7 @@ import {
   FormSubHeadingText,
   DesignContainer,
   AuthDesignImage,
-  MainButtonAuth
+  MainButtonAuth,
 } from '../AuthFlow.styled'
 import {
   VerifyCodeFormInputsContainer,
@@ -28,8 +28,6 @@ import {
   VerifyCodeDidntRecieveText,
   VerifyCodeResendLink,
   VerifyCodeResendText,
-  VerifyCodeVerifyButtonContainer,
-  VerifyCodeVerifyButton,
 } from './VerifyCode.styled'
 const mapStateToProps = (state) => ({
   otpVerified: state.authReducer.otpVerified,
@@ -37,7 +35,6 @@ const mapStateToProps = (state) => ({
 
 const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
   const navigate = useNavigate()
-  const location = useLocation()
   const origin = sessionStorage.getItem('prevRoute')
 
   const [formData, setFormData] = useState({ verificationCode: '' })
@@ -65,7 +62,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
         navigate('/set-password')
       }
     }
-  }, [otpVerified, navigate])
+  }, [])
 
   return (
     <Container>
@@ -97,9 +94,11 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
                     <VerifyCodeResendText>Resend</VerifyCodeResendText>
                   </VerifyCodeResendLink>
                 </VerifyCodeResendCodeContainer>
-                  <MainButtonAuth type="submit"><p>Verify</p></MainButtonAuth>
+                <MainButtonAuth type="submit">
+                  <p>Verify</p>
+                </MainButtonAuth>
               </form>
-              <img src={images.verify_code_image} style={{ width: '30%', height: '100%', marginLeft: '40px' }} />
+              <img src={images.verify_code_image} style={{ width: '30%', height: '100%', marginLeft: '40px' }} alt="supporting" />
             </VerifyCodeFormInputsContainer>
           </FormContainer>
         </FormAndTitleContainer>
