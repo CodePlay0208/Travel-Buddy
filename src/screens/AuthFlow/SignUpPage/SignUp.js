@@ -78,7 +78,13 @@ const SignUp = (props) => {
     <Container>
       <FormAndCopyrightContainer>
         <FormAndTitleContainer>
-          <TitleContainer>Travmigoz</TitleContainer>
+          <TitleContainer
+            onClick={() => {
+              navigate('/')
+            }}
+          >
+            Travmigoz
+          </TitleContainer>
           <FormContainer>
             <FormHeadingContainer>Get Started</FormHeadingContainer>
             <FormSubHeadingText>

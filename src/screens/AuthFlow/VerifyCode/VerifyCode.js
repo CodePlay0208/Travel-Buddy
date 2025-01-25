@@ -46,8 +46,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    const isSignUpRequest = origin === '/signup'
-    verifyOTP(formData.verificationCode, isSignUpRequest)
+    verifyOTP(formData.verificationCode)
   }
 
   const onResendClick = async () => {
@@ -56,11 +55,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
 
   useEffect(() => {
     if (otpVerified) {
-      if (origin === '/signup' ) {
-        navigate('/')
-      } else if (origin === '/forget-password') {
-        navigate('/set-password')
-      }
+      navigate('/')
     }
   }, [otpVerified])
 
@@ -68,7 +63,13 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
     <Container>
       <FormAndCopyrightContainer>
         <FormAndTitleContainer>
-          <TitleContainer>Travmigoz</TitleContainer>
+          <TitleContainer
+            onClick={() => {
+              navigate('/')
+            }}
+          >
+            Travmigoz
+          </TitleContainer>
           <FormContainer>
             <BackButtonContainer role="button" onClick={handleBackButtonClick}>
               <BackButtonIcon src={SVG.BackButtonIcon} alt="Back" />
