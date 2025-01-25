@@ -27,9 +27,10 @@ export const FormAndTitleContainer = styled.div`
 `
 
 export const TitleContainer = styled.div`
+  cursor: pointer;
   font-size: 2.5rem;
   font-weight: 600;
-  color: #42a7c3;
+  color: #000000;
 `
 
 export const FormContainer = styled.div`
@@ -152,7 +153,7 @@ export const ContinueWithText = styled.p`
   font-weight: 400;
   font-size: 1rem;
 
-  &:hover{
+  &:hover {
     background-color: #e0fff4;
   }
   @media (max-width: 855px) {
@@ -198,8 +199,7 @@ export const ButtonAlt = styled.button`
     color: #252525;
   }
 
-  
-  &:hover{
+  &:hover {
     background-color: #e0fff4;
   }
 `
@@ -220,7 +220,7 @@ export const MainButtonAuth = styled.button`
   &:active {
     font-size: 1.6rem;
   }
-  &:hover{
+  &:hover {
     background-color: #7abba4;
   }
 

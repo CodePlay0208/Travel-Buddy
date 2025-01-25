@@ -62,7 +62,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
         navigate('/set-password')
       }
     }
-  }, [])
+  }, [otpVerified])
 
   return (
     <Container>

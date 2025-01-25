@@ -16,22 +16,26 @@ import {
   PublishHeading,
 } from './HeroSection.styled'
 import { images } from '../../assets'
+import { useNavigate } from 'react-router-dom'
 
 const HeroSection = () => {
+  const navigate = useNavigate()
   return (
     <FlexContainer margin="2.5%" gap="20px" direction="column">
       {/* publish section  */}
 
       <FlexContainer width="100%">
-        <FlexContainer
-          height="135px"
-          width="70%"
-          borderRadius="15px"
-          backgroundImage={images.heroSection_4}
-        >
+        <FlexContainer height="135px" width="70%" borderRadius="15px" backgroundImage={images.heroSection_4}>
           <PublishHeading>Publish trips on the go</PublishHeading>
         </FlexContainer>
-        <PublishButton width="30%">Publish Now</PublishButton>
+        <PublishButton
+          onClick={() => {
+            navigate('/publish-trip')
+          }}
+          width="30%"
+        >
+          Publish Now
+        </PublishButton>
       </FlexContainer>
       <FlexContainer gap="20px" direction="row" className="main">
         {/* Left Section */}
@@ -39,12 +43,7 @@ const HeroSection = () => {
           <FlexContainer direction="column" gap="20px" className="main">
             {/* Upper Section */}
             <FlexContainer width="100%">
-              <FlexContainer
-                aspectRatio="1"
-                width="50%"
-                borderRadius="15px"
-                backgroundImage={images.heroSection_1}
-              />
+              <FlexContainer aspectRatio="1" width="50%" borderRadius="15px" backgroundImage={images.heroSection_1} />
               <TextWrapper width="50%" backgroundColor="#8DD3BBDB" borderRadius="15px">
                 <SmallText>Scroll click Tap & Go</SmallText>
                 <LeftText>

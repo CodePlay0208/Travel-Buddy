@@ -39,7 +39,6 @@ const LoginPage = (props) => {
     email: '',
     password: '',
   })
-  const [rememberMe, setRememberMe] = useState(false)
   const { setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
 
@@ -94,10 +93,6 @@ const LoginPage = (props) => {
     },
   })
 
-  const toggleRemeberMeCheckbox = () => {
-    setRememberMe((prevState) => !prevState)
-  }
-
   const checkValueIsValid = useCallback((value) => {
     if (value === '' || value === undefined || value === null) {
       return false
@@ -117,7 +112,7 @@ const LoginPage = (props) => {
       })
       return
     }
-    const isAuth = await login(formData.email, formData.password, rememberMe)
+    const isAuth = await login(formData.email, formData.password)
 
     if (isAuth) {
       navigate('/')
@@ -128,7 +123,13 @@ const LoginPage = (props) => {
     <Container>
       <FormAndCopyrightContainer>
         <FormAndTitleContainer>
-          <TitleContainer>Travmigoz</TitleContainer>
+          <TitleContainer
+            onClick={() => {
+              navigate('/')
+            }}
+          >
+            Travmigoz
+          </TitleContainer>
           <FormContainer>
             <FormHeadingContainer>Log into Your Account</FormHeadingContainer>
             <FormSubHeadingText>

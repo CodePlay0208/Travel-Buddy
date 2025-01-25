@@ -1,4 +1,3 @@
-import React from 'react'
 import { createGlobalStyle, styled } from 'styled-components'
 const GlobalStyles = createGlobalStyle`
 *{
@@ -19,13 +18,12 @@ export const Label = styled.label`
 `
 
 export const Value = styled.span`
-  margin: 1% 0 0;
   font-family: 'Montserrat';
   font-weight: 600;
-  font-size: 20px;
+  font-size: 1.5vw;
   color: #112211;
   @media (max-width: 786px) {
-    font-size: 1.5vw;
+    font-size: 3vw;
   }
 `
 export const Input = styled.input`
@@ -40,10 +38,13 @@ export const Input = styled.input`
   background-color: #f4f4f4;
 
   @media (max-width: 786px) {
-    border-radius: 3px;
+    padding: 1.5%;
+    font-size: 2vw;
+    border-radius: 20px;
+    
   }
 
-  &&::placeholder {
+  ::placeholder {
     color: #787878;
     font-size: 1vw;
     font-weight: 500;

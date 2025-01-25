@@ -40,9 +40,25 @@ export const OtherContentsOfNavBar = styled.div`
   font-size: 75%;
   margin-right: 1%;
   gap: 5%;
+
   img {
     width: 100%;
-    height: 100%;
+    max-width: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    img {
+      max-width: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    img {
+      max-width: 20px;
+    }
   }
 `
 
@@ -60,14 +76,14 @@ export const NavContents = styled.div`
 export const NavButton = styled.div`
   color: rgb(0, 0, 0);
   border: none;
-  border-radius: 20px;
+  border-radius: 50px;
   background-color: #8dd3bb;
   font-weight: 500;
   text-align: center;
   cursor: pointer;
   margin: 2.5%;
   padding: 1%;
-  width: 80%;
+  width: 70%;
   position: relative;
   &:hover {
     filter: drop-shadow(3px 3px 4px #228be6);
