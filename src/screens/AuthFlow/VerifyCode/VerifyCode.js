@@ -56,7 +56,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
 
   useEffect(() => {
     if (otpVerified) {
-      if (origin === '/signup') {
+      if (origin === '/signup' ) {
         navigate('/')
       } else if (origin === '/forget-password') {
         navigate('/set-password')

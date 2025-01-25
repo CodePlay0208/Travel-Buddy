@@ -104,18 +104,17 @@ const LoginPage = (props) => {
     e.preventDefault()
 
     const validEmail = checkValueIsValid(formData.email)
-    const validPassword = checkValueIsValid(formData.password)
 
-    if (!(validEmail && validPassword)) {
-      toast.error('Email-id or Password is not valid!', {
+    if (!(validEmail)) {
+      toast.error('Email-id is not valid!', {
         autoClose: 1500,
       })
       return
     }
-    const isAuth = await login(formData.email, formData.password)
+    const isAuth = await login(formData.email)
 
     if (isAuth) {
-      navigate('/')
+      navigate('/verify-otp')
     }
   }
 

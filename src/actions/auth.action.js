@@ -26,11 +26,7 @@ export const loadUser = () => async (dispatch) => {
       payload: res.data,
     })
   } catch (e) {
-    if (e.response && e.response.status === 401) {
-      toast.error('Invalid User!', { autoClose: 1500 })
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
-    }
+    logout()
     dispatch({
       type: USER_LOAD_ERROR,
     })
@@ -69,7 +65,7 @@ export const login = (useremail) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data,
     })
-    dispatch(loadUser())
+    toast.success('Registration Successful! OTP sent to your email.', { autoClose: 1500 })
     return true
   } catch (e) {
     if (e.response && e.response.status === 400) {
