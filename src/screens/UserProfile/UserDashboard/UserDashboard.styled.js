@@ -55,7 +55,7 @@ export const ProfilePic = styled.div`
 
 export const ImgProfile = styled.img`
   border-radius: 50%;
-  border: 7px solid rgb(0, 199, 176);
+  border: 2.5px solid rgb(0, 199, 176);
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -69,6 +69,7 @@ export const EditPic = styled.img`
   right: 0;
   z-index: 3;
   bottom: 0;
+  width: 30%;
 `
 
 export const DashboardHeader = styled.div`
@@ -114,6 +115,7 @@ export const UserInfoColumns = styled.div`
   @media (max-width: 786px) {
     flex-wrap: wrap;
     width: 100%;
+    gap: 0%;
   }
 `
 
@@ -160,18 +162,24 @@ const BaseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.3% 1%;
+  padding: 1% 1.5%;
   font-family: 'Montserrat';
   font-weight: 500;
-  font-size: 15px;
+  font-size: 1vw;
 
   border-radius: 30px;
   background-color: transparent;
   cursor: pointer;
   margin: 0 1%;
+
+  img {
+    width: 1.5vw;
+  }
+
   @media (max-width: 786px) {
     font-size: 2.5vw;
-    border-radius: 2px;
+    width: 100%;
+    padding: 1.5%;
     img {
       width: 1.5vw;
     }
@@ -186,24 +194,24 @@ const BaseButton = styled.button`
 `
 export const EditButton = styled(BaseButton)`
   color: #112211;
-  border: 2px solid #8dd3bb;
+  border: 1px solid #8dd3bb;
 `
 
 export const DeleteButton = styled(BaseButton)`
   color: #e9e9e9;
-  border: 2px solid #dc2626;
+  border: 1px solid #dc2626;
   background-color: #dc2626;
 `
 
 export const SaveButton = styled(BaseButton)`
-  background-color: #28a745;
-  color: white;
-  border: 2px solid #28a745;
+  color: #000000;
+  border: 1px solid #8dd3bb;
+  background-color: #8dd3bb;
 `
 
 export const CancelButton = styled(BaseButton)`
-  background-color: #dc2626;
+  background-color: #ffffff;
 
-  border: 2px solid #dc2626;
-  color: white;
+  border: 1px solid #000000;
+  color: #000000;
 `

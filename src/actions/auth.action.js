@@ -6,10 +6,6 @@ import {
   LOGOUT,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
-  FORGET_PASS_SUCCESS,
-  FORGET_PASS_FAIL,
-  RESET_PASS_SUCCESS,
-  RESET_PASS_FAIL,
   VERIFY_OTP_SUCCESS,
   VERIFY_OTP_FAIL,
   RESEND_OTP_SUCCESS,
@@ -42,8 +38,8 @@ export const loadUser = () => async (dispatch) => {
 }
 
 export const register = (formData) => async (dispatch) => {
-  const { firstName, lastName, email, password, phoneNumber } = formData
-  const body = JSON.stringify({ username: `${firstName}_${lastName}`, useremail: email, password, phoneNumber })
+  const { username, email } = formData
+  const body = JSON.stringify({ username: username, useremail: email })
   try {
     const res = await AuthApi.registerUser(body)
     dispatch({
@@ -65,8 +61,8 @@ export const register = (formData) => async (dispatch) => {
   }
 }
 
-export const login = (useremail, password, rememberMe) => async (dispatch) => {
-  const body = JSON.stringify({ useremail, password, rememberMe })
+export const login = (useremail) => async (dispatch) => {
+  const body = JSON.stringify({ useremail })
   try {
     const res = await AuthApi.loginUser(body)
     dispatch({
@@ -103,8 +99,8 @@ export const loginWithGoogle = () => async (dispatch) => {
   }
 }
 
-export const verifyOTP = (userOtp, isSignUpRequest) => async (dispatch) => {
-  const body = JSON.stringify({ userOtp, isSignUpRequest })
+export const verifyOTP = (userOtp) => async (dispatch) => {
+  const body = JSON.stringify({ userOtp })
   if (localStorage.token) {
     setAuthToken(localStorage.token)
   }
@@ -112,12 +108,12 @@ export const verifyOTP = (userOtp, isSignUpRequest) => async (dispatch) => {
     const res = await AuthApi.verifyOTP(body)
     dispatch({
       type: VERIFY_OTP_SUCCESS,
-      payload: res.data
+      payload: res.data,
     })
-    console.log(res);
+    console.log(res)
 
-    console.log(res.data.token);
-    localStorage.setItem("token",res.data.token)
+    console.log(res.data.token)
+    localStorage.setItem('token', res.data.token)
     toast.success('OTP Verified!', { autoClose: 1500 })
 
     dispatch(loadUser())
@@ -147,8 +143,7 @@ export const resendOTP = () => async (dispatch) => {
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
-    }
-    else {
+    } else {
       toast.error('Please Try Again!', { autoClose: 1500 })
     }
     dispatch({
@@ -157,57 +152,13 @@ export const resendOTP = () => async (dispatch) => {
   }
 }
 
-export const forgetPassword = (useremail) => async (dispatch) => {
-  const body = JSON.stringify({ useremail })
-  if (localStorage.token) {
-    setAuthToken(localStorage.token)
-  }
-  try {
-    const res = await AuthApi.forgetPassword(body)
-    dispatch({
-      type: FORGET_PASS_SUCCESS,
-      payload: res.data,
-    })
-    return true
-  } catch (e) {
-    if (e.response && e.response.status === 400) {
-      toast.error('Invalid Email!', { autoClose: 1500 })
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
-    }
-    dispatch({
-      type: FORGET_PASS_FAIL,
-    })
-    return false
-  }
-}
-
-export const resetPassword = (newPassword) => async (dispatch) => {
-  const body = JSON.stringify({ newPassword })
-  try {
-    await AuthApi.verifyResetPassword(body)
-    dispatch({
-      type: RESET_PASS_SUCCESS,
-    })
-    toast.success('Password Changed Successfully!', { autoClose: 1500 })
-    dispatch(loadUser())
-    return true
-  } catch (e) {
-    toast.error('Please Try Again!', { autoClose: 1500 })
-    dispatch({
-      type: RESET_PASS_FAIL,
-    })
-    return false
-  }
-}
-
 export const logout = () => (dispatch) => {
   if (localStorage.token) {
-    setAuthToken("")
+    setAuthToken('')
   }
   if (localStorage.persist) {
-    setAuthToken("")
+    setAuthToken('')
   }
-  
+
   dispatch({ type: LOGOUT })
 }

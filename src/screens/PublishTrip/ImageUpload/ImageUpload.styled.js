@@ -29,11 +29,11 @@ export const IconPicture = styled.div`
 
     @media (max-width: 768px) {
       border-radius: 8px;
-      width:75%
+      width: 75%;
     }
     @media (max-width: 500px) {
       border-radius: 6px;
-      width:50%
+      width: 50%;
     }
   }
 `
@@ -199,7 +199,7 @@ export const UploadButton = styled.button`
   padding: 3%;
   border-radius: 6px;
   border: 0;
-  color: #ffffffd9;
+  color: #000000d9;
 
   @media (max-width: 768px) {
     border-radius: 4px;

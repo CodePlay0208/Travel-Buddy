@@ -42,6 +42,7 @@ const authReducer = (state = initialState, action) => {
         token: payload.token,
         isLoading: false,
         isAuthenticated: true,
+        otpVerified: false,
       }
     case FORGET_PASS_SUCCESS:
       localStorage.setItem('token', payload.token)
@@ -51,7 +52,7 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
       }
     case VERIFY_OTP_SUCCESS:
-      localStorage.setItem("token", payload.token)
+      localStorage.setItem('token', payload.token)
       return {
         ...state,
         otpVerified: true,
@@ -77,6 +78,7 @@ const authReducer = (state = initialState, action) => {
         token: null,
         isLoading: false,
         isAuthenticated: false,
+        otpVerified: false,
       }
     default:
       return state

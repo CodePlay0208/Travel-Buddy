@@ -4,7 +4,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import { connect } from 'react-redux'
 import { register } from '../../../actions/auth.action'
 
-import { SVG, images } from '../../../assets'
+import { images } from '../../../assets'
 import {
   Container,
   FormAndCopyrightContainer,
@@ -13,25 +13,11 @@ import {
   FormContainer,
   FormHeadingContainer,
   FormSubHeadingText,
-  DividerContainer,
-  Divider,
-  OrLoginWithContainer,
-  DesignContainer,
-  AuthDesignImage,
-  GoogleSignUpButton,
-  ContinueWithText,
-  ImageGoogleIcon,
   MainButtonAuth,
 } from '../AuthFlow.styled'
 import {
   SignUpTwoInput,
   SignUpFormInputsContainer,
-  SignUpTermsAgreementContainer,
-  SignUpTermsAgreementText,
-  SignUpTermsLink,
-  SignUpLinkText,
-  SignUpCreateAccountContainer,
-  SignUpCreateAccountButton,
   SignUpAlreadyHaveContainer,
   SignUpAlreadyHaveText,
   SignUpLoginLink,
@@ -39,8 +25,6 @@ import {
   SignUpCopyrightTextContainer,
   SignUpDesignContainer,
   SignUpAuthDesignImage,
-  SignUpGoogleSignUpButton,
-  SignUpContinueWithText,
 } from './SignUp.styled'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
@@ -53,15 +37,8 @@ const mapStateToProps = (state) => ({
 
 const SignUp = (props) => {
   const { register } = props
-  const [securePasswordText, setSecurePasswordText] = useState(true)
-  const [secureConfirmPasswordText, setSecureConfirmPasswordText] = useState(true)
-  const [isTermsAggrementChecked, setIsTermsAggrementChecked] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
-
-  const toggleTermsAgreementCheck = () => {
-    setIsTermsAggrementChecked((prevState) => !prevState)
-  }
 
   const [formData, setFormData] = useState({
     username: '',
@@ -69,7 +46,6 @@ const SignUp = (props) => {
     phoneNumber: '',
     password: '',
     confirmPassword: '',
-    termsCheck: isTermsAggrementChecked,
   })
 
   const checkValueIsValid = (value) => {
@@ -82,22 +58,16 @@ const SignUp = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const validEmail = checkValueIsValid(formData.email)
-    const validPassword = checkValueIsValid(formData.password)
 
-    if (!(validEmail && validPassword)) {
+    if (!validEmail) {
       toast.error('email-id or password not valid', {
         autoClose: 1500,
       })
       return
     }
-    if (formData.password !== formData.confirmPassword) {
-      toast.error("Passwords don't match", {
-        autoClose: 1500,
-      })
-      return
-    }
-    const isAuth = await register(formData)
 
+    const isAuth = await register(formData)
+    console.log(isAuth)
     if (isAuth) {
       sessionStorage.setItem('prevRoute', location.pathname)
       navigate('/verify-otp')
@@ -126,10 +96,10 @@ const SignUp = (props) => {
                     setUser={setFormData}
                   />
                   <InputComponent
-                    label="Phone Number"
-                    type="tel"
-                    name="phoneNumber"
-                    placeholder="Enter Your Phone Number"
+                    label="Email"
+                    type="email"
+                    name="email"
+                    placeholder="Enter Your Email"
                     user={formData}
                     setUser={setFormData}
                   />
@@ -138,31 +108,7 @@ const SignUp = (props) => {
                   customStyles={css`
                     margin-top: 1.5%;
                   `}
-                >
-                  <InputComponent
-                    label="Password"
-                    type={securePasswordText ? 'password' : 'text'}
-                    name="password"
-                    id="password"
-                    placeholder="Enter Your Password"
-                    user={formData}
-                    setUser={setFormData}
-                    isPasswordField={true}
-                    secureTextState={securePasswordText}
-                    setSecureTextState={setSecurePasswordText}
-                  />
-                  <InputComponent
-                    label="Confirm Password"
-                    type={secureConfirmPasswordText ? 'password' : 'text'}
-                    name="confirmPassword"
-                    placeholder="Confirm Your Password"
-                    user={formData}
-                    setUser={setFormData}
-                    isPasswordField={true}
-                    secureTextState={secureConfirmPasswordText}
-                    setSecureTextState={setSecureConfirmPasswordText}
-                  />
-                </SignUpTwoInput>
+                ></SignUpTwoInput>
                 <MainButtonAuth
                   type="submit"
                   mainButtonStyles={css`
@@ -173,15 +119,23 @@ const SignUp = (props) => {
                 </MainButtonAuth>
                 <SignUpAlreadyHaveContainer>
                   <SignUpAlreadyHaveText>
-                    Already have an account? 
-                    <SignUpLoginLink href="/login">
+                    Already have an account?
+                    <SignUpLoginLink
+                      onClick={() => {
+                        navigate('/login')
+                      }}
+                    >
                       <SignUpLoginText> Login</SignUpLoginText>
                     </SignUpLoginLink>
                   </SignUpAlreadyHaveText>
 
-                    <SignUpLoginLink href="/login">
-                      <SignUpLoginText>Sign in with email instead</SignUpLoginText>
-                    </SignUpLoginLink>
+                  <SignUpLoginLink
+                    onClick={() => {
+                      navigate('/login')
+                    }}
+                  >
+                    <SignUpLoginText>Sign in with phone number instead</SignUpLoginText>
+                  </SignUpLoginLink>
                 </SignUpAlreadyHaveContainer>
               </form>
             </SignUpFormInputsContainer>

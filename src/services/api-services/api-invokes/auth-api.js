@@ -65,20 +65,6 @@ export const AuthApi = {
     }
   },
 
-  forgetPassword: async (payload) => {
-    try {
-      const result = await ApiService.post(API_PATH.AUTH_FORGET_PASS, payload, {
-        baseURL: env.BASE_API_URL,
-      })
-      console.log('forgetPassword SUCCESS: ', result)
-
-      return { status: result.status, data: result.data }
-    } catch (e) {
-      console.log('forgetPassword ERROR: ', e)
-      throw e
-    }
-  },
-
   verifyOTP: async (payload) => {
     try {
       const result = await ApiService.post(API_PATH.AUTH_VERIFY_OTP, payload, {
@@ -89,20 +75,6 @@ export const AuthApi = {
       return { status: result.status, data: result.data }
     } catch (e) {
       console.log('verifyOTP ERROR: ', e)
-      throw e
-    }
-  },
-
-  verifyResetPassword: async (payload) => {
-    try {
-      const result = await ApiService.post(API_PATH.AUTH_VERIFY_RESET_PASS, payload, {
-        baseURL: env.BASE_API_URL,
-      })
-      console.log('verifyResetPassword SUCCESS: ', result)
-
-      return { status: result.status, data: result.data }
-    } catch (e) {
-      console.log('verifyResetPassword ERROR: ', e)
       throw e
     }
   },

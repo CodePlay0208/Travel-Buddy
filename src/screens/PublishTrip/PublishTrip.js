@@ -374,7 +374,7 @@ const PublishTrip = (props) => {
         </PublishTripContent>
         {activeSection === TABS.TRIP ? (
           <PublishTripButton>
-            <NextButton onClick={handleNext}>Next</NextButton>
+            <SubmitButton onClick={handleNext}>Next</SubmitButton>
           </PublishTripButton>
         ) : (
           <PublishTripButton>

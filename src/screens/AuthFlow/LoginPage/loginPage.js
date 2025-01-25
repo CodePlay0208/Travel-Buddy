@@ -18,24 +18,14 @@ import {
   FormHeadingContainer,
   FormSubHeadingText,
   DividerContainer,
-  OrLoginWithContainer,
   DesignContainer,
   AuthDesignImage,
-  GoogleSignUpButton,
   ContinueWithText,
   ImageGoogleIcon,
   ButtonAlt,
-  MainButtonAuth
+  MainButtonAuth,
 } from '../AuthFlow.styled'
-import {
-  LoginRememberMeAndForgetPasswordContainer,
-  LoginRememberMeContainer,
-  LoginForgetPasswordLink,
-  LoginSignUpLink,
-  InputFieldsContainer,
-  Divider,
-  LoginButtonsContainer
-} from './loginPage.styled'
+import { LoginSignUpLink, InputFieldsContainer, Divider, LoginButtonsContainer } from './loginPage.styled'
 import { UserLoginContext } from '../../../utils/Context/LoggedInUserContext'
 import { css } from 'styled-components'
 
@@ -49,8 +39,6 @@ const LoginPage = (props) => {
     email: '',
     password: '',
   })
-  const [rememberMe, setRememberMe] = useState(false)
-  const [secureTextEntry, setSecureTextEntry] = useState(true)
   const { setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
 
@@ -105,10 +93,6 @@ const LoginPage = (props) => {
     },
   })
 
-  const toggleRemeberMeCheckbox = () => {
-    setRememberMe((prevState) => !prevState)
-  }
-
   const checkValueIsValid = useCallback((value) => {
     if (value === '' || value === undefined || value === null) {
       return false
@@ -128,7 +112,7 @@ const LoginPage = (props) => {
       })
       return
     }
-    const isAuth = await login(formData.email, formData.password, rememberMe)
+    const isAuth = await login(formData.email, formData.password)
 
     if (isAuth) {
       navigate('/')
@@ -139,13 +123,26 @@ const LoginPage = (props) => {
     <Container>
       <FormAndCopyrightContainer>
         <FormAndTitleContainer>
-          <TitleContainer>Travmigoz</TitleContainer>
+          <TitleContainer
+            onClick={() => {
+              navigate('/')
+            }}
+          >
+            Travmigoz
+          </TitleContainer>
           <FormContainer>
             <FormHeadingContainer>Log into Your Account</FormHeadingContainer>
-              <FormSubHeadingText>
-                New at Travmigoz?
-                <LoginSignUpLink href='/signup'> Sign up</LoginSignUpLink>
-              </FormSubHeadingText>
+            <FormSubHeadingText>
+              New at Travmigoz?
+              <LoginSignUpLink
+                onClick={() => {
+                  navigate('/signup')
+                }}
+              >
+                {' '}
+                Sign up
+              </LoginSignUpLink>
+            </FormSubHeadingText>
 
             <form onSubmit={handleLogin}>
               <InputFieldsContainer>
@@ -161,33 +158,7 @@ const LoginPage = (props) => {
                     flex: 1;
                   `}
                 />
-                <InputComponent
-                  label="Password"
-                  type={secureTextEntry ? 'password' : 'text'}
-                  name="password"
-                  id="password"
-                  user={formData}
-                  setUser={setFormData}
-                  placeholder="Enter Your Password"
-                  isPasswordField={true}
-                  secureTextState={secureTextEntry}
-                  setSecureTextState={setSecureTextEntry}
-                  customInputFieldStyles={css`
-                    flex: 1;
-                  `}
-                />
               </InputFieldsContainer>
-
-              <LoginRememberMeAndForgetPasswordContainer>
-                <LoginRememberMeContainer>
-                  <input type="checkbox" checked={rememberMe} onClick={toggleRemeberMeCheckbox} />
-                  <div>Remember Me</div>
-                </LoginRememberMeContainer>
-
-                <LoginForgetPasswordLink href="/forget-password">
-                  <p>Forgot Password?</p>
-                </LoginForgetPasswordLink>
-              </LoginRememberMeAndForgetPasswordContainer>
 
               <MainButtonAuth type="submit">
                 <p>Log In</p>
@@ -201,16 +172,15 @@ const LoginPage = (props) => {
 
               <LoginButtonsContainer>
                 <ButtonAlt role="button" onClick={googleSignIn}>
-                  <ImageGoogleIcon src={images.google_icon_black} alt='Log In With Google' />
+                  <ImageGoogleIcon src={images.google_icon_black} alt="Log In With Google" />
                   <ContinueWithText>Log In With Google</ContinueWithText>
                 </ButtonAlt>
 
                 <ButtonAlt role="button" onClick={googleSignIn}>
-                  <ImageGoogleIcon src={images.phone_icon_black} alt='Log In With Phone' />
+                  <ImageGoogleIcon src={images.phone_icon_black} alt="Log In With Phone" />
                   <ContinueWithText>Log In With Phone</ContinueWithText>
                 </ButtonAlt>
               </LoginButtonsContainer>
-
             </form>
           </FormContainer>
         </FormAndTitleContainer>
