@@ -43,7 +43,7 @@ const LoginPage = (props) => {
   const navigate = useNavigate()
 
   const googleSignIn = useGoogleLogin({
-    clientId: '464876682696-pkm7moinvftntbnild9dq19378vu3ski.apps.googleusercontent.com',
+    clientId: '1022164133679-ki2bnhs4j6njqkehebo7dmo3k96rdfvc.apps.googleusercontent.com',
     onSuccess: (response) => {
       console.log(response)
       const token = response.access_token
