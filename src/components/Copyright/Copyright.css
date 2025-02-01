@@ -1,17 +1,16 @@
-
 .LoginCopyrightTextContainer {
-    width: fit-content;
-  
-    left: -2%;
-    bottom: -3%;
-    z-index: 2;
-  }
-  
-  .LoginCopyrightText {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-  
-  .LoginTravmigozCopyrightText {
-    font-weight: 500;
-  }
+  width: fit-content;
+
+  left: -2%;
+  bottom: -3%;
+  z-index: 2;
+}
+
+.LoginCopyrightText {
+  font-size: 1vw;
+  font-weight: 400;
+}
+
+.LoginTravmigozCopyrightText {
+  font-weight: 500;
+}

@@ -8,13 +8,13 @@ export const Container = styled.div`
 `
 
 export const InputLabel = styled.p`
-  font-size: 1rem;
+  font-size: 1vw;
   background-color: white;
   font-weight: 500;
   margin-left: 8px;
 
   span {
-    color: #FF2B2B;s
+    color: #FF2B2B;
   }
   ${({ customLabelStyles }) => customLabelStyles && css(customLabelStyles)}
 `
@@ -25,17 +25,17 @@ export const InputFieldContainer = styled.div`
   justify-content: center;
   width: 100%;
   border-radius: 40px;
-  padding: 12px 15px 12px 15px;
+  padding: 2%;
   border-style: none;
   background-color: #f4f4f4;
-  font-size: 16px;
+  font-size: 1.5vw;
 `
 
 export const InputField = styled.input`
   width: 100%;
   border-style: none;
   background-color: #f4f4f4;
-  font-size: 16px;
+  font-size: 1.5vw;
   ${({ customInputFieldStyles }) => customInputFieldStyles && css(customInputFieldStyles)}
 `
 

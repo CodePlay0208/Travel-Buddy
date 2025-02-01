@@ -1,13 +1,6 @@
 import React, { memo, useCallback } from 'react'
 import { SVG } from '../../assets'
-import { 
-  Container,
-  InputLabel,
-  InputField,
-  InputFieldContainer,
-  PassowrdEyeContainer,
-  PasswordEyeImage
-} from './InputComponent.styled'
+import { Container, InputLabel, InputField, InputFieldContainer, PassowrdEyeContainer, PasswordEyeImage } from './InputComponent.styled'
 
 const PasswordEyeComponent = memo((props) => {
   const { secureTextState, setSecureTextState } = props
