@@ -14,21 +14,14 @@ import {
   FormHeadingContainer,
   FormSubHeadingText,
   MainButtonAuth,
+  DesignContainer,
+  AuthDesignImage,
 } from '../AuthFlow.styled'
-import {
-  SignUpTwoInput,
-  SignUpFormInputsContainer,
-  SignUpAlreadyHaveContainer,
-  SignUpAlreadyHaveText,
-  SignUpLoginLink,
-  SignUpLoginText,
-  SignUpCopyrightTextContainer,
-  SignUpDesignContainer,
-  SignUpAuthDesignImage,
-} from './SignUp.styled'
+import { SignUpAlreadyHaveContainer, SignUpAlreadyHaveText, SignUpLoginLink, SignUpLoginText } from './SignUp.styled'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 import { css } from 'styled-components'
+import { InputFieldsContainer } from '../LoginPage/loginPage.styled'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
@@ -48,6 +41,7 @@ const SignUp = (props) => {
     confirmPassword: '',
   })
 
+  const [isEmail, setIsEmail] = useState(true)
   const checkValueIsValid = (value) => {
     if (value === '' || value === undefined || value === null) {
       return false
@@ -57,8 +51,12 @@ const SignUp = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const validEmail = checkValueIsValid(formData.email)
-
+    let validEmail = false
+    if (isEmail) {
+      validEmail = checkValueIsValid(formData.email)
+    } else {
+      validEmail = checkValueIsValid(formData.phoneNumber)
+    }
     if (!validEmail) {
       toast.error('email-id or password not valid', {
         autoClose: 1500,
@@ -90,9 +88,9 @@ const SignUp = (props) => {
             <FormSubHeadingText>
               Welcome to <span>Travmigoz</span>- Create your account.
             </FormSubHeadingText>
-            <SignUpFormInputsContainer>
+            <>
               <form onSubmit={handleSubmit}>
-                <SignUpTwoInput>
+                <InputFieldsContainer>
                   <InputComponent
                     label="Name"
                     type="text"
@@ -101,21 +99,29 @@ const SignUp = (props) => {
                     user={formData}
                     setUser={setFormData}
                   />
-                  <InputComponent
-                    label="Email"
-                    type="email"
-                    name="email"
-                    placeholder="Enter Your Email"
-                    user={formData}
-                    setUser={setFormData}
-                  />
-                </SignUpTwoInput>
-                <SignUpTwoInput
-                  customStyles={css`
-                    margin-top: 1.5%;
-                  `}
-                ></SignUpTwoInput>
+                  {isEmail ? (
+                    <InputComponent
+                      label="Email"
+                      type="email"
+                      name="email"
+                      placeholder="Enter Your Email"
+                      user={formData}
+                      setUser={setFormData}
+                    />
+                  ) : (
+                    <InputComponent
+                      label="Phone Number"
+                      type="text"
+                      name="phoneNumber"
+                      placeholder="Enter Your Phone Number"
+                      user={formData}
+                      setUser={setFormData}
+                    />
+                  )}
+                </InputFieldsContainer>
+
                 <MainButtonAuth
+                  onClick={handleSubmit}
                   type="submit"
                   mainButtonStyles={css`
                     margin-top: 4.5%;
@@ -131,28 +137,28 @@ const SignUp = (props) => {
                         navigate('/login')
                       }}
                     >
-                      <SignUpLoginText> Login</SignUpLoginText>
+                      
+                      Login
                     </SignUpLoginLink>
                   </SignUpAlreadyHaveText>
 
                   <SignUpLoginLink
                     onClick={() => {
-                      navigate('/login')
+                      setIsEmail(!isEmail)
                     }}
                   >
-                    <SignUpLoginText>Sign in with phone number instead</SignUpLoginText>
+                    Sign in with {isEmail ? 'email' : 'phone number'} instead
                   </SignUpLoginLink>
                 </SignUpAlreadyHaveContainer>
               </form>
-            </SignUpFormInputsContainer>
+            </>
           </FormContainer>
-          <SignUpCopyrightTextContainer></SignUpCopyrightTextContainer>
         </FormAndTitleContainer>
         <Copyright />
       </FormAndCopyrightContainer>
-      <SignUpDesignContainer>
-        <SignUpAuthDesignImage src={images.auth_side_image} alt="Auth Design" />
-      </SignUpDesignContainer>
+      <DesignContainer>
+        <AuthDesignImage src={images.auth_side_image} alt="Auth Design" />
+      </DesignContainer>
       <ToastContainer />
     </Container>
   )

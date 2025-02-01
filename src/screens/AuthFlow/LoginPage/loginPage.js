@@ -39,6 +39,8 @@ const LoginPage = (props) => {
     email: '',
     password: '',
   })
+  const [isEmail, setIsEmail] = useState(true)
+
   const { setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
 
@@ -108,7 +110,7 @@ const LoginPage = (props) => {
       validEmail = checkValueIsValid(formData.email)
     }
 
-    if (!(validEmail)) {
+    if (!validEmail) {
       toast.error('Email-id is not valid!', {
         autoClose: 1500,
       })
@@ -141,34 +143,46 @@ const LoginPage = (props) => {
                   navigate('/signup')
                 }}
               >
-                {' '}
                 Sign up
               </LoginSignUpLink>
             </FormSubHeadingText>
 
             <form onSubmit={handleLogin}>
               <InputFieldsContainer>
-                <InputComponent
-                  label="Email"
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Enter Your Email"
-                  user={formData}
-                  setUser={setFormData}
-                  customInputFieldStyles={css`
-                    flex: 1;
-                  `}
-                />
+                {isEmail ? (
+                  <InputComponent
+                    label="Email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Enter Your Email"
+                    user={formData}
+                    setUser={setFormData}
+                    customInputFieldStyles={css`
+                      flex: 1;
+                    `}
+                  />
+                ) : (
+                  <InputComponent
+                    label="Phone Number"
+                    type="text"
+                    name="phone"
+                    id="phone"
+                    placeholder="Enter Your Phone"
+                    user={formData}
+                    setUser={setFormData}
+                    customInputFieldStyles={css`
+                      flex: 1;
+                    `}
+                  />
+                )}
               </InputFieldsContainer>
 
-              <MainButtonAuth type="submit">
-                <p>Log In</p>
-              </MainButtonAuth>
+              <MainButtonAuth type="submit">Log In</MainButtonAuth>
 
               <DividerContainer>
                 <Divider />
-                <p>Or</p>
+                Or
                 <Divider />
               </DividerContainer>
 
@@ -178,9 +192,14 @@ const LoginPage = (props) => {
                   <ContinueWithText>Log In With Google</ContinueWithText>
                 </ButtonAlt>
 
-                <ButtonAlt role="button" onClick={googleSignIn}>
+                <ButtonAlt
+                  role="button"
+                  onClick={() => {
+                    setIsEmail(!isEmail)
+                  }}
+                >
                   <ImageGoogleIcon src={images.phone_icon_black} alt="Log In With Phone" />
-                  <ContinueWithText>Log In With Phone</ContinueWithText>
+                  <ContinueWithText>Log In With {isEmail ? 'Email' : 'Phone number'}</ContinueWithText>
                 </ButtonAlt>
               </LoginButtonsContainer>
             </form>

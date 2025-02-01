@@ -5,21 +5,12 @@ export const Container = styled.div`
   flex: 1;
   display: flex;
   background-color: white;
-  @media (max-width: 550px) {
-    flex-direction: column;
-  }
 `
 
 export const FormAndCopyrightContainer = styled.div`
   flex: 1.3 1;
-  width: 50%;
-  // margin: 2.35% 12% 0% 2.35%;
-  margin: 2.35%;
-
-  @media (max-width: 550px) {
-    margin: 0 auto;
-    width: 100%;
-  }
+  width: 55%;
+  margin: 2%;
 `
 
 export const FormAndTitleContainer = styled.div`
@@ -28,7 +19,7 @@ export const FormAndTitleContainer = styled.div`
 
 export const TitleContainer = styled.div`
   cursor: pointer;
-  font-size: 2.5rem;
+  font-size: 2vw;
   font-weight: 600;
   color: #000000;
 `
@@ -41,7 +32,7 @@ export const BackButtonContainer = styled.div`
   display: flex;
   width: fit-content;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 1%;
   user-select: none;
   cursor: pointer;
 
@@ -57,24 +48,24 @@ export const BackButtonIcon = styled.img`
 `
 
 export const BackButtonText = styled.p`
-  margin-left: 10px;
+  margin-left: 1%;
 `
 
 export const FormHeadingContainer = styled.div`
   flex: 1;
-  margin-bottom: 1rem;
-  font-size: 3.5rem;
+  margin-bottom: 1%;
+  font-size: 3vw;
   font-weight: 700;
 
   ${({ customStyles }) => customStyles && customStyles};
 `
 
 export const FormSubHeadingText = styled.div`
-  font-size: 0.875rem;
+  font-size: 1vw;
   font-weight: 400;
   color: #848282;
 
-  padding-bottom: 1.25rem;
+  padding-bottom: 2%;
   border-style: solid;
   border-width: 0px 0px 1px 0px;
 
@@ -89,10 +80,7 @@ export const DividerContainer = styled.div`
   align-items: center;
   margin: 2% 0px;
   color: #112211;
-
-  p {
-    font-size: 0.9rem;
-  }
+  font-size: 1vw;
 `
 
 export const Divider = styled.div`
@@ -104,29 +92,26 @@ export const Divider = styled.div`
 `
 
 export const OrLoginWithContainer = styled.div`
-  margin: 0px 8px;
+  margin: 0px 1%;
   text-align: center;
   color: #112211;
-  font-size: 0.9rem;
+  font-size: 1vw;
 `
 
 export const DesignContainer = styled.div`
-  flex: 1 2;
-  max-width: 42%;
+  width: 40%;
+  aspect-ratio: 0.9;
   height: fit-content;
-  padding: 40px 0px 0px 0%;
+  padding: 2%;
 
-  @media (max-width: 550px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 `
 
 export const AuthDesignImage = styled.img`
-  height: 92vh;
-
-  @media (max-width: 550px) {
-    display: none;
-  }
+  width: 100%;
+  height: 100%;
 `
 
 export const GoogleSignUpButton = styled.div`
@@ -137,45 +122,28 @@ export const GoogleSignUpButton = styled.div`
   align-items: center;
   border-radius: 5px;
   border: none;
-
-  @media (max-width: 855px) {
-    padding: 1.4% 20%;
-    background-color: white;
-
-    p {
-      display: none;
-    }
-  }
 `
 
-export const ContinueWithText = styled.p`
-  color: white;
+export const ContinueWithText = styled.div`
   font-weight: 400;
-  font-size: 1rem;
-
-  &:hover {
-    background-color: #e0fff4;
-  }
-  @media (max-width: 855px) {
-    display: none;
-  }
+  font-size: 1vw;
 `
 
 export const ImageGoogleIcon = styled.img`
-  height: 1rem;
-  margin-right: 8px;
+  height: 1.5vw;
+  margin-right: 1%;
 `
 
 export const responsiveStyles = styled.div`
   input::placeholder {
     font-family: 'Montserrat', sans-serif;
     font-weight: 200;
-    padding-left: 4px;
+    padding-left: 0.5%;
   }
 
   @media (max-width: 550px) {
     input::placeholder {
-      font-size: 0.9rem;
+      font-size: 1vw;
     }
   }
 `
@@ -192,12 +160,7 @@ export const ButtonAlt = styled.button`
   justify-content: center;
   align-items: center;
   width: 100%;
-
-  p {
-    font-size: 16px;
-    font-weight: 400;
-    color: #252525;
-  }
+  padding: 2%;
 
   &:hover {
     background-color: #e0fff4;
@@ -210,15 +173,11 @@ export const MainButtonAuth = styled.button`
   width: 100%;
   border-radius: 30px;
   margin-top: 1.5%;
-
-  p {
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #ffffff;
-  }
+  font-size: 1vw;
+  padding: 2%;
 
   &:active {
-    font-size: 1.6rem;
+    font-size: 1.2vw;
   }
   &:hover {
     background-color: #7abba4;
