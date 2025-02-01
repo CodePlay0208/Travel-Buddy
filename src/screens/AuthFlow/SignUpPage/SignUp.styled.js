@@ -88,22 +88,29 @@ export const SignUpAlreadyHaveContainer = styled.div`
 
 export const SignUpAlreadyHaveText = styled.div`
   display: flex;
-  font-size: 0.875rem;
+  font-size: 1vw;
   font-weight: 500;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 `
 
-export const SignUpLoginLink = styled.a`
+export const SignUpLoginLink = styled.div`
   text-decoration: none;
-  margin-left: 5px;
+  margin-left: 2px;
+  font-size: 1vw;
+  font-weight: 700;
+  color: #252525;
+  transition:
+    color 0.3s ease,
+    transform 0.1s ease;
+  cursor: pointer;
 
-  &:hover .SignUpLoginText {
+  &:hover {
     color: #e14944;
   }
 
-  &:active .SignUpLoginText {
+  &:active {
     color: #ca2c27;
     transform: scale(0.98);
   }
@@ -117,7 +124,6 @@ export const SignUpLoginText = styled.p`
     color 0.3s ease,
     transform 0.1s ease;
   cursor: pointer;
-  
 `
 
 export const SignUpCopyrightTextContainer = styled.div`

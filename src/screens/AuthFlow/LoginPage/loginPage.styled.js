@@ -41,9 +41,10 @@ export const LoginForgetPasswordLink = styled.a`
   }
 `
 
-export const LoginSignUpLink = styled.a`
+export const LoginSignUpLink = styled.div`
   text-decoration: none;
-  font-size: 0.875rem;
+  font-size: 1vw;
+  margin-left: 2px;
   font-weight: 700;
   color: #252525;
   transition:
@@ -66,7 +67,6 @@ export const Divider = styled.div`
   width: 45%;
   background-color: #112211;
 `
-
 
 export const GoogleSignUpButton = styled.button`
   padding: 1.4% 20%;
@@ -112,4 +112,8 @@ export const LoginButtonsContainer = styled.div`
   flex-direction: row;
   gap: 2rem;
 
+  @media (max-width: 550px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 `

@@ -16,7 +16,7 @@ export const VerifyCodeDidntRecieveText = styled.p`
   font-weight: 500;
 `
 
-export const VerifyCodeResendLink = styled.a`
+export const VerifyCodeResendLink = styled.div`
   text-decoration: none;
 `
 

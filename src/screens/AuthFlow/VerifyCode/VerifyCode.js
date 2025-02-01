@@ -91,7 +91,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
                 />
                 <VerifyCodeResendCodeContainer>
                   <VerifyCodeDidntRecieveText>Didn’t receive a code?</VerifyCodeDidntRecieveText>
-                  <VerifyCodeResendLink href="#" onClick={onResendClick}>
+                  <VerifyCodeResendLink onClick={onResendClick}>
                     <VerifyCodeResendText>Resend</VerifyCodeResendText>
                   </VerifyCodeResendLink>
                 </VerifyCodeResendCodeContainer>
