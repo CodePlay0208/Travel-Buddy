@@ -119,6 +119,7 @@ const LoginPage = (props) => {
     const isAuth = await login(formData.email)
 
     if (isAuth) {
+      localStorage.setItem('userKey', formData.email)
       navigate('/verify-otp')
     }
   }

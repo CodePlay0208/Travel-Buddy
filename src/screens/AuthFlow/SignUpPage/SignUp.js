@@ -66,7 +66,9 @@ const SignUp = (props) => {
 
     const isAuth = await register(formData)
     console.log(isAuth)
+
     if (isAuth) {
+      localStorage.setItem('userKey', formData.email || formData.phoneNumber)
       sessionStorage.setItem('prevRoute', location.pathname)
       navigate('/verify-otp')
     }
@@ -137,7 +139,6 @@ const SignUp = (props) => {
                         navigate('/login')
                       }}
                     >
-                      
                       Login
                     </SignUpLoginLink>
                   </SignUpAlreadyHaveText>

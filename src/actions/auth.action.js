@@ -126,7 +126,8 @@ export const verifyOTP = (userOtp) => async (dispatch) => {
 }
 
 export const resendOTP = () => async (dispatch) => {
-  const body = JSON.stringify({ isSignUpRequest: true })
+  const userKey = localStorage.getItem('userKey')
+  const body = JSON.stringify({ userKey: userKey })
   if (localStorage.token) {
     setAuthToken(localStorage.token)
   }
