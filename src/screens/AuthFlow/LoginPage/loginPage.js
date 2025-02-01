@@ -199,7 +199,7 @@ const LoginPage = (props) => {
                   }}
                 >
                   <ImageGoogleIcon src={images.phone_icon_black} alt="Log In With Phone" />
-                  <ContinueWithText>Log In With {isEmail ? 'Email' : 'Phone number'}</ContinueWithText>
+                  <ContinueWithText>Log In With {!isEmail ? 'Email' : 'Phone number'}</ContinueWithText>
                 </ButtonAlt>
               </LoginButtonsContainer>
             </form>

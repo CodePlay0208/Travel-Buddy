@@ -147,7 +147,7 @@ const SignUp = (props) => {
                       setIsEmail(!isEmail)
                     }}
                   >
-                    Sign in with {isEmail ? 'email' : 'phone number'} instead
+                    Sign in with {!isEmail ? 'email' : 'phone number'} instead
                   </SignUpLoginLink>
                 </SignUpAlreadyHaveContainer>
               </form>
