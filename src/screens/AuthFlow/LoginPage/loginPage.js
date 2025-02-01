@@ -103,7 +103,10 @@ const LoginPage = (props) => {
   const handleLogin = async (e) => {
     e.preventDefault()
 
-    const validEmail = checkValueIsValid(formData.email)
+    let validEmail = true
+    if (isEmail) {
+      validEmail = checkValueIsValid(formData.email)
+    }
 
     if (!(validEmail)) {
       toast.error('Email-id is not valid!', {
