@@ -30,25 +30,31 @@ export const Input = styled.input`
   position: relative;
   width: 100%;
   padding: 2.5%;
-  font-size: 1vw;
-  border: 2px solid #f4f4f4;
-  border-radius: 20px;
+  font-size: ${(props) => props.fontSize ?? '1vw'};
+  border: ${(props) => props.border ?? '1px solid #f4f4f4'};
+  border-radius: 120px;
   font-weight: 600;
   color: #7c7878;
-  background-color: #f4f4f4;
-
+  background-color: ${(props) => props.backgroundColor ?? '#f4f4f4'};
+  cursor: pointer;
   @media (max-width: 786px) {
     padding: 1.5%;
-    font-size: 2vw;
+    font-size: ${(props) => 1.5*props.fontSize ?? '1vw'};
     border-radius: 20px;
-    
   }
 
   ::placeholder {
     color: #787878;
-    font-size: 1vw;
+    font-size: ${(props) => props.fontSize ?? '1vw'};
     font-weight: 500;
   }
 `
-
+export const VerticalDivider = styled.div`
+  width: 1px;
+  height: 100%;
+  background-color: #f4f4f4;
+  border: 2px solid #afafaf;
+  border-radius: 10px;
+  padding: 3% 0;
+`
 export default GlobalStyles

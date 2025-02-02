@@ -68,6 +68,7 @@ const SignUp = (props) => {
     console.log(isAuth)
 
     if (isAuth) {
+      
       localStorage.setItem('userKey', formData.email || formData.phoneNumber)
       sessionStorage.setItem('prevRoute', location.pathname)
       navigate('/verify-otp')

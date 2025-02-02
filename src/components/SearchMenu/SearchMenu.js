@@ -6,9 +6,10 @@ import DatePicker from '../DatePicker/DatePicker'
 import { SearchBarContainer, SearchButtonContainer, SearchButton } from '../../styles/SearchMenu.styled'
 import { setSearchForm } from '../../actions/trips.action'
 import { SVG } from '../../assets'
+import { VerticalDivider } from '../../styles/Global'
 
 const mapStateToProps = (state) => ({
-  searchForm: state.tripReducer.searchForm
+  searchForm: state.tripReducer.searchForm,
 })
 
 const SearchMenu = (props) => {
@@ -16,9 +17,9 @@ const SearchMenu = (props) => {
   const navigate = useNavigate()
 
   const handleInputChange = (field, value) => {
-    setSearchForm({ 
+    setSearchForm({
       ...searchForm,
-      [field]: value 
+      [field]: value,
     })
   }
 
@@ -32,18 +33,23 @@ const SearchMenu = (props) => {
         inputValues={searchForm.destination}
         setInputValues={(value) => handleInputChange('destination', value)}
         onValue={'destination'}
-        placeholderValue={'Enter Destination'}
-        fontSize={`1.7vw`}
+        placeholderValue={'Your Destination'}
+        fontSize={`1.5vw`}
         fontWeight={`600`}
         dropDownFontSize={'45%'}
+        border={'1px solid #ffffff'}
+        backgroundColor={'#ffffff'}
       />
+      <VerticalDivider />
       <DatePicker
         inputValues={searchForm.startDate}
         setInputValues={(value) => handleInputChange('startDate', value)}
         onValue={'startDate'}
-        placeholderValue={'Select Travel date'}
-        fontSize={`1.7vw`}
+        placeholderValue={'Your Arrival & Departure'}
+        fontSize={`1.5vw`}
         fontWeight={`600`}
+        border={'1px solid #ffffff'}
+        backgroundColor={'#ffffff'}
       />
       <SearchButtonContainer onClick={onSearchButton} role="button">
         <img src={SVG.searchIcon} alt="searchIcon" />

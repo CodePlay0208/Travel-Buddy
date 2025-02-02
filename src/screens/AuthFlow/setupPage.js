@@ -29,7 +29,6 @@ import { LoginSignUpLink, InputFieldsContainer, Divider, LoginButtonsContainer }
 import { UserLoginContext } from '../../../utils/Context/LoggedInUserContext'
 import { css } from 'styled-components'
 
-import { VerifyCodeFormInputsContainer } from '../VerifyCode/VerifyCode.styled'
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
 })
@@ -156,65 +155,63 @@ const LoginPage = (props) => {
                 Sign up
               </LoginSignUpLink>
             </FormSubHeadingText>
-            <VerifyCodeFormInputsContainer>
-              <form onSubmit={handleLogin}>
-                <InputFieldsContainer>
-                  {isEmail ? (
-                    <InputComponent
-                      label="Email"
-                      type="email"
-                      name="email"
-                      id="email"
-                      placeholder="Enter Your Email"
-                      user={formData}
-                      setUser={setFormData}
-                      customInputFieldStyles={css`
-                        flex: 1;
-                      `}
-                    />
-                  ) : (
-                    <InputComponent
-                      label="Phone Number"
-                      type="text"
-                      name="phone"
-                      id="phone"
-                      placeholder="Enter Your Phone"
-                      user={formData}
-                      setUser={setFormData}
-                      customInputFieldStyles={css`
-                        flex: 1;
-                      `}
-                    />
-                  )}
-                </InputFieldsContainer>
 
-                <MainButtonAuth type="submit">Log In</MainButtonAuth>
+            <form onSubmit={handleLogin}>
+              <InputFieldsContainer>
+                {isEmail ? (
+                  <InputComponent
+                    label="Email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Enter Your Email"
+                    user={formData}
+                    setUser={setFormData}
+                    customInputFieldStyles={css`
+                      flex: 1;
+                    `}
+                  />
+                ) : (
+                  <InputComponent
+                    label="Phone Number"
+                    type="text"
+                    name="phone"
+                    id="phone"
+                    placeholder="Enter Your Phone"
+                    user={formData}
+                    setUser={setFormData}
+                    customInputFieldStyles={css`
+                      flex: 1;
+                    `}
+                  />
+                )}
+              </InputFieldsContainer>
 
-                <DividerContainer>
-                  <Divider />
-                  Or
-                  <Divider />
-                </DividerContainer>
+              <MainButtonAuth type="submit">Log In</MainButtonAuth>
 
-                <LoginButtonsContainer>
-                  <ButtonAlt role="button" onClick={googleSignIn}>
-                    <ImageGoogleIcon src={images.google_icon_black} alt="Log In With Google" />
-                    <ContinueWithText>Log In With Google</ContinueWithText>
-                  </ButtonAlt>
+              <DividerContainer>
+                <Divider />
+                Or
+                <Divider />
+              </DividerContainer>
 
-                  <ButtonAlt
-                    role="button"
-                    onClick={() => {
-                      setIsEmail(!isEmail)
-                    }}
-                  >
-                    <ImageGoogleIcon src={images.phone_icon_black} alt="Log In With Phone" />
-                    <ContinueWithText>Log In With {!isEmail ? 'Email' : 'Phone number'}</ContinueWithText>
-                  </ButtonAlt>
-                </LoginButtonsContainer>
-              </form>
-              <img src={images.verify_code_image} style={{ width: '30%', height: '100%', marginLeft: '40px' }} alt="supporting" />
-            </VerifyCodeFormInputsContainer>
+              <LoginButtonsContainer>
+                <ButtonAlt role="button" onClick={googleSignIn}>
+                  <ImageGoogleIcon src={images.google_icon_black} alt="Log In With Google" />
+                  <ContinueWithText>Log In With Google</ContinueWithText>
+                </ButtonAlt>
+
+                <ButtonAlt
+                  role="button"
+                  onClick={() => {
+                    setIsEmail(!isEmail)
+                  }}
+                >
+                  <ImageGoogleIcon src={images.phone_icon_black} alt="Log In With Phone" />
+                  <ContinueWithText>Log In With {!isEmail ? 'Email' : 'Phone number'}</ContinueWithText>
+                </ButtonAlt>
+              </LoginButtonsContainer>
+            </form>
           </FormContainer>
         </FormAndTitleContainer>
         <Copyright />

@@ -40,7 +40,7 @@ export const HeaderSearchBar = styled.div`
   max-width: 1339px;
   height: 1000%;
   margin: 2.5%;
-  border-radius: 40px;
+  border-radius: 140px;
   background-color: white;
   display: flex;
   align-items: center;

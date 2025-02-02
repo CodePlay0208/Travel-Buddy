@@ -152,21 +152,21 @@ const DatePicker = (props) => {
     setShowCalendar(false)
   }
   return (
-    <DatePickerWrapper
-      widthValue={props.width ? props.width : `100%`}
-      heightValue={props.height ? props.height : `100%`}
-    >
+    <DatePickerWrapper widthValue={props.width ? props.width : `100%`} heightValue={props.height ? props.height : `100%`}>
       <Input
-          type="text"
-          ref={dateInputRef}
-          value={selectedDate}
-          placeholder={placeholderValue}
-          readOnly
-          onClick={() => setShowCalendar(!showCalendar)}
-          className="SearchBar-date"
-        />
-        {/* <img src={SVG.CalendarIcon} alt="Calender Icon" /> */}
-      
+        type="text"
+        ref={dateInputRef}
+        value={selectedDate}
+        placeholder={placeholderValue}
+        readOnly
+        onClick={() => setShowCalendar(!showCalendar)}
+        className="SearchBar-date"
+        border={props?.border}
+        backgroundColor={props?.backgroundColor}
+        fontSize={props?.fontSize}
+      />
+      {/* <img src={SVG.CalendarIcon} alt="Calender Icon" /> */}
+
       {showCalendar && (
         <Calendar ref={calendarRef}>
           <CalendarHeader>

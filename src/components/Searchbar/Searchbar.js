@@ -66,6 +66,8 @@ const Searchbar = (props) => {
         autoComplete="off"
         fontSize={props.fontSize ? props.fontSize : `inherit`}
         fontWeight={props.fontWeight ? props.fontWeight : `600`}
+        border={props?.border}
+        backgroundColor={props?.backgroundColor}
       />
       {/* <LocationIcon src={SVG.LocationIcon} alt="Location Icon" /> */}
       <DropdownSC isVisible={isDropdownVisible}>

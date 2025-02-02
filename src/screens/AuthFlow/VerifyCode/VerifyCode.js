@@ -102,6 +102,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
               <img src={images.verify_code_image} style={{ width: '30%', height: '100%', marginLeft: '40px' }} alt="supporting" />
             </VerifyCodeFormInputsContainer>
           </FormContainer>
+          
         </FormAndTitleContainer>
         <Copyright />
       </FormAndCopyrightContainer>

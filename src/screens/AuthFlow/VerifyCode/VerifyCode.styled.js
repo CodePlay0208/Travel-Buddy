@@ -52,6 +52,7 @@ export const VerifyCodeVerifyButton = styled.button`
   border-width: 0px;
   font-weight: 600;
   border-radius: 5px;
+  
 
   &:active {
     font-size: 1.125px;
