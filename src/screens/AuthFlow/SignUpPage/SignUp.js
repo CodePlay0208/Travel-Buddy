@@ -23,6 +23,8 @@ import Copyright from '../../../components/Copyright/Copyright'
 import { css } from 'styled-components'
 import { InputFieldsContainer } from '../LoginPage/loginPage.styled'
 
+import { VerifyCodeFormInputsContainer } from '../VerifyCode/VerifyCode.styled'
+
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
   isLoading: state.authReducer.isLoading,
@@ -68,7 +70,6 @@ const SignUp = (props) => {
     console.log(isAuth)
 
     if (isAuth) {
-      
       localStorage.setItem('userKey', formData.email || formData.phoneNumber)
       sessionStorage.setItem('prevRoute', location.pathname)
       navigate('/verify-otp')
@@ -91,7 +92,7 @@ const SignUp = (props) => {
             <FormSubHeadingText>
               Welcome to <span>Travmigoz</span>- Create your account.
             </FormSubHeadingText>
-            <>
+            <VerifyCodeFormInputsContainer>
               <form onSubmit={handleSubmit}>
                 <InputFieldsContainer>
                   <InputComponent
@@ -153,7 +154,8 @@ const SignUp = (props) => {
                   </SignUpLoginLink>
                 </SignUpAlreadyHaveContainer>
               </form>
-            </>
+              <img src={images.verify_code_image} style={{ width: '30%', height: '100%', marginLeft: '40px' }} alt="supporting" />
+            </VerifyCodeFormInputsContainer>
           </FormContainer>
         </FormAndTitleContainer>
         <Copyright />

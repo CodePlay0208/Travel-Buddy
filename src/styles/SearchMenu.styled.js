@@ -8,14 +8,26 @@ export const SearchBarContainer = styled.div`
   gap: 2%;
   padding: 1%;
   height: 60%;
-  font-size: 3vw;
-  line-height: 2.5vw;
   position: relative;
-  @media (max-width: 768px) {
+  @media (max-width: 786px) {
     gap: 1%;
   }
 `
 
+export const SearchBarWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1%;
+  gap: 2%;
+  line-height: 2.5vw;
+  position: relative;
+  @media (max-width: 786px) {
+    gap: 1%;
+    flex-direction: column;
+  }
+`
 export const SearchButtonContainer = styled.div`
   border-radius: 10px;
   height: 100%;

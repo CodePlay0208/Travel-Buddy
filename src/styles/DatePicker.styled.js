@@ -79,7 +79,6 @@ export const Calendar = styled.div`
   z-index: 1000;
   margin: 1% 0;
   animation: fadeIn 0.2s;
-  font-size: 16px;
 
   @keyframes fadeIn {
     from {
@@ -181,7 +180,7 @@ export const TodayButton = styled.div`
   justify-content: center;
 
   button {
-    padding: 13px 36px;
+    padding: 2% 4%;
     border: none;
     background-color: #8dd3bb;
     color: white;

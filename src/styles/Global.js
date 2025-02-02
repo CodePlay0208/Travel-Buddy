@@ -32,7 +32,7 @@ export const Input = styled.input`
   padding: 2.5%;
   font-size: ${(props) => props.fontSize ?? '1vw'};
   border: ${(props) => props.border ?? '1px solid #f4f4f4'};
-  border-radius: 120px;
+  border-radius: 50px;
   font-weight: 600;
   color: #7c7878;
   background-color: ${(props) => props.backgroundColor ?? '#f4f4f4'};
@@ -56,5 +56,8 @@ export const VerticalDivider = styled.div`
   border: 2px solid #afafaf;
   border-radius: 10px;
   padding: 3% 0;
+  @media (max-width: 786px) {
+    padding: 0 50%;
+  }
 `
 export default GlobalStyles
