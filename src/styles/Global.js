@@ -53,7 +53,7 @@ export const VerticalDivider = styled.div`
   width: 1px;
   height: 100%;
   background-color: #f4f4f4;
-  border: 2px solid #afafaf;
+  border: 1px solid #afafaf;
   border-radius: 10px;
   padding: 3% 0;
   @media (max-width: 786px) {
