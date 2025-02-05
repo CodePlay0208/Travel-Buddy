@@ -2,10 +2,11 @@ import React, { useState, memo } from 'react'
 import { SVG } from '../../assets'
 import { getLocationSuggestions } from '../../actions/location.action'
 import { connect } from 'react-redux'
-import { SearchBarContainer, SearchBarInput, LocationIcon, DropdownSC, DropdownItem, City, State } from '../../styles/Searchbar.styled'
+import { SearchBarContainer, SearchBarInput, LocationIcon, DropdownSC, City, State } from '../../styles/Searchbar.styled'
 import { Input } from '../../styles/Global'
 import { FlexContainer } from '../HeroSectionV2/HeroSection.styled'
 import LineBorder from '../../styles/Line.styled'
+import { DropdownItem } from '../Dropdown/Dropdown.styled'
 
 const mapStateToProps = (state) => ({
   suggestions: state.locationReducer.suggestions,

@@ -132,13 +132,13 @@ export const NavButton = styled.span`
 
 export const DayNames = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  padding: 2.5px;
+  padding: 2%;
+  font-size: min(2.5vw,16px);
 
   span {
     width: 14.28%;
     text-align: center;
-    padding: 2.5px 0;
+    padding: 2%;
     font-weight: bold;
     color: #333;
   }

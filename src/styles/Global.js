@@ -9,7 +9,7 @@ export const Label = styled.label`
   font-weight: 600;
   font-size: 1vw;
   line-height: 1.4;
-  margin: 2% 0% 1%;
+  margin: ${(props) => props.margin ?? '2% 0% 1%'};
   color: #252525;
   width: ${(props) => props.width};
   @media (max-width: 786px) {

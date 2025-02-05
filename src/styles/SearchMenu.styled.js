@@ -21,7 +21,6 @@ export const SearchBarWrapper = styled.div`
   width: 100%;
   margin: 1%;
   gap: 2%;
-  line-height: 2.5vw;
   position: relative;
   @media (max-width: 786px) {
     gap: 1%;

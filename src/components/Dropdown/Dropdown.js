@@ -10,12 +10,14 @@ const Dropdown = ({ data, selectSuggestion }) => {
   return (
     <DropdownContainer>
       {data.map((data, index) => (
-        <DropdownItem key={index} onClick={() => selectSuggestion(data)}>
-          <FlexContainer color="#7c7878" alignItems="start" gap="10px" direction="column" width="100%">
-            {data.value}
-            <LineBorder></LineBorder>
-          </FlexContainer>
-        </DropdownItem>
+        <>
+          <DropdownItem key={index} onClick={() => selectSuggestion(data)}>
+            <FlexContainer fontSize="inherit" color="#7c7878" alignItems="start" gap="10px" direction="column" width="100%">
+              {data.value}
+            </FlexContainer>
+          </DropdownItem>
+          <LineBorder></LineBorder>
+        </>
       ))}
     </DropdownContainer>
   )

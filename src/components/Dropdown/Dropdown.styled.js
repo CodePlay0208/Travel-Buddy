@@ -25,7 +25,6 @@ export const DropdownContainer = styled.div`
 `
 
 export const DropdownItem = styled.div`
-  padding: 1%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   display: flex;
@@ -35,7 +34,7 @@ export const DropdownItem = styled.div`
   color: #afafaf;
   background-color: #ffffff;
   border-radius: 7px;
-  margin: 1% 5%;
+  margin: 2% 5%;
   cursor: pointer;
 
   &:hover {

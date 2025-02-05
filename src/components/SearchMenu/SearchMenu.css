@@ -42,9 +42,7 @@
 
 .SearchBar-button {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2rem; /* Responsive font size */
   font-weight: 600;
-  line-height: 2.5rem; /* Responsive line height */
   text-align: left;
 }
 

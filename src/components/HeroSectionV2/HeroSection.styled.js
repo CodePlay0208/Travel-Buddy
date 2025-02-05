@@ -132,12 +132,13 @@ export const PublishButton = styled.button`
 export const FlexContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.direction === 'column' ? 'column' : 'row')};
+  font-size: ${(props) => props.fontSize || 'min(1vw,16px)'};
   justify-content: space-between;
   align-items: ${(props) => props.alignItems || 'center'};
   gap: ${(props) => props.gap || '10px'};
   padding: ${(props) => props.padding || '0'};
   margin: ${(props) => props.margin || '0'};
-  aspect-ratio: ${(props) => props.aspectRatio || 'none'};
+  aspect-ratio: ${(props) => props.aspectRatio || 'auto'};
   background-image: ${(props) => (props.backgroundImage ? `url(${props.backgroundImage})` : 'none')};
   background-size: cover;
   background-position: center;

@@ -6,7 +6,8 @@ import DatePicker from '../DatePicker/DatePicker'
 import { SearchBarContainer, SearchButtonContainer, SearchButton, SearchBarWrapper } from '../../styles/SearchMenu.styled'
 import { setSearchForm } from '../../actions/trips.action'
 import { SVG } from '../../assets'
-import { VerticalDivider } from '../../styles/Global'
+import { Label, VerticalDivider } from '../../styles/Global'
+import { FlexContainer } from '../HeroSectionV2/HeroSection.styled'
 
 const mapStateToProps = (state) => ({
   searchForm: state.tripReducer.searchForm,
@@ -30,28 +31,34 @@ const SearchMenu = (props) => {
   return (
     <SearchBarContainer>
       <SearchBarWrapper>
-        <Searchbar
-          inputValues={searchForm.destination}
-          setInputValues={(value) => handleInputChange('destination', value)}
-          onValue={'destination'}
-          placeholderValue={'Your Destination'}
-          fontSize={`1.5vw`}
-          fontWeight={`600`}
-          dropDownFontSize={'100%'}
-          border={'1px solid #ffffff'}
-          backgroundColor={'#ffffff'}
-        />
+        <FlexContainer direction="column" width="100%" gap="0px" alignItems="start">
+          {/* <Label margin='0 2%'>Where</Label> */}
+          <Searchbar
+            inputValues={searchForm.destination}
+            setInputValues={(value) => handleInputChange('destination', value)}
+            onValue={'destination'}
+            placeholderValue={'Your Destination'}
+            fontSize={`1.5vw`}
+            fontWeight={`600`}
+            dropDownFontSize={'100%'}
+            border={'1px solid #ffffff'}
+            backgroundColor={'#ffffff'}
+          />
+        </FlexContainer>
         <VerticalDivider />
-        <DatePicker
-          inputValues={searchForm.startDate}
-          setInputValues={(value) => handleInputChange('startDate', value)}
-          onValue={'startDate'}
-          placeholderValue={'Your Arrival & Departure'}
-          fontSize={`1.5vw`}
-          fontWeight={`600`}
-          border={'1px solid #ffffff'}
-          backgroundColor={'#ffffff'}
-        />
+        <FlexContainer direction="column" width="100%" gap="0px" alignItems="start">
+          {/* <Label margin='0 2%'>When</Label> */}
+          <DatePicker
+            inputValues={searchForm.startDate}
+            setInputValues={(value) => handleInputChange('startDate', value)}
+            onValue={'startDate'}
+            placeholderValue={'Your Arrival & Departure'}
+            fontSize={`1.5vw`}
+            fontWeight={`600`}
+            border={'1px solid #ffffff'}
+            backgroundColor={'#ffffff'}
+          />
+        </FlexContainer>
       </SearchBarWrapper>
       <SearchButtonContainer onClick={onSearchButton} role="button">
         <img src={SVG.searchIcon} alt="searchIcon" />
