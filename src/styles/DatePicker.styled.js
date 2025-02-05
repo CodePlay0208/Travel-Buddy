@@ -80,6 +80,7 @@ export const Calendar = styled.div`
   margin: 1% 0;
   animation: fadeIn 0.2s;
 
+  width: 100%;
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -152,7 +153,7 @@ export const Days = styled.div`
   span {
     width: 14.28%;
     text-align: center;
-    padding: 2.5px 0;
+    padding: 2%;
     cursor: pointer;
     border-radius: 4px;
     transition:

@@ -25,6 +25,7 @@ import Copyright from '../../components/Copyright/Copyright'
 import { InputFieldsContainer } from './LoginPage/loginPage.styled'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import { Input, Label } from '../../styles/Global'
+import DatePicker from '../../components/DatePicker/DatePicker'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
@@ -45,28 +46,8 @@ const SetupPage = (props) => {
     birthday: '',
   })
 
-  const [isEmail, setIsEmail] = useState(true)
-  const checkValueIsValid = (value) => {
-    if (value === '' || value === undefined || value === null) {
-      return false
-    }
-    return true
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
-    let validEmail = false
-    if (isEmail) {
-      validEmail = checkValueIsValid(formData.email)
-    } else {
-      validEmail = checkValueIsValid(formData.phoneNumber)
-    }
-    if (!validEmail) {
-      toast.error('email-id or password not valid', {
-        autoClose: 1500,
-      })
-      return
-    }
 
     const isAuth = await register(formData)
     console.log(isAuth)
@@ -151,6 +132,21 @@ const SetupPage = (props) => {
                         }}
                       />
                     )}
+                  </InputFieldsContainer>
+                  <InputFieldsContainer>
+                    <Label>Gender</Label>
+                    <DatePicker
+                      pickerType="dob"
+                      inputValues={formData.birthday}
+                      setInputValues={(value) => {
+                        setFormData({
+                          ...formData,
+                          birthday: value,
+                        })
+                      }}
+                      onValue={'birthday'}
+                      placeholderValue={'Your Date of Birth'}
+                    />
                   </InputFieldsContainer>
                 </InputFieldsContainer>
 

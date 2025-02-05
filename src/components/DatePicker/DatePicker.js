@@ -1,33 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react'
-import {
-  DatePickerWrapper,
-  InputWrapper,
-  Calendar,
-  CalendarHeader,
-  NavButton,
-  DayNames,
-  Days,
-  TodayButton,
-} from '../../styles/DatePicker.styled'
-
-import { SVG } from '../../assets'
+import { DatePickerWrapper, Calendar, CalendarHeader, NavButton, DayNames, Days, TodayButton } from '../../styles/DatePicker.styled'
 import { Input } from '../../styles/Global'
 
+const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
 const DatePicker = (props) => {
-  const { inputValues, setInputValues, onValue, placeholderValue } = props
+  const { inputValues, setInputValues, placeholderValue, pickerType = 'default' } = props
+
+  const today = new Date()
+  const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate())
+  const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())
+  const hundredYearsAgo = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate())
+
+  const minDate = pickerType === 'dob' ? hundredYearsAgo : todayMidnight
+  const maxDate = pickerType === 'dob' ? todayMidnight : oneYearLater
+
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(inputValues)
   const [showCalendar, setShowCalendar] = useState(false)
   const dateInputRef = useRef(null)
   const calendarRef = useRef(null)
 
-  const today = new Date()
-  const tomorrow = new Date(today)
-  tomorrow.setDate(tomorrow.getDate() + 1)
-  const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())
-
   useEffect(() => {
-    setSelectedDate(dateToString(inputValues))
+    setSelectedDate(dateToDisplayString(inputValues))
   }, [inputValues])
 
   useEffect(() => {
@@ -44,115 +39,141 @@ const DatePicker = (props) => {
         }
       }
     }
-
     document.addEventListener('click', handleClickOutside)
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside)
-    }
+    return () => document.removeEventListener('click', handleClickOutside)
   }, [selectedDate])
 
-  const populateDays = () => {
-    const year = currentDate.getFullYear()
-    const month = currentDate.getMonth()
-    const firstDay = new Date(year, month, 1).getDay()
-    const lastDate = new Date(year, month + 1, 0).getDate()
-
-    const days = []
-    for (let i = 0; i < firstDay; i++) {
-      days.push(<span key={`empty-${i}`} className="empty-day" />)
-    }
-
-    for (let i = 1; i <= lastDate; i++) {
-      const date = new Date(year, month, i)
-      const isPastDate = date < new Date(today.setHours(0, 0, 0, 0))
-      const isFutureDate = date > oneYearLater
-
-      days.push(
-        <span
-          key={i}
-          className={`day ${selectedDate === dateToStringSimple(date) ? 'selected' : ''} ${isPastDate || isFutureDate ? 'disabled' : ''}`}
-          onClick={!isPastDate && !isFutureDate ? () => handleDateSelect(date) : null}
-        >
-          {i}
-        </span>,
-      )
-    }
-
-    return days
-  }
-
-  const parseDatestring = (dateString) => {
-    if (!dateString) return ''
+  const parseDateString = (dateString) => {
+    if (!dateString) return null
     const [day, month, year] = dateString.split('-').map(Number)
     return new Date(year, month - 1, day)
   }
 
-  const formatDate = (date) => {
-    if (!date) return ''
-    const options = { weekday: 'short', day: 'numeric', month: 'short' }
-    const parts = date.toLocaleDateString('en-US', options).split(' ')
-    return `${parts[0]} ${parts[2]} ${parts[1]}`
-  }
-
-  const dateToString = (dateString) => {
-    if (!dateString || dateString === '') {
-      return ''
-    }
-    const today = new Date()
-    const tomorrow = new Date(today)
-    tomorrow.setDate(today.getDate() + 1)
-
-    const dateValue = parseDatestring(dateString)
-
-    if (dateValue.toDateString() === today.toDateString()) {
-      return 'Today'
-    } else if (dateValue.toDateString() === tomorrow.toDateString()) {
-      return 'Tomorrow'
-    } else {
-      const dayName = dateValue.toLocaleDateString('en-US', { weekday: 'long' }) // Get the day name
-      const formattedDate = dateToStringSimple(dateValue)
-      return formatDate(dateValue)
-    }
-  }
-
-  const dateToStringSimple = (date) => {
-    const dateValue = new Date(date.getFullYear(), date.getMonth(), date.getDate())
-    const day = String(dateValue.getDate()).padStart(2, '0')
-    const month = String(dateValue.getMonth() + 1).padStart(2, '0') // Months are zero-indexed
-    const year = dateValue.getFullYear()
-
+  const dateToSimpleString = (date) => {
+    const day = String(date.getDate()).padStart(2, '0')
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const year = date.getFullYear()
     return `${day}-${month}-${year}`
   }
 
+  const dateToDisplayString = (dateString) => {
+    if (!dateString) return ''
+    const dateValue = parseDateString(dateString)
+    if (!dateValue) return ''
+
+    if (pickerType === 'default') {
+      const tomorrow = new Date(todayMidnight)
+      tomorrow.setDate(tomorrow.getDate() + 1)
+
+      if (dateValue.toDateString() === todayMidnight.toDateString()) {
+        return 'Today'
+      } else if (dateValue.toDateString() === tomorrow.toDateString()) {
+        return 'Tomorrow'
+      }
+    }
+    return formatFullDate(dateValue)
+  }
+
+  const formatFullDate = (date) => {
+    const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }
+    return date.toLocaleDateString('en-US', options)
+  }
+
+  const populateDays = () => {
+    const year = currentDate.getFullYear()
+    const month = currentDate.getMonth()
+    const firstDayOfMonth = new Date(year, month, 1).getDay()
+    const lastDateOfMonth = new Date(year, month + 1, 0).getDate()
+
+    const days = []
+
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      days.push(<span key={`empty-${i}`} className="empty-day" />)
+    }
+
+    for (let dayNum = 1; dayNum <= lastDateOfMonth; dayNum++) {
+      const date = new Date(year, month, dayNum)
+      const isDisabled = date < minDate || date > maxDate
+      days.push(
+        <span
+          key={dayNum}
+          className={`day ${selectedDate === dateToSimpleString(date) ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`}
+          onClick={!isDisabled ? () => handleDateSelect(date) : null}
+        >
+          {dayNum}
+        </span>,
+      )
+    }
+    return days
+  }
+
   const handleDateSelect = (date) => {
-    const dateString = dateToStringSimple(date)
-    setInputValues(dateString)
+    const simpleDate = dateToSimpleString(date)
+    setInputValues(simpleDate)
+    setSelectedDate(dateToDisplayString(simpleDate))
     setShowCalendar(false)
   }
 
   const handlePrevMonth = () => {
-    const prevMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
-    if (prevMonthDate >= new Date(today.getFullYear(), today.getMonth(), 1)) {
+    const prevMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
+    const minMonthDate = new Date(minDate.getFullYear(), minDate.getMonth(), 1)
+    if (prevMonthDate >= minMonthDate) {
       setCurrentDate(prevMonthDate)
     }
   }
 
   const handleNextMonth = () => {
-    const nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
-    if (nextMonthDate <= oneYearLater) {
+    const nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
+    const maxMonthDate = new Date(maxDate.getFullYear(), maxDate.getMonth(), 1)
+    if (nextMonthDate <= maxMonthDate) {
       setCurrentDate(nextMonthDate)
     }
   }
 
   const handleTodayClick = () => {
-    setSelectedDate('Today')
-    setCurrentDate(new Date())
-    setInputValues(dateToStringSimple(new Date()))
-    setShowCalendar(false)
+    if (todayMidnight >= minDate && todayMidnight <= maxDate) {
+      const simpleDate = dateToSimpleString(todayMidnight)
+      setInputValues(simpleDate)
+      setSelectedDate(dateToDisplayString(simpleDate))
+      setCurrentDate(todayMidnight)
+      setShowCalendar(false)
+    }
   }
+
+  const handleMonthChange = (e) => {
+    const newMonth = parseInt(e.target.value, 10)
+    const newDate = new Date(currentDate.getFullYear(), newMonth, 1)
+    if (newDate >= minDate && newDate <= maxDate) {
+      setCurrentDate(newDate)
+    } else {
+      if (newDate < minDate) setCurrentDate(minDate)
+      if (newDate > maxDate) setCurrentDate(maxDate)
+    }
+  }
+
+  const handleYearChange = (e) => {
+    const newYear = parseInt(e.target.value, 10)
+    const newDate = new Date(newYear, currentDate.getMonth(), 1)
+    if (newDate >= minDate && newDate <= maxDate) {
+      setCurrentDate(newDate)
+    } else {
+      if (newDate < minDate) setCurrentDate(minDate)
+      if (newDate > maxDate) setCurrentDate(maxDate)
+    }
+  }
+
+  const getDobYearOptions = () => {
+    const startYear = minDate.getFullYear()
+    const endYear = maxDate.getFullYear()
+    const years = []
+    for (let y = endYear; y >= startYear; y--) {
+      years.push(y)
+    }
+    return years
+  }
+
   return (
-    <DatePickerWrapper widthValue={props.width ? props.width : `100%`} heightValue={props.height ? props.height : `100%`}>
+    <DatePickerWrapper widthValue={props.width || '100%'} heightValue={props.height || '100%'}>
       <Input
         type="text"
         ref={dateInputRef}
@@ -165,31 +186,67 @@ const DatePicker = (props) => {
         backgroundColor={props?.backgroundColor}
         fontSize={props?.fontSize}
       />
-      {/* <img src={SVG.CalendarIcon} alt="Calender Icon" /> */}
 
       {showCalendar && (
         <Calendar ref={calendarRef}>
-          <CalendarHeader>
-            <NavButton
-              className={
-                new Date(currentDate.getFullYear(), currentDate.getMonth() - 1) < new Date(today.getFullYear(), today.getMonth(), 1)
-                  ? 'disabled'
-                  : ''
-              }
-              onClick={handlePrevMonth}
-            >
-              <div className="svgIcon">&lt;</div>
-            </NavButton>
-            <span id="month-year">
-              {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()}
-            </span>
-            <NavButton
-              className={new Date(currentDate.getFullYear(), currentDate.getMonth() + 1) > oneYearLater ? 'disabled' : ''}
-              onClick={handleNextMonth}
-            >
-              <div className="svgIcon">&gt;</div>
-            </NavButton>
-          </CalendarHeader>
+          {pickerType === 'dob' ? (
+            <CalendarHeader>
+              <div style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-around' }}>
+                <select
+                  value={currentDate.getMonth()}
+                  onChange={handleMonthChange}
+                  style={{ backgroundColor: '#8dd3bb', border: 'none', color: 'white', padding: '2% 10%', borderRadius: '4px' }}
+                >
+                  {monthNames.map((mn, idx) => (
+                    <option key={mn} value={idx}>
+                      {mn}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  value={currentDate.getFullYear()}
+                  onChange={handleYearChange}
+                  style={{ backgroundColor: '#8dd3bb', border: 'none', color: 'white', padding: '2% 10%', borderRadius: '4px' }}
+                >
+                  {getDobYearOptions().map((y) => (
+                    <option key={y} value={y}>
+                      {y}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </CalendarHeader>
+          ) : (
+            <CalendarHeader>
+              <NavButton
+                className={
+                  new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1) <
+                  new Date(minDate.getFullYear(), minDate.getMonth(), 1)
+                    ? 'disabled'
+                    : ''
+                }
+                onClick={handlePrevMonth}
+              >
+                <div className="svgIcon">&lt;</div>
+              </NavButton>
+              <span id="month-year">
+                {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()}
+              </span>
+              <NavButton
+                className={
+                  new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1) >
+                  new Date(maxDate.getFullYear(), maxDate.getMonth(), 1)
+                    ? 'disabled'
+                    : ''
+                }
+                onClick={handleNextMonth}
+              >
+                <div className="svgIcon">&gt;</div>
+              </NavButton>
+            </CalendarHeader>
+          )}
+
           <div className="calendar-body">
             <DayNames>
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (

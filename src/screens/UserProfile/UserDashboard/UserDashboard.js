@@ -172,6 +172,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                 <Label>Date of Birth</Label>
                 {isEditing ? (
                   <DatePicker
+                    pickerType="dob"
                     inputValues={formData?.dateOfBirth || ''}
                     setInputValues={(value) => handleInputChange('dateOfBirth', value)}
                     onValue={'dateOfBirth'}
