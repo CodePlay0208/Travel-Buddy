@@ -18,6 +18,8 @@ const DatePicker = (props) => {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(inputValues)
   const [showCalendar, setShowCalendar] = useState(false)
+
+  const wrapperRef = useRef(null)
   const dateInputRef = useRef(null)
   const calendarRef = useRef(null)
 
@@ -27,21 +29,17 @@ const DatePicker = (props) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        calendarRef.current &&
-        !calendarRef.current.contains(event.target) &&
-        dateInputRef.current &&
-        !dateInputRef.current.contains(event.target)
-      ) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         setShowCalendar(false)
-        if (!selectedDate) {
+
+        if (!selectedDate && showCalendar && event.target.tagName !== 'INPUT') {
           handleTodayClick()
         }
       }
     }
     document.addEventListener('click', handleClickOutside)
     return () => document.removeEventListener('click', handleClickOutside)
-  }, [selectedDate])
+  }, [selectedDate, showCalendar])
 
   const parseDateString = (dateString) => {
     if (!dateString) return null
@@ -86,11 +84,9 @@ const DatePicker = (props) => {
     const lastDateOfMonth = new Date(year, month + 1, 0).getDate()
 
     const days = []
-
     for (let i = 0; i < firstDayOfMonth; i++) {
       days.push(<span key={`empty-${i}`} className="empty-day" />)
     }
-
     for (let dayNum = 1; dayNum <= lastDateOfMonth; dayNum++) {
       const date = new Date(year, month, dayNum)
       const isDisabled = date < minDate || date > maxDate
@@ -173,7 +169,7 @@ const DatePicker = (props) => {
   }
 
   return (
-    <DatePickerWrapper widthValue={props.width || '100%'} heightValue={props.height || '100%'}>
+    <DatePickerWrapper ref={wrapperRef} widthValue={props.width || '100%'} heightValue={props.height || '100%'}>
       <Input
         type="text"
         ref={dateInputRef}
@@ -195,7 +191,13 @@ const DatePicker = (props) => {
                 <select
                   value={currentDate.getMonth()}
                   onChange={handleMonthChange}
-                  style={{ backgroundColor: '#8dd3bb', border: 'none', color: 'white', padding: '2% 10%', borderRadius: '4px' }}
+                  style={{
+                    backgroundColor: '#8dd3bb',
+                    border: 'none',
+                    color: 'white',
+                    padding: '2% 10%',
+                    borderRadius: '4px',
+                  }}
                 >
                   {monthNames.map((mn, idx) => (
                     <option key={mn} value={idx}>
@@ -207,7 +209,13 @@ const DatePicker = (props) => {
                 <select
                   value={currentDate.getFullYear()}
                   onChange={handleYearChange}
-                  style={{ backgroundColor: '#8dd3bb', border: 'none', color: 'white', padding: '2% 10%', borderRadius: '4px' }}
+                  style={{
+                    backgroundColor: '#8dd3bb',
+                    border: 'none',
+                    color: 'white',
+                    padding: '2% 10%',
+                    borderRadius: '4px',
+                  }}
                 >
                   {getDobYearOptions().map((y) => (
                     <option key={y} value={y}>
