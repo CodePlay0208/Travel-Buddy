@@ -81,9 +81,11 @@ export const SignUpCreateAccountButton = styled.button`
 
 export const SignUpAlreadyHaveContainer = styled.div`
   display: flex;
+
+  flex-direction: column;
   justify-content: space-between;
   margin-top: 2%;
-  align-items: center;
+  align-items: flex-start;
 `
 
 export const SignUpAlreadyHaveText = styled.div`
@@ -93,11 +95,12 @@ export const SignUpAlreadyHaveText = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  color: #848282;
 `
 
-export const SignUpLoginLink = styled.div`
+export const SignUpLoginLink = styled.span`
   text-decoration: none;
-  margin-left: 2px;
+  margin: 2px;
   font-size: 1vw;
   font-weight: 700;
   color: #252525;

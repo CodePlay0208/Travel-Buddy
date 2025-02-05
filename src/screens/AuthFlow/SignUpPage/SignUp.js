@@ -16,6 +16,8 @@ import {
   MainButtonAuth,
   DesignContainer,
   AuthDesignImage,
+  Form,
+  SupportingImg,
 } from '../AuthFlow.styled'
 import { SignUpAlreadyHaveContainer, SignUpAlreadyHaveText, SignUpLoginLink, SignUpLoginText } from './SignUp.styled'
 import InputComponent from '../../../components/InputComponent/InputComponent'
@@ -93,7 +95,7 @@ const SignUp = (props) => {
               Welcome to <span>Travmigoz</span>- Create your account.
             </FormSubHeadingText>
             <VerifyCodeFormInputsContainer>
-              <form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSubmit}>
                 <InputFieldsContainer>
                   <InputComponent
                     label="Name"
@@ -124,14 +126,8 @@ const SignUp = (props) => {
                   )}
                 </InputFieldsContainer>
 
-                <MainButtonAuth
-                  onClick={handleSubmit}
-                  type="submit"
-                  mainButtonStyles={css`
-                    margin-top: 4.5%;
-                  `}
-                >
-                  <p>Sign up</p>
+                <MainButtonAuth onClick={handleSubmit} type="submit">
+                  Sign up
                 </MainButtonAuth>
                 <SignUpAlreadyHaveContainer>
                   <SignUpAlreadyHaveText>
@@ -145,16 +141,17 @@ const SignUp = (props) => {
                     </SignUpLoginLink>
                   </SignUpAlreadyHaveText>
 
-                  <SignUpLoginLink
+                  <SignUpAlreadyHaveText
                     onClick={() => {
                       setIsEmail(!isEmail)
                     }}
                   >
-                    Sign in with {!isEmail ? 'email' : 'phone number'} instead
-                  </SignUpLoginLink>
+                    Sign in with <SignUpLoginLink>{!isEmail ? 'Email' : 'Phone'}</SignUpLoginLink>
+                    instead
+                  </SignUpAlreadyHaveText>
                 </SignUpAlreadyHaveContainer>
-              </form>
-              <img src={images.verify_code_image} style={{ width: '30%', height: '100%', marginLeft: '40px' }} alt="supporting" />
+              </Form>
+              <SupportingImg src={images.verify_code_image} alt="supporting" />
             </VerifyCodeFormInputsContainer>
           </FormContainer>
         </FormAndTitleContainer>

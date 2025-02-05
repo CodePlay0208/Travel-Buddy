@@ -25,7 +25,7 @@ export const TitleContainer = styled.div`
 `
 
 export const FormContainer = styled.div`
-  margin: 4.8% 6.8%;
+  margin: 5%;
 `
 
 export const BackButtonContainer = styled.div`
@@ -44,11 +44,31 @@ export const BackButtonContainer = styled.div`
 `
 
 export const BackButtonIcon = styled.img`
-  height: 12px;
+  height: 1vw;
 `
+export const SupportingImg = styled.img`
+  width: 30%;
+  
+  @media (max-width: 786px) {
+    width: 60%;
+  }
+  
+  @media (max-width: 450px) {
+    width: 100%;
+  }
+`
+export const Form = styled.form`
+  width: 60%;
+  
+  @media (max-width: 786px) {
+    width: 100%;
+  }
+`
+
 
 export const BackButtonText = styled.p`
   margin-left: 1%;
+  font-size: 1vw;
 `
 
 export const FormHeadingContainer = styled.div`
@@ -172,7 +192,7 @@ export const MainButtonAuth = styled.button`
   border-style: none;
   width: 100%;
   border-radius: 30px;
-  margin-top: 1.5%;
+  margin-top: 2.5%;
   font-size: 1vw;
   padding: 2%;
 

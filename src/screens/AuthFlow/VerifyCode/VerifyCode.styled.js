@@ -4,6 +4,13 @@ export const VerifyCodeFormInputsContainer = styled.div`
   margin-top: 2%;
   display: flex;
   flex-direction: row;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 786px) {
+    flex-direction: column-reverse;
+  }
 `
 
 export const VerifyCodeResendCodeContainer = styled.div`
@@ -12,7 +19,7 @@ export const VerifyCodeResendCodeContainer = styled.div`
 `
 
 export const VerifyCodeDidntRecieveText = styled.p`
-  font-size: 1rem;
+  font-size: 1vw;
   font-weight: 500;
 `
 
@@ -22,7 +29,7 @@ export const VerifyCodeResendLink = styled.div`
 
 export const VerifyCodeResendText = styled.p`
   margin-left: 5px;
-  font-size: 1rem;
+  font-size: 1vw;
   font-weight: 500;
   color: #ff8682;
   cursor: pointer;
@@ -52,7 +59,6 @@ export const VerifyCodeVerifyButton = styled.button`
   border-width: 0px;
   font-weight: 600;
   border-radius: 5px;
-  
 
   &:active {
     font-size: 1.125px;

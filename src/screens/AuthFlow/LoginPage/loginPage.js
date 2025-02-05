@@ -24,6 +24,8 @@ import {
   ImageGoogleIcon,
   ButtonAlt,
   MainButtonAuth,
+  Form,
+  SupportingImg,
 } from '../AuthFlow.styled'
 import { LoginSignUpLink, InputFieldsContainer, Divider, LoginButtonsContainer } from './loginPage.styled'
 import { UserLoginContext } from '../../../utils/Context/LoggedInUserContext'
@@ -157,7 +159,7 @@ const LoginPage = (props) => {
               </LoginSignUpLink>
             </FormSubHeadingText>
             <VerifyCodeFormInputsContainer>
-              <form onSubmit={handleLogin}>
+              <Form onSubmit={handleLogin}>
                 <InputFieldsContainer>
                   {isEmail ? (
                     <InputComponent
@@ -168,9 +170,6 @@ const LoginPage = (props) => {
                       placeholder="Enter Your Email"
                       user={formData}
                       setUser={setFormData}
-                      customInputFieldStyles={css`
-                        flex: 1;
-                      `}
                     />
                   ) : (
                     <InputComponent
@@ -181,9 +180,6 @@ const LoginPage = (props) => {
                       placeholder="Enter Your Phone"
                       user={formData}
                       setUser={setFormData}
-                      customInputFieldStyles={css`
-                        flex: 1;
-                      `}
                     />
                   )}
                 </InputFieldsContainer>
@@ -212,8 +208,8 @@ const LoginPage = (props) => {
                     <ContinueWithText>Log In With {!isEmail ? 'Email' : 'Phone number'}</ContinueWithText>
                   </ButtonAlt>
                 </LoginButtonsContainer>
-              </form>
-              <img src={images.verify_code_image} style={{ width: '30%', height: '100%', marginLeft: '40px' }} alt="supporting" />
+              </Form>
+              <SupportingImg src={images.verify_code_image}  alt="supporting" />
             </VerifyCodeFormInputsContainer>
           </FormContainer>
         </FormAndTitleContainer>

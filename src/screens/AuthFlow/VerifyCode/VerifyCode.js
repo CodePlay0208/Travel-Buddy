@@ -21,6 +21,8 @@ import {
   DesignContainer,
   AuthDesignImage,
   MainButtonAuth,
+  Form,
+  SupportingImg,
 } from '../AuthFlow.styled'
 import {
   VerifyCodeFormInputsContainer,
@@ -78,7 +80,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
             <FormHeadingContainer>Verify code</FormHeadingContainer>
             <FormSubHeadingText>An authentication code has been sent to your email.</FormSubHeadingText>
             <VerifyCodeFormInputsContainer>
-              <form onSubmit={onSubmit} style={{ flex: 1 }}>
+              <Form onSubmit={onSubmit} >
                 <InputComponent
                   label="Enter Code"
                   type={secureVerificationCode ? 'password' : 'text'}
@@ -95,14 +97,11 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
                     <VerifyCodeResendText>Resend</VerifyCodeResendText>
                   </VerifyCodeResendLink>
                 </VerifyCodeResendCodeContainer>
-                <MainButtonAuth type="submit">
-                  <p>Verify</p>
-                </MainButtonAuth>
-              </form>
-              <img src={images.verify_code_image} style={{ width: '30%', height: '100%', marginLeft: '40px' }} alt="supporting" />
+                <MainButtonAuth type="submit">Verify</MainButtonAuth>
+              </Form>
+              <SupportingImg src={images.verify_code_image} alt="supporting" />
             </VerifyCodeFormInputsContainer>
           </FormContainer>
-          
         </FormAndTitleContainer>
         <Copyright />
       </FormAndCopyrightContainer>

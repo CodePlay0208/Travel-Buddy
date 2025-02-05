@@ -10,8 +10,7 @@ export const LoginRememberMeAndForgetPasswordContainer = styled.div`
 
 export const InputFieldsContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
+  flex-direction: column;
   margin-top: 0.5rem;
 `
 

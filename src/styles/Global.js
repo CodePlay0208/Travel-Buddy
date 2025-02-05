@@ -39,7 +39,7 @@ export const Input = styled.input`
   cursor: pointer;
   @media (max-width: 786px) {
     padding: 1.5%;
-    font-size: ${(props) => 1.5*props.fontSize ?? '1vw'};
+    font-size: ${(props) => 1.5 * props.fontSize ?? '1vw'};
     border-radius: 20px;
   }
 
