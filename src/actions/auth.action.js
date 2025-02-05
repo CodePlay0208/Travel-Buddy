@@ -58,7 +58,7 @@ export const register = (formData) => async (dispatch) => {
 }
 
 export const login = (useremail) => async (dispatch) => {
-  const body = JSON.stringify({userKey: useremail })
+  const body = JSON.stringify({ userKey: useremail })
   try {
     const res = await AuthApi.loginUser(body)
     dispatch({
@@ -96,7 +96,8 @@ export const loginWithGoogle = () => async (dispatch) => {
 }
 
 export const verifyOTP = (userOtp) => async (dispatch) => {
-  const body = JSON.stringify({ userOtp })
+  const userKey = localStorage.getItem('userKey')
+  const body = JSON.stringify({ userKey: userKey, userOtp: userOtp })
   if (localStorage.token) {
     setAuthToken(localStorage.token)
   }

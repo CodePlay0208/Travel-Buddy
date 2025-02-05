@@ -12,6 +12,7 @@ export const InputFieldsContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 0.5rem;
+  position: relative;
 `
 
 export const LoginRememberMeContainer = styled.div`

@@ -23,20 +23,16 @@ import {
   MainButtonAuth,
   Form,
   SupportingImg,
-} from '../AuthFlow.styled'
-import {
   VerifyCodeFormInputsContainer,
-  VerifyCodeResendCodeContainer,
-  VerifyCodeDidntRecieveText,
-  VerifyCodeResendLink,
-  VerifyCodeResendText,
-} from './VerifyCode.styled'
+} from '../AuthFlow.styled'
+import { VerifyCodeResendCodeContainer, VerifyCodeDidntRecieveText, VerifyCodeResendLink, VerifyCodeResendText } from './VerifyCode.styled'
 const mapStateToProps = (state) => ({
   otpVerified: state.authReducer.otpVerified,
 })
 
 const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
   const navigate = useNavigate()
+
   const origin = sessionStorage.getItem('prevRoute')
 
   const [formData, setFormData] = useState({ verificationCode: '' })
@@ -57,7 +53,11 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
 
   useEffect(() => {
     if (otpVerified) {
-      navigate('/')
+      if (origin === '/signup') {
+        navigate('/a')
+      } else {
+        navigate('/')
+      }
     }
   }, [otpVerified])
 
@@ -80,10 +80,10 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
             <FormHeadingContainer>Verify code</FormHeadingContainer>
             <FormSubHeadingText>An authentication code has been sent to your email.</FormSubHeadingText>
             <VerifyCodeFormInputsContainer>
-              <Form onSubmit={onSubmit} >
+              <Form onSubmit={onSubmit}>
                 <InputComponent
                   label="Enter Code"
-                  type={secureVerificationCode ? 'password' : 'text'}
+                  type="text"
                   name="verificationCode"
                   user={formData}
                   setUser={setFormData}

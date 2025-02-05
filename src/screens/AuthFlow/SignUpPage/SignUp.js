@@ -18,14 +18,13 @@ import {
   AuthDesignImage,
   Form,
   SupportingImg,
+  VerifyCodeFormInputsContainer,
 } from '../AuthFlow.styled'
 import { SignUpAlreadyHaveContainer, SignUpAlreadyHaveText, SignUpLoginLink, SignUpLoginText } from './SignUp.styled'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 import { css } from 'styled-components'
 import { InputFieldsContainer } from '../LoginPage/loginPage.styled'
-
-import { VerifyCodeFormInputsContainer } from '../VerifyCode/VerifyCode.styled'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,

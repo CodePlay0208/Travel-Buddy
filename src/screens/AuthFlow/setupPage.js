@@ -1,14 +1,10 @@
-import React, { useContext, useState, memo, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useGoogleLogin } from '@react-oauth/google'
+import React, { useState, memo } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { images } from '../../../assets'
 import { connect } from 'react-redux'
-import { setGoogleToken } from '../../../services/api-services/api-services'
-import { login, loginWithGoogle, loadUser } from '../../../actions/auth.action'
-import InputComponent from '../../../components/InputComponent/InputComponent'
-import Copyright from '../../../components/Copyright/Copyright'
+import { register } from '../../actions/auth.action'
+
+import { images } from '../../assets'
 import {
   Container,
   FormAndCopyrightContainer,
@@ -17,121 +13,78 @@ import {
   FormContainer,
   FormHeadingContainer,
   FormSubHeadingText,
-  DividerContainer,
+  MainButtonAuth,
   DesignContainer,
   AuthDesignImage,
-  ContinueWithText,
-  ImageGoogleIcon,
-  ButtonAlt,
-  MainButtonAuth,
-} from '../AuthFlow.styled'
-import { LoginSignUpLink, InputFieldsContainer, Divider, LoginButtonsContainer } from './loginPage.styled'
-import { UserLoginContext } from '../../../utils/Context/LoggedInUserContext'
-import { css } from 'styled-components'
+  Form,
+  SupportingImg,
+  VerifyCodeFormInputsContainer,
+} from './AuthFlow.styled'
+import InputComponent from '../../components/InputComponent/InputComponent'
+import Copyright from '../../components/Copyright/Copyright'
+import { InputFieldsContainer } from './LoginPage/loginPage.styled'
+import Dropdown from '../../components/Dropdown/Dropdown'
+import { Input, Label } from '../../styles/Global'
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.authReducer.isAuthenticated,
+  user: state.authReducer.user,
+  isLoading: state.authReducer.isLoading,
 })
 
-const LoginPage = (props) => {
-  const { login, isAuthenticated } = props
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  })
-  const [isEmail, setIsEmail] = useState(true)
-
-  const { setLoggedInUserValues } = useContext(UserLoginContext)
+const SetupPage = (props) => {
+  const { register } = props
   const navigate = useNavigate()
+  const location = useLocation()
 
-  const googleSignIn = useGoogleLogin({
-    clientId: '1022164133679-ki2bnhs4j6njqkehebo7dmo3k96rdfvc.apps.googleusercontent.com',
-    onSuccess: (response) => {
-      console.log(response)
-      const token = response.access_token
-      setGoogleToken(token)
+  const [showPersonaDropDown, setShowPersonaDropDown] = useState(false)
+  const [showGenderDropDown, setShowGenderDropDown] = useState(false)
 
-      // Send the token to your backend for verification and user data fetching
-      fetch('https://api.travmigoz.com/login/googleLogin', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-          'googletoken': `Bearer ${token}`,
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            return response.json().then((error) => {
-              throw new Error(error)
-            })
-          }
-          return response.json()
-        })
-        .then((data) => {
-          console.log('the data is', data)
-          localStorage.setItem('token', data.token)
-          loadUser()
-          navigate('/')
-        })
-        .catch((error) => {
-          console.error('Error during login:', error)
-          setLoggedInUserValues({
-            _id: '',
-            username: '',
-            emailId: '',
-            profilePic: '',
-          })
-        })
-    },
-    onError: (error) => {
-      console.error('Login failed:', error)
-      setLoggedInUserValues({
-        _id: '',
-        username: '',
-        emailId: '',
-        profilePic: '',
-      })
-    },
+  const [formData, setFormData] = useState({
+    persona: '',
+    gender: '',
+    birthday: '',
   })
 
-  const checkValueIsValid = useCallback((value) => {
+  const [isEmail, setIsEmail] = useState(true)
+  const checkValueIsValid = (value) => {
     if (value === '' || value === undefined || value === null) {
       return false
     }
     return true
-  }, [])
+  }
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-
-    let validEmail = true
+    let validEmail = false
     if (isEmail) {
       validEmail = checkValueIsValid(formData.email)
-      if (!validEmail) {
-        toast.error('Email-id is not valid!', {
-          autoClose: 1500,
-        })
-        return
-      }
     } else {
-      validEmail = checkValueIsValid(formData.phone)
-      if (!validEmail) {
-        toast.error('Phone number is not valid!', {
-          autoClose: 1500,
-        })
-        return
-      }
+      validEmail = checkValueIsValid(formData.phoneNumber)
+    }
+    if (!validEmail) {
+      toast.error('email-id or password not valid', {
+        autoClose: 1500,
+      })
+      return
     }
 
-    const isAuth = await login(formData.email)
+    const isAuth = await register(formData)
+    console.log(isAuth)
 
     if (isAuth) {
-      localStorage.setItem('userKey', formData.email)
+      localStorage.setItem('userKey', formData.email || formData.phoneNumber)
+      sessionStorage.setItem('prevRoute', location.pathname)
       navigate('/verify-otp')
     }
   }
 
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prevData) => ({
+      ...formData,
+      [name]: value,
+    }))
+  }
   return (
     <Container>
       <FormAndCopyrightContainer>
@@ -144,84 +97,79 @@ const LoginPage = (props) => {
             Travmigoz
           </TitleContainer>
           <FormContainer>
-            <FormHeadingContainer>Log into Your Account</FormHeadingContainer>
+            <FormHeadingContainer> Setting up your Profile</FormHeadingContainer>
             <FormSubHeadingText>
-              New at Travmigoz?
-              <LoginSignUpLink
-                onClick={() => {
-                  navigate('/signup')
-                }}
-              >
-                Sign up
-              </LoginSignUpLink>
+              Welcome to <span>Travmigoz</span>- setup your profile.
             </FormSubHeadingText>
+            <VerifyCodeFormInputsContainer>
+              <Form onSubmit={handleSubmit}>
+                <InputFieldsContainer>
+                  <InputFieldsContainer>
+                    <Label>Persona</Label>
+                    <Input
+                      name="persona"
+                      value={formData?.persona || ''}
+                      onChange={handleChange}
+                      onFocus={() => setShowPersonaDropDown(true)}
+                      onBlur={(e) => {
+                        setTimeout(() => setShowPersonaDropDown(false), 1000)
+                      }}
+                      placeholder="Choose Persona"
+                    />
+                    {showPersonaDropDown && (
+                      <Dropdown
+                        data={[{ value: 'Traveller' }, { value: 'Agent' }]}
+                        selectSuggestion={(selected) => {
+                          handleChange({
+                            target: { name: 'persona', value: selected.value },
+                          })
+                          setShowPersonaDropDown(false)
+                        }}
+                      />
+                    )}
+                  </InputFieldsContainer>
+                  <InputFieldsContainer>
+                    <Label>Gender</Label>
+                    <Input
+                      name="gender"
+                      value={formData?.gender || ''}
+                      onChange={handleChange}
+                      onFocus={() => setShowGenderDropDown(true)}
+                      onBlur={(e) => {
+                        setTimeout(() => setShowGenderDropDown(false), 1000)
+                      }}
+                      placeholder="Choose Gender"
+                    />
+                    {showGenderDropDown && (
+                      <Dropdown
+                        data={[{ value: 'Male' }, { value: 'Female' }, { value: 'Others' }]}
+                        selectSuggestion={(selected) => {
+                          handleChange({
+                            target: { name: 'gender', value: selected.value },
+                          })
+                          setShowGenderDropDown(false)
+                        }}
+                      />
+                    )}
+                  </InputFieldsContainer>
+                </InputFieldsContainer>
 
-            <form onSubmit={handleLogin}>
-              <InputFieldsContainer>
-                {isEmail ? (
-                  <InputComponent
-                    label="Email"
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Enter Your Email"
-                    user={formData}
-                    setUser={setFormData}
-                    customInputFieldStyles={css`
-                      flex: 1;
-                    `}
-                  />
-                ) : (
-                  <InputComponent
-                    label="Phone Number"
-                    type="text"
-                    name="phone"
-                    id="phone"
-                    placeholder="Enter Your Phone"
-                    user={formData}
-                    setUser={setFormData}
-                    customInputFieldStyles={css`
-                      flex: 1;
-                    `}
-                  />
-                )}
-              </InputFieldsContainer>
-
-              <MainButtonAuth type="submit">Log In</MainButtonAuth>
-
-              <DividerContainer>
-                <Divider />
-                Or
-                <Divider />
-              </DividerContainer>
-
-              <LoginButtonsContainer>
-                <ButtonAlt role="button" onClick={googleSignIn}>
-                  <ImageGoogleIcon src={images.google_icon_black} alt="Log In With Google" />
-                  <ContinueWithText>Log In With Google</ContinueWithText>
-                </ButtonAlt>
-
-                <ButtonAlt
-                  role="button"
-                  onClick={() => {
-                    setIsEmail(!isEmail)
-                  }}
-                >
-                  <ImageGoogleIcon src={images.phone_icon_black} alt="Log In With Phone" />
-                  <ContinueWithText>Log In With {!isEmail ? 'Email' : 'Phone number'}</ContinueWithText>
-                </ButtonAlt>
-              </LoginButtonsContainer>
-            </form>
+                <MainButtonAuth onClick={handleSubmit} type="submit">
+                  Sign up
+                </MainButtonAuth>
+              </Form>
+              <SupportingImg src={images.verify_code_image} alt="supporting" />
+            </VerifyCodeFormInputsContainer>
           </FormContainer>
         </FormAndTitleContainer>
         <Copyright />
       </FormAndCopyrightContainer>
       <DesignContainer>
-        <AuthDesignImage src={images.auth_side_image} alt="AuthDesignImage" />
+        <AuthDesignImage src={images.auth_side_image} alt="Auth Design" />
       </DesignContainer>
       <ToastContainer />
     </Container>
   )
 }
 
-export default connect(mapStateToProps, { login, loginWithGoogle, loadUser })(memo(LoginPage))
+export default connect(mapStateToProps, { register })(memo(SetupPage))

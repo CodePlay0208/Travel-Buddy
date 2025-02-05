@@ -168,6 +168,18 @@ export const responsiveStyles = styled.div`
   }
 `
 
+export const VerifyCodeFormInputsContainer = styled.div`
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 786px) {
+    flex-direction: column-reverse;
+  }
+`
 export const ButtonAlt = styled.button`
   display: flex;
   flex: 1;

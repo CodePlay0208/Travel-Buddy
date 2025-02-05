@@ -1,5 +1,5 @@
 import React, { useContext, useState, memo, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -26,12 +26,11 @@ import {
   MainButtonAuth,
   Form,
   SupportingImg,
+  VerifyCodeFormInputsContainer,
 } from '../AuthFlow.styled'
 import { LoginSignUpLink, InputFieldsContainer, Divider, LoginButtonsContainer } from './loginPage.styled'
 import { UserLoginContext } from '../../../utils/Context/LoggedInUserContext'
 import { css } from 'styled-components'
-
-import { VerifyCodeFormInputsContainer } from '../VerifyCode/VerifyCode.styled'
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
 })
@@ -43,7 +42,7 @@ const LoginPage = (props) => {
     password: '',
   })
   const [isEmail, setIsEmail] = useState(true)
-
+  const location = useLocation()
   const { setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
 
@@ -130,6 +129,7 @@ const LoginPage = (props) => {
     const isAuth = await login(formData.email)
 
     if (isAuth) {
+      sessionStorage.setItem('prevRoute', location.pathname)
       localStorage.setItem('userKey', formData.email)
       navigate('/verify-otp')
     }
@@ -209,7 +209,7 @@ const LoginPage = (props) => {
                   </ButtonAlt>
                 </LoginButtonsContainer>
               </Form>
-              <SupportingImg src={images.verify_code_image}  alt="supporting" />
+              <SupportingImg src={images.verify_code_image} alt="supporting" />
             </VerifyCodeFormInputsContainer>
           </FormContainer>
         </FormAndTitleContainer>
