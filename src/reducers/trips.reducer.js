@@ -67,6 +67,7 @@ const tripReducer = (state = initialState, action) => {
     case TRIPS_ERROR:
       return {
         ...state,
+        userTrip: [],
         loading: false,
         error: payload,
       }

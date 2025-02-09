@@ -128,6 +128,11 @@ export const PublishButton = styled.button`
   font-weight: 700;
   border: none;
   color: rgb(0, 0, 0);
+  @media (max-width: 786px) {
+    font-size: 6vw;
+    height: auto;
+    width: 100%;
+  }
 `
 export const FlexContainer = styled.div`
   display: flex;
@@ -152,5 +157,19 @@ export const FlexContainer = styled.div`
     @media (max-width: 786px) {
       flex-direction: column-reverse;
     }
+  }
+`
+export const PublishNowContainer = styled(FlexContainer)`
+  @media (max-width: 786px) {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+`
+export const PublishNowContent = styled(FlexContainer)`
+  @media (max-width: 786px) {
+    padding: 5%;
+    width: 100%;
+    height: 100%;
   }
 `

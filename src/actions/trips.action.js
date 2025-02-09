@@ -82,6 +82,7 @@ export const getUserTrips = () => async (dispatch) => {
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
+    } else if (e.response && e.response.status === 404) {
     } else {
       toast.error('Please Try Again!', { autoClose: 1500 })
     }

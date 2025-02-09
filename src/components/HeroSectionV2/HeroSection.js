@@ -14,6 +14,8 @@ import {
   BottomHeading,
   PublishButton,
   PublishHeading,
+  PublishNowContainer,
+  PublishNowContent,
 } from './HeroSection.styled'
 import { images } from '../../assets'
 import { useNavigate } from 'react-router-dom'
@@ -24,10 +26,10 @@ const HeroSection = () => {
     <FlexContainer margin="2.5%" gap="20px" direction="column">
       {/* publish section  */}
 
-      <FlexContainer width="100%">
-        <FlexContainer height="135px" width="70%" borderRadius="15px" backgroundImage={images.heroSection_4}>
+      <PublishNowContainer width="100%">
+        <PublishNowContent height="135px" width="70%" borderRadius="15px" backgroundImage={images.heroSection_4}>
           <PublishHeading>Publish trips on the go</PublishHeading>
-        </FlexContainer>
+        </PublishNowContent>
         <PublishButton
           onClick={() => {
             navigate('/publish-trip')
@@ -36,7 +38,7 @@ const HeroSection = () => {
         >
           Publish Now
         </PublishButton>
-      </FlexContainer>
+      </PublishNowContainer>
       <FlexContainer gap="20px" direction="row" className="main">
         {/* Left Section */}
         <Section>

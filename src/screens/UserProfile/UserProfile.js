@@ -21,7 +21,6 @@ const UserProfile = (props) => {
   const [modalState, setModalState] = useState({ isOpen: false, tripId: null })
 
   useEffect(() => {
-    getProfile()
     getUserTrips()
   }, [])
 
