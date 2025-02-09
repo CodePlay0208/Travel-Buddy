@@ -68,7 +68,6 @@ export const login = (useremail) => async (dispatch) => {
     toast.success('Registration Successful! OTP sent to your email.', { autoClose: 1500 })
     return true
   } catch (e) {
-    
     dispatch({
       type: LOGIN_FAIL,
     })
@@ -91,36 +90,38 @@ export const loginWithGoogle = () => async (dispatch) => {
   }
 }
 
-export const verifyOTP = (userOtp) => async (dispatch) => {
-  const userKey = localStorage.getItem('userKey')
-  const body = JSON.stringify({ userKey: userKey, userOtp: userOtp })
-  if (localStorage.token) {
-    setAuthToken(localStorage.token)
-  }
-  try {
-    const res = await AuthApi.verifyOTP(body)
-    dispatch({
-      type: VERIFY_OTP_SUCCESS,
-      payload: res.data,
-    })
-    console.log(res)
-
-    console.log(res.data.token)
-    localStorage.setItem('token', res.data.token)
-    toast.success('OTP Verified!', { autoClose: 1500 })
-
-    dispatch(loadUser())
-  } catch (e) {
-    if (e.response && e.response.status === 400) {
-      toast.error('Invalid User!', { autoClose: 1500 })
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
+export const verifyOTP =
+  (userOtp, isSignUpRequest = false) =>
+  async (dispatch) => {
+    const userKey = localStorage.getItem('userKey')
+    const body = JSON.stringify({ userKey: userKey, userOtp: userOtp, isSignUpRequest: isSignUpRequest })
+    if (localStorage.token) {
+      setAuthToken(localStorage.token)
     }
-    dispatch({
-      type: VERIFY_OTP_FAIL,
-    })
+    try {
+      const res = await AuthApi.verifyOTP(body)
+      dispatch({
+        type: VERIFY_OTP_SUCCESS,
+        payload: res.data,
+      })
+      console.log(res)
+
+      console.log(res.data.token)
+      localStorage.setItem('token', res.data.token)
+      toast.success('OTP Verified!', { autoClose: 1500 })
+
+      dispatch(loadUser())
+    } catch (e) {
+      if (e.response && e.response.status === 400) {
+        toast.error('Invalid User!', { autoClose: 1500 })
+      } else {
+        toast.error('Please Try Again!', { autoClose: 1500 })
+      }
+      dispatch({
+        type: VERIFY_OTP_FAIL,
+      })
+    }
   }
-}
 
 export const resendOTP = () => async (dispatch) => {
   const userKey = localStorage.getItem('userKey')

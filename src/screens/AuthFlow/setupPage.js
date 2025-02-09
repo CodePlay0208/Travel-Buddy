@@ -26,6 +26,7 @@ import { InputFieldsContainer } from './LoginPage/loginPage.styled'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import { Input, Label } from '../../styles/Global'
 import DatePicker from '../../components/DatePicker/DatePicker'
+import { updateProfile } from '../../actions/profile.action'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
@@ -33,7 +34,7 @@ const mapStateToProps = (state) => ({
 })
 
 const SetupPage = (props) => {
-  const { register } = props
+  const { updateProfile } = props
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -43,20 +44,19 @@ const SetupPage = (props) => {
   const [formData, setFormData] = useState({
     persona: '',
     gender: '',
-    birthday: '',
+    dateOfBirth: '',
   })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    const isAuth = await register(formData)
-    console.log(isAuth)
-
-    if (isAuth) {
-      localStorage.setItem('userKey', formData.email || formData.phoneNumber)
-      sessionStorage.setItem('prevRoute', location.pathname)
-      navigate('/verify-otp')
+    const updatedFormData = {
+      ...formData,
+      persona: formData.persona.toLowerCase(),
+      gender: formData.gender.toLowerCase(),
     }
+    await updateProfile(updatedFormData)
+
+    navigate('/')
   }
 
   const handleChange = (e) => {
@@ -137,14 +137,14 @@ const SetupPage = (props) => {
                     <Label>Date of Birth</Label>
                     <DatePicker
                       pickerType="dob"
-                      inputValues={formData.birthday}
+                      inputValues={formData.dateOfBirth}
                       setInputValues={(value) => {
                         setFormData({
                           ...formData,
-                          birthday: value,
+                          dateOfBirth: value,
                         })
                       }}
-                      onValue={'birthday'}
+                      onValue={'dateOfBirth'}
                       placeholderValue={'Your Date of Birth'}
                     />
                   </InputFieldsContainer>
@@ -168,4 +168,4 @@ const SetupPage = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { register })(memo(SetupPage))
+export default connect(mapStateToProps, { updateProfile })(memo(SetupPage))

@@ -44,7 +44,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    verifyOTP(formData.verificationCode)
+    verifyOTP(formData.verificationCode, origin === '/signup')
   }
 
   const onResendClick = async () => {
@@ -54,7 +54,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
   useEffect(() => {
     if (otpVerified) {
       if (origin === '/signup') {
-        navigate('/a')
+        navigate('/setup')
       } else {
         navigate('/')
       }
