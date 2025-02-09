@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+
 const getSlideAnimation = (cardCount) => keyframes`
   0% {
     transform: translateX(0%);
@@ -28,10 +29,24 @@ export const SliderHeading = styled.div`
   padding: 2% 0 2% 2%;
   height: 100%;
   position: absolute;
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
   background-color: white;
   z-index: 2;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+
+  @media (max-width: 1024px) {
+    border-top-right-radius: 70px;
+    border-bottom-right-radius: 70px;
+  }
+  @media (max-width: 768px) {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+  @media (max-width: 480px) {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+
   h2 {
     margin: 0;
   }
@@ -46,7 +61,6 @@ export const SliderHeading = styled.div`
 
 export const Slider = styled.div`
   display: flex;
-  display: flex;
   width: calc(${(props) => props.cardCount} * 25vw);
   animation: ${(props) => getSlideAnimation(props.cardCount)} 30s linear infinite;
   position: relative;
@@ -57,10 +71,20 @@ export const Card = styled.div`
   object-fit: cover;
   background-size: cover;
   background-position: center;
-  border-radius: 13px;
   width: 33vw;
   position: relative;
   margin: 0.5%;
+  border-radius: 13px;
+
+  @media (max-width: 1024px) {
+    border-radius: 10px;
+  }
+  @media (max-width: 768px) {
+    border-radius: 8px;
+  }
+  @media (max-width: 480px) {
+    border-radius: 5px;
+  }
 `
 
 export const Badge = styled.div`

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const breakpoints = {
   mobile: '480px',
-  tablet: '768px',
+  tablet: '786px',
   desktop: '1024px',
 }
 
@@ -23,7 +23,6 @@ export const LandingHeader = styled.div`
   flex-direction: column;
   width: 100%;
   overflow: visible;
-
 `
 
 export const LandingImage = styled.img`
@@ -49,10 +48,11 @@ export const HeaderSearchBar = styled.div`
   box-shadow: 0px 0px 12px 0px #00000033;
 
   @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+    border-radius: 40px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    
   }
 `
 
@@ -63,10 +63,12 @@ export const HeaderDescription = styled.div`
   margin: 1%;
 
   @media (max-width: ${breakpoints.tablet}) {
+    margin: 5%;
     width: 90%;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
+    margin: 5%;
     width: 95%;
   }
 `
@@ -78,6 +80,9 @@ export const HeaderDesHeading = styled.div`
 
   font-size: 6vw;
   color: #8dd3bb;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 8vw;
+  }
 `
 
 export const HeaderDesPara = styled.div`

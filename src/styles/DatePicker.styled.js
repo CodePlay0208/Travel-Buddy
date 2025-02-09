@@ -123,7 +123,7 @@ export const NavButton = styled.span`
   }
 
   .svgIcon {
-    font-size: 2vw;
+    font-size: min(3vw, 32px);
     color: #797b86;
   }
   .svgIcon:hover {
@@ -134,7 +134,7 @@ export const NavButton = styled.span`
 export const DayNames = styled.div`
   display: flex;
   padding: 2%;
-  font-size: min(2.5vw,16px);
+  font-size: min(2.5vw, 16px);
 
   span {
     width: 14.28%;

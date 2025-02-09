@@ -132,7 +132,7 @@ export const PublishButton = styled.button`
 export const FlexContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.direction === 'column' ? 'column' : 'row')};
-  font-size: ${(props) => props.fontSize || 'min(1vw,16px)'};
+  font-size: ${(props) => props.fontSize || 'min(2vw,32px)'};
   justify-content: space-between;
   align-items: ${(props) => props.alignItems || 'center'};
   gap: ${(props) => props.gap || '10px'};

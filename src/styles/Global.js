@@ -39,8 +39,20 @@ export const Input = styled.input`
   cursor: pointer;
   @media (max-width: 786px) {
     padding: 1.5%;
-    font-size: ${(props) => 1.5 * props.fontSize ?? '1vw'};
+    font-size: ${(props) => {
+      const fontSize = parseFloat(props.fontSize)
+      return fontSize ? `${fontSize * 2}vw` : '2vw'
+    }};
     border-radius: 20px;
+
+    &&::placeholder {
+      color: #787878;
+      font-size: ${(props) => {
+      const fontSize = parseFloat(props.fontSize);
+      return fontSize ? `${fontSize * 2}vw` : '2vw';
+    }};
+      font-weight: 500;
+    }
   }
 
   ::placeholder {
