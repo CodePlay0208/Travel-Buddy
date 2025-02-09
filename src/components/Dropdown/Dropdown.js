@@ -8,7 +8,6 @@ const Dropdown = ({ data, selectSuggestion, setShowDropdown }) => {
   const navigate = useNavigate()
   const wrapperRef = useRef(null)
 
-  // Close dropdown when clicking outside of the component
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -26,7 +25,7 @@ const Dropdown = ({ data, selectSuggestion, setShowDropdown }) => {
       {data.map((data, index) => (
         <>
           <DropdownItem key={index} onClick={() => selectSuggestion(data)}>
-            <FlexContainer direction="column" alignItems="start" gap="0px" width="100%" fontSize='min(1.5vw,24px)'>
+            <FlexContainer direction="column" alignItems="start" gap="0px" width="100%" fontSize="min(1.5vw,24px)">
               <City>{data.value}</City>
               <LineBorder />
             </FlexContainer>

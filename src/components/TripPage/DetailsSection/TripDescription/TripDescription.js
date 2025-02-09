@@ -37,7 +37,7 @@ const TripDescription = (props) => {
   const [isExpanded, setIsExpanded] = useState(false)
   const navigate = useNavigate()
 
-  const publisher = trip?.tripMembers.filter((user) => user?.userId === trip?.userId)[0]
+  const publisher = trip?.tripMembersIds.filter((user) => user?.userId === trip?.userId)[0]
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded)
@@ -51,9 +51,7 @@ const TripDescription = (props) => {
   }
 
   const onEditTripClick = async () => {
-   
-    navigate('/publish-trip', { state: { trip } });
-    
+    navigate('/publish-trip', { state: { trip } })
   }
 
   console.log('trip', JSON.stringify(trip, null, 2))

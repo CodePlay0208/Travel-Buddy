@@ -36,6 +36,7 @@ export const DropdownItem = styled.div`
   border-radius: 7px;
   margin: 2% 5%;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 
   &:hover {
     background-color: #f1f1f1;
