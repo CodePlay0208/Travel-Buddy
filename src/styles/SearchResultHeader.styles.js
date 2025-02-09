@@ -49,7 +49,7 @@ export const HeaderSearchBar = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
-    border-radius: 40px;
+    border-radius: 35px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {

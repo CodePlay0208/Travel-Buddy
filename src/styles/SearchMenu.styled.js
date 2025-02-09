@@ -11,6 +11,7 @@ export const SearchBarContainer = styled.div`
   position: relative;
   @media (max-width: 786px) {
     gap: 1%;
+    padding: 5% 2%;
   }
 `
 
