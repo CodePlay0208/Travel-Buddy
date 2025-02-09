@@ -44,7 +44,7 @@ export const InputField = styled.input`
   width: 100%;
   border-style: none;
   background-color: #f4f4f4;
-  font-size: 1.5vw;
+  font-size: 1vw;
   ${({ customInputFieldStyles }) => customInputFieldStyles && css(customInputFieldStyles)}
 
   @media (max-width: 786px) {
