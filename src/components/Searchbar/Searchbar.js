@@ -65,6 +65,7 @@ const Searchbar = (props) => {
         value={inputValues}
         onChange={searchBarChangeHandler}
         autoComplete="off"
+        padding={props.padding}
         fontSize={props.fontSize ? props.fontSize : `inherit`}
         fontWeight={props.fontWeight ? props.fontWeight : `600`}
         border={props?.border}

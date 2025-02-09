@@ -32,32 +32,38 @@ const SearchMenu = (props) => {
     <SearchBarContainer>
       <SearchBarWrapper>
         <FlexContainer direction="column" width="100%" gap="0px" alignItems="start">
-          {/* <Label margin='0 2%'>Where</Label> */}
-          <Searchbar
-            inputValues={searchForm.destination}
-            setInputValues={(value) => handleInputChange('destination', value)}
-            onValue={'destination'}
-            placeholderValue={'Your Destination'}
-            fontSize={`1.5vw`}
-            fontWeight={`600`}
-            dropDownFontSize={'100%'}
-            border={'1px solid #ffffff'}
-            backgroundColor={'#ffffff'}
-          />
+          <FlexContainer direction="column" width="100%" gap="0px" margin='1%' alignItems="start">
+            <Label margin="0 2.5%">Where</Label>
+            <Searchbar
+              inputValues={searchForm.destination}
+              setInputValues={(value) => handleInputChange('destination', value)}
+              onValue={'destination'}
+              placeholderValue={'Your Destination'}
+              fontSize={`1.5vw`}
+              fontWeight={`600`}
+              dropDownFontSize={'100%'}
+              border={'1px solid #ffffff'}
+              backgroundColor={'#ffffff'}
+              padding={`0% 2.5% 2.5%`}
+            />
+          </FlexContainer>
         </FlexContainer>
         <VerticalDivider />
         <FlexContainer direction="column" width="100%" gap="0px" alignItems="start">
-          {/* <Label margin='0 2%'>When</Label> */}
-          <DatePicker
-            inputValues={searchForm.startDate}
-            setInputValues={(value) => handleInputChange('startDate', value)}
-            onValue={'startDate'}
-            placeholderValue={'Your Arrival & Departure'}
-            fontSize={`1.5vw`}
-            fontWeight={`600`}
-            border={'1px solid #ffffff'}
-            backgroundColor={'#ffffff'}
-          />
+          <FlexContainer direction="column" width="100%" gap="0px" margin='1%' alignItems="start">
+            <Label margin="0 2.5%">When</Label>
+            <DatePicker
+              inputValues={searchForm.startDate}
+              setInputValues={(value) => handleInputChange('startDate', value)}
+              onValue={'startDate'}
+              placeholderValue={'Your Arrival & Departure'}
+              fontSize={`1.5vw`}
+              fontWeight={`600`}
+              border={'1px solid #ffffff'}
+              backgroundColor={'#ffffff'}
+              padding={`0% 2.5% 2.5%`}
+            />
+          </FlexContainer>
         </FlexContainer>
       </SearchBarWrapper>
       <SearchButtonContainer onClick={onSearchButton} role="button">

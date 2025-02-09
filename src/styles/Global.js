@@ -7,8 +7,9 @@ const GlobalStyles = createGlobalStyle`
 
 export const Label = styled.label`
   font-weight: 600;
-  font-size: 1vw;
+  font-size: 1.5vw;
   line-height: 1.4;
+  z-index: 2;
   margin: ${(props) => props.margin ?? '2% 0% 1%'};
   color: #252525;
   width: ${(props) => props.width};
@@ -29,7 +30,7 @@ export const Value = styled.span`
 export const Input = styled.input`
   position: relative;
   width: 100%;
-  padding: 2.5%;
+  padding: ${(props) => props.padding ?? '2.5%'};
   font-size: ${(props) => props.fontSize ?? '1vw'};
   border: ${(props) => props.border ?? '1px solid #f4f4f4'};
   border-radius: 50px;
@@ -38,7 +39,6 @@ export const Input = styled.input`
   background-color: ${(props) => props.backgroundColor ?? '#f4f4f4'};
   cursor: pointer;
   @media (max-width: 786px) {
-    padding: 1.5%;
     font-size: ${(props) => {
       const fontSize = parseFloat(props.fontSize)
       return fontSize ? `${fontSize * 2}vw` : '2vw'
@@ -68,7 +68,7 @@ export const VerticalDivider = styled.div`
   border: 1px solid #afafaf;
   border-radius: 10px;
   padding: 3% 0;
-  @media (max-width: 786px) {
+  @media (max-width: 456px) {
     padding: 0 50%;
   }
 `

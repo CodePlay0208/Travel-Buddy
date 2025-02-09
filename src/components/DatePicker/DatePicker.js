@@ -181,6 +181,7 @@ const DatePicker = (props) => {
         border={props?.border}
         backgroundColor={props?.backgroundColor}
         fontSize={props?.fontSize}
+        padding={props.padding}
       />
 
       {showCalendar && (

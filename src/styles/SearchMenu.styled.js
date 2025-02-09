@@ -9,9 +9,9 @@ export const SearchBarContainer = styled.div`
   padding: 1%;
   height: 60%;
   position: relative;
-  @media (max-width: 786px) {
+  @media (max-width: 456px) {
     gap: 1%;
-    padding: 5% 2%;
+    padding: 3%;
   }
 `
 
@@ -23,9 +23,9 @@ export const SearchBarWrapper = styled.div`
   margin: 1%;
   gap: 2%;
   position: relative;
-  @media (max-width: 786px) {
-    gap: 1%;
+  @media (max-width: 456px) {
     flex-direction: column;
+    gap: 1%;
   }
 `
 export const SearchButtonContainer = styled.div`
