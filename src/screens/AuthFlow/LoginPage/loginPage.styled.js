@@ -11,7 +11,7 @@ export const LoginRememberMeAndForgetPasswordContainer = styled.div`
 export const InputFieldsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 0.5rem;
+  margin-top: 2%;
   position: relative;
 `
 
@@ -59,6 +59,10 @@ export const LoginSignUpLink = styled.div`
   &:active {
     color: #ca2c27;
     transform: scale(0.98);
+  }
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
   }
 `
 
@@ -112,7 +116,7 @@ export const LoginButtonsContainer = styled.div`
   flex-direction: row;
   gap: 2rem;
 
-  @media (max-width: 550px) {
+  @media (max-width: 786px) {
     flex-direction: column;
     gap: 1rem;
   }

@@ -15,6 +15,10 @@ export const FormAndCopyrightContainer = styled.div`
 
 export const FormAndTitleContainer = styled.div`
   margin-bottom: 18%;
+
+  @media (max-width: 786px) {
+    margin-bottom: 10%;
+  }
 `
 
 export const TitleContainer = styled.div`
@@ -22,6 +26,10 @@ export const TitleContainer = styled.div`
   font-size: 2vw;
   font-weight: 600;
   color: #000000;
+
+  @media (max-width: 786px) {
+    font-size: 4vw;
+  }
 `
 
 export const FormContainer = styled.div`
@@ -45,30 +53,40 @@ export const BackButtonContainer = styled.div`
 
 export const BackButtonIcon = styled.img`
   height: 1vw;
+
+  @media (max-width: 786px) {
+    height: 2vw;
+  }
 `
 export const SupportingImg = styled.img`
   width: 30%;
-  
+  border-radius: 15px;
+
   @media (max-width: 786px) {
     width: 60%;
+    border-radius: 10px;
   }
-  
+
   @media (max-width: 450px) {
     width: 100%;
+    border-radius: 5px;
   }
 `
 export const Form = styled.form`
   width: 60%;
-  
+
   @media (max-width: 786px) {
     width: 100%;
   }
 `
 
-
 export const BackButtonText = styled.p`
   margin-left: 1%;
   font-size: 1vw;
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
+  }
 `
 
 export const FormHeadingContainer = styled.div`
@@ -76,6 +94,10 @@ export const FormHeadingContainer = styled.div`
   margin-bottom: 1%;
   font-size: 3vw;
   font-weight: 700;
+
+  @media (max-width: 786px) {
+    font-size: 6vw;
+  }
 
   ${({ customStyles }) => customStyles && customStyles};
 `
@@ -92,6 +114,10 @@ export const FormSubHeadingText = styled.div`
   span {
     color: #000000;
   }
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
+  }
 `
 
 export const DividerContainer = styled.div`
@@ -101,6 +127,10 @@ export const DividerContainer = styled.div`
   margin: 2% 0px;
   color: #112211;
   font-size: 1vw;
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
+  }
 `
 
 export const Divider = styled.div`
@@ -116,6 +146,10 @@ export const OrLoginWithContainer = styled.div`
   text-align: center;
   color: #112211;
   font-size: 1vw;
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
+  }
 `
 
 export const DesignContainer = styled.div`
@@ -142,11 +176,19 @@ export const GoogleSignUpButton = styled.div`
   align-items: center;
   border-radius: 5px;
   border: none;
+
+  @media (max-width: 786px) {
+    border-radius: 3px;
+  }
 `
 
 export const ContinueWithText = styled.div`
   font-weight: 400;
   font-size: 1vw;
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
+  }
 `
 
 export const ImageGoogleIcon = styled.img`
@@ -197,6 +239,10 @@ export const ButtonAlt = styled.button`
   &:hover {
     background-color: #e0fff4;
   }
+
+  @media (max-width: 786px) {
+    border-radius: 16px;
+  }
 `
 
 export const MainButtonAuth = styled.button`
@@ -216,4 +262,8 @@ export const MainButtonAuth = styled.button`
   }
 
   ${({ mainButtonStyles }) => mainButtonStyles && mainButtonStyles}
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
+  }
 `

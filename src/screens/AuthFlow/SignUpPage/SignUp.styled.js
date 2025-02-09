@@ -96,6 +96,10 @@ export const SignUpAlreadyHaveText = styled.div`
   justify-content: center;
   align-items: center;
   color: #848282;
+  
+  @media (max-width: 786px) {
+    font-size: 2vw;
+  }
 `
 
 export const SignUpLoginLink = styled.span`
@@ -116,6 +120,10 @@ export const SignUpLoginLink = styled.span`
   &:active {
     color: #ca2c27;
     transform: scale(0.98);
+  }
+  
+  @media (max-width: 786px) {
+    font-size: 2vw;
   }
 `
 

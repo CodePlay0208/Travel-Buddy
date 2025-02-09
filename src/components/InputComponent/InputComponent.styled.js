@@ -14,9 +14,13 @@ export const InputLabel = styled.p`
   margin-left: 8px;
 
   span {
-    color: #FF2B2B;
+    color: #ff2b2b;
   }
   ${({ customLabelStyles }) => customLabelStyles && css(customLabelStyles)}
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
+  }
 `
 
 export const InputFieldContainer = styled.div`
@@ -29,6 +33,11 @@ export const InputFieldContainer = styled.div`
   border-style: none;
   background-color: #f4f4f4;
   font-size: 1.5vw;
+
+  @media (max-width: 786px) {
+    border-radius: 20px;
+    font-size: 3vw;
+  }
 `
 
 export const InputField = styled.input`
@@ -37,6 +46,10 @@ export const InputField = styled.input`
   background-color: #f4f4f4;
   font-size: 1.5vw;
   ${({ customInputFieldStyles }) => customInputFieldStyles && css(customInputFieldStyles)}
+
+  @media (max-width: 786px) {
+    font-size: 3vw;
+  }
 `
 
 export const PassowrdEyeContainer = styled.div`
@@ -47,4 +60,8 @@ export const PassowrdEyeContainer = styled.div`
 
 export const PasswordEyeImage = styled.img`
   height: 20px;
+
+  @media (max-width: 786px) {
+    height: 30px;
+  }
 `

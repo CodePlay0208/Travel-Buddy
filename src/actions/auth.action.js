@@ -68,11 +68,7 @@ export const login = (useremail) => async (dispatch) => {
     toast.success('Registration Successful! OTP sent to your email.', { autoClose: 1500 })
     return true
   } catch (e) {
-    if (e.response && e.response.status === 400) {
-      toast.error('Invalid Email or Password!', { autoClose: 1500 })
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
-    }
+    
     dispatch({
       type: LOGIN_FAIL,
     })

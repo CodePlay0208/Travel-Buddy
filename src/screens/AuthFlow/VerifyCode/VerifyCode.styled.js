@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 export const VerifyCodeResendCodeContainer = styled.div`
   display: flex;
   margin-top: 2.5%;
@@ -9,6 +8,10 @@ export const VerifyCodeResendCodeContainer = styled.div`
 export const VerifyCodeDidntRecieveText = styled.p`
   font-size: 1vw;
   font-weight: 500;
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
+  }
 `
 
 export const VerifyCodeResendLink = styled.div`
@@ -30,6 +33,10 @@ export const VerifyCodeResendText = styled.p`
   &:active {
     color: #ca2c27;
     transform: scale(0.98);
+  }
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
   }
 `
 

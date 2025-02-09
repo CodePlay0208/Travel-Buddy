@@ -133,6 +133,9 @@ const LoginPage = (props) => {
       localStorage.setItem('userKey', formData.email)
       navigate('/verify-otp')
     }
+    else{
+      toast.error('Login Failed!', { autoClose: 1500 })
+    }
   }
 
   return (
