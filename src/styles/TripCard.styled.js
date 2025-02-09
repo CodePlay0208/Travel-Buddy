@@ -163,11 +163,10 @@ export const ChatNow = styled.div`
 `
 
 export const ChatButton = styled.button`
-  width: 130px;
+  width: 35%;
   height: 48.36px;
-  padding: 3% 8%;
   background: #8dd3bb;
-  border-radius: 7.92793px;
+  border-radius: 32px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 13.41px;
@@ -181,7 +180,7 @@ export const ChatButton = styled.button`
   justify-content: center;
 
   @media (max-width: 767px) {
-    width: 100%;
+    width: 35%;
     justify-content: center;
   }
 `

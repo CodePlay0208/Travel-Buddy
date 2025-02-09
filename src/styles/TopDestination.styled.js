@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import firstImage from '../data/image.png'
 
 export const Frame = styled.div`
   position: relative;
@@ -22,7 +23,6 @@ export const Rectangle40 = styled.div`
   left: 50%;
   transform: translateX(-50%);
   background: rgba(141, 211, 187, 0.28);
-
 `
 
 export const Heading = styled.h1`
@@ -37,6 +37,11 @@ export const Heading = styled.h1`
   line-height: 42px;
   color: #000000;
   text-align: center;
+  @media (max-width: 480px) {
+    width: 100%;
+    font-size: 7vw;
+    top: 20%;
+  }
 `
 
 export const ExploreButton = styled.button`
@@ -56,6 +61,9 @@ export const ExploreButton = styled.button`
   &:hover {
     background: #76b39d;
   }
+  @media (max-width: 480px) {
+    font-size: 4vw;
+  }
 `
 
 export const LocationContainer = styled.div`
@@ -69,7 +77,6 @@ export const LocationContainer = styled.div`
   background-color: white;
   border-radius: 33px 33px 66px 66px;
   padding: 3% 3% 2.5%;
-  
   @media (max-width: 1024px) {
     border-radius: 15px 15px 30px 30px;
   }
@@ -80,6 +87,8 @@ export const LocationContainer = styled.div`
 
   @media (max-width: 480px) {
     border-radius: 3px 3px 7.5px 7.5px;
+    width: 90%;
+    background: none;
   }
 `
 
@@ -108,8 +117,17 @@ export const LocationBox = styled.button`
     width: 2.5vw;
     aspect-ratio: 1;
   }
+
   @media (max-width: 1024px) {
     width: 45%;
     height: auto;
+  }
+  @media (max-width: 480px) {
+    background: none;
+    font-size: 5vw;
+    img {
+      width: 8vw;
+      aspect-ratio: 1;
+    }
   }
 `

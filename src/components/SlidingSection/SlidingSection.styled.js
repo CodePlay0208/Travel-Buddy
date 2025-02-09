@@ -16,9 +16,11 @@ export const Container = styled.div`
   display: flex;
   overflow: hidden;
   width: 100%;
-  height: 18vw;
   position: relative;
   margin: 5% 0;
+  @media (max-width: 786px) {
+    flex-direction: column;
+  }
 `
 
 export const SliderHeading = styled.div`
@@ -41,6 +43,8 @@ export const SliderHeading = styled.div`
   @media (max-width: 768px) {
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
+    position: relative;
+    height: auto;
   }
   @media (max-width: 480px) {
     border-top-right-radius: 30px;
@@ -64,6 +68,7 @@ export const Slider = styled.div`
   width: calc(${(props) => props.cardCount} * 25vw);
   animation: ${(props) => getSlideAnimation(props.cardCount)} 30s linear infinite;
   position: relative;
+  height: 18vw;
 `
 
 export const Card = styled.div`

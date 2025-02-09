@@ -32,7 +32,7 @@ const SearchMenu = (props) => {
     <SearchBarContainer>
       <SearchBarWrapper>
         <FlexContainer direction="column" width="100%" gap="0px" alignItems="start">
-          <FlexContainer direction="column" width="100%" gap="0px" margin='1%' alignItems="start">
+          <FlexContainer direction="column" width="100%" gap="0px" margin="2.5% 0 0" alignItems="start">
             <Label margin="0 2.5%">Where</Label>
             <Searchbar
               inputValues={searchForm.destination}
@@ -50,7 +50,7 @@ const SearchMenu = (props) => {
         </FlexContainer>
         <VerticalDivider />
         <FlexContainer direction="column" width="100%" gap="0px" alignItems="start">
-          <FlexContainer direction="column" width="100%" gap="0px" margin='1%' alignItems="start">
+          <FlexContainer direction="column" width="100%" gap="0px" margin="2.5% 0 0" alignItems="start">
             <Label margin="0 2.5%">When</Label>
             <DatePicker
               inputValues={searchForm.startDate}
