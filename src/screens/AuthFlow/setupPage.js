@@ -92,9 +92,8 @@ const SetupPage = (props) => {
                       value={formData?.persona || ''}
                       onChange={handleChange}
                       onFocus={() => setShowPersonaDropDown(true)}
-                      onBlur={(e) => {
-                        setTimeout(() => setShowPersonaDropDown(false), 1000)
-                      }}
+                      readOnly
+                      autoComplete="false"
                       placeholder="Choose Persona"
                     />
                     {showPersonaDropDown && (
@@ -106,6 +105,7 @@ const SetupPage = (props) => {
                           })
                           setShowPersonaDropDown(false)
                         }}
+                        setShowDropdown={setShowPersonaDropDown}
                       />
                     )}
                   </InputFieldsContainer>
@@ -116,9 +116,8 @@ const SetupPage = (props) => {
                       value={formData?.gender || ''}
                       onChange={handleChange}
                       onFocus={() => setShowGenderDropDown(true)}
-                      onBlur={(e) => {
-                        setTimeout(() => setShowGenderDropDown(false), 1000)
-                      }}
+                      readOnly
+                      autoComplete="false"
                       placeholder="Choose Gender"
                     />
                     {showGenderDropDown && (
@@ -130,11 +129,12 @@ const SetupPage = (props) => {
                           })
                           setShowGenderDropDown(false)
                         }}
+                        setShowDropdown={setShowGenderDropDown}
                       />
                     )}
                   </InputFieldsContainer>
                   <InputFieldsContainer>
-                    <Label>Gender</Label>
+                    <Label>Date of Birth</Label>
                     <DatePicker
                       pickerType="dob"
                       inputValues={formData.birthday}

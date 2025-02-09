@@ -47,3 +47,9 @@ export const DropdownItem = styled.div`
     border-radius: 1px;
   }
 `
+
+export const City = styled.div`
+  margin: 1% 0;
+  font-size: 1.25vw;
+  color: #8dd3bb;
+`

@@ -140,9 +140,6 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                       value={formData?.persona || ''}
                       onChange={handleChange}
                       onFocus={() => setShowPersonaDropDown(true)}
-                      onBlur={(e) => {
-                        setTimeout(() => setShowPersonaDropDown(false), 1000)
-                      }}
                     />
                     {showPersonaDropDown && (
                       <Dropdown
@@ -153,6 +150,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                           })
                           setShowPersonaDropDown(false)
                         }}
+                        setShowDropdown={setShowPersonaDropDown}
                       />
                     )}
                   </>
@@ -161,13 +159,33 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                 )}
               </UserInfoItem>
               <UserInfoItem>
-                <Label>Phone Number</Label>
+                <Label>Gender</Label>
                 {isEditing ? (
-                  <Input name="phoneNumber" value={formData.phoneNumber || ''} onChange={handleChange} />
+                  <>
+                    <Input
+                      name="gender"
+                      value={formData?.gender || ''}
+                      onChange={handleChange}
+                      onFocus={() => setShowGenderDropDown(true)}
+                    />
+                    {showGenderDropDown && (
+                      <Dropdown
+                        data={[{ value: 'Male' }, { value: 'Female' }, { value: 'Others' }]}
+                        selectSuggestion={(selected) => {
+                          handleChange({
+                            target: { name: 'gender', value: selected.value },
+                          })
+                          setShowGenderDropDown(false)
+                        }}
+                        setShowDropdown={setShowGenderDropDown}
+                      />
+                    )}
+                  </>
                 ) : (
-                  <Value>+91 {profile?.phoneNumber}</Value>
+                  <Value>{profile?.gender ?? 'Prefer not to say'}</Value>
                 )}
               </UserInfoItem>
+
               <UserInfoItem>
                 <Label>Date of Birth</Label>
                 {isEditing ? (
@@ -198,32 +216,11 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                 )}
               </UserInfoItem>
               <UserInfoItem>
-                <Label>Gender</Label>
+                <Label>Phone Number</Label>
                 {isEditing ? (
-                  <>
-                    <Input
-                      name="gender"
-                      value={formData?.gender || ''}
-                      onChange={handleChange}
-                      onFocus={() => setShowGenderDropDown(true)}
-                      onBlur={(e) => {
-                        setTimeout(() => setShowGenderDropDown(false), 1000)
-                      }}
-                    />
-                    {showGenderDropDown && (
-                      <Dropdown
-                        data={[{ value: 'Male' }, { value: 'Female' }, { value: 'Others' }]}
-                        selectSuggestion={(selected) => {
-                          handleChange({
-                            target: { name: 'gender', value: selected.value },
-                          })
-                          setShowGenderDropDown(false)
-                        }}
-                      />
-                    )}
-                  </>
+                  <Input name="phoneNumber" value={formData.phoneNumber || ''} onChange={handleChange} />
                 ) : (
-                  <Value>{profile?.gender ?? 'Prefer not to say'}</Value>
+                  <Value>+91 {profile?.phoneNumber}</Value>
                 )}
               </UserInfoItem>
             </UserInfoColumn>

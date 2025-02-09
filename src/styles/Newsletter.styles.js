@@ -8,6 +8,10 @@ export const NewsletterContainer = styled.div`
   width: 100%;
   background: linear-gradient(to bottom, #ffffff 50%, #8dd3bb 50%);
   padding: 5%;
+
+  @media (max-width: 786px) {
+    padding: 3%;
+  }
 `
 
 export const NewsletterWrapper = styled.div`
@@ -20,6 +24,10 @@ export const NewsletterWrapper = styled.div`
   align-items: flex-start;
   width: 80%;
   padding: 2%;
+
+  @media (max-width: 786px) {
+    border-radius: 12px;
+  }
 `
 
 export const NewsletterHeader = styled.div`
@@ -29,12 +37,20 @@ export const NewsletterHeader = styled.div`
   font-size: 3.5vw;
   color: #112211;
   margin-bottom: 5%;
+
+  @media (max-width: 786px) {
+    font-size: 5vw;
+  }
 `
 
 export const NewsletterLeft = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+
+  @media (max-width: 786px) {
+    width: 100%;
+  }
 `
 
 export const NewsletterText = styled.div`
@@ -50,6 +66,10 @@ export const NewsletterText = styled.div`
     font-size: 1.5vw;
     color: #112211;
     opacity: 0.8;
+
+    @media (max-width: 786px) {
+      font-size: 3vw;
+    }
   }
 
   p {
@@ -60,6 +80,10 @@ export const NewsletterText = styled.div`
     font-size: 1vw;
     color: #112211;
     opacity: 0.7;
+
+    @media (max-width: 786px) {
+      font-size: 2vw;
+    }
   }
 `
 
@@ -77,6 +101,10 @@ export const TextField = styled.div`
   background: #ffffff;
   border-radius: 5px;
   padding: 2.5%;
+
+  @media (max-width: 786px) {
+    border-radius: 3px;
+  }
 `
 
 export const EmailInput = styled.input`
@@ -91,6 +119,10 @@ export const EmailInput = styled.input`
   color: #1c1b1f;
   background: transparent;
   margin: 2.5%;
+
+  @media (max-width: 786px) {
+    font-size: 3vw;
+  }
 `
 
 export const NewsletterButton = styled.button`
@@ -106,6 +138,11 @@ export const NewsletterButton = styled.button`
   font-size: 1vw;
   cursor: pointer;
   padding: 2%;
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
+    border-radius: 15px;
+  }
 `
 
 export const NewsletterRight = styled.div`
@@ -113,6 +150,11 @@ export const NewsletterRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 786px) {
+    width: 100%;
+    margin-top: 20px;
+  }
 `
 
 export const NewsletterImage = styled.img.attrs({
@@ -122,4 +164,9 @@ export const NewsletterImage = styled.img.attrs({
   width: 80%;
   aspect-ratio: 4/3;
   border-radius: 5px;
+
+  @media (max-width: 786px) {
+    border-radius: 3px;
+    width: 100%;
+  }
 `

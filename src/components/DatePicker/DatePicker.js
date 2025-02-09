@@ -194,9 +194,10 @@ const DatePicker = (props) => {
                   style={{
                     backgroundColor: '#8dd3bb',
                     border: 'none',
-                    color: 'white',
+                    color: 'black',
                     padding: '2% 10%',
                     borderRadius: '4px',
+                    fontSize: 'min(2.5vw, 16px)',
                   }}
                 >
                   {monthNames.map((mn, idx) => (
@@ -212,9 +213,10 @@ const DatePicker = (props) => {
                   style={{
                     backgroundColor: '#8dd3bb',
                     border: 'none',
-                    color: 'white',
+                    color: 'black',
                     padding: '2% 10%',
                     borderRadius: '4px',
+                    fontSize: 'min(2.5vw, 16px)',
                   }}
                 >
                   {getDobYearOptions().map((y) => (

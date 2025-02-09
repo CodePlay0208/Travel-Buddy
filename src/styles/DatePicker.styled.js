@@ -149,7 +149,7 @@ export const Days = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 2.5px;
-
+  font-size: min(2.5vw, 16px);
   span {
     width: 14.28%;
     text-align: center;
