@@ -6,7 +6,7 @@ const Line = styled.div`
   width: 100%;
 `
 
-const LineBorder = ({ width = '100%', margin = '0', className }) => {
+const LineBorder = ({ width = '100%', margin = '2% 0 0', className }) => {
   return <Line style={{ width, margin }} className={className} />
 }
 

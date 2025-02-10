@@ -34,7 +34,7 @@ export const DropdownItem = styled.div`
   color: #afafaf;
   background-color: #ffffff;
   border-radius: 7px;
-  margin: 2% 5%;
+  margin: 2% 3%;
   cursor: pointer;
   transition: background-color 0.3s ease;
 

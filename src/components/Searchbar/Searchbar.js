@@ -75,7 +75,7 @@ const Searchbar = (props) => {
       <DropdownSC isVisible={isDropdownVisible}>
         {suggestions.map((suggestion, index) => (
           <DropdownItem key={index} dropDownFontSize={props.dropDownFontSize} onClick={() => selectSuggestion(suggestion)}>
-            <FlexContainer direction="column" alignItems="start" gap="0px" width="100%">
+            <FlexContainer direction="column" alignItems="start" gap="1%" width="100%">
               <City>{suggestion.city}</City>
               <State>{suggestion.state}</State>
               <LineBorder></LineBorder>
