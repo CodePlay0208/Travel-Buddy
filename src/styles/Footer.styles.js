@@ -19,12 +19,18 @@ export const FooterTop = styled.div`
   padding: 2% 5%;
   background: #8dd3bb;
   justify-content: center;
+  @media (max-width: 786px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const FooterSection = styled.div`
   width: 50%;
   background: #8dd3bb;
   padding: 2% 5%;
+  @media (max-width: 786px) {
+    width: 100%;
+  }
 `
 
 export const FooterHeading = styled.h2`
@@ -33,16 +39,22 @@ export const FooterHeading = styled.h2`
   font-weight: 700;
   font-size: 1.75rem;
   color: #112211;
-  @media (max-width: 1080px) {
+  @media (max-width: 400px) {
     font-size: 2.75vw;
   }
 `
-
 export const FooterList = styled.ul`
   display: flex;
   flex-direction: column;
   list-style-type: none;
   padding: 0;
+
+  &.social-icons {
+    @media (max-width: 786px) {
+      flex-direction: row;
+      gap: 5%;
+    }
+  }
 `
 
 export const FooterLink = styled.a`
@@ -54,17 +66,28 @@ export const FooterLink = styled.a`
   margin-bottom: 1%;
   color: #112211;
   text-decoration: none;
-
+  display: flex;
+  align-items: center;
+  gap: 5%;
   &:hover {
     text-decoration: underline;
   }
-  @media (max-width: 1080px) {
+  @media (max-width: 400px) {
     font-size: 1.75vw;
   }
 `
 
-export const SocialIcons = styled.ul`
-  display: flex;
+export const Text = styled.div`
+  @media (max-width: 786px) {
+    display: none;
+  }
+`
+export const Image = styled.img`
+  width: 15px;
+  aspect-ratio: 1;
+  @media (max-width: 400px) {
+    font-size: 1.75vw;
+  }
 `
 
 export const SocialIcon = styled.li`

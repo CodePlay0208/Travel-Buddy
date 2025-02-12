@@ -16,17 +16,18 @@ export const NewsletterContainer = styled.div`
 
 export const NewsletterWrapper = styled.div`
   display: flex;
-  max-width: 1470px;
   background: #cdeae1;
   box-shadow: 0px 4.8px 19.2px rgba(17, 34, 17, 0.05);
   border-radius: 24px;
   overflow: hidden;
   align-items: flex-start;
   width: 80%;
-  padding: 2%;
+  padding: 2% 2% 0;
 
   @media (max-width: 786px) {
     border-radius: 12px;
+    padding: 2%;
+    width: 100%;
   }
 `
 
@@ -46,11 +47,8 @@ export const NewsletterHeader = styled.div`
 export const NewsletterLeft = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
 
-  @media (max-width: 786px) {
-    width: 100%;
-  }
+  width: 60%;
 `
 
 export const NewsletterText = styled.div`
@@ -88,10 +86,13 @@ export const NewsletterText = styled.div`
 `
 
 export const NewsletterForm = styled.div`
-  padding: 10px 0 0;
   display: flex;
   align-items: center;
   gap: 5%;
+
+  @media (max-width: 786px) {
+    flex-direction: column;
+  }
 `
 
 export const TextField = styled.div`
@@ -141,20 +142,18 @@ export const NewsletterButton = styled.button`
 
   @media (max-width: 786px) {
     font-size: 2vw;
+
     border-radius: 15px;
   }
 `
 
 export const NewsletterRight = styled.div`
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 786px) {
-    width: 100%;
-    margin-top: 20px;
-  }
+  width: 40%;
+  margin-top: 4%;
 `
 
 export const NewsletterImage = styled.img.attrs({

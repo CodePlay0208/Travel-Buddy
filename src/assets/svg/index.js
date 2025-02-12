@@ -30,6 +30,10 @@ import banglore from './banglore.svg'
 import mumbai from './mumbai.svg'
 import delhi from './delhi.svg'
 import signup from './signup.svg'
+import instagram from './footer/instagram.svg'
+import facebook from './footer/facebook.svg'
+import twitter from './footer/twitter.svg'
+import youtube from './footer/youtube.svg'
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -61,5 +65,9 @@ export const SVG = {
   banglore,
   mumbai,
   delhi,
-  signup
+  signup,
+  instagram,
+  facebook,
+  twitter,
+  youtube,
 }

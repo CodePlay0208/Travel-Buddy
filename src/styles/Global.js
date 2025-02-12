@@ -31,6 +31,7 @@ export const Input = styled.input`
   position: relative;
   width: 100%;
   padding: ${(props) => props.padding ?? '2.5%'};
+  margin: ${(props) => props.margin ?? '0'};
   font-size: ${(props) => props.fontSize ?? '1vw'};
   border: ${(props) => props.border ?? '1px solid #f4f4f4'};
   border-radius: 50px;

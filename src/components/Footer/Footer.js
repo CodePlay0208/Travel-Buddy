@@ -1,12 +1,6 @@
 import React from 'react'
-import {
-  FooterContainer,
-  FooterTop,
-  FooterSection,
-  FooterHeading,
-  FooterList,
-  FooterLink,
-} from '../../styles/Footer.styles'
+import { FooterContainer, FooterTop, FooterSection, FooterHeading, FooterList, FooterLink, Image, Text } from '../../styles/Footer.styles'
+import { SVG } from '../../assets/svg'
 
 const Footer = () => {
   return (
@@ -26,16 +20,20 @@ const Footer = () => {
           <FooterHeading>Contact Us</FooterHeading>
           <FooterList className="social-icons">
             <FooterLink href="https://facebook.com" aria-label="Facebook">
-              Facebook
+              <Image src={SVG.facebook} alt="" />
+              <Text>Facebook</Text>
             </FooterLink>
             <FooterLink href="https://twitter.com" aria-label="Twitter">
-              Twitter
+              <Image src={SVG.twitter} alt="" />
+              <Text>Twitter</Text>
             </FooterLink>
             <FooterLink href="https://youtube.com" aria-label="YouTube">
-              YouTube
+              <Image src={SVG.youtube} alt="" />
+              <Text>YouTube</Text>
             </FooterLink>
             <FooterLink href="https://instagram.com" aria-label="Instagram">
-              Instagram
+              <Image src={SVG.instagram} alt="" />
+              <Text>Instagram</Text>
             </FooterLink>
           </FooterList>
         </FooterSection>

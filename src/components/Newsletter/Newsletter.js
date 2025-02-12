@@ -42,6 +42,7 @@ const Newsletter = ({ subscribeNewsletter }) => {
                 const { value } = e.target
                 setEmail(value)
               }}
+              margin='2%'
             />
             <NewsletterButton
               onClick={() => {
