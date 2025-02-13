@@ -45,9 +45,7 @@ export const getTrips = (searchForm) => async (dispatch) => {
       toast.error('Invalid User!', { autoClose: 1500 })
     } else if (e.response && e.response.status === 404) {
       return true
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
-    }
+    } 
     dispatch({
       type: TRIPS_ERROR,
       payload: e,
@@ -83,8 +81,6 @@ export const getUserTrips = () => async (dispatch) => {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
     } else if (e.response && e.response.status === 404) {
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
     }
     dispatch({
       type: TRIPS_ERROR,
@@ -111,9 +107,7 @@ export const createTrip =
     } catch (e) {
       if (e.response && e.response.status === 401) {
         toast.error('Invalid User!', { autoClose: 1500 })
-      } else {
-        toast.error('Please Try Again!', { autoClose: 1500 })
-      }
+      } 
       dispatch({
         type: TRIPS_ERROR,
         payload: e,
@@ -145,9 +139,7 @@ export const editTrip =
         toast.error("You don't have access to edit this trip!", { autoClose: 1500 })
       } else if (e.response && e.response.status === 404) {
         toast.error("The Trip doesn't exists!", { autoClose: 1500 })
-      } else {
-        toast.error('Please Try Again!', { autoClose: 1500 })
-      }
+      } 
       dispatch({
         type: TRIPS_ERROR,
         payload: e,
@@ -166,9 +158,7 @@ export const deleteUserTrip = (trip_id) => async (dispatch) => {
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
-    }
+    } 
     dispatch({
       type: TRIPS_ERROR,
       payload: e,

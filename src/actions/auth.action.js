@@ -114,8 +114,6 @@ export const verifyOTP =
     } catch (e) {
       if (e.response && e.response.status === 400) {
         toast.error('Invalid User!', { autoClose: 1500 })
-      } else {
-        toast.error('Please Try Again!', { autoClose: 1500 })
       }
       dispatch({
         type: VERIFY_OTP_FAIL,
@@ -138,9 +136,7 @@ export const resendOTP = () => async (dispatch) => {
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
-    } else {
-      toast.error('Please Try Again!', { autoClose: 1500 })
-    }
+    } 
     dispatch({
       type: RESEND_OTP_FAIL,
     })
