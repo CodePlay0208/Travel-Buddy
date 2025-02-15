@@ -3,25 +3,29 @@ import Footer from '../../components/Footer/Footer'
 import './UserProfile.css'
 import UserDashboard from './UserDashboard/UserDashboard'
 import React, { memo, useEffect, useState } from 'react'
-import { TripList } from '../UserTrips/UserTrips.styled'
 import Modal from '../../components/Modal/Modal'
 import TripCard from '../../components/TripCard/TripCard'
 import { connect } from 'react-redux'
 import { getProfile } from '../../actions/profile.action'
-import { deleteUserTrip, getUserTrips } from '../../actions/trips.action'
+import { deleteUserTrip, getUserTrips, getUserWishlist, getUserPastTrips } from '../../actions/trips.action'
 import { toast } from 'react-toastify'
+import TripList from '../../components/Trip/TripList'
 
 const mapStateToProps = (state) => ({
-  trips: state.tripReducer.userTrip?.trips,
+  myTrips: state.tripReducer.userTrip?.trips,
   profile: state.profileReducer.profile,
+  wishlistTrips: state.tripReducer.userTrip?.wishlistTrips,
+  pastTrips: state.tripReducer.userTrip?.pastTrips,
 })
 const UserProfile = (props) => {
-  const { trips, getProfile, getUserTrips, deleteUserTrip } = props
+  const { myTrips, getProfile, getUserWishlist, getUserPastTrips, getUserTrips, deleteUserTrip, wishlistTrips, pastTrips } = props
 
   const [modalState, setModalState] = useState({ isOpen: false, tripId: null })
 
   useEffect(() => {
     getUserTrips()
+    getUserWishlist()
+    getUserPastTrips()
   }, [])
 
   const onDeleteTripClick = (tripId) => (e) => {
@@ -45,8 +49,8 @@ const UserProfile = (props) => {
   }
 
   const tripContent =
-    trips?.length > 0 ? (
-      trips.map((trip) => (
+    myTrips?.length > 0 ? (
+      myTrips.map((trip) => (
         <TripCard
           key={trip?.tripId}
           tripId={trip?.tripId}
@@ -75,8 +79,9 @@ const UserProfile = (props) => {
     <div>
       <Navbar />
       <UserDashboard />
-      <h1 className='heading'>My Trips</h1>
-      <TripList>{tripContent}</TripList>
+      <TripList title="Wishlist" trips={wishlistTrips} />
+      <TripList title="My Trips" trips={myTrips} />
+      <TripList title="Past Trips" trips={pastTrips} />
       <Footer />
       {modalState.isOpen && (
         <Modal
@@ -89,4 +94,4 @@ const UserProfile = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { getProfile, getUserTrips, deleteUserTrip })(memo(UserProfile))
+export default connect(mapStateToProps, { getProfile, getUserTrips, deleteUserTrip, getUserWishlist, getUserPastTrips })(memo(UserProfile))

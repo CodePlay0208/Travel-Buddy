@@ -6,7 +6,7 @@ export const SearchBarContainer = styled.div`
   align-items: center;
   width: 100%;
   gap: 2%;
-  padding: 1%;
+  padding: 0 1%;
   height: 60%;
   position: relative;
   @media (max-width: 456px) {
@@ -20,7 +20,7 @@ export const SearchBarWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin: 1%;
+  margin: 0 1%;
   gap: 2%;
   position: relative;
   @media (max-width: 456px) {

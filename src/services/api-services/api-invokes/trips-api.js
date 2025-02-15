@@ -34,6 +34,38 @@ export const TripsApi = {
       throw e
     }
   },
+  getUserPastTrips: async () => {
+    try {
+      const result = await ApiService.get(API_PATH.USER_PAST_TRIPS_API, {
+        baseURL: env.BASE_API_URL,
+        headers: {
+          withCredentials: true,
+        },
+      })
+      console.log('getUserPastTrips SUCCESS', result)
+
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('getUserPastTrips ERROR', e)
+      throw e
+    }
+  },
+  getUserWishlistTrips: async () => {
+    try {
+      const result = await ApiService.get(API_PATH.USER_WISHLIST_TRIPS_API, {
+        baseURL: env.BASE_API_URL,
+        headers: {
+          withCredentials: true,
+        },
+      })
+      console.log('getUserWishlistTrips SUCCESS', result)
+
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('getUserWishlistTrips ERROR', e)
+      throw e
+    }
+  },
   editTrip: async (payload, tripId, isMultiMedia = false) => {
     if (localStorage.token) {
       setAuthTokenImg(localStorage.token)

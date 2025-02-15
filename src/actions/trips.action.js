@@ -6,6 +6,8 @@ import {
   UPDATE_USER_TRIP,
   SET_SEARCH_FORM_SUCCESS,
   DEFAULT_STATE,
+  GET_USER_PAST_TRIPS,
+  GET_USER_WISHLIST,
 } from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
@@ -45,7 +47,7 @@ export const getTrips = (searchForm) => async (dispatch) => {
       toast.error('Invalid User!', { autoClose: 1500 })
     } else if (e.response && e.response.status === 404) {
       return true
-    } 
+    }
     dispatch({
       type: TRIPS_ERROR,
       payload: e,
@@ -88,6 +90,42 @@ export const getUserTrips = () => async (dispatch) => {
     })
   }
 }
+export const getUserWishlist = () => async (dispatch) => {
+  try {
+    const res = await TripsApi.getUserWishlistTrips()
+    dispatch({
+      type: GET_USER_WISHLIST,
+      payload: res.data,
+    })
+  } catch (e) {
+    if (e.response && e.response.status === 401) {
+      toast.error('Invalid User!', { autoClose: 1500 })
+    } else if (e.response && e.response.status === 404) {
+    }
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+  }
+}
+export const getUserPastTrips = () => async (dispatch) => {
+  try {
+    const res = await TripsApi.getUserPastTrips()
+    dispatch({
+      type: GET_USER_PAST_TRIPS,
+      payload: res.data,
+    })
+  } catch (e) {
+    if (e.response && e.response.status === 401) {
+      toast.error('Invalid User!', { autoClose: 1500 })
+    } else if (e.response && e.response.status === 404) {
+    }
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+  }
+}
 
 export const createTrip =
   (tripData, isMultiMedia = false) =>
@@ -107,7 +145,7 @@ export const createTrip =
     } catch (e) {
       if (e.response && e.response.status === 401) {
         toast.error('Invalid User!', { autoClose: 1500 })
-      } 
+      }
       dispatch({
         type: TRIPS_ERROR,
         payload: e,
@@ -139,7 +177,7 @@ export const editTrip =
         toast.error("You don't have access to edit this trip!", { autoClose: 1500 })
       } else if (e.response && e.response.status === 404) {
         toast.error("The Trip doesn't exists!", { autoClose: 1500 })
-      } 
+      }
       dispatch({
         type: TRIPS_ERROR,
         payload: e,
@@ -158,7 +196,7 @@ export const deleteUserTrip = (trip_id) => async (dispatch) => {
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
-    } 
+    }
     dispatch({
       type: TRIPS_ERROR,
       payload: e,

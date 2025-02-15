@@ -11,6 +11,8 @@ export const API_PATH = {
 
   TRIPS_API: '/trips/getTrips',
   USER_TRIPS_API: '/trips/getTripsByUser',
+  USER_WISHLIST_TRIPS_API:'/trips/getWishlist',
+  USER_PAST_TRIPS_API:'/trips/getPastTrips',
   CREATE_TRIPS_API: '/trips/createTrip',
   TRIP_BY_ID_API: 'trips/getTripById',
   EDIT_TRIPS_API: '/trips/editTrip',
