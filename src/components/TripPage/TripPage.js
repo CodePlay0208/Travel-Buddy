@@ -47,7 +47,7 @@ const TripPage = (props) => {
         <ImagesSection images={trip?.destinationImages || []} />
         <DetailsSection isUserTrip={isUserTrip} />
       </Container>
-      <PopularSection title="Similar Trip" margin={`0 15%`} padding={`10px 0`} />
+      <PopularSection title="Similar Trip" margin={`0 6.5%`} padding={`10px 0`} fontSize={`4vw`} />
       <Footer />
     </>
   )

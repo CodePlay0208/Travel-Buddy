@@ -11,6 +11,7 @@ import {
   LLSection,
   LRSection,
   ShowAllPhotos,
+  Container
 } from './ImagesSection.styled'
 import ImageOverlay from '../../ImageOverlay/ImageOverlay'
 import { SVG } from '../../../assets'
@@ -78,16 +79,16 @@ const ImageSection = (props) => {
   }
 
   return (
-    <ImageSectionWrapper>
-      {images.length > 0 ? renderImages() : <div className="no-images">No Images Available</div>}
-      <ShowAllPhotos onClick={() => setOverlay(true)}>
-        <img src={SVG.Ninedots} alt="☰" />
-        <div>
-          Show All Photos
-        </div>
-      </ShowAllPhotos>
-      {overlay && <ImageOverlay images={images} overlay={overlay} setOverlay={setOverlay} currentIndex={0} />}
-    </ImageSectionWrapper>
+    <Container>
+      <ImageSectionWrapper>
+        {images.length > 0 ? renderImages() : <div className="no-images">No Images Available</div>}
+        <ShowAllPhotos onClick={() => setOverlay(true)}>
+          <img src={SVG.Ninedots} alt="☰" />
+          <div>Show All Photos</div>
+        </ShowAllPhotos>
+        {overlay && <ImageOverlay images={images} overlay={overlay} setOverlay={setOverlay} currentIndex={0} />}
+      </ImageSectionWrapper>
+    </Container>
   )
 }
 

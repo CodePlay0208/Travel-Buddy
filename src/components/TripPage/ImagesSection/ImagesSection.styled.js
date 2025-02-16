@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 
+export const Container = styled.div`
+  margin: 0 10%;
+`
 export const ImageSectionWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -82,7 +85,7 @@ export const ShowAllPhotos = styled.button`
   justify-content: space-between;
   padding: 1%;
   width: 17.5%;
-  font-size: min(24px,1vw);
+  font-size: min(24px, 1vw);
   img {
     width: 10%;
     aspect-ratio: 1;
