@@ -73,7 +73,7 @@ export const SupportingImg = styled.img`
   }
 `
 export const Form = styled.form`
-  width: 60%;
+  width: 55%;
 
   @media (max-width: 786px) {
     width: 100%;
@@ -156,7 +156,7 @@ export const DesignContainer = styled.div`
   width: 40%;
   aspect-ratio: 0.9;
   height: fit-content;
-  padding: 2%;
+  padding: 4%;
 
   @media (max-width: 1024px) {
     display: none;
