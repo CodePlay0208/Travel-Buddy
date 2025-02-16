@@ -169,9 +169,14 @@ export const ButtonSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding: 0 15%;
+  padding: 0 5%;
 `
-export const ChatButton = styled(Button)``
+export const ChatButton = styled(Button)`
+  img {
+    width: 1.5vw;
+    aspect-ratio: 1;
+  }
+`
 
 export const EditButton = styled(Button)`
   background-color: #fa5c5c;

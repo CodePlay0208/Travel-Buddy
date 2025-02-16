@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 })
 
 const AddMembers = (props) => {
-  const { trip } = props
+  const { trip, isUserTrip } = props
   const [isShowAll, setIsShowAll] = useState(false)
   const [showRequests, setShowRequests] = useState(false)
 
@@ -56,7 +56,6 @@ const AddMembers = (props) => {
     ],
   }
 
-  // Mock data for pending requests
   const pendingRequests = [
     {
       userId: '130',
@@ -75,12 +74,10 @@ const AddMembers = (props) => {
 
   const handleConfirm = (userId) => {
     console.log('Confirmed request for user:', userId)
-    // Add your logic to confirm the request here.
   }
 
   const handleDecline = (userId) => {
     console.log('Declined request for user:', userId)
-    // Add your logic to decline the request here.
   }
 
   return (
@@ -90,12 +87,12 @@ const AddMembers = (props) => {
         <ButtonContainer>
           {showRequests ? (
             <>
-              <Button onClick={() => setShowRequests(false)}>Travmigoz</Button>
+              {isUserTrip && <Button onClick={() => setShowRequests(false)}>Travmigoz</Button>}
               {tripMembers.length > 5 && <Button onClick={() => setIsShowAll(!isShowAll)}>{isShowAll ? 'Show Less' : 'Show All'}</Button>}
             </>
           ) : (
             <>
-              <Button onClick={() => setShowRequests(true)}>Requests</Button>
+              {isUserTrip && <Button onClick={() => setShowRequests(true)}>Requests</Button>}
               {tripMembers.length > 5 && <Button onClick={() => setIsShowAll(!isShowAll)}>{isShowAll ? 'Show Less' : 'Show All'}</Button>}
             </>
           )}

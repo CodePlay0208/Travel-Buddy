@@ -29,6 +29,7 @@ import { formatDate } from '../../../../utils/DateUtils'
 import { getOrCreateChat } from '../../../../actions/chats.action'
 import { useNavigate } from 'react-router-dom'
 import { images } from '../../../../assets/images'
+import { SVG } from '../../../../assets'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
@@ -51,6 +52,8 @@ const TripDescription = (props) => {
       navigate('/chats')
     }
   }
+  const onWishlistClick = async () => {}
+  const onShareLinkClick = async () => {}
 
   const onEditTripClick = async () => {
     navigate('/publish-trip', { state: { trip } })
@@ -103,8 +106,14 @@ const TripDescription = (props) => {
             </EndDate>
           </InfoSection>
           <ButtonSection>
+            {<ChatButton onClick={onShareLinkClick}>Share Now</ChatButton>}
+            {isUserTrip && <EditButton onClick={onEditTripClick}>Edit Trip</EditButton>}
             {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
-            {!isUserTrip && <EditButton onClick={onEditTripClick}>Edit Trip</EditButton>}
+            {!isUserTrip && (
+              <ChatButton onClick={onWishlistClick}>
+                <img src={SVG.wishlist} alt="" />
+              </ChatButton>
+            )}
           </ButtonSection>
         </DateContainer>
       </ChatSection>

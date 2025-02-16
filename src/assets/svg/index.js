@@ -34,6 +34,7 @@ import instagram from './footer/instagram.svg'
 import facebook from './footer/facebook.svg'
 import twitter from './footer/twitter.svg'
 import youtube from './footer/youtube.svg'
+import wishlist from './wishlist.svg'
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -70,4 +71,5 @@ export const SVG = {
   facebook,
   twitter,
   youtube,
+  wishlist,
 }

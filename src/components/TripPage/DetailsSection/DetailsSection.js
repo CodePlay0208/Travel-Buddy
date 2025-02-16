@@ -14,7 +14,7 @@ const DetailsSection = ({ isUserTrip }) => {
         <MapImage />
         <Divider />
       </UpperSection>
-      <AddMembers />
+      <AddMembers isUserTrip={isUserTrip}/>
     </SectionContainer>
   )
 }
