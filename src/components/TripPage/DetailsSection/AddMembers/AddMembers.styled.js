@@ -3,6 +3,17 @@ import styled from 'styled-components'
 export const LowerSection = styled.div`
   box-sizing: border-box;
 `
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  width: 30%;
+`
+export const RequestButtonContainer = styled.div`
+  display: flex;
+  gap:5%;
+`
 
 export const HeadingContainer = styled.div`
   display: flex;
@@ -45,7 +56,8 @@ export const CreateButton = styled.div`
 
 export const ProfileCardsContainer = styled.div`
   display: flex;
-  gap: 5%;
+  gap: 3%;
+  flex-wrap: wrap;
 
   @media (max-width: 768px) {
     ${CreateButton} {

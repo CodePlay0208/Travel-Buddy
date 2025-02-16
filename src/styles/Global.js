@@ -49,9 +49,9 @@ export const Input = styled.input`
     &&::placeholder {
       color: #787878;
       font-size: ${(props) => {
-      const fontSize = parseFloat(props.fontSize);
-      return fontSize ? `${fontSize * 2}vw` : '2vw';
-    }};
+        const fontSize = parseFloat(props.fontSize)
+        return fontSize ? `${fontSize * 2}vw` : '2vw'
+      }};
       font-weight: 500;
     }
   }
@@ -73,4 +73,23 @@ export const VerticalDivider = styled.div`
     padding: 0 50%;
   }
 `
+
+export const Button = styled.button`
+  font-size: 1.25vw;
+  font-weight: 500;
+  line-height: 1vw;
+  color: #000000;
+  text-align: center;
+  background: #8dd3bb;
+  padding: 5%;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #79bca7;
+  }
+`
+
 export default GlobalStyles

@@ -271,7 +271,8 @@ export const PreviewImageCrossContainer = styled.button`
 export const PreviewImageRemoveButton = styled.span`
   height: 15px;
   width: 15px;
-  color: #ef4343;
+  color: #ffffff;
+  background-color: #ff0000;
   border-radius: 10px;
 
   @media (max-width: 768px) {

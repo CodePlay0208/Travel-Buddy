@@ -21,6 +21,8 @@ import {
   StartDate,
   EndDate,
   EditButton,
+  ButtonSection,
+  Link,
 } from './TripDescription.styled'
 import { connect } from 'react-redux'
 import { formatDate } from '../../../../utils/DateUtils'
@@ -37,7 +39,7 @@ const TripDescription = (props) => {
   const [isExpanded, setIsExpanded] = useState(false)
   const navigate = useNavigate()
 
-  const publisher = trip?.tripMembersIds.filter((user) => user?.userId === trip?.userId)[0]
+  const publisher = trip?.tripMembersIds?.filter((user) => user?.userId === trip?.userId)[0]
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded)
@@ -58,17 +60,19 @@ const TripDescription = (props) => {
 
   const content = trip?.description || ''
   const words = content ? content.split(' ') : []
-  const displayedContent = isExpanded ? content : words?.slice(0, 40).join(' ') + '...'
+  const displayedContent = isExpanded ? content : words?.slice(0, 90).join(' ') + '...'
 
   return (
     <SectionContainer>
       <DescriptionContainer>
         <Title>{`${trip?.startLocation} To ${trip?.destination}`}</Title>
-        <DescriptionTitle>Description</DescriptionTitle>
         <GreyLine />
         <DescriptionContent>
           {displayedContent}
-          {words?.length > 40 && <ToggleButton onClick={toggleExpand}>{isExpanded ? ' Show Less' : ' Show More'}</ToggleButton>}
+
+          <Link>
+            {words?.length > 90 && <ToggleButton onClick={toggleExpand}>{isExpanded ? ' Show Less' : ' Show More'}</ToggleButton>}
+          </Link>
         </DescriptionContent>
       </DescriptionContainer>
       <ChatSection>
@@ -89,17 +93,19 @@ const TripDescription = (props) => {
             </EndDate>
           </DateSection>
           <InfoSection>
-            <DetailsBox>
+            <StartDate>
               <BoxHeading>Budget</BoxHeading>
               <BoxContent>{trip?.budget}</BoxContent>
-            </DetailsBox>
-            <DetailsBox>
+            </StartDate>
+            <EndDate>
               <BoxHeading>Members</BoxHeading>
               <BoxContent>{trip?.totalMembers}</BoxContent>
-            </DetailsBox>
+            </EndDate>
           </InfoSection>
-          {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
-          {isUserTrip && <EditButton onClick={onEditTripClick}>Edit Trip</EditButton>}
+          <ButtonSection>
+            {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
+            {!isUserTrip && <EditButton onClick={onEditTripClick}>Edit Trip</EditButton>}
+          </ButtonSection>
         </DateContainer>
       </ChatSection>
     </SectionContainer>

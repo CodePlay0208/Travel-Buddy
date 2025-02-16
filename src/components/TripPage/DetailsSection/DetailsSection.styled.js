@@ -7,9 +7,9 @@ export const SectionContainer = styled.div`
 `
 
 export const Title = styled.div`
-  font-size: 3.5vw;
+  font-size: 2.5vw;
   font-weight: 600;
-  line-height: 5vw;
+  line-height: 2.5vw;
   margin: 5% 0;
   text-align: center;
 `
@@ -17,7 +17,6 @@ export const Title = styled.div`
 export const UpperSection = styled.div`
   box-sizing: border-box;
   margin: 2.5% 0;
-  margin-top: 10%
 `
 
 export const MapImage = styled.div`

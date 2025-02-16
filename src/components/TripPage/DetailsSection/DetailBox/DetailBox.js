@@ -1,14 +1,14 @@
 import React from 'react'
-import { BoxContainer, BoxContent, ProfileImage, Heading, BodyText } from './DetailBox.styled'
+import { BoxContainer, BoxContent, ProfileImage, Heading, BodyText, ImageContainer, RemoveIcon } from './DetailBox.styled'
 
 const DetailBox = ({ heading, body, profilePic }) => {
   return (
-    <BoxContainer>
+    <BoxContainer className={body}>
       <BoxContent>
-        <ProfileImage
-          src={profilePic}
-          alt="TravellerPic"
-        />
+        <ImageContainer>
+          <ProfileImage src={profilePic} alt="TravellerPic" />
+          <RemoveIcon></RemoveIcon>
+        </ImageContainer>
         <Heading>{heading}</Heading>
         <BodyText>{body}</BodyText>
       </BoxContent>
