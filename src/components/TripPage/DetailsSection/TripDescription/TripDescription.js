@@ -166,11 +166,11 @@ const TripDescription = (props) => {
             <InfoSection>
               <StartDate>
                 <BoxHeading>Budget</BoxHeading>
-                <BoxContent>{trip?.budget}</BoxContent>
+                <BoxContent>${trip?.budget}</BoxContent>
               </StartDate>
               <EndDate>
                 <BoxHeading>Members</BoxHeading>
-                <BoxContent>{trip?.totalMembers}</BoxContent>
+                <BoxContent>{trip?.totalMembers ?? 0}</BoxContent>
               </EndDate>
             </InfoSection>
             <ButtonSection>

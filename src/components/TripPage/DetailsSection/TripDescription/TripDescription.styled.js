@@ -11,7 +11,7 @@ export const DescriptionContainer = styled.div`
   box-sizing: border-box;
   margin-bottom: 3%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 440px) {
     width: 100%;
   }
 `
@@ -21,6 +21,10 @@ export const Title = styled.div`
   font-weight: 600;
   line-height: 2.5vw;
   margin: 0 0 5% 0;
+  
+  @media (max-width: 440px) {
+    font-size: 5vw;
+  }
 `
 
 export const DescriptionTitle = styled.div`
@@ -29,6 +33,10 @@ export const DescriptionTitle = styled.div`
   font-size: 2.5vw;
   margin: 1.5% 0;
   color: #040f0f;
+  
+  @media (max-width: 440px) {
+    font-size: 5vw;
+  }
 `
 
 export const DescriptionContent = styled.p`
@@ -40,6 +48,10 @@ export const DescriptionContent = styled.p`
   white-space: pre-line;
   font-family: Montserrat;
   letter-spacing: 0%;
+  
+  @media (max-width: 440px) {
+    font-size: 2.5vw;
+  }
 `
 
 export const ToggleButton = styled.span`
@@ -62,6 +74,10 @@ export const ChatSectionContainer = styled.div`
   width: 35%;
 
   height: 100%;
+
+  @media (max-width: 440px) {
+    width: 100%;
+  }
 `
 export const ChatSection = styled.div`
   background: #ffffff;
@@ -86,6 +102,10 @@ export const ProfileImage = styled.div`
 export const ProfilePicture = styled.img`
   width: 4vw;
   border-radius: 50%;
+
+  @media (max-width: 440px) {
+    width: 12vw;
+  }
 `
 
 export const ProfileName = styled.div`
@@ -100,12 +120,26 @@ export const DateContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 440px) {
+    gap: 5px;
+  }
 `
 export const DateSection = styled.div`
   display: flex;
+
+  @media (max-width: 440px) {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
 `
 export const InfoSection = styled.div`
   display: flex;
+
+  @media (max-width: 440px) {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
 `
 
 export const StartDate = styled.div`
@@ -118,6 +152,11 @@ export const StartDate = styled.div`
   border-right: 0.5px solid #d9d9d9;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
+
+  @media (max-width: 440px) {
+    width: 100%;
+    border-radius: 50px;
+  }
 `
 export const EndDate = styled.div`
   font-weight: 500;
@@ -130,6 +169,11 @@ export const EndDate = styled.div`
   border-left: 0.5px solid #d9d9d9;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
+
+  @media (max-width: 440px) {
+    width: 100%;
+    border-radius: 50px;
+  }
 `
 export const DetailsBox = styled.div`
   font-weight: 500;
@@ -144,11 +188,19 @@ export const BoxHeading = styled.div`
   font-size: 0.65vw;
   font-weight: 500;
   color: #d9d9d9;
+  
+  @media (max-width: 440px) {
+    font-size: 1.5vw;
+  }
 `
 
 export const BoxContent = styled.div`
   font-size: 1.25vw;
   font-weight: 500;
+  
+  @media (max-width: 440px) {
+    font-size: 3vw;
+  }
 `
 
 export const Button = styled.button`
@@ -166,6 +218,10 @@ export const Button = styled.button`
 
   &:hover {
     background-color: #79bca7;
+  }
+  
+  @media (max-width: 440px) {
+    font-size: 3vw;
   }
 `
 export const ButtonSection = styled.div`
@@ -186,6 +242,7 @@ export const EditButton = styled(Button)`
   &:hover {
     background-color: #ff3939;
   }
+  
 `
 
 export const GreyLine = styled.div`
