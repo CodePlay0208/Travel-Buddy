@@ -34,6 +34,22 @@ export const TripsApi = {
       throw e
     }
   },
+  getTripById: async (tripId) => {
+    try {
+      const result = await ApiService.get(`${API_PATH.TRIP_BY_ID_API}/${tripId}`, {
+        baseURL: env.BASE_API_URL,
+        headers: {
+          withCredentials: true,
+        },
+      })
+      console.log('getTripById SUCCESS', result)
+
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('getTripById ERROR', e)
+      throw e
+    }
+  },
   getUserPastTrips: async () => {
     try {
       const result = await ApiService.get(API_PATH.USER_PAST_TRIPS_API, {
@@ -65,7 +81,8 @@ export const TripsApi = {
       console.log('getUserWishlistTrips ERROR', e)
       throw e
     }
-  },getUserRequestedTrips: async () => {
+  },
+  getUserRequestedTrips: async () => {
     try {
       const result = await ApiService.get(API_PATH.USER_REQUESTED_TRIPS_API, {
         baseURL: env.BASE_API_URL,
@@ -136,16 +153,35 @@ export const TripsApi = {
       throw e
     }
   },
-  getTripById: async (tripId) => {
+  addWishlistTrip: async (tripId) => {
     try {
-      const result = await ApiService.get(`${API_PATH.TRIP_BY_ID_API}/${tripId}`, {
-        baseURL: env.BASE_API_URL,
-      })
-      console.log('getTripById SUCCESS', result)
-
+      const result = await ApiService.post(
+        `${API_PATH.ADD_WISHLIST_TRIP}/${tripId}`,
+        {},
+        {
+          baseURL: env.BASE_API_URL,
+        },
+      )
+      console.log('addWishlistTrip SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('getTripById ERROR: ', e)
+      console.log('addWishlistTrip ERROR: ', e)
+      throw e
+    }
+  },
+  removeWishlistTrip: async (tripId) => {
+    try {
+      const result = await ApiService.post(
+        `${API_PATH.REMOVE_WISHLIST_TRIP}/${tripId}`,
+        {},
+        {
+          baseURL: env.BASE_API_URL,
+        },
+      )
+      console.log('removeWishlistTrip SUCCESS', result)
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('removeWishlistTrip ERROR: ', e)
       throw e
     }
   },

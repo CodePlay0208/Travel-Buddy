@@ -9,26 +9,34 @@ import PopularSection from '../PopularSection/PopularSection'
 import { connect } from 'react-redux'
 
 import { Container } from './TripPage.styled'
-import { getTrip } from '../../actions/trips.action'
+import { getTripById } from '../../actions/trips.action'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
-
   profile: state.profileReducer.profile,
 })
 
 const TripPage = (props) => {
-  const { trip, getTrip, profile } = props
-  const { id: tripId } = useParams()
+  const { trip, getTripById, profile } = props
+  const { id: tripIdFromParams } = useParams()
+  const [tripId, setTripId] = useState(tripIdFromParams)
+
+  useEffect(() => {
+    setTripId(tripIdFromParams)
+  }, [tripIdFromParams])
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const isUserTrip = trip?.userId === profile?.userId || false
+
   const fetchTrip = useCallback(() => {
-    getTrip(tripId)
-  }, [tripId])
+    if (tripId) {
+      getTripById(tripId)
+    }
+  }, [getTripById, tripId])
 
   useEffect(() => {
     fetchTrip()
-  }, [])
+  }, [fetchTrip])
 
   useEffect(() => {
     if (trip && trip.destinationImages && trip.destinationImages.length > 0) {
@@ -53,4 +61,4 @@ const TripPage = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { getTrip })(memo(TripPage))
+export default connect(mapStateToProps, { getTripById })(memo(TripPage))

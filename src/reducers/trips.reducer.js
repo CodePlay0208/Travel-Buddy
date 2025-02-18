@@ -9,6 +9,8 @@ import {
   GET_USER_PAST_TRIPS,
   GET_USER_WISHLIST,
   GET_USER_REQUESTED,
+  ADD_WISHLIST_TRIP,
+  REMOVE_WISHLIST_TRIP
 } from '../constants/action-types/trips.constants'
 
 const initialState = {
@@ -26,6 +28,9 @@ const initialState = {
     destination: '',
     startDate: '',
   },
+  wishlistTrips: [],
+  pastTrips: [],
+  requestedTrips: [],
 }
 
 const tripReducer = (state = initialState, action) => {
@@ -65,7 +70,7 @@ const tripReducer = (state = initialState, action) => {
         wishlistTrips: payload,
         loading: false,
       }
-      case GET_USER_REQUESTED:
+    case GET_USER_REQUESTED:
       return {
         ...state,
         user: { ...state.user, trips: payload },
@@ -85,9 +90,22 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         userTrip: {
           ...state.userTrip,
-          trips: state.userTrip.trips.filter((trip) => trip.tripId !== action.payload),
+          trips: state.userTrip.trips.filter((trip) => trip.tripId !== payload),
         },
       }
+    case ADD_WISHLIST_TRIP:
+      return {
+        ...state,
+        wishlistTrips: state.wishlistTrips ? [...state.wishlistTrips, payload] : [payload],
+        loading: false,
+      }
+      case REMOVE_WISHLIST_TRIP:
+  return {
+    ...state,
+    wishlistTrips: state.wishlistTrips.filter((trip) => trip.tripId !== payload),
+    loading: false,
+  }
+
     case TRIPS_ERROR:
       return {
         ...state,

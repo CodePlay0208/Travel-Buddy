@@ -8,6 +8,8 @@ import {
   DEFAULT_STATE,
   GET_USER_PAST_TRIPS,
   GET_USER_WISHLIST,
+  ADD_WISHLIST_TRIP,
+  REMOVE_WISHLIST_TRIP,
 } from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
@@ -57,7 +59,7 @@ export const getTrips = (searchForm) => async (dispatch) => {
   }
 }
 
-export const getTrip = (tripId) => async (dispatch) => {
+export const getTripById = (tripId) => async (dispatch) => {
   try {
     const res = await TripsApi.getTripById(tripId)
     dispatch({
@@ -138,6 +140,44 @@ export const getUserPastTrips = () => async (dispatch) => {
       toast.error('Invalid User!', { autoClose: 1500 })
     } else if (e.response && e.response.status === 404) {
     }
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+  }
+}
+
+export const addWishlistTrip = (tripId) => async (dispatch) => {
+  try {
+    const res = await TripsApi.addWishlistTrip(tripId)
+    dispatch({
+      type: ADD_WISHLIST_TRIP,
+      payload: res.data,
+    })
+    toast.success('Trip added to wishlist!')
+  } catch (e) {
+    if (e.response && e.response.status === 401) {
+      toast.error('Invalid User!', { autoClose: 1500 })
+    } else if (e.response && e.response.status === 404) {
+      toast.error('Trip not found!', { autoClose: 1500 })
+    }
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+  }
+}
+
+export const removeWishlistTrip = (tripId) => async (dispatch) => {
+  try {
+    const res = await TripsApi.removeWishlistTrip(tripId)
+    dispatch({
+      type: REMOVE_WISHLIST_TRIP,
+      payload: tripId,
+    })
+    toast.success('Trip removed from wishlist!')
+  } catch (e) {
+    toast.error('Failed to remove trip from wishlist. Please try again.')
     dispatch({
       type: TRIPS_ERROR,
       payload: e,

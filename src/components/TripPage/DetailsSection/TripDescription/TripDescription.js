@@ -1,9 +1,8 @@
-import { useState, memo } from 'react'
+import { useState, useEffect, memo } from 'react'
 import {
   SectionContainer,
   DescriptionContainer,
   Title,
-  DescriptionTitle,
   DescriptionContent,
   ToggleButton,
   ChatSection,
@@ -13,7 +12,6 @@ import {
   DateContainer,
   DateSection,
   InfoSection,
-  DetailsBox,
   BoxHeading,
   BoxContent,
   ChatButton,
@@ -27,23 +25,34 @@ import {
 import { connect } from 'react-redux'
 import { formatDate } from '../../../../utils/DateUtils'
 import { getOrCreateChat } from '../../../../actions/chats.action'
+import { addWishlistTrip, removeWishlistTrip } from '../../../../actions/trips.action'
 import { useNavigate } from 'react-router-dom'
 import { images } from '../../../../assets/images'
 import { SVG } from '../../../../assets'
+import { toast } from 'react-toastify'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
+  wishlistTrips: state.tripReducer.wishlistTrips,
 })
 
 const TripDescription = (props) => {
-  const { trip, getOrCreateChat, isUserTrip } = props
+  const { trip, getOrCreateChat, addWishlistTrip, removeWishlistTrip, isUserTrip, wishlistTrips } = props
   const [isExpanded, setIsExpanded] = useState(false)
+  const [wishlistAdded, setWishlistAdded] = useState(false)
   const navigate = useNavigate()
 
-  const publisher = trip?.tripMembersIds?.filter((user) => user?.userId === trip?.userId)[0]
+  const publisher = trip?.tripMembersIds?.find((user) => user?.userId === trip?.userId)
+
+  useEffect(() => {
+    if (trip && wishlistTrips) {
+      const exists = wishlistTrips.find((wTrip) => wTrip.tripId === trip.tripId)
+      setWishlistAdded(!!exists)
+    }
+  }, [trip, wishlistTrips])
 
   const toggleExpand = () => {
-    setIsExpanded(!isExpanded)
+    setIsExpanded((prev) => !prev)
   }
 
   const onChatNowClick = async () => {
@@ -52,18 +61,43 @@ const TripDescription = (props) => {
       navigate('/chats')
     }
   }
-  const onWishlistClick = async () => {}
-  const onShareLinkClick = async () => {}
 
-  const onEditTripClick = async () => {
+  const onWishlistClick = async () => {
+    if (!wishlistAdded) {
+      try {
+        await addWishlistTrip(trip.tripId)
+        setWishlistAdded(true)
+        toast.success('Trip added to wishlist!')
+      } catch (error) {
+        toast.error('Failed to add trip to wishlist. Please try again.')
+      }
+    } else {
+      try {
+        await removeWishlistTrip(trip.tripId)
+        setWishlistAdded(false)
+        toast.success('Trip removed from wishlist!')
+      } catch (error) {
+        toast.error('Failed to remove trip from wishlist. Please try again.')
+      }
+    }
+  }
+
+  const onShareLinkClick = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href)
+      toast.success('Link copied to clipboard!')
+    } catch (error) {
+      toast.error('Failed to copy link.')
+    }
+  }
+
+  const onEditTripClick = () => {
     navigate('/publish-trip', { state: { trip } })
   }
 
-  console.log('trip', JSON.stringify(trip, null, 2))
-
   const content = trip?.description || ''
   const words = content ? content.split(' ') : []
-  const displayedContent = isExpanded ? content : words?.slice(0, 90).join(' ') + '...'
+  const displayedContent = isExpanded ? content : words.slice(0, 90).join(' ') + '...'
 
   return (
     <SectionContainer>
@@ -72,10 +106,7 @@ const TripDescription = (props) => {
         <GreyLine />
         <DescriptionContent>
           {displayedContent}
-
-          <Link>
-            {words?.length > 90 && <ToggleButton onClick={toggleExpand}>{isExpanded ? ' Show Less' : ' Show More'}</ToggleButton>}
-          </Link>
+          <Link>{words.length > 90 && <ToggleButton onClick={toggleExpand}>{isExpanded ? ' Show Less' : ' Show More'}</ToggleButton>}</Link>
         </DescriptionContent>
       </DescriptionContainer>
       <ChatSection>
@@ -106,12 +137,12 @@ const TripDescription = (props) => {
             </EndDate>
           </InfoSection>
           <ButtonSection>
-            {<ChatButton onClick={onShareLinkClick}>Share Now</ChatButton>}
-            {isUserTrip && <EditButton onClick={onEditTripClick}>Edit Trip</EditButton>}
+            <ChatButton onClick={onShareLinkClick}>Share Now</ChatButton>
+            {isUserTrip && <EditButton onClick={onEditTripClick}>Delete Trip</EditButton>}
             {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
             {!isUserTrip && (
-              <ChatButton onClick={onWishlistClick}>
-                <img src={SVG.wishlist} alt="" />
+              <ChatButton onClick={onWishlistClick} style={{ backgroundColor: wishlistAdded ? 'red' : undefined }}>
+                <img src={SVG.wishlist} alt="wishlist" />
               </ChatButton>
             )}
           </ButtonSection>
@@ -121,4 +152,4 @@ const TripDescription = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { getOrCreateChat })(memo(TripDescription))
+export default connect(mapStateToProps, { getOrCreateChat, addWishlistTrip, removeWishlistTrip })(memo(TripDescription))
