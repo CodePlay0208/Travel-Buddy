@@ -12,7 +12,18 @@ export const ButtonContainer = styled.div`
 `
 export const RequestButtonContainer = styled.div`
   display: flex;
-  gap:5%;
+  gap: 5%;
+`
+export const CardContainer = styled.div`
+  position: relative;
+`
+export const DeleteButton = styled.img`
+  position: absolute;
+  width: 2.25vw;
+  aspect-ratio: 1;
+  z-index: 1;
+  top: 12%;
+  right: 3%;
 `
 
 export const HeadingContainer = styled.div`
@@ -56,7 +67,7 @@ export const CreateButton = styled.div`
 
 export const ProfileCardsContainer = styled.div`
   display: flex;
-  gap: 3%;
+  justify-content: space-between;
   flex-wrap: wrap;
 
   @media (max-width: 768px) {

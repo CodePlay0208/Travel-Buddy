@@ -12,7 +12,11 @@ import {
   ADD_WISHLIST_TRIP,
   REMOVE_WISHLIST_TRIP,
   REQUEST_JOIN_TRIP,
-  LEAVE_TRIP
+  LEAVE_TRIP,
+  GET_REQUESTED_MEMBERS,
+  GET_NOTIFICATIONS,
+  ADD_MEMBER_TRIP,
+  REMOVE_MEMBER_AS_HOST,
 } from '../constants/action-types/trips.constants'
 
 const initialState = {
@@ -33,6 +37,8 @@ const initialState = {
   wishlistTrips: [],
   pastTrips: [],
   requestedTrips: [],
+  requestedMembers: [],
+  notifications: [],
 }
 
 const tripReducer = (state = initialState, action) => {
@@ -101,13 +107,47 @@ const tripReducer = (state = initialState, action) => {
         wishlistTrips: state.wishlistTrips ? [...state.wishlistTrips, payload] : [payload],
         loading: false,
       }
-      case REMOVE_WISHLIST_TRIP:
-  return {
-    ...state,
-    wishlistTrips: state.wishlistTrips.filter((trip) => trip.tripId !== payload),
-    loading: false,
-  }
+    case REMOVE_WISHLIST_TRIP:
+      return {
+        ...state,
+        wishlistTrips: state.wishlistTrips.filter((trip) => trip.tripId !== payload),
+        loading: false,
+      }
+    case GET_REQUESTED_MEMBERS:
+      return {
+        ...state,
+        requestedMembers: payload,
+        loading: false,
+      }
+    case GET_NOTIFICATIONS:
+      return {
+        ...state,
+        notifications: payload,
+        loading: false,
+      }
 
+    case ADD_MEMBER_TRIP:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          joinedMembers: state.trip.joinedMembers ? [...state.trip.joinedMembers, payload] : [payload],
+          requestingMembers: state.trip.requestingMembers
+            ? state.trip.requestingMembers.filter((member) => member.userId !== payload.userId)
+            : [],
+        },
+        loading: false,
+      }
+
+    case REMOVE_MEMBER_AS_HOST:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          members: state.trip && state.trip.members ? state.trip.members.filter((member) => member.id !== payload.memberId) : [],
+        },
+        loading: false,
+      }
     case TRIPS_ERROR:
       return {
         ...state,

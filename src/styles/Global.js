@@ -76,12 +76,12 @@ export const VerticalDivider = styled.div`
 
 export const Button = styled.button`
   font-size: 1.25vw;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1vw;
   color: #000000;
   text-align: center;
   background: #8dd3bb;
-  padding: 5%;
+  padding: 5% 10%;
   border: none;
   border-radius: 40px;
   cursor: pointer;

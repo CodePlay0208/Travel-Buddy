@@ -6,22 +6,11 @@ export const BoxContainer = styled.div`
   width: 15vw;
   background: #ffffff;
   margin: 3% 0;
+  padding: 3%;
   color: #8dd3bb;
 
   &.Traveller {
     color: #000000;
-  }
-
-  @media (max-width: 1080px) {
-    border-radius: 15px;
-    border: 2px solid #8dd3bb;
-    box-shadow: 2px 2px 8px rgba(6, 64, 43, 0.25);
-  }
-
-  @media (max-width: 440px) {
-    border-radius: 5px;
-    border: 1px solid #8dd3bb;
-    box-shadow: 1px 1px 4px rgba(6, 64, 43, 0.25);
   }
 `
 

@@ -206,4 +206,36 @@ export const TripsApi = {
       throw e
     }
   },
+  getRequestedMembers: async (tripId) => {
+    try {
+      const result = await ApiService.post(`${API_PATH.GET_REQUESTED_MEMBERS}`, { tripId }, { baseURL: env.BASE_API_URL })
+      console.log('getRequestedMembers SUCCESS', result)
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('getRequestedMembers ERROR: ', e)
+      throw e
+    }
+  },
+
+  addMemberTrip: async ({ tripId, memberId }) => {
+    try {
+      const result = await ApiService.post(`${API_PATH.ADD_MEMBER_TRIP}`, { tripId, memberId }, { baseURL: env.BASE_API_URL })
+      console.log('addMemberTrip SUCCESS', result)
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('addMemberTrip ERROR: ', e)
+      throw e
+    }
+  },
+
+  removeMemberAsHost: async ({ tripId, memberId }) => {
+    try {
+      const result = await ApiService.post(`${API_PATH.REMOVE_MEMBER_AS_HOST}`, { tripId, memberId }, { baseURL: env.BASE_API_URL })
+      console.log('removeMemberAsHost SUCCESS', result)
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('removeMemberAsHost ERROR: ', e)
+      throw e
+    }
+  },
 }

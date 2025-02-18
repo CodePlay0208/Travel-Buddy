@@ -12,6 +12,9 @@ import {
   REMOVE_WISHLIST_TRIP,
   REQUEST_JOIN_TRIP,
   LEAVE_TRIP,
+  GET_REQUESTED_MEMBERS,
+  ADD_MEMBER_TRIP,
+  REMOVE_MEMBER_AS_HOST,
 } from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
@@ -353,6 +356,62 @@ export const setSearchForm = (newSearchForm) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: DEFAULT_STATE,
+    })
+    return false
+  }
+}
+export const getRequestedMembers = (tripId) => async (dispatch) => {
+  try {
+    const res = await TripsApi.getRequestedMembers(tripId)
+    dispatch({
+      type: GET_REQUESTED_MEMBERS,
+      payload: res.data,
+    })
+    toast.success('Fetched requested members successfully!')
+    return true
+  } catch (e) {
+    toast.error('Failed to fetch requested members.')
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+    return false
+  }
+}
+
+export const addMemberTrip = (tripId, memberId) => async (dispatch) => {
+  try {
+    const res = await TripsApi.addMemberTrip({ tripId, memberId })
+    dispatch({
+      type: ADD_MEMBER_TRIP,
+      payload: res.data,
+    })
+    toast.success('Member added to trip successfully!')
+    return true
+  } catch (e) {
+    toast.error('Failed to add member to trip.')
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+    return false
+  }
+}
+
+export const removeMemberAsHost = (tripId, memberId) => async (dispatch) => {
+  try {
+    const res = await TripsApi.removeMemberAsHost({ tripId, memberId })
+    dispatch({
+      type: REMOVE_MEMBER_AS_HOST,
+      payload: { tripId, memberId },
+    })
+    toast.success('Member removed from trip successfully!')
+    return true
+  } catch (e) {
+    toast.error('Failed to remove member from trip.')
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
     })
     return false
   }

@@ -27,7 +27,7 @@ import {
 import { connect } from 'react-redux'
 import { formatDate } from '../../../../utils/DateUtils'
 import { getOrCreateChat } from '../../../../actions/chats.action'
-import { addWishlistTrip, removeWishlistTrip, requestJoinTrip, leaveTrip } from '../../../../actions/trips.action'
+import { addWishlistTrip, removeWishlistTrip, requestJoinTrip, leaveTrip, deleteUserTrip } from '../../../../actions/trips.action'
 import { useNavigate } from 'react-router-dom'
 import { images } from '../../../../assets/images'
 import { SVG } from '../../../../assets'
@@ -40,8 +40,18 @@ const mapStateToProps = (state) => ({
 })
 
 const TripDescription = (props) => {
-  const { trip, getOrCreateChat, addWishlistTrip, removeWishlistTrip, requestJoinTrip, leaveTrip, isUserTrip, wishlistTrips, profile } =
-    props
+  const {
+    trip,
+    getOrCreateChat,
+    addWishlistTrip,
+    removeWishlistTrip,
+    requestJoinTrip,
+    leaveTrip,
+    deleteUserTrip,
+    isUserTrip,
+    wishlistTrips,
+    profile,
+  } = props
 
   const [isExpanded, setIsExpanded] = useState(false)
   const [wishlistAdded, setWishlistAdded] = useState(false)
@@ -100,6 +110,11 @@ const TripDescription = (props) => {
 
   const onEditTripClick = () => {
     navigate('/publish-trip', { state: { trip } })
+  }
+  const onDeleteTripClick = async () => {
+    try {
+      const result = await deleteUserTrip(trip.tripId)
+    } catch {}
   }
 
   const onJoinTripClick = async () => {
@@ -160,7 +175,7 @@ const TripDescription = (props) => {
             </InfoSection>
             <ButtonSection>
               <ChatButton onClick={onShareLinkClick}>Share Now</ChatButton>
-              {isUserTrip && <EditButton onClick={onEditTripClick}>Delete Trip</EditButton>}
+              {isUserTrip && <EditButton onClick={onDeleteTripClick}>Delete Trip</EditButton>}
               {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
               {!isUserTrip && (
                 <ChatButton onClick={onWishlistClick} style={{ backgroundColor: wishlistAdded ? 'red' : undefined }}>
@@ -170,8 +185,13 @@ const TripDescription = (props) => {
             </ButtonSection>
           </DateContainer>
         </ChatSection>
-        <ChatButton style={{ width: '100%' }} onClick={onJoinTripClick}>
-          {joined ? 'Leave Trip' : 'Join Trip'}
+        <ChatButton
+          style={{ width: '100%' }}
+          onClick={() => {
+            isUserTrip ? onEditTripClick() : onJoinTripClick()
+          }}
+        >
+          {isUserTrip ? 'Edit Trip' : joined ? 'Leave Trip' : 'Join Trip'}
         </ChatButton>
       </ChatSectionContainer>
     </SectionContainer>
@@ -184,4 +204,5 @@ export default connect(mapStateToProps, {
   removeWishlistTrip,
   requestJoinTrip,
   leaveTrip,
+  deleteUserTrip,
 })(memo(TripDescription))
