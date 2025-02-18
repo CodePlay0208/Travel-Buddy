@@ -108,6 +108,24 @@ export const getUserWishlist = () => async (dispatch) => {
     })
   }
 }
+export const getUserRequested = () => async (dispatch) => {
+  try {
+    const res = await TripsApi.getUserRequestedTrips()
+    dispatch({
+      type: GET_USER_WISHLIST,
+      payload: res.data,
+    })
+  } catch (e) {
+    if (e.response && e.response.status === 401) {
+      toast.error('Invalid User!', { autoClose: 1500 })
+    } else if (e.response && e.response.status === 404) {
+    }
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+  }
+}
 export const getUserPastTrips = () => async (dispatch) => {
   try {
     const res = await TripsApi.getUserPastTrips()

@@ -7,7 +7,7 @@ import Modal from '../../components/Modal/Modal'
 import TripCard from '../../components/TripCard/TripCard'
 import { connect } from 'react-redux'
 import { getProfile } from '../../actions/profile.action'
-import { deleteUserTrip, getUserTrips, getUserWishlist, getUserPastTrips } from '../../actions/trips.action'
+import { deleteUserTrip, getUserTrips, getUserWishlist, getUserPastTrips, getUserRequested } from '../../actions/trips.action'
 import { toast } from 'react-toastify'
 import TripList from '../../components/Trip/TripList'
 
@@ -16,9 +16,21 @@ const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
   wishlistTrips: state.tripReducer.userTrip?.wishlistTrips,
   pastTrips: state.tripReducer.userTrip?.pastTrips,
+  requestedTrips: state.tripReducer.userTrip?.requestedTrips,
 })
 const UserProfile = (props) => {
-  const { myTrips, getProfile, getUserWishlist, getUserPastTrips, getUserTrips, deleteUserTrip, wishlistTrips, pastTrips } = props
+  const {
+    myTrips,
+    getProfile,
+    getUserWishlist,
+    getUserPastTrips,
+    getUserTrips,
+    deleteUserTrip,
+    wishlistTrips,
+    pastTrips,
+    requestedTrips,
+    getUserRequested,
+  } = props
 
   const [modalState, setModalState] = useState({ isOpen: false, tripId: null })
 
@@ -26,6 +38,7 @@ const UserProfile = (props) => {
     getUserTrips()
     getUserWishlist()
     getUserPastTrips()
+    getUserRequested()
   }, [])
 
   const onDeleteTripClick = (tripId) => (e) => {
@@ -79,9 +92,10 @@ const UserProfile = (props) => {
     <div>
       <Navbar />
       <UserDashboard />
+      <TripList title="Requested Trips" trips={requestedTrips} />
       <TripList title="Wishlist" trips={wishlistTrips} />
       <TripList title="My Trips" trips={myTrips} />
-      <TripList title="Past Trips" trips={pastTrips} />
+      <TripList title="Joined Trips" trips={pastTrips} />
       <Footer />
       {modalState.isOpen && (
         <Modal
@@ -94,4 +108,6 @@ const UserProfile = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { getProfile, getUserTrips, deleteUserTrip, getUserWishlist, getUserPastTrips })(memo(UserProfile))
+export default connect(mapStateToProps, { getProfile, getUserTrips, deleteUserTrip, getUserWishlist, getUserPastTrips, getUserRequested })(
+  memo(UserProfile),
+)

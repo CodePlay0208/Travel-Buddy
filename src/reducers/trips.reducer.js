@@ -8,6 +8,7 @@ import {
   DEFAULT_STATE,
   GET_USER_PAST_TRIPS,
   GET_USER_WISHLIST,
+  GET_USER_REQUESTED,
 } from '../constants/action-types/trips.constants'
 
 const initialState = {
@@ -62,6 +63,13 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         user: { ...state.user, trips: payload },
         wishlistTrips: payload,
+        loading: false,
+      }
+      case GET_USER_REQUESTED:
+      return {
+        ...state,
+        user: { ...state.user, trips: payload },
+        requestedTrips: payload,
         loading: false,
       }
     case SET_SEARCH_FORM_SUCCESS:

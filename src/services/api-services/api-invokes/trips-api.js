@@ -65,6 +65,21 @@ export const TripsApi = {
       console.log('getUserWishlistTrips ERROR', e)
       throw e
     }
+  },getUserRequestedTrips: async () => {
+    try {
+      const result = await ApiService.get(API_PATH.USER_REQUESTED_TRIPS_API, {
+        baseURL: env.BASE_API_URL,
+        headers: {
+          withCredentials: true,
+        },
+      })
+      console.log('getUserRequestedTrips SUCCESS', result)
+
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('getUserRequestedTrips ERROR', e)
+      throw e
+    }
   },
   editTrip: async (payload, tripId, isMultiMedia = false) => {
     if (localStorage.token) {
