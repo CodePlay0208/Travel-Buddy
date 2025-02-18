@@ -185,4 +185,25 @@ export const TripsApi = {
       throw e
     }
   },
+  requestJoinTrip: async (tripId) => {
+    try {
+      const result = await ApiService.post(`${API_PATH.REQUEST_JOIN_TRIP}`, { tripId }, { baseURL: env.BASE_API_URL })
+      console.log('requestJoinTrip SUCCESS', result)
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('requestJoinTrip ERROR: ', e)
+      throw e
+    }
+  },
+
+  leaveTrip: async (tripId) => {
+    try {
+      const result = await ApiService.post(`${API_PATH.LEAVE_TRIP}`, { tripId }, { baseURL: env.BASE_API_URL })
+      console.log('leaveTrip SUCCESS', result)
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('leaveTrip ERROR: ', e)
+      throw e
+    }
+  },
 }

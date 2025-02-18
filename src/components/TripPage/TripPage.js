@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 
 import { Container } from './TripPage.styled'
 import { getTripById } from '../../actions/trips.action'
+import { ToastContainer } from 'react-toastify'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
@@ -54,6 +55,7 @@ const TripPage = (props) => {
       <Container>
         <ImagesSection images={trip?.destinationImages || []} />
         <DetailsSection isUserTrip={isUserTrip} />
+        <ToastContainer />
       </Container>
       <PopularSection title="Similar Trip" margin={`0 6.5%`} padding={`10px 0`} fontSize={`4vw`} />
       <Footer />

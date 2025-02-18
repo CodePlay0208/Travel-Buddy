@@ -10,6 +10,8 @@ import {
   GET_USER_WISHLIST,
   ADD_WISHLIST_TRIP,
   REMOVE_WISHLIST_TRIP,
+  REQUEST_JOIN_TRIP,
+  LEAVE_TRIP,
 } from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
@@ -66,11 +68,14 @@ export const getTripById = (tripId) => async (dispatch) => {
       type: GET_TRIP,
       payload: res.data,
     })
+
+    return true
   } catch (e) {
     dispatch({
       type: TRIPS_ERROR,
       payload: e,
     })
+    return false
   }
 }
 
@@ -81,6 +86,8 @@ export const getUserTrips = () => async (dispatch) => {
       type: GET_USER_TRIPS,
       payload: res.data,
     })
+
+    return true
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
@@ -90,6 +97,7 @@ export const getUserTrips = () => async (dispatch) => {
       type: TRIPS_ERROR,
       payload: e,
     })
+    return false
   }
 }
 export const getUserWishlist = () => async (dispatch) => {
@@ -99,6 +107,8 @@ export const getUserWishlist = () => async (dispatch) => {
       type: GET_USER_WISHLIST,
       payload: res.data,
     })
+
+    return true
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
@@ -108,6 +118,7 @@ export const getUserWishlist = () => async (dispatch) => {
       type: TRIPS_ERROR,
       payload: e,
     })
+    return false
   }
 }
 export const getUserRequested = () => async (dispatch) => {
@@ -117,6 +128,8 @@ export const getUserRequested = () => async (dispatch) => {
       type: GET_USER_WISHLIST,
       payload: res.data,
     })
+
+    return true
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
@@ -126,6 +139,7 @@ export const getUserRequested = () => async (dispatch) => {
       type: TRIPS_ERROR,
       payload: e,
     })
+    return false
   }
 }
 export const getUserPastTrips = () => async (dispatch) => {
@@ -135,6 +149,8 @@ export const getUserPastTrips = () => async (dispatch) => {
       type: GET_USER_PAST_TRIPS,
       payload: res.data,
     })
+
+    return true
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
@@ -144,6 +160,7 @@ export const getUserPastTrips = () => async (dispatch) => {
       type: TRIPS_ERROR,
       payload: e,
     })
+    return false
   }
 }
 
@@ -155,6 +172,8 @@ export const addWishlistTrip = (tripId) => async (dispatch) => {
       payload: res.data,
     })
     toast.success('Trip added to wishlist!')
+
+    return true
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
@@ -165,6 +184,7 @@ export const addWishlistTrip = (tripId) => async (dispatch) => {
       type: TRIPS_ERROR,
       payload: e,
     })
+    return false
   }
 }
 
@@ -176,12 +196,66 @@ export const removeWishlistTrip = (tripId) => async (dispatch) => {
       payload: tripId,
     })
     toast.success('Trip removed from wishlist!')
+
+    return true
   } catch (e) {
     toast.error('Failed to remove trip from wishlist. Please try again.')
     dispatch({
       type: TRIPS_ERROR,
       payload: e,
     })
+    return false
+  }
+}
+
+export const requestJoinTrip = (tripId) => async (dispatch) => {
+  try {
+    const res = await TripsApi.requestJoinTrip(tripId)
+    dispatch({
+      type: REQUEST_JOIN_TRIP,
+      payload: res.data,
+    })
+    toast.success('Join request sent!')
+
+    return true
+  } catch (e) {
+    if (e.response && e.response.status === 401) {
+      toast.error('Invalid User!', { autoClose: 1500 })
+    } else if (e.response && e.response.status === 404) {
+      toast.error('Trip not found!', { autoClose: 1500 })
+    } else {
+      toast.error('Failed to request join trip.')
+    }
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+    return false
+  }
+}
+
+export const leaveTrip = (tripId) => async (dispatch) => {
+  try {
+    const res = await TripsApi.leaveTrip(tripId)
+    dispatch({
+      type: LEAVE_TRIP,
+      payload: tripId,
+    })
+    toast.success('Left trip successfully!')
+    return true
+  } catch (e) {
+    if (e.response && e.response.status === 401) {
+      toast.error('Invalid User!', { autoClose: 1500 })
+    } else if (e.response && e.response.status === 404) {
+      toast.error('Trip not found!', { autoClose: 1500 })
+    } else {
+      toast.error('Failed to request leav trip.')
+    }
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+    return false
   }
 }
 
@@ -228,6 +302,8 @@ export const editTrip =
       if (res.data && !res.data.allFilesUploaded) {
         toast.error('Error in uploading images. Please edit the trip and re-upload the images!', { autoClose: 1500 })
       }
+
+      return true
     } catch (e) {
       if (e.response && e.response.status === 401) {
         toast.error('Invalid User!', { autoClose: 1500 })
@@ -240,6 +316,7 @@ export const editTrip =
         type: TRIPS_ERROR,
         payload: e,
       })
+      return false
     }
   }
 
@@ -251,6 +328,8 @@ export const deleteUserTrip = (trip_id) => async (dispatch) => {
       payload: trip_id,
     })
     toast.success('Trip Successfully deleted!', { autoClose: 1500 })
+
+    return true
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
@@ -259,6 +338,7 @@ export const deleteUserTrip = (trip_id) => async (dispatch) => {
       type: TRIPS_ERROR,
       payload: e,
     })
+    return false
   }
 }
 
@@ -268,9 +348,12 @@ export const setSearchForm = (newSearchForm) => async (dispatch) => {
       type: SET_SEARCH_FORM_SUCCESS,
       payload: newSearchForm,
     })
+
+    return true
   } catch (e) {
     dispatch({
       type: DEFAULT_STATE,
     })
+    return false
   }
 }

@@ -10,7 +10,9 @@ import {
   GET_USER_WISHLIST,
   GET_USER_REQUESTED,
   ADD_WISHLIST_TRIP,
-  REMOVE_WISHLIST_TRIP
+  REMOVE_WISHLIST_TRIP,
+  REQUEST_JOIN_TRIP,
+  LEAVE_TRIP
 } from '../constants/action-types/trips.constants'
 
 const initialState = {

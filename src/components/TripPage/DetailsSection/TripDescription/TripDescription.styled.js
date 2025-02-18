@@ -58,12 +58,16 @@ export const Link = styled.div`
   justify-content: flex-end;
 `
 
-export const ChatSection = styled.div`
+export const ChatSectionContainer = styled.div`
   width: 35%;
+
   height: 100%;
+`
+export const ChatSection = styled.div`
   background: #ffffff;
   box-shadow: 0px 0px 9px 0px #00000040;
-
+  padding: 0.5% 0;
+  margin-bottom: 4%;
   border-radius: 20px;
   box-sizing: border-box;
 
@@ -80,8 +84,7 @@ export const ProfileImage = styled.div`
 `
 
 export const ProfilePicture = styled.img`
-  width: 75px;
-  height: 75px;
+  width: 4vw;
   border-radius: 50%;
 `
 
@@ -155,7 +158,7 @@ export const Button = styled.button`
   color: #000000;
   text-align: center;
   background: #8dd3bb;
-  padding: 5%;
+  padding: 3.5% 5%;
   border: none;
   border-radius: 40px;
   cursor: pointer;

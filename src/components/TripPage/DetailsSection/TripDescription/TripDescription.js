@@ -21,11 +21,13 @@ import {
   EditButton,
   ButtonSection,
   Link,
+  ChatSectionContainer,
+  Button,
 } from './TripDescription.styled'
 import { connect } from 'react-redux'
 import { formatDate } from '../../../../utils/DateUtils'
 import { getOrCreateChat } from '../../../../actions/chats.action'
-import { addWishlistTrip, removeWishlistTrip } from '../../../../actions/trips.action'
+import { addWishlistTrip, removeWishlistTrip, requestJoinTrip, leaveTrip } from '../../../../actions/trips.action'
 import { useNavigate } from 'react-router-dom'
 import { images } from '../../../../assets/images'
 import { SVG } from '../../../../assets'
@@ -34,12 +36,16 @@ import { toast } from 'react-toastify'
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
   wishlistTrips: state.tripReducer.wishlistTrips,
+  profile: state.profileReducer.profile,
 })
 
 const TripDescription = (props) => {
-  const { trip, getOrCreateChat, addWishlistTrip, removeWishlistTrip, isUserTrip, wishlistTrips } = props
+  const { trip, getOrCreateChat, addWishlistTrip, removeWishlistTrip, requestJoinTrip, leaveTrip, isUserTrip, wishlistTrips, profile } =
+    props
+
   const [isExpanded, setIsExpanded] = useState(false)
   const [wishlistAdded, setWishlistAdded] = useState(false)
+  const [joined, setJoined] = useState(false)
   const navigate = useNavigate()
 
   const publisher = trip?.tripMembersIds?.find((user) => user?.userId === trip?.userId)
@@ -50,6 +56,13 @@ const TripDescription = (props) => {
       setWishlistAdded(!!exists)
     }
   }, [trip, wishlistTrips])
+
+  useEffect(() => {
+    if (trip && profile) {
+      const isMember = trip.joinedMembers && trip.joinedMembers.includes(profile.userId)
+      setJoined(isMember)
+    }
+  }, [trip, profile])
 
   const toggleExpand = () => {
     setIsExpanded((prev) => !prev)
@@ -64,20 +77,14 @@ const TripDescription = (props) => {
 
   const onWishlistClick = async () => {
     if (!wishlistAdded) {
-      try {
-        await addWishlistTrip(trip.tripId)
+      const result = await addWishlistTrip(trip.tripId)
+      if (result === true) {
         setWishlistAdded(true)
-        toast.success('Trip added to wishlist!')
-      } catch (error) {
-        toast.error('Failed to add trip to wishlist. Please try again.')
       }
     } else {
-      try {
-        await removeWishlistTrip(trip.tripId)
+      const result = await removeWishlistTrip(trip.tripId)
+      if (result === true) {
         setWishlistAdded(false)
-        toast.success('Trip removed from wishlist!')
-      } catch (error) {
-        toast.error('Failed to remove trip from wishlist. Please try again.')
       }
     }
   }
@@ -95,6 +102,20 @@ const TripDescription = (props) => {
     navigate('/publish-trip', { state: { trip } })
   }
 
+  const onJoinTripClick = async () => {
+    if (!joined) {
+      const result = await requestJoinTrip(trip.tripId)
+      if (result === true) {
+        setJoined(true)
+      }
+    } else {
+      const result = await leaveTrip(trip.tripId)
+      if (result === true) {
+        setJoined(false)
+      }
+    }
+  }
+
   const content = trip?.description || ''
   const words = content ? content.split(' ') : []
   const displayedContent = isExpanded ? content : words.slice(0, 90).join(' ') + '...'
@@ -109,47 +130,58 @@ const TripDescription = (props) => {
           <Link>{words.length > 90 && <ToggleButton onClick={toggleExpand}>{isExpanded ? ' Show Less' : ' Show More'}</ToggleButton>}</Link>
         </DescriptionContent>
       </DescriptionContainer>
-      <ChatSection>
-        <ProfileImage>
-          <ProfilePicture src={publisher?.profilePic?.[0] || images.defaultProfileImg} alt="" />
-          <ProfileName>{publisher?.username}</ProfileName>
-        </ProfileImage>
-        <GreyLine />
-        <DateContainer>
-          <DateSection>
-            <StartDate>
-              <BoxHeading>Start Date</BoxHeading>
-              <BoxContent>{formatDate(trip?.startDate)}</BoxContent>
-            </StartDate>
-            <EndDate>
-              <BoxHeading>End Date</BoxHeading>
-              <BoxContent>{formatDate(trip?.endDate)}</BoxContent>
-            </EndDate>
-          </DateSection>
-          <InfoSection>
-            <StartDate>
-              <BoxHeading>Budget</BoxHeading>
-              <BoxContent>{trip?.budget}</BoxContent>
-            </StartDate>
-            <EndDate>
-              <BoxHeading>Members</BoxHeading>
-              <BoxContent>{trip?.totalMembers}</BoxContent>
-            </EndDate>
-          </InfoSection>
-          <ButtonSection>
-            <ChatButton onClick={onShareLinkClick}>Share Now</ChatButton>
-            {isUserTrip && <EditButton onClick={onEditTripClick}>Delete Trip</EditButton>}
-            {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
-            {!isUserTrip && (
-              <ChatButton onClick={onWishlistClick} style={{ backgroundColor: wishlistAdded ? 'red' : undefined }}>
-                <img src={SVG.wishlist} alt="wishlist" />
-              </ChatButton>
-            )}
-          </ButtonSection>
-        </DateContainer>
-      </ChatSection>
+      <ChatSectionContainer>
+        <ChatSection>
+          <ProfileImage>
+            <ProfilePicture src={publisher?.profilePic?.[0] || images.defaultProfileImg} alt="" />
+            <ProfileName>{publisher?.username}</ProfileName>
+          </ProfileImage>
+          <GreyLine />
+          <DateContainer>
+            <DateSection>
+              <StartDate>
+                <BoxHeading>Start Date</BoxHeading>
+                <BoxContent>{formatDate(trip?.startDate)}</BoxContent>
+              </StartDate>
+              <EndDate>
+                <BoxHeading>End Date</BoxHeading>
+                <BoxContent>{formatDate(trip?.endDate)}</BoxContent>
+              </EndDate>
+            </DateSection>
+            <InfoSection>
+              <StartDate>
+                <BoxHeading>Budget</BoxHeading>
+                <BoxContent>{trip?.budget}</BoxContent>
+              </StartDate>
+              <EndDate>
+                <BoxHeading>Members</BoxHeading>
+                <BoxContent>{trip?.totalMembers}</BoxContent>
+              </EndDate>
+            </InfoSection>
+            <ButtonSection>
+              <ChatButton onClick={onShareLinkClick}>Share Now</ChatButton>
+              {isUserTrip && <EditButton onClick={onEditTripClick}>Delete Trip</EditButton>}
+              {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
+              {!isUserTrip && (
+                <ChatButton onClick={onWishlistClick} style={{ backgroundColor: wishlistAdded ? 'red' : undefined }}>
+                  <img src={SVG.wishlist} alt="wishlist" />
+                </ChatButton>
+              )}
+            </ButtonSection>
+          </DateContainer>
+        </ChatSection>
+        <ChatButton style={{ width: '100%' }} onClick={onJoinTripClick}>
+          {joined ? 'Leave Trip' : 'Join Trip'}
+        </ChatButton>
+      </ChatSectionContainer>
     </SectionContainer>
   )
 }
 
-export default connect(mapStateToProps, { getOrCreateChat, addWishlistTrip, removeWishlistTrip })(memo(TripDescription))
+export default connect(mapStateToProps, {
+  getOrCreateChat,
+  addWishlistTrip,
+  removeWishlistTrip,
+  requestJoinTrip,
+  leaveTrip,
+})(memo(TripDescription))
