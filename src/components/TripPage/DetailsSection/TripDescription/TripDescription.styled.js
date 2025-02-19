@@ -21,9 +21,10 @@ export const Title = styled.div`
   font-weight: 600;
   line-height: 2.5vw;
   margin: 0 0 5% 0;
-  
+
   @media (max-width: 440px) {
     font-size: 5vw;
+    line-height: 5vw;
   }
 `
 
@@ -33,9 +34,10 @@ export const DescriptionTitle = styled.div`
   font-size: 2.5vw;
   margin: 1.5% 0;
   color: #040f0f;
-  
+
   @media (max-width: 440px) {
     font-size: 5vw;
+    line-height: 5vw;
   }
 `
 
@@ -48,9 +50,10 @@ export const DescriptionContent = styled.p`
   white-space: pre-line;
   font-family: Montserrat;
   letter-spacing: 0%;
-  
+
   @media (max-width: 440px) {
     font-size: 2.5vw;
+    line-height: 5vw;
   }
 `
 
@@ -64,6 +67,11 @@ export const ToggleButton = styled.span`
   text-decoration-style: solid;
   color: black;
   cursor: pointer;
+  
+  @media (max-width: 440px) {
+    font-size: 2vw;
+    line-height: 3vw;
+  }
 `
 export const Link = styled.div`
   display: flex;
@@ -113,6 +121,11 @@ export const ProfileName = styled.div`
   font-size: 2vw;
   font-weight: 500;
   line-height: 2vw;
+
+  @media (max-width: 440px) {
+    font-size: 2vw;
+    line-height: 4vw;
+  }
 `
 
 export const DateContainer = styled.div`
@@ -188,7 +201,7 @@ export const BoxHeading = styled.div`
   font-size: 0.65vw;
   font-weight: 500;
   color: #d9d9d9;
-  
+
   @media (max-width: 440px) {
     font-size: 1.5vw;
   }
@@ -197,7 +210,7 @@ export const BoxHeading = styled.div`
 export const BoxContent = styled.div`
   font-size: 1.25vw;
   font-weight: 500;
-  
+
   @media (max-width: 440px) {
     font-size: 3vw;
   }
@@ -219,9 +232,10 @@ export const Button = styled.button`
   &:hover {
     background-color: #79bca7;
   }
-  
+
   @media (max-width: 440px) {
     font-size: 3vw;
+    line-height: 3vw;
   }
 `
 export const ButtonSection = styled.div`
@@ -242,7 +256,6 @@ export const EditButton = styled(Button)`
   &:hover {
     background-color: #ff3939;
   }
-  
 `
 
 export const GreyLine = styled.div`

@@ -2,6 +2,10 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   margin: 0 10%;
+
+  @media (max-width: 440px) {
+    margin: 0;
+  }
 `
 export const ImageSectionWrapper = styled.div`
   display: flex;

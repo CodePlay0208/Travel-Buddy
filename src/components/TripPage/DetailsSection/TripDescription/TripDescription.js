@@ -79,7 +79,7 @@ const TripDescription = (props) => {
   }
 
   const onChatNowClick = async () => {
-    const isChatCreated = await getOrCreateChat(publisher?.userId)
+    const isChatCreated = await getOrCreateChat(trip?.userId)
     if (isChatCreated) {
       navigate('/chats')
     }

@@ -16,6 +16,7 @@ export const PopularButtonDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `
 
 export const PopularTripHeading = styled.div`
@@ -75,7 +76,7 @@ export const PopularHeadingRight = styled.div`
 
 export const PopularButton = styled.button`
   font-size: 2vw;
-  padding: 15px;
+  padding: 5%;
   cursor: pointer;
   background-color: #000000;
   border-radius: 50px;

@@ -27,7 +27,7 @@ const TripPage = (props) => {
   }, [tripIdFromParams])
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const isUserTrip = true
+  const isUserTrip = trip?.userId === profile?.userId || false
 
   const fetchTrip = useCallback(() => {
     if (tripId) {

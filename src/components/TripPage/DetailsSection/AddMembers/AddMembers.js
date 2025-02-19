@@ -87,8 +87,8 @@ const AddMembers = (props) => {
     },
   ]
 
-  const tripMembers = mockTrip?.tripMembers || []
-  const pendingRequest = pendingRequests || []
+  const tripMembers = trip?.joinedMembers || []
+  const pendingRequest = trip?.requestingMembers || []
   const membersToDisplay = isShowAll ? tripMembers : tripMembers.slice(0, 5)
   const requestToDisplay = isRequestShowAll ? pendingRequest : pendingRequest.slice(0, 5)
 

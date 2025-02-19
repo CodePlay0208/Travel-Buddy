@@ -51,7 +51,6 @@ const PopularSection = (props) => {
       >
         <PopularHeadingLeft>{props?.title ? props.title : `Find Popular Destination`} </PopularHeadingLeft>
         <PopularHeadingRight>
-          
           <PopularButtonDiv>
             <PopularButton
               onClick={() => {
@@ -64,13 +63,12 @@ const PopularSection = (props) => {
         </PopularHeadingRight>
       </PopularTripHeading>
       <PopularTripContent ref={scrollContainerRef} margin={props?.margin ? props.margin : `0 5.5%`}>
-     
-            <ArrowButton className="left" onClick={scrollLeft} aria-label="Scroll Left">
-              {'<'}
-            </ArrowButton>
-            <ArrowButton className="right" onClick={scrollRight} aria-label="Scroll Right">
-              {'>'}
-            </ArrowButton>
+        <ArrowButton className="left" onClick={scrollLeft} aria-label="Scroll Left">
+          {'<'}
+        </ArrowButton>
+        <ArrowButton className="right" onClick={scrollRight} aria-label="Scroll Right">
+          {'>'}
+        </ArrowButton>
         {trips.map((trip) => (
           <TripCard
             key={trip?.tripId}
