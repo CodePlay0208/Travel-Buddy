@@ -1,20 +1,26 @@
 import React from 'react'
 import { SectionContainer, Title, UpperSection, MapImage, Divider } from './DetailsSection.styled'
-
 import AddMembers from './AddMembers/AddMembers'
 import TripDescription from './TripDescription/TripDescription'
 
-const DetailsSection = ({ isUserTrip }) => {
+const DetailsSection = ({ isUserTrip, isEditMode, setEditMode, editedData, setEditedData, onSaveTrip }) => {
   return (
     <SectionContainer>
-      <TripDescription isUserTrip={isUserTrip} />
+      <TripDescription
+        isUserTrip={isUserTrip}
+        editMode={isEditMode}
+        setEditMode={setEditMode}
+        editedData={editedData}
+        setEditedData={setEditedData}
+        onSaveTrip={onSaveTrip}
+      />
       <UpperSection>
         <Title>Your Destination</Title>
         <Divider />
         <MapImage />
         <Divider />
       </UpperSection>
-      <AddMembers isUserTrip={isUserTrip}/>
+      <AddMembers isUserTrip={isUserTrip} editMode={isEditMode}/>
     </SectionContainer>
   )
 }

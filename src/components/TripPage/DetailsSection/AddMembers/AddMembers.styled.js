@@ -67,7 +67,7 @@ export const CreateButton = styled.div`
 
 export const ProfileCardsContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 
   @media (max-width: 768px) {

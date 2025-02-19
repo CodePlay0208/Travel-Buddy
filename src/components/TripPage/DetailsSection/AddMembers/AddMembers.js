@@ -26,7 +26,7 @@ const mapDispatchToProps = {
 }
 
 const AddMembers = (props) => {
-  const { trip, isUserTrip, addMemberTrip, removeMemberAsHost } = props
+  const { trip, isUserTrip, addMemberTrip, removeMemberAsHost, editMode } = props
 
   const [isShowAll, setIsShowAll] = useState(false)
   const [isRequestShowAll, setIsRequestShowAll] = useState(false)
@@ -141,7 +141,7 @@ const AddMembers = (props) => {
         {showRequests
           ? requestToDisplay.map((item, index) => (
               <CardContainer key={item.userId || index}>
-                <DeleteButton src={SVG.deleteCross} onClick={() => handleRemoveMember(item.userId)} />
+                {editMode && <DeleteButton src={SVG.deleteCross} onClick={() => handleRemoveMember(item.userId)} />}
                 <DetailBox
                   heading={item.username}
                   body={
@@ -163,7 +163,7 @@ const AddMembers = (props) => {
             ))
           : membersToDisplay.map((item, index) => (
               <CardContainer key={item.userId || index}>
-                <DeleteButton src={SVG.deleteMin} onClick={() => handleRemoveMember(item.userId)} />
+                {editMode && <DeleteButton src={SVG.deleteMin} onClick={() => handleRemoveMember(item.userId)} />}
                 <DetailBox
                   heading={item.username}
                   body={item.userId === trip?.userId ? 'Trip Publisher' : 'Traveller'}

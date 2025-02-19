@@ -3,14 +3,12 @@ import Navbar from '../Navbar/Navbar'
 import { useParams } from 'react-router-dom'
 import Footer from '../Footer/Footer'
 import ImagesSection from './ImagesSection/ImagesSection'
-import data from '../../data/data.json'
 import DetailsSection from './DetailsSection/DetailsSection'
 import PopularSection from '../PopularSection/PopularSection'
 import { connect } from 'react-redux'
-
 import { Container } from './TripPage.styled'
-import { getTripById } from '../../actions/trips.action'
-import { ToastContainer } from 'react-toastify'
+import { getTripById, editTrip } from '../../actions/trips.action'
+import { ToastContainer, toast } from 'react-toastify'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
@@ -18,9 +16,12 @@ const mapStateToProps = (state) => ({
 })
 
 const TripPage = (props) => {
-  const { trip, getTripById, profile } = props
+  const { trip, getTripById, profile, editTrip } = props
   const { id: tripIdFromParams } = useParams()
   const [tripId, setTripId] = useState(tripIdFromParams)
+  const [isEditMode, setIsEditMode] = useState(false)
+
+  const [editedData, setEditedData] = useState({})
 
   useEffect(() => {
     setTripId(tripIdFromParams)
@@ -49,12 +50,44 @@ const TripPage = (props) => {
     }
   }, [trip])
 
+  useEffect(() => {
+    if (trip) {
+      setEditedData({
+        description: trip.description || '',
+      })
+    }
+  }, [trip])
+
+  const onToggleEditMode = () => {
+    setIsEditMode((prev) => !prev)
+  }
+
+  const onSaveTrip = async () => {
+    const formData = { ...editedData, gender: 'male' }
+
+    const formDataNew = new FormData()
+
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataNew.append(key, value)
+    })
+    await editTrip(trip.tripId, formDataNew, true)
+    setIsEditMode(false)
+    fetchTrip()
+  }
+
   return (
     <>
       <Navbar />
       <Container>
-        <ImagesSection images={trip?.destinationImages || []} />
-        <DetailsSection isUserTrip={isUserTrip} />
+        <ImagesSection images={trip?.destinationImages || []} isEditMode={isEditMode} />
+        <DetailsSection
+          isUserTrip={isUserTrip}
+          isEditMode={isEditMode}
+          editedData={editedData}
+          setEditedData={setEditedData}
+          setEditMode={onToggleEditMode}
+          onSaveTrip={onSaveTrip}
+        />
         <ToastContainer />
       </Container>
       <PopularSection title="Similar Trip" margin={`0 6.5%`} padding={`10px 0`} fontSize={`4vw`} />
@@ -63,4 +96,4 @@ const TripPage = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { getTripById })(memo(TripPage))
+export default connect(mapStateToProps, { getTripById, editTrip })(memo(TripPage))

@@ -51,6 +51,12 @@ const TripDescription = (props) => {
     isUserTrip,
     wishlistTrips,
     profile,
+    editMode,
+    setEditMode,
+
+    editedData,
+    setEditedData,
+    onSaveTrip,
   } = props
 
   const [isExpanded, setIsExpanded] = useState(false)
@@ -109,8 +115,12 @@ const TripDescription = (props) => {
   }
 
   const onEditTripClick = () => {
-    navigate('/publish-trip', { state: { trip } })
+    if (editMode) {
+      onSaveTrip()
+    }
+    setEditMode()
   }
+
   const onDeleteTripClick = async () => {
     try {
       const result = await deleteUserTrip(trip.tripId)
@@ -140,10 +150,16 @@ const TripDescription = (props) => {
       <DescriptionContainer>
         <Title>{`${trip?.startLocation} To ${trip?.destination}`}</Title>
         <GreyLine />
-        <DescriptionContent>
-          {displayedContent}
-          <Link>{words.length > 90 && <ToggleButton onClick={toggleExpand}>{isExpanded ? ' Show Less' : ' Show More'}</ToggleButton>}</Link>
-        </DescriptionContent>
+        {editMode ? (
+          <textarea defaultValue={content} />
+        ) : (
+          <DescriptionContent>
+            {displayedContent}
+            <Link>
+              {words.length > 90 && <ToggleButton onClick={toggleExpand}>{isExpanded ? ' Show Less' : ' Show More'}</ToggleButton>}
+            </Link>
+          </DescriptionContent>
+        )}
       </DescriptionContainer>
       <ChatSectionContainer>
         <ChatSection>
@@ -191,7 +207,8 @@ const TripDescription = (props) => {
             isUserTrip ? onEditTripClick() : onJoinTripClick()
           }}
         >
-          {isUserTrip ? 'Edit Trip' : joined ? 'Leave Trip' : 'Join Trip'}
+          {/* Change button text based on edit mode */}
+          {isUserTrip ? (editMode ? 'Save Trip' : 'Edit Trip') : joined ? 'Leave Trip' : 'Join Trip'}
         </ChatButton>
       </ChatSectionContainer>
     </SectionContainer>

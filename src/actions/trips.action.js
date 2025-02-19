@@ -302,7 +302,7 @@ export const editTrip =
         toast.success('Your changes are saved!', { autoClose: 1500 })
       }
       //TODO: there should be a button that redirect to edit page.
-      if (res.data && !res.data.allFilesUploaded) {
+      else if (res.data && !res.data.allFilesUploaded) {
         toast.error('Error in uploading images. Please edit the trip and re-upload the images!', { autoClose: 1500 })
       }
 
