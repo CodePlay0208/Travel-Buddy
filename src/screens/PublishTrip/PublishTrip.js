@@ -180,6 +180,7 @@ const PublishTrip = (props) => {
                         onValue={'startLocation'}
                         placeholderValue={'Enter Start Location'}
                         style={{ width: '100%' }}
+                        fontSize={`1vw`}
                         fontWeight={`500`}
                         borderColor={`#0b87ac`}
                         dropDownFontSize={'75%'}
@@ -193,6 +194,7 @@ const PublishTrip = (props) => {
                         onValue={'destination'}
                         placeholderValue={'Enter Destination'}
                         style={{ width: '100%' }}
+                        fontSize={`1vw`}
                         fontWeight={`500`}
                         borderColor={`#0b87ac`}
                         dropDownFontSize={'75%'}
