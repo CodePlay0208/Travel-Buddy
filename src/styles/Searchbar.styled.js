@@ -11,6 +11,12 @@ export const SearchBarContainer = styled.div`
   position: relative;
   overflow: visible;
 
+  .clear {
+    position: absolute;
+    right: 0;
+    padding: 2.5%;
+    bottom: 25%;
+  }
   @media (max-width: 786px) {
     border-radius: 3px;
   }

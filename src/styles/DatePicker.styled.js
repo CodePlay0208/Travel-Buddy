@@ -16,6 +16,12 @@ export const DatePickerWrapper = styled.div`
     height: 100%;
     width: 100%;
   }
+  .clear{
+    position: absolute;
+    right: 0;
+    padding:2.5%;
+    bottom: 25%;
+  }
 `
 
 export const InputWrapper = styled.div`
@@ -169,7 +175,7 @@ export const Days = styled.div`
     text-align: center;
     padding: 2%;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 8px;
     transition:
       background-color 0.2s,
       color 0.2s;

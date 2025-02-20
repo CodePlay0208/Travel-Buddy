@@ -13,7 +13,6 @@ import {
 import { Input } from '../../styles/Global'
 import { SVG } from '../../assets'
 
-// Abbreviated and full month names
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 const fullMonthNames = [
   'January',
@@ -31,49 +30,41 @@ const fullMonthNames = [
 ]
 
 const DatePicker = (props) => {
-  const { inputValues, setInputValues, placeholderValue, pickerType = 'default' } = props
+  const { inputValues, setInputValues, placeholderValue, pickerType = 'default', maxDates } = props
+  const multiSelect = maxDates && maxDates > 1
 
   const today = new Date()
   const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate())
   const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())
   const hundredYearsAgo = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate())
 
-  // For DOB: allow selection from 100 years ago up to today.
-  // For default: allow from today to one year later.
   const minDate = pickerType === 'dob' ? hundredYearsAgo : todayMidnight
   const maxDate = pickerType === 'dob' ? todayMidnight : oneYearLater
 
-  // currentDate controls what month/year is shown.
   const [currentDate, setCurrentDate] = useState(new Date())
-  const [selectedDate, setSelectedDate] = useState(inputValues)
+  const [selectedDates, setSelectedDates] = useState(multiSelect ? (Array.isArray(inputValues) ? inputValues : []) : [])
+  const [selectedDate, setSelectedDate] = useState(multiSelect ? '' : inputValues)
   const [showCalendar, setShowCalendar] = useState(false)
-  // For DOB mode we use view states: "days", "months", "years"
-  const [currentView, setCurrentView] = useState(pickerType === 'dob' ? 'days' : 'days')
+  const [currentView, setCurrentView] = useState('days')
 
   const wrapperRef = useRef(null)
   const dateInputRef = useRef(null)
   const calendarRef = useRef(null)
 
   useEffect(() => {
-    setSelectedDate(dateToDisplayString(inputValues))
-  }, [inputValues])
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setShowCalendar(false)
-        if (!selectedDate && showCalendar && event.target.tagName !== 'INPUT') {
-          handleTodayClick()
-        }
-      }
+    if (multiSelect) {
+      setSelectedDates(Array.isArray(inputValues) ? inputValues : [])
+    } else {
+      setSelectedDate(dateToDisplayString(inputValues))
     }
-    document.addEventListener('click', handleClickOutside)
-    return () => document.removeEventListener('click', handleClickOutside)
-  }, [selectedDate, showCalendar])
+  }, [inputValues, multiSelect])
 
-  // Helpers to parse and format dates
   const parseDateString = (dateString) => {
     if (!dateString) return null
+
+    if (typeof dateValue === 'object' && dateString instanceof Date) {
+      return dateString
+    }
     const [day, month, year] = dateString.split('-').map(Number)
     return new Date(year, month - 1, day)
   }
@@ -107,7 +98,19 @@ const DatePicker = (props) => {
     return date.toLocaleDateString('en-US', options)
   }
 
-  // ------------------- DAYS VIEW (Date Grid) -------------------
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setShowCalendar(false)
+        if (!selectedDate && !multiSelect && showCalendar && event.target.tagName !== 'INPUT') {
+          handleTodayClick()
+        }
+      }
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [selectedDate, showCalendar, multiSelect])
+
   const populateDays = () => {
     const year = currentDate.getFullYear()
     const month = currentDate.getMonth()
@@ -115,18 +118,26 @@ const DatePicker = (props) => {
     const lastDateOfMonth = new Date(year, month + 1, 0).getDate()
     const days = []
 
-    // Empty slots before the first day
+    const prevMonthLastDate = new Date(year, month, 0).getDate()
+
     for (let i = 0; i < firstDayOfMonth; i++) {
-      days.push(<span key={`empty-${i}`} className="empty-day" />)
+      const dayNum = prevMonthLastDate - firstDayOfMonth + i + 1
+      days.push(
+        <span key={`prev-${dayNum}`} className="disabled" style={{ color: 'lightgray' }}>
+          {dayNum}
+        </span>,
+      )
     }
-    // Actual days of the month
+
     for (let dayNum = 1; dayNum <= lastDateOfMonth; dayNum++) {
       const date = new Date(year, month, dayNum)
+      const simple = dateToSimpleString(date)
       const isDisabled = date < minDate || date > maxDate
+      const isSelected = multiSelect ? selectedDates.includes(simple) : selectedDate === simple
       days.push(
         <span
           key={dayNum}
-          className={`day ${selectedDate === dateToSimpleString(date) ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`}
+          className={`day ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}`}
           onClick={!isDisabled ? () => handleDateSelect(date) : null}
         >
           {dayNum}
@@ -138,14 +149,27 @@ const DatePicker = (props) => {
 
   const handleDateSelect = (date) => {
     const simpleDate = dateToSimpleString(date)
-    setInputValues(simpleDate)
-    setSelectedDate(dateToDisplayString(simpleDate))
-    setShowCalendar(false)
-    // Reset view for the next time the calendar opens
-    setCurrentView('days')
+    if (multiSelect) {
+      if (selectedDates.includes(simpleDate)) {
+        const newDates = selectedDates.filter((d) => d !== simpleDate)
+        setSelectedDates(newDates)
+        setInputValues(newDates)
+      } else {
+        if (maxDates && selectedDates.length >= maxDates) {
+          return
+        }
+        const newDates = [...selectedDates, simpleDate]
+        setSelectedDates(newDates)
+        setInputValues(newDates)
+      }
+    } else {
+      setInputValues(simpleDate)
+      setSelectedDate(dateToDisplayString(simpleDate))
+      setShowCalendar(false)
+      setCurrentView('days')
+    }
   }
 
-  // ------------------- MONTHS VIEW -------------------
   const populateMonths = () => {
     return fullMonthNames.map((month, idx) => {
       const testDate = new Date(currentDate.getFullYear(), idx, 1)
@@ -157,9 +181,8 @@ const DatePicker = (props) => {
           onClick={
             !isDisabled
               ? (e) => {
-                  e.stopPropagation() // Prevent the click from closing the calendar
+                  e.stopPropagation()
                   setCurrentDate(new Date(currentDate.getFullYear(), idx, 1))
-                  // After choosing a month, switch to days view.
                   setCurrentView('days')
                 }
               : null
@@ -171,7 +194,6 @@ const DatePicker = (props) => {
     })
   }
 
-  // ------------------- YEARS VIEW -------------------
   const populateYears = () => {
     const currentYear = currentDate.getFullYear()
     const startYear = Math.floor(currentYear / 10) * 10
@@ -187,8 +209,7 @@ const DatePicker = (props) => {
           onClick={
             !isDisabled
               ? (e) => {
-                  e.stopPropagation() // Prevent the click from collapsing the calendar
-                  // After choosing a year, update currentDate and switch to month view.
+                  e.stopPropagation()
                   setCurrentDate(new Date(y, currentDate.getMonth(), 1))
                   setCurrentView('months')
                 }
@@ -202,7 +223,6 @@ const DatePicker = (props) => {
     return years
   }
 
-  // ------------------- NAVIGATION BUTTONS -------------------
   const handlePrev = () => {
     if (pickerType === 'dob') {
       if (currentView === 'days') {
@@ -247,7 +267,6 @@ const DatePicker = (props) => {
 
   const handleHeaderClick = (e) => {
     e.stopPropagation()
-
     if (currentView === 'days') {
       setCurrentView('months')
     } else if (currentView === 'months') {
@@ -260,20 +279,42 @@ const DatePicker = (props) => {
   const handleTodayClick = () => {
     if (todayMidnight >= minDate && todayMidnight <= maxDate) {
       const simpleDate = dateToSimpleString(todayMidnight)
-      setInputValues(simpleDate)
-      setSelectedDate(dateToDisplayString(simpleDate))
-      setCurrentDate(todayMidnight)
-      setShowCalendar(false)
-      setCurrentView('days')
+      if (multiSelect) {
+        if (!selectedDates.includes(simpleDate)) {
+          if (!maxDates || selectedDates.length < maxDates) {
+            const newDates = [...selectedDates, simpleDate]
+            setSelectedDates(newDates)
+            setInputValues(newDates)
+          }
+        }
+      } else {
+        setInputValues(simpleDate)
+        setSelectedDate(dateToDisplayString(simpleDate))
+        setCurrentDate(todayMidnight)
+        setShowCalendar(false)
+        setCurrentView('days')
+      }
     }
   }
+
+  const handleClear = () => {
+    if (multiSelect) {
+      setSelectedDates([])
+      setInputValues([])
+    } else {
+      setSelectedDate('')
+      setInputValues('')
+    }
+  }
+
+  const displayValue = multiSelect ? selectedDates.map((simple) => dateToDisplayString(simple)).join(', ') : selectedDate
 
   return (
     <DatePickerWrapper ref={wrapperRef} widthValue={props.width || '100%'} heightValue={props.height || '100%'}>
       <Input
         type="text"
         ref={dateInputRef}
-        value={selectedDate}
+        value={displayValue}
         placeholder={placeholderValue}
         readOnly
         onClick={() => setShowCalendar(!showCalendar)}
@@ -283,6 +324,7 @@ const DatePicker = (props) => {
         fontSize={props?.fontSize}
         padding={props.padding}
       />
+      {displayValue&&<img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} />}
       {showCalendar && (
         <Calendar ref={calendarRef}>
           <CalendarHeader>
@@ -290,8 +332,7 @@ const DatePicker = (props) => {
               <img className="svgIcon" src={SVG.leftArrow} alt="" />
             </NavButton>
             <div className="header-label" onClick={handleHeaderClick} style={{ cursor: 'pointer', fontSize: '0.65vw' }}>
-              {currentView === 'days' && `${fullMonthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`}
-
+              {currentView === 'days' && `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`}
               {currentView === 'months' && `${currentDate.getFullYear()}`}
               {currentView === 'years' &&
                 `${Math.floor(currentDate.getFullYear() / 10) * 10} - ${Math.floor(currentDate.getFullYear() / 10) * 10 + 9}`}
@@ -328,11 +369,6 @@ const DatePicker = (props) => {
               </>
             )}
           </div>
-          {/* {pickerType !== 'dob' && (
-            <TodayButton onClick={handleTodayClick}>
-              <button>Today</button>
-            </TodayButton>
-          )} */}
         </Calendar>
       )}
     </DatePickerWrapper>

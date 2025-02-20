@@ -40,6 +40,7 @@ import deleteMin from './deleteMin.svg'
 import downArrow from './downArrow.svg'
 import leftArrow from './leftArrow.svg'
 import rightArrow from './rightArrow.svg'
+import clear from './clear.svg'
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -82,4 +83,5 @@ export const SVG = {
   downArrow,
   leftArrow,
   rightArrow,
+  clear,
 }

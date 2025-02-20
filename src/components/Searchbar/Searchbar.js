@@ -49,6 +49,13 @@ const Searchbar = (props) => {
 
   const customId = `searchbar-input-${onValue}`
 
+  const handleClear = () => {
+
+      setInputValues('')
+    
+  }
+
+
   return (
     <SearchBarContainer
       widthValue={props.width ? props.width : `100%`}
@@ -71,6 +78,7 @@ const Searchbar = (props) => {
         border={props?.border}
         backgroundColor={props?.backgroundColor}
       />
+      {inputValues && <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} />}
       {/* <LocationIcon src={SVG.LocationIcon} alt="Location Icon" /> */}
       <DropdownSC isVisible={isDropdownVisible}>
         {suggestions.map((suggestion, index) => (
