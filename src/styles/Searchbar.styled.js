@@ -47,8 +47,8 @@ export const LocationIcon = styled.img`
 export const DropdownSC = styled.div`
   position: absolute;
   top: 100%;
-  left: 0;
-  width: 100%;
+  left: 5%;
+  width: 90%;
   background-color: #ffffff;
   box-shadow: 0px 4px 10px 0px #00000026;
 
@@ -96,7 +96,8 @@ export const DropdownItem = styled.div`
 `
 
 export const City = styled.div`
-  color: #8dd3bb;
+width: 100%;
+  color: #009965;
 `
 export const State = styled.div`
   color: #afafaf;

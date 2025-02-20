@@ -52,5 +52,5 @@ export const DropdownItem = styled.div`
 export const City = styled.div`
   margin: 1% 0;
   font-size: 1.25vw;
-  color: #8dd3bb;
+  color: #009965;
 `

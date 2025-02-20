@@ -7,6 +7,7 @@ import { Input } from '../../styles/Global'
 import { FlexContainer } from '../HeroSectionV2/HeroSection.styled'
 import LineBorder from '../../styles/Line.styled'
 import { DropdownItem } from '../Dropdown/Dropdown.styled'
+import Dropdown from '../Dropdown/Dropdown'
 
 const mapStateToProps = (state) => ({
   suggestions: state.locationReducer.suggestions,
@@ -50,11 +51,8 @@ const Searchbar = (props) => {
   const customId = `searchbar-input-${onValue}`
 
   const handleClear = () => {
-
-      setInputValues('')
-    
+    setInputValues('')
   }
-
 
   return (
     <SearchBarContainer
@@ -80,17 +78,19 @@ const Searchbar = (props) => {
       />
       {inputValues && <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} />}
       {/* <LocationIcon src={SVG.LocationIcon} alt="Location Icon" /> */}
-      <DropdownSC isVisible={isDropdownVisible}>
-        {suggestions.map((suggestion, index) => (
-          <DropdownItem key={index} dropDownFontSize={props.dropDownFontSize} onClick={() => selectSuggestion(suggestion)}>
-            <FlexContainer direction="column" alignItems="start" gap="1%" width="100%">
-              <City>{suggestion.city}</City>
-              <State>{suggestion.state}</State>
-              <LineBorder></LineBorder>
-            </FlexContainer>
-          </DropdownItem>
-        ))}
-      </DropdownSC>
+      {isDropdownVisible && (
+        <Dropdown
+          data={suggestions}
+          selectSuggestion={selectSuggestion}
+          setShowDropdown={setDropdownVisible}
+          renderItem={(item) => (
+            <>
+              <City>{item.city}</City>
+              <State>{item.state}</State>
+            </>
+          )}
+        />
+      )}
     </SearchBarContainer>
   )
 }
