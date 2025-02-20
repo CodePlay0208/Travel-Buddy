@@ -28,10 +28,12 @@ import {
   SubmitButton,
   InputRow,
   PublishTripRightSection,
+  InputColumn,
 } from './PublishTrip.styled'
 import { useNavigate } from 'react-router-dom'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import { Input, Label } from '../../styles/Global'
+import DateRange from './dateRange'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -72,8 +74,8 @@ const PublishTrip = (props) => {
   const formatDate = (dateString) => {
     if (!dateString) return ''
     const date = new Date(dateString)
-    const day = String(date.getDate()).padStart(2, '0') // Ensures 2-digit day
-    const month = String(date.getMonth() + 1).padStart(2, '0') // Month is 0-indexed
+    const day = String(date.getDate()).padStart(2, '0')
+    const month = String(date.getMonth() + 1).padStart(2, '0')
     const year = date.getFullYear()
     return `${day}-${month}-${year}`
   }
@@ -118,6 +120,26 @@ const PublishTrip = (props) => {
           value.forEach((image) => {
             formDataNew.append('destinationImages', image.file)
           })
+        } else if (key === 'multipleDates' && Array.isArray(value)) {
+          const formatDate = (dateObj) => {
+            const d = String(dateObj.getDate()).padStart(2, '0')
+            const m = String(dateObj.getMonth() + 1).padStart(2, '0')
+            const y = dateObj.getFullYear()
+            return `${d}-${m}-${y}`
+          }
+
+          const tripDates = value.map((dateStr) => {
+            const [day, month, year] = dateStr.split('-').map(Number)
+            const start = new Date(year, month - 1, day)
+
+            const duration = parseInt(tripData.duration, 10) || 0
+            const end = new Date(start)
+            end.setDate(start.getDate() + duration)
+
+            return { startDate: dateStr, endDate: formatDate(end) }
+          })
+
+          formDataNew.append('tripDates', JSON.stringify(tripDates))
         } else {
           formDataNew.append(key, value)
         }
@@ -164,7 +186,7 @@ const PublishTrip = (props) => {
               </ToggleTab>
               <Divider />
               <ToggleTab className={activeSection === TABS.USER ? 'active' : ''} onClick={() => handleToggle(TABS.USER)}>
-                User Details
+                Trip Dates
               </ToggleTab>
             </ToggleBetweenTripUser>
 
@@ -173,7 +195,7 @@ const PublishTrip = (props) => {
                 <>
                   <InputRow>
                     <InputGroup>
-                      <Label>Start Location</Label>
+                      <Label fontSize={'1vw'}>Start Location</Label>
                       <Searchbar
                         inputValues={tripData.startLocation}
                         setInputValues={(value) => handleTripDataChange('startLocation', value)}
@@ -187,7 +209,7 @@ const PublishTrip = (props) => {
                       />{' '}
                     </InputGroup>
                     <InputGroup>
-                      <Label>Destination</Label>
+                      <Label fontSize={'1vw'}>Destination</Label>
                       <Searchbar
                         inputValues={tripData.destination}
                         setInputValues={(value) => handleTripDataChange('destination', value)}
@@ -203,7 +225,7 @@ const PublishTrip = (props) => {
                   </InputRow>
                   <InputRow>
                     <InputGroup>
-                      <Label>Start Date</Label>
+                      <Label fontSize={'1vw'}>Start Date</Label>
                       <DatePicker
                         inputValues={tripData?.startDate}
                         setInputValues={(value) => handleTripDataChange('startDate', value)}
@@ -218,7 +240,7 @@ const PublishTrip = (props) => {
                       />
                     </InputGroup>
                     <InputGroup>
-                      <Label>End Date</Label>
+                      <Label fontSize={'1vw'}>End Date</Label>
                       <DatePicker
                         inputValues={tripData?.endDate}
                         setInputValues={(value) => handleTripDataChange('endDate', value)}
@@ -235,7 +257,7 @@ const PublishTrip = (props) => {
                   </InputRow>
                   <InputRow>
                     <InputGroup>
-                      <Label>Total Members</Label>
+                      <Label fontSize={'1vw'}>Total Members</Label>
                       <Input
                         type="text"
                         name="totalMembers"
@@ -245,13 +267,13 @@ const PublishTrip = (props) => {
                       />
                     </InputGroup>
                     <InputGroup>
-                      <Label>Budget</Label>
+                      <Label fontSize={'1vw'}>Budget</Label>
                       <Input type="text" name="budget" value={tripData.budget || ''} onChange={handleChange} placeholder="Enter Budget" />
                     </InputGroup>
                   </InputRow>
                   <InputRow>
                     <InputGroup>
-                      <Label>Description</Label>
+                      <Label fontSize={'1vw'}>Description</Label>
                       <DescriptionField
                         name="description"
                         value={tripData.description}
@@ -264,104 +286,52 @@ const PublishTrip = (props) => {
               ) : (
                 <>
                   <InputRow>
-                    <InputGroup>
-                      <Label>Full Name</Label>
-                      <Input
-                        name="name"
-                        type="text"
-                        className="input-field"
-                        placeholder="Enter full name"
-                        value={profile?.username !== null ? profile.username : ''}
-                      />
-                    </InputGroup>
-                    <InputGroup>
-                      <Label>Email</Label>
-                      <Input
-                        name="emailId"
-                        type="email"
-                        className="input-field"
-                        placeholder="Enter email address"
-                        value={profile?.emailId !== null ? profile.emailId : ''}
-                      />
-                    </InputGroup>
-                  </InputRow>
-                  <InputRow>
-                    <InputGroup>
-                      <Label>Phone Number</Label>
-                      <Input
-                        name="phoneNumber"
-                        type="text"
-                        className="input-field"
-                        placeholder="Enter phone number"
-                        value={profile?.phoneNumber !== null ? profile.phoneNumber : ''}
-                      />
-                    </InputGroup>
-                    <InputGroup>
-                      <Label>Age</Label>
-                      <Input
-                        name="age"
-                        type="text"
-                        className="input-field"
-                        placeholder="Enter age"
-                        onChange={handleChange}
-                        value={tripData.age}
-                      />
-                    </InputGroup>
-                  </InputRow>
-                  <InputRow>
-                    <InputGroup>
-                      <Label>Gender</Label>
-                      <Input
-                        name="gender"
-                        type="text"
-                        className="input-field"
-                        placeholder="Enter gender"
-                        onChange={handleChange}
-                        value={tripData.gender}
-                        onFocus={() => setShowGenderDropDown(true)}
-                        onBlur={(e) => {
-                          setTimeout(() => setShowGenderDropDown(false), 1000)
-                        }}
-                      />
-                      {showGenderDropDown && (
-                        <Dropdown
-                          data={[{ value: 'Male' }, { value: 'Female' }, { value: 'Others' }]}
-                          selectSuggestion={(selected) => {
-                            handleChange({
-                              target: { name: 'gender', value: selected.value },
-                            })
-                            setShowGenderDropDown(false)
+                    <InputColumn width={'80%'}>
+                      <InputGroup>
+                        <Label fontSize={'1vw'}>Duration(No. of Days)</Label>
+                        <Input
+                          name="duration"
+                          type="text"
+                          className="input-field"
+                          placeholder="Enter No. of Days"
+                          value={tripData?.duration !== null ? tripData.duration : ''}
+                          onChange={handleChange}
+                        />
+                      </InputGroup>
+                      <InputGroup>
+                        <Label fontSize={'1vw'}>Pick Your Start Dates </Label>
+                        <DatePicker
+                          inputValues={tripData.multipleDates}
+                          setInputValues={(value) => handleTripDataChange('multipleDates', value)}
+                          onValue={'multipleDates'}
+                          maxDates={5}
+                          showOnlyCalendar={true}
+                          placeholderValue={'Your Arrival & Departure'}
+                          fontWeight={`500`}
+                          fontSize={`1vw`}
+                          padding={`2.5%`}
+                          borderRadius={'30px'}
+                          backgroundColor={'#f4f4f4'}
+                          border={'2px solid #f4f4f4'}
+                        />
+                      </InputGroup>
+                    </InputColumn>
+                    <InputColumn>
+                      <InputRow>
+                        <Label fontSize={'1vw'}>Dates</Label>
+                      </InputRow>
+                      {tripData.multipleDates?.map((date, index) => (
+                        <DateRange
+                          startDate={date}
+                          key={index}
+                          totalDays={tripData.duration}
+                          onDelete={() => {
+                            const dates = tripData.multipleDates.filter((_, i) => i !== index)
+                            setTripData({ ...tripData, multipleDates: dates })
                           }}
                         />
-                      )}
-                    </InputGroup>
-
-                    <InputGroup>
-                      <Label>Persona</Label>
-                      <Input
-                        name="persona"
-                        type="text"
-                        className="input-field"
-                        placeholder="Enter persona"
-                        onChange={handleChange}
-                        value={tripData.persona}
-                        onFocus={() => setShowPersonaDropDown(true)}
-                        onBlur={(e) => {
-                          setTimeout(() => setShowPersonaDropDown(false), 1000)
-                        }}
-                      />
-                      {showPersonaDropDown && (
-                        <Dropdown
-                          data={[{ value: 'Traveller' }, { value: 'Agent' }]}
-                          selectSuggestion={(selected) => {
-                            handleChange({
-                              target: { name: 'persona', value: selected.value },
-                            })
-                            setShowPersonaDropDown(false)
-                          }}
-                        />
-                      )}
-                    </InputGroup>
+                      ))}
+                    </InputColumn>
                   </InputRow>
                 </>
               )}

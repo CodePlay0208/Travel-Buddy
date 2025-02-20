@@ -15,7 +15,8 @@ export const SearchBarContainer = styled.div`
     position: absolute;
     right: 0;
     padding: 2.5%;
-    bottom: 25%;
+    bottom: 50%;
+    transform: translateY(50%);
   }
   @media (max-width: 786px) {
     border-radius: 3px;
@@ -96,7 +97,7 @@ export const DropdownItem = styled.div`
 `
 
 export const City = styled.div`
-width: 100%;
+  width: 100%;
   color: #009965;
 `
 export const State = styled.div`

@@ -270,12 +270,12 @@ export const createTrip =
       //   setAuthTokenImg(localStorage.token)
       // }
       const res = await TripsApi.createTrip(tripData, isMultiMedia)
-      if (res.status === 201) {
-        toast.success('Your Trip has been successfully published!', { autoClose: 1500 })
-      }
-      if (!res.data.allFilesUploaded) {
-        toast.error('Error in uploading images. Please edit the trip and re-upload the images!', { autoClose: 1500 })
-      }
+      // if (res.status === 201) {
+      //   toast.success('Your Trip has been successfully published!', { autoClose: 1500 })
+      // }
+      // if (!res.data.allFilesUploaded) {
+      //   toast.error('Error in uploading images. Please edit the trip and re-upload the images!', { autoClose: 1500 })
+      // }
       return true
     } catch (e) {
       if (e.response && e.response.status === 401) {

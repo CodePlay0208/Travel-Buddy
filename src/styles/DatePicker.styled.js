@@ -16,11 +16,15 @@ export const DatePickerWrapper = styled.div`
     height: 100%;
     width: 100%;
   }
-  .clear{
+  .clear {
     position: absolute;
     right: 0;
-    padding:2.5%;
-    bottom: 25%;
+    padding: 2.5%;
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+  &.showOnlyCalendar {
+    position: relative;
   }
 `
 
@@ -84,10 +88,17 @@ export const Calendar = styled.div`
   border: 1px solid #ccc;
   border-radius: 25px;
   background-color: white;
-  box-shadow: 0px 4px 10px 0px #00000026;
+  box-shadow: 0px 0px 10px 0px #00000026;
+
   z-index: 1000;
   margin: 1% 0;
   animation: fadeIn 0.2s;
+
+  &.showOnlyCalendar {
+    position: relative;
+    top: 0;
+    left: 0;  
+  }
 
   width: 100%;
   @keyframes fadeIn {

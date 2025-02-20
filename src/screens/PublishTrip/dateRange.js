@@ -1,0 +1,56 @@
+import React from 'react'
+import styled from 'styled-components'
+
+const DateRange = ({ startDate, totalDays, onDelete }) => {
+  const [day, month, year] = startDate.split('-').map(Number)
+  const start = new Date(year, month - 1, day)
+
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const dayOf = (date) => dayNames[date.getDay()]
+
+  const formatDate = (date) => {
+    const d = String(date.getDate()).padStart(2, '0')
+    const m = String(date.getMonth() + 1).padStart(2, '0')
+    const y = date.getFullYear()
+    return `${d}-${m}-${y}`
+  }
+
+  const duration = totalDays ? parseInt(totalDays, 10) : 0
+
+  const end = duration > 0 ? new Date(start) : null
+  if (end) {
+    end.setDate(start.getDate() + duration)
+  }
+
+  const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+    background: #f4f4f4;
+    box-shadow: 0px 0px 4px 0px #00000026;
+    border-radius: 10px;
+  `
+
+  const Element = styled.span`
+    font-size: 0.75vw;
+    line-height: 1vw;
+    font-weight: 600;
+    width: ${(props) => props.width};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `
+
+  return (
+    <Container>
+      <Element width={'20%'}>{dayOf(start)}</Element>
+      <Element width={'35%'}>{formatDate(start)}</Element>
+      <Element width={'35%'}>{end ? formatDate(end) : ''}</Element>
+      <Element width={'10%'} onClick={onDelete}>
+        X
+      </Element>
+    </Container>
+  )
+}
+
+export default DateRange

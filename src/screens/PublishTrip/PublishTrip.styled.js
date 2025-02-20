@@ -103,7 +103,7 @@ export const PublishTripLeftSection = styled.div`
 export const LeftSection = styled.div`
   position: relative;
   max-width: 906px;
-  height: 80%;
+  height: 90%;
   background: #ffffff;
   box-shadow: 0px 0px 8px 0px #0000001a;
   border-radius: 10px;
@@ -130,7 +130,7 @@ export const InputGroup = styled.div`
 export const InputLabel = styled.label`
   font-weight: 600;
   font-size: 1vw;
-  line-height: 1.4;
+  line-height: 1.4vw;
   color: #040f0f;
   margin-bottom: 10px;
 
@@ -143,6 +143,7 @@ export const ToggleBetweenTripUser = styled.div`
   display: flex;
   max-width: 906px;
   gap: 3%;
+  height:10%;
   border-radius: 15px 15px 0px 0px;
 
   @media (max-width: 1080px) {
@@ -243,11 +244,22 @@ export const InputRow = styled.div`
   position: relative;
   display: flex;
   gap: 20px;
+  
 
   @media (max-width: 720px) {
     flex-direction: column;
     gap: 10px;
   }
+`
+
+export const InputColumn = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 3%;
+  width: ${(props) => props.width ?? '100%'};
+
 `
 
 export const PublishTripRightSection = styled.div`

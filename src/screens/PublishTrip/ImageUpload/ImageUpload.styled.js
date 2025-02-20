@@ -252,6 +252,7 @@ export const PreviewImageCrossContainer = styled.button`
   position: absolute;
   top: -10%;
   right: -10%;
+  padding: 0;
   background-color: #fef1f1;
   border: none;
   border-radius: 100%;
@@ -270,6 +271,7 @@ export const PreviewImageCrossContainer = styled.button`
 
 export const PreviewImageRemoveButton = styled.span`
   height: 15px;
+  display: block;
   width: 15px;
   color: #ffffff;
   background-color: #ff0000;

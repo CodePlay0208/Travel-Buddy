@@ -30,7 +30,8 @@ const fullMonthNames = [
 ]
 
 const DatePicker = (props) => {
-  const { inputValues, setInputValues, placeholderValue, pickerType = 'default', maxDates } = props
+  const { inputValues, setInputValues, placeholderValue, pickerType = 'default', maxDates, showOnlyCalendar } = props
+
   const multiSelect = maxDates && maxDates > 1
 
   const today = new Date()
@@ -44,7 +45,8 @@ const DatePicker = (props) => {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDates, setSelectedDates] = useState(multiSelect ? (Array.isArray(inputValues) ? inputValues : []) : [])
   const [selectedDate, setSelectedDate] = useState(multiSelect ? '' : inputValues)
-  const [showCalendar, setShowCalendar] = useState(false)
+
+  const [showCalendar, setShowCalendar] = useState(showOnlyCalendar ? true : false)
   const [currentView, setCurrentView] = useState('days')
 
   const wrapperRef = useRef(null)
@@ -61,8 +63,7 @@ const DatePicker = (props) => {
 
   const parseDateString = (dateString) => {
     if (!dateString) return null
-
-    if (typeof dateValue === 'object' && dateString instanceof Date) {
+    if (typeof dateString === 'object' && dateString instanceof Date) {
       return dateString
     }
     const [day, month, year] = dateString.split('-').map(Number)
@@ -101,15 +102,17 @@ const DatePicker = (props) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setShowCalendar(false)
-        if (!selectedDate && !multiSelect && showCalendar && event.target.tagName !== 'INPUT') {
-          handleTodayClick()
+        if (!showOnlyCalendar) {
+          setShowCalendar(false)
+          if (!selectedDate && !multiSelect && showCalendar && event.target.tagName !== 'INPUT') {
+            handleTodayClick()
+          }
         }
       }
     }
     document.addEventListener('click', handleClickOutside)
     return () => document.removeEventListener('click', handleClickOutside)
-  }, [selectedDate, showCalendar, multiSelect])
+  }, [selectedDate, showCalendar, multiSelect, showOnlyCalendar])
 
   const populateDays = () => {
     const year = currentDate.getFullYear()
@@ -165,7 +168,10 @@ const DatePicker = (props) => {
     } else {
       setInputValues(simpleDate)
       setSelectedDate(dateToDisplayString(simpleDate))
-      setShowCalendar(false)
+
+      if (!showOnlyCalendar) {
+        setShowCalendar(false)
+      }
       setCurrentView('days')
     }
   }
@@ -291,7 +297,9 @@ const DatePicker = (props) => {
         setInputValues(simpleDate)
         setSelectedDate(dateToDisplayString(simpleDate))
         setCurrentDate(todayMidnight)
-        setShowCalendar(false)
+        if (!showOnlyCalendar) {
+          setShowCalendar(false)
+        }
         setCurrentView('days')
       }
     }
@@ -311,27 +319,31 @@ const DatePicker = (props) => {
 
   return (
     <DatePickerWrapper ref={wrapperRef} widthValue={props.width || '100%'} heightValue={props.height || '100%'}>
-      <Input
-        type="text"
-        ref={dateInputRef}
-        value={displayValue}
-        placeholder={placeholderValue}
-        readOnly
-        onClick={() => setShowCalendar(!showCalendar)}
-        className="SearchBar-date"
-        border={props?.border}
-        backgroundColor={props?.backgroundColor}
-        fontSize={props?.fontSize}
-        padding={props.padding}
-      />
-      {displayValue&&<img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} />}
-      {showCalendar && (
-        <Calendar ref={calendarRef}>
+      {!showOnlyCalendar && (
+        <>
+          <Input
+            type="text"
+            ref={dateInputRef}
+            value={displayValue}
+            placeholder={placeholderValue}
+            readOnly
+            onClick={() => setShowCalendar(!showCalendar)}
+            className="SearchBar-date"
+            border={props?.border}
+            backgroundColor={props?.backgroundColor}
+            fontSize={props?.fontSize}
+            padding={props.padding}
+          />
+          {displayValue && <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} />}
+        </>
+      )}
+      {(showOnlyCalendar || showCalendar) && (
+        <Calendar ref={calendarRef} className={showOnlyCalendar ? 'showOnlyCalendar' : ''}>
           <CalendarHeader>
             <NavButton onClick={handlePrev}>
               <img className="svgIcon" src={SVG.leftArrow} alt="" />
             </NavButton>
-            <div className="header-label" onClick={handleHeaderClick} style={{ cursor: 'pointer', fontSize: '0.65vw' }}>
+            <div className="header-label" onClick={handleHeaderClick} style={{ cursor: 'pointer', fontSize: '1vw' }}>
               {currentView === 'days' && `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`}
               {currentView === 'months' && `${currentDate.getFullYear()}`}
               {currentView === 'years' &&
