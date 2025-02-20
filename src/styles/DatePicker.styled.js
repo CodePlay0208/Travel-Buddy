@@ -71,6 +71,9 @@ export const InputWrapper = styled.div`
 export const Calendar = styled.div`
   position: absolute;
   top: 100%;
+  max-width: 300px;
+  aspect-ratio: 1;
+  padding: 16px;
   left: 0;
   border: 1px solid #ccc;
   border-radius: 25px;
@@ -95,12 +98,23 @@ export const CalendarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3%;
+  padding: 0 2% 4%;
   background-color: #ffffff;
   border-radius: 25px 25px 0 0;
+  color: #8dd3bb;
+  font-weight: 600;
+
   span {
     color: #8dd3bb;
     font-weight: 600;
+  }
+  .svgIcon {
+    padding: 2px;
+    font-size: min(3vw, 32px);
+    color: #797b86;
+  }
+  .svgIcon:hover {
+    color: #8dd3bb;
   }
 `
 
@@ -121,23 +135,19 @@ export const NavButton = styled.span`
   &:hover:not(.disabled) {
     color: #797b86;
   }
-
-  .svgIcon {
-    font-size: min(3vw, 32px);
-    color: #797b86;
-  }
-  .svgIcon:hover {
-    color: #8dd3bb;
-  }
 `
 
 export const DayNames = styled.div`
   display: flex;
   padding: 2%;
-  font-size: min(2.5vw, 16px);
+  font-size: min(2vw, 11px);
 
   span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 14.28%;
+    aspect-ratio: 1;
     text-align: center;
     padding: 2%;
     font-weight: bold;
@@ -151,11 +161,86 @@ export const Days = styled.div`
   padding: 2.5px;
   font-size: min(2.5vw, 16px);
   span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 14.28%;
+    aspect-ratio: 1;
     text-align: center;
     padding: 2%;
     cursor: pointer;
     border-radius: 4px;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+
+    &:hover:not(.disabled) {
+      background-color: #8dd3bb;
+    }
+
+    &.selected {
+      background-color: #8dd3bb;
+      color: white;
+    }
+
+    &.disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+`
+
+export const Months = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-size: min(2.5vw, 16px);
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33%;
+    aspect-ratio: 8/5;
+    text-align: center;
+    padding: 2%;
+    cursor: pointer;
+    border-radius: 8px;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+
+    &:hover:not(.disabled) {
+      background-color: #8dd3bb;
+    }
+
+    &.selected {
+      background-color: #8dd3bb;
+      color: white;
+    }
+
+    &.disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+`
+export const Years = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-size: min(2.5vw, 16px);
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33%;
+    aspect-ratio: 8/5;
+    text-align: center;
+    padding: 2%;
+    cursor: pointer;
+    border-radius: 8px;
     transition:
       background-color 0.2s,
       color 0.2s;

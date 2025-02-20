@@ -37,6 +37,9 @@ import youtube from './footer/youtube.svg'
 import wishlist from './wishlist.svg'
 import deleteCross from './deleteCross.svg'
 import deleteMin from './deleteMin.svg'
+import downArrow from './downArrow.svg'
+import leftArrow from './leftArrow.svg'
+import rightArrow from './rightArrow.svg'
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -76,4 +79,7 @@ export const SVG = {
   wishlist,
   deleteCross,
   deleteMin,
+  downArrow,
+  leftArrow,
+  rightArrow,
 }
