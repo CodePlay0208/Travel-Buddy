@@ -1,39 +1,27 @@
 import React, { useEffect, useState, memo } from 'react'
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
-import DatePicker from '../../components/DatePicker/DatePicker'
-import Searchbar from '../../components/Searchbar/Searchbar'
 import { connect } from 'react-redux'
 import { getProfile } from '../../actions/profile.action'
 import { createTrip, editTrip } from '../../actions/trips.action'
 import { ToastContainer } from 'react-toastify'
 import ImageUpload from './ImageUpload/ImageUpload'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import {
   PublishTripPage,
   PublishTripContainer,
   PublishTripHeading,
   PublishTripContent,
   PublishTripLeftSection,
-  LeftSection,
-  InputGroup,
-  InputLabel,
-  InputField,
-  DescriptionField,
+  PublishTripRightSection,
   ToggleBetweenTripUser,
   ToggleTab,
   Divider,
   PublishTripButton,
-  NextButton,
   SubmitButton,
-  InputRow,
-  PublishTripRightSection,
-  InputColumn,
 } from './PublishTrip.styled'
-import { useNavigate } from 'react-router-dom'
-import Dropdown from '../../components/Dropdown/Dropdown'
-import { Input, Label } from '../../styles/Global'
-import DateRange from './dateRange'
+import TripDetail from './TripDetail'
+import TripDates from './TripDates'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -56,18 +44,15 @@ const DEFAULT_TRIP_DATA = {
   persona: '',
   tripData: [],
   multipleDates: [],
+  duration: '',
 }
 
 const PublishTrip = (props) => {
-  const { profile, getProfile, createTrip, editTrip } = props
+  const { getProfile, createTrip, editTrip } = props
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
-  const [showPersonaDropDown, setShowPersonaDropDown] = useState(false)
-  const [showGenderDropDown, setShowGenderDropDown] = useState(false)
-
   const navigate = useNavigate()
   const location = useLocation()
-
   const editTripData = location.state?.trip || {}
   const [toEditTrip, setToEditTrip] = useState(false)
 
@@ -100,6 +85,20 @@ const PublishTrip = (props) => {
     }))
   }
 
+  const handleTripDataChange = (field, value) => {
+    setTripData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }))
+  }
+
+  const handleDeleteDate = (index) => {
+    setTripData((prevData) => ({
+      ...prevData,
+      multipleDates: prevData.multipleDates.filter((_, i) => i !== index),
+    }))
+  }
+
   useEffect(() => {
     console.log('Trip Data updated:', tripData)
   }, [tripData])
@@ -111,6 +110,7 @@ const PublishTrip = (props) => {
   const handleNext = () => {
     setActiveSection(TABS.USER)
   }
+
   const handleSubmit = async () => {
     try {
       const formDataNew = new FormData()
@@ -121,7 +121,7 @@ const PublishTrip = (props) => {
             formDataNew.append('destinationImages', image.file)
           })
         } else if (key === 'multipleDates' && Array.isArray(value)) {
-          const formatDate = (dateObj) => {
+          const formatDateObj = (dateObj) => {
             const d = String(dateObj.getDate()).padStart(2, '0')
             const m = String(dateObj.getMonth() + 1).padStart(2, '0')
             const y = dateObj.getFullYear()
@@ -131,12 +131,10 @@ const PublishTrip = (props) => {
           const tripDates = value.map((dateStr) => {
             const [day, month, year] = dateStr.split('-').map(Number)
             const start = new Date(year, month - 1, day)
-
             const duration = parseInt(tripData.duration, 10) || 0
             const end = new Date(start)
             end.setDate(start.getDate() + duration)
-
-            return { startDate: dateStr, endDate: formatDate(end) }
+            return { startDate: dateStr, endDate: formatDateObj(end) }
           })
 
           formDataNew.append('tripDates', JSON.stringify(tripDates))
@@ -162,13 +160,6 @@ const PublishTrip = (props) => {
     }
   }
 
-  const handleTripDataChange = (field, value) => {
-    setTripData({
-      ...tripData,
-      [field]: value,
-    })
-  }
-
   useEffect(() => {
     getProfile()
   }, [getProfile])
@@ -189,137 +180,20 @@ const PublishTrip = (props) => {
                 Trip Dates
               </ToggleTab>
             </ToggleBetweenTripUser>
-
-            <LeftSection>
-              {activeSection === TABS.TRIP ? (
-                <>
-                  <InputRow>
-                    <InputGroup>
-                      <Label fontSize={'1vw'}>Start Location</Label>
-                      <Searchbar
-                        inputValues={tripData.startLocation}
-                        setInputValues={(value) => handleTripDataChange('startLocation', value)}
-                        onValue={'startLocation'}
-                        placeholderValue={'Enter Start Location'}
-                        style={{ width: '100%' }}
-                        fontSize={`1vw`}
-                        fontWeight={`500`}
-                        borderColor={`#0b87ac`}
-                        dropDownFontSize={'75%'}
-                      />{' '}
-                    </InputGroup>
-                    <InputGroup>
-                      <Label fontSize={'1vw'}>Destination</Label>
-                      <Searchbar
-                        inputValues={tripData.destination}
-                        setInputValues={(value) => handleTripDataChange('destination', value)}
-                        onValue={'destination'}
-                        placeholderValue={'Enter Destination'}
-                        style={{ width: '100%' }}
-                        fontSize={`1vw`}
-                        fontWeight={`500`}
-                        borderColor={`#0b87ac`}
-                        dropDownFontSize={'75%'}
-                      />
-                    </InputGroup>
-                  </InputRow>
-
-                  <InputRow>
-                    <InputGroup>
-                      <Label fontSize={'1vw'}>Minimum Budget</Label>
-                      <Input
-                        type="text"
-                        name="minBudget"
-                        autoComplete="false"
-                        value={tripData.minBudget || ''}
-                        onChange={handleChange}
-                        placeholder="Enter Minimum Budget"
-                      />
-                    </InputGroup>
-                    <InputGroup>
-                      <Label fontSize={'1vw'}>Maximum Budget</Label>
-                      <Input
-                        autoComplete="false"
-                        type="text"
-                        name="maxBudget"
-                        value={tripData.maxBudget || ''}
-                        onChange={handleChange}
-                        placeholder="Enter Maximum Budget"
-                      />
-                    </InputGroup>
-                  </InputRow>
-                  <InputRow>
-                    <InputGroup>
-                      <Label fontSize={'1vw'}>Description</Label>
-                      <DescriptionField
-                        name="description"
-                        value={tripData.description}
-                        onChange={handleChange}
-                        placeholder="Enter Trip Description"
-                      />
-                    </InputGroup>
-                  </InputRow>
-                </>
-              ) : (
-                <>
-                  <InputRow>
-                    <InputColumn width={'80%'}>
-                      <InputGroup>
-                        <Label fontSize={'1vw'}>Duration(No. of Days)</Label>
-                        <Input
-                          name="duration"
-                          type="text"
-                          className="input-field"
-                          placeholder="Enter No. of Days"
-                          value={tripData?.duration !== null ? tripData.duration : ''}
-                          onChange={handleChange}
-                        />
-                      </InputGroup>
-                      <InputGroup>
-                        <Label fontSize={'1vw'}>Pick Your Start Dates </Label>
-                        <DatePicker
-                          inputValues={tripData.multipleDates}
-                          setInputValues={(value) => handleTripDataChange('multipleDates', value)}
-                          onValue={'multipleDates'}
-                          maxDates={5}
-                          showOnlyCalendar={true}
-                          placeholderValue={'Your Arrival & Departure'}
-                          fontWeight={`500`}
-                          fontSize={`1vw`}
-                          padding={`2.5%`}
-                          borderRadius={'30px'}
-                          backgroundColor={'#f4f4f4'}
-                          border={'2px solid #f4f4f4'}
-                        />
-                      </InputGroup>
-                    </InputColumn>
-                    <InputColumn>
-                      <InputRow>
-                        <Label fontSize={'1vw'}>Dates</Label>
-                      </InputRow>
-                      {tripData.multipleDates?.map((date, index) => (
-                        <DateRange
-                          startDate={date}
-                          key={index}
-                          totalDays={tripData.duration}
-                          onDelete={() => {
-                            const dates = tripData.multipleDates.filter((_, i) => i !== index)
-                            setTripData({ ...tripData, multipleDates: dates })
-                          }}
-                        />
-                      ))}
-                    </InputColumn>
-                  </InputRow>
-                </>
-              )}
-            </LeftSection>
+            {activeSection === TABS.TRIP ? (
+              <TripDetail tripData={tripData} handleChange={handleChange} handleTripDataChange={handleTripDataChange} />
+            ) : (
+              <TripDates
+                tripData={tripData}
+                handleChange={handleChange}
+                handleTripDataChange={handleTripDataChange}
+                handleDeleteDate={handleDeleteDate}
+              />
+            )}
           </PublishTripLeftSection>
-
-          {!toEditTrip && (
-            <PublishTripRightSection>
-              <ImageUpload tripData={tripData} setTripData={setTripData} />
-            </PublishTripRightSection>
-          )}
+          <PublishTripRightSection>
+            <ImageUpload tripData={tripData} setTripData={setTripData} />
+          </PublishTripRightSection>
         </PublishTripContent>
         {activeSection === TABS.TRIP ? (
           <PublishTripButton>

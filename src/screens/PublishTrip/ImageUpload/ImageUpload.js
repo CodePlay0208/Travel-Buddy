@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import ImageUploading from 'react-images-uploading'
 import firstImage from '../../../data/Images/gallery.png'
-import secondImage from '../../../data/Images/placeholder.png'
 import ImageOverlay from '../../../components/ImageOverlay/ImageOverlay'
 import {
   Frame,
-  UploadPhotos,
   IconPicture,
   DropImage,
   DropImageInner,
@@ -15,9 +13,6 @@ import {
   FileUploaderContainer,
   FileUploadLabel,
   FileUploadBox,
-  FileUploadPlaceholder,
-  UploadButtonContainer,
-  UploadButton,
   ImagePreviewSection,
   PreviewImageItemContainer,
   PreviewImageItem,
@@ -27,7 +22,6 @@ import {
   ShowAllImageContainer,
   SeeAllButton,
 } from './ImageUpload.styled'
-import { Button } from '../../../styles/Global'
 
 const MAX_IMAGE_UPLOAD_LIMIT = 5
 
@@ -36,42 +30,38 @@ const ImageUpload = ({ tripData, setTripData }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [displayedImage, setDisplayedImage] = useState(firstImage)
 
-  const onImagesChange = (imageList, addUpdatedIndex) => {
+  // When images are added/removed, update tripData and ensure the displayed image is still valid.
+  const onImagesChange = (imageList) => {
     setTripData((prevTripData) => ({
       ...prevTripData,
       destinationImages: imageList,
     }))
-
-    if (imageList.length > 0) {
-      setDisplayedImage(imageList[0].data_url)
-    } else {
-      setDisplayedImage(firstImage)
+    // If the current preview image was removed, default to the first available image
+    const stillExists = imageList.find(image => image.data_url === displayedImage)
+    if (!stillExists) {
+      setDisplayedImage(imageList.length > 0 ? imageList[0].data_url : firstImage)
     }
   }
 
+  // Set the preview to the clicked image.
   const handleImageClick = (index) => {
     setDisplayedImage(tripData.destinationImages[index].data_url)
   }
 
+  // Open the overlay for a larger preview.
   const handleImageDoubleClick = (index) => {
     setCurrentIndex(index)
     setOverlay(true)
   }
+
+  // Remove the image at the given index and update the displayed image if needed.
   const handleImageRemove = (index, onImageRemove) => {
-    setTripData((prev) => {
-      const updatedImages = prev.destinationImages.filter((_, i) => i !== index)
-      return {
-        ...prev,
-        destinationImages: updatedImages,
-        removedDestinationImages: [...(prev.removedDestinationImages || []), prev.destinationImages[index]],
-      }
-    })
-
+    const removedImage = tripData.destinationImages[index]
     onImageRemove(index)
-
-    setDisplayedImage((prevTripData) => {
-      return prevTripData.destinationImages.length > 1 ? prevTripData.destinationImages[0].data_url : firstImage
-    })
+    if (removedImage.data_url === displayedImage) {
+      const newImages = tripData.destinationImages.filter((_, i) => i !== index)
+      setDisplayedImage(newImages.length > 0 ? newImages[0].data_url : firstImage)
+    }
   }
 
   return (
@@ -83,10 +73,8 @@ const ImageUpload = ({ tripData, setTripData }) => {
         maxNumber={MAX_IMAGE_UPLOAD_LIMIT}
         dataURLKey="data_url"
       >
-        {({ imageList, onImageUpload, onImageRemove, isDragging, dragProps }) => (
+        {({ imageList, onImageUpload, onImageRemove, dragProps }) => (
           <Frame>
-            {/* <UploadPhotos>Upload Photos</UploadPhotos> */}
-
             <DropImageInner role="button" onClick={onImageUpload} {...dragProps}>
               {imageList.length > 0 ? (
                 <DropImage>
@@ -96,25 +84,22 @@ const ImageUpload = ({ tripData, setTripData }) => {
                 </DropImage>
               ) : (
                 <DropImage>
-                  <IconPicture width={`70%`}>
+                  <IconPicture width="70%">
                     <img src={firstImage} alt="Uploaded Preview" />
                   </IconPicture>
                   <DropText>
                     Drop your image here, or <Browse>Browse</Browse>
                   </DropText>
-
                   <SupportsText>Supports: PNG, JPG, JPEG, WEBP</SupportsText>
                 </DropImage>
               )}
               <FileUploaderContainer>
                 <FileUploadLabel>Upload</FileUploadLabel>
-                <FileUploadBox>
-                  Upload Image
-                </FileUploadBox>
+                <FileUploadBox>Upload Image</FileUploadBox>
               </FileUploaderContainer>
             </DropImageInner>
             <ImagePreviewSection>
-              {imageList.length > 0 ? (
+              {imageList.length > 0 &&
                 imageList.map((image, index) => (
                   <PreviewImageItemContainer key={index}>
                     <PreviewImageItem
@@ -124,25 +109,21 @@ const ImageUpload = ({ tripData, setTripData }) => {
                       onDoubleClick={() => handleImageDoubleClick(index)}
                     />
                     <PreviewImageCrossContainer>
-                      <PreviewImageRemoveButton onClick={() => handleImageRemove(index, onImageRemove)} aria-label="Remove image">
+                      <PreviewImageRemoveButton
+                        onClick={() => handleImageRemove(index, onImageRemove)}
+                        aria-label="Remove image"
+                      >
                         x
                       </PreviewImageRemoveButton>
                     </PreviewImageCrossContainer>
                   </PreviewImageItemContainer>
-                ))
-              ) : (
-                <></>
-              )}
+                ))}
             </ImagePreviewSection>
           </Frame>
         )}
       </ImageUploading>
       <ShowAllImageContainer>
-        <SeeAllButton
-          onClick={() => {
-            setOverlay(true)
-          }}
-        >
+        <SeeAllButton onClick={() => setOverlay(true)}>
           See All Photos
         </SeeAllButton>
       </ShowAllImageContainer>

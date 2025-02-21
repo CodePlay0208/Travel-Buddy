@@ -30,11 +30,9 @@ export const IconPicture = styled.div`
 
     @media (max-width: 768px) {
       border-radius: 8px;
-      width: 75%;
     }
     @media (max-width: 500px) {
       border-radius: 6px;
-      width: 50%;
     }
   }
 `
@@ -134,6 +132,9 @@ export const FileUploadLabel = styled.div`
   line-height: 150%;
   color: #000000;
 
+  @media (max-width: 1080px) {
+    font-size: 2vw;
+  }
   @media (max-width: 768px) {
     font-size: 11px;
   }
@@ -182,6 +183,10 @@ export const SeeAllButton = styled(Button)`
   font-size: 1vw;
   font-weight: 500;
   padding: 4% 5%;
+
+  @media (max-width: 1080px) {
+    font-size: 2vw;
+  }
 `
 
 export const ShowAllImageContainer = styled.div`
@@ -231,13 +236,10 @@ export const PreviewImageItemContainer = styled.div`
   width: 100px;
   aspect-ratio: 4 / 3;
   position: relative;
+  @media (max-width: 1080px) {
+    width: 150px;
+  }
 
-  @media (max-width: 768px) {
-    width: 75px;
-  }
-  @media (max-width: 500px) {
-    width: 50px;
-  }
 `
 
 export const PreviewImageItem = styled.img`

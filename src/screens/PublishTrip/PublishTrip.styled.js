@@ -1,4 +1,39 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+const colors = {
+  primary: '#0b87ac',
+  secondary: '#8dd3bb',
+  dark: '#040f0f',
+  light: '#ffffff',
+  hover: '#559c84',
+  background: '#f4f4f4',
+  black: '#000000',
+  shadow: 'rgba(0, 0, 0, 0.1)',
+}
+
+const breakpoints = {
+  desktop: '1080px',
+  tablet: '786px',
+  mobile: '456px',
+}
+
+const media = {
+  desktop: (styles) => css`
+    @media (max-width: ${breakpoints.desktop}) {
+      ${styles}
+    }
+  `,
+  tablet: (styles) => css`
+    @media (max-width: ${breakpoints.tablet}) {
+      ${styles}
+    }
+  `,
+  mobile: (styles) => css`
+    @media (max-width: ${breakpoints.mobile}) {
+      ${styles}
+    }
+  `,
+}
 
 export const PublishTripPage = styled.div`
   position: relative;
@@ -10,19 +45,19 @@ export const InputField = styled.input`
   width: 100%;
   height: 51px;
   padding: 1% 5%;
-  border: 2.325px solid #0b87ac;
+  border: 2.325px solid ${colors.primary};
   border-radius: 9.3px;
   font-family: 'Poppins', sans-serif;
   font-size: 16.275px;
-  color: #040f0f;
+  color: ${colors.dark};
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     font-size: 14px;
-  }
+  `}
 
-  @media (max-width: 786px) {
+  ${media.tablet`
     border-radius: 3px;
-  }
+  `}
 `
 
 export const DescriptionField = styled.textarea`
@@ -32,20 +67,20 @@ export const DescriptionField = styled.textarea`
   height: 80px;
   padding: 1% 1.25%;
   border: none;
-  background-color: #f4f4f4;
+  background-color: ${colors.background};
   border-radius: 20px;
   font-size: 1vw;
-  color: #040f0f;
+  color: ${colors.dark};
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     height: 120px;
-  }
+  `}
 
-  @media (max-width: 786px) {
+  ${media.tablet`
     padding: 1% 2.5%;
     font-size: 2vw;
     border-radius: 20px;
-  }
+  `}
 `
 
 export const PublishTripContainer = styled.div`
@@ -54,12 +89,12 @@ export const PublishTripContainer = styled.div`
   width: 95%;
   max-width: 1604px;
   margin: 0 auto;
-  background: #ffffff;
+  background: ${colors.light};
   border-radius: 10px;
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     padding: 5%;
-  }
+  `}
 `
 
 export const PublishTripHeading = styled.div`
@@ -70,11 +105,11 @@ export const PublishTripHeading = styled.div`
   font-size: 3vw;
   line-height: 1.8;
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     font-size: 5vw;
     padding-left: 0;
     text-align: center;
-  }
+  `}
 `
 
 export const PublishTripContent = styled.div`
@@ -83,9 +118,9 @@ export const PublishTripContent = styled.div`
   padding: 20px;
   height: 80%;
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     flex-direction: column;
-  }
+  `}
 `
 
 export const PublishTripLeftSection = styled.div`
@@ -94,23 +129,27 @@ export const PublishTripLeftSection = styled.div`
   border-radius: 15px;
   position: relative;
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     width: 100%;
-  }
+  `}
 `
 
 export const LeftSection = styled.div`
   position: relative;
-  height: 100%-50px;
-  background: #ffffff;
-  box-shadow: 0px 0px 8px 0px #0000001a;
+  height: calc(100% - 50px);
+  background: ${colors.light};
+  box-shadow: 0px 0px 8px 0px ${colors.shadow};
   border-radius: 10px;
   padding: 5%;
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     width: 100%;
     padding: 3% 5%;
-  }
+    height: calc(100% - 30px);
+  `}
+  ${media.tablet`
+    height: calc(100% - 20px);
+  `}
 `
 
 export const InputGroup = styled.div`
@@ -120,20 +159,17 @@ export const InputGroup = styled.div`
   margin: 0 2% 2% 2%;
   position: relative;
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     margin: 0 0 10px 0;
-  }
+  `}
 `
 
 export const InputLabel = styled.label`
   font-weight: 600;
   font-size: 1vw;
   line-height: 1.4vw;
-  color: #040f0f;
+  color: ${colors.dark};
   margin-bottom: 10px;
-
-  @media (max-width: 1080px) {
-  }
 `
 
 export const ToggleBetweenTripUser = styled.div`
@@ -141,55 +177,55 @@ export const ToggleBetweenTripUser = styled.div`
   display: flex;
   gap: 3%;
   height: 50px;
-  border-radius: 15px 15px 0px 0px;
+  border-radius: 15px 15px 0 0;
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     width: 100%;
-    border-radius: 10px 10px 0px 0px;
-  }
+    height: 30px;
+    border-radius: 10px 10px 0 0;
+  `}
 
-  @media (max-width: 786px) {
+  ${media.tablet`
     width: 100%;
-    border-radius: 5px 5px 0px 0px;
-  }
+    height: 20px;
+    border-radius: 5px 5px 0 0;
+  `}
 `
 
 export const ToggleTab = styled.div`
   cursor: pointer;
   transition: background-color 0.4s ease;
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 1.5vw;
   line-height: 2vw;
   height: 100%;
-  color: #000000;
-
-  position: relative;
+  color: ${colors.black};
   padding: 1%;
-  border-radius: 15px 15px 0px 0px;
+  border-radius: 15px 15px 0 0;
+
   &.active {
-    background-color: #8dd3bb;
+    background-color: ${colors.secondary};
   }
 
-  @media (max-width: 1080px) {
-    border-radius: 10px 10px 0px 0px;
-  }
+  ${media.desktop`
+    border-radius: 10px 10px 0 0;
+  `}
 
-  @media (max-width: 786px) {
-    border-radius: 5px 5px 0px 0px;
-  }
+  ${media.tablet`
+    border-radius: 5px 5px 0 0;
+  `}
 `
 
 export const Divider = styled.div`
   width: 0.5%;
   height: 4vw;
-
-  background: #ffffff;
+  background: ${colors.light};
   border-radius: 50px;
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     height: 20px;
-  }
+  `}
 `
 
 export const PublishTripButton = styled.div`
@@ -198,23 +234,23 @@ export const PublishTripButton = styled.div`
   max-width: 302px;
   height: 60px;
   margin: 20px auto;
-  background: #ffffff;
+  background: ${colors.light};
   border-radius: 8.90855px;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     max-width: 100%;
-  }
+  `}
 `
 
 export const NextButton = styled.button`
   width: 100%;
   height: 100%;
   padding: 10px;
-  color: #559c84;
-  background-color: white;
+  color: ${colors.hover};
+  background-color: ${colors.light};
   border: none;
   border-radius: 40px;
   cursor: pointer;
@@ -223,18 +259,18 @@ export const NextButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #559c84;
-    color: white;
+    background-color: ${colors.hover};
+    color: ${colors.light};
   }
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     font-size: 14px;
-  }
+  `}
 `
 
 export const SubmitButton = styled(NextButton)`
-  background-color: #8dd3bb;
-  color: black;
+  background-color: ${colors.secondary};
+  color: ${colors.black};
 `
 
 export const InputRow = styled.div`
@@ -242,10 +278,10 @@ export const InputRow = styled.div`
   display: flex;
   gap: 20px;
 
-  @media (max-width: 720px) {
+  ${media.tablet`
     flex-direction: column;
     gap: 10px;
-  }
+  `}
 `
 
 export const InputColumn = styled.div`
@@ -254,21 +290,20 @@ export const InputColumn = styled.div`
   flex-direction: column;
   gap: 10px;
   margin: 3%;
-  width: ${(props) => props.width ?? '100%'};
+  width: ${(props) => props.width || '100%'};
 `
 
 export const PublishTripRightSection = styled.div`
   width: 385px;
   max-width: 500px;
   position: relative;
-
-  background: #ffffff;
+  background: ${colors.light};
   border-radius: 12px;
   margin-top: 3%;
 
-  @media (max-width: 1080px) {
+  ${media.desktop`
     width: 100%;
     max-width: 100%;
     margin-top: 20px;
-  }
+  `}
 `
