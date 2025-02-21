@@ -55,13 +55,21 @@ const ImageUpload = ({ tripData, setTripData }) => {
     setCurrentIndex(index)
     setOverlay(true)
   }
-
   const handleImageRemove = (index, onImageRemove) => {
+    setTripData((prev) => {
+      const updatedImages = prev.destinationImages.filter((_, i) => i !== index)
+      return {
+        ...prev,
+        destinationImages: updatedImages,
+        removedDestinationImages: [...(prev.removedDestinationImages || []), prev.destinationImages[index]],
+      }
+    })
+
     onImageRemove(index)
 
-    if (tripData.destinationImages.length === 1) {
-      setDisplayedImage(firstImage)
-    }
+    setDisplayedImage((prevTripData) => {
+      return prevTripData.destinationImages.length > 1 ? prevTripData.destinationImages[0].data_url : firstImage
+    })
   }
 
   return (

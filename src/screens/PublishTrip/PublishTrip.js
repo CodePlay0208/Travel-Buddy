@@ -116,7 +116,7 @@ const PublishTrip = (props) => {
       const formDataNew = new FormData()
 
       Object.entries(tripData).forEach(([key, value]) => {
-        if (!toEditTrip && key === 'destinationImages' && Array.isArray(value)) {
+        if ((!toEditTrip && key === 'destinationImages') || (key === 'removedDestinationImages' && Array.isArray(value))) {
           value.forEach((image) => {
             formDataNew.append('destinationImages', image.file)
           })
@@ -338,7 +338,7 @@ const PublishTrip = (props) => {
             </LeftSection>
           </PublishTripLeftSection>
 
-          {!toEditTrip && (
+          {toEditTrip && (
             <PublishTripRightSection>
               <ImageUpload tripData={tripData} setTripData={setTripData} />
             </PublishTripRightSection>

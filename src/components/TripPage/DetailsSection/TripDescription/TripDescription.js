@@ -113,12 +113,8 @@ const TripDescription = (props) => {
       toast.error('Failed to copy link.')
     }
   }
-
   const onEditTripClick = () => {
-    if (editMode) {
-      onSaveTrip()
-    }
-    setEditMode()
+    navigate('/publish-trip', { state: { trip } })
   }
 
   const onDeleteTripClick = async () => {
@@ -204,7 +200,7 @@ const TripDescription = (props) => {
         <ChatButton
           style={{ width: '100%' }}
           onClick={() => {
-            isUserTrip ? onEditTripClick() : onJoinTripClick()
+            !isUserTrip ? onEditTripClick() : onJoinTripClick()
           }}
         >
           {/* Change button text based on edit mode */}
