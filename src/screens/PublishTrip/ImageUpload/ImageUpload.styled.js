@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Button } from '../../../styles/Global'
 
 export const Frame = styled.div`
   position: relative;
@@ -44,7 +45,8 @@ export const DropImage = styled.div`
   width: 380px;
   min-height: 10vw;
   aspect-ratio: 4 / 3;
-  border: 1px dashed #b1bfd0;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='21' ry='21' stroke='%23B1BFD0FF' stroke-width='3' stroke-dasharray='4%2c15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+
   border-radius: 9px;
   display: flex;
   justify-content: center;
@@ -120,15 +122,15 @@ export const FileUploaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 8% 3% 3%;
+  margin: 4%;
   position: relative;
 `
 
 export const FileUploadLabel = styled.div`
   font-family: 'Poppins', sans-serif;
   font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 0.75vw;
   line-height: 150%;
   color: #000000;
 
@@ -141,13 +143,20 @@ export const FileUploadLabel = styled.div`
 `
 
 export const FileUploadBox = styled.div`
-  background: #f1f4f9;
-  border-radius: 6px;
-  position: relative;
   width: 100%;
+  height: 47px;
+  border-radius: 40px;
+  gap: 8px;
+  padding-top: 8px;
+  padding-right: 15px;
+  padding-bottom: 8px;
+  padding-left: 15px;
   display: flex;
-  padding: 0 0 0 2.5%;
   align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  background-color: #f4f4f4;
+  color: black;
 
   @media (max-width: 768px) {
     border-radius: 4px;
@@ -157,14 +166,7 @@ export const FileUploadBox = styled.div`
   }
 `
 
-export const FileUploadPlaceholder = styled.div`
-  font-family: 'Poppins', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 150%;
-  color: #aab6c1;
-
+export const FileUploadPlaceholder = styled.button`
   @media (max-width: 768px) {
     font-size: 11px;
   }
@@ -175,6 +177,11 @@ export const FileUploadPlaceholder = styled.div`
 
 export const UploadButtonContainer = styled.div`
   margin-left: auto;
+`
+export const SeeAllButton = styled(Button)`
+  font-size: 1vw;
+  font-weight: 500;
+  padding: 4% 5%;
 `
 
 export const ShowAllImageContainer = styled.div`
@@ -215,7 +222,7 @@ export const ImagePreviewSection = styled.div`
   display: flex;
   overflow-x: auto;
   gap: 2.5%;
-  padding-top: 5%;
+  padding-top: 2.5%;
   width: 100%;
 `
 

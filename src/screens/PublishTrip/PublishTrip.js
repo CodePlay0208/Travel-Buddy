@@ -49,13 +49,13 @@ const DEFAULT_TRIP_DATA = {
   startDate: '',
   startLocation: '',
   endDate: '',
-  totalMembers: null,
-  budget: null,
-  age: null,
-  gender: '',
+  minBudget: null,
+  maxBudget: null,
   description: '',
   destinationImages: [],
   persona: '',
+  tripData: [],
+  multipleDates: [],
 }
 
 const PublishTrip = (props) => {
@@ -223,52 +223,29 @@ const PublishTrip = (props) => {
                       />
                     </InputGroup>
                   </InputRow>
+
                   <InputRow>
                     <InputGroup>
-                      <Label fontSize={'1vw'}>Start Date</Label>
-                      <DatePicker
-                        inputValues={tripData?.startDate}
-                        setInputValues={(value) => handleTripDataChange('startDate', value)}
-                        onValue={'startDate'}
-                        placeholderValue={'Select Start date'}
-                        fontWeight={`500`}
-                        fontSize={`1vw`}
-                        padding={`2.5%`}
-                        borderRadius={'30px'}
-                        backgroundColor={'#f4f4f4'}
-                        border={'2px solid #f4f4f4'}
-                      />
-                    </InputGroup>
-                    <InputGroup>
-                      <Label fontSize={'1vw'}>End Date</Label>
-                      <DatePicker
-                        inputValues={tripData?.endDate}
-                        setInputValues={(value) => handleTripDataChange('endDate', value)}
-                        onValue={'endDate'}
-                        placeholderValue={'Select End date'}
-                        fontWeight={`500`}
-                        fontSize={`1vw`}
-                        padding={`2.5%`}
-                        borderRadius={'30px'}
-                        backgroundColor={'#f4f4f4'}
-                        border={'2px solid #f4f4f4'}
-                      />
-                    </InputGroup>
-                  </InputRow>
-                  <InputRow>
-                    <InputGroup>
-                      <Label fontSize={'1vw'}>Total Members</Label>
+                      <Label fontSize={'1vw'}>Minimum Budget</Label>
                       <Input
                         type="text"
-                        name="totalMembers"
-                        value={tripData.totalMembers || ''}
+                        name="minBudget"
+                        autoComplete="false"
+                        value={tripData.minBudget || ''}
                         onChange={handleChange}
-                        placeholder="Enter Total Members"
+                        placeholder="Enter Minimum Budget"
                       />
                     </InputGroup>
                     <InputGroup>
-                      <Label fontSize={'1vw'}>Budget</Label>
-                      <Input type="text" name="budget" value={tripData.budget || ''} onChange={handleChange} placeholder="Enter Budget" />
+                      <Label fontSize={'1vw'}>Maximum Budget</Label>
+                      <Input
+                        autoComplete="false"
+                        type="text"
+                        name="maxBudget"
+                        value={tripData.maxBudget || ''}
+                        onChange={handleChange}
+                        placeholder="Enter Maximum Budget"
+                      />
                     </InputGroup>
                   </InputRow>
                   <InputRow>
@@ -338,7 +315,7 @@ const PublishTrip = (props) => {
             </LeftSection>
           </PublishTripLeftSection>
 
-          {toEditTrip && (
+          {!toEditTrip && (
             <PublishTripRightSection>
               <ImageUpload tripData={tripData} setTripData={setTripData} />
             </PublishTripRightSection>

@@ -15,7 +15,6 @@ export const DropdownContainer = styled.div`
 
   border-radius: 20px;
   z-index: 10;
-  padding: 2% 0px;
   @media (max-width: ${breakpoints.tablet}) {
     border-radius: 15px;
   }
@@ -34,7 +33,7 @@ export const DropdownItem = styled.div`
   color: #afafaf;
   background-color: #ffffff;
   border-radius: 7px;
-  margin: 2% 3%;
+  margin: 4%;
   cursor: pointer;
   transition: background-color 0.3s ease;
 

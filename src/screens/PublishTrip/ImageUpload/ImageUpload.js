@@ -25,7 +25,9 @@ import {
   PreviewImageRemoveButton,
   UploadContainer,
   ShowAllImageContainer,
+  SeeAllButton,
 } from './ImageUpload.styled'
+import { Button } from '../../../styles/Global'
 
 const MAX_IMAGE_UPLOAD_LIMIT = 5
 
@@ -83,7 +85,7 @@ const ImageUpload = ({ tripData, setTripData }) => {
       >
         {({ imageList, onImageUpload, onImageRemove, isDragging, dragProps }) => (
           <Frame>
-            <UploadPhotos>Upload Photos</UploadPhotos>
+            {/* <UploadPhotos>Upload Photos</UploadPhotos> */}
 
             <DropImageInner role="button" onClick={onImageUpload} {...dragProps}>
               {imageList.length > 0 ? (
@@ -105,12 +107,9 @@ const ImageUpload = ({ tripData, setTripData }) => {
                 </DropImage>
               )}
               <FileUploaderContainer>
-                <FileUploadLabel>Add file</FileUploadLabel>
+                <FileUploadLabel>Upload</FileUploadLabel>
                 <FileUploadBox>
-                  <FileUploadPlaceholder>Drop your image here, or Browse</FileUploadPlaceholder>
-                  <UploadButtonContainer>
-                    <UploadButton>Choose File</UploadButton>
-                  </UploadButtonContainer>
+                  Upload Image
                 </FileUploadBox>
               </FileUploaderContainer>
             </DropImageInner>
@@ -139,13 +138,13 @@ const ImageUpload = ({ tripData, setTripData }) => {
         )}
       </ImageUploading>
       <ShowAllImageContainer>
-        <UploadButton
+        <SeeAllButton
           onClick={() => {
             setOverlay(true)
           }}
         >
           See All Photos
-        </UploadButton>
+        </SeeAllButton>
       </ShowAllImageContainer>
       {overlay && (
         <ImageOverlay

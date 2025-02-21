@@ -343,7 +343,7 @@ const DatePicker = (props) => {
             <NavButton onClick={handlePrev}>
               <img className="svgIcon" src={SVG.leftArrow} alt="" />
             </NavButton>
-            <div className="header-label" onClick={handleHeaderClick} style={{ cursor: 'pointer', fontSize: '1vw' }}>
+            <div className="header-label" onClick={handleHeaderClick} style={{ cursor: 'pointer', fontSize: 'min(1vw,16px)' }}>
               {currentView === 'days' && `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`}
               {currentView === 'months' && `${currentDate.getFullYear()}`}
               {currentView === 'years' &&

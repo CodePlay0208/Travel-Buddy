@@ -157,7 +157,7 @@ export const NavButton = styled.span`
 export const DayNames = styled.div`
   display: flex;
   padding: 2%;
-  font-size: min(2vw, 11px);
+  font-size: min(1vw, 11px);
 
   span {
     display: flex;
@@ -176,7 +176,7 @@ export const Days = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 2.5px;
-  font-size: min(2.5vw, 16px);
+  font-size: min(1.5vw, 16px);
   span {
     display: flex;
     align-items: center;
