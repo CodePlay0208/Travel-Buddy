@@ -66,29 +66,25 @@ const tripReducer = (state = initialState, action) => {
     case GET_USER_TRIPS:
       return {
         ...state,
-        user: { ...state.user, trips: payload },
-        userTrip: { trips: payload },
+        userTrip: { trips: payload.trips },
         loading: false,
       }
     case GET_USER_PAST_TRIPS:
       return {
         ...state,
-        user: { ...state.user, trips: payload },
-        pastTrips: { trips: payload },
+        pastTrips: { trips: payload.trips },
         loading: false,
       }
     case GET_USER_WISHLIST:
       return {
         ...state,
-        user: { ...state.user, trips: payload },
-        wishlistTrips: { trips: payload },
+        wishlistTrips: { trips: payload.trips },
         loading: false,
       }
     case GET_USER_REQUESTED:
       return {
         ...state,
-        user: { ...state.user, trips: payload },
-        requestedTrips: { trips: payload },
+        requestedTrips: { trips: payload.trips },
         loading: false,
       }
     case SET_SEARCH_FORM_SUCCESS:
@@ -103,7 +99,6 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         userTrip: {
-          ...state.userTrip,
           trips: state.userTrip.trips.filter((trip) => trip.tripId !== payload),
         },
       }
@@ -111,8 +106,7 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         wishlistTrips: {
-          ...state.wishlistTrips,
-          trips: state.wishlistTrips.trips ? [...state.wishlistTrips.trips, payload] : [payload],
+          trips: [...state.wishlistTrips.trips, payload],
         },
         loading: false,
       }
@@ -120,7 +114,6 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         wishlistTrips: {
-          ...state.wishlistTrips,
           trips: state.wishlistTrips.trips.filter((trip) => trip.tripId !== payload),
         },
         loading: false,
@@ -128,7 +121,7 @@ const tripReducer = (state = initialState, action) => {
     case GET_REQUESTED_MEMBERS:
       return {
         ...state,
-        requestedMembers: payload,
+        requestedMembers: payload.requestingMembers,
         loading: false,
       }
     case GET_NOTIFICATIONS:
@@ -154,7 +147,9 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         trip: {
           ...state.trip,
-          members: state.trip && state.trip.members ? state.trip.members.filter((member) => member.id !== payload.memberId) : [],
+          members: state.trip && state.trip.members
+            ? state.trip.members.filter((member) => member.id !== payload.memberId)
+            : [],
         },
         loading: false,
       }

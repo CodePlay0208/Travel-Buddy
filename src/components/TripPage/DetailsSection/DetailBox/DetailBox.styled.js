@@ -42,13 +42,14 @@ export const RemoveIcon = styled.div`
 export const Heading = styled.div`
   font-weight: 500;
   color: #000000;
-  font-size: 2vw;
+  font-size: 1.5vw;
   cursor: pointer;
   text-align: center;
+  padding-bottom: 1%;
 `
 
 export const BodyText = styled.div`
-  font-size: 2vw;
+  font-size: 1.5vw;
   font-weight: 700;
   line-height: 3vw;
   text-align: center;

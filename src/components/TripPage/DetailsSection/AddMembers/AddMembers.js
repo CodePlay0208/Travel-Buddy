@@ -14,19 +14,20 @@ import { connect } from 'react-redux'
 import { images } from '../../../../assets/images'
 import { Button } from '../../../../styles/Global'
 import { SVG } from '../../../../assets'
-import { addMemberTrip, removeMemberAsHost } from '../../../../actions/trips.action'
+import { addMemberTrip, getRequestedMembers, removeMemberAsHost } from '../../../../actions/trips.action'
 
 const mapStateToProps = (state) => ({
-  trip: state.tripReducer.trip,
+  trip: state.tripReducer,
 })
 
 const mapDispatchToProps = {
   addMemberTrip,
   removeMemberAsHost,
+  getRequestedMembers,
 }
 
 const AddMembers = (props) => {
-  const { trip, isUserTrip, addMemberTrip, removeMemberAsHost, editMode } = props
+  const { trip, isUserTrip, addMemberTrip, removeMemberAsHost, editMode, getRequestedMembers } = props
 
   const [isShowAll, setIsShowAll] = useState(false)
   const [isRequestShowAll, setIsRequestShowAll] = useState(false)
@@ -88,13 +89,13 @@ const AddMembers = (props) => {
   ]
 
   const tripMembers = trip?.joinedMembers || []
-  const pendingRequest = trip?.requestingMembers || []
+  const pendingRequest = trip?.requestedMembers || []
   const membersToDisplay = isShowAll ? tripMembers : tripMembers.slice(0, 5)
   const requestToDisplay = isRequestShowAll ? pendingRequest : pendingRequest.slice(0, 5)
 
   const handleConfirm = async (userId) => {
     if (trip) {
-      const result = await addMemberTrip(trip.tripId, userId)
+      const result = await addMemberTrip(trip.trip.tripId, userId)
       if (result) {
         console.log('Accepted request for user:', userId)
       }
@@ -128,7 +129,15 @@ const AddMembers = (props) => {
             </>
           ) : (
             <>
-              {isUserTrip && <Button onClick={() => setShowRequests(true)}>Requests</Button>}
+              {isUserTrip && (
+                <Button
+                  onClick={() => {
+                    setShowRequests(getRequestedMembers())
+                  }}
+                >
+                  Requests
+                </Button>
+              )}
               {tripMembers.length > 5 && (
                 <Button onClick={() => setIsRequestShowAll(!isRequestShowAll)}>{isRequestShowAll ? 'Show Less' : 'Show All'}</Button>
               )}
@@ -146,11 +155,11 @@ const AddMembers = (props) => {
                   heading={item.username}
                   body={
                     <RequestButtonContainer>
-                      <Button style={{ width: '50%', fontSize: '1vw' }} onClick={() => handleConfirm(item.userId)}>
+                      <Button style={{ width: '50%', fontSize: '1vw', padding: '5%' }} onClick={() => handleConfirm(item.userId)}>
                         Accept
                       </Button>
                       <Button
-                        style={{ width: '50%', fontSize: '1vw', backgroundColor: '#E0E0E0' }}
+                        style={{ width: '50%', fontSize: '1vw', backgroundColor: '#E0E0E0', padding: '5%' }}
                         onClick={() => handleChatNow(item.userId)}
                       >
                         Chat Now

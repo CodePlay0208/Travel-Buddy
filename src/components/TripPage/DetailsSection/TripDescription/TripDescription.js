@@ -200,7 +200,7 @@ const TripDescription = (props) => {
         <ChatButton
           style={{ width: '100%' }}
           onClick={() => {
-            !isUserTrip ? onEditTripClick() : onJoinTripClick()
+            isUserTrip ? onEditTripClick() : onJoinTripClick()
           }}
         >
           {/* Change button text based on edit mode */}

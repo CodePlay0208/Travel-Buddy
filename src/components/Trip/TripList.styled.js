@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   overflow-x: auto;
 
+  padding: 0 6%;
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   gap: 20px;
@@ -27,6 +28,6 @@ export const Container = styled.div`
 
 export const Heading = styled.h1`
   display: flex;
-  padding: 6%;
+  padding: 0 6%;
   font-size: 2.5vw;
 `

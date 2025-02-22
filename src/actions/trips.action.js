@@ -15,6 +15,7 @@ import {
   GET_REQUESTED_MEMBERS,
   ADD_MEMBER_TRIP,
   REMOVE_MEMBER_AS_HOST,
+  GET_USER_REQUESTED,
 } from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
@@ -129,7 +130,7 @@ export const getUserRequested = () => async (dispatch) => {
   try {
     const res = await TripsApi.getUserRequestedTrips()
     dispatch({
-      type: GET_USER_WISHLIST,
+      type: GET_USER_REQUESTED,
       payload: res.data,
     })
 

@@ -36,7 +36,7 @@ export const OtherContentsOfNavBar = styled.div`
   align-items: center;
   color: #fff;
   position: relative;
-  width: 25%;
+  width: 30%;
   font-size: 75%;
   margin-right: 1%;
   gap: 5%;
@@ -67,7 +67,6 @@ export const NavContents = styled.div`
   cursor: pointer;
   color: rgb(39, 167, 218);
   border: none;
-  position: relative;
   &:hover {
     filter: drop-shadow(3px 3px 4px #228be6);
   }
