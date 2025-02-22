@@ -39,6 +39,10 @@ export const PublishTripPage = styled.div`
   position: relative;
   width: 100%;
 `
+export const Container = styled.div`
+  box-shadow: 0px 0px 8px 0px #0000001a;
+  border-radius: 10px;
+`
 
 export const InputField = styled.input`
   display: block;

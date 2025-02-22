@@ -1,12 +1,12 @@
 import React from 'react'
-import { InputColumn, InputGroup, InputRow } from './PublishTrip.styled'
+import { Container, InputColumn, InputGroup, InputRow } from './PublishTrip.styled'
 import { Input, Label } from '../../styles/Global'
 import DatePicker from '../../components/DatePicker/DatePicker'
 import DateRange from './dateRange'
 
 const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteDate }) => {
   return (
-    <>
+    <Container>
       <InputRow>
         <InputColumn width="80%">
           <InputGroup>
@@ -40,7 +40,7 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
           ))}
         </InputColumn>
       </InputRow>
-    </>
+    </Container>
   )
 }
 

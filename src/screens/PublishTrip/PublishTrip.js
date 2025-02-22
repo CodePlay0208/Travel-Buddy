@@ -136,18 +136,24 @@ const PublishTrip = (props) => {
           formDataNew.append(key, value)
         }
       }
-
-      const tripDate = tripData.multipleDates.map((dateStr) => {
-        const [day, month, year] = dateStr.split('-').map(Number)
-        const start = new Date(year, month - 1, day)
-        const duration = parseInt(tripData.duration, 10) || 0
-        const end = new Date(start)
-        end.setDate(start.getDate() + duration)
-        return { startDate: dateStr, endDate: formatDateObj(end) }
-      })
-      const isTripPublished = toEditTrip
-        ? await editTrip(tripData.tripId, { ...tripData, tripDates: tripDate }, false)
-        : await createTrip({ ...tripData, tripDates: tripDate }, false)
+      let isTripPublished = false
+      if (toEditTrip) {
+        isTripPublished = await editTrip(
+          tripData.tripId,
+          { ...tripData, tripDates: { startDate: tripData.startDate, endDate: tripData.endDate } },
+          false,
+        )
+      } else {
+        const tripDate = tripData.multipleDates.map((dateStr) => {
+          const [day, month, year] = dateStr.split('-').map(Number)
+          const start = new Date(year, month - 1, day)
+          const duration = parseInt(tripData.duration, 10) || 0
+          const end = new Date(start)
+          end.setDate(start.getDate() + duration)
+          return { startDate: dateStr, endDate: formatDateObj(end) }
+        })
+        isTripPublished = await createTrip({ ...tripData, tripDates: tripDate }, false)
+      }
 
       if (isTripPublished) {
         console.log('Trip successfully published!')
@@ -170,27 +176,39 @@ const PublishTrip = (props) => {
               <ToggleTab className={activeSection === TABS.TRIP ? 'active' : ''} onClick={() => handleToggle(TABS.TRIP)}>
                 Trip Details
               </ToggleTab>
-              <Divider />
-              <ToggleTab className={activeSection === TABS.USER ? 'active' : ''} onClick={() => handleToggle(TABS.USER)}>
-                Trip Dates
-              </ToggleTab>
+
+              {!toEditTrip && (
+                <>
+                  <Divider />
+                  <ToggleTab className={activeSection === TABS.USER ? 'active' : ''} onClick={() => handleToggle(TABS.USER)}>
+                    Trip Dates
+                  </ToggleTab>
+                </>
+              )}
             </ToggleBetweenTripUser>
             {activeSection === TABS.TRIP ? (
-              <TripDetail tripData={tripData} handleChange={handleChange} handleTripDataChange={handleTripDataChange} />
-            ) : (
-              <TripDates
+              <TripDetail
                 tripData={tripData}
                 handleChange={handleChange}
                 handleTripDataChange={handleTripDataChange}
-                handleDeleteDate={handleDeleteDate}
+                isReadOnly={toEditTrip}
               />
+            ) : (
+              !toEditTrip && (
+                <TripDates
+                  tripData={tripData}
+                  handleChange={handleChange}
+                  handleTripDataChange={handleTripDataChange}
+                  handleDeleteDate={handleDeleteDate}
+                />
+              )
             )}
           </PublishTripLeftSection>
           <PublishTripRightSection>
             <ImageUpload tripData={tripData} setTripData={setTripData} />
           </PublishTripRightSection>
         </PublishTripContent>
-        {activeSection === TABS.TRIP ? (
+        {!toEditTrip && activeSection === TABS.TRIP ? (
           <PublishTripButton>
             <SubmitButton onClick={handleNext}>Next</SubmitButton>
           </PublishTripButton>

@@ -14,6 +14,19 @@ import {
 import { AuthApi, ProfileApi } from '../services/api-services/api-invokes'
 import { setAuthToken } from '../services/api-services/api-services'
 import { toast } from 'react-toastify'
+import { jwtDecode } from 'jwt-decode'
+
+export const isTokenValid = () => async (dispatch) => {
+  try {
+    const decoded = jwtDecode(localStorage.token)
+    return decoded.exp * 1000 > Date.now()
+  } catch (error) {
+    logout()
+    dispatch({
+      type: USER_LOAD_ERROR,
+    })
+  }
+}
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
@@ -136,7 +149,7 @@ export const resendOTP = () => async (dispatch) => {
   } catch (e) {
     if (e.response && e.response.status === 401) {
       toast.error('Invalid User!', { autoClose: 1500 })
-    } 
+    }
     dispatch({
       type: RESEND_OTP_FAIL,
     })

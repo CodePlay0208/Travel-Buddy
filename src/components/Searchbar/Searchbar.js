@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 })
 
 const Searchbar = (props) => {
-  const { suggestions, getLocationSuggestions, inputValues, setInputValues, onValue, placeholderValue } = props
+  const { suggestions, getLocationSuggestions, inputValues, setInputValues, onValue, placeholderValue, isReadOnly } = props
   const [isDropdownVisible, setDropdownVisible] = useState(false)
   const [timeoutId, setTimeoutId] = useState(null)
 
@@ -53,7 +53,7 @@ const Searchbar = (props) => {
   const handleClear = () => {
     setInputValues('')
   }
-
+  console.log('isReadOnly:', isReadOnly)
   return (
     <SearchBarContainer
       widthValue={props.width ? props.width : `100%`}
@@ -64,6 +64,7 @@ const Searchbar = (props) => {
       }}
     >
       <Input
+        readOnly={isReadOnly}
         type="text"
         placeholder={placeholderValue}
         id={customId}
@@ -76,7 +77,7 @@ const Searchbar = (props) => {
         border={props?.border}
         backgroundColor={props?.backgroundColor}
       />
-      {inputValues && <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} />}
+      {!isReadOnly && inputValues && <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} />}
       {/* <LocationIcon src={SVG.LocationIcon} alt="Location Icon" /> */}
       {isDropdownVisible && (
         <Dropdown

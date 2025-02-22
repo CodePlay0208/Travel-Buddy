@@ -1,4 +1,4 @@
-import React, { useContext, useState, memo } from 'react'
+import React, { useContext, useState, memo, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { UserLoginContext } from '../../utils/Context/LoggedInUserContext'
@@ -17,7 +17,7 @@ import {
 import Dropdown from '../Dropdown/Dropdown'
 import { connect } from 'react-redux'
 import './Navbar.css'
-import { logout } from '../../actions/auth.action'
+import { isTokenValid, logout } from '../../actions/auth.action'
 import { getNotifications, deleteNotification } from '../../actions/notification.action'
 import NotificationItem from './NotificationItem'
 import { addMemberTrip } from '../../actions/trips.action'
@@ -41,12 +41,16 @@ const Navbar = (props) => {
     addMemberTrip,
     getOrCreateChat,
     notificationsAlert,
+    isTokenValid,
   } = props
 
   const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
   const [showNotification, setShowNotification] = useState(false)
   const navigate = useNavigate()
 
+  useEffect(() => {
+    isTokenValid()
+  }, [])
   const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
   const { userChatValues, setUserChatValues } = useContext(ChatContext)
 
@@ -196,4 +200,6 @@ const Navbar = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { logout, getNotifications, deleteNotification, addMemberTrip, getOrCreateChat })(memo(Navbar))
+export default connect(mapStateToProps, { isTokenValid, logout, getNotifications, deleteNotification, addMemberTrip, getOrCreateChat })(
+  memo(Navbar),
+)

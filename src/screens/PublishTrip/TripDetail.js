@@ -1,15 +1,16 @@
 import React from 'react'
-import { DescriptionField, InputGroup, InputRow } from './PublishTrip.styled'
+import { Container, DescriptionField, InputGroup, InputRow } from './PublishTrip.styled'
 import { Input, Label } from '../../styles/Global'
 import Searchbar from '../../components/Searchbar/Searchbar'
 
-const TripDetail = ({ tripData, handleChange, handleTripDataChange }) => {
+const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }) => {
   return (
-    <>
+    <Container>
       <InputRow>
         <InputGroup>
           <Label fontSize="1vw">Start Location</Label>
           <Searchbar
+            isReadOnly={isReadOnly}
             inputValues={tripData.startLocation}
             setInputValues={(value) => handleTripDataChange('startLocation', value)}
             onValue="startLocation"
@@ -24,6 +25,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange }) => {
         <InputGroup>
           <Label fontSize="1vw">Destination</Label>
           <Searchbar
+            isReadOnly={isReadOnly}
             inputValues={tripData.destination}
             setInputValues={(value) => handleTripDataChange('destination', value)}
             onValue="destination"
@@ -66,7 +68,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange }) => {
           <DescriptionField name="description" value={tripData.description} onChange={handleChange} placeholder="Enter Trip Description" />
         </InputGroup>
       </InputRow>
-    </>
+    </Container>
   )
 }
 
