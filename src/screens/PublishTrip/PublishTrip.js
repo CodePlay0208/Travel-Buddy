@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo } from 'react'
+import React, { useEffect, useState, memo, useCallback } from 'react'
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
 import { connect } from 'react-redux'
@@ -47,24 +47,32 @@ const DEFAULT_TRIP_DATA = {
   duration: '',
 }
 
+const formatDate = (dateString) => {
+  if (!dateString) return ''
+  const date = new Date(dateString)
+  const day = String(date.getDate()).padStart(2, '0')
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const year = date.getFullYear()
+  return `${day}-${month}-${year}`
+}
+
+const formatDateObj = (dateObj) => {
+  const d = String(dateObj.getDate()).padStart(2, '0')
+  const m = String(dateObj.getMonth() + 1).padStart(2, '0')
+  const y = dateObj.getFullYear()
+  return `${d}-${m}-${y}`
+}
+
 const PublishTrip = (props) => {
   const { getProfile, createTrip, editTrip } = props
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
+  const [toEditTrip, setToEditTrip] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
   const editTripData = location.state?.trip || {}
-  const [toEditTrip, setToEditTrip] = useState(false)
 
-  const formatDate = (dateString) => {
-    if (!dateString) return ''
-    const date = new Date(dateString)
-    const day = String(date.getDate()).padStart(2, '0')
-    const month = String(date.getMonth() + 1).padStart(2, '0')
-    const year = date.getFullYear()
-    return `${day}-${month}-${year}`
-  }
-
+  // When editing, format dates and update tripData state.
   useEffect(() => {
     if (Object.keys(editTripData).length > 0) {
       const formattedTripData = {
@@ -77,57 +85,50 @@ const PublishTrip = (props) => {
     }
   }, [editTripData])
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target
     setTripData((prevData) => ({
       ...prevData,
       [name]: value,
     }))
-  }
+  }, [])
 
-  const handleTripDataChange = (field, value) => {
+  const handleTripDataChange = useCallback((field, value) => {
     setTripData((prevData) => ({
       ...prevData,
       [field]: value,
     }))
-  }
+  }, [])
 
-  const handleDeleteDate = (index) => {
+  const handleDeleteDate = useCallback((index) => {
     setTripData((prevData) => ({
       ...prevData,
       multipleDates: prevData.multipleDates.filter((_, i) => i !== index),
     }))
-  }
+  }, [])
 
   useEffect(() => {
     console.log('Trip Data updated:', tripData)
   }, [tripData])
 
-  const handleToggle = (section) => {
+  const handleToggle = useCallback((section) => {
     setActiveSection(section)
-  }
+  }, [])
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setActiveSection(TABS.USER)
-  }
+  }, [])
 
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     try {
       const formDataNew = new FormData()
 
-      Object.entries(tripData).forEach(([key, value]) => {
+      for (const [key, value] of Object.entries(tripData)) {
         if ((!toEditTrip && key === 'destinationImages') || (key === 'removedDestinationImages' && Array.isArray(value))) {
           value.forEach((image) => {
             formDataNew.append('destinationImages', image.file)
           })
         } else if (key === 'multipleDates' && Array.isArray(value)) {
-          const formatDateObj = (dateObj) => {
-            const d = String(dateObj.getDate()).padStart(2, '0')
-            const m = String(dateObj.getMonth() + 1).padStart(2, '0')
-            const y = dateObj.getFullYear()
-            return `${d}-${m}-${y}`
-          }
-
           const tripDates = value.map((dateStr) => {
             const [day, month, year] = dateStr.split('-').map(Number)
             const start = new Date(year, month - 1, day)
@@ -136,19 +137,13 @@ const PublishTrip = (props) => {
             end.setDate(start.getDate() + duration)
             return { startDate: dateStr, endDate: formatDateObj(end) }
           })
-
           formDataNew.append('tripDates', JSON.stringify(tripDates))
         } else {
           formDataNew.append(key, value)
         }
-      })
-
-      let isTripPublished
-      if (toEditTrip) {
-        isTripPublished = await editTrip(tripData.tripId, formDataNew, true)
-      } else {
-        isTripPublished = await createTrip(formDataNew, false)
       }
+
+      const isTripPublished = toEditTrip ? await editTrip(tripData.tripId, formDataNew, true) : await createTrip(formDataNew, false)
 
       if (isTripPublished) {
         console.log('Trip successfully published!')
@@ -158,7 +153,7 @@ const PublishTrip = (props) => {
     } catch (error) {
       console.error('Error during trip submission:', error)
     }
-  }
+  }, [tripData, toEditTrip, createTrip, editTrip])
 
   useEffect(() => {
     getProfile()

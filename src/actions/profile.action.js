@@ -13,12 +13,13 @@ export const getProfile = () => async (dispatch) => {
       type: GET_PROFILE,
       payload: res.data,
     })
+    return true
   } catch (e) {
     dispatch({
       type: PROFILE_ERROR,
       payload: e,
     })
-    throw e
+    return false
   }
 }
 
@@ -38,12 +39,13 @@ export const updateProfile =
         type: UPDATE_PROFILE,
         payload: res.data,
       })
+      return true
     } catch (e) {
       dispatch({
         type: PROFILE_ERROR,
         payload: e,
       })
-      throw e
+      return false
     }
   }
 
@@ -57,11 +59,12 @@ export const deleteProfile = () => async (dispatch) => {
       type: DELETE_PROFILE,
       payload: res.data,
     })
+    return true
   } catch (e) {
     dispatch({
       type: PROFILE_ERROR,
       payload: e,
     })
-    throw e
+    return false
   }
 }
