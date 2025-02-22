@@ -33,65 +33,12 @@ const AddMembers = (props) => {
   const [isRequestShowAll, setIsRequestShowAll] = useState(false)
   const [showRequests, setShowRequests] = useState(false)
 
-  // Mock data for trip members
-  const mockTrip = {
-    userId: '123',
-    tripMembers: [
-      {
-        userId: '123',
-        username: 'Alice',
-        profilePic: ['https://via.placeholder.com/150'],
-      },
-      {
-        userId: '124',
-        username: 'Bob',
-        profilePic: ['https://via.placeholder.com/150'],
-      },
-      {
-        userId: '125',
-        username: 'Charlie',
-        profilePic: ['https://via.placeholder.com/150'],
-      },
-      {
-        userId: '126',
-        username: 'David',
-        profilePic: ['https://via.placeholder.com/150'],
-      },
-      {
-        userId: '127',
-        username: 'Eve',
-        profilePic: ['https://via.placeholder.com/150'],
-      },
-      {
-        userId: '128',
-        username: 'Frank',
-        profilePic: ['https://via.placeholder.com/150'],
-      },
-      {
-        userId: '129',
-        username: 'Grace',
-        profilePic: ['https://via.placeholder.com/150'],
-      },
-    ],
-  }
-
-  const pendingRequests = [
-    {
-      userId: '130',
-      username: 'Henry',
-      profilePic: ['https://via.placeholder.com/150'],
-    },
-    {
-      userId: '131',
-      username: 'Ivy',
-      profilePic: ['https://via.placeholder.com/150'],
-    },
-  ]
-
-  const tripMembers = trip?.joinedMembers || []
+  
+  const tripMembers = trip?.trip?.joinedMembers || []
   const pendingRequest = trip?.requestedMembers || []
   const membersToDisplay = isShowAll ? tripMembers : tripMembers.slice(0, 5)
   const requestToDisplay = isRequestShowAll ? pendingRequest : pendingRequest.slice(0, 5)
+
 
   const handleConfirm = async (userId) => {
     if (trip) {
@@ -108,7 +55,7 @@ const AddMembers = (props) => {
 
   const handleRemoveMember = async (userId) => {
     if (trip) {
-      const result = await removeMemberAsHost(trip.tripId, userId)
+      const result = await removeMemberAsHost(trip.trip.tripId, userId)
       if (result) {
         console.log('Removed member:', userId)
       }
@@ -150,7 +97,7 @@ const AddMembers = (props) => {
         {showRequests
           ? requestToDisplay.map((item, index) => (
               <CardContainer key={item.userId || index}>
-                {editMode && <DeleteButton src={SVG.deleteCross} onClick={() => handleRemoveMember(item.userId)} />}
+                <DeleteButton src={SVG.deleteCross} onClick={() => handleRemoveMember(item.userId)} />
                 <DetailBox
                   heading={item.username}
                   body={
@@ -172,7 +119,7 @@ const AddMembers = (props) => {
             ))
           : membersToDisplay.map((item, index) => (
               <CardContainer key={item.userId || index}>
-                {editMode && <DeleteButton src={SVG.deleteMin} onClick={() => handleRemoveMember(item.userId)} />}
+                 <DeleteButton src={SVG.deleteMin} onClick={() => handleRemoveMember(item.userId)} />
                 <DetailBox
                   heading={item.username}
                   body={item.userId === trip?.userId ? 'Trip Publisher' : 'Traveller'}

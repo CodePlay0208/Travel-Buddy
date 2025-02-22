@@ -142,8 +142,8 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         trip: {
           ...state.trip,
-          members: state.trip && state.trip.members
-            ? state.trip.members.filter((member) => member.id !== payload.memberId)
+          joinedMembers: state.trip && state.trip.joinedMembers
+            ? state.trip.joinedMembers.filter((member) => member.id !== payload.memberId)
             : [],
         },
         loading: false,

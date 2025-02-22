@@ -3,6 +3,13 @@ import { Button } from '../../styles/Global'
 import styled from 'styled-components'
 import { images } from '../../assets'
 
+const NotificationEvents = {
+  USER_REQUEST_TO_JOIN: 'userRequestToJoinTrip',
+  ADD_MEMBER_TO_TRIP: 'addMemberToTrip',
+  REMOVE_MEMBER_FROM_TRIP_AS_HOST: 'removeMemberFromTripAsHost',
+  LEAVE_TRIP: 'leaveTrip',
+}
+
 const Container = styled.div`
   width: 100%;
 `
@@ -66,22 +73,66 @@ const ProfilePicture = styled.img`
   border-radius: 50%;
 `
 
-const NotificationItem = ({ notification, onConfirm, onDelete,onChatNow }) => {
+const getNotificationMessage = (notification) => {
+  switch (notification.event) {
+    case NotificationEvents.USER_REQUEST_TO_JOIN:
+      return 'wants to join your trip'
+    case NotificationEvents.ADD_MEMBER_TO_TRIP:
+      return 'added you to the trip'
+    case NotificationEvents.REMOVE_MEMBER_FROM_TRIP_AS_HOST:
+      return 'was removed from the trip'
+    case NotificationEvents.LEAVE_TRIP:
+      return 'left the trip'
+    default:
+      return 'sent you a notification'
+  }
+}
+
+const getHeadingMessage = (notification) => {
+  switch (notification.event) {
+    case NotificationEvents.USER_REQUEST_TO_JOIN:
+      return notification.username ? `${notification.username}'s Join Request` : 'Join request'
+    case NotificationEvents.ADD_MEMBER_TO_TRIP:
+      return notification.username ? `${notification.username} added You` : 'Member added'
+    case NotificationEvents.REMOVE_MEMBER_FROM_TRIP_AS_HOST:
+      return notification.username ? `${notification.username} removed You` : 'Member removed'
+    case NotificationEvents.LEAVE_TRIP:
+      return notification.username ? `${notification.username} left the Trip` : 'Member left'
+    default:
+      return 'Trip Notification'
+  }
+}
+
+const NotificationItem = ({ notification, onConfirm, onDelete, onChatNow }) => {
   return (
     <Container>
       <DetailsContainer>
         <ProfilePicture src={notification.profilePic?.[0] || images.defaultProfileImg} alt="Profile" />
         <Content>
-          <Heading>{notification.username ? `${notification.username}'s Request` : 'Trip Request'}</Heading>
-          <Para>Wants to join your trip</Para>
+          <Heading>{getHeadingMessage(notification)}</Heading>
+          <Para>{getNotificationMessage(notification)}</Para>
         </Content>
         <Element width={'10%'} onClick={() => onDelete(notification)}>
           X
         </Element>
       </DetailsContainer>
       <ActionContainer>
-        <ActionButton onClick={() => onConfirm(notification)}>Accept</ActionButton>
-        <ActionButton background="#E0E0E0" onClick={() => onChatNow(notification)}>
+        {notification.event === NotificationEvents.USER_REQUEST_TO_JOIN && (
+          <ActionButton
+            onClick={() => {
+              onConfirm(notification)
+              onDelete(notification)
+            }}
+          >
+            Accept
+          </ActionButton>
+        )}
+        <ActionButton
+          background="#E0E0E0"
+          onClick={() => {
+            onChatNow(notification)
+          }}
+        >
           Chat Now
         </ActionButton>
       </ActionContainer>

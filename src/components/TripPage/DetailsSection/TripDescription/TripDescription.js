@@ -60,25 +60,18 @@ const TripDescription = (props) => {
   } = props
 
   const [isExpanded, setIsExpanded] = useState(false)
-  const [wishlistAdded, setWishlistAdded] = useState(false)
-  const [joined, setJoined] = useState(false)
+  const [wishlistAdded, setWishlistAdded] = useState(trip?.isWishlisted || false)
+  const [joined, setJoined] = useState(trip?.isJoined || false)
+  const [requested, setRequested] = useState(trip?.isRequested || false)
   const navigate = useNavigate()
 
   const publisher = trip?.tripMembersIds?.find((user) => user?.userId === trip?.userId)
 
   useEffect(() => {
-    if (trip && wishlistTrips && Array.isArray(wishlistTrips)) {
-      const exists = wishlistTrips?.find((wTrip) => wTrip.tripId === trip.tripId)||false
-      setWishlistAdded(!!exists)
-    }
-  }, [trip, wishlistTrips])
-
-  useEffect(() => {
-    if (trip && profile) {
-      const isMember = trip.joinedMembers && trip.joinedMembers.includes(profile.userId)
-      setJoined(isMember)
-    }
-  }, [trip, profile])
+    setWishlistAdded(trip?.isWishlisted || false)
+    setJoined(trip?.isJoined || false)
+    setRequested(trip?.isRequested || false)
+  }, [trip])
 
   const toggleExpand = () => {
     setIsExpanded((prev) => !prev)
@@ -113,26 +106,30 @@ const TripDescription = (props) => {
       toast.error('Failed to copy link.')
     }
   }
+
   const onEditTripClick = () => {
     navigate('/publish-trip', { state: { trip } })
   }
 
   const onDeleteTripClick = async () => {
-    try {
-      const result = await deleteUserTrip(trip.tripId)
-    } catch {}
+    await deleteUserTrip(trip.tripId)
   }
 
   const onJoinTripClick = async () => {
     if (!joined) {
+      if (requested) {
+        return
+      }
       const result = await requestJoinTrip(trip.tripId)
       if (result === true) {
-        setJoined(true)
+        setJoined(false)
+        setRequested(true)
       }
     } else {
       const result = await leaveTrip(trip.tripId)
       if (result === true) {
         setJoined(false)
+        setRequested(false)
       }
     }
   }
@@ -190,8 +187,8 @@ const TripDescription = (props) => {
               {isUserTrip && <EditButton onClick={onDeleteTripClick}>Delete Trip</EditButton>}
               {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
               {!isUserTrip && (
-                <ChatButton onClick={onWishlistClick} style={{ backgroundColor: wishlistAdded ? 'red' : undefined }}>
-                  <img src={SVG.wishlist} alt="wishlist" />
+                <ChatButton onClick={onWishlistClick}>
+                  {wishlistAdded ? <img src={SVG.wishListRed} alt="wishlist" /> : <img src={SVG.wishlist} alt="wishlist" />}
                 </ChatButton>
               )}
             </ButtonSection>
@@ -203,8 +200,7 @@ const TripDescription = (props) => {
             isUserTrip ? onEditTripClick() : onJoinTripClick()
           }}
         >
-          {/* Change button text based on edit mode */}
-          {isUserTrip ? (editMode ? 'Save Trip' : 'Edit Trip') : joined ? 'Leave Trip' : 'Join Trip'}
+          {isUserTrip ? 'Edit Trip' : joined ? 'Leave Trip' : requested ? 'Requested' : 'Join Trip'}
         </ChatButton>
       </ChatSectionContainer>
     </SectionContainer>

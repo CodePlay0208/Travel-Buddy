@@ -26,7 +26,7 @@ import { getOrCreateChat } from '../../actions/chats.action'
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
   profilePic: state.profileReducer.profile?.profilePic,
-  notifications: state.notificationReducer?.notifications,
+  notificationsAlert: state.notificationReducer?.notifications,
 })
 
 const Navbar = (props) => {
@@ -40,6 +40,7 @@ const Navbar = (props) => {
     deleteNotification,
     addMemberTrip,
     getOrCreateChat,
+    notificationsAlert,
   } = props
 
   const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
@@ -149,11 +150,12 @@ const Navbar = (props) => {
 
             <NavContents onClick={onNotificationClick}>
               <img src={SVG.NotificationButton} alt="Notification" />
+              {notificationsAlert?.length > 0 && <div className="notification-badge" />}
             </NavContents>
 
             {showNotification && (
               <Dropdown
-                data={notifications}
+                data={notificationsAlert}
                 selectSuggestion={() => {}}
                 selectable={false}
                 renderItem={(item) => (
@@ -161,7 +163,12 @@ const Navbar = (props) => {
                     notification={item}
                     onConfirm={handleNotificationConfirm}
                     onDelete={handleNotificationDelete}
-                    onChatNow={(notification) => {getOrCreateChat(notification.senderId)}}
+                    onChatNow={async (notification) => {
+                      const isChatCreated = await getOrCreateChat(notification.senderId)
+                      if (isChatCreated) {
+                        navigate('/chats')
+                      }
+                    }}
                   />
                 )}
                 setShowDropdown={setShowNotification}
@@ -189,4 +196,4 @@ const Navbar = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { logout, getNotifications, deleteNotification, addMemberTrip,getOrCreateChat })(memo(Navbar))
+export default connect(mapStateToProps, { logout, getNotifications, deleteNotification, addMemberTrip, getOrCreateChat })(memo(Navbar))
