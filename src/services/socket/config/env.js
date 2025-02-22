@@ -1,1 +1,1 @@
-export const WEB_SOCKET_HOST = 'https://api.travmigoz.com'
+export const WEB_SOCKET_HOST = 'http://localhost:4000/'

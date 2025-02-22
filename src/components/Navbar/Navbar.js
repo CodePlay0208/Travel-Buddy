@@ -21,6 +21,7 @@ import { logout } from '../../actions/auth.action'
 import { getNotifications, deleteNotification } from '../../actions/notification.action'
 import NotificationItem from './NotificationItem'
 import { addMemberTrip } from '../../actions/trips.action'
+import { getOrCreateChat } from '../../actions/chats.action'
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
@@ -38,6 +39,7 @@ const Navbar = (props) => {
     getNotifications,
     deleteNotification,
     addMemberTrip,
+    getOrCreateChat,
   } = props
 
   const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
@@ -159,7 +161,7 @@ const Navbar = (props) => {
                     notification={item}
                     onConfirm={handleNotificationConfirm}
                     onDelete={handleNotificationDelete}
-                    onChatNow={(notification) => {}}
+                    onChatNow={(notification) => {getOrCreateChat(notification.senderId)}}
                   />
                 )}
                 setShowDropdown={setShowNotification}
@@ -187,4 +189,4 @@ const Navbar = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { logout, getNotifications, deleteNotification, addMemberTrip })(memo(Navbar))
+export default connect(mapStateToProps, { logout, getNotifications, deleteNotification, addMemberTrip,getOrCreateChat })(memo(Navbar))
