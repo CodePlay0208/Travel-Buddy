@@ -64,26 +64,7 @@ const UserProfile = (props) => {
   const tripContent =
     myTrips?.length > 0 ? (
       myTrips.map((trip) => (
-        <TripCard
-          key={trip?.tripId}
-          tripId={trip?.tripId}
-          profileImg={trip?.profileImg || null}
-          startLocation={trip?.startLocation}
-          destination={trip?.destination}
-          totalMembers={trip?.totalMembers}
-          age={trip?.age}
-          gender={trip?.gender}
-          description={trip?.description}
-          destinationImages={trip?.croppedDestinationImages || []}
-          budget={trip?.budget}
-          startDate={trip?.startDate}
-          endDate={trip?.endDate}
-          tripMembers={trip?.tripMembers}
-          publisherId={trip?.userId}
-          publishedTime={trip?.createdAt}
-          deleteEnable={true}
-          onDelete={onDeleteTripClick(trip?.tripId)}
-        />
+        <TripCard key={trip?.tripId} trip={trip} />
       ))
     ) : (
       <p>No trips found.</p>
@@ -94,7 +75,7 @@ const UserProfile = (props) => {
       <UserDashboard />
       <TripList title="Requested Trips" trips={requestedTrips} />
       <TripList title="Wishlist" trips={wishlistTrips} />
-      <TripList title="My Trips" trips={myTrips} />
+      <TripList title="My Trips" trips={myTrips} editEnable={true}/>
       <TripList title="Joined Trips" trips={pastTrips} />
       <Footer />
       {modalState.isOpen && (

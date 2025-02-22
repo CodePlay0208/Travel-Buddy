@@ -23,24 +23,7 @@ const SearchResultsPage = (props) => {
       <Header isImageNavbar={true} />
       <TripList>
         {trips && trips.map((trip) => (
-          <TripCard
-            key={trip?.tripId}
-            tripId={trip?.tripId}
-            profileImg={trip?.profileImg || null}
-            startLocation={trip?.startLocation}
-            destination={trip?.destination}
-            totalMembers={trip?.totalMembers}
-            age={trip?.age}
-            gender={trip?.gender}
-            description={trip?.description}
-            destinationImages={trip?.croppedDestinationImages || []}
-            budget={trip?.budget}
-            startDate={trip?.startDate}
-            endDate={trip?.endDate}
-            tripMembers={trip?.tripMembers}
-            publisherId={trip?.userId}
-            publishedTime={trip?.createdAt}
-          />
+          <TripCard key={trip?.tripId} trip={trip} />
         ))}
       </TripList>
       <SearchResultButtonDiv>

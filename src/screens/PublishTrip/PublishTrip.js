@@ -33,17 +33,13 @@ const TABS = {
 
 const DEFAULT_TRIP_DATA = {
   destination: '',
-  startDate: '',
   startLocation: '',
-  endDate: '',
   minBudget: null,
   maxBudget: null,
   description: '',
   destinationImages: [],
-  persona: '',
   tripData: [],
   multipleDates: [],
-  duration: '',
 }
 
 const formatDate = (dateString) => {
@@ -71,7 +67,6 @@ const PublishTrip = (props) => {
   const location = useLocation()
   const editTripData = location.state?.trip || {}
 
-  // When editing, format dates and update tripData state.
   useEffect(() => {
     if (Object.keys(editTripData).length > 0) {
       const formattedTripData = {

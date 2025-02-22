@@ -45,32 +45,7 @@ const UserTrips = (props) => {
   }
 
   const tripContent =
-    trips?.length > 0 ? (
-      trips.map((trip) => (
-        <TripCard
-          key={trip?.tripId}
-          tripId={trip?.tripId}
-          profileImg={trip?.profileImg || null}
-          startLocation={trip?.startLocation}
-          destination={trip?.destination}
-          totalMembers={trip?.totalMembers}
-          age={trip?.age}
-          gender={trip?.gender}
-          description={trip?.description}
-          destinationImages={trip?.croppedDestinationImages || []}
-          budget={trip?.budget}
-          startDate={trip?.startDate}
-          endDate={trip?.endDate}
-          tripMembers={trip?.tripMembers}
-          publisherId={trip?.userId}
-          publishedTime={trip?.createdAt}
-          deleteEnable={true}
-          onDelete={onDeleteTripClick(trip?.tripId)}
-        />
-      ))
-    ) : (
-      <p>No trips found.</p>
-    )
+    trips?.length > 0 ? trips.map((trip) => <TripCard key={trip?.tripId} trip={trip} editEnable={true} />) : <p>No trips found.</p>
 
   return (
     <>

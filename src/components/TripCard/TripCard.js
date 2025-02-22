@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -21,17 +21,13 @@ import {
   Price,
 } from '../../styles/TripCard.styled'
 import { useNavigate } from 'react-router-dom'
-import { memo } from 'react'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 import './TripCard.css'
 import { connect } from 'react-redux'
 import { getOrCreateChat } from '../../actions/chats.action'
 import { computeDateAndTimeUntilNowInString, formatDate } from '../../utils/DateUtils'
-import { DeleteButton } from '../../screens/UserProfile/UserDashboard/UserDashboard.styled'
 import { deleteUserTrip } from '../../actions/trips.action'
 
-const TripCard = (props) => {
+const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
   const {
     tripId,
     profileImg,
@@ -42,21 +38,18 @@ const TripCard = (props) => {
     gender,
     description,
     destinationImages,
-    budget,
+    minBudget,
+    maxBudget,
     startDate,
     endDate,
     tripMembers,
     publisherId,
-    publishedTime,
-    deleteUserTrip,
-    deleteEnable = false,
-    onDelete = () => {},
-  } = props || {}
+    createdAt,
+  } = trip || {}
 
-  const duration = computeDateAndTimeUntilNowInString(publishedTime)
+  const duration = computeDateAndTimeUntilNowInString(createdAt)
   const navigate = useNavigate()
 
-  const { getOrCreateChat } = props
   const settings = {
     infinite: true,
     speed: 500,
@@ -67,10 +60,7 @@ const TripCard = (props) => {
 
   const truncateDescription = (text, maxLength) => {
     if (text) {
-      if (text.length <= maxLength) {
-        return text
-      }
-      return text.slice(0, maxLength) + '...'
+      return text.length <= maxLength ? text : text.slice(0, maxLength) + '...'
     }
     return ''
   }
@@ -111,10 +101,12 @@ const TripCard = (props) => {
           <ChatNow>
             <Budget>
               <SubTitle>Approx Budget</SubTitle>
-              <Price>Rs {budget}</Price>
+              <Price>
+                Rs {minBudget} - {maxBudget}
+              </Price>
             </Budget>
-            {!deleteEnable && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
-            {deleteEnable && <DeleteButton onClick={onDelete}>Delete Trip</DeleteButton>}
+            {!editEnable && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
+            {editEnable && <ChatButton onClick={() => {}}>Edit Trip</ChatButton>}
           </ChatNow>
         </Details>
       </RightContainer>
