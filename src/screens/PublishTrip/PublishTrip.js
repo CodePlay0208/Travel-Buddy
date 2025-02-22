@@ -2,7 +2,6 @@ import React, { useEffect, useState, memo, useCallback } from 'react'
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
 import { connect } from 'react-redux'
-import { getProfile } from '../../actions/profile.action'
 import { createTrip, editTrip } from '../../actions/trips.action'
 import { ToastContainer } from 'react-toastify'
 import ImageUpload from './ImageUpload/ImageUpload'
@@ -64,7 +63,7 @@ const formatDateObj = (dateObj) => {
 }
 
 const PublishTrip = (props) => {
-  const { getProfile, createTrip, editTrip } = props
+  const { createTrip, editTrip } = props
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
   const [toEditTrip, setToEditTrip] = useState(false)
@@ -151,7 +150,9 @@ const PublishTrip = (props) => {
         end.setDate(start.getDate() + duration)
         return { startDate: dateStr, endDate: formatDateObj(end) }
       })
-      const isTripPublished = toEditTrip ? await editTrip(tripData.tripId, {...tripData,tripDates:tripDate}, false) : await createTrip({...tripData,tripDates:tripDate}, false)
+      const isTripPublished = toEditTrip
+        ? await editTrip(tripData.tripId, { ...tripData, tripDates: tripDate }, false)
+        : await createTrip({ ...tripData, tripDates: tripDate }, false)
 
       if (isTripPublished) {
         console.log('Trip successfully published!')
@@ -162,10 +163,6 @@ const PublishTrip = (props) => {
       console.error('Error during trip submission:', error)
     }
   }, [tripData, toEditTrip, createTrip, editTrip])
-
-  useEffect(() => {
-    getProfile()
-  }, [getProfile])
 
   return (
     <PublishTripPage>
@@ -214,4 +211,4 @@ const PublishTrip = (props) => {
   )
 }
 
-export default memo(connect(mapStateToProps, { getProfile, createTrip, editTrip })(PublishTrip))
+export default memo(connect(mapStateToProps, { createTrip, editTrip })(PublishTrip))

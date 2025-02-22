@@ -15,6 +15,7 @@ import TripCard from '../TripCard/TripCard'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getTrips } from '../../actions/trips.action'
+import { SVG } from '../../assets'
 
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
@@ -64,10 +65,10 @@ const PopularSection = (props) => {
       </PopularTripHeading>
       <PopularTripContent ref={scrollContainerRef} margin={props?.margin ? props.margin : `0 5.5%`}>
         <ArrowButton className="left" onClick={scrollLeft} aria-label="Scroll Left">
-          {'<'}
+          <img src={SVG.leftArrow} alt="" />
         </ArrowButton>
         <ArrowButton className="right" onClick={scrollRight} aria-label="Scroll Right">
-          {'>'}
+          <img src={SVG.rightArrow} alt="" />
         </ArrowButton>
         {trips.map((trip) => (
           <TripCard

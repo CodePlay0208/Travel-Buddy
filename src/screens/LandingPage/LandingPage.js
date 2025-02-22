@@ -16,7 +16,6 @@ const LandingPage = (props) => {
   const { setSearchForm, loadUser } = props
 
   useEffect(() => {
-    loadUser()
     setSearchForm({
       destination: '',
       startDate: '',

@@ -33,6 +33,9 @@ const getGoogleToken = () => {
 
 const ApiService = {
   get: async (apiPath, options) => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token)
+    }
     try {
       const headerValue = { ...API_CONFIG.headers, ...options.headers }
       const res = await axios.get(apiPath, {
@@ -48,6 +51,9 @@ const ApiService = {
   },
 
   post: async (apiPath, payload, options, isMultiMedia) => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token)
+    }
     try {
       const res = await axios.post(apiPath, payload, {
         baseURL: options.baseURL || env.BASE_API_URL,
@@ -62,6 +68,9 @@ const ApiService = {
   },
 
   delete: async (apiPath, options) => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token)
+    }
     try {
       const res = await axios.delete(apiPath, {
         baseURL: options.baseURL || env.BASE_API_URL,
@@ -76,6 +85,9 @@ const ApiService = {
   },
 
   put: async (apiPath, payload, options, isMultiMedia = false) => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token)
+    }
     try {
       const res = await axios.put(apiPath, payload, {
         baseURL: options.baseURL || env.BASE_API_URL,
