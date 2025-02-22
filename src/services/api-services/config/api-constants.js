@@ -21,7 +21,9 @@ export const API_PATH = {
   GET_REQUESTED_MEMBERS: '/trips/getRequestedMembers',
   ADD_MEMBER_TRIP: '/trips/addmemberTrip',
   REMOVE_MEMBER_AS_HOST: '/trips/removeMemberAsHost',
+  
   GET_NOTIFICATIONS: '/notification/getNotifications',
+  DELETE_NOTIFICATION: '/notification/deleteNotification',
   EDIT_TRIPS_API: '/trips/editTrip',
   ADD_WISHLIST_TRIP: '/trips/addWishlistTrip',
   REMOVE_WISHLIST_TRIP: 'trips/removeWishlistedTrip',

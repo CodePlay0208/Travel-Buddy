@@ -18,23 +18,34 @@ import Dropdown from '../Dropdown/Dropdown'
 import { connect } from 'react-redux'
 import './Navbar.css'
 import { logout } from '../../actions/auth.action'
-import { getNotifications } from '../../actions/notification.action'
+import { getNotifications, deleteNotification } from '../../actions/notification.action'
 import NotificationItem from './NotificationItem'
+import { addMemberTrip } from '../../actions/trips.action'
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
   profilePic: state.profileReducer.profile?.profilePic,
+  notifications: state.notificationReducer?.notifications,
 })
 
 const Navbar = (props) => {
-  const { isAuthenticated, notifications = [], setNotifications = () => {}, logout, profilePic } = props
-  const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
-  const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
-  const [showNotification, setShowNotification] = useState(false)
-  // This state will hold the notifications data you get from getNotifications
-  const [notificationAlerts, setNotificationAlerts] = useState([])
+  const {
+    isAuthenticated,
+    notifications = [],
+    setNotifications = () => {},
+    logout,
+    profilePic,
+    getNotifications,
+    deleteNotification,
+    addMemberTrip,
+  } = props
 
+  const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
+  const [showNotification, setShowNotification] = useState(false)
   const navigate = useNavigate()
+
+  const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
+  const { userChatValues, setUserChatValues } = useContext(ChatContext)
 
   const userProfileDropDownData = [
     { value: 'My Profile', path: '/user-profile' },
@@ -51,8 +62,6 @@ const Navbar = (props) => {
     navigate('/')
     window.location.reload()
   }
-
-  const { userChatValues, setUserChatValues } = useContext(ChatContext)
 
   const accessChat = async (userId) => {
     try {
@@ -96,18 +105,16 @@ const Navbar = (props) => {
   }
 
   const onNotificationClick = async () => {
-    const fetchedNotifications = await getNotifications()
-    setNotificationAlerts([
-      { title: 'Notification', message: 'You have a new notification', profilePic: 'https://www.example.com/image.jpg' },
-    ])
+    await getNotifications()
     setShowNotification(!showNotification)
   }
-  const handleNotificationConfirm = (notification) => {
-    console.log('Confirmed notification:', notification)
+
+  const handleNotificationConfirm = async (notification) => {
+    await addMemberTrip(notification.tripId, notification.senderId)
   }
 
   const handleNotificationDelete = (notification) => {
-    console.log('Deleted notification:', notification)
+    deleteNotification(notification.notificationId)
   }
 
   return (
@@ -140,16 +147,24 @@ const Navbar = (props) => {
 
             <NavContents onClick={onNotificationClick}>
               <img src={SVG.NotificationButton} alt="Notification" />
-              {showNotification && (
-                <Dropdown
-                  data={notificationAlerts}
-                  renderItem={(item) => (
-                    <NotificationItem notification={item} onConfirm={handleNotificationConfirm} onDelete={handleNotificationDelete} />
-                  )}
-                  setShowDropdown={setShowNotification}
-                />
-              )}
             </NavContents>
+
+            {showNotification && (
+              <Dropdown
+                data={notifications}
+                selectSuggestion={() => {}}
+                selectable={false}
+                renderItem={(item) => (
+                  <NotificationItem
+                    notification={item}
+                    onConfirm={handleNotificationConfirm}
+                    onDelete={handleNotificationDelete}
+                    onChatNow={(notification) => {}}
+                  />
+                )}
+                setShowDropdown={setShowNotification}
+              />
+            )}
 
             <ProfileImageContainer onClick={handleClickOnProfilePic}>
               <img src={profilePic?.[0] ? profilePic[0] : SVG.ProfileIcon} alt="Profile" />
@@ -172,4 +187,4 @@ const Navbar = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { logout })(memo(Navbar))
+export default connect(mapStateToProps, { logout, getNotifications, deleteNotification, addMemberTrip })(memo(Navbar))

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { FlexContainer } from '../HeroSectionV2/HeroSection.styled.js'
 import LineBorder from '../../styles/Line.styled.js'
 
-const Dropdown = ({ data, selectSuggestion, setShowDropdown, renderItem }) => {
+const Dropdown = ({ data, selectSuggestion, setShowDropdown, renderItem, selectable = true }) => {
   const navigate = useNavigate()
   const wrapperRef = useRef(null)
 
@@ -23,7 +23,7 @@ const Dropdown = ({ data, selectSuggestion, setShowDropdown, renderItem }) => {
   return (
     <DropdownContainer ref={wrapperRef}>
       {data.map((item, index) => (
-        <DropdownItem key={index} onClick={() => selectSuggestion(item)}>
+        <DropdownItem key={index} selectable={selectable} onClick={() => selectSuggestion(item)}>
           <FlexContainer direction="column" alignItems="start" gap="1%" width="100%" fontSize="min(1.5vw,24px)">
             {renderItem ? renderItem(item) : <City>{item.value}</City>}
             <LineBorder />

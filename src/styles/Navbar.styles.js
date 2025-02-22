@@ -67,6 +67,7 @@ export const NavContents = styled.div`
   cursor: pointer;
   color: rgb(39, 167, 218);
   border: none;
+  position: relative;
   &:hover {
     filter: drop-shadow(3px 3px 4px #228be6);
   }

@@ -124,12 +124,7 @@ const tripReducer = (state = initialState, action) => {
         requestedMembers: payload.requestingMembers,
         loading: false,
       }
-    case GET_NOTIFICATIONS:
-      return {
-        ...state,
-        notifications: payload,
-        loading: false,
-      }
+
     case ADD_MEMBER_TRIP:
       return {
         ...state,

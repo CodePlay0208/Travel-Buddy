@@ -5,11 +5,13 @@ import tripReducer from './trips.reducer'
 import locationReducer from './location.reducer'
 import chatsReducer from './chats.reducer'
 import newsletterReducer from './newsletter.reducer'
+import notificationReducer from './notification.reducer'
 
 export default combineReducers({
   authReducer,
   profileReducer,
   tripReducer,
   locationReducer,
-  chatsReducer
+  chatsReducer,
+  notificationReducer
 })

@@ -38,7 +38,7 @@ export const DropdownItem = styled.div`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #f1f1f1;
+    background-color:${(props)=>(props.selectable?"#f1f1f1":"#ffffff")};
   }
   @media (max-width: ${breakpoints.tablet}) {
     border-radius: 5px;
