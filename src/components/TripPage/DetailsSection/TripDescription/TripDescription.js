@@ -35,7 +35,7 @@ import { toast } from 'react-toastify'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
-  wishlistTrips: state.tripReducer.wishlistTrips,
+  wishlistTrips: state.tripReducer.wishlistTrips?.trips,
   profile: state.profileReducer.profile,
 })
 
@@ -67,8 +67,8 @@ const TripDescription = (props) => {
   const publisher = trip?.tripMembersIds?.find((user) => user?.userId === trip?.userId)
 
   useEffect(() => {
-    if (trip && wishlistTrips) {
-      const exists = wishlistTrips.find((wTrip) => wTrip.tripId === trip.tripId)
+    if (trip && wishlistTrips && Array.isArray(wishlistTrips)) {
+      const exists = wishlistTrips?.find((wTrip) => wTrip.tripId === trip.tripId)||false
       setWishlistAdded(!!exists)
     }
   }, [trip, wishlistTrips])

@@ -143,7 +143,15 @@ const PublishTrip = (props) => {
         }
       }
 
-      const isTripPublished = toEditTrip ? await editTrip(tripData.tripId, formDataNew, true) : await createTrip(formDataNew, false)
+      const tripDate = tripData.multipleDates.map((dateStr) => {
+        const [day, month, year] = dateStr.split('-').map(Number)
+        const start = new Date(year, month - 1, day)
+        const duration = parseInt(tripData.duration, 10) || 0
+        const end = new Date(start)
+        end.setDate(start.getDate() + duration)
+        return { startDate: dateStr, endDate: formatDateObj(end) }
+      })
+      const isTripPublished = toEditTrip ? await editTrip(tripData.tripId, {...tripData,tripDates:tripDate}, false) : await createTrip({...tripData,tripDates:tripDate}, false)
 
       if (isTripPublished) {
         console.log('Trip successfully published!')

@@ -14,7 +14,7 @@ export const API_PATH = {
   USER_WISHLIST_TRIPS_API:'trips/getWishlistedTrips',
   USER_PAST_TRIPS_API:'/trips/getJoinedTrips',
   USER_REQUESTED_TRIPS_API:'/trips/getRequestedTrips',
-  CREATE_TRIPS_API: '/trips/createTrip',
+  CREATE_TRIPS_API: '/trips/createTrips',
   TRIP_BY_ID_API: '/trips/getTripById',
   REQUEST_JOIN_TRIP:'/trips/requestJoinTrip',
   LEAVE_TRIP:'/trips/leaveTrip',

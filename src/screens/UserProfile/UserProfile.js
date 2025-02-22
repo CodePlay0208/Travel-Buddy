@@ -14,9 +14,9 @@ import TripList from '../../components/Trip/TripList'
 const mapStateToProps = (state) => ({
   myTrips: state.tripReducer.userTrip?.trips,
   profile: state.profileReducer.profile,
-  wishlistTrips: state.tripReducer.userTrip?.wishlistTrips,
-  pastTrips: state.tripReducer.userTrip?.pastTrips,
-  requestedTrips: state.tripReducer.userTrip?.requestedTrips,
+  wishlistTrips: state.tripReducer.wishlistTrips?.trips,
+  pastTrips: state.tripReducer.pastTrips?.trips,
+  requestedTrips: state.tripReducer.requestedTrips?.trips,
 })
 const UserProfile = (props) => {
   const {

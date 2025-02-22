@@ -1,6 +1,6 @@
-import ApiService from './api.service'
-import env from '../env'
-import API_PATH from './apiPaths'
+import { ApiService } from "../api-services"
+import { API_PATH } from "../config/api-constants"
+import { env } from "../config/env"
 
 const NotificationApi = {
   getNotifications: async (notificationId) => {

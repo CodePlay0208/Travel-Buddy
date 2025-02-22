@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify'
 import { GET_NOTIFICATIONS, TRIPS_ERROR } from '../constants/action-types/trips.constants'
-import NotificationApi from '../../api/notification.api'
+import NotificationApi from '../services/api-services/api-invokes/notification-api'
 
 export const getNotifications = (notificationId) => async (dispatch) => {
   try {

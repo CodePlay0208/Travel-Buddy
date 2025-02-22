@@ -139,9 +139,6 @@ export const TripsApi = {
         payload,
         {
           baseURL: env.BASE_API_URL,
-          headers: {
-            'Content-Type': '',
-          },
         },
         isMultiMedia,
       )

@@ -3,6 +3,7 @@ import TripCard from '../TripCard/TripCard'
 import { Container, Heading } from './TripList.styled'
 
 const TripList = ({ title, trips }) => {
+  console.log(trips)
   return (
     <Container>
       <Heading>{title}</Heading>

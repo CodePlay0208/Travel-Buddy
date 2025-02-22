@@ -41,6 +41,7 @@ import downArrow from './downArrow.svg'
 import leftArrow from './leftArrow.svg'
 import rightArrow from './rightArrow.svg'
 import clear from './clear.svg'
+import NotificationButton from './notificationButton.svg'
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -84,4 +85,5 @@ export const SVG = {
   leftArrow,
   rightArrow,
   clear,
+  NotificationButton,
 }

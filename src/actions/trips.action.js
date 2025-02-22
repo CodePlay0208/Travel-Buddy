@@ -85,6 +85,7 @@ export const getTripById = (tripId) => async (dispatch) => {
 export const getUserTrips = () => async (dispatch) => {
   try {
     const res = await TripsApi.getUserTrips()
+    
     dispatch({
       type: GET_USER_TRIPS,
       payload: res.data,
