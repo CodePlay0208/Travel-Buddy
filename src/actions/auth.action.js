@@ -19,14 +19,17 @@ import { jwtDecode } from 'jwt-decode'
 export const isTokenValid = () => async (dispatch) => {
   try {
     const decoded = jwtDecode(localStorage.token)
-    return decoded.exp * 1000 > Date.now()
+    const valid = decoded.exp * 1000 > Date.now()
+    return valid
   } catch (error) {
     logout()
     dispatch({
       type: USER_LOAD_ERROR,
     })
+    return false
   }
 }
+
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {

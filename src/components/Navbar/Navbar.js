@@ -22,6 +22,7 @@ import { getNotifications, deleteNotification } from '../../actions/notification
 import NotificationItem from './NotificationItem'
 import { addMemberTrip } from '../../actions/trips.action'
 import { getOrCreateChat } from '../../actions/chats.action'
+import { jwtDecode } from 'jwt-decode'
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
@@ -49,7 +50,14 @@ const Navbar = (props) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    isTokenValid()
+    if (localStorage.token) {
+      const decoded = jwtDecode(localStorage.token)
+      const valid = decoded.exp * 1000 > Date.now()
+      if (!valid) {
+        logout()
+        navigate('/')
+      }
+    }
   }, [])
   const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
   const { userChatValues, setUserChatValues } = useContext(ChatContext)

@@ -40,6 +40,7 @@ export const PublishTripPage = styled.div`
   width: 100%;
 `
 export const Container = styled.div`
+  padding: 5%;
   box-shadow: 0px 0px 8px 0px #0000001a;
   border-radius: 10px;
 `
