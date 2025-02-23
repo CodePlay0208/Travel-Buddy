@@ -234,5 +234,14 @@ export const TripsApi = {
       console.log('removeMemberAsHost ERROR: ', e)
       throw e
     }
+  },declineRequest: async ({ tripId, memberId }) => {
+    try {
+      const result = await ApiService.post(`${API_PATH.DECLINE_REQUEST_AS_HOST}`, { tripId, memberId }, { baseURL: env.BASE_API_URL })
+      console.log('removeMemberAsHost SUCCESS', result)
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('removeMemberAsHost ERROR: ', e)
+      throw e
+    }
   },
 }

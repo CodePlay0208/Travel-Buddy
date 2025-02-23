@@ -16,6 +16,7 @@ import {
   GET_REQUESTED_MEMBERS,
   GET_NOTIFICATIONS,
   ADD_MEMBER_TRIP,
+  DECLINE_REQUEST_AS_HOST,
   REMOVE_MEMBER_AS_HOST,
 } from '../constants/action-types/trips.constants'
 
@@ -147,6 +148,16 @@ const tripReducer = (state = initialState, action) => {
           ...state.trip,
           joinedMembers:
             state.trip && state.trip.joinedMembers ? state.trip.joinedMembers.filter((member) => member.id !== payload.memberId) : [],
+        },
+        loading: false,
+      }
+      case DECLINE_REQUEST_AS_HOST:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          requestingMembers:
+            state.trip && state.trip.requestingMembers ? state.trip.requestingMembers.filter((member) => member.id !== payload.memberId) : [],
         },
         loading: false,
       }

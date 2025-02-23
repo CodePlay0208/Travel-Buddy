@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 import { images } from '../../../../assets/images'
 import { Button } from '../../../../styles/Global'
 import { SVG } from '../../../../assets'
-import { addMemberTrip, getRequestedMembers, removeMemberAsHost } from '../../../../actions/trips.action'
+import { addMemberTrip, getRequestedMembers, removeMemberAsHost ,declineRequest} from '../../../../actions/trips.action'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer,
@@ -24,10 +24,11 @@ const mapDispatchToProps = {
   addMemberTrip,
   removeMemberAsHost,
   getRequestedMembers,
+  declineRequest,
 }
 
 const AddMembers = (props) => {
-  const { trip, isUserTrip, addMemberTrip, removeMemberAsHost, editMode, getRequestedMembers } = props
+  const { trip, isUserTrip, addMemberTrip, removeMemberAsHost, editMode, getRequestedMembers,declineRequest } = props
 
   const [isShowAll, setIsShowAll] = useState(false)
   const [isRequestShowAll, setIsRequestShowAll] = useState(false)
@@ -56,6 +57,15 @@ const AddMembers = (props) => {
       const result = await removeMemberAsHost(trip.trip.tripId, userId)
       if (result) {
         console.log('Removed member:', userId)
+      }
+    }
+  }
+
+  const handleDeclineRequest = async (userId) => {
+    if (trip) {
+      const result = await declineRequest(trip.trip.tripId, userId)
+      if (result) {
+        console.log('Declined member:', userId)
       }
     }
   }
@@ -95,7 +105,7 @@ const AddMembers = (props) => {
         {showRequests
           ? requestToDisplay.map((item, index) => (
               <CardContainer key={item.userId || index}>
-                <DeleteButton src={SVG.deleteCross} onClick={() => handleRemoveMember(item.userId)} />
+                <DeleteButton src={SVG.deleteCross} onClick={() => handleDeclineRequest(item.userId)} />
                 <DetailBox
                   heading={item.username}
                   body={

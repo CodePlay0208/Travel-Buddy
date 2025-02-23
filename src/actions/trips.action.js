@@ -16,6 +16,7 @@ import {
   ADD_MEMBER_TRIP,
   REMOVE_MEMBER_AS_HOST,
   GET_USER_REQUESTED,
+  DECLINE_REQUEST_AS_HOST,
 } from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
@@ -411,6 +412,24 @@ export const removeMemberAsHost = (tripId, memberId) => async (dispatch) => {
     return true
   } catch (e) {
     toast.error('Failed to remove member from trip.')
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+    return false
+  }
+}
+export const declineRequest = (tripId, memberId) => async (dispatch) => {
+  try {
+    const res = await TripsApi.declineRequest({ tripId, memberId })
+    dispatch({
+      type: DECLINE_REQUEST_AS_HOST,
+      payload: { tripId, memberId },
+    })
+    toast.success('Request declined successfully!')
+    return true
+  } catch (e) {
+    toast.error('Failed to decline request from trip.')
     dispatch({
       type: TRIPS_ERROR,
       payload: e,
