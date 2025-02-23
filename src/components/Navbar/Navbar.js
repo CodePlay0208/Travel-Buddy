@@ -168,7 +168,9 @@ const Navbar = (props) => {
             {showNotification && (
               <Dropdown
                 data={notificationsAlert}
-                selectSuggestion={() => {}}
+                selectSuggestion={(notification) => {
+                  navigate(`/trip/${notification.tripId}`)
+                }}
                 selectable={false}
                 renderItem={(item) => (
                   <NotificationItem
