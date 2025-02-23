@@ -50,7 +50,8 @@ export const Heading = styled.h1`
 `
 export const PublishHeading = styled.h1`
   font-size: 3vw;
-  margin: 10px;
+
+  margin: 0;
   color: white;
   @media (max-width: 786px) {
     font-size: 6vw;
@@ -118,7 +119,6 @@ export const BackgroundImage = styled.div`
   }
 `
 export const PublishButton = styled.button`
-  height: 135px;
   font-size: 3vw;
   padding: 1%;
   cursor: pointer;
@@ -167,6 +167,7 @@ export const PublishNowContainer = styled(FlexContainer)`
   }
 `
 export const PublishNowContent = styled(FlexContainer)`
+  padding: 1%;
   @media (max-width: 786px) {
     padding: 5%;
     width: 100%;

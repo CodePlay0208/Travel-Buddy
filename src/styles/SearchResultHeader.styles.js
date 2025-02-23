@@ -36,7 +36,6 @@ export const LandingImage = styled.img`
 export const HeaderSearchBar = styled.div`
   position: relative;
   width: 70%;
-  max-width: 1339px;
   height: 1000%;
   margin: 2.5%;
   border-radius: 140px;

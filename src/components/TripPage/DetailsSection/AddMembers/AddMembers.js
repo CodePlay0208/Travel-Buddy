@@ -1,4 +1,7 @@
-import { memo, useState } from 'react'
+import { memo, useState, useCallback } from 'react'
+import { connect } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 import DetailBox from '../DetailBox/DetailBox'
 import {
   LowerSection,
@@ -10,13 +13,13 @@ import {
   CardContainer,
   DeleteButton,
 } from './AddMembers.styled'
-import { connect } from 'react-redux'
+
 import { images } from '../../../../assets/images'
 import { Button } from '../../../../styles/Global'
 import { SVG } from '../../../../assets'
-import { addMemberTrip, getRequestedMembers, removeMemberAsHost, declineRequest } from '../../../../actions/trips.action'
+import { addMemberTrip, getRequestedMembers, removeMemberAsHost, declineRequest, getTripById } from '../../../../actions/trips.action'
 import { getOrCreateChat } from '../../../../actions/chats.action'
-import { useNavigate } from 'react-router-dom'
+import React from 'react'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer,
@@ -28,55 +31,76 @@ const mapDispatchToProps = {
   getRequestedMembers,
   declineRequest,
   getOrCreateChat,
+  getTripById,
 }
 
 const AddMembers = (props) => {
-  const { trip, isUserTrip, addMemberTrip, removeMemberAsHost, editMode, getRequestedMembers, declineRequest, getOrCreateChat } = props
+  const { trip, isUserTrip, addMemberTrip, removeMemberAsHost, getRequestedMembers, declineRequest, getOrCreateChat, getTripById } = props
 
-  const [isShowAll, setIsShowAll] = useState(false)
-  const [isRequestShowAll, setIsRequestShowAll] = useState(false)
+  const currentTrip = trip?.trip
+  const fetchTrip = useCallback(() => {
+    if (currentTrip.tripId) {
+      getTripById(currentTrip.tripId)
+    }
+  }, [getTripById, currentTrip.tripId])
+
+  const [areMembersExpanded, setAreMembersExpanded] = useState(false)
+  const [areRequestsExpanded, setAreRequestsExpanded] = useState(false)
   const [showRequests, setShowRequests] = useState(false)
 
   const navigate = useNavigate()
 
-  const tripMembers = trip?.trip?.joinedMembers || []
+  const tripMembers = currentTrip?.joinedMembers || []
   const pendingRequest = trip?.requestedMembers || []
-  const membersToDisplay = isShowAll ? tripMembers : tripMembers.slice(0, 5)
-  const requestToDisplay = isRequestShowAll ? pendingRequest : pendingRequest.slice(0, 5)
 
-  const handleConfirm = async (userId) => {
-    if (trip) {
-      const result = await addMemberTrip(trip.trip.tripId, userId)
-      if (result) {
-        console.log('Accepted request for user:', userId)
+  const membersToDisplay = areMembersExpanded ? tripMembers : tripMembers.slice(0, 5)
+  const requestsToDisplay = areRequestsExpanded ? pendingRequest : pendingRequest.slice(0, 5)
+
+  const handleConfirm = useCallback(
+    async (userId) => {
+      if (currentTrip) {
+        const result = await addMemberTrip(currentTrip.tripId, userId)
+        if (result) fetchTrip()
       }
-    }
-  }
+    },
+    [currentTrip, addMemberTrip, fetchTrip],
+  )
 
-  const handleChatNow = async (userId) => {
-    const isChatCreated = await getOrCreateChat(userId)
-    if (isChatCreated) {
-      navigate('/chats')
-    }
-  }
+  const handleChatNow = useCallback(
+    async (userId) => {
+      const isChatCreated = await getOrCreateChat(userId)
+      if (isChatCreated) navigate('/chats')
+    },
+    [getOrCreateChat, navigate],
+  )
 
-  const handleRemoveMember = async (userId) => {
-    if (trip) {
-      const result = await removeMemberAsHost(trip.trip.tripId, userId)
-      if (result) {
-        console.log('Removed member:', userId)
+  const handleRemoveMember = useCallback(
+    async (userId) => {
+      if (currentTrip) {
+        const result = await removeMemberAsHost(currentTrip.tripId, userId)
+        if (result) fetchTrip()
       }
-    }
-  }
+    },
+    [currentTrip, removeMemberAsHost, fetchTrip],
+  )
 
-  const handleDeclineRequest = async (userId) => {
-    if (trip) {
-      const result = await declineRequest(trip.trip.tripId, userId)
-      if (result) {
-        console.log('Declined member:', userId)
+  const handleDeclineRequest = useCallback(
+    async (userId) => {
+      if (currentTrip) {
+        const result = await declineRequest(currentTrip.tripId, userId)
+        if (result) {
+          fetchTrip()
+          getRequestedMembers()
+        }
       }
-    }
-  }
+    },
+    [currentTrip, declineRequest, fetchTrip, getRequestedMembers],
+  )
+
+  const handleShowRequests = useCallback(() => {
+    getRequestedMembers()
+    setShowRequests(true)
+  }, [getRequestedMembers])
 
   return (
     <LowerSection>
@@ -86,23 +110,15 @@ const AddMembers = (props) => {
           {showRequests ? (
             <>
               {isUserTrip && <Button onClick={() => setShowRequests(false)}>Travmigoz</Button>}
-              {requestToDisplay.length > 5 && (
-                <Button onClick={() => setIsShowAll(!isShowAll)}>{isShowAll ? 'Show Less' : 'Show All'}</Button>
+              {pendingRequest.length > 5 && (
+                <Button onClick={() => setAreRequestsExpanded((prev) => !prev)}>{areRequestsExpanded ? 'Show Less' : 'Show All'}</Button>
               )}
             </>
           ) : (
             <>
-              {isUserTrip && (
-                <Button
-                  onClick={() => {
-                    setShowRequests(getRequestedMembers())
-                  }}
-                >
-                  Requests
-                </Button>
-              )}
+              {isUserTrip && <Button onClick={handleShowRequests}>Requests</Button>}
               {tripMembers.length > 5 && (
-                <Button onClick={() => setIsRequestShowAll(!isRequestShowAll)}>{isRequestShowAll ? 'Show Less' : 'Show All'}</Button>
+                <Button onClick={() => setAreMembersExpanded((prev) => !prev)}>{areMembersExpanded ? 'Show Less' : 'Show All'}</Button>
               )}
             </>
           )}
@@ -110,8 +126,9 @@ const AddMembers = (props) => {
       </HeadingContainer>
 
       <ProfileCardsContainer>
-        {showRequests
-          ? requestToDisplay.map((item, index) => (
+        {showRequests ? (
+          requestsToDisplay.length > 0 ? (
+            requestsToDisplay.map((item, index) => (
               <CardContainer key={item.userId || index}>
                 <DeleteButton src={SVG.deleteCross} onClick={() => handleDeclineRequest(item.userId)} />
                 <DetailBox
@@ -133,16 +150,23 @@ const AddMembers = (props) => {
                 />
               </CardContainer>
             ))
-          : membersToDisplay.map((item, index) => (
-              <CardContainer key={item.userId || index}>
-                {isUserTrip && <DeleteButton src={SVG.deleteMin} onClick={() => handleRemoveMember(item.userId)} />}
-                <DetailBox
-                  heading={item.username}
-                  body={item.userId === trip?.trip?.userId ? 'Host' : 'Traveller'}
-                  profilePic={images.defaultProfileImg}
-                />
-              </CardContainer>
-            ))}
+          ) : (
+            <CardContainer>No pending requests</CardContainer>
+          )
+        ) : (
+          membersToDisplay.map((item, index) => (
+            <CardContainer key={item.userId || index}>
+              {isUserTrip && item.userId !== currentTrip?.userId && (
+                <DeleteButton src={SVG.deleteMin} onClick={() => handleRemoveMember(item.userId)} />
+              )}
+              <DetailBox
+                heading={item.username}
+                body={item.userId === currentTrip?.userId ? 'Host' : 'Traveller'}
+                profilePic={images.defaultProfileImg}
+              />
+            </CardContainer>
+          ))
+        )}
       </ProfileCardsContainer>
     </LowerSection>
   )

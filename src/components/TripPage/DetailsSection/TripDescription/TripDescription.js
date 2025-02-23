@@ -112,7 +112,10 @@ const TripDescription = (props) => {
   }
 
   const onDeleteTripClick = async () => {
-    await deleteUserTrip(trip.tripId)
+    const res = await deleteUserTrip(trip.tripId)
+    if (res) {
+      navigate('/')
+    }
   }
 
   const onJoinTripClick = async () => {
@@ -121,13 +124,13 @@ const TripDescription = (props) => {
         return
       }
       const result = await requestJoinTrip(trip.tripId)
-      if (result === true) {
+      if (result) {
         setJoined(false)
         setRequested(true)
       }
     } else {
       const result = await leaveTrip(trip.tripId)
-      if (result === true) {
+      if (result) {
         setJoined(false)
         setRequested(false)
       }
@@ -186,11 +189,11 @@ const TripDescription = (props) => {
               <ChatButton onClick={onShareLinkClick}>Share Now</ChatButton>
               {isUserTrip && <EditButton onClick={onDeleteTripClick}>Delete Trip</EditButton>}
               {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
-              {!isUserTrip && (
+              {
                 <ChatButton onClick={onWishlistClick}>
                   {wishlistAdded ? <img src={SVG.wishListRed} alt="wishlist" /> : <img src={SVG.wishlist} alt="wishlist" />}
                 </ChatButton>
-              )}
+              }
             </ButtonSection>
           </DateContainer>
         </ChatSection>

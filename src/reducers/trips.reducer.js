@@ -151,14 +151,10 @@ const tripReducer = (state = initialState, action) => {
         },
         loading: false,
       }
-      case DECLINE_REQUEST_AS_HOST:
+    case DECLINE_REQUEST_AS_HOST:
       return {
         ...state,
-        trip: {
-          ...state.trip,
-          requestingMembers:
-            state.trip && state.trip.requestingMembers ? state.trip.requestingMembers.filter((member) => member.id !== payload.memberId) : [],
-        },
+        requestedMembers: state.requestedMembers.filter((member) => member.userId !== payload.memberId),
         loading: false,
       }
     case TRIPS_ERROR:

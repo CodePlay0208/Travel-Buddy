@@ -27,7 +27,7 @@ const HeroSection = () => {
       {/* publish section  */}
 
       <PublishNowContainer width="100%">
-        <PublishNowContent height="135px" width="70%" borderRadius="15px" backgroundImage={images.heroSection_4}>
+        <PublishNowContent  width="70%" borderRadius="15px" backgroundImage={images.heroSection_4}>
           <PublishHeading>Publish trips on the go</PublishHeading>
         </PublishNowContent>
         <PublishButton

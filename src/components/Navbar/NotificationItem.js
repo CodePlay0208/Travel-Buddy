@@ -112,14 +112,21 @@ const NotificationItem = ({ notification, onConfirm, onDelete, onChatNow }) => {
           <Heading>{getHeadingMessage(notification)}</Heading>
           <Para>{getNotificationMessage(notification)}</Para>
         </Content>
-        <Element width={'10%'} onClick={() => onDelete(notification)}>
+        <Element
+          width={'10%'}
+          onClick={(e) => {
+            e.stopPropagation()
+            onDelete(notification)
+          }}
+        >
           X
         </Element>
       </DetailsContainer>
       <ActionContainer>
         {notification.event === NotificationEvents.USER_REQUEST_TO_JOIN && (
           <ActionButton
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation()
               onConfirm(notification)
               onDelete(notification)
             }}
@@ -129,7 +136,8 @@ const NotificationItem = ({ notification, onConfirm, onDelete, onChatNow }) => {
         )}
         <ActionButton
           background="#E0E0E0"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation()
             onChatNow(notification)
           }}
         >
