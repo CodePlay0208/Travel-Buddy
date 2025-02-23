@@ -14,7 +14,9 @@ import { connect } from 'react-redux'
 import { images } from '../../../../assets/images'
 import { Button } from '../../../../styles/Global'
 import { SVG } from '../../../../assets'
-import { addMemberTrip, getRequestedMembers, removeMemberAsHost ,declineRequest} from '../../../../actions/trips.action'
+import { addMemberTrip, getRequestedMembers, removeMemberAsHost, declineRequest } from '../../../../actions/trips.action'
+import { getOrCreateChat } from '../../../../actions/chats.action'
+import { useNavigate } from 'react-router-dom'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer,
@@ -25,14 +27,17 @@ const mapDispatchToProps = {
   removeMemberAsHost,
   getRequestedMembers,
   declineRequest,
+  getOrCreateChat,
 }
 
 const AddMembers = (props) => {
-  const { trip, isUserTrip, addMemberTrip, removeMemberAsHost, editMode, getRequestedMembers,declineRequest } = props
+  const { trip, isUserTrip, addMemberTrip, removeMemberAsHost, editMode, getRequestedMembers, declineRequest, getOrCreateChat } = props
 
   const [isShowAll, setIsShowAll] = useState(false)
   const [isRequestShowAll, setIsRequestShowAll] = useState(false)
   const [showRequests, setShowRequests] = useState(false)
+
+  const navigate = useNavigate()
 
   const tripMembers = trip?.trip?.joinedMembers || []
   const pendingRequest = trip?.requestedMembers || []
@@ -48,8 +53,11 @@ const AddMembers = (props) => {
     }
   }
 
-  const handleChatNow = (userId) => {
-    console.log('Initiate chat with user:', userId)
+  const handleChatNow = async (userId) => {
+    const isChatCreated = await getOrCreateChat(userId)
+    if (isChatCreated) {
+      navigate('/chats')
+    }
   }
 
   const handleRemoveMember = async (userId) => {

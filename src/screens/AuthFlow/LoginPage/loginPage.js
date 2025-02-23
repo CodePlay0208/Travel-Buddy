@@ -38,6 +38,7 @@ const mapStateToProps = (state) => ({
 const LoginPage = (props) => {
   const { login, isAuthenticated } = props
   const [formData, setFormData] = useState({
+    phone: '',
     email: '',
     password: '',
   })
@@ -126,14 +127,13 @@ const LoginPage = (props) => {
       }
     }
 
-    const isAuth = await login(formData.email)
+    const isAuth = await login(isEmail ? formData.email : formData.phone)
 
     if (isAuth) {
       sessionStorage.setItem('prevRoute', location.pathname)
-      localStorage.setItem('userKey', formData.email)
+      localStorage.setItem('userKey', isEmail ? formData.email : formData.phone)
       navigate('/verify-otp')
-    }
-    else{
+    } else {
       toast.error('Login Failed!', { autoClose: 1500 })
     }
   }

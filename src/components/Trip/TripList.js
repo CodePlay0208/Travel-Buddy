@@ -7,7 +7,7 @@ const TripList = ({ title, trips, editEnable }) => {
     <>
       <Heading>{title}</Heading>
       <Container>
-        {!!trips.length ? (
+        {!!trips?.length ? (
           trips?.map((trip) => <TripCard key={trip?.tripId} trip={trip} editEnable={editEnable} />)
         ) : (
           <p>No trips found.</p>
