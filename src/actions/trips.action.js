@@ -369,7 +369,7 @@ export const getRequestedMembers = (tripId) => async (dispatch) => {
       type: GET_REQUESTED_MEMBERS,
       payload: res.data,
     })
-    toast.success('Fetched requested members successfully!')
+    
     return true
   } catch (e) {
     toast.error('Failed to fetch requested members.')
@@ -386,7 +386,7 @@ export const addMemberTrip = (tripId, memberId) => async (dispatch) => {
     const res = await TripsApi.addMemberTrip({ tripId, memberId })
     dispatch({
       type: ADD_MEMBER_TRIP,
-      payload: res.data,
+      payload: { tripId, memberId },
     })
     toast.success('Member added to trip successfully!')
     return true

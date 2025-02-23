@@ -65,7 +65,7 @@ const TripDescription = (props) => {
   const [requested, setRequested] = useState(trip?.isRequested || false)
   const navigate = useNavigate()
 
-  const publisher = trip?.tripMembersIds?.find((user) => user?.userId === trip?.userId)
+  const publisher = trip?.joinedMembers?.find((user) => user?.userId === trip?.userId)
 
   useEffect(() => {
     setWishlistAdded(trip?.isWishlisted || false)
@@ -87,12 +87,12 @@ const TripDescription = (props) => {
   const onWishlistClick = async () => {
     if (!wishlistAdded) {
       const result = await addWishlistTrip(trip.tripId)
-      if (result === true) {
+      if (result) {
         setWishlistAdded(true)
       }
     } else {
       const result = await removeWishlistTrip(trip.tripId)
-      if (result === true) {
+      if (result) {
         setWishlistAdded(false)
       }
     }
@@ -174,12 +174,12 @@ const TripDescription = (props) => {
             </DateSection>
             <InfoSection>
               <StartDate>
-                <BoxHeading>Budget</BoxHeading>
-                <BoxContent>${trip?.budget}</BoxContent>
+                <BoxHeading>Min Budget</BoxHeading>
+                <BoxContent>₹{trip?.minBudget}</BoxContent>
               </StartDate>
               <EndDate>
-                <BoxHeading>Members</BoxHeading>
-                <BoxContent>{trip?.totalMembers ?? 0}</BoxContent>
+                <BoxHeading>Max Budget</BoxHeading>
+                <BoxContent>₹{trip?.maxBudget}</BoxContent>
               </EndDate>
             </InfoSection>
             <ButtonSection>

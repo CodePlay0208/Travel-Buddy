@@ -67,7 +67,7 @@ export const ToggleButton = styled.span`
   text-decoration-style: solid;
   color: black;
   cursor: pointer;
-  
+
   @media (max-width: 440px) {
     font-size: 2vw;
     line-height: 3vw;
@@ -165,7 +165,7 @@ export const StartDate = styled.div`
   border-right: 0.5px solid #d9d9d9;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
-
+  border: none;
   @media (max-width: 440px) {
     width: 100%;
     border-radius: 50px;
@@ -182,7 +182,7 @@ export const EndDate = styled.div`
   border-left: 0.5px solid #d9d9d9;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
-
+  border: none;
   @media (max-width: 440px) {
     width: 100%;
     border-radius: 50px;
@@ -198,9 +198,9 @@ export const DetailsBox = styled.div`
 `
 
 export const BoxHeading = styled.div`
-  font-size: 0.65vw;
+  font-size: 0.75vw;
   font-weight: 500;
-  color: #d9d9d9;
+  color: #646464;
 
   @media (max-width: 440px) {
     font-size: 1.5vw;

@@ -3,7 +3,7 @@ import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
 import { connect } from 'react-redux'
 import { createTrip, editTrip } from '../../actions/trips.action'
-import { ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import ImageUpload from './ImageUpload/ImageUpload'
 import { useLocation, useNavigate } from 'react-router-dom'
 import {
@@ -156,7 +156,8 @@ const PublishTrip = (props) => {
       }
 
       if (isTripPublished) {
-        console.log('Trip successfully published!')
+        toast.success('Trip successfully published!')
+        navigate('/')
       } else {
         console.error('Failed to publish trip.')
       }

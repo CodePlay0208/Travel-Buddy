@@ -33,12 +33,10 @@ const AddMembers = (props) => {
   const [isRequestShowAll, setIsRequestShowAll] = useState(false)
   const [showRequests, setShowRequests] = useState(false)
 
-  
   const tripMembers = trip?.trip?.joinedMembers || []
   const pendingRequest = trip?.requestedMembers || []
   const membersToDisplay = isShowAll ? tripMembers : tripMembers.slice(0, 5)
   const requestToDisplay = isRequestShowAll ? pendingRequest : pendingRequest.slice(0, 5)
-
 
   const handleConfirm = async (userId) => {
     if (trip) {
@@ -119,10 +117,10 @@ const AddMembers = (props) => {
             ))
           : membersToDisplay.map((item, index) => (
               <CardContainer key={item.userId || index}>
-                 <DeleteButton src={SVG.deleteMin} onClick={() => handleRemoveMember(item.userId)} />
+                {isUserTrip && <DeleteButton src={SVG.deleteMin} onClick={() => handleRemoveMember(item.userId)} />}
                 <DetailBox
                   heading={item.username}
-                  body={item.userId === trip?.userId ? 'Trip Publisher' : 'Traveller'}
+                  body={item.userId === trip?.trip?.userId ? 'Host' : 'Traveller'}
                   profilePic={images.defaultProfileImg}
                 />
               </CardContainer>

@@ -128,13 +128,16 @@ const tripReducer = (state = initialState, action) => {
     case ADD_MEMBER_TRIP:
       return {
         ...state,
-        trip: {
-          ...state.trip,
-          joinedMembers: state.trip.joinedMembers ? [...state.trip.joinedMembers, payload] : [payload],
-          requestingMembers: state.trip.requestingMembers
-            ? state.trip.requestingMembers.filter((member) => member.userId !== payload.userId)
-            : [],
-        },
+        trips: state.trips.map((trip) => {
+          if (trip.tripId === payload.tripId) {
+            return {
+              ...trip,
+              joinedMembers: [...trip.joinedMembers, payload.memberId],
+              requestingMembers: trip.requestingMembers.filter((member) => member.userId !== payload.memberId),
+            }
+          }
+          return trip
+        }),
         loading: false,
       }
     case REMOVE_MEMBER_AS_HOST:
@@ -142,9 +145,8 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         trip: {
           ...state.trip,
-          joinedMembers: state.trip && state.trip.joinedMembers
-            ? state.trip.joinedMembers.filter((member) => member.id !== payload.memberId)
-            : [],
+          joinedMembers:
+            state.trip && state.trip.joinedMembers ? state.trip.joinedMembers.filter((member) => member.id !== payload.memberId) : [],
         },
         loading: false,
       }
