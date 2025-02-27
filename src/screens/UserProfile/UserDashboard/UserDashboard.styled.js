@@ -147,6 +147,7 @@ export const NameContainer = styled.div`
   align-items: center;
   width: 100%;
   margin: 4% 0;
+  
   @media (max-width: 786px) {
     margin: 2% 0;
     padding: 1% 3%;

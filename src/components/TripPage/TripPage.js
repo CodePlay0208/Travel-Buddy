@@ -79,7 +79,7 @@ const TripPage = (props) => {
     <>
       <Navbar />
       <Container>
-        <ImagesSection images={trip?.destinationImages || []} isEditMode={isEditMode} />
+        <ImagesSection preSignedUrl={trip?.destinationImages || []} isEditMode={isEditMode} />
         <DetailsSection
           isUserTrip={isUserTrip}
           isEditMode={isEditMode}

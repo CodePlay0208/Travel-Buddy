@@ -87,7 +87,7 @@ export const getTripById = (tripId) => async (dispatch) => {
 export const getUserTrips = () => async (dispatch) => {
   try {
     const res = await TripsApi.getUserTrips()
-    
+
     dispatch({
       type: GET_USER_TRIPS,
       payload: res.data,
@@ -279,6 +279,24 @@ export const createTrip =
       // if (!res.data.allFilesUploaded) {
       //   toast.error('Error in uploading images. Please edit the trip and re-upload the images!', { autoClose: 1500 })
       // }
+      return res
+    } catch (e) {
+      if (e.response && e.response.status === 401) {
+        toast.error('Invalid User!', { autoClose: 1500 })
+      }
+      dispatch({
+        type: TRIPS_ERROR,
+        payload: e,
+      })
+      return false
+    }
+  }
+
+export const createTripsImages =
+  (tripData, isMultiMedia = true) =>
+  async (dispatch) => {
+    try {
+      const res = await TripsApi.createTripsImages(tripData, isMultiMedia)
       return true
     } catch (e) {
       if (e.response && e.response.status === 401) {
@@ -291,6 +309,21 @@ export const createTrip =
       return false
     }
   }
+export const editTripImages = (tripData, payload, isMultiMedia) => async (dispatch) => {
+  try {
+    const res = await TripsApi.editTripImages(tripData, payload, isMultiMedia)
+    return true
+  } catch (e) {
+    if (e.response && e.response.status === 401) {
+      toast.error('Invalid User!', { autoClose: 1500 })
+    }
+    dispatch({
+      type: TRIPS_ERROR,
+      payload: e,
+    })
+    return false
+  }
+}
 
 export const editTrip =
   (trip_id, tripData, isMultiMedia = false) =>
@@ -370,7 +403,7 @@ export const getRequestedMembers = (tripId) => async (dispatch) => {
       type: GET_REQUESTED_MEMBERS,
       payload: res.data,
     })
-    
+
     return true
   } catch (e) {
     toast.error('Failed to fetch requested members.')

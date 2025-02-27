@@ -30,34 +30,40 @@ const ImageUpload = ({ tripData, setTripData }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [displayedImage, setDisplayedImage] = useState(firstImage)
 
-  // When images are added/removed, update tripData and ensure the displayed image is still valid.
   const onImagesChange = (imageList) => {
     setTripData((prevTripData) => ({
       ...prevTripData,
       destinationImages: imageList,
     }))
-    // If the current preview image was removed, default to the first available image
-    const stillExists = imageList.find(image => image.data_url === displayedImage)
+
+    const stillExists = imageList.find((image) => image.data_url === displayedImage)
     if (!stillExists) {
       setDisplayedImage(imageList.length > 0 ? imageList[0].data_url : firstImage)
     }
   }
 
-  // Set the preview to the clicked image.
   const handleImageClick = (index) => {
-    setDisplayedImage(tripData.destinationImages[index].data_url)
+    setDisplayedImage(tripData.destinationImages[index].data_url ?? tripData.destinationImages[index].preSignedUrl)
   }
 
-  // Open the overlay for a larger preview.
   const handleImageDoubleClick = (index) => {
     setCurrentIndex(index)
     setOverlay(true)
   }
 
-  // Remove the image at the given index and update the displayed image if needed.
   const handleImageRemove = (index, onImageRemove) => {
     const removedImage = tripData.destinationImages[index]
+
+    setTripData((prevTripData) => ({
+      ...prevTripData,
+      removedDestinationImages: [
+        ...((Array.isArray(prevTripData.removedDestinationImages) && prevTripData.removedDestinationImages) || []),
+        removedImage,
+      ],
+    }))
+
     onImageRemove(index)
+
     if (removedImage.data_url === displayedImage) {
       const newImages = tripData.destinationImages.filter((_, i) => i !== index)
       setDisplayedImage(newImages.length > 0 ? newImages[0].data_url : firstImage)
@@ -103,16 +109,13 @@ const ImageUpload = ({ tripData, setTripData }) => {
                 imageList.map((image, index) => (
                   <PreviewImageItemContainer key={index}>
                     <PreviewImageItem
-                      src={image.data_url}
+                      src={image.data_url ?? image.preSignedUrl}
                       alt="Preview"
                       onClick={() => handleImageClick(index)}
                       onDoubleClick={() => handleImageDoubleClick(index)}
                     />
                     <PreviewImageCrossContainer>
-                      <PreviewImageRemoveButton
-                        onClick={() => handleImageRemove(index, onImageRemove)}
-                        aria-label="Remove image"
-                      >
+                      <PreviewImageRemoveButton onClick={() => handleImageRemove(index, onImageRemove)} aria-label="Remove image">
                         x
                       </PreviewImageRemoveButton>
                     </PreviewImageCrossContainer>
@@ -123,9 +126,7 @@ const ImageUpload = ({ tripData, setTripData }) => {
         )}
       </ImageUploading>
       <ShowAllImageContainer>
-        <SeeAllButton onClick={() => setOverlay(true)}>
-          See All Photos
-        </SeeAllButton>
+        <SeeAllButton onClick={() => setOverlay(true)}>See All Photos</SeeAllButton>
       </ShowAllImageContainer>
       {overlay && (
         <ImageOverlay

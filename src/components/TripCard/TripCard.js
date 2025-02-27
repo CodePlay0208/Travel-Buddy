@@ -38,6 +38,7 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
     gender,
     description,
     destinationImages,
+    croppedDestinationImages,
     minBudget,
     maxBudget,
     startDate,
@@ -81,10 +82,10 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
     <TripCardContainer onClick={onCardPress}>
       <LeftContainer>
         <Slider {...settings}>
-          {destinationImages &&
-            destinationImages.map((img, index) => (
+          {croppedDestinationImages &&
+            croppedDestinationImages.map((img, index) => (
               <CarouselItem key={index}>
-                <DestinationImg src={img} alt={`Destination ${index + 1}`} />
+                <DestinationImg src={img.preSignedUrl} alt={`Destination ${index + 1}`} />
               </CarouselItem>
             ))}
         </Slider>

@@ -140,13 +140,50 @@ export const TripsApi = {
         {
           baseURL: env.BASE_API_URL,
         },
-        isMultiMedia,
+        false,
       )
       console.log('createTrip SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
       console.log('createTrip ERROR: ', e)
+      throw e
+    }
+  },
+
+  createTripsImages: async (payload, isMultiMedia) => {
+    try {
+      const result = await ApiService.post(
+        API_PATH.CREATE_TRIPS_IMAGES_API,
+        payload,
+        {
+          baseURL: env.BASE_API_URL,
+        },
+        isMultiMedia,
+      )
+      console.log('CREATE_TRIPS_IMAGES_API SUCCESS: ', result)
+
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('CREATE_TRIPS_IMAGES_API ERROR: ', e)
+      throw e
+    }
+  },
+  editTripImages: async (tripId, payload, isMultiMedia) => {
+    try {
+      const result = await ApiService.put(
+        `${API_PATH.EDIT_TRIP_IMAGES_API}/${tripId}`,
+        payload,
+        {
+          baseURL: env.BASE_API_URL,
+        },
+        isMultiMedia,
+      )
+      console.log('CREATE_TRIPS_IMAGES_API SUCCESS: ', result)
+
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('CREATE_TRIPS_IMAGES_API ERROR: ', e)
       throw e
     }
   },
@@ -234,7 +271,8 @@ export const TripsApi = {
       console.log('removeMemberAsHost ERROR: ', e)
       throw e
     }
-  },declineRequest: async ({ tripId, memberId }) => {
+  },
+  declineRequest: async ({ tripId, memberId }) => {
     try {
       const result = await ApiService.post(`${API_PATH.DECLINE_REQUEST_AS_HOST}`, { tripId, memberId }, { baseURL: env.BASE_API_URL })
       console.log('removeMemberAsHost SUCCESS', result)

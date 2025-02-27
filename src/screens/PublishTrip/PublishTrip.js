@@ -2,7 +2,7 @@ import React, { useEffect, useState, memo, useCallback } from 'react'
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
 import { connect } from 'react-redux'
-import { createTrip, editTrip } from '../../actions/trips.action'
+import { createTrip, editTrip, createTripsImages, editTripImages } from '../../actions/trips.action'
 import { toast, ToastContainer } from 'react-toastify'
 import ImageUpload from './ImageUpload/ImageUpload'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -37,7 +37,9 @@ const DEFAULT_TRIP_DATA = {
   minBudget: null,
   maxBudget: null,
   description: '',
+  duration: '',
   destinationImages: [],
+  removedDestinationImages: [],
   tripData: [],
   multipleDates: [],
 }
@@ -59,7 +61,7 @@ const formatDateObj = (dateObj) => {
 }
 
 const PublishTrip = (props) => {
-  const { createTrip, editTrip } = props
+  const { createTrip, editTrip, createTripsImages, editTripImages } = props
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
   const [toEditTrip, setToEditTrip] = useState(false)
@@ -115,56 +117,82 @@ const PublishTrip = (props) => {
 
   const handleSubmit = useCallback(async () => {
     try {
-      const formDataNew = new FormData()
+      const processedTripDates =
+        Array.isArray(tripData.multipleDates) && tripData.multipleDates.length > 0
+          ? tripData.multipleDates.map((dateStr) => {
+              const [day, month, year] = dateStr.split('-').map(Number)
+              const start = new Date(year, month - 1, day)
+              const duration = parseInt(tripData.duration, 10) || 0
+              const end = new Date(start)
+              end.setDate(start.getDate() + duration)
+              return { startDate: dateStr, endDate: formatDateObj(end) }
+            })
+          : []
 
-      for (const [key, value] of Object.entries(tripData)) {
-        if ((!toEditTrip && key === 'destinationImages') || (key === 'removedDestinationImages' && Array.isArray(value))) {
-          value.forEach((image) => {
-            formDataNew.append('destinationImages', image.file)
-          })
-        } else if (key === 'multipleDates' && Array.isArray(value)) {
-          const tripDates = value.map((dateStr) => {
-            const [day, month, year] = dateStr.split('-').map(Number)
-            const start = new Date(year, month - 1, day)
-            const duration = parseInt(tripData.duration, 10) || 0
-            const end = new Date(start)
-            end.setDate(start.getDate() + duration)
-            return { startDate: dateStr, endDate: formatDateObj(end) }
-          })
-          formDataNew.append('tripDates', JSON.stringify(tripDates))
-        } else {
-          formDataNew.append(key, value)
-        }
-      }
-      let isTripPublished = false
       if (toEditTrip) {
-        isTripPublished = await editTrip(
-          tripData.tripId,
-          { ...tripData, tripDates: { startDate: tripData.startDate, endDate: tripData.endDate } },
-          false,
-        )
-      } else {
-        const tripDate = tripData.multipleDates.map((dateStr) => {
-          const [day, month, year] = dateStr.split('-').map(Number)
-          const start = new Date(year, month - 1, day)
-          const duration = parseInt(tripData.duration, 10) || 0
-          const end = new Date(start)
-          end.setDate(start.getDate() + duration)
-          return { startDate: dateStr, endDate: formatDateObj(end) }
-        })
-        isTripPublished = await createTrip({ ...tripData, tripDates: tripDate }, false)
-      }
+        const formDataImages = new FormData()
 
-      if (isTripPublished) {
-        toast.success('Trip successfully published!')
-        navigate('/')
+        if (Array.isArray(tripData.destinationImages)) {
+          tripData.destinationImages.forEach((image) => {
+            formDataImages.append('destinationImages', image.file ?? image.preSignedUrl)
+          })
+        }
+
+        if (Array.isArray(tripData.removedDestinationImages)) {
+          tripData.removedDestinationImages.forEach((image) => {
+            formDataImages.append('removedDestinationImages', image.preSignedUrl || image.file)
+          })
+        }
+
+        const tripDetails = {
+          ...tripData,
+          tripDates: { startDate: tripData.startDate, endDate: tripData.endDate },
+        }
+
+        delete tripDetails.destinationImages
+        delete tripDetails.removedDestinationImages
+
+        const isTripPublished = await editTrip(tripData.tripId, tripDetails, false)
+        if (isTripPublished) {
+          const isTripImagesPublished = await editTripImages(tripData.tripId, formDataImages, true)
+          if (isTripImagesPublished) {
+            toast.success('Trip updated successfully!')
+            navigate('/')
+          } else {
+            toast.error('Failed to update trip images. Please try again.')
+          }
+        } else {
+          toast.error('Failed to update trip. Please try again.')
+        }
       } else {
-        console.error('Failed to publish trip.')
+        const tripBody = { ...tripData, tripDates: processedTripDates }
+
+        delete tripBody.destinationImages
+        delete tripBody.removedDestinationImages
+
+        const isTripPublished = await createTrip(tripBody, false)
+        console.log(isTripPublished)
+
+        const formDataImages = new FormData()
+        if (Array.isArray(tripData.destinationImages)) {
+          tripData.destinationImages.forEach((image) => {
+            formDataImages.append('destinationImages', image.file)
+          })
+        }
+
+        let tripIds = []
+        Object.values(isTripPublished.data).forEach((ids) => {
+          if (Array.isArray(ids)) {
+            tripIds = tripIds.concat(ids)
+          }
+        })
+        formDataImages.append('tripIds', JSON.stringify(tripIds))
+        await createTripsImages(formDataImages, true)
       }
     } catch (error) {
       console.error('Error during trip submission:', error)
     }
-  }, [tripData, toEditTrip, createTrip, editTrip])
+  }, [tripData, toEditTrip, createTrip, editTrip, createTripsImages, editTripImages])
 
   return (
     <PublishTripPage>
@@ -177,7 +205,6 @@ const PublishTrip = (props) => {
               <ToggleTab className={activeSection === TABS.TRIP ? 'active' : ''} onClick={() => handleToggle(TABS.TRIP)}>
                 Trip Details
               </ToggleTab>
-
               {!toEditTrip && (
                 <>
                   <Divider />
@@ -225,4 +252,11 @@ const PublishTrip = (props) => {
   )
 }
 
-export default memo(connect(mapStateToProps, { createTrip, editTrip })(PublishTrip))
+export default memo(
+  connect(mapStateToProps, {
+    createTrip,
+    editTrip,
+    createTripsImages,
+    editTripImages,
+  })(PublishTrip),
+)
