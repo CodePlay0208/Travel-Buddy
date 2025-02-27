@@ -130,7 +130,7 @@ const ImageUpload = ({ tripData, setTripData }) => {
       </ShowAllImageContainer>
       {overlay && (
         <ImageOverlay
-          images={tripData.destinationImages.map((image) => image.data_url)}
+          images={tripData.destinationImages.map((image) => image.data_url || image.preSignedUrl)}
           overlay={overlay}
           setOverlay={setOverlay}
           currentIndex={currentIndex}
