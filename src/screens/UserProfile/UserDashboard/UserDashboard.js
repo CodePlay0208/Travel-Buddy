@@ -29,6 +29,8 @@ import {
   Container,
   ProfilePicContainer,
   NameContainer,
+  MakePrivate,
+  MakePrivateContainer,
 } from './UserDashboard.styled'
 import Modal from '../../../components/Modal/Modal'
 
@@ -75,6 +77,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
   }
 
   const handleSave = async () => {
+
     try {
       if (imageFile) {
         const formDataNew = new FormData()
@@ -208,15 +211,55 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
             </UserInfoColumn>
             <UserInfoColumn>
               <UserInfoItem>
-                <Label>Email</Label>
+                <MakePrivateContainer>
+                  <Label>Email</Label>
+                  {isEditing && (
+                    <MakePrivate>
+                      <div style={{ fontSize: '1vw' }}>Make Private</div>
+
+                      <input
+                        type="checkbox"
+                        checked={formData.isEmailPrivate || false}
+                        onChange={(e) => setFormData((prev) => ({ ...prev, isEmailPrivate: e.target.checked }))}
+                        style={{
+                          marginLeft: '10px',
+                          width: '15px',
+                          height: '15px',
+                          cursor: 'pointer',
+                          accentColor: '#8dd3bb',
+                        }}
+                      />
+                    </MakePrivate>
+                  )}
+                </MakePrivateContainer>
                 {isEditing ? (
                   <Input name="emailId" value={formData.emailId || ''} onChange={handleChange} />
                 ) : (
-                  <Value>{profile?.emailId}</Value>
+                  <Value>{profile?.emailId ?? "NA"}</Value>
                 )}
               </UserInfoItem>
               <UserInfoItem>
-                <Label>Phone Number</Label>
+                <MakePrivateContainer>
+                  <Label>Phone Number</Label>
+                  {isEditing && (
+                    <MakePrivate>
+                      <div style={{ fontSize: '1vw' }}>Make Private</div>
+
+                      <input
+                        type="checkbox"
+                        checked={formData.isPhoneNumberPrivate || false}
+                        onChange={(e) => setFormData((prev) => ({ ...prev, isPhoneNumberPrivate: e.target.checked }))}
+                        style={{
+                          marginLeft: '10px',
+                          width: '15px',
+                          height: '15px',
+                          cursor: 'pointer',
+                          accentColor: '#8dd3bb',
+                        }}
+                      />
+                    </MakePrivate>
+                  )}
+                </MakePrivateContainer>
                 {isEditing ? (
                   <Input name="phoneNumber" value={formData.phoneNumber || ''} onChange={handleChange} />
                 ) : (

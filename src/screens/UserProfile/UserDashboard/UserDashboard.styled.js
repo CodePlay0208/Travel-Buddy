@@ -152,6 +152,20 @@ export const NameContainer = styled.div`
     padding: 1% 3%;
   }
 `
+export const MakePrivate = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  justify-content: flex-end;
+`
+export const MakePrivateContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+`
 export const DashboardActions = styled.div`
   display: flex;
   justify-content: flex-end;
