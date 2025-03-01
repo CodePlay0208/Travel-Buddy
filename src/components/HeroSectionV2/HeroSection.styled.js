@@ -153,16 +153,16 @@ export const FlexContainer = styled.div`
   height: ${(props) => props.height || 'auto'};
   position: relative;
   @media (max-width: 1080px) {
-    border-radius: ${(props) =>
-    props.borderRadius ? `${parseFloat(props.borderRadius) * 0.9}px` : '0'};
+    border-radius: ${(props) => (props.borderRadius ? `${parseFloat(props.borderRadius) * 0.9}px` : '0')};
+    gap: ${(props) => (props.gap ? `${parseFloat(props.gap) * 0.8}px` : '5px')};
   }
   @media (max-width: 786px) {
-    border-radius: ${(props) =>
-    props.borderRadius ? `${parseFloat(props.borderRadius) * 0.8}px` : '0'};
+    border-radius: ${(props) => (props.borderRadius ? `${parseFloat(props.borderRadius) * 0.8}px` : '0')};
+    gap: ${(props) => (props.gap ? `${parseFloat(props.gap) * 0.7}px` : '5px')};
   }
   @media (max-width: 440px) {
-    border-radius: ${(props) =>
-    props.borderRadius ? `${parseFloat(props.borderRadius) * 0.7}px` : '0'};
+    border-radius: ${(props) => (props.borderRadius ? `${parseFloat(props.borderRadius) * 0.7}px` : '0')};
+    gap: ${(props) => (props.gap ? `${parseFloat(props.gap) * 0.5}px` : '5px')};
   }
 
   &.main {

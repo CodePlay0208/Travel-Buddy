@@ -26,7 +26,6 @@ export const NewsletterWrapper = styled.div`
 
   @media (max-width: 786px) {
     border-radius: 12px;
-    padding: 2%;
     width: 100%;
   }
 `
@@ -154,6 +153,11 @@ export const NewsletterRight = styled.div`
 
   width: 40%;
   margin-top: 4%;
+  margin-left: 1%;
+  
+  @media (max-width: 786px) {
+    margin-top: 12%;
+  }
 `
 
 export const NewsletterImage = styled.img.attrs({

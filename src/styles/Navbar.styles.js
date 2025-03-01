@@ -6,7 +6,7 @@ const breakpoints = {
   desktop: '1024px',
 }
 export const NavContainer = styled.div`
-  font-size: 2vw;
+  font-size: 4vw;
   padding: ${(props) => (props.isImageNavbar ? `1%` : `0px`)};
   z-index: 1000;
   position: ${(props) => (props.isImageNavbar ? `absolute` : `relative`)};
@@ -19,11 +19,11 @@ export const Nav = styled.nav`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1%;
+  padding: 5%;
 `
 
 export const WebAppNameAndLogo = styled.div`
-  font-weight: 500;
+  font-weight: 600;
   color: #000000;
   font-size: 100%;
   padding: 0.5%;
@@ -50,14 +50,9 @@ export const OtherContentsOfNavBar = styled.div`
   }
 
   @media (max-width: 768px) {
+    width: 50%;
     img {
       max-width: 40px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    img {
-      max-width: 20px;
     }
   }
 `
@@ -83,10 +78,20 @@ export const NavButton = styled.div`
   cursor: pointer;
   margin: 2.5%;
   padding: 1%;
-  width: 70%;
   position: relative;
   &:hover {
     filter: drop-shadow(3px 3px 4px #228be6);
+  }
+  img {
+    display: none;
+  }
+  @media (max-width: 440px) {
+    div {
+      display: none;
+    }
+    img {
+      display: block;
+    }
   }
 `
 
@@ -121,12 +126,6 @@ export const ProfileImageContainer = styled.div`
   @media (max-width: 768px) {
     img {
       max-width: 40px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    img {
-      max-width: 20px;
     }
   }
 `

@@ -43,6 +43,7 @@ import rightArrow from './rightArrow.svg'
 import clear from './clear.svg'
 import NotificationButton from './notificationButton.svg'
 import wishListRed from './wishlistRed.svg'
+import publishTrip from './publishTrip.svg'
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -88,4 +89,5 @@ export const SVG = {
   clear,
   NotificationButton,
   wishListRed,
+  publishTrip,
 }

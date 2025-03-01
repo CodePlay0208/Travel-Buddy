@@ -152,7 +152,8 @@ const Navbar = (props) => {
                 navigate('/publish-trip')
               }}
             >
-              Publish Trip
+              <div>Publish Trip</div>
+              <img src={SVG.publishTrip} alt="publishTrip" />
             </NavButton>
 
             <NavContents onClick={onChatClick}>
