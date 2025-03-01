@@ -220,7 +220,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
                   <Label>Email</Label>
                   {isEditing && (
                     <MakePrivate>
-                      <div style={{ fontSize: '1vw' }}>Make Private</div>
+                      <div style={{ fontSize: '12px' }}>Make Private</div>
 
                       <input
                         type="checkbox"
@@ -248,7 +248,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
                   <Label>Phone Number</Label>
                   {isEditing && (
                     <MakePrivate>
-                      <div style={{ fontSize: '1vw' }}>Make Private</div>
+                      <div style={{ fontSize: '12px' }}>Make Private</div>
 
                       <input
                         type="checkbox"

@@ -125,6 +125,7 @@ export const PublishTripContent = styled.div`
 
   ${media.desktop`
     flex-direction: column;
+    gap:20px;
   `}
 `
 
@@ -188,6 +189,7 @@ export const ToggleBetweenTripUser = styled.div`
     width: 100%;
     height: 30px;
     border-radius: 10px 10px 0 0;
+    
   `}
 
   ${media.tablet`
@@ -195,6 +197,13 @@ export const ToggleBetweenTripUser = styled.div`
     height: 20px;
     border-radius: 5px 5px 0 0;
   `}
+  ${media.mobile`
+    width: 100%;
+    height: 20px;
+    border-radius: 15px 15px 0 0;
+    height: 100%;
+  `}
+  
 `
 
 export const ToggleTab = styled.div`
@@ -219,6 +228,13 @@ export const ToggleTab = styled.div`
 
   ${media.tablet`
     border-radius: 5px 5px 0 0;
+  `}
+  ${media.mobile`
+    font-size: 3.5vw;
+  line-height: 4vw;
+  padding:2%;
+  border-radius: 10px 10px 0 0;
+  
   `}
 `
 

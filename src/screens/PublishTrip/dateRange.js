@@ -39,6 +39,10 @@ const DateRange = ({ startDate, totalDays, onDelete }) => {
     display: flex;
     align-items: center;
     justify-content: center;
+    @media (max-width: 768px) {
+      font-size: 2.5vw;
+    line-height: 3vw;
+    }
   `
 
   return (

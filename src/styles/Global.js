@@ -6,15 +6,16 @@ const GlobalStyles = createGlobalStyle`
 `
 
 export const Label = styled.label`
-  font-weight: 600;
+  font-weight:${(props) => props.fontWeight ?? '500'};
   font-size: ${(props) => props.fontSize ?? '1.5vw'};
-  line-height: 1.4vw;
+  line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 1.1}vw` : '1.5vw')};
   z-index: 2;
   margin: ${(props) => props.margin ?? '2% 0% 1%'};
   color: #252525;
   width: ${(props) => props.width};
   @media (max-width: 786px) {
-    font-size: 3.5vw;
+    line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 2.6}vw` : '3.8vw')};
+    font-size: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 2.5}vw` : '3.5vw')};
   }
 `
 

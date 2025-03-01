@@ -41,7 +41,7 @@ export const LoginForgetPasswordLink = styled.a`
   }
 `
 
-export const LoginSignUpLink = styled.div`
+export const LoginSignUpLink = styled.span`
   text-decoration: none;
   font-size: 1vw;
   margin-left: 2px;

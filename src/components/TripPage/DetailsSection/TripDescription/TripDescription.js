@@ -160,7 +160,7 @@ const TripDescription = (props) => {
       <ChatSectionContainer>
         <ChatSection>
           <ProfileImage>
-            <ProfilePicture src={publisher?.profilePic?.[0] || images.defaultProfileImg} alt="" />
+            <ProfilePicture src={publisher?.profilePic?.[0]?.preSignedUrl || images.defaultProfileImg} alt="" />
             <ProfileName>{publisher?.username}</ProfileName>
           </ProfileImage>
           <GreyLine />

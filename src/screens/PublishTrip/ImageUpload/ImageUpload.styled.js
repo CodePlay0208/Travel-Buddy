@@ -53,11 +53,8 @@ export const DropImage = styled.div`
   z-index: 1;
 
   @media (max-width: 768px) {
-    border-radius: 7px;
   }
   @media (max-width: 500px) {
-    border-radius: 3px;
-    width: 100%;
   }
 `
 
@@ -160,10 +157,10 @@ export const FileUploadBox = styled.div`
   color: black;
 
   @media (max-width: 768px) {
-    border-radius: 4px;
+    border-radius: 40px;
   }
-  @media (max-width: 500px) {
-    border-radius: 2px;
+  @media (max-width: 440px) {
+    border-radius: 20px;
   }
 `
 
@@ -286,16 +283,6 @@ export const PreviewImageRemoveButton = styled.span`
   background-color: #ff0000;
   border-radius: 10px;
 
-  @media (max-width: 768px) {
-    height: 13px;
-    width: 13px;
-    border-radius: 8px;
-  }
-  @media (max-width: 500px) {
-    height: 11px;
-    width: 11px;
-    border-radius: 6px;
-  }
 `
 
 export const UploadContainer = styled.div`

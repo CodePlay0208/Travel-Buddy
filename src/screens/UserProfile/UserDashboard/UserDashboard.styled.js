@@ -39,6 +39,7 @@ export const ProfilePicContainer = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 5%;
   }
 `
 
@@ -50,6 +51,10 @@ export const ProfilePic = styled.div`
   @media (max-width: 786px) {
     width: 300px;
     height: 300px;
+  }
+  @media (max-width: 440px) {
+    width: 180px;
+    height: 180px;
   }
 `
 
@@ -116,6 +121,7 @@ export const UserInfoColumns = styled.div`
     flex-wrap: wrap;
     width: 100%;
     gap: 0%;
+    padding: 8%;
   }
 `
 
@@ -171,6 +177,9 @@ export const DashboardActions = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 2.5%;
+  @media (max-width: 768px) {
+    margin: 2.5%;
+  }
 `
 
 const BaseButton = styled.button`
@@ -192,11 +201,11 @@ const BaseButton = styled.button`
   }
 
   @media (max-width: 786px) {
-    font-size: 2.5vw;
+    font-size: 3vw;
     width: 100%;
-    padding: 1.5%;
+    padding: 2.5%;
     img {
-      width: 1.5vw;
+      width: 4vw;
     }
   }
   &:hover {

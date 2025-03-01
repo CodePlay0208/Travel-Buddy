@@ -6,20 +6,28 @@ const breakpoints = {
   desktop: '1024px',
 }
 export const NavContainer = styled.div`
-  font-size: 4vw;
+  font-size: 2vw;
   padding: ${(props) => (props.isImageNavbar ? `1%` : `0px`)};
   z-index: 1000;
   position: ${(props) => (props.isImageNavbar ? `absolute` : `relative`)};
   width: 100%;
   padding-top: 0;
   box-shadow: ${(props) => (props.isImageNavbar ? `none` : `none`)};
+
+  @media (max-width: 1080px) {
+    font-size: 4vw;
+  }
 `
 export const Nav = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 5%;
+  padding: 3%;
+
+  @media (max-width: 1080px) {
+    padding: 4%;
+  }
 `
 
 export const WebAppNameAndLogo = styled.div`
@@ -36,7 +44,7 @@ export const OtherContentsOfNavBar = styled.div`
   align-items: center;
   color: #fff;
   position: relative;
-  width: 30%;
+  width: 40%;
   font-size: 75%;
   margin-right: 1%;
   gap: 5%;
@@ -76,8 +84,8 @@ export const NavButton = styled.div`
   font-weight: 500;
   text-align: center;
   cursor: pointer;
-  margin: 2.5%;
-  padding: 1%;
+  margin: 0;
+  padding: 3% 5%;
   position: relative;
   &:hover {
     filter: drop-shadow(3px 3px 4px #228be6);
@@ -85,7 +93,8 @@ export const NavButton = styled.div`
   img {
     display: none;
   }
-  @media (max-width: 440px) {
+  @media (max-width: 1080px) {
+    padding: 0%;
     div {
       display: none;
     }

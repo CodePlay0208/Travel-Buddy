@@ -47,7 +47,6 @@ const cardData = [
 const SlidingSection = () => {
   return (
     <Container>
-      
       <Slider cardCount={cardData.length}>
         {cardData.map((card, index) => (
           <Card key={index} background={card.background}>
@@ -58,10 +57,10 @@ const SlidingSection = () => {
         ))}
       </Slider>
       <SliderHeading>
-        <h2 >
+        <h2>
           More than 2500 trips are live <span>&deg;</span>
         </h2>
-        <p  style={{ fontSize: '2vw' }}>Find your amigos and travel now!</p>
+        <p>Find your amigos and travel now!</p>
       </SliderHeading>
     </Container>
   )

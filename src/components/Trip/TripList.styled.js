@@ -30,4 +30,7 @@ export const Heading = styled.h1`
   display: flex;
   padding: 0 6%;
   font-size: 2.5vw;
+  @media (max-width: 768px) {
+    font-size: 5vw;
+  }
 `

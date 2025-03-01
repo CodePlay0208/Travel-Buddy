@@ -20,6 +20,7 @@ export const Container = styled.div`
   margin: 5% 0;
   @media (max-width: 786px) {
     flex-direction: column;
+    margin: 20% 0;
   }
 `
 
@@ -35,7 +36,7 @@ export const SliderHeading = styled.div`
   z-index: 2;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
-
+  font-size: 1vw;
   @media (max-width: 1024px) {
     border-top-right-radius: 70px;
     border-bottom-right-radius: 70px;
@@ -48,13 +49,16 @@ export const SliderHeading = styled.div`
     width: 100%;
   }
   @media (max-width: 480px) {
-
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
   }
 
   h2 {
     margin: 0;
+    font-size: 2vw;
+    @media (max-width: 768px) {
+      font-size: 4vw;
+    }
   }
   span {
     color: red;
@@ -62,6 +66,9 @@ export const SliderHeading = styled.div`
   p {
     margin: 0;
     color: #afafaf;
+    @media (max-width: 768px) {
+      font-size: 2vw;
+    }
   }
 `
 

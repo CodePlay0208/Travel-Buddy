@@ -8,7 +8,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
     <Container>
       <InputRow>
         <InputGroup>
-          <Label fontSize="1vw">Start Location</Label>
+          <Label fontSize="1vw" fontWeight='600'>Start Location</Label>
           <Searchbar
             isReadOnly={isReadOnly}
             inputValues={tripData.startLocation}
@@ -23,7 +23,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           />
         </InputGroup>
         <InputGroup>
-          <Label fontSize="1vw">Destination</Label>
+          <Label fontSize="1vw" fontWeight='600'>Destination</Label>
           <Searchbar
             isReadOnly={isReadOnly}
             inputValues={tripData.destination}
@@ -40,7 +40,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
       </InputRow>
       <InputRow>
         <InputGroup>
-          <Label fontSize="1vw">Minimum Budget</Label>
+          <Label fontSize="1vw" fontWeight='600'>Minimum Budget</Label>
           <Input
             type="text"
             name="minBudget"
@@ -51,7 +51,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           />
         </InputGroup>
         <InputGroup>
-          <Label fontSize="1vw">Maximum Budget</Label>
+          <Label fontSize="1vw" fontWeight='600'>Maximum Budget</Label>
           <Input
             type="text"
             name="maxBudget"
@@ -64,7 +64,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
       </InputRow>
       <InputRow>
         <InputGroup>
-          <Label fontSize="1vw">Description</Label>
+          <Label fontSize="1vw" fontWeight='600'>Description</Label>
           <DescriptionField name="description" value={tripData.description} onChange={handleChange} placeholder="Enter Trip Description" />
         </InputGroup>
       </InputRow>
