@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { City, DropdownContainer, DropdownItem } from './Dropdown.styled.js'
+import { City, DropdownContainer, DropdownItem, FlexContainerCust } from './Dropdown.styled.js'
 import { useNavigate } from 'react-router-dom'
-import { FlexContainer } from '../HeroSectionV2/HeroSection.styled.js'
 import LineBorder from '../../styles/Line.styled.js'
 
 const Dropdown = ({ data, selectSuggestion, setShowDropdown, renderItem, selectable = true }) => {
@@ -24,10 +23,10 @@ const Dropdown = ({ data, selectSuggestion, setShowDropdown, renderItem, selecta
     <DropdownContainer ref={wrapperRef}>
       {data.map((item, index) => (
         <DropdownItem key={index} selectable={selectable} onClick={() => selectSuggestion(item)}>
-          <FlexContainer direction="column" alignItems="start" gap="1%" width="100%" fontSize="min(1.5vw,24px)">
+          <FlexContainerCust direction="column" alignItems="start" gap="1%" width="100%" fontSize="min(1.5vw,24px)">
             {renderItem ? renderItem(item) : <City>{item.value}</City>}
             <LineBorder />
-          </FlexContainer>
+          </FlexContainerCust>
         </DropdownItem>
       ))}
     </DropdownContainer>

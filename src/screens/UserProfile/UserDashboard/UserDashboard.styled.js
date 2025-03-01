@@ -47,8 +47,6 @@ export const ProfilePic = styled.div`
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
-  border-radius: 50%;
-  border: 2.5px solid rgb(0, 199, 176);
   @media (max-width: 786px) {
     width: 300px;
     height: 300px;
@@ -69,7 +67,7 @@ export const ImgProfile = styled.img`
 export const EditPic = styled.img`
   position: absolute;
   right: 0;
-  z-index: 3;
+  z-index: 10;
   bottom: 0;
   width: 30%;
 `

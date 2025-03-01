@@ -190,7 +190,7 @@ const Navbar = (props) => {
             )}
 
             <ProfileImageContainer onClick={handleClickOnProfilePic}>
-              <img src={profilePic?.[0] ? profilePic[0] : SVG.ProfileIcon} alt="Profile" />
+              <img src={profilePic?.[0] ? profilePic[0].preSignedUrl : SVG.ProfileIcon} alt="Profile" />
               {showUserProfileDropDownList && (
                 <Dropdown
                   data={userProfileDropDownData}

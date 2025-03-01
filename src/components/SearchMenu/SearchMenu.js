@@ -32,36 +32,36 @@ const SearchMenu = (props) => {
     <SearchBarContainer>
       <SearchBarWrapper>
         <FlexContainer direction="column" width="100%" gap="0px" alignItems="start">
-          <FlexContainer direction="column" width="100%" gap="0px" margin="2.5% 0 0" alignItems="start">
+          <FlexContainer direction="column" width="100%" gap="0px" margin="3.5% 0 0" alignItems="start">
             <Label margin="0 2.5%">Where</Label>
             <Searchbar
               inputValues={searchForm.destination}
               setInputValues={(value) => handleInputChange('destination', value)}
               onValue={'destination'}
               placeholderValue={'Your Destination'}
-              fontSize={`1.5vw`}
+              fontSize={`1.75vw`}
               fontWeight={`600`}
               dropDownFontSize={'100%'}
               border={'1px solid #ffffff'}
               backgroundColor={'#ffffff'}
-              padding={`0% 2.5% 2.5%`}
+              padding={`2.5% 2.5% 2.5%`}
             />
           </FlexContainer>
         </FlexContainer>
         <VerticalDivider />
         <FlexContainer direction="column" width="100%" gap="0px" alignItems="start">
-          <FlexContainer direction="column" width="100%" gap="0px" margin="2.5% 0 0" alignItems="start">
+          <FlexContainer direction="column" width="100%" gap="0px" margin="3.5% 0 0" alignItems="start">
             <Label margin="0 2.5%">When</Label>
             <DatePicker
               inputValues={searchForm.startDate}
               setInputValues={(value) => handleInputChange('startDate', value)}
               onValue={'startDate'}
               placeholderValue={'Your Arrival & Departure'}
-              fontSize={`1.5vw`}
+              fontSize={`1.75vw`}
               fontWeight={`600`}
               border={'1px solid #ffffff'}
               backgroundColor={'#ffffff'}
-              padding={`0% 2.5% 2.5%`}
+              padding={`2.5% 2.5% 2.5%`}
             />
           </FlexContainer>
         </FlexContainer>

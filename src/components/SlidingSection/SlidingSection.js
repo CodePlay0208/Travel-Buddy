@@ -58,10 +58,10 @@ const SlidingSection = () => {
         ))}
       </Slider>
       <SliderHeading>
-        <h2 style={{ fontSize: '2vw' }}>
+        <h2 >
           More than 2500 trips are live <span>&deg;</span>
         </h2>
-        <p  style={{ fontSize: '1.5vw' }}>Find your amigos and travel now!</p>
+        <p  style={{ fontSize: '2vw' }}>Find your amigos and travel now!</p>
       </SliderHeading>
     </Container>
   )

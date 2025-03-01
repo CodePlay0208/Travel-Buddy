@@ -45,8 +45,10 @@ export const SliderHeading = styled.div`
     border-bottom-right-radius: 50px;
     position: relative;
     height: auto;
+    width: 100%;
   }
   @media (max-width: 480px) {
+
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
   }
@@ -69,6 +71,10 @@ export const Slider = styled.div`
   animation: ${(props) => getSlideAnimation(props.cardCount)} 30s linear infinite;
   position: relative;
   height: 18vw;
+  @media (max-width: 440px) {
+    width: calc(${(props) => props.cardCount} * 60vw);
+    height: 40vw;
+  }
 `
 
 export const Card = styled.div`
@@ -80,6 +86,7 @@ export const Card = styled.div`
   position: relative;
   margin: 0.5%;
   border-radius: 13px;
+  aspect-ratio: 4/3;
 
   @media (max-width: 1024px) {
     border-radius: 10px;
@@ -89,6 +96,7 @@ export const Card = styled.div`
   }
   @media (max-width: 480px) {
     border-radius: 5px;
+    width: 55vw;
   }
 `
 

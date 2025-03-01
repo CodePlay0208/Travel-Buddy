@@ -275,7 +275,10 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
           </UserInfoColumns>
           <ProfilePicContainer>
             <ProfilePic>
-              <ImgProfile src={selectedProfilePic || profile?.profilePic[0] || images.defaultProfileImg} alt="User Profile" />
+              <ImgProfile
+                src={selectedProfilePic || profile?.profilePic?.[0]?.preSignedUrl || images.defaultProfileImg}
+                alt="User Profile"
+              />
               {isEditing && <EditPic src={SVG.editPic} alt="Edit" onClick={() => document.getElementById('profilePicInput').click()} />}
               <input id="profilePicInput" type="file" style={{ display: 'none' }} accept="image/*" onChange={handleProfilePicChange} />
             </ProfilePic>

@@ -5,7 +5,7 @@ export const TripCardContainer = styled.div`
   height: 600px;
   background: #ffffff;
   border: 2px solid #ffffff;
-  box-shadow: 0px 4px 25px 0px #8dd3bb40;
+  box-shadow: 0px 0px 20px 0px #8dd3bb40;
   border-radius: 16px;
   box-sizing: border-box;
   display: flex;
@@ -146,9 +146,9 @@ export const SubTitle = styled.div`
 
 export const Price = styled.div`
   font-family: Montserrat;
-  font-size: 22.16px;
+  font-size: 18px;
   font-weight: 500;
-  line-height: 27.02px;
+  line-height: 25px;
   text-align: left;
 
   color: #191717;
@@ -169,7 +169,7 @@ export const ChatButton = styled.button`
   border-radius: 32px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  font-size: 13.41px;
+  font-size: 13px;
   line-height: 16px;
   color: #292222;
 

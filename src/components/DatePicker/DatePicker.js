@@ -9,6 +9,7 @@ import {
   TodayButton,
   Months,
   Years,
+  HeaderContainer,
 } from '../../styles/DatePicker.styled'
 import { Input } from '../../styles/Global'
 import { SVG } from '../../assets'
@@ -343,13 +344,13 @@ const DatePicker = (props) => {
             <NavButton onClick={handlePrev}>
               <img className="svgIcon" src={SVG.leftArrow} alt="" />
             </NavButton>
-            <div className="header-label" onClick={handleHeaderClick} style={{ cursor: 'pointer', fontSize: 'min(1vw,16px)' }}>
+            <HeaderContainer className="header-label" onClick={handleHeaderClick} >
               {currentView === 'days' && `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`}
               {currentView === 'months' && `${currentDate.getFullYear()}`}
               {currentView === 'years' &&
                 `${Math.floor(currentDate.getFullYear() / 10) * 10} - ${Math.floor(currentDate.getFullYear() / 10) * 10 + 9}`}
               <img className="svgIcon" src={SVG.downArrow} alt="" />
-            </div>
+            </HeaderContainer>
             <NavButton onClick={handleNext}>
               <img className="svgIcon" src={SVG.rightArrow} alt="" />
             </NavButton>

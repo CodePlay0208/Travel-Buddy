@@ -38,7 +38,7 @@ export const TextWrapper = styled.div`
 `
 
 export const Heading = styled.h1`
-  font-size: 3vw;
+  font-size: 3.5vw;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -49,7 +49,7 @@ export const Heading = styled.h1`
   }
 `
 export const PublishHeading = styled.h1`
-  font-size: 3vw;
+  font-size: 3.5vw;
 
   margin: 0;
   color: white;
@@ -58,7 +58,7 @@ export const PublishHeading = styled.h1`
   }
 `
 export const BottomHeading = styled.h1`
-  font-size: 3vw;
+  font-size: 3.5vw;
   bottom: -40%;
   left: 0;
   margin: 10px;
@@ -105,7 +105,7 @@ export const SmallText = styled.span`
   font-weight: 700;
   text-align: left;
 
-  font-size: 3vw;
+  font-size: 3.5vw;
   @media (max-width: 786px) {
     font-size: 6vw;
   }
@@ -119,7 +119,7 @@ export const BackgroundImage = styled.div`
   }
 `
 export const PublishButton = styled.button`
-  font-size: 3vw;
+  font-size: 3.5vw;
   padding: 1%;
   cursor: pointer;
   background-color: #8dd3bb;
@@ -152,6 +152,18 @@ export const FlexContainer = styled.div`
   width: ${(props) => props.width || 'auto'};
   height: ${(props) => props.height || 'auto'};
   position: relative;
+  @media (max-width: 1080px) {
+    border-radius: ${(props) =>
+    props.borderRadius ? `${parseFloat(props.borderRadius) * 0.9}px` : '0'};
+  }
+  @media (max-width: 786px) {
+    border-radius: ${(props) =>
+    props.borderRadius ? `${parseFloat(props.borderRadius) * 0.8}px` : '0'};
+  }
+  @media (max-width: 440px) {
+    border-radius: ${(props) =>
+    props.borderRadius ? `${parseFloat(props.borderRadius) * 0.7}px` : '0'};
+  }
 
   &.main {
     @media (max-width: 786px) {

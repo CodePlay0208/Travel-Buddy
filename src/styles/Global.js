@@ -14,7 +14,7 @@ export const Label = styled.label`
   color: #252525;
   width: ${(props) => props.width};
   @media (max-width: 786px) {
-    font-size: 2.5vw;
+    font-size: 3.5vw;
   }
 `
 
@@ -24,7 +24,7 @@ export const Value = styled.span`
   font-size: 1.5vw;
   color: #112211;
   @media (max-width: 786px) {
-    font-size: 3vw;
+    font-size: 3.5vw;
   }
 `
 export const Input = styled.input`

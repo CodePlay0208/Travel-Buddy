@@ -36,7 +36,7 @@ export const InputFieldContainer = styled.div`
 
   @media (max-width: 786px) {
     border-radius: 20px;
-    font-size: 3vw;
+    font-size: 3.5vw;
   }
 `
 
@@ -48,7 +48,7 @@ export const InputField = styled.input`
   ${({ customInputFieldStyles }) => customInputFieldStyles && css(customInputFieldStyles)}
 
   @media (max-width: 786px) {
-    font-size: 3vw;
+    font-size: 3.5vw;
   }
 `
 

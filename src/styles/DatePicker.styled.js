@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
+const breakpoints = {
+  mobile: '480px',
+  tablet: '786px',
+  desktop: '1024px',
+}
+
 export const DatePickerWrapper = styled.div`
   box-sizing: border-box;
   position: relative;
@@ -135,6 +141,16 @@ export const CalendarHeader = styled.div`
   }
 `
 
+export const HeaderContainer = styled.div`
+  cursor: pointer;
+  font-size: min(1vw, 16px);
+  @media (max-width: ${breakpoints.tablet}) {
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 16px;
+  }
+`
 export const NavButton = styled.span`
   position: relative;
   cursor: pointer;

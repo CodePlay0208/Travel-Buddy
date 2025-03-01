@@ -45,6 +45,12 @@ export const SearchButtonContainer = styled.div`
       aspect-ratio: 1;
     }
   }
+  @media (max-width: 440px) {
+    img {
+      width: 12vw;
+      aspect-ratio: 1;
+    }
+  }
 `
 
 export const SearchButton = styled.div`

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { FlexContainer } from '../HeroSectionV2/HeroSection.styled'
 
 const breakpoints = {
   mobile: '480px',
@@ -22,6 +23,13 @@ export const DropdownContainer = styled.div`
     border-radius: 5px;
   }
 `
+export const FlexContainerCust = styled(FlexContainer)`
+  @media (max-width: ${breakpoints.tablet}) {
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 4vw;
+  }
+`
 
 export const DropdownItem = styled.div`
   font-family: 'Montserrat', sans-serif;
@@ -38,7 +46,7 @@ export const DropdownItem = styled.div`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color:${(props)=>(props.selectable?"#f1f1f1":"#ffffff")};
+    background-color: ${(props) => (props.selectable ? '#f1f1f1' : '#ffffff')};
   }
   @media (max-width: ${breakpoints.tablet}) {
     border-radius: 5px;

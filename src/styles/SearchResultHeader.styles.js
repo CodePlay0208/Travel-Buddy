@@ -67,7 +67,7 @@ export const HeaderDescription = styled.div`
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    margin: 5%;
+    margin: 15%;
     width: 95%;
   }
 `
@@ -80,7 +80,7 @@ export const HeaderDesHeading = styled.div`
   font-size: 6vw;
   color: #8dd3bb;
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 8vw;
+    font-size: 13vw;
   }
 `
 
@@ -92,6 +92,9 @@ export const HeaderDesPara = styled.div`
 
   font-size: 2vw;
   color: #000000;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 3.5vw;
+  }
 `
 
 export const HeaderNavRightLogin = styled.div`

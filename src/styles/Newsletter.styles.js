@@ -122,7 +122,7 @@ export const EmailInput = styled.input`
   margin: 2.5%;
 
   @media (max-width: 786px) {
-    font-size: 3vw;
+    font-size: 3.5vw;
   }
 `
 
