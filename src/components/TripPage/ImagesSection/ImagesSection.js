@@ -42,7 +42,7 @@ const ImageSection = (props) => {
           <MainImage src={images[0].preSignedUrl} alt="Main Image" />
           <RightImages>
             {images.slice(1).map((image, index) => (
-              <ImageItem key={index} src={image} alt={`Image ${index + 2}`} />
+              <ImageItem key={index} src={image.preSignedUrl} alt={`Image ${index + 2}`} />
             ))}
           </RightImages>
         </ImageRow>

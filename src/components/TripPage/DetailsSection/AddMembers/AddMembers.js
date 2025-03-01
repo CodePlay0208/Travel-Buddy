@@ -132,6 +132,7 @@ const AddMembers = (props) => {
               <CardContainer key={item.userId || index}>
                 <DeleteButton src={SVG.deleteCross} onClick={() => handleDeclineRequest(item.userId)} />
                 <DetailBox
+                  id={item._id}
                   heading={item.username}
                   body={
                     <RequestButtonContainer>
@@ -160,6 +161,7 @@ const AddMembers = (props) => {
                 <DeleteButton src={SVG.deleteMin} onClick={() => handleRemoveMember(item.userId)} />
               )}
               <DetailBox
+                id={item._id}
                 heading={item.username}
                 body={item.userId === currentTrip?.userId ? 'Host' : 'Traveller'}
                 profilePic={images.defaultProfileImg}

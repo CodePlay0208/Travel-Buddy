@@ -10,6 +10,7 @@ import TripPage from './components/TripPage/TripPage'
 import UserProfile from './screens/UserProfile/UserProfile'
 import UserTrips from './screens/UserTrips/UserTrips'
 import SetupPage from './screens/AuthFlow/setupPage'
+import PublicUser from './screens/UserProfile/UserDashboard/PublicUser'
 
 export const routes = [
   {
@@ -48,6 +49,11 @@ export const routes = [
   {
     path: '/trip/:id',
     element: <TripPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/user/:id',
+    element: <PublicUser />,
     isPrivate: false,
   },
   {

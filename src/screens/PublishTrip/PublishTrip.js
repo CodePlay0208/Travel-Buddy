@@ -123,12 +123,13 @@ const PublishTrip = (props) => {
   const handleEditTripSubmit = useCallback(async () => {
     const formDataImages = new FormData()
     tripData.destinationImages?.forEach((image) => {
-      formDataImages.append('destinationImages', image.file ?? image.preSignedUrl)
+      if (image.file) formDataImages.append('destinationImages', image.file)
     })
+    let removedImages = []
     ;(Array.isArray(tripData.removedDestinationImages) ? tripData.removedDestinationImages : []).forEach((image) => {
-      formDataImages.append('removedDestinationImages', image.preSignedUrl || image.file)
+      removedImages.push(image.object)
     })
-
+    formDataImages.append('removedDestinationImages', JSON.stringify(removedImages))
     const tripDetails = {
       ...tripData,
       tripDates: { startDate: tripData.startDate, endDate: tripData.endDate },

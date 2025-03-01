@@ -94,7 +94,7 @@ const ImageOverlay = ({ images, overlay, setOverlay, currentIndex }) => {
         >
           {images.map((image, index) => (
             <div key={index}>
-              <StyledImage src={image} alt={`carousel-${index}`} />
+              <StyledImage src={image.preSignedUrl} alt={`carousel-${index}`} />
             </div>
           ))}
         </CustomCarousel>

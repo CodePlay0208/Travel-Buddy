@@ -43,7 +43,7 @@ const mapStateToProps = (state) => ({
   loading: state.profileReducer.loading,
 })
 
-const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) => {
+const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, userId }) => {
   const navigate = useNavigate()
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({})
@@ -54,11 +54,17 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
   const [showGenderDropDown, setShowGenderDropDown] = useState(false)
 
   useEffect(() => {
-    getProfile()
+    if (!userId) {
+      getProfile()
+    }
   }, [getProfile])
 
   useEffect(() => {
-    setFormData(profile)
+    if (userId) {
+      getProfile(userId)
+    } else {
+      setFormData(profile)
+    }
   }, [profile])
 
   const handleChange = (e) => {
@@ -77,7 +83,6 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
   }
 
   const handleSave = async () => {
-
     try {
       if (imageFile) {
         const formDataNew = new FormData()
@@ -235,7 +240,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile }) =>
                 {isEditing ? (
                   <Input name="emailId" value={formData.emailId || ''} onChange={handleChange} />
                 ) : (
-                  <Value>{profile?.emailId ?? "NA"}</Value>
+                  <Value>{profile?.emailId ?? 'NA'}</Value>
                 )}
               </UserInfoItem>
               <UserInfoItem>
