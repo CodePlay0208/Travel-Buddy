@@ -47,6 +47,8 @@ export const ProfilePic = styled.div`
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
+  border-radius: 50%;
+  border: 2.5px solid rgb(0, 199, 176);
   @media (max-width: 786px) {
     width: 300px;
     height: 300px;
@@ -147,7 +149,7 @@ export const NameContainer = styled.div`
   align-items: center;
   width: 100%;
   margin: 4% 0;
-  
+
   @media (max-width: 786px) {
     margin: 2% 0;
     padding: 1% 3%;
