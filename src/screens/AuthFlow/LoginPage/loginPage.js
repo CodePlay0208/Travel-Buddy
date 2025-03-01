@@ -201,15 +201,16 @@ const LoginPage = (props) => {
                     <ContinueWithText>Log In With Google</ContinueWithText>
                   </ButtonAlt>
 
-                  <ButtonAlt
-                    role="button"
-                    onClick={() => {
-                      setIsEmail(!isEmail)
-                    }}
-                  >
-                    <ImageGoogleIcon src={images.phone_icon_black} alt="Log In With Phone" />
-                    <ContinueWithText>Log In With {!isEmail ? 'Email' : 'Phone number'}</ContinueWithText>
-                  </ButtonAlt>
+                  <FormSubHeadingText border='none'>
+                    Log In With
+                    <LoginSignUpLink
+                      onClick={() => {
+                        setIsEmail(!isEmail)
+                      }}
+                    >
+                      {!isEmail ? 'Email' : 'Phone number'}
+                    </LoginSignUpLink>
+                  </FormSubHeadingText>
                 </LoginButtonsContainer>
               </Form>
               <SupportingImg src={images.verify_code_image} alt="supporting" />
