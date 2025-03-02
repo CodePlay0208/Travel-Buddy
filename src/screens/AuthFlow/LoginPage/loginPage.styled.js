@@ -113,7 +113,7 @@ export const AuthDesignImage = styled.img`
 
 export const LoginButtonsContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 2rem;
 
   @media (max-width: 786px) {
