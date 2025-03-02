@@ -86,7 +86,7 @@ export const NewsletterText = styled.div`
 
 export const NewsletterForm = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 5%;
 
   @media (max-width: 786px) {
@@ -154,7 +154,7 @@ export const NewsletterRight = styled.div`
   width: 40%;
   margin-top: 4%;
   margin-left: 1%;
-  
+
   @media (max-width: 786px) {
     margin-top: 12%;
   }

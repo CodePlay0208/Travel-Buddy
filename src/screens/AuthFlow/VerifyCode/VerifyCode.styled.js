@@ -22,16 +22,16 @@ export const VerifyCodeResendText = styled.p`
   margin-left: 5px;
   font-size: 1vw;
   font-weight: 500;
-  color: #ff8682;
+  color: #8DD3BB;
   cursor: pointer;
   padding: 0px 1px;
 
   &:hover {
-    color: #e14944;
+    color: #57caa1;
   }
 
   &:active {
-    color: #ca2c27;
+    color: #6eddb6;
     transform: scale(0.98);
   }
 

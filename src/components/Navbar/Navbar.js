@@ -59,7 +59,6 @@ const Navbar = (props) => {
       }
     } else {
       logout()
-      navigate('/')
     }
   }, [])
   const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)

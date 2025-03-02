@@ -44,7 +44,7 @@ export const OtherContentsOfNavBar = styled.div`
   align-items: center;
   color: #fff;
   position: relative;
-  width: 40%;
+  width: 32%;
   font-size: 75%;
   margin-right: 1%;
   gap: 5%;
@@ -57,6 +57,12 @@ export const OtherContentsOfNavBar = styled.div`
     object-fit: cover;
   }
 
+  @media (max-width: 1080) {
+    width: 40%;
+    img {
+      max-width: 40px;
+    }
+  }
   @media (max-width: 768px) {
     width: 50%;
     img {

@@ -60,4 +60,7 @@ export const City = styled.div`
   margin: 1% 0;
   font-size: 1.25vw;
   color: #009965;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 4vw;
+  }
 `

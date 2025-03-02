@@ -86,6 +86,11 @@ export const DescriptionField = styled.textarea`
     font-size: 2vw;
     border-radius: 20px;
   `}
+  ${media.mobile`
+    padding: 2% 2.5%;
+    font-size: 2vw;
+    border-radius: 20px;
+  `}
 `
 
 export const PublishTripContainer = styled.div`
@@ -100,6 +105,9 @@ export const PublishTripContainer = styled.div`
   ${media.desktop`
     padding: 5%;
   `}
+  ${media.mobile`
+   padding:0;
+  `}
 `
 
 export const PublishTripHeading = styled.div`
@@ -112,8 +120,13 @@ export const PublishTripHeading = styled.div`
 
   ${media.desktop`
     font-size: 5vw;
-    padding-left: 0;
-    text-align: center;
+    padding-bottom:5%;
+    text-align: left;
+  `}
+  ${media.mobile`
+    font-size: 6vw;
+    padding:6% 0;
+    text-align: left;
   `}
 `
 
@@ -125,7 +138,11 @@ export const PublishTripContent = styled.div`
 
   ${media.desktop`
     flex-direction: column;
+    padding: 0px;
     gap:20px;
+  `}
+  ${media.desktop`
+    padding: 0px;
   `}
 `
 
@@ -137,6 +154,9 @@ export const PublishTripLeftSection = styled.div`
 
   ${media.desktop`
     width: 100%;
+  `}
+  ${media.mobile`
+    margin-right: 0;
   `}
 `
 
@@ -203,7 +223,6 @@ export const ToggleBetweenTripUser = styled.div`
     border-radius: 15px 15px 0 0;
     height: 100%;
   `}
-  
 `
 
 export const ToggleTab = styled.div`

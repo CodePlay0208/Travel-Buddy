@@ -58,7 +58,7 @@ const SlidingSection = () => {
       </Slider>
       <SliderHeading>
         <h2>
-          More than 2500 trips are live <span>&deg;</span>
+          Travel and Make Friends<span>&deg;</span>
         </h2>
         <p>Find your amigos and travel now!</p>
       </SliderHeading>

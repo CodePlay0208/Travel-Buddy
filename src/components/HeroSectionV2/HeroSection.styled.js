@@ -35,6 +35,9 @@ export const TextWrapper = styled.div`
   border-radius: ${(props) => props.borderRadius || '0'};
   background-color: ${(props) => (props.backgroundColor ? `${props.backgroundColor}` : 'white')};
   aspect-ratio: 1;
+  @media (max-width: 440px) {
+    color: white;
+  }
 `
 
 export const Heading = styled.h1`
