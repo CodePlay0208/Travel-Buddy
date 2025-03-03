@@ -36,7 +36,7 @@ const mapStateToProps = (state) => ({
 })
 
 const LoginPage = (props) => {
-  const { login, isAuthenticated } = props
+  const { login, isAuthenticated, loadUser } = props
   const [formData, setFormData] = useState({
     phone: '',
     email: '',
@@ -201,7 +201,7 @@ const LoginPage = (props) => {
                     <ContinueWithText>Log In With Google</ContinueWithText>
                   </ButtonAlt>
 
-                  <FormSubHeadingText border='none'>
+                  <FormSubHeadingText border="none">
                     Log In With
                     <LoginSignUpLink
                       onClick={() => {
