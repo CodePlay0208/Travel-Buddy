@@ -42,7 +42,7 @@ const AddMembers = (props) => {
     if (currentTrip.tripId) {
       getTripById(currentTrip.tripId)
     }
-  }, [getTripById, currentTrip.tripId])
+  }, [getTripById, currentTrip?.tripId])
 
   const [areMembersExpanded, setAreMembersExpanded] = useState(false)
   const [areRequestsExpanded, setAreRequestsExpanded] = useState(false)

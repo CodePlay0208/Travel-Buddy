@@ -23,14 +23,12 @@ export const MapImage = styled.div`
   background: url(${backgroundImage}) no-repeat center;
   background-size: cover;
   width: 100%;
-  height: 60vh;
+  aspect-ratio: 4/3;
   border-radius: 10px;
 
   @media (max-width: 1080px) {
-    height: 40vh;
   }
   @media (max-width: 440px) {
-    height: 30vh;
   }
 `
 
