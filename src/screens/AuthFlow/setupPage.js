@@ -4,7 +4,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import { connect } from 'react-redux'
 import { register } from '../../actions/auth.action'
 
-import { images } from '../../assets'
+import { images, SVG } from '../../assets'
 import {
   Container,
   FormAndCopyrightContainer,
@@ -20,14 +20,21 @@ import {
   SupportingImg,
   VerifyCodeFormInputsContainer,
   LabelCust,
+  ProfilePic,
+  ProfileImage,
+  EditPic,
+  ProfileContainer,
+  SetupPageSkip,
 } from './AuthFlow.styled'
 import InputComponent from '../../components/InputComponent/InputComponent'
 import Copyright from '../../components/Copyright/Copyright'
-import { InputFieldsContainer } from './LoginPage/loginPage.styled'
+import { InputFieldsContainer, LoginSignUpLink } from './LoginPage/loginPage.styled'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import { Input, Label } from '../../styles/Global'
 import DatePicker from '../../components/DatePicker/DatePicker'
 import { updateProfile } from '../../actions/profile.action'
+import { InputLabel } from '../../components/InputComponent/InputComponent.styled'
+import { VerifyCodeResendText } from './VerifyCode/VerifyCode.styled'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
@@ -39,6 +46,9 @@ const SetupPage = (props) => {
   const navigate = useNavigate()
   const location = useLocation()
 
+  const [imageFile, setImageFile] = useState(null)
+
+  const [selectedProfilePic, setSelectedProfilePic] = useState(null)
   const [showPersonaDropDown, setShowPersonaDropDown] = useState(false)
   const [showGenderDropDown, setShowGenderDropDown] = useState(false)
 
@@ -50,16 +60,37 @@ const SetupPage = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     const updatedFormData = {
       ...formData,
       persona: formData.persona.toLowerCase(),
       gender: formData.gender.toLowerCase(),
     }
-    await updateProfile(updatedFormData)
+    if (imageFile) {
+      const formDataNew = new FormData()
+      formDataNew.append('profilePic', imageFile)
+      Object.entries(updatedFormData).forEach(([key, value]) => {
+        formDataNew.append(key, value)
+      })
+      await updateProfile(formDataNew, true)
+    } else {
+      await updateProfile(updatedFormData)
+    }
 
     navigate('/')
   }
 
+  const handleProfilePicChange = (e) => {
+    const file = e.target.files[0]
+    setImageFile(file)
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        setSelectedProfilePic(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prevData) => ({
@@ -87,7 +118,7 @@ const SetupPage = (props) => {
               <Form onSubmit={handleSubmit}>
                 <InputFieldsContainer>
                   <InputFieldsContainer>
-                    <LabelCust>Persona</LabelCust>
+                    <InputLabel>Persona</InputLabel>
                     <Input
                       name="persona"
                       value={formData?.persona || ''}
@@ -111,7 +142,7 @@ const SetupPage = (props) => {
                     )}
                   </InputFieldsContainer>
                   <InputFieldsContainer>
-                    <LabelCust>Gender</LabelCust>
+                    <InputLabel>Gender</InputLabel>
                     <Input
                       name="gender"
                       value={formData?.gender || ''}
@@ -135,7 +166,7 @@ const SetupPage = (props) => {
                     )}
                   </InputFieldsContainer>
                   <InputFieldsContainer>
-                    <LabelCust>Date of Birth</LabelCust>
+                    <InputLabel>Date of Birth</InputLabel>
                     <DatePicker
                       pickerType="dob"
                       inputValues={formData.dateOfBirth}
@@ -152,11 +183,27 @@ const SetupPage = (props) => {
                 </InputFieldsContainer>
 
                 <MainButtonAuth onClick={handleSubmit} type="submit">
-                  Save your Profile 
+                  Save your Profile
                 </MainButtonAuth>
               </Form>
-              <SupportingImg src={images.verify_code_image} alt="supporting" />
+              <ProfileContainer>
+                <InputLabel>Profile</InputLabel>
+                <ProfilePic>
+                  <ProfileImage src={selectedProfilePic || images.defaultProfileImg} alt="User Profile" />
+                  {<EditPic src={SVG.editPic} alt="Edit" onClick={() => document.getElementById('profilePicInput').click()} />}
+                  <input id="profilePicInput" type="file" style={{ display: 'none' }} accept="image/*" onChange={handleProfilePicChange} />
+                </ProfilePic>
+              </ProfileContainer>
             </VerifyCodeFormInputsContainer>
+            <FormSubHeadingText border="none">
+              <SetupPageSkip
+                onClick={() => {
+                  navigate('/')
+                }}
+              >
+                Skip Setup
+              </SetupPageSkip>
+            </FormSubHeadingText>
           </FormContainer>
         </FormAndTitleContainer>
         <Copyright />

@@ -36,6 +36,53 @@ export const TitleContainer = styled.div`
 export const FormContainer = styled.div`
   margin: 3% 5% 3% 7%;
 `
+export const ProfileImage = styled.img`
+  border-radius: 50%;
+  border-radius: 50%;
+  width: 90%;
+  object-fit: cover;
+  aspect-ratio: 1;
+`
+export const EditPic = styled.img`
+  position: absolute;
+  right: 5%;
+  z-index: 10;
+  bottom: 5%;
+  width: 20%;
+`
+export const ProfileContainer = styled.div`
+  width: 30%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (max-width: 786px) {
+    width: 80%;
+  }
+
+  @media (max-width: 450px) {
+    width: 100%;
+  }
+`
+export const ProfilePic = styled.div`
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border: 2px solid #6ecead;
+
+  @media (max-width: 786px) {
+    border-radius: 50%;
+  }
+
+  @media (max-width: 450px) {
+    width: 100%;
+    border-radius: 50%;
+  }
+`
 
 export const BackButtonContainer = styled.div`
   display: flex;
@@ -84,6 +131,26 @@ export const Form = styled.form`
 export const BackButtonText = styled.p`
   margin-left: 1%;
   font-size: 1vw;
+
+  @media (max-width: 786px) {
+    font-size: 2vw;
+  }
+`
+export const SetupPageSkip = styled.div`
+  color: #009965;
+  font-size: 0.9vw;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0px 1px;
+
+  &:hover {
+    color: #57caa1;
+  }
+
+  &:active {
+    color: #6eddb6;
+    transform: scale(0.98);
+  }
 
   @media (max-width: 786px) {
     font-size: 2vw;
