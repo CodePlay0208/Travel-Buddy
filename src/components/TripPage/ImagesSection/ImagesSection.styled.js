@@ -14,6 +14,9 @@ export const ImageSectionWrapper = styled.div`
   justify-content: center;
   position: relative;
   margin: 5% auto;
+  @media (max-width: 440px) {
+    aspect-ratio: 4/3;
+  }
 `
 
 export const ImageRow = styled.div`
@@ -34,12 +37,27 @@ export const MainImage = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
+  @media (max-width: 440px) {
+    width: 100%;
+  }
+`
+export const RightImage = styled.img`
+  width: calc(50% - 0.6%);
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  @media (max-width: 440px) {
+    display: none;
+  }
 `
 
 export const RightImages = styled.div`
   width: calc(50% - 0.6%);
   display: flex;
   gap: 2.4%;
+  @media (max-width: 440px) {
+    display: none;
+  }
 `
 
 export const ImageItem = styled.img`
@@ -79,19 +97,24 @@ export const LRSection = styled.div`
 
 export const ShowAllPhotos = styled.button`
   position: absolute;
-  right: 1%;
-  bottom: 2.5%;
-  background-color: white;
+  right: 2.5%;
+  bottom: 5%;
+  background-color: #ffffffb5;
   border: none;
-  border-radius: 7.5px;
+  border-radius: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1%;
+  padding: 2%;
   width: 17.5%;
   font-size: min(24px, 1vw);
   img {
     width: 10%;
     aspect-ratio: 1;
+    margin: 0 1% 0 0%;
+  }
+  @media (max-width: 440px) {
+    width: 27%;
+    font-size: min(24px, 2vw);
   }
 `

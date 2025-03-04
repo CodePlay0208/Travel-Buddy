@@ -46,7 +46,7 @@ const PopularSection = (props) => {
   return (
     <PopularTripContainer>
       <PopularTripHeading
-        margin={props?.margin ? props.margin : `5% 10% 0 5%`}
+        margin={props?.margin ? props.margin : `5% 0 0 5%`}
         fontSize={props?.fontSize ? props.fontSize : `100%`}
         padding={props?.padding ? props.padding : '30px 0'}
       >

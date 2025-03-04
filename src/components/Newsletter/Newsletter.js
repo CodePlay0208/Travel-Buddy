@@ -42,7 +42,6 @@ const Newsletter = ({ subscribeNewsletter }) => {
                 const { value } = e.target
                 setEmail(value)
               }}
-              padding='4%'
               margin='2% 0'
             />
             <NewsletterButton

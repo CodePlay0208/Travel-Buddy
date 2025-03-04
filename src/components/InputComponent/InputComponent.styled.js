@@ -21,6 +21,10 @@ export const InputLabel = styled.p`
   @media (max-width: 786px) {
     font-size: 2vw;
   }
+  
+  @media (max-width: 440px) {
+    font-size: 3vw;
+  }
 `
 
 export const InputFieldContainer = styled.div`

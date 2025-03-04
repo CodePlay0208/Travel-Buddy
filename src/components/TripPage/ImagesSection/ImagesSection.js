@@ -12,6 +12,7 @@ import {
   LRSection,
   ShowAllPhotos,
   Container,
+  RightImage,
 } from './ImagesSection.styled'
 import ImageOverlay from '../../ImageOverlay/ImageOverlay'
 import { SVG } from '../../../assets'
@@ -31,9 +32,8 @@ const ImageSection = (props) => {
     if (images.length === 2) {
       return (
         <ImageRow className="two-images">
-          {images.map((image, index) => (
-            <MainImage key={index} src={image.preSignedUrl} alt={`Image ${index + 1}`} />
-          ))}
+          <MainImage src={images[0].preSignedUrl} alt="Main Image" />
+          <RightImage src={images[1].preSignedUrl} alt="Main Image" />
         </ImageRow>
       )
     } else if (images.length === 3) {

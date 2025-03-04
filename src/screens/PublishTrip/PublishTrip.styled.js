@@ -43,6 +43,9 @@ export const Container = styled.div`
   padding: 5%;
   box-shadow: 0px 0px 8px 0px #0000001a;
   border-radius: 10px;
+  @media (max-width: 440px) {
+    padding: 10% 5%;
+  }
 `
 
 export const InputField = styled.input`
@@ -62,6 +65,7 @@ export const InputField = styled.input`
 
   ${media.tablet`
     border-radius: 3px;
+    
   `}
 `
 
@@ -88,8 +92,9 @@ export const DescriptionField = styled.textarea`
   `}
   ${media.mobile`
     padding: 2% 2.5%;
-    font-size: 2vw;
+    font-size: 3vw;
     border-radius: 20px;
+    
   `}
 `
 
@@ -125,7 +130,7 @@ export const PublishTripHeading = styled.div`
   `}
   ${media.mobile`
     font-size: 6vw;
-    padding:6% 0;
+    padding:10% 0;
     text-align: left;
   `}
 `
@@ -187,6 +192,9 @@ export const InputGroup = styled.div`
 
   ${media.desktop`
     margin: 0 0 10px 0;
+  `}
+  ${media.mobile`
+    margin: 0 0 20px 0 ;
   `}
 `
 

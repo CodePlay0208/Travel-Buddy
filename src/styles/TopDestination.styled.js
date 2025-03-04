@@ -4,9 +4,13 @@ import firstImage from '../data/image.png'
 export const Frame = styled.div`
   position: relative;
   width: 100%;
-  margin: 20% auto;
+  margin: 10% auto;
   padding-top: 20px;
   padding-bottom: 20px;
+  
+  @media (max-width: 440px) {
+    margin: 20% auto;
+  }
 `
 
 export const BackgroundImage = styled.img`

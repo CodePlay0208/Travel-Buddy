@@ -12,6 +12,10 @@ export const VerifyCodeDidntRecieveText = styled.p`
   @media (max-width: 786px) {
     font-size: 2vw;
   }
+
+  @media (max-width: 440px) {
+    font-size: 3vw;
+  }
 `
 
 export const VerifyCodeResendLink = styled.div`
@@ -37,6 +41,10 @@ export const VerifyCodeResendText = styled.p`
 
   @media (max-width: 786px) {
     font-size: 2vw;
+  }
+
+  @media (max-width: 440px) {
+    font-size: 3vw;
   }
 `
 

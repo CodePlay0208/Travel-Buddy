@@ -44,7 +44,7 @@ export const OtherContentsOfNavBar = styled.div`
   align-items: center;
   color: #fff;
   position: relative;
-  width: 32%;
+  width: 35%;
   font-size: 75%;
   margin-right: 1%;
   gap: 5%;

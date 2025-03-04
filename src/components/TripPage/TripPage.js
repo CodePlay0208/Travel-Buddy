@@ -90,7 +90,7 @@ const TripPage = (props) => {
         />
         <ToastContainer />
       </Container>
-      <PopularSection title="Similar Trip" margin={`0 6.5%`} padding={`10px 0`} fontSize={`4vw`} />
+      <PopularSection title="Similar Trip"  />
       <Footer />
     </>
   )

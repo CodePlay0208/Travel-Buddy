@@ -7,7 +7,6 @@ export const PopularTripContainer = styled.div`
   background-size: contain;
   background-position: -30px;
   background-repeat: no-repeat;
-  font-size: 5.2vw;
   position: relative;
   @media (max-width: 440px) {
     margin: 5% 0 15%;
@@ -24,6 +23,7 @@ export const PopularButtonDiv = styled.div`
 export const PopularTripHeading = styled.div`
   display: flex;
   justify-content: space-between;
+  
   margin: ${(props) => props.margin};
   padding: 3% 0;
   flex-wrap: wrap;
@@ -56,18 +56,22 @@ export const PopularTripContent = styled.div`
 `
 
 export const PopularHeadingLeft = styled.div`
-  font-family: 'Inter', sans-serif;
-  font-size: 70%;
+  
+  font-size: 4vw;
   font-weight: 600;
   line-height: 66px;
   text-align: left;
+  
+  @media (max-width: 440px) {
+    font-size: 5vw;
+  }
 `
 
 export const PopularHeadingRight = styled.div`
   justify-content: space-between;
   display: flex;
   align-items: center;
-  width: 50%;
+  width: 25%;
 
   .left {
     background-color: white;
@@ -76,6 +80,7 @@ export const PopularHeadingRight = styled.div`
   }
   @media (max-width: 440px) {
     position: absolute;
+    width: 50%;
     top: 100%;
     left: 50%;
     transform: translateX(-50%);

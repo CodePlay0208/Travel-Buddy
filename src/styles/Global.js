@@ -6,7 +6,7 @@ const GlobalStyles = createGlobalStyle`
 `
 
 export const Label = styled.label`
-  font-weight:${(props) => props.fontWeight ?? '500'};
+  font-weight: ${(props) => props.fontWeight ?? '500'};
   font-size: ${(props) => props.fontSize ?? '1.5vw'};
   line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 1.1}vw` : '1.5vw')};
   z-index: 2;
@@ -16,6 +16,11 @@ export const Label = styled.label`
   @media (max-width: 786px) {
     line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 2.6}vw` : '3.8vw')};
     font-size: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 2.5}vw` : '3.5vw')};
+  }
+  
+  @media (max-width: 440px) {
+    line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 3.6}vw` : '4vw')};
+    font-size: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 3.5}vw` : '4vw')};
   }
 `
 
@@ -57,6 +62,20 @@ export const Input = styled.input`
     }
   }
 
+  @media (max-width: 440px) {
+    font-size: ${(props) => {
+      const fontSize = parseFloat(props.fontSize)
+      return fontSize ? `${fontSize * 3}vw` : '3vw'
+    }};
+
+    &&::placeholder {
+      color: #787878;
+      font-size: ${(props) => {
+        const fontSize = parseFloat(props.fontSize)
+        return fontSize ? `${fontSize * 3}vw` : '3vw'
+      }};
+    }
+  }
   ::placeholder {
     color: #787878;
     font-size: ${(props) => props.fontSize ?? '1vw'};

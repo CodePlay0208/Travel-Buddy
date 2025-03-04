@@ -63,6 +63,10 @@ export const LoginSignUpLink = styled.span`
   @media (max-width: 786px) {
     font-size: 2vw;
   }
+  
+  @media (max-width: 440px) {
+    font-size: 3vw;
+  }
 `
 
 export const Divider = styled.div`

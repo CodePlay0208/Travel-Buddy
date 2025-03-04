@@ -83,24 +83,28 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
   }
 
   const handleSave = async () => {
-    try {
-      if (imageFile) {
-        const formDataNew = new FormData()
-        formDataNew.append('profilePic', imageFile)
-        Object.entries(formData).forEach(([key, value]) => {
-          formDataNew.append(key, value)
-        })
-        await updateProfile(formDataNew, true)
+    if (imageFile) {
+      const formDataNew = new FormData()
+      formDataNew.append('profilePic', imageFile)
+      Object.entries(formData).forEach(([key, value]) => {
+        formDataNew.append(key, value)
+      })
+      const res = await updateProfile(formDataNew, true)
+      if (res) {
+        toast.success('Profile updated successfully!', { autoClose: 1500 })
       } else {
-        await updateProfile(formData)
+        toast.error('Failed to update profile. Please try again.', { autoClose: 1500 })
       }
-      toast.success('Profile updated successfully!', { autoClose: 1500 })
-      setIsEditing(false)
-      setSelectedProfilePic(null)
-    } catch (e) {
-      toast.error('Failed to update profile. Please try again.', { autoClose: 1500 })
-      console.error('Error updating profile:', e)
+    } else {
+      const res = await updateProfile(formData)
+      if (res) {
+        toast.success('Profile updated successfully!', { autoClose: 1500 })
+      } else {
+        toast.error('Failed to update profile. Please try again.', { autoClose: 1500 })
+      }
     }
+    setIsEditing(false)
+    setSelectedProfilePic(null)
   }
   const handleCancel = () => {
     setIsEditing(false)

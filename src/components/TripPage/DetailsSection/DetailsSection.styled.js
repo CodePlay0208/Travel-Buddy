@@ -4,6 +4,9 @@ export const SectionContainer = styled.div`
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  @media (max-width: 440px) {
+    margin: 10% 0;
+  }
 `
 
 export const Title = styled.div`

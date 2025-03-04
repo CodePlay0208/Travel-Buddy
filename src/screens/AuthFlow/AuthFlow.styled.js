@@ -35,6 +35,10 @@ export const TitleContainer = styled.div`
 
 export const FormContainer = styled.div`
   margin: 3% 5% 3% 7%;
+  
+  @media (max-width: 440px) {
+    margin: 10% 5%;
+  }
 `
 export const ProfileImage = styled.img`
   border-radius: 50%;
@@ -61,7 +65,8 @@ export const ProfileContainer = styled.div`
     width: 80%;
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 440px) {
+    padding: 10%;
     width: 100%;
   }
 `
@@ -78,7 +83,7 @@ export const ProfilePic = styled.div`
     border-radius: 50%;
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 440px) {
     width: 100%;
     border-radius: 50%;
   }
@@ -115,9 +120,10 @@ export const SupportingImg = styled.img`
     border-radius: 10px;
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 440px) {
     width: 100%;
     border-radius: 5px;
+    padding: 10%;
   }
 `
 export const Form = styled.form`
@@ -155,6 +161,12 @@ export const SetupPageSkip = styled.div`
   @media (max-width: 786px) {
     font-size: 2vw;
   }
+  
+  @media (max-width: 440px) {
+    width: 100%;
+    padding: 0 40%;
+    font-size: 3vw;
+  }
 `
 
 export const FormHeadingContainer = styled.div`
@@ -186,6 +198,10 @@ export const FormSubHeadingText = styled.div`
 
   @media (max-width: 786px) {
     font-size: 2vw;
+  }
+  
+  @media (max-width: 440px) {
+    font-size: 3vw;
   }
 `
 
@@ -258,11 +274,20 @@ export const ContinueWithText = styled.div`
   @media (max-width: 786px) {
     font-size: 2vw;
   }
+  
+  @media (max-width: 440px) {
+    font-size: 3vw;
+  }
 `
 
 export const ImageGoogleIcon = styled.img`
   height: 1vw;
   margin-right: 2.5%;
+
+  @media (max-width: 440px) {
+    height: 3vw;
+  }
+
 `
 
 export const responsiveStyles = styled.div`
@@ -347,5 +372,9 @@ export const MainButtonAuth = styled.button`
 
   @media (max-width: 786px) {
     font-size: 2vw;
+  }
+  
+  @media (max-width: 440px) {
+    font-size: 3vw;
   }
 `

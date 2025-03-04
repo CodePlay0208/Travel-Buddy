@@ -86,11 +86,14 @@ export const NewsletterText = styled.div`
 
 export const NewsletterForm = styled.div`
   display: flex;
-  align-items: flex-start;
+
+  align-items: center;
+  justify-content: center;
   gap: 5%;
 
   @media (max-width: 786px) {
     flex-direction: column;
+    align-items: flex-start;
   }
 `
 
@@ -143,7 +146,7 @@ export const NewsletterButton = styled.button`
   @media (max-width: 786px) {
     font-size: 2.5vw;
 
-    padding:5% 10%;
+    padding: 5% 10%;
     border-radius: 25px;
   }
 `

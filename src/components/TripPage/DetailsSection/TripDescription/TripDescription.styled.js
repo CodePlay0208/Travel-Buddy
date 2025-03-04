@@ -123,7 +123,7 @@ export const ProfileName = styled.div`
   line-height: 2vw;
 
   @media (max-width: 440px) {
-    font-size: 2vw;
+    font-size: 4vw;
     line-height: 4vw;
   }
 `
@@ -135,7 +135,7 @@ export const DateContainer = styled.div`
   gap: 20px;
 
   @media (max-width: 440px) {
-    gap: 5px;
+    gap: 15px;
   }
 `
 export const DateSection = styled.div`
@@ -143,7 +143,7 @@ export const DateSection = styled.div`
 
   @media (max-width: 440px) {
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 15px;
   }
 `
 export const InfoSection = styled.div`
@@ -151,7 +151,7 @@ export const InfoSection = styled.div`
 
   @media (max-width: 440px) {
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 15px;
   }
 `
 
@@ -203,7 +203,7 @@ export const BoxHeading = styled.div`
   color: #646464;
 
   @media (max-width: 440px) {
-    font-size: 1.5vw;
+    font-size: 2vw;
   }
 `
 
@@ -212,7 +212,7 @@ export const BoxContent = styled.div`
   font-weight: 500;
 
   @media (max-width: 440px) {
-    font-size: 3vw;
+    font-size: 4vw;
   }
 `
 

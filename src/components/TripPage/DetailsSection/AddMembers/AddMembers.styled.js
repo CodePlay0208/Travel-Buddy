@@ -39,6 +39,11 @@ export const Title = styled.div`
   font-weight: 600;
   line-height: 3vw;
   text-align: left;
+  @media (max-width: 440px) {
+    font-size: 4vw;
+    font-weight: 600;
+    line-height: 5vw;
+  }
 `
 
 export const CreateButton = styled.div`
