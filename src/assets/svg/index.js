@@ -29,7 +29,6 @@ import hyderabad from './hyderabad.svg'
 import banglore from './banglore.svg'
 import mumbai from './mumbai.svg'
 import delhi from './delhi.svg'
-import signup from './signup.svg'
 import instagram from './footer/instagram.svg'
 import facebook from './footer/facebook.svg'
 import twitter from './footer/twitter.svg'
@@ -44,6 +43,9 @@ import clear from './clear.svg'
 import NotificationButton from './notificationButton.svg'
 import wishListRed from './wishlistRed.svg'
 import publishTrip from './publishTrip.svg'
+import login from './auth/login.svg'
+import signup from './auth/signup.svg'
+
 export const SVG = {
   AuthDesignSection,
   BackButtonIcon,
@@ -90,4 +92,5 @@ export const SVG = {
   NotificationButton,
   wishListRed,
   publishTrip,
+  login,
 }

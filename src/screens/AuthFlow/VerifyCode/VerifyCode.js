@@ -73,10 +73,10 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
             Travmigoz
           </TitleContainer>
           <FormContainer>
-            <BackButtonContainer role="button" onClick={handleBackButtonClick}>
+            {/* <BackButtonContainer role="button" onClick={handleBackButtonClick}>
               <BackButtonIcon src={SVG.BackButtonIcon} alt="Back" />
               <BackButtonText>Back</BackButtonText>
-            </BackButtonContainer>
+            </BackButtonContainer> */}
             <FormHeadingContainer>Verify code</FormHeadingContainer>
             <FormSubHeadingText>An authentication code has been sent to your email.</FormSubHeadingText>
             <VerifyCodeFormInputsContainer>
@@ -91,13 +91,13 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
                   secureTextState={secureVerificationCode}
                   setSecureTextState={setSecureVerificationCode}
                 />
+                <MainButtonAuth type="submit">Verify Code</MainButtonAuth>
                 <VerifyCodeResendCodeContainer>
                   <VerifyCodeDidntRecieveText>Didn’t receive a code?</VerifyCodeDidntRecieveText>
                   <VerifyCodeResendLink onClick={onResendClick}>
                     <VerifyCodeResendText>Resend</VerifyCodeResendText>
                   </VerifyCodeResendLink>
                 </VerifyCodeResendCodeContainer>
-                <MainButtonAuth type="submit">Verify</MainButtonAuth>
               </Form>
               <SupportingImg src={images.verify_code_image} alt="supporting" />
             </VerifyCodeFormInputsContainer>

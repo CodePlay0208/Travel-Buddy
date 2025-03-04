@@ -11,7 +11,6 @@ export const LoginRememberMeAndForgetPasswordContainer = styled.div`
 export const InputFieldsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 2%;
   position: relative;
 `
 
@@ -43,7 +42,7 @@ export const LoginForgetPasswordLink = styled.a`
 
 export const LoginSignUpLink = styled.span`
   text-decoration: none;
-  font-size: 1vw;
+  font-size: 0.9vw;
   margin-left: 2px;
   font-weight: 700;
   color: #252525;
@@ -114,10 +113,10 @@ export const AuthDesignImage = styled.img`
 export const LoginButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 10px;
 
   @media (max-width: 786px) {
     flex-direction: column;
-    gap: 1rem;
+    gap: 5px;
   }
 `

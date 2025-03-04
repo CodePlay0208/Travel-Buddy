@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex: 1;
+  margin: 2% 0;
   flex-direction: column;
   ${({ customContainerStyles }) => customContainerStyles && css(customContainerStyles)}
 `
@@ -11,7 +12,6 @@ export const InputLabel = styled.p`
   font-size: 1vw;
   background-color: white;
   font-weight: 500;
-  margin-left: 8px;
 
   span {
     color: #ff2b2b;

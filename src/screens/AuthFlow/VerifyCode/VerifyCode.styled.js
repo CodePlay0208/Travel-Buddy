@@ -6,9 +6,9 @@ export const VerifyCodeResendCodeContainer = styled.div`
 `
 
 export const VerifyCodeDidntRecieveText = styled.p`
-  font-size: 1vw;
+  font-size: 0.9vw;
   font-weight: 500;
-
+  color: #848282;
   @media (max-width: 786px) {
     font-size: 2vw;
   }
@@ -20,9 +20,9 @@ export const VerifyCodeResendLink = styled.div`
 
 export const VerifyCodeResendText = styled.p`
   margin-left: 5px;
-  font-size: 1vw;
+  font-size: 0.9vw;
   font-weight: 500;
-  color: #8DD3BB;
+  color: #8dd3bb;
   cursor: pointer;
   padding: 0px 1px;
 

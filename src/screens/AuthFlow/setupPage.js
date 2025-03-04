@@ -19,6 +19,7 @@ import {
   Form,
   SupportingImg,
   VerifyCodeFormInputsContainer,
+  LabelCust,
 } from './AuthFlow.styled'
 import InputComponent from '../../components/InputComponent/InputComponent'
 import Copyright from '../../components/Copyright/Copyright'
@@ -86,7 +87,7 @@ const SetupPage = (props) => {
               <Form onSubmit={handleSubmit}>
                 <InputFieldsContainer>
                   <InputFieldsContainer>
-                    <Label>Persona</Label>
+                    <LabelCust>Persona</LabelCust>
                     <Input
                       name="persona"
                       value={formData?.persona || ''}
@@ -110,7 +111,7 @@ const SetupPage = (props) => {
                     )}
                   </InputFieldsContainer>
                   <InputFieldsContainer>
-                    <Label>Gender</Label>
+                    <LabelCust>Gender</LabelCust>
                     <Input
                       name="gender"
                       value={formData?.gender || ''}
@@ -134,7 +135,7 @@ const SetupPage = (props) => {
                     )}
                   </InputFieldsContainer>
                   <InputFieldsContainer>
-                    <Label>Date of Birth</Label>
+                    <LabelCust>Date of Birth</LabelCust>
                     <DatePicker
                       pickerType="dob"
                       inputValues={formData.dateOfBirth}
@@ -151,7 +152,7 @@ const SetupPage = (props) => {
                 </InputFieldsContainer>
 
                 <MainButtonAuth onClick={handleSubmit} type="submit">
-                  Sign up
+                  Save your Profile 
                 </MainButtonAuth>
               </Form>
               <SupportingImg src={images.verify_code_image} alt="supporting" />

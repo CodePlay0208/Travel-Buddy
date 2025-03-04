@@ -90,9 +90,10 @@ export const SignUpAlreadyHaveContainer = styled.div`
 
 export const SignUpAlreadyHaveText = styled.div`
   display: flex;
-  font-size: 1vw;
+  font-size: 0.9vw;
   font-weight: 500;
   flex-direction: row;
+  margin: 1% 0;
   justify-content: center;
   align-items: center;
   color: #848282;
@@ -105,7 +106,7 @@ export const SignUpAlreadyHaveText = styled.div`
 export const SignUpLoginLink = styled.span`
   text-decoration: none;
   margin: 2px;
-  font-size: 1vw;
+  font-size: 0.9vw;
   font-weight: 700;
   color: #252525;
   transition:

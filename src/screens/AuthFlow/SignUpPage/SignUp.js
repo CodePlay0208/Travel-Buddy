@@ -4,7 +4,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import { connect } from 'react-redux'
 import { register } from '../../../actions/auth.action'
 
-import { images } from '../../../assets'
+import { images, SVG } from '../../../assets'
 import {
   Container,
   FormAndCopyrightContainer,
@@ -150,7 +150,7 @@ const SignUp = (props) => {
                   </SignUpAlreadyHaveText>
                 </SignUpAlreadyHaveContainer>
               </Form>
-              <SupportingImg src={images.verify_code_image} alt="supporting" />
+              <SupportingImg src={SVG.signup} alt="supporting" />
             </VerifyCodeFormInputsContainer>
           </FormContainer>
         </FormAndTitleContainer>

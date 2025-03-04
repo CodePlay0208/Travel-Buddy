@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { images } from '../../../assets'
+import { images, SVG } from '../../../assets'
 import { connect } from 'react-redux'
 import { setGoogleToken } from '../../../services/api-services/api-services'
 import { login, loginWithGoogle, loadUser } from '../../../actions/auth.action'
@@ -202,7 +202,7 @@ const LoginPage = (props) => {
                   </ButtonAlt>
 
                   <FormSubHeadingText border="none">
-                    Log In With
+                    Log in with
                     <LoginSignUpLink
                       onClick={() => {
                         setIsEmail(!isEmail)
@@ -213,7 +213,7 @@ const LoginPage = (props) => {
                   </FormSubHeadingText>
                 </LoginButtonsContainer>
               </Form>
-              <SupportingImg src={images.verify_code_image} alt="supporting" />
+              <SupportingImg src={SVG.login} alt="supporting" />
             </VerifyCodeFormInputsContainer>
           </FormContainer>
         </FormAndTitleContainer>

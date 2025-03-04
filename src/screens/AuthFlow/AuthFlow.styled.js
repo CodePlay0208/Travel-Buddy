@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { Label } from '../../styles/Global'
 
 export const Container = styled.div`
   font-family: 'Montserrat', sans-serif;
@@ -33,7 +34,7 @@ export const TitleContainer = styled.div`
 `
 
 export const FormContainer = styled.div`
-  margin: 5%;
+  margin: 3% 5% 3% 7%;
 `
 
 export const BackButtonContainer = styled.div`
@@ -103,15 +104,16 @@ export const FormHeadingContainer = styled.div`
 `
 
 export const FormSubHeadingText = styled.div`
-  font-size: 1vw;
-  font-weight: 400;
+  font-size: 0.9vw;
+  font-weight: 500;
   color: #848282;
 
-  padding-bottom: 2%;
+  padding: 2% 0;
   border-style: solid;
   border-width: 0px 0px 1px 0px;
   border: ${(props) => props.border};
   span {
+    font-weight: 600;
     color: #000000;
   }
 
@@ -124,7 +126,7 @@ export const DividerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2% 0px;
+  margin: 6% 0px;
   color: #112211;
   font-size: 1vw;
 
@@ -156,7 +158,7 @@ export const DesignContainer = styled.div`
   width: 40%;
   aspect-ratio: 0.9;
   height: fit-content;
-  padding: 4%;
+  padding: 4% 6%;
 
   @media (max-width: 1024px) {
     display: none;
@@ -192,8 +194,8 @@ export const ContinueWithText = styled.div`
 `
 
 export const ImageGoogleIcon = styled.img`
-  height: 1.5vw;
-  margin-right: 1%;
+  height: 1vw;
+  margin-right: 2.5%;
 `
 
 export const responsiveStyles = styled.div`
@@ -211,7 +213,6 @@ export const responsiveStyles = styled.div`
 `
 
 export const VerifyCodeFormInputsContainer = styled.div`
-  margin-top: 2%;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -245,14 +246,28 @@ export const ButtonAlt = styled.button`
   }
 `
 
+export const LabelCust = styled(Label)`
+  font-size: 1vw;
+  background-color: white;
+  font-weight: 500;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+`
+
 export const MainButtonAuth = styled.button`
   background-color: #8dd3bb;
   border-style: none;
   width: 100%;
   border-radius: 30px;
-  margin-top: 2.5%;
+  margin-top: 5%;
   font-size: 1vw;
-  padding: 2%;
+  padding: 3%;
+  color: white;
+  font-weight: 500;
 
   &:active {
     font-size: 1.2vw;

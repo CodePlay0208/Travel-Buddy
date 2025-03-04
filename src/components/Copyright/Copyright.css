@@ -9,6 +9,7 @@
 .LoginCopyrightText {
   font-size: 1vw;
   font-weight: 400;
+  color: #8a8a8a;
 
   @media (max-width: 786px) {
     font-size: 2vw;
@@ -16,5 +17,5 @@
 }
 
 .LoginTravmigozCopyrightText {
-  font-weight: 500;
+  font-weight: 600;
 }
