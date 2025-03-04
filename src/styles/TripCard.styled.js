@@ -164,7 +164,7 @@ export const ChatNow = styled.div`
 
 export const ChatButton = styled.button`
   width: 35%;
-  height: 48.36px;
+  height: 40px;
   background: #8dd3bb;
   border-radius: 32px;
   font-family: 'Montserrat', sans-serif;

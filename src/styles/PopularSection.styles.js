@@ -7,9 +7,11 @@ export const PopularTripContainer = styled.div`
   background-size: contain;
   background-position: -30px;
   background-repeat: no-repeat;
-  margin-bottom: 2%;
   font-size: 5.2vw;
   position: relative;
+  @media (max-width: 440px) {
+    margin: 5% 0 15%;
+  }
 `
 
 export const PopularButtonDiv = styled.div`
@@ -65,24 +67,33 @@ export const PopularHeadingRight = styled.div`
   justify-content: space-between;
   display: flex;
   align-items: center;
-  width: 30%;
+  width: 50%;
 
   .left {
     background-color: white;
     color: black;
     border: black 1px solid;
   }
+  @media (max-width: 440px) {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 `
 
 export const PopularButton = styled.button`
   font-size: 2vw;
-  padding: 5%;
+  padding: 5% 10%;
   cursor: pointer;
   background-color: #000000;
   border-radius: 50px;
   font-weight: 700;
   border: none;
   color: rgb(255, 255, 255);
+  @media (max-width: 440px) {
+    font-size: 3vw;
+  }
 `
 
 export const ArrowButtonContainer = styled.div`
@@ -91,9 +102,8 @@ export const ArrowButtonContainer = styled.div`
 `
 
 export const ArrowButton = styled.button`
-  background: #2d3134;
-  color: #faf8ed;
   border: none;
+  background-color: white;
   border-radius: 50%;
   width: 3%;
   aspect-ratio: 1;
@@ -108,11 +118,21 @@ export const ArrowButton = styled.button`
     left: 0;
     top: 50%;
     transform: translateY(-50%);
+    @media (max-width: 440px) {
+      top: 100%;
+      left: 1%;
+      transform: translateY(0);
+    }
   }
   &.right {
     position: absolute;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+    @media (max-width: 440px) {
+      top: 100%;
+      right: 1%;
+      transform: translateY(0);
+    }
   }
 `

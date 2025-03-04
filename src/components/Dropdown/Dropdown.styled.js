@@ -16,12 +16,7 @@ export const DropdownContainer = styled.div`
 
   border-radius: 20px;
   z-index: 10;
-  @media (max-width: ${breakpoints.tablet}) {
-    border-radius: 15px;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    border-radius: 5px;
-  }
+
 `
 export const FlexContainerCust = styled(FlexContainer)`
   @media (max-width: ${breakpoints.tablet}) {
@@ -41,18 +36,12 @@ export const DropdownItem = styled.div`
   color: #afafaf;
   background-color: #ffffff;
   border-radius: 7px;
-  margin: 4%;
+  margin: 4% 10%;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
     background-color: ${(props) => (props.selectable ? '#f1f1f1' : '#ffffff')};
-  }
-  @media (max-width: ${breakpoints.tablet}) {
-    border-radius: 5px;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    border-radius: 1px;
   }
 `
 

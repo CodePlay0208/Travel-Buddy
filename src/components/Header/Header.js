@@ -20,8 +20,8 @@ const SearchResultHeader = (props) => {
       <HeaderContainer>
         <LandingHeader>
           <HeaderDescription>
-            <HeaderDesHeading>Travmigoz</HeaderDesHeading>
-            <HeaderDesPara>Find Your Travel Amigos!</HeaderDesPara>
+            <HeaderDesHeading>TRAVMIGOZ</HeaderDesHeading>
+            <HeaderDesPara>FIND YOUR TRAVEL AMIGOES</HeaderDesPara>
           </HeaderDescription>
 
           <HeaderSearchBar>

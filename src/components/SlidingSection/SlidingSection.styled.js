@@ -20,7 +20,7 @@ export const Container = styled.div`
   margin: 5% 0;
   @media (max-width: 786px) {
     flex-direction: column;
-    margin: 20% 0;
+    margin: 30% 0 20%;
   }
 `
 
@@ -57,7 +57,7 @@ export const SliderHeading = styled.div`
     margin: 0;
     font-size: 2vw;
     @media (max-width: 768px) {
-      font-size: 4vw;
+      font-size: 4.5vw;
     }
   }
   span {
@@ -66,8 +66,9 @@ export const SliderHeading = styled.div`
   p {
     margin: 0;
     color: #afafaf;
+    font-weight: 600;
     @media (max-width: 768px) {
-      font-size: 2vw;
+      font-size: 2.5vw;
     }
   }
 `

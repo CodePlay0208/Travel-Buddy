@@ -65,7 +65,7 @@ export const ImgProfile = styled.img`
   height: 100%;
   object-fit: cover;
   @media (max-width: 786px) {
-    border: 2px solid rgb(0, 199, 176);
+    border: 5px solid #8dd3bb;
   }
 `
 
@@ -121,7 +121,7 @@ export const UserInfoColumns = styled.div`
     flex-wrap: wrap;
     width: 100%;
     gap: 0%;
-    padding: 8%;
+    padding: 6% 8%;
   }
 `
 
@@ -178,7 +178,7 @@ export const DashboardActions = styled.div`
   justify-content: flex-end;
   margin-top: 2.5%;
   @media (max-width: 768px) {
-    margin: 2.5%;
+    margin: 5% 2.5%;
   }
 `
 
@@ -218,19 +218,25 @@ const BaseButton = styled.button`
 `
 export const EditButton = styled(BaseButton)`
   color: #112211;
-  border: 1px solid #8dd3bb;
+  border: 2px solid #000000;
 `
 
 export const DeleteButton = styled(BaseButton)`
   color: #e9e9e9;
   border: 1px solid #dc2626;
   background-color: #dc2626;
+  @media (max-width: 440px) {
+    padding: 4%;
+  }
 `
 
 export const SaveButton = styled(BaseButton)`
   color: #000000;
   border: 1px solid #8dd3bb;
   background-color: #8dd3bb;
+  @media (max-width: 440px) {
+    padding: 4%;
+  }
 `
 
 export const CancelButton = styled(BaseButton)`
@@ -238,4 +244,7 @@ export const CancelButton = styled(BaseButton)`
 
   border: 1px solid #000000;
   color: #000000;
+  @media (max-width: 440px) {
+    padding: 4%;
+  }
 `

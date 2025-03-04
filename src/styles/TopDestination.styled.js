@@ -4,7 +4,7 @@ import firstImage from '../data/image.png'
 export const Frame = styled.div`
   position: relative;
   width: 100%;
-  margin: 10% auto;
+  margin: 20% auto;
   padding-top: 20px;
   padding-bottom: 20px;
 `
@@ -62,7 +62,9 @@ export const ExploreButton = styled.button`
     background: #76b39d;
   }
   @media (max-width: 480px) {
+    width: 80%;
     font-size: 4vw;
+    padding: 2.5%;
   }
 `
 

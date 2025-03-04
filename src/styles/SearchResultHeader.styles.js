@@ -80,7 +80,7 @@ export const HeaderDesHeading = styled.div`
   font-size: 6vw;
   color: #8dd3bb;
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 13vw;
+    font-size: 12vw;
   }
 `
 
@@ -93,7 +93,7 @@ export const HeaderDesPara = styled.div`
   font-size: 2vw;
   color: #000000;
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 3.5vw;
+    font-size: 3.25vw;
   }
 `
 

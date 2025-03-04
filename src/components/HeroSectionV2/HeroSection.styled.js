@@ -57,7 +57,7 @@ export const PublishHeading = styled.h1`
   margin: 0;
   color: white;
   @media (max-width: 786px) {
-    font-size: 6vw;
+    font-size: 5vw;
   }
 `
 export const BottomHeading = styled.h1`
@@ -132,7 +132,8 @@ export const PublishButton = styled.button`
   border: none;
   color: rgb(0, 0, 0);
   @media (max-width: 786px) {
-    font-size: 6vw;
+    font-size: 5vw;
+    padding: 2.5%;
     height: auto;
     width: 100%;
   }

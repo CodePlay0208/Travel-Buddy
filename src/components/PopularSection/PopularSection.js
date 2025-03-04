@@ -65,10 +65,10 @@ const PopularSection = (props) => {
       </PopularTripHeading>
       <PopularTripContent ref={scrollContainerRef} margin={props?.margin ? props.margin : `0 5.5%`}>
         <ArrowButton className="left" onClick={scrollLeft} aria-label="Scroll Left">
-          <img src={SVG.leftArrow} alt="" />
+          <img src={SVG.leftArrowBlack} alt="" />
         </ArrowButton>
         <ArrowButton className="right" onClick={scrollRight} aria-label="Scroll Right">
-          <img src={SVG.rightArrow} alt="" />
+          <img src={SVG.rightArrowBlack} alt="" />
         </ArrowButton>
         {trips?.map((trip) => (
           <TripCard key={trip?.tripId} trip={trip} />

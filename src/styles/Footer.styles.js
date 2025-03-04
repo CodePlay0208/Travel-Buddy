@@ -62,9 +62,8 @@ export const FooterLink = styled.a`
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
-  color: #112211;
-  margin-bottom: 1%;
-  color: #112211;
+  margin-bottom: 4%;
+  color: #444444;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -83,7 +82,7 @@ export const Text = styled.div`
   }
 `
 export const Image = styled.img`
-  width: 15px;
+  width: 24px;
   aspect-ratio: 1;
   @media (max-width: 400px) {
     font-size: 1.75vw;

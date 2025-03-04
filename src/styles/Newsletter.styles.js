@@ -79,7 +79,7 @@ export const NewsletterText = styled.div`
     opacity: 0.7;
 
     @media (max-width: 786px) {
-      font-size: 2vw;
+      font-size: 2.5vw;
     }
   }
 `
@@ -134,15 +134,17 @@ export const NewsletterButton = styled.button`
   color: #ffffff;
   font-family: 'Montserrat';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1vw;
   cursor: pointer;
   padding: 2%;
+  border: none;
 
   @media (max-width: 786px) {
-    font-size: 2vw;
+    font-size: 2.5vw;
 
-    border-radius: 15px;
+    padding:5% 10%;
+    border-radius: 25px;
   }
 `
 
@@ -156,7 +158,7 @@ export const NewsletterRight = styled.div`
   margin-left: 1%;
 
   @media (max-width: 786px) {
-    margin-top: 12%;
+    margin-top: 20%;
   }
 `
 

@@ -45,8 +45,13 @@ import wishListRed from './wishlistRed.svg'
 import publishTrip from './publishTrip.svg'
 import login from './auth/login.svg'
 import signup from './auth/signup.svg'
+import leftArrowBlack from './popularSection/leftArrowBlack.svg'
+import rightArrowBlack from './popularSection/rightArrowBlack.svg'
+
 
 export const SVG = {
+  leftArrowBlack,
+  rightArrowBlack,
   AuthDesignSection,
   BackButtonIcon,
   GoogleIcon,
