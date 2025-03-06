@@ -105,7 +105,7 @@ export const ShowAllPhotos = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2%;
+  padding: 1% 2%;
   width: 17.5%;
   font-size: min(24px, 1vw);
   img {
@@ -116,5 +116,6 @@ export const ShowAllPhotos = styled.button`
   @media (max-width: 440px) {
     width: 27%;
     font-size: min(24px, 2vw);
+    padding: 2%;
   }
 `

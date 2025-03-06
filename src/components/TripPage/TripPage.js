@@ -22,6 +22,9 @@ const TripPage = (props) => {
   const [isEditMode, setIsEditMode] = useState(false)
 
   const [editedData, setEditedData] = useState({})
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [tripIdFromParams]);
 
   useEffect(() => {
     setTripId(tripIdFromParams)
