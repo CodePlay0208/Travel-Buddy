@@ -85,6 +85,10 @@ const TripDescription = (props) => {
   }
 
   const onWishlistClick = async () => {
+    if (!localStorage.token) {
+      navigate('/login')
+      return
+    }
     if (!wishlistAdded) {
       const result = await addWishlistTrip(trip.tripId)
       if (result) {
@@ -119,6 +123,10 @@ const TripDescription = (props) => {
   }
 
   const onJoinTripClick = async () => {
+    if (!localStorage.token) {
+      navigate('/login')
+      return
+    }
     if (!joined) {
       if (requested) {
         return

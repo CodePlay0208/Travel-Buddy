@@ -26,6 +26,7 @@ import { connect } from 'react-redux'
 import { getOrCreateChat } from '../../actions/chats.action'
 import { computeDateAndTimeUntilNowInString, formatDate } from '../../utils/DateUtils'
 import { deleteUserTrip } from '../../actions/trips.action'
+import { jwtDecode } from 'jwt-decode'
 
 const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
   const {
@@ -68,8 +69,13 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
 
   const onChatNowClick = async (e) => {
     e.stopPropagation()
-    const isChatCreated = await getOrCreateChat(publisherId)
-    if (isChatCreated) {
+    if (localStorage.token) {
+      const isChatCreated = await getOrCreateChat(publisherId)
+      if (isChatCreated) {
+        navigate('/chats')
+      }
+    }
+    else{
       navigate('/chats')
     }
   }
