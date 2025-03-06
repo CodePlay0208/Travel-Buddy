@@ -5,7 +5,7 @@ const getSlideAnimation = (cardCount) => keyframes`
     transform: translateX(0%);
   }
   50% {
-    transform: translateX(-${(100 / cardCount) * (cardCount - 4)}%);
+    transform: translateX(-${(100 / cardCount) * (cardCount - 7)}%);
   }
   100% {
     transform: translateX(0%);
@@ -85,16 +85,13 @@ export const Slider = styled.div`
   }
 `
 
-export const Card = styled.div`
-  background: url(${(props) => props.background}) no-repeat center center;
+export const Card = styled.img`
   object-fit: cover;
   background-size: cover;
   background-position: center;
-  width: 33vw;
+  width: 100%;
   position: relative;
-  margin: 0.5%;
   border-radius: 13px;
-  aspect-ratio: 4/3;
 
   @media (max-width: 1024px) {
     border-radius: 10px;
@@ -126,4 +123,11 @@ export const BadgeText = styled.span`
   font-size: 1vw;
   color: #000000;
   text-align: center;
+`
+
+export const CardContainer = styled.div`
+  position: relative;
+  width: 33vw;
+  aspect-ratio: 4 / 3;
+  margin: 0 0.5%;
 `

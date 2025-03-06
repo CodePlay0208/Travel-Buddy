@@ -1,5 +1,7 @@
-import React from 'react'
-import { Container, Slider, Card, Badge, BadgeText, SliderHeading } from './SlidingSection.styled'
+import React, { memo } from 'react'
+import { Container, Slider, Card, Badge, BadgeText, SliderHeading, CardContainer } from './SlidingSection.styled'
+import { connect } from 'react-redux'
+import { computeDateAndTimeUntilNowInString } from '../../utils/DateUtils'
 
 const cardData = [
   {
@@ -44,16 +46,23 @@ const cardData = [
   },
 ]
 
-const SlidingSection = () => {
+const mapStateToProps = (state) => ({
+  trips: state.tripReducer.trips,
+
+  searchForm: state.tripReducer.searchForm,
+})
+
+const SlidingSection = ({ trips }) => {
   return (
     <Container>
-      <Slider cardCount={cardData.length}>
-        {cardData.map((card, index) => (
-          <Card key={index} background={card.background}>
+      <Slider cardCount={trips?.length}>
+        {trips.slice(0, 8).map((card, index) => (
+          <CardContainer>
+            <Card key={index} src={card?.croppedDestinationImages?.[0]?.preSignedUrl} />
             <Badge>
-              <BadgeText>{card.text}</BadgeText>
+              <BadgeText>{computeDateAndTimeUntilNowInString(card?.createdAt)} ago</BadgeText>
             </Badge>
-          </Card>
+          </CardContainer>
         ))}
       </Slider>
       <SliderHeading>
@@ -66,4 +75,4 @@ const SlidingSection = () => {
   )
 }
 
-export default SlidingSection
+export default connect(mapStateToProps, null)(memo(SlidingSection))
