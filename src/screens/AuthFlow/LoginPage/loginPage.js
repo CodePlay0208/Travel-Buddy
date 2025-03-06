@@ -105,39 +105,41 @@ const LoginPage = (props) => {
     return true
   }, [])
 
-  const handleLogin = async (e) => {
-    e.preventDefault()
+  const handleLogin = useCallback(
+    async (e) => {
+      e.preventDefault()
 
-    let validEmail = true
-    if (isEmail) {
-      validEmail = checkValueIsValid(formData.email)
-      if (!validEmail) {
-        toast.error('Email-id is not valid!', {
-          autoClose: 1500,
-        })
-        return
+      let validEmail = true
+      if (isEmail) {
+        validEmail = checkValueIsValid(formData.email)
+        if (!validEmail) {
+          toast.error('Email-id is not valid!', {
+            autoClose: 1500,
+          })
+          return
+        }
+      } else {
+        validEmail = checkValueIsValid(formData.phone)
+        if (!validEmail) {
+          toast.error('Phone number is not valid!', {
+            autoClose: 1500,
+          })
+          return
+        }
       }
-    } else {
-      validEmail = checkValueIsValid(formData.phone)
-      if (!validEmail) {
-        toast.error('Phone number is not valid!', {
-          autoClose: 1500,
-        })
-        return
+
+      const isAuth = await login(isEmail ? formData.email : formData.phone)
+
+      if (isAuth) {
+        sessionStorage.setItem('prevRoute', location.pathname)
+        localStorage.setItem('userKey', isEmail ? formData.email : formData.phone)
+        navigate('/verify-otp')
+      } else {
+        toast.error('Login Failed!', { autoClose: 1500 })
       }
-    }
-
-    const isAuth = await login(isEmail ? formData.email : formData.phone)
-
-    if (isAuth) {
-      sessionStorage.setItem('prevRoute', location.pathname)
-      localStorage.setItem('userKey', isEmail ? formData.email : formData.phone)
-      navigate('/verify-otp')
-    } else {
-      toast.error('Login Failed!', { autoClose: 1500 })
-    }
-  }
-
+    },
+    [checkValueIsValid, formData.email, formData.phone, isEmail, location.pathname, login, navigate],
+  )
   return (
     <Container>
       <FormAndCopyrightContainer>
@@ -196,7 +198,13 @@ const LoginPage = (props) => {
                 </DividerContainer>
 
                 <LoginButtonsContainer>
-                  <ButtonAlt role="button" onClick={googleSignIn}>
+                  <ButtonAlt
+                    role="button"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      googleSignIn()
+                    }}
+                  >
                     <ImageGoogleIcon src={images.google_icon_black} alt="Log In With Google" />
                     <ContinueWithText>Log In With Google</ContinueWithText>
                   </ButtonAlt>

@@ -8,10 +8,12 @@ export const subscribeNewsletter = (payload) => async(dispatch) => {
       type: NEWSLETTER_SUBSCRIBE_SUCCESS,
       payload: res
     })
+    return true;
   } catch (e) {
     dispatch({
       type: NEWSLETTER_SUBSCRIBE_FAIL,
       payload: e
     })
+    return false;
   }
 }

@@ -81,7 +81,7 @@ export const PopularHeadingRight = styled.div`
   @media (max-width: 440px) {
     position: absolute;
     width: 50%;
-    top: 100%;
+    top: 101%;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -124,7 +124,7 @@ export const ArrowButton = styled.button`
     top: 50%;
     transform: translateY(-50%);
     @media (max-width: 440px) {
-      top: 100%;
+      top: 101%;
       left: 1%;
       transform: translateY(0);
     }
@@ -135,7 +135,7 @@ export const ArrowButton = styled.button`
     top: 50%;
     transform: translateY(-50%);
     @media (max-width: 440px) {
-      top: 100%;
+      top: 101%;
       right: 1%;
       transform: translateY(0);
     }

@@ -50,7 +50,6 @@ const InputComponent = ({
           value={user[name]}
           onChange={(e) => handleChange(e)}
           placeholder={placeholder}
-          required
           customInputFieldStyles={customInputFieldStyles}
         />
         {isPasswordField ? <PasswordEyeComponent secureTextState={secureTextState} setSecureTextState={setSecureTextState} /> : null}

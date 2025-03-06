@@ -13,6 +13,7 @@ import {
 import { Input } from '../../styles/Global'
 import { subscribeNewsletter } from '../../actions/newsletter.action'
 import { connect } from 'react-redux'
+import { toast, ToastContainer } from 'react-toastify'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -42,11 +43,17 @@ const Newsletter = ({ subscribeNewsletter }) => {
                 const { value } = e.target
                 setEmail(value)
               }}
-              margin='2% 0'
+              margin="2% 0"
             />
             <NewsletterButton
               onClick={() => {
-                subscribeNewsletter({ emailId: email })
+                const res = subscribeNewsletter({ emailId: email })
+                setEmail('')
+                if (res) {
+                  toast.success('Subscribed to Newsletter', { autoClose: 1500 })
+                } else {
+                  toast.error('Please try again', { autoClose: 1500 })
+                }
               }}
             >
               Subscribe
@@ -57,6 +64,7 @@ const Newsletter = ({ subscribeNewsletter }) => {
           <NewsletterImage />
         </NewsletterRight>
       </NewsletterWrapper>
+      <ToastContainer />
     </NewsletterContainer>
   )
 }

@@ -35,6 +35,7 @@ export const API_PATH = {
   DELETE_PROFILE_API: 'user/deleteUserProfile',
   DELETE_TRIP_API: '/trips/deleteTrip',
   EDIT_PROFILE_API: '/user/editUserProfile',
+  GET_OTHER_USER_PROFILE: '/user/getOtherUserProfile',
   CHATS_API: '/message/getAllMessages',
 
   MESSAGE_BASE: '/message',

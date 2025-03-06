@@ -19,6 +19,26 @@ export const ProfileApi = {
       throw e
     }
   },
+  getOtherUserProfile: async (userId) => {
+    try {
+      const result = await ApiService.post(
+        API_PATH.GET_OTHER_USER_PROFILE,
+        { userId: userId },
+        {
+          baseURL: env.BASE_API_URL,
+          headers: {
+            withCredentials: true,
+          },
+        },
+      )
+      console.log('getOtherUserProfile SUCCESS: ', result)
+
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('getOtherUserProfile ERROR: ', e)
+      throw e
+    }
+  },
   editUserProfile: async (payload, isMultiMedia) => {
     console.log(payload)
     try {

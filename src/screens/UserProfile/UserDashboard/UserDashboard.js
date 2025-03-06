@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { memo } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getProfile, updateProfile, deleteProfile } from '../../../actions/profile.action'
+import { getProfile, updateProfile, deleteProfile, getOtherUserProfile } from '../../../actions/profile.action'
 import { ToastContainer, toast } from 'react-toastify'
 import { SVG } from '../../../assets'
 import { images } from '../../../assets/images'
@@ -43,7 +43,7 @@ const mapStateToProps = (state) => ({
   loading: state.profileReducer.loading,
 })
 
-const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, userId }) => {
+const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, userId, getOtherUserProfile }) => {
   const navigate = useNavigate()
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({})
@@ -52,7 +52,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
   const [deleteModal, setDeleteModal] = useState(false)
   const [showPersonaDropDown, setShowPersonaDropDown] = useState(false)
   const [showGenderDropDown, setShowGenderDropDown] = useState(false)
-
+  
   useEffect(() => {
     if (!userId) {
       getProfile()
@@ -60,11 +60,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
   }, [getProfile])
 
   useEffect(() => {
-    if (userId) {
-      getProfile(userId)
-    } else {
-      setFormData(profile)
-    }
+    setFormData(profile)
   }, [profile])
 
   const handleChange = (e) => {

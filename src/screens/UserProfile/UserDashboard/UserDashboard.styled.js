@@ -124,6 +124,23 @@ export const UserInfoColumns = styled.div`
     padding: 6% 8%;
   }
 `
+export const UserInfoRows = styled.div`
+  display: flex;
+  width: 100%;
+  box-shadow: 0px 0px 9px 0px #11221136;
+
+  flex-direction: column;
+
+  border-radius: 20px;
+  padding: 1% 3%;
+  gap: 5%;
+  @media (max-width: 786px) {
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 0%;
+    padding: 6% 8%;
+  }
+`
 
 export const UserInfoColumn = styled.div`
   display: flex;
@@ -131,6 +148,15 @@ export const UserInfoColumn = styled.div`
   width: 50%;
   @media (max-width: 786px) {
     width: 100%;
+  }
+`
+export const UserInfoRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  @media (max-width: 786px) {
+    width: 100%;
+    flex-direction: column;
   }
 `
 
@@ -143,6 +169,18 @@ export const UserInfoItem = styled.div`
   margin: 4% 0;
   @media (max-width: 786px) {
     margin: 2% 0;
+  }
+`
+export const UserInfoItemCenter = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 4% 0;
+  @media (max-width: 786px) {
+    margin: 2% 0;
+    align-items: flex-start;
   }
 `
 
