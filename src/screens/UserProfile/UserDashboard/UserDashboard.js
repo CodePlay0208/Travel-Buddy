@@ -52,7 +52,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
   const [deleteModal, setDeleteModal] = useState(false)
   const [showPersonaDropDown, setShowPersonaDropDown] = useState(false)
   const [showGenderDropDown, setShowGenderDropDown] = useState(false)
-  
+
   useEffect(() => {
     if (!userId) {
       getProfile()
@@ -240,7 +240,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
                 {isEditing ? (
                   <Input name="emailId" value={formData.emailId || ''} onChange={handleChange} />
                 ) : (
-                  <Value>{profile?.emailId ?? 'NA'}</Value>
+                  <Value>{profile?.emailId ?? '--'}</Value>
                 )}
               </UserInfoItem>
               <UserInfoItem>
@@ -268,7 +268,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
                 {isEditing ? (
                   <Input name="phoneNumber" value={formData.phoneNumber || ''} onChange={handleChange} />
                 ) : (
-                  <Value>+91 {profile?.phoneNumber}</Value>
+                  <Value>{!!profile?.phoneNumber?.length ? `+91 ${profile?.phoneNumber}` : '--'}</Value>
                 )}
               </UserInfoItem>
             </UserInfoColumn>
