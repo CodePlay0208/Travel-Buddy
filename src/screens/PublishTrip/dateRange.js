@@ -17,7 +17,7 @@ const DateRange = ({ startDate, totalDays, onDelete }) => {
 
   const duration = totalDays ? parseInt(totalDays, 10) : 0
 
-  const end = duration > 0 ? new Date(start) : null
+  const end = duration >= 0 ? new Date(start) : null
   if (end) {
     end.setDate(start.getDate() + duration)
   }

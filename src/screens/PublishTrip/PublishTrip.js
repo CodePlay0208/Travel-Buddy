@@ -37,7 +37,7 @@ const DEFAULT_TRIP_DATA = {
   minBudget: null,
   maxBudget: null,
   description: '',
-  duration: '',
+  duration: 0,
   destinationImages: [],
   removedDestinationImages: [],
   tripData: [],
