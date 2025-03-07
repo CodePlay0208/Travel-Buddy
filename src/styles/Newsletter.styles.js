@@ -158,7 +158,7 @@ export const NewsletterRight = styled.div`
 
   width: 40%;
   margin-top: 4%;
-  margin-left: 1%;
+  margin-left: 2.5%;
 
   @media (max-width: 786px) {
     margin-top: 20%;

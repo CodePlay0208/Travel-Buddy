@@ -78,6 +78,10 @@ const TripDescription = (props) => {
   }
 
   const onChatNowClick = async () => {
+    if (!localStorage.token) {
+      navigate('/login')
+      return
+    }
     const isChatCreated = await getOrCreateChat(trip?.userId)
     if (isChatCreated) {
       navigate('/chats')
