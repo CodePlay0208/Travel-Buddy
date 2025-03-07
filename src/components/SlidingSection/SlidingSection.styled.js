@@ -5,7 +5,7 @@ const getSlideAnimation = (cardCount) => keyframes`
     transform: translateX(0%);
   }
   50% {
-    transform: translateX(-${(100 / cardCount) * (cardCount - 7)}%);
+    transform: translateX(-${(100 / cardCount) * (cardCount - 4)}%);
   }
   100% {
     transform: translateX(0%);
