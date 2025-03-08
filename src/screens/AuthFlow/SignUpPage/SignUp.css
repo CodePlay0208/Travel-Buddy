@@ -1,9 +1,8 @@
-.SignUpTwoInput{
+.SignUpTwoInput {
   display: flex;
   flex: 1 1;
   width: 100%;
 }
-
 
 input::placeholder {
   font-family: 'Montserrat', sans-serif;
@@ -64,7 +63,7 @@ input::placeholder {
 }
 
 .SignUpCreateAccountButton {
-  background-color: #8dd3bb;
+  background-color: var(--color-primary);
   padding: 15px;
   font-size: 1.1rem;
   width: 100%;
@@ -117,7 +116,6 @@ input::placeholder {
   z-index: 2;
 }
 
-
 .SignUpDesignContainer {
   flex: 1 2;
 
@@ -139,14 +137,12 @@ input::placeholder {
   .SignUpTwoInput {
     flex-direction: column;
   }
-  
 }
 
 @media (max-width: 768px) {
   .SignUpTwoInput {
     flex-direction: column;
   }
-  
 }
 
 @media (max-width: 550px) {
@@ -167,7 +163,7 @@ input::placeholder {
     border-style: solid;
     border-width: 2px;
     border-radius: 2px;
-    border-color: #8dd3bb;
+    border-color: var(--color-primary);
     background-color: white;
   }
 

@@ -35,7 +35,7 @@ export const TitleContainer = styled.div`
 
 export const FormContainer = styled.div`
   margin: 3% 5% 3% 7%;
-  
+
   @media (max-width: 440px) {
     margin: 10% 5%;
   }
@@ -161,7 +161,7 @@ export const SetupPageSkip = styled.div`
   @media (max-width: 786px) {
     font-size: 2vw;
   }
-  
+
   @media (max-width: 440px) {
     width: 100%;
     padding: 0 40%;
@@ -199,7 +199,7 @@ export const FormSubHeadingText = styled.div`
   @media (max-width: 786px) {
     font-size: 2vw;
   }
-  
+
   @media (max-width: 440px) {
     font-size: 3vw;
   }
@@ -255,7 +255,7 @@ export const AuthDesignImage = styled.img`
 
 export const GoogleSignUpButton = styled.div`
   padding: 1.4% 20%;
-  background-color: #8dd3bb;
+  background-color: var(--color-primary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -274,7 +274,7 @@ export const ContinueWithText = styled.div`
   @media (max-width: 786px) {
     font-size: 2vw;
   }
-  
+
   @media (max-width: 440px) {
     font-size: 3vw;
   }
@@ -287,7 +287,6 @@ export const ImageGoogleIcon = styled.img`
   @media (max-width: 440px) {
     height: 3vw;
   }
-
 `
 
 export const responsiveStyles = styled.div`
@@ -351,7 +350,7 @@ export const LabelCust = styled(Label)`
 `
 
 export const MainButtonAuth = styled.button`
-  background-color: #8dd3bb;
+  background-color: var(--color-primary);
   border-style: none;
   width: 100%;
   border-radius: 30px;
@@ -373,7 +372,7 @@ export const MainButtonAuth = styled.button`
   @media (max-width: 786px) {
     font-size: 2vw;
   }
-  
+
   @media (max-width: 440px) {
     font-size: 3vw;
   }

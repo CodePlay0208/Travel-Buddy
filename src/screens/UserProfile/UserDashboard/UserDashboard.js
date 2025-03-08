@@ -231,7 +231,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
                           width: '15px',
                           height: '15px',
                           cursor: 'pointer',
-                          accentColor: '#8dd3bb',
+                          accentColor: 'var(--color-primary)',
                         }}
                       />
                     </MakePrivate>
@@ -259,7 +259,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
                           width: '15px',
                           height: '15px',
                           cursor: 'pointer',
-                          accentColor: '#8dd3bb',
+                          accentColor: 'var(--color-primary)',
                         }}
                       />
                     </MakePrivate>

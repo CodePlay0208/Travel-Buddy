@@ -31,7 +31,7 @@
 
 .SearchBar-Searchbutton {
   border-radius: 10px;
-  background-color: #8dd3bb;
+  background-color: var(--color-primary);
   width: 20%;
   height: 100%;
   display: flex;

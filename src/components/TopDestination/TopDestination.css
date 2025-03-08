@@ -1,173 +1,173 @@
 .frame {
-    position: relative;
-    width: 100%;
-    max-width: 1730px;
-    margin: 10% auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
+  position: relative;
+  width: 100%;
+  max-width: 1730px;
+  margin: 10% auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .background-image {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .rectangle40 {
-    position: absolute;
-    width: 100%;
-    max-width: 1729px;
-    height: 65%;
-    top: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(141, 211, 187, 0.28);
+  position: absolute;
+  width: 100%;
+  max-width: 1729px;
+  height: 65%;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(141, 211, 187, 0.28);
 }
 
 .heading {
-    position: absolute;
-    width: 80%;
-    max-width: 469px;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 34px;
-    line-height: 42px;
-    color: #000000;
-    text-align: center;
+  position: absolute;
+  width: 80%;
+  max-width: 469px;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 42px;
+  color: #000000;
+  text-align: center;
 }
 
 .explore-button {
-    position: absolute;
-    width: 50%;
-    max-width: 462px;
-    height: 15%;
-    top: 60%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #8DD3BB;
-    border-radius: 10px;
-    border: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
-    color: #000000;
-    cursor: pointer;
+  position: absolute;
+  width: 50%;
+  max-width: 462px;
+  height: 15%;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  border-radius: 10px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  color: #000000;
+  cursor: pointer;
 }
 
 .explore-button:hover {
-    background: #76b39d;
+  background: #76b39d;
 }
 
 .location-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    position: absolute;
-    width: 100%;
-    top: 40%;
-    padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 100%;
+  top: 40%;
+  padding: 0 10px;
 }
 
 .location-box {
-    box-sizing: border-box;
-    margin: 0 5%;
-    width: 20%;
-    max-width: 386px;
-    height: 75px;
-    background: #FFFFFF;
-    border: 1px solid #E4CDCD;
-    border-radius: 10px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
-    font-weight: 500;
-    color: #112211;
-    cursor: pointer;
+  box-sizing: border-box;
+  margin: 0 5%;
+  width: 20%;
+  max-width: 386px;
+  height: 75px;
+  background: #ffffff;
+  border: 1px solid #e4cdcd;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: #112211;
+  cursor: pointer;
 }
 
 .location-box:hover {
-    background: #f0f0f0;
-    border-color: #ccc;
+  background: #f0f0f0;
+  border-color: #ccc;
 }
 
 @media (max-width: 1024px) {
-    .rectangle40 {
-        height: 50%;
-        top: 15%;
-    }
+  .rectangle40 {
+    height: 50%;
+    top: 15%;
+  }
 
-    .heading {
-        font-size: 32px;
-        top: 20%;
-    }
+  .heading {
+    font-size: 32px;
+    top: 20%;
+  }
 
-    .explore-button {
-        width: 70%;
-        height: 12%;
-        top: 85%;
-    }
+  .explore-button {
+    width: 70%;
+    height: 12%;
+    top: 85%;
+  }
 
-    .location-container {
-        top: 35%;
-    }
+  .location-container {
+    top: 35%;
+  }
 
-    .location-box {
-        height: auto;
-        width: 45%;
-    }
+  .location-box {
+    height: auto;
+    width: 45%;
+  }
 }
 
 @media (max-width: 768px) {
-    .rectangle40 {
-        height: 40%;
-        top: 10%;
-    }
+  .rectangle40 {
+    height: 40%;
+    top: 10%;
+  }
 
-    .heading {
-        font-size: 30px;
-        top: 15%;
-    }
+  .heading {
+    font-size: 30px;
+    top: 15%;
+  }
 
-    .explore-button {
-        width: 80%;
-        height: 10%;
-        top: 85%;
-    }
+  .explore-button {
+    width: 80%;
+    height: 10%;
+    top: 85%;
+  }
 
-    .location-container {
-        top: 30%;
-    }
+  .location-container {
+    top: 30%;
+  }
 
-    .location-box {
-        height: auto;
-        width: 90%;
-    }
+  .location-box {
+    height: auto;
+    width: 90%;
+  }
 }
 
 @media (max-width: 480px) {
-    .rectangle40 {
-        height: 30%;
-        top: 5%;
-    }
+  .rectangle40 {
+    height: 30%;
+    top: 5%;
+  }
 
-    .heading {
-        font-size: 28px;
-        top: 10%;
-    }
+  .heading {
+    font-size: 28px;
+    top: 10%;
+  }
 
-    .explore-button {
-        width: 90%;
-        height: 8%;
-        top: 80%;
-    }
+  .explore-button {
+    width: 90%;
+    height: 8%;
+    top: 80%;
+  }
 
-    .location-container {
-        top: 25%;
-    }
+  .location-container {
+    top: 25%;
+  }
 
-    .location-box {
-        height: auto;
-        width: 100%;
-    }
+  .location-box {
+    height: auto;
+    width: 100%;
+  }
 }

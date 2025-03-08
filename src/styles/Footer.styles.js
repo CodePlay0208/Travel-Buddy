@@ -7,7 +7,7 @@ export const FooterContainer = styled.div`
   align-items: center;
   padding: 2%;
   gap: 2%;
-  background: #8dd3bb;
+  background: var(--color-primary);
   width: 100%;
 `
 
@@ -17,7 +17,7 @@ export const FooterTop = styled.div`
   display: flex;
   align-items: center;
   padding: 2% 5%;
-  background: #8dd3bb;
+  background: var(--color-primary);
   justify-content: center;
   @media (max-width: 786px) {
     flex-wrap: wrap;
@@ -26,7 +26,7 @@ export const FooterTop = styled.div`
 
 export const FooterSection = styled.div`
   width: 50%;
-  background: #8dd3bb;
+  background: var(--color-primary);
   padding: 2% 5%;
   @media (max-width: 786px) {
     width: 100%;

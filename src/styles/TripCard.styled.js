@@ -5,7 +5,7 @@ export const TripCardContainer = styled.div`
   height: 600px;
   background: #ffffff;
   border: 2px solid #ffffff;
-  box-shadow: 0px 0px 20px 0px #8dd3bb40;
+  box-shadow: 0px 0px 20px 0px var(--color-primary) 40;
   border-radius: 16px;
   box-sizing: border-box;
   display: flex;
@@ -165,7 +165,7 @@ export const ChatNow = styled.div`
 export const ChatButton = styled.button`
   width: 35%;
   height: 40px;
-  background: #8dd3bb;
+  background: var(--color-primary);
   border-radius: 32px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;

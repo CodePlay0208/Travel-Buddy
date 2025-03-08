@@ -28,7 +28,7 @@ export const ShowMoreButton = styled.button`
   font-size: 36px;
   padding: 10px 20px;
   cursor: pointer;
-  background-color: #8dd3bb;
+  background-color: var(--color-primary);
   border-radius: 10px;
   font-weight: 700;
   border: none;

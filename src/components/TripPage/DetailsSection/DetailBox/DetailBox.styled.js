@@ -7,7 +7,7 @@ export const BoxContainer = styled.div`
   background: #ffffff;
   margin: 3% 0;
   padding: 3%;
-  color: #8dd3bb;
+  color: var(--color-primary);
 
   &.Traveller {
     color: #000000;

@@ -125,7 +125,7 @@ export const PublishButton = styled.button`
   font-size: 3.5vw;
   padding: 1%;
   cursor: pointer;
-  background-color: #8dd3bb;
+  background-color: var(--color-primary);
   width: ${(props) => props.width || 'auto'};
   border-radius: 10px;
   font-weight: 700;

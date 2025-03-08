@@ -63,7 +63,7 @@ export const LoginSignUpLink = styled.span`
   @media (max-width: 786px) {
     font-size: 2vw;
   }
-  
+
   @media (max-width: 440px) {
     font-size: 3vw;
   }
@@ -80,8 +80,8 @@ export const GoogleSignUpButton = styled.button`
   border-style: solid;
   border-width: 2px;
   border-radius: 2px;
-  border-color: #8dd3bb;
-  background-color: #8dd3bb;
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
   display: flex;
   justify-content: center;
   align-items: center;

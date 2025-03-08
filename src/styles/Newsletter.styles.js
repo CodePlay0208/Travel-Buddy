@@ -6,7 +6,7 @@ export const NewsletterContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: linear-gradient(to bottom, #ffffff 50%, #8dd3bb 50%);
+  background: linear-gradient(to bottom, #ffffff 50%, var(--color-primary) 50%);
   padding: 5%;
 
   @media (max-width: 786px) {

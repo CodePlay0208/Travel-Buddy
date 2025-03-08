@@ -17,7 +17,7 @@ export const Label = styled.label`
     line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 2.6}vw` : '3.8vw')};
     font-size: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 2.5}vw` : '3.5vw')};
   }
-  
+
   @media (max-width: 440px) {
     line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 3.6}vw` : '4vw')};
     font-size: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 3.5}vw` : '4vw')};
@@ -100,7 +100,7 @@ export const Button = styled.button`
   line-height: 1vw;
   color: #000000;
   text-align: center;
-  background: #8dd3bb;
+  background: var(--color-primary);
   padding: 5% 10%;
   border: none;
   border-radius: 40px;

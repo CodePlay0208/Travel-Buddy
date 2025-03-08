@@ -202,7 +202,7 @@ export const ShowAllImageContainer = styled.div`
 export const UploadButton = styled.button`
   display: flex;
   flex-direction: row;
-  background-color: #8dd3bb;
+  background-color: var(--color-primary);
   justify-content: center;
   align-items: center;
   padding: 3%;
@@ -236,7 +236,6 @@ export const PreviewImageItemContainer = styled.div`
   @media (max-width: 1080px) {
     width: 150px;
   }
-
 `
 
 export const PreviewImageItem = styled.img`
@@ -282,7 +281,6 @@ export const PreviewImageRemoveButton = styled.span`
   color: #ffffff;
   background-color: #ff0000;
   border-radius: 10px;
-
 `
 
 export const UploadContainer = styled.div`

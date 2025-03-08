@@ -125,7 +125,7 @@
   font-weight: 500;
   font-size: 22px;
   color: #112211;
-  border: 2px solid #8dd3bb;
+  border: 2px solid var(--color-primary);
   border-radius: 8px;
   background-color: transparent;
   cursor: pointer;

@@ -109,8 +109,8 @@ export const Badge = styled.div`
   position: absolute;
   top: 10px;
   left: 10px;
-  background: #8dd3bb;
-  border: 2px solid #8dd3bb;
+  background: var(--color-primary);
+  border: 2px solid var(--color-primary);
   border-radius: 21px;
   padding: 1% 3%;
   display: flex;

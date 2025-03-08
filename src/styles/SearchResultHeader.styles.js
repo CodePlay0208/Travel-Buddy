@@ -78,7 +78,7 @@ export const HeaderDesHeading = styled.div`
   text-align: center;
 
   font-size: 6vw;
-  color: #8dd3bb;
+  color: var(--color-primary);
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 12vw;
   }

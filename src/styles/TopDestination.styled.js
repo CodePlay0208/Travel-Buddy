@@ -7,7 +7,7 @@ export const Frame = styled.div`
   margin: 10% auto;
   padding-top: 20px;
   padding-bottom: 20px;
-  
+
   @media (max-width: 440px) {
     margin: 20% auto;
   }
@@ -52,7 +52,7 @@ export const ExploreButton = styled.button`
   position: relative;
   padding: 1.5%;
   width: 100%;
-  background: #8dd3bb;
+  background: var(--color-primary);
   border-radius: 40px;
   border: none;
   margin-top: 5%;

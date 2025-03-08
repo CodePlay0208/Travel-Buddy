@@ -118,7 +118,7 @@
   max-width: 906px;
   height: auto;
   padding: 2% 0;
-  background: #8dd3bb;
+  background: var(--color-primary);
   box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.25);
   border-radius: 10px 10px 0px 0px;
 }
@@ -226,7 +226,7 @@
   transition: background-color 0.3s ease;
 }
 .submit-button {
-  background-color: #8DD3BB;
+  background-color: var(--color-primary);
   color: rgb(0, 0, 0);
 }
 .publish__trip__button {
@@ -236,7 +236,7 @@
   height: 74.83px;
   margin: 20px auto;
   background: #ffffff;
-  border: 3px solid #8dd3bb;
+  border: 3px solid var(--color-primary);
   border-radius: 8.90855px;
   display: flex;
   align-items: center;
@@ -261,11 +261,11 @@
     padding: 1%;
   }
   .SearchBar-DestinationContainer {
-    border: 3px solid #8dd3bb;
+    border: 3px solid var(--color-primary);
   }
   .date-picker {
     input {
-      border: 3px solid #8dd3bb;
+      border: 3px solid var(--color-primary);
     }
   }
 }

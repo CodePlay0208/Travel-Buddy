@@ -65,7 +65,7 @@ export const ImgProfile = styled.img`
   height: 100%;
   object-fit: cover;
   @media (max-width: 786px) {
-    border: 5px solid #8dd3bb;
+    border: 5px solid var(--color-primary);
   }
 `
 
@@ -270,8 +270,8 @@ export const DeleteButton = styled(BaseButton)`
 
 export const SaveButton = styled(BaseButton)`
   color: #000000;
-  border: 1px solid #8dd3bb;
-  background-color: #8dd3bb;
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-primary);
   @media (max-width: 440px) {
     padding: 4%;
   }

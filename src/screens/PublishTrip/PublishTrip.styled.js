@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 const colors = {
   primary: '#0b87ac',
-  secondary: '#8dd3bb',
+  secondary: 'var(--color-primary)',
   dark: '#040f0f',
   light: '#ffffff',
   hover: '#559c84',

@@ -26,7 +26,7 @@ export const VerifyCodeResendText = styled.p`
   margin-left: 5px;
   font-size: 0.9vw;
   font-weight: 500;
-  color: #8dd3bb;
+  color: var(--color-primary);
   cursor: pointer;
   padding: 0px 1px;
 
@@ -55,7 +55,7 @@ export const VerifyCodeVerifyButtonContainer = styled.div`
 `
 
 export const VerifyCodeVerifyButton = styled.button`
-  background-color: #8dd3bb;
+  background-color: var(--color-primary);
   padding: 15px;
   font-size: 1.1rem;
   width: 100%;

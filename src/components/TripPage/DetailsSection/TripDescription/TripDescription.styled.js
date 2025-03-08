@@ -222,7 +222,7 @@ export const Button = styled.button`
   line-height: 1vw;
   color: #000000;
   text-align: center;
-  background: #8dd3bb;
+  background: var(--color-primary);
   padding: 3.5% 5%;
   border: none;
   border-radius: 40px;

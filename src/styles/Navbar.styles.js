@@ -86,7 +86,7 @@ export const NavButton = styled.div`
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 50px;
-  background-color: #8dd3bb;
+  background-color: var(--color-primary);
   font-weight: 500;
   text-align: center;
   cursor: pointer;

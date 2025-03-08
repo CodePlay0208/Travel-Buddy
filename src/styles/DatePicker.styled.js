@@ -124,11 +124,11 @@ export const CalendarHeader = styled.div`
   padding: 0 2% 4%;
   background-color: #ffffff;
   border-radius: 25px 25px 0 0;
-  color: #8dd3bb;
+  color: var(--color-primary);
   font-weight: 600;
 
   span {
-    color: #8dd3bb;
+    color: var(--color-primary);
     font-weight: 600;
   }
   .svgIcon {
@@ -137,7 +137,7 @@ export const CalendarHeader = styled.div`
     color: #797b86;
   }
   .svgIcon:hover {
-    color: #8dd3bb;
+    color: var(--color-primary);
   }
 `
 
@@ -208,11 +208,11 @@ export const Days = styled.div`
       color 0.2s;
 
     &:hover:not(.disabled) {
-      background-color: #8dd3bb;
+      background-color: var(--color-primary);
     }
 
     &.selected {
-      background-color: #8dd3bb;
+      background-color: var(--color-primary);
       color: white;
     }
 
@@ -244,11 +244,11 @@ export const Months = styled.div`
       color 0.2s;
 
     &:hover:not(.disabled) {
-      background-color: #8dd3bb;
+      background-color: var(--color-primary);
     }
 
     &.selected {
-      background-color: #8dd3bb;
+      background-color: var(--color-primary);
       color: white;
     }
 
@@ -279,11 +279,11 @@ export const Years = styled.div`
       color 0.2s;
 
     &:hover:not(.disabled) {
-      background-color: #8dd3bb;
+      background-color: var(--color-primary);
     }
 
     &.selected {
-      background-color: #8dd3bb;
+      background-color: var(--color-primary);
       color: white;
     }
 
@@ -301,7 +301,7 @@ export const TodayButton = styled.div`
   button {
     padding: 2% 4%;
     border: none;
-    background-color: #8dd3bb;
+    background-color: var(--color-primary);
     color: white;
     border-radius: 4px;
     cursor: pointer;

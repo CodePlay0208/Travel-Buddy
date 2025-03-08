@@ -1,4 +1,3 @@
-
 .VerifyCodeFormInputsContainer {
   margin-top: 5%;
 }
@@ -53,7 +52,7 @@
 }
 
 .VerifyCodeVerifyButton {
-  background-color: #8dd3bb;
+  background-color: var(--color-primary);
   padding: 15px;
   font-size: 1.1rem;
   width: 100%;
@@ -65,7 +64,6 @@
 .VerifyCodeVerifyButton:active {
   font-size: 1.125px;
 }
-
 
 @media (max-width: 1024px) {
   .VerifyCodeCodeInputContainer {

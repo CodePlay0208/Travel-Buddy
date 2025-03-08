@@ -27,7 +27,7 @@ const HeroSection = () => {
       {/* publish section  */}
 
       <PublishNowContainer width="100%">
-        <PublishNowContent  width="70%" borderRadius="15px" backgroundImage={images.heroSection_4}>
+        <PublishNowContent width="70%" borderRadius="15px" backgroundImage={images.heroSection_4}>
           <PublishHeading>Publish trips on the go</PublishHeading>
         </PublishNowContent>
         <PublishButton
@@ -46,7 +46,7 @@ const HeroSection = () => {
             {/* Upper Section */}
             <FlexContainer width="100%">
               <FlexContainer aspectRatio="1" width="50%" borderRadius="15px" backgroundImage={images.heroSection_1} />
-              <TextWrapper width="50%" backgroundColor="#8DD3BBDB" borderRadius="15px">
+              <TextWrapper width="50%" backgroundColor="var(--color-primary)" borderRadius="15px">
                 <SmallText>Scroll click Tap & Go</SmallText>
                 <LeftText>
                   Finding a trip has never been easier! Thanks to our simple app powered by great technology, you can book a trip close to

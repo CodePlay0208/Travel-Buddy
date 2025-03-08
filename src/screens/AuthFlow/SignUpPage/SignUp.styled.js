@@ -70,7 +70,7 @@ export const SignUpCreateAccountContainer = styled.div`
 `
 
 export const SignUpCreateAccountButton = styled.button`
-  background-color: #8dd3bb;
+  background-color: var(--color-primary);
   padding: 15px;
   font-size: 1.1rem;
   width: 100%;
@@ -97,11 +97,11 @@ export const SignUpAlreadyHaveText = styled.div`
   justify-content: center;
   align-items: center;
   color: #848282;
-  
+
   @media (max-width: 786px) {
     font-size: 2vw;
   }
-  
+
   @media (max-width: 440px) {
     font-size: 3vw;
   }
@@ -126,11 +126,11 @@ export const SignUpLoginLink = styled.span`
     color: #ca2c27;
     transform: scale(0.98);
   }
-  
+
   @media (max-width: 786px) {
     font-size: 2vw;
   }
-  
+
   @media (max-width: 440px) {
     font-size: 3vw;
   }
@@ -180,7 +180,7 @@ export const SignUpGoogleSignUpButton = styled.button`
   border-style: solid;
   border-width: 2px;
   border-radius: 2px;
-  border-color: #8dd3bb;
+  border-color: var(--color-primary);
   background-color: white;
 
   &:active {
