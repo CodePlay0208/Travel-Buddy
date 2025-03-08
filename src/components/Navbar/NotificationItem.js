@@ -107,7 +107,7 @@ const NotificationItem = ({ notification, onConfirm, onDelete, onChatNow }) => {
   return (
     <Container>
       <DetailsContainer>
-        <ProfilePicture src={notification.profilePic?.[0] || images.defaultProfileImg} alt="Profile" />
+        <ProfilePicture src={notification.profilePic?.[0]?.preSignedUrl || images.defaultProfileImg} alt="Profile" />
         <Content>
           <Heading>{getHeadingMessage(notification)}</Heading>
           <Para>{getNotificationMessage(notification)}</Para>

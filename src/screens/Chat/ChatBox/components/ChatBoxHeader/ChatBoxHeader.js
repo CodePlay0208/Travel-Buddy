@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 
 const ChatBoxHeader = (props) => {
   const { selectedChat, user, chats, chatUser } = props
-  const userProfileImg = chatUser?.profilePic?.[0] || images.defaultProfileImg
+  const userProfileImg = chatUser?.profilePic?.[0]?.preSignedUrl || images.defaultProfileImg
 
   const getChatUserName = useCallback(() => {
     if (selectedChat) {

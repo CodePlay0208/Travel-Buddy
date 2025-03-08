@@ -21,7 +21,7 @@ import {
   CLEAR_MESSAGES,
   SET_FETCH_AGAIN,
   ON_TYPING_EVENT,
-  DISCONNECT_SOCKET
+  DISCONNECT_SOCKET,
 } from '../constants/action-types/chats.constants'
 
 const initialState = {
@@ -95,12 +95,18 @@ const chatsReducer = (state = initialState, action) => {
         fetchAgain: payload,
       }
     case GET_ALL_CHATS_SUCCESS:
-    case GET_CREATE_CHAT_SUCCESS:
       return {
         ...state,
         isLoading: false,
         chats: payload,
         selectedChat: state.chats && state.chats.length ? state.chats[0] : null,
+      }
+    case GET_CREATE_CHAT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        chats: payload,
+        selectedChat: state.chatId,
       }
     case GET_ALL_CHATS_FAIL:
       return {

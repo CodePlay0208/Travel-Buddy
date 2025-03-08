@@ -45,7 +45,7 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
     startDate,
     endDate,
     tripMembers,
-    publisherId,
+    userId: publisherId,
     createdAt,
   } = trip || {}
 
@@ -74,8 +74,7 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
       if (isChatCreated) {
         navigate('/chats')
       }
-    }
-    else{
+    } else {
       navigate('/chats')
     }
   }
