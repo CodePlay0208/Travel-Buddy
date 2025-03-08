@@ -56,7 +56,7 @@ const SlidingSection = ({ trips }) => {
   return (
     <Container>
       <Slider cardCount={8}>
-        {trips.slice(0, 8).map((card, index) => (
+        {trips?.slice(0, 8).map((card, index) => (
           <CardContainer key={index}   >
             <Card key={index} src={card?.croppedDestinationImages?.[0]?.preSignedUrl} />
             <Badge>
