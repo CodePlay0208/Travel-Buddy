@@ -6,7 +6,7 @@ const breakpoints = {
   desktop: '1024px',
 }
 export const NavContainer = styled.div`
-  font-size: 2vw;
+  font-size: 2rem;
   padding: ${(props) => (props.isImageNavbar ? `1%` : `0px`)};
   z-index: 1000;
   position: ${(props) => (props.isImageNavbar ? `absolute` : `relative`)};
@@ -125,10 +125,6 @@ export const Signup = styled.div`
 
 export const ProfileImageContainer = styled.div`
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 
   img {
     width: 100%;
