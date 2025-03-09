@@ -5,7 +5,7 @@ import { images } from '../../../../../assets/images'
 const ChatItem = (props) => {
   const { active, user, latestMessage, onClick, newMessages } = props
 
-  const userProfileImg = user?.profilePic?.[0] || images.defaultProfileImg
+  const userProfileImg = user?.profilePic?.[0]?.preSignedUrl || images.defaultProfileImg
   return (
     <div className={`chat-item ${active ? 'active' : ''}`} onClick={onClick}>
       <div className="chat-item-sub-container">

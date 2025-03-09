@@ -91,7 +91,7 @@ export const NavButton = styled.div`
   text-align: center;
   cursor: pointer;
   margin: 0;
-  padding: 3% 5%;
+  padding: 2% 3%;
   position: relative;
   &:hover {
     filter: drop-shadow(3px 3px 4px #228be6);
