@@ -4,6 +4,18 @@ export const Container = styled.div`
   display: flex;
 `
 
+export const OtpContainer = styled.div`
+  background-color: white;
+  padding: 3%;
+  width: 50%;
+  border-radius: 20px;
+  @media (max-width: 440px) {
+    padding: 3%;
+    width: 90%;
+    border-radius: 20px;
+  }
+`
+
 export const DashboardContainer = styled.div`
   width: 100%;
   padding: 0 3%;

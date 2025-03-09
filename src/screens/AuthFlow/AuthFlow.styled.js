@@ -127,7 +127,7 @@ export const SupportingImg = styled.img`
   }
 `
 export const Form = styled.form`
-  width: 55%;
+  width: 100%;
 
   @media (max-width: 786px) {
     width: 100%;
@@ -286,6 +286,13 @@ export const ImageGoogleIcon = styled.img`
 
   @media (max-width: 440px) {
     height: 3vw;
+  }
+`
+
+export const OtpContainer = styled.div`
+  width: 55%;
+  @media (max-width: 440px) {
+    width: 100%;
   }
 `
 

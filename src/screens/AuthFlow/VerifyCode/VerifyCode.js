@@ -24,8 +24,10 @@ import {
   Form,
   SupportingImg,
   VerifyCodeFormInputsContainer,
+  OtpContainer,
 } from '../AuthFlow.styled'
 import { VerifyCodeResendCodeContainer, VerifyCodeDidntRecieveText, VerifyCodeResendLink, VerifyCodeResendText } from './VerifyCode.styled'
+import OtpComponent from './OtpComponent'
 const mapStateToProps = (state) => ({
   otpVerified: state.authReducer.otpVerified,
 })
@@ -36,7 +38,6 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
   const origin = sessionStorage.getItem('prevRoute')
 
   const [formData, setFormData] = useState({ verificationCode: '' })
-  const [secureVerificationCode, setSecureVerificationCode] = useState(true)
 
   const handleBackButtonClick = () => {
     navigate(-1)
@@ -80,25 +81,9 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
             <FormHeadingContainer>Verify code</FormHeadingContainer>
             <FormSubHeadingText>An authentication code has been sent to your email.</FormSubHeadingText>
             <VerifyCodeFormInputsContainer>
-              <Form onSubmit={onSubmit}>
-                <InputComponent
-                  label="Enter Code"
-                  type="text"
-                  name="verificationCode"
-                  user={formData}
-                  setUser={setFormData}
-                  placeholder="Enter The Code"
-                  secureTextState={secureVerificationCode}
-                  setSecureTextState={setSecureVerificationCode}
-                />
-                <MainButtonAuth type="submit">Verify Code</MainButtonAuth>
-                <VerifyCodeResendCodeContainer>
-                  <VerifyCodeDidntRecieveText>Didn’t receive a code?</VerifyCodeDidntRecieveText>
-                  <VerifyCodeResendLink onClick={onResendClick}>
-                    <VerifyCodeResendText>Resend</VerifyCodeResendText>
-                  </VerifyCodeResendLink>
-                </VerifyCodeResendCodeContainer>
-              </Form>
+              <OtpContainer>
+                <OtpComponent formData={formData} setFormData={setFormData} onResendClick={onResendClick} onSubmit={onSubmit} />
+              </OtpContainer>
               <SupportingImg src={images.verify_code_image} alt="supporting" />
             </VerifyCodeFormInputsContainer>
           </FormContainer>

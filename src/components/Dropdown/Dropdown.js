@@ -3,7 +3,7 @@ import { City, DropdownContainer, DropdownItem, FlexContainerCust } from './Drop
 import { useNavigate } from 'react-router-dom'
 import LineBorder from '../../styles/Line.styled.js'
 
-const Dropdown = ({ data, selectSuggestion, setShowDropdown, renderItem, selectable = true }) => {
+const Dropdown = ({ data, selectSuggestion, setShowDropdown, renderItem, selectable = true, title = 'Data' }) => {
   const navigate = useNavigate()
   const wrapperRef = useRef(null)
 
@@ -21,14 +21,22 @@ const Dropdown = ({ data, selectSuggestion, setShowDropdown, renderItem, selecta
 
   return (
     <DropdownContainer ref={wrapperRef}>
-      {data.map((item, index) => (
-        <DropdownItem key={index} selectable={selectable} onClick={() => selectSuggestion(item)}>
-          <FlexContainerCust direction="column" alignItems="start" gap="1%" width="100%" fontSize="min(1.5vw,24px)">
-            {renderItem ? renderItem(item) : <City>{item.value}</City>}
-            <LineBorder />
+      {!!data.length ? (
+        data.map((item, index) => (
+          <DropdownItem key={index} selectable={selectable} onClick={() => selectSuggestion(item)}>
+            <FlexContainerCust direction="column" alignItems="start" gap="1%" width="100%" fontSize="min(1.5vw,24px)">
+              {renderItem ? renderItem(item) : <City>{item.value}</City>}
+              <LineBorder />
+            </FlexContainerCust>
+          </DropdownItem>
+        ))
+      ) : (
+        <DropdownItem selectable={false}>
+          <FlexContainerCust direction="column" alignItems="center" gap="1%" width="100%" fontSize="min(1.5vw,24px)">
+            <City>{`No ${title} Found`}</City>
           </FlexContainerCust>
         </DropdownItem>
-      ))}
+      )}
     </DropdownContainer>
   )
 }

@@ -175,6 +175,7 @@ const Navbar = (props) => {
                   navigate(`/trip/${notification.tripId}`)
                 }}
                 selectable={false}
+                title="Notification"
                 renderItem={(item) => (
                   <NotificationItem
                     notification={item}

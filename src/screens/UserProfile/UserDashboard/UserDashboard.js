@@ -31,12 +31,15 @@ import {
   NameContainer,
   MakePrivate,
   MakePrivateContainer,
+  OtpContainer,
 } from './UserDashboard.styled'
 import Modal from '../../../components/Modal/Modal'
 
 import { logout } from '../../../actions/auth.action'
 import Dropdown from '../../../components/Dropdown/Dropdown'
 import { Input, Label, Value } from '../../../styles/Global'
+import OtpComponent from '../../AuthFlow/VerifyCode/OtpComponent'
+import Overlay from '../../../components/Overlay/overlay'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -50,6 +53,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
   const [selectedProfilePic, setSelectedProfilePic] = useState(null)
   const [imageFile, setImageFile] = useState(null)
   const [deleteModal, setDeleteModal] = useState(false)
+  const [otpVerify, setOtpVerify] = useState(false)
   const [showPersonaDropDown, setShowPersonaDropDown] = useState(false)
   const [showGenderDropDown, setShowGenderDropDown] = useState(false)
 
@@ -78,7 +82,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
     })
   }
 
-  const handleSave = async () => {
+  const mapDataToApi = async () => {
     const formDataNew = new FormData()
     if (imageFile) {
       formDataNew.append('profilePic', imageFile)
@@ -89,6 +93,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
       }
       formDataNew.append(key, value)
     })
+
     const res = await updateProfile(formDataNew, true)
     if (res) {
       toast.success('Profile updated successfully!', { autoClose: 1500 })
@@ -97,6 +102,9 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
     }
     setIsEditing(false)
     setSelectedProfilePic(null)
+  }
+  const handleSave = async () => {
+    setOtpVerify(true)
   }
 
   const handleCancel = () => {
@@ -126,6 +134,14 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
 
   const handleCancelDelete = () => {
     setDeleteModal(false)
+  }
+  const onResendOtpClick = () => {}
+
+  const onSubmitOtp = async (e) => {
+    e.preventDefault()
+    await mapDataToApi()
+
+    setOtpVerify(false)
   }
   return (
     <Container>
@@ -309,6 +325,13 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
         <ToastContainer />
       </DashboardContainer>
 
+      {otpVerify && (
+        <Overlay>
+          <OtpContainer>
+            <OtpComponent formData={formData} setFormData={setFormData} onResendClick={onResendOtpClick} onSubmit={onSubmitOtp} />
+          </OtpContainer>
+        </Overlay>
+      )}
       {deleteModal && (
         <Modal
           message="Are you sure you want to delete your account? This action cannot be undone."
