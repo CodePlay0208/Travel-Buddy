@@ -10,6 +10,7 @@ import {
   VERIFY_OTP_FAIL,
   RESEND_OTP_SUCCESS,
   RESEND_OTP_FAIL,
+  EDIT_SECONDARY_KEY,
 } from '../constants/action-types/auth.constants'
 import { AuthApi, ProfileApi } from '../services/api-services/api-invokes'
 import { setAuthToken } from '../services/api-services/api-services'
@@ -29,7 +30,6 @@ export const isTokenValid = () => async (dispatch) => {
     return false
   }
 }
-
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
@@ -136,6 +136,18 @@ export const verifyOTP =
       })
     }
   }
+export const editSecondaryKey = (payload) => async (dispatch) => {
+  try {
+    const res = await AuthApi.editSecondaryKey(payload)
+
+    return true
+  } catch (e) {
+    if (e.response && e.response.status === 400) {
+      toast.error('Invalid User!', { autoClose: 1500 })
+    }
+    return false
+  }
+}
 
 export const resendOTP = () => async (dispatch) => {
   const userKey = localStorage.getItem('userKey')

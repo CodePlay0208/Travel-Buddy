@@ -8,6 +8,7 @@ export const API_PATH = {
   AUTH_FORGET_PASS: '/login/forgotPassword',
   AUTH_RESEND_OTP: '/login/resendOtp',
   AUTH_VERIFY_OTP: '/login/verifyOtp',
+  EDIT_SECONDARY_KEY:'/user/editSecondaryKey',
 
   TRIPS_API: '/trips/getTrips',
   USER_TRIPS_API: '/trips/getTripsByUser',

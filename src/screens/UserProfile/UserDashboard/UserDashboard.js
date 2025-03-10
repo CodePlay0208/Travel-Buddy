@@ -35,7 +35,7 @@ import {
 } from './UserDashboard.styled'
 import Modal from '../../../components/Modal/Modal'
 
-import { logout } from '../../../actions/auth.action'
+import { editSecondaryKey, logout } from '../../../actions/auth.action'
 import Dropdown from '../../../components/Dropdown/Dropdown'
 import { Input, Label, Value } from '../../../styles/Global'
 import OtpComponent from '../../AuthFlow/VerifyCode/OtpComponent'
@@ -46,7 +46,7 @@ const mapStateToProps = (state) => ({
   loading: state.profileReducer.loading,
 })
 
-const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, userId, getOtherUserProfile }) => {
+const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, userId, getOtherUserProfile, editSecondaryKey, logout }) => {
   const navigate = useNavigate()
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({})
@@ -57,6 +57,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
   const [showPersonaDropDown, setShowPersonaDropDown] = useState(false)
   const [showGenderDropDown, setShowGenderDropDown] = useState(false)
 
+  const isLoginWithEmail = formData.isLoginWithEmail
   useEffect(() => {
     if (!userId) {
       getProfile()
@@ -104,6 +105,8 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
     setSelectedProfilePic(null)
   }
   const handleSave = async () => {
+    await editSecondaryKey(isLoginWithEmail ? { phoneNumber: `+91${formData.phoneNumber}` } : { emailId: formData.emailId })
+
     setOtpVerify(true)
   }
 
@@ -125,11 +128,13 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
   }
   const handleDeleteAccount = async () => {
     setDeleteModal(false)
-    await deleteProfile()
-    logout()
-    navigate('/')
-    window.location.reload()
-    toast.success('Account deleted successfully!', { autoClose: 1500 })
+    const res = await deleteProfile()
+    if (res) {
+      await logout()
+      toast.success('Account deleted successfully!', { autoClose: 1500 })
+    } else {
+      toast.error('failed to delete profile')
+    }
   }
 
   const handleCancelDelete = () => {
@@ -251,7 +256,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
                   )}
                 </MakePrivateContainer>
                 {isEditing ? (
-                  <Input name="emailId" value={formData.emailId || ''} onChange={handleChange} />
+                  <Input name="emailId" value={formData.emailId || ''} onChange={handleChange} readOnly={isLoginWithEmail} />
                 ) : (
                   <Value>{profile?.emailId ?? '--'}</Value>
                 )}
@@ -279,7 +284,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
                   )}
                 </MakePrivateContainer>
                 {isEditing ? (
-                  <Input name="phoneNumber" value={formData.phoneNumber || ''} onChange={handleChange} />
+                  <Input name="phoneNumber" value={formData.phoneNumber || ''} onChange={handleChange} readOnly={!isLoginWithEmail} />
                 ) : (
                   <Value>{!!profile?.phoneNumber?.length ? `+91 ${profile?.phoneNumber}` : '--'}</Value>
                 )}
@@ -328,7 +333,13 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
       {otpVerify && (
         <Overlay>
           <OtpContainer>
-            <OtpComponent formData={formData} setFormData={setFormData} onResendClick={onResendOtpClick} onSubmit={onSubmitOtp} />
+            <OtpComponent
+              formData={formData}
+              setFormData={setFormData}
+              onResendClick={onResendOtpClick}
+              onSubmit={onSubmitOtp}
+              name="otp"
+            />
           </OtpContainer>
         </Overlay>
       )}
@@ -343,4 +354,4 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
   )
 }
 
-export default connect(mapStateToProps, { getProfile, updateProfile, deleteProfile })(memo(UserDashboard))
+export default connect(mapStateToProps, { getProfile, updateProfile, deleteProfile, editSecondaryKey, logout })(memo(UserDashboard))

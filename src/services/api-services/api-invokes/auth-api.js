@@ -78,6 +78,19 @@ export const AuthApi = {
       throw e
     }
   },
+  editSecondaryKey: async (payload) => {
+    try {
+      const result = await ApiService.post(API_PATH.EDIT_SECONDARY_KEY, payload, {
+        baseURL: env.BASE_API_URL,
+      })
+      console.log('editSecondaryKey SUCCESS: ', result)
+
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      console.log('editSecondaryKey ERROR: ', e)
+      throw e
+    }
+  },
 
   resendOtp: async (payload) => {
     try {

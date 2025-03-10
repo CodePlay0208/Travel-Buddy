@@ -3,13 +3,13 @@ import { Form, MainButtonAuth } from '../AuthFlow.styled'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import { VerifyCodeDidntRecieveText, VerifyCodeResendCodeContainer, VerifyCodeResendLink, VerifyCodeResendText } from './VerifyCode.styled'
 
-const OtpComponent = ({ onSubmit, formData, setFormData, onResendClick }) => {
+const OtpComponent = ({ onSubmit, formData, setFormData, onResendClick,name='verificationCode' }) => {
   return (
     <Form onSubmit={onSubmit}>
       <InputComponent
         label="Enter Code"
         type="text"
-        name="verificationCode"
+        name={name}
         user={formData}
         setUser={setFormData}
         placeholder="Enter The Code"
