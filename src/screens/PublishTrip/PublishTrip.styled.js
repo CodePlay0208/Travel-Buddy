@@ -239,7 +239,7 @@ export const ToggleTab = styled.div`
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 1.5rem;
-  line-height: 2rem;
+  line-height: 1.5rem;
   height: 100%;
   color: ${colors.black};
   padding: 1%;
