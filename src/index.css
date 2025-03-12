@@ -24,11 +24,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 html {
-  font-size: 1vw; /* For most viewports, 1vw equals 1% of viewport width */
+  font-size: 1vw;
+  max-width: 2500px;
+  margin: 0 auto;
 }
 
 @media (min-width: 2500px) {
   html {
-    font-size: 25px; /* Fix the size so that 1rem equals 25px */
+    font-size: 25px;
   }
 }
+

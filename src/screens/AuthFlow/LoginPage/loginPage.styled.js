@@ -42,7 +42,7 @@ export const LoginForgetPasswordLink = styled.a`
 
 export const LoginSignUpLink = styled.span`
   text-decoration: none;
-  font-size: 0.9vw;
+  font-size: 0.9rem;
   margin-left: 2px;
   font-weight: 700;
   color: #252525;
@@ -61,11 +61,11 @@ export const LoginSignUpLink = styled.span`
   }
 
   @media (max-width: 786px) {
-    font-size: 2vw;
+    font-size: 2rem;
   }
 
   @media (max-width: 440px) {
-    font-size: 3vw;
+    font-size: 3rem;
   }
 `
 

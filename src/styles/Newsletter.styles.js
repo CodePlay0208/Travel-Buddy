@@ -34,12 +34,12 @@ export const NewsletterHeader = styled.div`
   font-family: 'TradeGothic LT Extended';
   font-style: normal;
   font-weight: 700;
-  font-size: 3.5vw;
+  font-size: 3.5rem;
   color: #112211;
   margin-bottom: 5%;
 
   @media (max-width: 786px) {
-    font-size: 5vw;
+    font-size: 5rem;
   }
 `
 
@@ -60,12 +60,12 @@ export const NewsletterText = styled.div`
     font-family: 'TradeGothic LT Extended';
     font-style: normal;
     font-weight: 600;
-    font-size: 1.5vw;
+    font-size: 1.5rem;
     color: #112211;
     opacity: 0.8;
 
     @media (max-width: 786px) {
-      font-size: 3vw;
+      font-size: 3rem;
     }
   }
 
@@ -74,12 +74,12 @@ export const NewsletterText = styled.div`
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 1vw;
+    font-size: 1rem;
     color: #112211;
     opacity: 0.7;
 
     @media (max-width: 786px) {
-      font-size: 2.5vw;
+      font-size: 2.5rem;
     }
   }
 `
@@ -117,14 +117,14 @@ export const EmailInput = styled.input`
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.5vw;
+  font-size: 1.5rem;
   line-height: 23px;
   color: #1c1b1f;
   background: transparent;
   margin: 2.5%;
 
   @media (max-width: 786px) {
-    font-size: 3.5vw;
+    font-size: 3.5rem;
   }
 `
 
@@ -138,13 +138,13 @@ export const NewsletterButton = styled.button`
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
-  font-size: 1vw;
+  font-size: 1rem;
   cursor: pointer;
   padding: 2%;
   border: none;
 
   @media (max-width: 786px) {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
 
     padding: 5% 10%;
     border-radius: 25px;

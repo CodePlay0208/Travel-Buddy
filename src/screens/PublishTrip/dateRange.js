@@ -32,16 +32,16 @@ const DateRange = ({ startDate, totalDays, onDelete }) => {
   `
 
   const Element = styled.span`
-    font-size: 0.75vw;
-    line-height: 1vw;
+    font-size: 0.75rem;
+    line-height: 1rem;
     font-weight: 600;
     width: ${(props) => props.width};
     display: flex;
     align-items: center;
     justify-content: center;
     @media (max-width: 768px) {
-      font-size: 2.5vw;
-    line-height: 3vw;
+      font-size: 2.5rem;
+      line-height: 3rem;
     }
   `
 

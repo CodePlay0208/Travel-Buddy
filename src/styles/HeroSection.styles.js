@@ -15,8 +15,8 @@ export const HeroSectionText = styled.div`
   h1 {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 4vw;
-    line-height: 5vw;
+    font-size: 4rem;
+    line-height: 5rem;
     color: #2d3134;
   }
 `
@@ -80,7 +80,7 @@ export const HeroSectionCard = styled.div`
 export const HeroSectionCardImg = styled.div`
   position: relative;
   width: 100%;
-  aspect-ratio:4/3;
+  aspect-ratio: 4/3;
   background-size: cover;
   background-position: center;
   background-image: ${({ image }) => `url(${image})`};
@@ -95,7 +95,7 @@ export const HeroSectionCardImg = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    aspect-ratio:4/3;
+    aspect-ratio: 4/3;
     background: linear-gradient(180deg, rgba(54, 53, 48, 0) 72.87%, rgba(36, 36, 33, 0.9) 101.17%);
     border-radius: 24px;
   }

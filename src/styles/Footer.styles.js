@@ -40,7 +40,7 @@ export const FooterHeading = styled.h2`
   font-size: 1.75rem;
   color: #112211;
   @media (max-width: 400px) {
-    font-size: 2.75vw;
+    font-size: 2.75rem;
   }
 `
 export const FooterList = styled.ul`
@@ -72,7 +72,7 @@ export const FooterLink = styled.a`
     text-decoration: underline;
   }
   @media (max-width: 400px) {
-    font-size: 1.75vw;
+    font-size: 1.75rem;
   }
 `
 
@@ -85,7 +85,7 @@ export const Image = styled.img`
   width: 24px;
   aspect-ratio: 1;
   @media (max-width: 400px) {
-    font-size: 1.75vw;
+    font-size: 1.75rem;
   }
 `
 

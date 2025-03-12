@@ -37,13 +37,13 @@ export const Heading = styled.h1`
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 3.5vw;
+  font-size: 3.5rem;
   line-height: 42px;
   color: #000000;
   text-align: center;
   @media (max-width: 480px) {
     width: 100%;
-    font-size: 7vw;
+    font-size: 7rem;
     top: 20%;
   }
 `
@@ -57,7 +57,7 @@ export const ExploreButton = styled.button`
   border: none;
   margin-top: 5%;
   font-family: 'Montserrat', sans-serif;
-  font-size: 2vw;
+  font-size: 2rem;
   font-weight: 600;
   color: #000000;
   cursor: pointer;
@@ -67,7 +67,7 @@ export const ExploreButton = styled.button`
   }
   @media (max-width: 480px) {
     width: 80%;
-    font-size: 4vw;
+    font-size: 4rem;
     padding: 2.5%;
   }
 `
@@ -103,7 +103,7 @@ export const LocationBox = styled.button`
   background: #ffffff;
   border: none;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1vw;
+  font-size: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,7 +120,7 @@ export const LocationBox = styled.button`
   }
 
   img {
-    width: 2.5vw;
+    width: 2.5rem;
     aspect-ratio: 1;
   }
 
@@ -130,9 +130,9 @@ export const LocationBox = styled.button`
   }
   @media (max-width: 480px) {
     background: none;
-    font-size: 5vw;
+    font-size: 5rem;
     img {
-      width: 8vw;
+      width: 8rem;
       aspect-ratio: 1;
     }
   }

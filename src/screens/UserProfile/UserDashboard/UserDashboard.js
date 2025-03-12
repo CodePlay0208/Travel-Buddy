@@ -221,7 +221,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
                     setInputValues={(value) => handleInputChange('dateOfBirth', value)}
                     onValue={'dateOfBirth'}
                     placeholderValue={'Select Your Date of Birth'}
-                    fontSize={`1vw`}
+                    fontSize={`1rem`}
                     padding={`2.5%`}
                     borderRadius={'20px'}
                     backgroundColor={'#f4f4f4'}

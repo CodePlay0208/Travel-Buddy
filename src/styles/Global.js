@@ -7,30 +7,30 @@ const GlobalStyles = createGlobalStyle`
 
 export const Label = styled.label`
   font-weight: ${(props) => props.fontWeight ?? '500'};
-  font-size: ${(props) => props.fontSize ?? '1.5vw'};
-  line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 1.1}vw` : '1.5vw')};
+  font-size: ${(props) => props.fontSize ?? '1.5rem'};
+  line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 1.1}rem` : '1.5rem')};
   z-index: 2;
   margin: ${(props) => props.margin ?? '2% 0% 1%'};
   color: #252525;
   width: ${(props) => props.width};
   @media (max-width: 786px) {
-    line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 2.6}vw` : '3.8vw')};
-    font-size: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 2.5}vw` : '3.5vw')};
+    line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 2.6}rem` : '3.8rem')};
+    font-size: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 2.5}rem` : '3.5rem')};
   }
 
   @media (max-width: 440px) {
-    line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 3.6}vw` : '4vw')};
-    font-size: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 3.5}vw` : '4vw')};
+    line-height: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 3.6}rem` : '4rem')};
+    font-size: ${(props) => (props.fontSize ? `${parseFloat(props.fontSize) * 3.5}rem` : '4rem')};
   }
 `
 
 export const Value = styled.span`
   font-family: 'Montserrat';
   font-weight: 600;
-  font-size: 1.5vw;
+  font-size: 1.5rem;
   color: #112211;
   @media (max-width: 786px) {
-    font-size: 3.5vw;
+    font-size: 3.5rem;
   }
 `
 export const Input = styled.input`
@@ -38,7 +38,7 @@ export const Input = styled.input`
   width: 100%;
   padding: ${(props) => props.padding ?? '2.5%'};
   margin: ${(props) => props.margin ?? '0'};
-  font-size: ${(props) => props.fontSize ?? '1vw'};
+  font-size: ${(props) => props.fontSize ?? '1rem'};
   border: ${(props) => props.border ?? '1px solid #f4f4f4'};
   border-radius: 50px;
   font-weight: 600;
@@ -48,7 +48,7 @@ export const Input = styled.input`
   @media (max-width: 786px) {
     font-size: ${(props) => {
       const fontSize = parseFloat(props.fontSize)
-      return fontSize ? `${fontSize * 2}vw` : '2vw'
+      return fontSize ? `${fontSize * 2}rem` : '2rem'
     }};
     border-radius: 20px;
 
@@ -56,7 +56,7 @@ export const Input = styled.input`
       color: #787878;
       font-size: ${(props) => {
         const fontSize = parseFloat(props.fontSize)
-        return fontSize ? `${fontSize * 2}vw` : '2vw'
+        return fontSize ? `${fontSize * 2}rem` : '2rem'
       }};
       font-weight: 500;
     }
@@ -65,20 +65,20 @@ export const Input = styled.input`
   @media (max-width: 440px) {
     font-size: ${(props) => {
       const fontSize = parseFloat(props.fontSize)
-      return fontSize ? `${fontSize * 3}vw` : '3vw'
+      return fontSize ? `${fontSize * 3}rem` : '3rem'
     }};
 
     &&::placeholder {
       color: #787878;
       font-size: ${(props) => {
         const fontSize = parseFloat(props.fontSize)
-        return fontSize ? `${fontSize * 3}vw` : '3vw'
+        return fontSize ? `${fontSize * 3}rem` : '3rem'
       }};
     }
   }
   ::placeholder {
     color: #787878;
-    font-size: ${(props) => props.fontSize ?? '1vw'};
+    font-size: ${(props) => props.fontSize ?? '1rem'};
     font-weight: 500;
   }
 `
@@ -95,9 +95,9 @@ export const VerticalDivider = styled.div`
 `
 
 export const Button = styled.button`
-  font-size: 1.25vw;
+  font-size: 1.25rem;
   font-weight: 600;
-  line-height: 1vw;
+  line-height: 1rem;
   color: #000000;
   text-align: center;
   background: var(--color-primary);

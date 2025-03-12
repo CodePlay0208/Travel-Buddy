@@ -8,16 +8,16 @@ export const Frame = styled.div`
 export const UploadPhotos = styled.div`
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 1.5vw;
+  font-size: 1.5rem;
   line-height: 1.5;
   color: #000000;
   margin-bottom: 5%;
 
   @media (max-width: 768px) {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
   @media (max-width: 500px) {
-    font-size: 4vw;
+    font-size: 4rem;
   }
 `
 
@@ -41,7 +41,7 @@ export const DropImage = styled.div`
   position: relative;
   height: auto;
   width: 380px;
-  min-height: 10vw;
+  min-height: 10rem;
   aspect-ratio: 4 / 3;
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='21' ry='21' stroke='%23B1BFD0FF' stroke-width='3' stroke-dasharray='4%2c15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 
@@ -76,7 +76,7 @@ export const Browse = styled.span`
     font-size: 75%;
   }
   @media (max-width: 500px) {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
 `
 
@@ -92,14 +92,14 @@ export const DropText = styled.span`
     font-size: 75%;
   }
   @media (max-width: 500px) {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
 `
 
 export const SupportsText = styled.div`
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  font-size: 0.6vw;
+  font-size: 0.6rem;
   line-height: 1.2;
   color: #969db2;
   margin-top: 2.5%;
@@ -108,7 +108,7 @@ export const SupportsText = styled.div`
     font-size: 75%;
   }
   @media (max-width: 500px) {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
 `
 
@@ -125,18 +125,18 @@ export const FileUploadLabel = styled.div`
   font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 0.75vw;
+  font-size: 0.75rem;
   line-height: 150%;
   color: #000000;
 
   @media (max-width: 1080px) {
-    font-size: 2vw;
+    font-size: 2rem;
   }
   @media (max-width: 768px) {
     font-size: 11px;
   }
   @media (max-width: 500px) {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
 `
 
@@ -169,7 +169,7 @@ export const FileUploadPlaceholder = styled.button`
     font-size: 11px;
   }
   @media (max-width: 500px) {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
 `
 
@@ -177,12 +177,12 @@ export const UploadButtonContainer = styled.div`
   margin-left: auto;
 `
 export const SeeAllButton = styled(Button)`
-  font-size: 1vw;
+  font-size: 1rem;
   font-weight: 500;
   padding: 4% 5%;
 
   @media (max-width: 1080px) {
-    font-size: 2vw;
+    font-size: 2rem;
   }
 `
 
@@ -195,7 +195,7 @@ export const ShowAllImageContainer = styled.div`
     font-size: 75%;
   }
   @media (max-width: 500px) {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
 `
 
@@ -216,7 +216,7 @@ export const UploadButton = styled.button`
   }
   @media (max-width: 500px) {
     border-radius: 2px;
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
 `
 

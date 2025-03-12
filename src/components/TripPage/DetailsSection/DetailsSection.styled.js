@@ -10,9 +10,9 @@ export const SectionContainer = styled.div`
 `
 
 export const Title = styled.div`
-  font-size: 2.5vw;
+  font-size: 2.5rem;
   font-weight: 600;
-  line-height: 2.5vw;
+  line-height: 2.5rem;
   margin: 5% 0;
   text-align: center;
 `

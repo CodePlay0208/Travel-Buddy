@@ -36,18 +36,18 @@ export const SearchButtonContainer = styled.div`
   align-items: center;
   cursor: pointer;
   img {
-    width: 4vw;
+    width: 4rem;
     aspect-ratio: 1;
   }
   @media (max-width: 786px) {
     img {
-      width: 7vw;
+      width: 7rem;
       aspect-ratio: 1;
     }
   }
   @media (max-width: 440px) {
     img {
-      width: 12vw;
+      width: 12rem;
       aspect-ratio: 1;
     }
   }
@@ -55,7 +55,7 @@ export const SearchButtonContainer = styled.div`
 
 export const SearchButton = styled.div`
   font-family: 'Montserrat', sans-serif;
-  font-size: 2vw;
+  font-size: 2rem;
   font-weight: 600;
   line-height: 100%;
   text-align: left;

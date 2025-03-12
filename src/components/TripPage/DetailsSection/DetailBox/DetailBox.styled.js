@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const BoxContainer = styled.div`
   box-sizing: border-box;
   position: relative;
-  width: 15vw;
+  width: 15rem;
   background: #ffffff;
   margin: 3% 0;
   padding: 3%;
@@ -42,16 +42,16 @@ export const RemoveIcon = styled.div`
 export const Heading = styled.div`
   font-weight: 500;
   color: #000000;
-  font-size: 1.5vw;
+  font-size: 1.5rem;
   cursor: pointer;
   text-align: center;
   padding-bottom: 1%;
 `
 
 export const BodyText = styled.div`
-  font-size: 1.5vw;
+  font-size: 1.5rem;
   font-weight: 700;
-  line-height: 3vw;
+  line-height: 3rem;
   text-align: center;
   width: 100%;
 `

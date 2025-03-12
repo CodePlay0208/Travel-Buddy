@@ -16,13 +16,12 @@ export const DropdownContainer = styled.div`
 
   border-radius: 20px;
   z-index: 10;
-
 `
 export const FlexContainerCust = styled(FlexContainer)`
   @media (max-width: ${breakpoints.tablet}) {
   }
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 4vw;
+    font-size: 4rem;
   }
 `
 
@@ -47,9 +46,9 @@ export const DropdownItem = styled.div`
 
 export const City = styled.div`
   margin: 1% 0;
-  font-size: 1.25vw;
+  font-size: 1.25rem;
   color: #009965;
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 4vw;
+    font-size: 4rem;
   }
 `

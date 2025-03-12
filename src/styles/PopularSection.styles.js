@@ -23,7 +23,7 @@ export const PopularButtonDiv = styled.div`
 export const PopularTripHeading = styled.div`
   display: flex;
   justify-content: space-between;
-  
+
   margin: ${(props) => props.margin};
   padding: 3% 0;
   flex-wrap: wrap;
@@ -56,14 +56,13 @@ export const PopularTripContent = styled.div`
 `
 
 export const PopularHeadingLeft = styled.div`
-  
-  font-size: 4vw;
+  font-size: 4rem;
   font-weight: 600;
   line-height: 66px;
   text-align: left;
-  
+
   @media (max-width: 440px) {
-    font-size: 5vw;
+    font-size: 5rem;
   }
 `
 
@@ -88,7 +87,7 @@ export const PopularHeadingRight = styled.div`
 `
 
 export const PopularButton = styled.button`
-  font-size: 2vw;
+  font-size: 2rem;
   padding: 5% 10%;
   cursor: pointer;
   background-color: #000000;
@@ -97,7 +96,7 @@ export const PopularButton = styled.button`
   border: none;
   color: rgb(255, 255, 255);
   @media (max-width: 440px) {
-    font-size: 3vw;
+    font-size: 3rem;
   }
 `
 
@@ -117,7 +116,7 @@ export const ArrowButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2vw;
+  font-size: 2rem;
   &.left {
     position: absolute;
     left: 0;

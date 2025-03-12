@@ -20,15 +20,15 @@ const Content = styled.div`
 
 const Heading = styled.div`
   font-weight: 700;
-  font-size: clamp(0.94vw, 1rem, 1.76vw);
-  line-height: clamp(1.23vw, 1.3rem, 2.3vw);
+  font-size: clamp(0.94rem, 1rem, 1.76rem);
+  line-height: clamp(1.23rem, 1.3rem, 2.3rem);
   letter-spacing: 0%;
 `
 
 const Para = styled.div`
   font-weight: 600;
-  font-size: clamp(0.7vw, 0.8rem, 1.3vw);
-  line-height: clamp(0.92vw, 1rem, 1.7vw);
+  font-size: clamp(0.7rem, 0.8rem, 1.3rem);
+  line-height: clamp(0.92rem, 1rem, 1.7rem);
   letter-spacing: 0%;
 `
 
@@ -41,7 +41,7 @@ const DetailsContainer = styled.div`
 `
 
 const ActionButton = styled(Button)`
-  font-size: clamp(1vw, 1rem, 1.8vw);
+  font-size: clamp(1rem, 1rem, 1.8rem);
   background: ${(props) => props.background && props.background};
   padding: 2.5% 8%;
 `
@@ -54,8 +54,8 @@ const ActionContainer = styled.div`
 `
 
 const Element = styled.span`
-  font-size: clamp(0.75vw, 0.9rem, 1.5vw);
-  line-height: clamp(1vw, 1.2rem, 1.7vw);
+  font-size: clamp(0.75rem, 0.9rem, 1.5rem);
+  line-height: clamp(1rem, 1.2rem, 1.7rem);
   font-weight: 600;
   width: ${(props) => props.width};
   display: flex;
@@ -69,7 +69,7 @@ const Element = styled.span`
 `
 
 const ProfilePicture = styled.img`
-  width: 4vw;
+  width: 4rem;
   border-radius: 50%;
 `
 

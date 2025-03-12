@@ -77,10 +77,10 @@ export const HeaderDesHeading = styled.div`
   letter-spacing: 0.11em;
   text-align: center;
 
-  font-size: 6vw;
+  font-size: 6rem;
   color: var(--color-primary);
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 12vw;
+    font-size: 12rem;
   }
 `
 
@@ -90,10 +90,10 @@ export const HeaderDesPara = styled.div`
   letter-spacing: 0.32em;
   text-align: center;
 
-  font-size: 2vw;
+  font-size: 2rem;
   color: #000000;
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 3.25vw;
+    font-size: 3.25rem;
   }
 `
 

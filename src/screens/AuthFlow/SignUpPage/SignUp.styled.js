@@ -90,7 +90,7 @@ export const SignUpAlreadyHaveContainer = styled.div`
 
 export const SignUpAlreadyHaveText = styled.div`
   display: flex;
-  font-size: 0.9vw;
+  font-size: 0.9rem;
   font-weight: 500;
   flex-direction: row;
   margin: 1% 0;
@@ -99,18 +99,18 @@ export const SignUpAlreadyHaveText = styled.div`
   color: #848282;
 
   @media (max-width: 786px) {
-    font-size: 2vw;
+    font-size: 2rem;
   }
 
   @media (max-width: 440px) {
-    font-size: 3vw;
+    font-size: 3rem;
   }
 `
 
 export const SignUpLoginLink = styled.span`
   text-decoration: none;
   margin: 2px;
-  font-size: 0.9vw;
+  font-size: 0.9rem;
   font-weight: 700;
   color: #252525;
   transition:
@@ -128,11 +128,11 @@ export const SignUpLoginLink = styled.span`
   }
 
   @media (max-width: 786px) {
-    font-size: 2vw;
+    font-size: 2rem;
   }
 
   @media (max-width: 440px) {
-    font-size: 3vw;
+    font-size: 3rem;
   }
 `
 

@@ -9,7 +9,7 @@ export const Container = styled.div`
 `
 
 export const InputLabel = styled.p`
-  font-size: 1vw;
+  font-size: 1rem;
   background-color: white;
   font-weight: 500;
 
@@ -19,11 +19,11 @@ export const InputLabel = styled.p`
   ${({ customLabelStyles }) => customLabelStyles && css(customLabelStyles)}
 
   @media (max-width: 786px) {
-    font-size: 2vw;
+    font-size: 2rem;
   }
-  
+
   @media (max-width: 440px) {
-    font-size: 3vw;
+    font-size: 3rem;
   }
 `
 
@@ -36,11 +36,11 @@ export const InputFieldContainer = styled.div`
   padding: 2%;
   border-style: none;
   background-color: #f4f4f4;
-  font-size: 1.5vw;
+  font-size: 1.5rem;
 
   @media (max-width: 786px) {
     border-radius: 20px;
-    font-size: 3.5vw;
+    font-size: 3.5rem;
   }
 `
 
@@ -48,11 +48,11 @@ export const InputField = styled.input`
   width: 100%;
   border-style: none;
   background-color: #f4f4f4;
-  font-size: 1vw;
+  font-size: 1rem;
   ${({ customInputFieldStyles }) => customInputFieldStyles && css(customInputFieldStyles)}
 
   @media (max-width: 786px) {
-    font-size: 3.5vw;
+    font-size: 3.5rem;
   }
 `
 

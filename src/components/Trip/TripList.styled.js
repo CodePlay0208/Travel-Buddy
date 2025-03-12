@@ -29,8 +29,8 @@ export const Container = styled.div`
 export const Heading = styled.h1`
   display: flex;
   padding: 0 6%;
-  font-size: 2.5vw;
+  font-size: 2.5rem;
   @media (max-width: 768px) {
-    font-size: 5vw;
+    font-size: 5rem;
   }
 `

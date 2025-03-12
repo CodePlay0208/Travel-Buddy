@@ -78,7 +78,7 @@ export const DescriptionField = styled.textarea`
   border: none;
   background-color: ${colors.background};
   border-radius: 20px;
-  font-size: 1vw;
+  font-size: 1rem;
   color: ${colors.dark};
 
   ${media.desktop`
@@ -87,12 +87,12 @@ export const DescriptionField = styled.textarea`
 
   ${media.tablet`
     padding: 1% 2.5%;
-    font-size: 2vw;
+    font-size: 2rem;
     border-radius: 20px;
   `}
   ${media.mobile`
     padding: 2% 2.5%;
-    font-size: 3vw;
+    font-size: 3rem;
     border-radius: 20px;
     
   `}
@@ -120,16 +120,16 @@ export const PublishTripHeading = styled.div`
   padding-left: 2%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 3vw;
+  font-size: 3rem;
   line-height: 1.8;
 
   ${media.desktop`
-    font-size: 5vw;
+    font-size: 5rem;
     padding-bottom:5%;
     text-align: left;
   `}
   ${media.mobile`
-    font-size: 6vw;
+    font-size: 6rem;
     padding:10% 0;
     text-align: left;
   `}
@@ -200,8 +200,8 @@ export const InputGroup = styled.div`
 
 export const InputLabel = styled.label`
   font-weight: 600;
-  font-size: 1vw;
-  line-height: 1.4vw;
+  font-size: 1rem;
+  line-height: 1.4rem;
   color: ${colors.dark};
   margin-bottom: 10px;
 `
@@ -238,8 +238,8 @@ export const ToggleTab = styled.div`
   transition: background-color 0.4s ease;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 1.5vw;
-  line-height: 2vw;
+  font-size: 1.5rem;
+  line-height: 2rem;
   height: 100%;
   color: ${colors.black};
   padding: 1%;
@@ -257,8 +257,8 @@ export const ToggleTab = styled.div`
     border-radius: 5px 5px 0 0;
   `}
   ${media.mobile`
-    font-size: 3.5vw;
-  line-height: 4vw;
+    font-size: 3.5rem;
+  line-height: 4rem;
   padding:2%;
   border-radius: 10px 10px 0 0;
   
@@ -267,7 +267,7 @@ export const ToggleTab = styled.div`
 
 export const Divider = styled.div`
   width: 0.5%;
-  height: 4vw;
+  height: 4rem;
   background: ${colors.light};
   border-radius: 50px;
 

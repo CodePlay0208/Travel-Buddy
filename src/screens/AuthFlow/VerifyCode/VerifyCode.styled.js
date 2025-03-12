@@ -6,15 +6,15 @@ export const VerifyCodeResendCodeContainer = styled.div`
 `
 
 export const VerifyCodeDidntRecieveText = styled.p`
-  font-size: 0.9vw;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #848282;
   @media (max-width: 786px) {
-    font-size: 2vw;
+    font-size: 2rem;
   }
 
   @media (max-width: 440px) {
-    font-size: 3vw;
+    font-size: 3rem;
   }
 `
 
@@ -24,7 +24,7 @@ export const VerifyCodeResendLink = styled.div`
 
 export const VerifyCodeResendText = styled.p`
   margin-left: 5px;
-  font-size: 0.9vw;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--color-primary);
   cursor: pointer;
@@ -40,11 +40,11 @@ export const VerifyCodeResendText = styled.p`
   }
 
   @media (max-width: 786px) {
-    font-size: 2vw;
+    font-size: 2rem;
   }
 
   @media (max-width: 440px) {
-    font-size: 3vw;
+    font-size: 3rem;
   }
 `
 

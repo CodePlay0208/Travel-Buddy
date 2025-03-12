@@ -136,11 +136,11 @@ const AddMembers = (props) => {
                   heading={item.username}
                   body={
                     <RequestButtonContainer>
-                      <Button style={{ width: '50%', fontSize: '1vw', padding: '5%' }} onClick={() => handleConfirm(item.userId)}>
+                      <Button style={{ width: '50%', fontSize: '1rem', padding: '5%' }} onClick={() => handleConfirm(item.userId)}>
                         Accept
                       </Button>
                       <Button
-                        style={{ width: '50%', fontSize: '1vw', backgroundColor: '#E0E0E0', padding: '5%' }}
+                        style={{ width: '50%', fontSize: '1rem', backgroundColor: '#E0E0E0', padding: '5%' }}
                         onClick={() => handleChatNow(item.userId)}
                       >
                         Chat Now

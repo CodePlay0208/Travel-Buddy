@@ -41,65 +41,65 @@ export const TextWrapper = styled.div`
 `
 
 export const Heading = styled.h1`
-  font-size: 3.5vw;
+  font-size: 3.5rem;
   position: absolute;
   bottom: 0;
   left: 0;
   margin: 10px;
   color: white;
   @media (max-width: 786px) {
-    font-size: 6vw;
+    font-size: 6rem;
   }
 `
 export const PublishHeading = styled.h1`
-  font-size: 3.5vw;
+  font-size: 3.5rem;
 
   margin: 0;
   color: white;
   @media (max-width: 786px) {
-    font-size: 5vw;
+    font-size: 5rem;
   }
 `
 export const BottomHeading = styled.h1`
-  font-size: 3.5vw;
+  font-size: 3.5rem;
   bottom: -40%;
   left: 0;
   margin: 10px;
   position: relative;
   width: 70%;
   @media (max-width: 786px) {
-    font-size: 6vw;
+    font-size: 6rem;
   }
 `
 
 export const SubText = styled.p`
   width: 50%;
-  font-size: 1.25vw;
+  font-size: 1.25rem;
   position: absolute;
   bottom: 15%;
   left: 10px;
   color: white;
   @media (max-width: 786px) {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
 `
 export const LeftText = styled.p`
-  font-size: 1.25vw;
+  font-size: 1.25rem;
   text-align: right;
   @media (max-width: 786px) {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
 `
 
 export const RightSubText = styled.p`
   padding: 5% 5% 5% 0%;
-  font-size: 1.25vw;
+  font-size: 1.25rem;
   font-weight: 800;
   width: 30%;
   right: 0;
   text-align: right;
   @media (max-width: 786px) {
-    font-size: 2.5vw;
+    font-size: 2.5rem;
   }
 `
 
@@ -108,9 +108,9 @@ export const SmallText = styled.span`
   font-weight: 700;
   text-align: left;
 
-  font-size: 3.5vw;
+  font-size: 3.5rem;
   @media (max-width: 786px) {
-    font-size: 6vw;
+    font-size: 6rem;
   }
 `
 
@@ -122,7 +122,7 @@ export const BackgroundImage = styled.div`
   }
 `
 export const PublishButton = styled.button`
-  font-size: 3.5vw;
+  font-size: 3.5rem;
   padding: 1%;
   cursor: pointer;
   background-color: var(--color-primary);
@@ -132,7 +132,7 @@ export const PublishButton = styled.button`
   border: none;
   color: rgb(0, 0, 0);
   @media (max-width: 786px) {
-    font-size: 5vw;
+    font-size: 5rem;
     padding: 2.5%;
     height: auto;
     width: 100%;
@@ -141,7 +141,7 @@ export const PublishButton = styled.button`
 export const FlexContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.direction === 'column' ? 'column' : 'row')};
-  font-size: ${(props) => props.fontSize || 'min(1vw,32px)'};
+  font-size: ${(props) => props.fontSize || 'min(1rem,32px)'};
   justify-content: space-between;
   align-items: ${(props) => props.alignItems || 'center'};
   gap: ${(props) => props.gap || '10px'};

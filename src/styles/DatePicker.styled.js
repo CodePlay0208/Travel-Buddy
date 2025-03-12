@@ -76,8 +76,8 @@ export const InputWrapper = styled.div`
     font-weight: ${(props) => props.fontWeight};
   }
   img {
-    width: 1.75vw;
-    height: 1.75vw;
+    width: 1.75rem;
+    height: 1.75rem;
     margin-right: 0.5rem;
     cursor: pointer;
     pointer-events: none;
@@ -133,7 +133,7 @@ export const CalendarHeader = styled.div`
   }
   .svgIcon {
     padding: 2px;
-    font-size: min(3vw, 32px);
+    font-size: min(3rem, 32px);
     color: #797b86;
   }
   .svgIcon:hover {
@@ -143,7 +143,7 @@ export const CalendarHeader = styled.div`
 
 export const HeaderContainer = styled.div`
   cursor: pointer;
-  font-size: min(1vw, 16px);
+  font-size: min(1rem, 16px);
   @media (max-width: ${breakpoints.tablet}) {
   }
 

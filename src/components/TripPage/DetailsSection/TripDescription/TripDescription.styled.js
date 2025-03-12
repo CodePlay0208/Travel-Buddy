@@ -17,51 +17,51 @@ export const DescriptionContainer = styled.div`
 `
 
 export const Title = styled.div`
-  font-size: 2.5vw;
+  font-size: 2.5rem;
   font-weight: 600;
-  line-height: 2.5vw;
+  line-height: 2.5rem;
   margin: 0 0 5% 0;
 
   @media (max-width: 440px) {
-    font-size: 5vw;
-    line-height: 5vw;
+    font-size: 5rem;
+    line-height: 5rem;
   }
 `
 
 export const DescriptionTitle = styled.div`
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 2.5vw;
+  font-size: 2.5rem;
   margin: 1.5% 0;
   color: #040f0f;
 
   @media (max-width: 440px) {
-    font-size: 5vw;
-    line-height: 5vw;
+    font-size: 5rem;
+    line-height: 5rem;
   }
 `
 
 export const DescriptionContent = styled.p`
   display: flex;
   flex-direction: column;
-  font-size: 1.2vw;
+  font-size: 1.2rem;
   font-weight: 500;
-  line-height: 2vw;
+  line-height: 2rem;
   white-space: pre-line;
   font-family: Montserrat;
   letter-spacing: 0%;
 
   @media (max-width: 440px) {
-    font-size: 2.5vw;
-    line-height: 5vw;
+    font-size: 2.5rem;
+    line-height: 5rem;
   }
 `
 
 export const ToggleButton = styled.span`
   font-family: Montserrat;
   font-weight: 700;
-  font-size: 1vw;
-  line-height: 2vw;
+  font-size: 1rem;
+  line-height: 2rem;
   letter-spacing: 0%;
   text-decoration: underline;
   text-decoration-style: solid;
@@ -69,8 +69,8 @@ export const ToggleButton = styled.span`
   cursor: pointer;
 
   @media (max-width: 440px) {
-    font-size: 2vw;
-    line-height: 3vw;
+    font-size: 2rem;
+    line-height: 3rem;
   }
 `
 export const Link = styled.div`
@@ -108,23 +108,23 @@ export const ProfileImage = styled.div`
 `
 
 export const ProfilePicture = styled.img`
-  width: 4vw;
+  width: 4rem;
   border-radius: 50%;
 
   @media (max-width: 440px) {
-    width: 12vw;
+    width: 12rem;
   }
 `
 
 export const ProfileName = styled.div`
   margin: 2.5% 0 0;
-  font-size: 2vw;
+  font-size: 2rem;
   font-weight: 500;
-  line-height: 2vw;
+  line-height: 2rem;
 
   @media (max-width: 440px) {
-    font-size: 4vw;
-    line-height: 4vw;
+    font-size: 4rem;
+    line-height: 4rem;
   }
 `
 
@@ -173,7 +173,7 @@ export const StartDate = styled.div`
 `
 export const EndDate = styled.div`
   font-weight: 500;
-  font-size: 1.25vw;
+  font-size: 1.25rem;
   color: #040f0f;
   padding: 1% 4.5%;
   width: 50%;
@@ -190,7 +190,7 @@ export const EndDate = styled.div`
 `
 export const DetailsBox = styled.div`
   font-weight: 500;
-  font-size: 1.25vw;
+  font-size: 1.25rem;
   color: #040f0f;
   padding: 2% 5%;
   width: 50%;
@@ -198,28 +198,28 @@ export const DetailsBox = styled.div`
 `
 
 export const BoxHeading = styled.div`
-  font-size: 0.75vw;
+  font-size: 0.75rem;
   font-weight: 500;
   color: #646464;
 
   @media (max-width: 440px) {
-    font-size: 2vw;
+    font-size: 2rem;
   }
 `
 
 export const BoxContent = styled.div`
-  font-size: 1.25vw;
+  font-size: 1.25rem;
   font-weight: 500;
 
   @media (max-width: 440px) {
-    font-size: 4vw;
+    font-size: 4rem;
   }
 `
 
 export const Button = styled.button`
-  font-size: 1.25vw;
+  font-size: 1.25rem;
   font-weight: 500;
-  line-height: 1vw;
+  line-height: 1rem;
   color: #000000;
   text-align: center;
   background: var(--color-primary);
@@ -234,8 +234,8 @@ export const Button = styled.button`
   }
 
   @media (max-width: 440px) {
-    font-size: 3vw;
-    line-height: 3vw;
+    font-size: 3rem;
+    line-height: 3rem;
   }
 `
 export const ButtonSection = styled.div`

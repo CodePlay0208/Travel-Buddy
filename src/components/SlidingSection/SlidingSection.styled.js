@@ -28,7 +28,7 @@ export const SliderHeading = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 35vw;
+  width: 35rem;
   padding: 2% 0 2% 2%;
   height: 100%;
   position: absolute;
@@ -36,7 +36,7 @@ export const SliderHeading = styled.div`
   z-index: 2;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
-  font-size: 1vw;
+  font-size: 1rem;
   @media (max-width: 1024px) {
     border-top-right-radius: 70px;
     border-bottom-right-radius: 70px;
@@ -55,9 +55,9 @@ export const SliderHeading = styled.div`
 
   h2 {
     margin: 0;
-    font-size: 2vw;
+    font-size: 2rem;
     @media (max-width: 768px) {
-      font-size: 4.5vw;
+      font-size: 4.5rem;
     }
   }
   span {
@@ -68,20 +68,20 @@ export const SliderHeading = styled.div`
     color: #afafaf;
     font-weight: 600;
     @media (max-width: 768px) {
-      font-size: 2.5vw;
+      font-size: 2.5rem;
     }
   }
 `
 
 export const Slider = styled.div`
   display: flex;
-  width: calc(${(props) => props.cardCount} * 25vw);
+  width: calc(${(props) => props.cardCount} * 25rem);
   animation: ${(props) => getSlideAnimation(props.cardCount)} 30s linear infinite;
   position: relative;
-  height: 18vw;
+  height: 18rem;
   @media (max-width: 440px) {
-    width: calc(${(props) => props.cardCount} * 60vw);
-    height: 40vw;
+    width: calc(${(props) => props.cardCount} * 60rem);
+    height: 40rem;
   }
 `
 
@@ -101,7 +101,7 @@ export const Card = styled.img`
   }
   @media (max-width: 480px) {
     border-radius: 5px;
-    width: 55vw;
+    width: 55rem;
   }
 `
 
@@ -120,14 +120,14 @@ export const Badge = styled.div`
 
 export const BadgeText = styled.span`
   font-weight: 500;
-  font-size: 1vw;
+  font-size: 1rem;
   color: #000000;
   text-align: center;
 `
 
 export const CardContainer = styled.div`
   position: relative;
-  width: 33vw;
+  width: 33rem;
   aspect-ratio: 4 / 3;
   margin: 0 0.5%;
 `

@@ -19,7 +19,7 @@ export const CardContainer = styled.div`
 `
 export const DeleteButton = styled.img`
   position: absolute;
-  width: 2.25vw;
+  width: 2.25rem;
   aspect-ratio: 1;
   z-index: 1;
   top: 12%;
@@ -35,14 +35,14 @@ export const HeadingContainer = styled.div`
 
 export const Title = styled.div`
   font-family: 'Montserrat', sans-serif;
-  font-size: 2.5vw;
+  font-size: 2.5rem;
   font-weight: 600;
-  line-height: 3vw;
+  line-height: 3rem;
   text-align: left;
   @media (max-width: 440px) {
-    font-size: 4vw;
+    font-size: 4rem;
     font-weight: 600;
-    line-height: 5vw;
+    line-height: 5rem;
   }
 `
 
@@ -51,7 +51,7 @@ export const CreateButton = styled.div`
   padding: 0.75% 1%;
   background: #93d5bf;
   border-radius: 10px;
-  font-size: 2vw;
+  font-size: 2rem;
   font-weight: 500;
   display: flex;
   justify-content: center;

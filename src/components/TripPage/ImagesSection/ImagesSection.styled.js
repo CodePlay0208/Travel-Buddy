@@ -107,7 +107,7 @@ export const ShowAllPhotos = styled.button`
   justify-content: space-between;
   padding: 1% 2%;
   width: 17.5%;
-  font-size: min(24px, 1vw);
+  font-size: min(24px, 1rem);
   img {
     width: 10%;
     aspect-ratio: 1;
@@ -115,7 +115,7 @@ export const ShowAllPhotos = styled.button`
   }
   @media (max-width: 440px) {
     width: 27%;
-    font-size: min(24px, 2vw);
+    font-size: min(24px, 2rem);
     padding: 2%;
   }
 `

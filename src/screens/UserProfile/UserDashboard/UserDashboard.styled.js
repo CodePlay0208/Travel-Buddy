@@ -102,7 +102,7 @@ export const HeaderTitle = styled.h1`
   line-height: 51px;
   color: #000000;
   @media (max-width: 786px) {
-    font-size: 5vw;
+    font-size: 5rem;
   }
 `
 
@@ -239,7 +239,7 @@ const BaseButton = styled.button`
   padding: 1% 1.5%;
   font-family: 'Montserrat';
   font-weight: 500;
-  font-size: 1vw;
+  font-size: 1rem;
 
   border-radius: 30px;
   background-color: transparent;
@@ -247,15 +247,15 @@ const BaseButton = styled.button`
   margin: 0 1%;
 
   img {
-    width: 1.5vw;
+    width: 1.5rem;
   }
 
   @media (max-width: 786px) {
-    font-size: 3vw;
+    font-size: 3rem;
     width: 100%;
     padding: 2.5%;
     img {
-      width: 4vw;
+      width: 4rem;
     }
   }
   &:hover {
