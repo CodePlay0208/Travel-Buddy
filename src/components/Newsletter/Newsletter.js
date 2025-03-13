@@ -9,6 +9,7 @@ import {
   NewsletterButton,
   NewsletterRight,
   NewsletterImage,
+  NewsletterInput,
 } from '../../styles/Newsletter.styles'
 import { Input } from '../../styles/Global'
 import { subscribeNewsletter } from '../../actions/newsletter.action'
@@ -35,7 +36,7 @@ const Newsletter = ({ subscribeNewsletter }) => {
             <p>Get inspired! Receive travel tips and behind the scenes stories.</p>
           </NewsletterText>
           <NewsletterForm>
-            <Input
+            <NewsletterInput
               value={email}
               type="email"
               placeholder="Your email address"
@@ -43,7 +44,6 @@ const Newsletter = ({ subscribeNewsletter }) => {
                 const { value } = e.target
                 setEmail(value)
               }}
-              margin="2% 0"
             />
             <NewsletterButton
               onClick={() => {

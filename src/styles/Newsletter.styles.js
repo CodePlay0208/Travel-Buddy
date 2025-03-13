@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import firstImage from '../data/Images/image.png'
+import { Input } from './Global'
 
 export const NewsletterContainer = styled.div`
   display: flex;
@@ -96,7 +97,12 @@ export const NewsletterForm = styled.div`
     align-items: flex-start;
   }
 `
-
+export const NewsletterInput = styled(Input)`
+  margin: 2% 0;
+  @media (max-width: 440px) {
+    margin: 4% 0;
+  }
+`
 export const TextField = styled.div`
   display: flex;
   flex-direction: column;
