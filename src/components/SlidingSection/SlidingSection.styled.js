@@ -101,7 +101,7 @@ export const Card = styled.img`
   }
   @media (max-width: 480px) {
     border-radius: 5px;
-    width: 55rem;
+    width: 50rem;
   }
 `
 
@@ -120,7 +120,7 @@ export const Badge = styled.div`
 
 export const BadgeText = styled.span`
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #000000;
   text-align: center;
 `
@@ -130,4 +130,7 @@ export const CardContainer = styled.div`
   width: 33rem;
   aspect-ratio: 4 / 3;
   margin: 0 0.5%;
+  @media (max-width: 480px) {
+    width: 50rem;
+  }
 `

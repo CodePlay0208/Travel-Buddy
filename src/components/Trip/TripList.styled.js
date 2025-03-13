@@ -12,6 +12,12 @@ export const Container = styled.div`
   overflow-y: hidden;
   scroll-behavior: smooth;
 
+  p {
+    font-size: 1.5rem;
+  }
+  @media (max-width: 440px) {
+    font-size: 3rem;
+  }
   &::-webkit-scrollbar {
     height: 8px;
   }
@@ -33,4 +39,5 @@ export const Heading = styled.h1`
   @media (max-width: 768px) {
     font-size: 5rem;
   }
+  
 `

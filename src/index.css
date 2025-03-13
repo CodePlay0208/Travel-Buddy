@@ -29,9 +29,9 @@ html {
   margin: 0 auto;
 }
 
-@media (min-width: 2500px) {
+@media (min-width: 2000px) {
   html {
-    font-size: 25px;
+    font-size: 20px;
   }
 }
 
