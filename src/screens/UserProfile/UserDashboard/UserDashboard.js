@@ -57,6 +57,8 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
   const [showPersonaDropDown, setShowPersonaDropDown] = useState(false)
   const [showGenderDropDown, setShowGenderDropDown] = useState(false)
 
+  const [isUserKeyChanged, setIsUserChanged] = useState(false)
+
   const isLoginWithEmail = formData.isLoginWithEmail
   useEffect(() => {
     if (!userId) {
@@ -70,6 +72,9 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
 
   const handleChange = (e) => {
     const { name, value } = e.target
+    if (name === 'phoneNumber' || name === 'emailId') {
+      setIsUserChanged(true)
+    }
     setFormData((prevData) => ({
       ...formData,
       [name]: value,
@@ -104,10 +109,14 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
     setIsEditing(false)
     setSelectedProfilePic(null)
   }
-  const handleSave = async () => {
-    await editSecondaryKey(isLoginWithEmail ? { phoneNumber: `+91${formData.phoneNumber}` } : { emailId: formData.emailId })
-
-    setOtpVerify(true)
+  const handleSave = async (e) => {
+    if (isUserKeyChanged) {
+      await editSecondaryKey(isLoginWithEmail ? { phoneNumber: `+91${formData.phoneNumber}` } : { emailId: formData.emailId })
+      setIsUserChanged(false)
+      setOtpVerify(true)
+    } else {
+      onSubmitOtp(e)
+    }
   }
 
   const handleCancel = () => {
