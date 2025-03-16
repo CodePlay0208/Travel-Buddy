@@ -13,7 +13,6 @@ export const NavContainer = styled.div`
   width: 100%;
   padding-top: 0;
   box-shadow: ${(props) => (props.isImageNavbar ? `none` : `none`)};
-  
 
   @media (max-width: 1080px) {
     font-size: 4rem;
@@ -33,7 +32,7 @@ export const Nav = styled.nav`
 
 export const WebAppNameAndLogo = styled.div`
   font-weight: 600;
-  color: #000000;
+  color: var(--color-primary);
   font-size: 100%;
   padding: 0.5%;
   cursor: pointer;

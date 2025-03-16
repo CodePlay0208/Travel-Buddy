@@ -120,7 +120,7 @@ export const Badge = styled.div`
 
 export const BadgeText = styled.span`
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: #000000;
   text-align: center;
 `
