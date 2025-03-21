@@ -33,7 +33,7 @@ const HeroSection = (props) => {
       ...searchForm,
       'destination': value 
     })
-    navigate('/search-results-page')
+    navigate('/trips')
   }, [])
 
   const cardData = [

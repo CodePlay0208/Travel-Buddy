@@ -25,7 +25,7 @@ const SearchMenu = (props) => {
   }
 
   const onSearchButton = async () => {
-    navigate('/search-results-page')
+    navigate('/trips')
   }
 
   return (

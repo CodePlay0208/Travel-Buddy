@@ -55,7 +55,7 @@ const PopularSection = (props) => {
           <PopularButtonDiv>
             <PopularButton
               onClick={() => {
-                navigate('/search-results-page')
+                navigate('/trips')
               }}
             >
               Explore Now

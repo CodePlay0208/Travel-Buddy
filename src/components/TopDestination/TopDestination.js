@@ -27,7 +27,7 @@ const TopDestination = (props) => {
       ...searchForm,
       destination: value,
     })
-    navigate('/search-results-page')
+    navigate('/trips')
   }, [])
 
   const cardData = [
@@ -49,7 +49,7 @@ const TopDestination = (props) => {
         ))}
         <ExploreButton
           onClick={() => {
-            navigate('/search-results-page')
+            navigate('/trips')
           }}
         >
           Explore more places
