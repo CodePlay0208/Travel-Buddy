@@ -5,10 +5,11 @@ import Footer from '../../components/Footer/Footer'
 import { connect } from 'react-redux'
 import { SearchResultsPageContainer, TripList, SearchResultButtonDiv, ShowMoreButton } from './SearchResultsPage.styled'
 import { getTrips } from '../../actions/trips.action'
+import { Helmet } from 'react-helmet-async'
 
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
-  searchForm: state.tripReducer.searchForm
+  searchForm: state.tripReducer.searchForm,
 })
 
 const SearchResultsPage = (props) => {
@@ -16,16 +17,19 @@ const SearchResultsPage = (props) => {
 
   useEffect(() => {
     getTrips(searchForm)
-  },[searchForm]);
+  }, [searchForm])
 
   return (
     <SearchResultsPageContainer>
+      <Helmet>
+        <title>Explore Amazing Trips | Find Your Next Travel Adventure</title>
+        <meta
+          name="description"
+          content="Explore handpicked travel experiences and find your travel buddy for your trips with Travmigoz. Find your perfect destination and start your journey today!"
+        />
+      </Helmet>
       <Header isImageNavbar={true} />
-      <TripList>
-        {trips && trips.map((trip) => (
-          <TripCard key={trip?.tripId} trip={trip} />
-        ))}
-      </TripList>
+      <TripList>{trips && trips.map((trip) => <TripCard key={trip?.tripId} trip={trip} />)}</TripList>
       <SearchResultButtonDiv>
         <ShowMoreButton>Show More</ShowMoreButton>
       </SearchResultButtonDiv>

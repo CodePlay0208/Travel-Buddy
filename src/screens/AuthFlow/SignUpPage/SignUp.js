@@ -25,6 +25,7 @@ import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 import { css } from 'styled-components'
 import { InputFieldsContainer } from '../LoginPage/loginPage.styled'
+import { Helmet } from 'react-helmet-async'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
@@ -79,6 +80,13 @@ const SignUp = (props) => {
 
   return (
     <Container>
+    <Helmet>
+        <title>Sign Up | Access Your Travmigoz Account</title>
+        <meta
+          name="description"
+          content="Access your saved trips, exclusive travel deals, and personalized recommendations.Sign in to Your Travmigoz Account."
+        />
+      </Helmet>
       <FormAndCopyrightContainer>
         <FormAndTitleContainer>
           <TitleContainer

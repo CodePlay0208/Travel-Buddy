@@ -31,6 +31,7 @@ import {
 import { LoginSignUpLink, InputFieldsContainer, Divider, LoginButtonsContainer } from './loginPage.styled'
 import { UserLoginContext } from '../../../utils/Context/LoggedInUserContext'
 import { css } from 'styled-components'
+import { Helmet } from 'react-helmet-async'
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
 })
@@ -142,6 +143,13 @@ const LoginPage = (props) => {
   )
   return (
     <Container>
+      <Helmet>
+        <title>Login | Access Your Travmigoz Account</title>
+        <meta
+          name="description"
+          content="Access your saved trips, exclusive travel deals, and personalized recommendations.log in to Your Travmigoz Account."
+        />
+      </Helmet>
       <FormAndCopyrightContainer>
         <FormAndTitleContainer>
           <TitleContainer

@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import { setSearchForm } from '../../actions/trips.action'
 import { loadUser } from '../../actions/auth.action'
 import SlidingSection from '../../components/SlidingSection/SlidingSection'
+import { Helmet } from 'react-helmet-async'
 
 const LandingPage = (props) => {
   const { setSearchForm, loadUser } = props
@@ -24,6 +25,13 @@ const LandingPage = (props) => {
 
   return (
     <div className="LandingContainer">
+      <Helmet>
+        <title>Travmigoz - Home</title>
+        <meta
+          name="description"
+          content="Plan your perfect trip with Travmigoz! Discover the best travel options, explore amazing destinations, and enjoy unforgettable experiences with your travel buddy."
+        />
+      </Helmet>
       <Header isImageNavbar={true} isLandingPage={true} />
       <SlidingSection />
       <HeroSection />

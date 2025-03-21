@@ -57,7 +57,7 @@ const SlidingSection = ({ trips }) => {
     <Container>
       <Slider cardCount={8}>
         {trips?.slice(0, 8).map((card, index) => (
-          <CardContainer key={index}   >
+          <CardContainer key={index}>
             <Card key={index} src={card?.croppedDestinationImages?.[0]?.preSignedUrl} />
             <Badge>
               <BadgeText>{computeDateAndTimeUntilNowInString(card?.createdAt)} ago</BadgeText>
@@ -66,9 +66,9 @@ const SlidingSection = ({ trips }) => {
         ))}
       </Slider>
       <SliderHeading>
-        <h2>
-          Travel and Make Friends<span>&deg;</span>
-        </h2>
+        <h1>
+          Discover & Book Your Next Adventure with Travmigoz<span>&deg;</span>
+        </h1>
         <p>Find your amigos and travel now!</p>
       </SliderHeading>
     </Container>

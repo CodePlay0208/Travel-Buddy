@@ -20,7 +20,7 @@ export const routes = [
   },
 
   {
-    path: '/search-results-page',
+    path: '/trips',
     element: <SearchResultsPage />,
     isPrivate: false,
   },
