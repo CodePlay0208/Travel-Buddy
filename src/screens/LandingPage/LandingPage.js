@@ -21,7 +21,7 @@ const LandingPage = (props) => {
       destination: '',
       startDate: '',
     })
-  }, [])
+  }, [setSearchForm])
 
   return (
     <div className="LandingContainer">

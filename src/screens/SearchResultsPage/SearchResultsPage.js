@@ -17,7 +17,7 @@ const SearchResultsPage = (props) => {
 
   useEffect(() => {
     getTrips(searchForm)
-  }, [searchForm])
+  }, [getTrips, searchForm])
 
   return (
     <SearchResultsPageContainer>

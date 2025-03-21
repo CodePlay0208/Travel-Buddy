@@ -28,8 +28,11 @@ const PopularSection = (props) => {
   const scrollContainerRef = useRef(null)
 
   useEffect(() => {
-    getTrips(searchForm)
-  }, [])
+    getTrips({
+      destination: '',
+      startDate: '',
+    })
+  }, [getTrips, searchForm])
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
