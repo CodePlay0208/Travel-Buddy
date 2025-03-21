@@ -53,7 +53,6 @@ const Searchbar = (props) => {
   const handleClear = () => {
     setInputValues('')
   }
-  console.log('isReadOnly:', isReadOnly)
   return (
     <SearchBarContainer
       widthValue={props.width ? props.width : `100%`}

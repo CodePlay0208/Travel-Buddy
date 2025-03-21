@@ -26,7 +26,8 @@ export const TitleContainer = styled.div`
   cursor: pointer;
   font-size: 2rem;
   font-weight: 600;
-  color: #000000;
+  
+  color: var(--color-primary);
 
   @media (max-width: 786px) {
     font-size: 4rem;

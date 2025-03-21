@@ -168,6 +168,7 @@ const PublishTrip = (props) => {
     const formDataImages = new FormData()
     tripData.destinationImages?.forEach((image) => {
       formDataImages.append('destinationImages', image.file)
+      console.log(image)
     })
 
     let tripIds = []
