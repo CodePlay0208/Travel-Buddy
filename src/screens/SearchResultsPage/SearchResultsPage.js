@@ -29,7 +29,7 @@ const SearchResultsPage = (props) => {
         />
       </Helmet>
       <Header isImageNavbar={true} title="Discover Stunning Travel Destinations. Enjoy Amazing Trips with Travmigoz " />
-      <h1 style={{textAlign:"center"}}>Discover Stunning Travel Destinations. Enjoy Amazing Trips with Travmigoz </h1>
+      <h1 style={{ textAlign: 'center' }}>Discover Stunning Travel Destinations. Enjoy Amazing Trips with Travmigoz </h1>
       <TripList>{trips && trips.map((trip) => <TripCard key={trip?.tripId} trip={trip} />)}</TripList>
       <SearchResultButtonDiv>
         <ShowMoreButton>Show More</ShowMoreButton>
