@@ -40,8 +40,9 @@ export const TextWrapper = styled.div`
   }
 `
 
-export const Heading = styled.h1`
+export const Heading = styled.div`
   font-size: 3.5rem;
+  font-weight: 700;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -51,17 +52,18 @@ export const Heading = styled.h1`
     font-size: 6rem;
   }
 `
-export const PublishHeading = styled.h1`
+export const PublishHeading = styled.div`
   font-size: 3.5rem;
-
+  font-weight: 700;
   margin: 0;
   color: white;
   @media (max-width: 786px) {
     font-size: 5rem;
   }
 `
-export const BottomHeading = styled.h1`
+export const BottomHeading = styled.div`
   font-size: 3.5rem;
+  font-weight: 700;
   bottom: -40%;
   left: 0;
   margin: 10px;

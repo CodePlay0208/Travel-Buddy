@@ -94,6 +94,7 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
               </CarouselItem>
             ))}
         </Slider>
+        
       </LeftContainer>
       <RightContainer>
         <Details>

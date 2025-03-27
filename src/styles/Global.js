@@ -4,7 +4,12 @@ const GlobalStyles = createGlobalStyle`
     box-sizing:border-box;
 }
 `
+export const HeadingOne = styled.div`
 
+font-size: 2rem;
+font-weight: 700;
+line-height: 2.5rem;
+ `
 export const Label = styled.label`
   font-weight: ${(props) => props.fontWeight ?? '500'};
   font-size: ${(props) => props.fontSize ?? '1.5rem'};

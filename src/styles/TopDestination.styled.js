@@ -29,8 +29,9 @@ export const Rectangle40 = styled.div`
   background: rgba(141, 211, 187, 0.28);
 `
 
-export const Heading = styled.h1`
+export const Heading = styled.div`
   position: absolute;
+  font-weight: 700;
   top: 25%;
   left: 50%;
   transform: translateX(-50%);
@@ -38,6 +39,7 @@ export const Heading = styled.h1`
   font-style: normal;
   font-weight: 600;
   font-size: 3.5rem;
+  margin: 0.6em 0;
   line-height: 42px;
   color: #000000;
   text-align: center;
