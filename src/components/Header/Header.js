@@ -19,7 +19,6 @@ const SearchResultHeader = (props) => {
       <Navbar />
       <HeaderContainer>
         <LandingHeader>
-        
           <HeaderDescription>
             <HeaderDesHeading>TRAVMIGOZ</HeaderDesHeading>
             <HeaderDesPara>FIND YOUR TRAVEL AMIGOES</HeaderDesPara>

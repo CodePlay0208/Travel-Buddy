@@ -170,7 +170,7 @@ export const SetupPageSkip = styled.div`
   }
 `
 
-export const FormHeadingContainer = styled.div`
+export const FormHeadingContainer = styled.h1`
   flex: 1;
   margin-bottom: 1%;
   font-size: 3rem;
