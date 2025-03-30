@@ -68,11 +68,11 @@ const SignUp = (props) => {
       return
     }
 
-    const isAuth = await register(formData)
+    const isAuth = await register({ ...formData, userKey: isEmail ? formData.email : `+91${formData.phoneNumber}` })
     console.log(isAuth)
 
     if (isAuth) {
-      localStorage.setItem('userKey', formData.email || formData.phoneNumber)
+      localStorage.setItem('userKey', isEmail ? formData.email : `+91${formData.phoneNumber}`)
       sessionStorage.setItem('prevRoute', location.pathname)
       navigate('/verify-otp')
     }
@@ -80,7 +80,7 @@ const SignUp = (props) => {
 
   return (
     <Container>
-    <Helmet>
+      <Helmet>
         <title>Sign Up | Access Your Travmigoz Account</title>
         <meta
           name="description"

@@ -50,8 +50,8 @@ export const loadUser = () => async (dispatch) => {
 }
 
 export const register = (formData) => async (dispatch) => {
-  const { username, email } = formData
-  const body = JSON.stringify({ username: username, userKey: email })
+  const { username, userKey } = formData
+  const body = JSON.stringify({ username: username, userKey: userKey })
   try {
     const res = await AuthApi.registerUser(body)
     dispatch({
