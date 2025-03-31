@@ -10,6 +10,7 @@ import {
   NewsletterRight,
   NewsletterImage,
   NewsletterInput,
+  StyledToastContainer,
 } from '../../styles/Newsletter.styles'
 import { Input } from '../../styles/Global'
 import { subscribeNewsletter } from '../../actions/newsletter.action'
@@ -64,7 +65,7 @@ const Newsletter = ({ subscribeNewsletter }) => {
           <NewsletterImage />
         </NewsletterRight>
       </NewsletterWrapper>
-      <ToastContainer />
+      <StyledToastContainer />
     </NewsletterContainer>
   )
 }

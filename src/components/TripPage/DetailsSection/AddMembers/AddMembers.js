@@ -90,7 +90,7 @@ const AddMembers = (props) => {
         const result = await declineRequest(currentTrip.tripId, userId)
         if (result) {
           fetchTrip()
-          getRequestedMembers()
+          getRequestedMembers(currentTrip.tripId)
         }
       }
     },
@@ -98,9 +98,9 @@ const AddMembers = (props) => {
   )
 
   const handleShowRequests = useCallback(() => {
-    getRequestedMembers()
+    getRequestedMembers(currentTrip.tripId)
     setShowRequests(true)
-  }, [getRequestedMembers])
+  }, [getRequestedMembers,currentTrip.tripId])
 
   return (
     <LowerSection>
