@@ -147,7 +147,7 @@ const AddMembers = (props) => {
                       </Button>
                     </RequestButtonContainer>
                   }
-                  profilePic={images.defaultProfileImg}
+                  profilePic={item?.profilePic?.[0]?.preSignedUrl ?? images.defaultProfileImg}
                 />
               </CardContainer>
             ))
@@ -164,7 +164,7 @@ const AddMembers = (props) => {
                 id={item.userId}
                 heading={item.username}
                 body={item.userId === currentTrip?.userId ? 'Host' : 'Traveller'}
-                profilePic={images.defaultProfileImg}
+                profilePic={item?.profilePic?.[0]?.preSignedUrl ?? images.defaultProfileImg}
               />
             </CardContainer>
           ))
