@@ -149,27 +149,29 @@ export const editSecondaryKey = (payload) => async (dispatch) => {
   }
 }
 
-export const resendOTP = (isSignUpRequest=false) => async (dispatch) => {
-  const userKey = localStorage.getItem('userKey')
-  const body = JSON.stringify({ userKey: userKey, isSignUpRequest: isSignUpRequest })
-  if (localStorage.token) {
-    setAuthToken(localStorage.token)
-  }
-  try {
-    await AuthApi.resendOtp(body)
-    dispatch({
-      type: RESEND_OTP_SUCCESS,
-    })
-    toast.success('OTP Resend!', { autoClose: 1500 })
-  } catch (e) {
-    if (e.response && e.response.status === 401) {
-      toast.error('Invalid User!', { autoClose: 1500 })
+export const resendOTP =
+  (isSignUpRequest = false) =>
+  async (dispatch) => {
+    const userKey = localStorage.getItem('userKey')
+    const body = JSON.stringify({ userKey: userKey, isSignUpRequest: isSignUpRequest })
+    if (localStorage.token) {
+      setAuthToken(localStorage.token)
     }
-    dispatch({
-      type: RESEND_OTP_FAIL,
-    })
+    try {
+      await AuthApi.resendOtp(body)
+      dispatch({
+        type: RESEND_OTP_SUCCESS,
+      })
+      toast.success('OTP Resend!', { autoClose: 1500 })
+    } catch (e) {
+      if (e.response && e.response.status === 401) {
+        toast.error('Invalid User!', { autoClose: 1500 })
+      }
+      dispatch({
+        type: RESEND_OTP_FAIL,
+      })
+    }
   }
-}
 
 export const logout = () => (dispatch) => {
   if (localStorage.token) {
