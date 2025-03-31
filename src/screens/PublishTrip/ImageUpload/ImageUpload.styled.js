@@ -89,7 +89,7 @@ export const DropText = styled.span`
   margin-top: 2.5%;
 
   @media (max-width: 1080px) {
-    font-size: 75%;
+    font-size: 90%;
   }
   @media (max-width: 500px) {
     font-size: 2.5rem;
@@ -105,7 +105,7 @@ export const SupportsText = styled.div`
   margin-top: 2.5%;
 
   @media (max-width: 1080px) {
-    font-size: 75%;
+    font-size: 90%;
   }
   @media (max-width: 500px) {
     font-size: 2.5rem;
@@ -155,12 +155,14 @@ export const FileUploadBox = styled.div`
   font-weight: 500;
   background-color: #f4f4f4;
   color: black;
+  font-size: 0.75rem;
 
   @media (max-width: 768px) {
     border-radius: 40px;
   }
   @media (max-width: 440px) {
     border-radius: 20px;
+    font-size: 2rem;
   }
 `
 
