@@ -185,28 +185,3 @@ export const NewsletterImage = styled.img.attrs({
     width: 100%;
   }
 `
-
-export const StyledToastContainer = styled(ToastContainer).attrs({
-  // Default props for ToastContainer
-  position: 'top-right',
-  autoClose: 3000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  theme: 'light',
-})`
-  .Toastify__toast {
-    font-size: 1.5rem; /* Customize font size */
-    font-family: 'Montserrat', sans-serif; /* Optional: Customize font family */
-    color: #112211; /* Optional: Customize text color */
-  }
-
-  .Toastify__toast-body {
-    font-size: 1.2rem; /* Customize body font size */
-  }
-
-  .Toastify__progress-bar {
-    background-color: var(--color-primary); /* Customize progress bar color */
-  }
-`;

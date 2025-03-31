@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import { Container } from './TripPage.styled'
 import { getTripById, editTrip } from '../../actions/trips.action'
 import { ToastContainer, toast } from 'react-toastify'
+import { StyledToastContainer } from '../../styles/Global'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
@@ -23,8 +24,8 @@ const TripPage = (props) => {
 
   const [editedData, setEditedData] = useState({})
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [tripIdFromParams]);
+    window.scrollTo(0, 0)
+  }, [tripIdFromParams])
 
   useEffect(() => {
     setTripId(tripIdFromParams)
@@ -91,9 +92,9 @@ const TripPage = (props) => {
           setEditMode={onToggleEditMode}
           onSaveTrip={onSaveTrip}
         />
-        <ToastContainer />
+        <StyledToastContainer />
       </Container>
-      <PopularSection title="Similar Trip"  />
+      <PopularSection title="Similar Trip" />
       <Footer />
     </>
   )

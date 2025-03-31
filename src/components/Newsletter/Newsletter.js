@@ -10,9 +10,8 @@ import {
   NewsletterRight,
   NewsletterImage,
   NewsletterInput,
-  StyledToastContainer,
 } from '../../styles/Newsletter.styles'
-import { Input } from '../../styles/Global'
+import { Input, StyledToastContainer } from '../../styles/Global'
 import { subscribeNewsletter } from '../../actions/newsletter.action'
 import { connect } from 'react-redux'
 import { toast, ToastContainer } from 'react-toastify'

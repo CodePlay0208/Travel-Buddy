@@ -32,6 +32,7 @@ import { LoginSignUpLink, InputFieldsContainer, Divider, LoginButtonsContainer }
 import { UserLoginContext } from '../../../utils/Context/LoggedInUserContext'
 import { css } from 'styled-components'
 import { Helmet } from 'react-helmet-async'
+import { StyledToastContainer } from '../../../styles/Global'
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
 })
@@ -238,7 +239,7 @@ const LoginPage = (props) => {
       <DesignContainer>
         <AuthDesignImage src={images.auth_side_image} alt="AuthDesignImage" />
       </DesignContainer>
-      <ToastContainer />
+      <StyledToastContainer />
     </Container>
   )
 }

@@ -26,6 +26,7 @@ import Copyright from '../../../components/Copyright/Copyright'
 import { css } from 'styled-components'
 import { InputFieldsContainer } from '../LoginPage/loginPage.styled'
 import { Helmet } from 'react-helmet-async'
+import { StyledToastContainer } from '../../../styles/Global'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
@@ -167,7 +168,7 @@ const SignUp = (props) => {
       <DesignContainer>
         <AuthDesignImage src={images.auth_side_image} alt="Auth Design" />
       </DesignContainer>
-      <ToastContainer />
+      <StyledToastContainer />
     </Container>
   )
 }

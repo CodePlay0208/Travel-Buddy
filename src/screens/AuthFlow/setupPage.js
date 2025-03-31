@@ -30,7 +30,7 @@ import InputComponent from '../../components/InputComponent/InputComponent'
 import Copyright from '../../components/Copyright/Copyright'
 import { InputFieldsContainer, LoginSignUpLink } from './LoginPage/loginPage.styled'
 import Dropdown from '../../components/Dropdown/Dropdown'
-import { Input, Label } from '../../styles/Global'
+import { Input, Label, StyledToastContainer } from '../../styles/Global'
 import DatePicker from '../../components/DatePicker/DatePicker'
 import { updateProfile } from '../../actions/profile.action'
 import { InputLabel } from '../../components/InputComponent/InputComponent.styled'
@@ -211,7 +211,7 @@ const SetupPage = (props) => {
       <DesignContainer>
         <AuthDesignImage src={images.auth_side_image} alt="Auth Design" />
       </DesignContainer>
-      <ToastContainer />
+      <StyledToastContainer />
     </Container>
   )
 }

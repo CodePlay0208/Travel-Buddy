@@ -37,7 +37,7 @@ import Modal from '../../../components/Modal/Modal'
 
 import { editSecondaryKey, logout } from '../../../actions/auth.action'
 import Dropdown from '../../../components/Dropdown/Dropdown'
-import { Input, Label, Value } from '../../../styles/Global'
+import { Input, Label, StyledToastContainer, Value } from '../../../styles/Global'
 import OtpComponent from '../../AuthFlow/VerifyCode/OtpComponent'
 import Overlay from '../../../components/Overlay/overlay'
 
@@ -336,7 +336,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
             </>
           )}
         </DashboardActions>
-        <ToastContainer />
+        <StyledToastContainer />
       </DashboardContainer>
 
       {otpVerify && (

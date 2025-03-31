@@ -21,6 +21,7 @@ import {
 } from './PublishTrip.styled'
 import TripDetail from './TripDetail'
 import TripDates from './TripDates'
+import { StyledToastContainer } from '../../styles/Global'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -250,7 +251,7 @@ const PublishTrip = (props) => {
         )}
       </PublishTripContainer>
       <Footer />
-      <ToastContainer />
+      <StyledToastContainer />
     </PublishTripPage>
   )
 }

@@ -34,7 +34,7 @@ import {
 } from './UserDashboard.styled'
 
 import Dropdown from '../../../components/Dropdown/Dropdown'
-import { Input, Label, Value } from '../../../styles/Global'
+import { Input, Label, StyledToastContainer, Value } from '../../../styles/Global'
 import { ToastContainer } from 'react-toastify'
 
 const mapStateToProps = (state) => ({
@@ -121,7 +121,7 @@ const PublicUser = ({ getOtherUserProfile }) => {
               </NameContainer>
             </ProfilePicContainer>
           </DashboardContent>
-          <ToastContainer />
+          <StyledToastContainer />
         </DashboardContainer>
       </Container>
     </div>

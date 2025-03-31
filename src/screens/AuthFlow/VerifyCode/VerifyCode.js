@@ -28,6 +28,7 @@ import {
 } from '../AuthFlow.styled'
 import { VerifyCodeResendCodeContainer, VerifyCodeDidntRecieveText, VerifyCodeResendLink, VerifyCodeResendText } from './VerifyCode.styled'
 import OtpComponent from './OtpComponent'
+import { StyledToastContainer } from '../../../styles/Global'
 const mapStateToProps = (state) => ({
   otpVerified: state.authReducer.otpVerified,
 })
@@ -97,7 +98,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
       <DesignContainer>
         <AuthDesignImage src={images.auth_side_image} alt="Auth Design" />
       </DesignContainer>
-      <ToastContainer />
+      <StyledToastContainer />
     </Container>
   )
 }

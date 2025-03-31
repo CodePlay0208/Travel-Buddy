@@ -1,3 +1,4 @@
+import { ToastContainer } from 'react-toastify'
 import { createGlobalStyle, styled } from 'styled-components'
 const GlobalStyles = createGlobalStyle`
 *{
@@ -117,4 +118,28 @@ export const Button = styled.button`
   }
 `
 
+export const StyledToastContainer = styled(ToastContainer).attrs({
+  // Default props for ToastContainer
+  position: 'top-right',
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  theme: 'light',
+})`
+  .Toastify__toast {
+    font-size: 3rem; /* Customize font size */
+    font-family: 'Montserrat', sans-serif; /* Optional: Customize font family */
+    color: #112211; /* Optional: Customize text color */
+  }
+
+  .Toastify__toast-body {
+    font-size: 3rem; /* Customize body font size */
+  }
+
+  .Toastify__progress-bar {
+    background-color: var(--color-primary); /* Customize progress bar color */
+  }
+`;
 export default GlobalStyles
