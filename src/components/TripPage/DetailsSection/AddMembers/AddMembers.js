@@ -45,6 +45,7 @@ const AddMembers = (props) => {
   }, [getTripById, currentTrip?.tripId])
 
   const [areMembersExpanded, setAreMembersExpanded] = useState(false)
+  const [editTripMembers, setEditTripMembers] = useState(false)
   const [areRequestsExpanded, setAreRequestsExpanded] = useState(false)
   const [showRequests, setShowRequests] = useState(false)
 
@@ -100,7 +101,7 @@ const AddMembers = (props) => {
   const handleShowRequests = useCallback(() => {
     getRequestedMembers(currentTrip.tripId)
     setShowRequests(true)
-  }, [getRequestedMembers,currentTrip.tripId])
+  }, [getRequestedMembers, currentTrip.tripId])
 
   return (
     <LowerSection>
@@ -117,6 +118,8 @@ const AddMembers = (props) => {
           ) : (
             <>
               {isUserTrip && <Button onClick={handleShowRequests}>Requests</Button>}
+              {isUserTrip && <Button onClick={() => setEditTripMembers(!editTripMembers)}>Edit</Button>}
+
               {tripMembers.length > 5 && (
                 <Button onClick={() => setAreMembersExpanded((prev) => !prev)}>{areMembersExpanded ? 'Show Less' : 'Show All'}</Button>
               )}
@@ -157,7 +160,7 @@ const AddMembers = (props) => {
         ) : (
           membersToDisplay.map((item, index) => (
             <CardContainer key={item.userId || index}>
-              {isUserTrip && item.userId !== currentTrip?.userId && (
+              {isUserTrip && item.userId !== currentTrip?.userId && editTripMembers && (
                 <DeleteButton src={SVG.deleteMin} onClick={() => handleRemoveMember(item.userId)} />
               )}
               <DetailBox
