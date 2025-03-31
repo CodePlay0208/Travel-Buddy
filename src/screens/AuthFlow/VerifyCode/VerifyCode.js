@@ -49,7 +49,11 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
   }
 
   const onResendClick = async () => {
-    await resendOTP()
+    if (origin === '/signup') {
+      await resendOTP(true)
+    } else {
+      await resendOTP(false)
+    }
   }
 
   useEffect(() => {

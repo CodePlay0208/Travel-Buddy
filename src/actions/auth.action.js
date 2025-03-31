@@ -149,9 +149,9 @@ export const editSecondaryKey = (payload) => async (dispatch) => {
   }
 }
 
-export const resendOTP = () => async (dispatch) => {
+export const resendOTP = (isSignUpRequest=false) => async (dispatch) => {
   const userKey = localStorage.getItem('userKey')
-  const body = JSON.stringify({ userKey: userKey })
+  const body = JSON.stringify({ userKey: userKey, isSignUpRequest: isSignUpRequest })
   if (localStorage.token) {
     setAuthToken(localStorage.token)
   }
