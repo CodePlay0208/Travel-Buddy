@@ -6,11 +6,10 @@ const GlobalStyles = createGlobalStyle`
 }
 `
 export const HeadingOne = styled.div`
-
-font-size: 2rem;
-font-weight: 700;
-line-height: 2.5rem;
- `
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.5rem;
+`
 export const Label = styled.label`
   font-weight: ${(props) => props.fontWeight ?? '500'};
   font-size: ${(props) => props.fontSize ?? '1.5rem'};
@@ -135,11 +134,14 @@ export const StyledToastContainer = styled(ToastContainer).attrs({
   }
 
   .Toastify__toast-body {
-    font-size: 3rem; /* Customize body font size */
+    font-size: 1rem;
+    @media (max-width: 440px) {
+      font-size: 3rem;
+    }
   }
 
   .Toastify__progress-bar {
     background-color: var(--color-primary); /* Customize progress bar color */
   }
-`;
+`
 export default GlobalStyles

@@ -7,6 +7,7 @@ import { verifyOTP, resendOTP } from '../../../actions/auth.action'
 import { ToastContainer } from 'react-toastify'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
+import { getProfile } from '../../../actions/profile.action'
 import {
   Container,
   FormAndCopyrightContainer,
@@ -59,6 +60,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
 
   useEffect(() => {
     if (otpVerified) {
+      getProfile()
       if (origin === '/signup') {
         navigate('/setup')
       } else {
@@ -103,4 +105,4 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
   )
 }
 
-export default connect(mapStateToProps, { verifyOTP, resendOTP })(memo(VerifyCode))
+export default connect(mapStateToProps, {getProfile, verifyOTP, resendOTP })(memo(VerifyCode))
