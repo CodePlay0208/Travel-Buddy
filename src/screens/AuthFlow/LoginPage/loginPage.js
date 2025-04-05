@@ -73,6 +73,7 @@ const LoginPage = (props) => {
           }
           return response.json()
         })
+        
         .then((data) => {
           console.log('the data is', data)
           localStorage.setItem('token', data.token)

@@ -64,6 +64,7 @@ const SlidingSection = ({ trips }) => {
             </Badge>
           </CardContainer>
         ))}
+        
       </Slider>
       <SliderHeading>
         <h1>

@@ -59,7 +59,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
 
   const [isUserKeyChanged, setIsUserChanged] = useState(false)
 
-  const isLoginWithEmail = formData.isLoginWithEmail
+  const isLoginWithEmail = formData.isLoginWithEmail || formData.isSignupWithEmail
   useEffect(() => {
     if (!userId) {
       getProfile()
@@ -295,7 +295,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
                 {isEditing ? (
                   <Input name="phoneNumber" value={formData.phoneNumber || ''} onChange={handleChange} readOnly={!isLoginWithEmail} />
                 ) : (
-                  <Value>{!!profile?.phoneNumber?.length ? `+91 ${profile?.phoneNumber}` : '--'}</Value>
+                  <Value>{!!profile?.phoneNumber?.length ? ` ${profile?.phoneNumber}` : '--'}</Value>
                 )}
               </UserInfoItem>
             </UserInfoColumn>

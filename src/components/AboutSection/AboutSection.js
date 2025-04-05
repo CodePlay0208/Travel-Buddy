@@ -34,6 +34,7 @@ const AboutSection = () => {
                 </div>
             </ContentFrame>
 
+
             <ContentFrame className="third">
                 <div className="about-section__content-inner-frame">
                     <IconGroup>
