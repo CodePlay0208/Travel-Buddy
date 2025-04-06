@@ -69,11 +69,11 @@ const SignUp = (props) => {
       return
     }
 
-    const isAuth = await register({ ...formData, userKey: isEmail ? formData.email : `+91${formData.phoneNumber}` })
+    const isAuth = await register({ ...formData, userKey: isEmail ? formData.email : `${formData.phoneNumber}` })
     console.log(isAuth)
 
     if (isAuth) {
-      localStorage.setItem('userKey', isEmail ? formData.email : `+91${formData.phoneNumber}`)
+      localStorage.setItem('userKey', isEmail ? formData.email : `${formData.phoneNumber}`)
       sessionStorage.setItem('prevRoute', location.pathname)
       navigate('/verify-otp')
     }

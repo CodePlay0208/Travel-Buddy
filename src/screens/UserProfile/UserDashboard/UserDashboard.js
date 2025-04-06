@@ -111,7 +111,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
   }
   const handleSave = async (e) => {
     if (isUserKeyChanged) {
-      await editSecondaryKey(isLoginWithEmail ? { phoneNumber: `+91${formData.phoneNumber}` } : { emailId: formData.emailId })
+      await editSecondaryKey(isLoginWithEmail ? { phoneNumber: `${formData.phoneNumber}` } : { emailId: formData.emailId })
 
       setIsUserChanged(false)
       setOtpVerify(true)
@@ -202,7 +202,7 @@ const UserDashboard = ({ profile, getProfile, updateProfile, deleteProfile, user
                       name="gender"
                       value={formData?.gender || ''}
                       onChange={handleChange}
-                      placeholder='Gender'
+                      placeholder="Gender"
                       onFocus={() => setShowGenderDropDown(true)}
                     />
                     {showGenderDropDown && (

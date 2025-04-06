@@ -73,7 +73,7 @@ const LoginPage = (props) => {
           }
           return response.json()
         })
-        
+
         .then((data) => {
           console.log('the data is', data)
           localStorage.setItem('token', data.token)
@@ -131,11 +131,11 @@ const LoginPage = (props) => {
         }
       }
 
-      const isAuth = await login(isEmail ? formData.email : `+91${formData.phone}`)
+      const isAuth = await login(isEmail ? formData.email : `${formData.phone}`)
 
       if (isAuth) {
         sessionStorage.setItem('prevRoute', location.pathname)
-        localStorage.setItem('userKey', isEmail ? formData.email : `+91${formData.phone}`)
+        localStorage.setItem('userKey', isEmail ? formData.email : `${formData.phone}`)
         navigate('/verify-otp')
       } else {
         toast.error('Login Failed!', { autoClose: 1500 })
