@@ -22,6 +22,7 @@ import {
 import TripDetail from './TripDetail'
 import TripDates from './TripDates'
 import { StyledToastContainer } from '../../styles/Global'
+import TripItinerary from './TripItinerary'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -30,6 +31,7 @@ const mapStateToProps = (state) => ({
 const TABS = {
   TRIP: 'trip',
   USER: 'user',
+  ITINERARY: 'Itinerary',
 }
 
 const DEFAULT_TRIP_DATA = {
@@ -217,23 +219,38 @@ const PublishTrip = (props) => {
                   </ToggleTab>
                 </>
               )}
+              {
+                <>
+                  <Divider />
+                  <ToggleTab className={activeSection === TABS.ITINERARY ? 'active' : ''} onClick={() => handleToggle(TABS.ITINERARY)}>
+                    Trip Dates
+                  </ToggleTab>
+                </>
+              }
             </ToggleBetweenTripUser>
-            {activeSection === TABS.TRIP ? (
+            {activeSection === TABS.TRIP && (
               <TripDetail
                 tripData={tripData}
                 handleChange={handleChange}
                 handleTripDataChange={handleTripDataChange}
                 isReadOnly={toEditTrip}
               />
-            ) : (
-              !toEditTrip && (
-                <TripDates
-                  tripData={tripData}
-                  handleChange={handleChange}
-                  handleTripDataChange={handleTripDataChange}
-                  handleDeleteDate={handleDeleteDate}
-                />
-              )
+            )}
+            {activeSection === TABS.USER && !toEditTrip && (
+              <TripDates
+                tripData={tripData}
+                handleChange={handleChange}
+                handleTripDataChange={handleTripDataChange}
+                handleDeleteDate={handleDeleteDate}
+              />
+            )}
+            {activeSection === TABS.ITINERARY && (
+              <TripItinerary
+                tripData={tripData}
+                handleChange={handleChange}
+                handleTripDataChange={handleTripDataChange}
+                handleDeleteDate={handleDeleteDate}
+              />
             )}
           </PublishTripLeftSection>
           <PublishTripRightSection>
