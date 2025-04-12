@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, DescriptionField, InputColumn, InputGroup, InputRow } from './PublishTrip.styled'
+import { ButtonContainer, Container, DescriptionField, InputColumn, InputGroup, InputRow } from './PublishTrip.styled'
 
 import { Button, Input, Label } from '../../styles/Global'
 import DatePicker from '../../components/DatePicker/DatePicker'
@@ -73,7 +73,7 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
             {/* <Label fontSize="1rem" fontWeight="600">
               Day Description
             </Label> */}
-            <FlexContainer style={{ width: '100%' }}>
+            <FlexContainer style={{ width: '100%' }} alignItems=" flex-end">
               <DescriptionField
                 name="dayDescription"
                 borderRadius="30px"
@@ -81,7 +81,7 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
                 onChange={(e) => setCurPoint(e.target.value)}
                 placeholder="Enter Day Description"
               />
-              <FlexContainer width="15%" height="100%" justifyContent="flex-end" alignItems="flex-end">
+              <ButtonContainer>
                 {isEdit ? (
                   <Button padding="12.5%" onClick={handlSavePoint}>
                     Save
@@ -91,7 +91,7 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
                     Add
                   </Button>
                 )}
-              </FlexContainer>
+              </ButtonContainer>
             </FlexContainer>
           </InputGroup>
           <InputGroup width="50%" margin="3% 2% 2%" gap="10px">

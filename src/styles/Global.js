@@ -116,6 +116,10 @@ export const Button = styled.button`
   &:hover {
     background-color: #79bca7;
   }
+  
+  @media (max-width: 440px) {
+    font-size: 2.5rem;
+  }
 `
 
 export const StyledToastContainer = styled(ToastContainer).attrs({

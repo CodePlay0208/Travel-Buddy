@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { Button } from '../../styles/Global'
+import React from 'react'
 
 const colors = {
   primary: '#0b87ac',
@@ -185,17 +186,15 @@ export const DayTab = styled.button`
   }
 
   ${media.desktop`
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px;
   `}
 
   ${media.tablet`
-    border-radius: 5px 5px 0 0;
   `}
   ${media.mobile`
     font-size: 3.5rem;
     line-height: 4rem;
     padding:2%;
-    border-radius: 10px 10px 0 0;
   
   `}
 `
@@ -212,6 +211,10 @@ export const AddButton = styled.button`
   border-radius: 12px;
   border: none;
   background: white;
+
+  @media (max-width: 440px) {
+    font-size: 3rem;
+  }
 `
 
 export const LeftSection = styled.div`
@@ -380,6 +383,14 @@ export const InputRow = styled.div`
     flex-direction: column;
     gap: 10px;
   `}
+`
+export const ButtonContainer = styled.div`
+  position: relative;
+  display: flex;
+  width: 15%;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: flex-end;
 `
 
 export const InputColumn = styled.div`

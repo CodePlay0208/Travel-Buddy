@@ -29,14 +29,18 @@ export const PreviewTitle = styled.h1`
   font-size: 1.5rem;
   font-weight: 600;
   color: #000;
-  margin: 16px;
+  margin: 2%;
+  
+  @media (max-width: 440px) {
+    font-size: 4.5rem;
+  }
 `
 
 export const DayTitle = styled.h1`
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-secondary);
-  margin: 0 16px 8px;
+  margin: 0 2% 1%;
   line-height: 100%;
   letter-spacing: 1.25px;
   text-transform: uppercase;
@@ -47,11 +51,15 @@ export const DayTitle = styled.h1`
   white-space: normal;
   word-break: break-word;
   overflow-wrap: anywhere;
+  
+  @media (max-width: 440px) {
+    font-size: 4rem;
+  }
 `
 
 export const Content = styled.div`
   flex: 1;
-  margin: 0 16px 16px;
+  margin: 0 2% 2%;
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.3;
@@ -76,6 +84,10 @@ export const ListItem = styled.li`
   font-weight: 500;
   line-height: 1.3;
   color: #000;
-  margin-bottom: 8px;
+  margin-bottom: 1%;
   word-break: break-word;
+  
+  @media (max-width: 440px) {
+    font-size: 2.5rem;
+  }
 `
