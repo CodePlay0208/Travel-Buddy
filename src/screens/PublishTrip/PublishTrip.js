@@ -115,7 +115,11 @@ const PublishTrip = (props) => {
   }, [])
 
   const handleNext = useCallback(() => {
-    setActiveSection(TABS.USER)
+    if (activeSection === TABS.TRIP) {
+      setActiveSection(TABS.USER)
+    } else if (activeSection === TABS.USER) {
+      setActiveSection(TABS.ITINERARY)
+    }
   }, [])
   const addDayTab = useCallback(() => {
     setTripData((prev) => ({
@@ -273,7 +277,9 @@ const PublishTrip = (props) => {
                       Day {index + 1}
                     </DayTab>
                   ))}
-                  <AddButton onClick={addDayTab}>+</AddButton>
+                  <AddButton onClick={addDayTab} disabled={tripData.dayTabs.length > 6}>
+                    +
+                  </AddButton>
                 </FlexContainer>
 
                 <TripItinerary
