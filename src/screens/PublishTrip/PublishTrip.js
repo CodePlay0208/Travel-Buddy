@@ -265,7 +265,7 @@ const PublishTrip = (props) => {
             )}
             {activeSection === TABS.ITINERARY && (
               <Container>
-                <FlexContainer margin=" 0 3%  2%" justifyContent="flex-start" alignItems="center" width="100%" gap="0">
+                <FlexContainer margin=" 0 3%  5%" justifyContent="flex-start" alignItems="center" width="100%" gap="0">
                   {tripData.dayTabs.map((day, index) => (
                     <DayTab
                       onClick={() => {

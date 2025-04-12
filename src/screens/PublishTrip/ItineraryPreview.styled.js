@@ -21,7 +21,7 @@ export const Container = styled.div`
   }
 
   @media (max-width: 440px) {
-    padding: 10% 5%;
+    padding: 7%;
   }
 `
 
@@ -30,9 +30,10 @@ export const PreviewTitle = styled.h1`
   font-weight: 600;
   color: #000;
   margin: 2%;
-  
+
   @media (max-width: 440px) {
-    font-size: 4.5rem;
+    font-size: 6rem;
+    margin: 5% 3%;
   }
 `
 
@@ -51,9 +52,9 @@ export const DayTitle = styled.h1`
   white-space: normal;
   word-break: break-word;
   overflow-wrap: anywhere;
-  
+
   @media (max-width: 440px) {
-    font-size: 4rem;
+    font-size: 6rem;
   }
 `
 
@@ -84,10 +85,11 @@ export const ListItem = styled.li`
   font-weight: 500;
   line-height: 1.3;
   color: #000;
-  margin-bottom: 1%;
+  margin: 2% 0;
   word-break: break-word;
-  
+
   @media (max-width: 440px) {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
+    margin: 5% 0;
   }
 `

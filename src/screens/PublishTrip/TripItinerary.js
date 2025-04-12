@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonContainer, Container, DescriptionField, InputColumn, InputGroup, InputRow } from './PublishTrip.styled'
+import { ButtonContainer, Container, DescriptionField, InputColumn, InputGroup, InputGroupDayName, InputGroupDesc, InputGroupList, InputRow } from './PublishTrip.styled'
 
 import { Button, Input, Label } from '../../styles/Global'
 import DatePicker from '../../components/DatePicker/DatePicker'
@@ -56,7 +56,7 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
     <>
       <InputRow>
         <InputColumn width="100%">
-          <InputGroup width="50%">
+          <InputGroupDayName>
             {/* <Label fontSize="1rem" fontWeight="600">
               Day Title
             </Label> */}
@@ -68,12 +68,8 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
               value={tripData.dayTitle || ''}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
             />
-          </InputGroup>
-          <InputGroup>
-            {/* <Label fontSize="1rem" fontWeight="600">
-              Day Description
-            </Label> */}
-            <FlexContainer style={{ width: '100%' }} alignItems=" flex-end">
+          </InputGroupDayName>
+          <InputGroupDesc>
               <DescriptionField
                 name="dayDescription"
                 borderRadius="30px"
@@ -92,16 +88,15 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
                   </Button>
                 )}
               </ButtonContainer>
-            </FlexContainer>
-          </InputGroup>
-          <InputGroup width="50%" margin="3% 2% 2%" gap="10px">
+          </InputGroupDesc>
+          <InputGroupList >
             {/* <Label fontSize="1rem" fontWeight="600">
             Dates
           </Label> */}
             {tripData.dayDescription?.map((dayPoint, index) => (
               <DayTitle title={dayPoint} onDelete={onDelete} onEditClick={onEditClick} idx={index}></DayTitle>
             ))}
-          </InputGroup>
+          </InputGroupList>
         </InputColumn>
         {/* <InputColumn>
         

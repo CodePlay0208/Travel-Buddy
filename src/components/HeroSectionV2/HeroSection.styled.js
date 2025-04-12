@@ -142,6 +142,7 @@ export const PublishButton = styled.button`
 `
 export const FlexContainer = styled.div`
   display: flex;
+  overflow-x: scroll;
   flex-direction: ${(props) => (props.direction === 'column' ? 'column' : 'row')};
   font-size: ${(props) => props.fontSize || 'min(1rem,32px)'};
   justify-content: ${(props) => props.justifyContent || 'space-between'};

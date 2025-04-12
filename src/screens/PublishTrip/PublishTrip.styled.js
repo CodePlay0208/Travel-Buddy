@@ -194,7 +194,8 @@ export const DayTab = styled.button`
   ${media.mobile`
     font-size: 3.5rem;
     line-height: 4rem;
-    padding:2%;
+    padding:3%  5%;
+    width : 120px;
   
   `}
 `
@@ -213,7 +214,8 @@ export const AddButton = styled.button`
   background: white;
 
   @media (max-width: 440px) {
-    font-size: 3rem;
+    font-size: 5rem;
+    line-height: 5rem;
   }
 `
 
@@ -249,6 +251,34 @@ export const InputGroup = styled.div`
   ${media.mobile`
     margin: 0 0 20px 0 ;
   `}
+`
+
+export const InputGroupDayName = styled(InputGroup)`
+  width: 50%;
+  @media (max-width: 440px) {
+    width: 150%;
+  }
+`
+export const InputGroupDesc = styled(InputGroup)`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+
+  @media (max-width: 440px) {
+    width: 90%;
+    flex-direction: column;
+    gap: 10px;
+  }
+`
+export const InputGroupList = styled(InputGroup)`
+  width: 50%;
+  margin: 3% 2% 2%;
+  gap: 10px;
+  @media (max-width: 440px) {
+    width: 90%;
+  }
 `
 
 export const InputLabel = styled.label`
@@ -391,6 +421,10 @@ export const ButtonContainer = styled.div`
   height: 100%;
   justify-content: flex-end;
   align-items: flex-end;
+
+  ${media.mobile`
+    width: 33%;
+  `}
 `
 
 export const InputColumn = styled.div`
