@@ -90,7 +90,9 @@ const PublishTrip = (props) => {
     const { name, value } = e.target
     setTripData((prev) => ({ ...prev, [name]: value }))
   }, [])
-
+  const handleNameChange = useCallback((name, value) => {
+    setTripData((prev) => ({ ...prev, [name]: value }))
+  }, [])
   const handleTripDataChange = useCallback((field, value) => {
     setTripData((prev) => ({ ...prev, [field]: value }))
   }, [])
@@ -248,7 +250,7 @@ const PublishTrip = (props) => {
             {activeSection === TABS.ITINERARY && (
               <TripItinerary
                 tripData={tripData}
-                handleChange={handleChange}
+                handleChange={handleNameChange}
                 handleTripDataChange={handleTripDataChange}
                 handleDeleteDate={handleDeleteDate}
               />

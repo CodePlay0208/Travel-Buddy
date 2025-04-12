@@ -40,7 +40,7 @@ export const Value = styled.span`
 `
 export const Input = styled.input`
   position: relative;
-  width: 100%;
+  width: ${(props) => props.width ?? '100%'};
   padding: ${(props) => props.padding ?? '2.5%'};
   margin: ${(props) => props.margin ?? '0'};
   font-size: ${(props) => props.fontSize ?? '1rem'};
@@ -105,8 +105,9 @@ export const Button = styled.button`
   line-height: 1rem;
   color: #000000;
   text-align: center;
+  width: 100%;
   background: var(--color-primary);
-  padding: 5% 10%;
+  padding: ${(props) => props.padding ?? '5% 10%'};
   border: none;
   border-radius: 40px;
   cursor: pointer;

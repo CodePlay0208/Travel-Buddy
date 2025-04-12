@@ -77,7 +77,7 @@ export const DescriptionField = styled.textarea`
   padding: 1% 1.25%;
   border: none;
   background-color: ${colors.background};
-  border-radius: 20px;
+  border-radius: ${(props) => props.borderRadius ?? '20px'};
   font-size: 1rem;
   color: ${colors.dark};
 
@@ -184,12 +184,13 @@ export const LeftSection = styled.div`
 `
 
 export const InputGroup = styled.div`
-  width: 100%;
+  width: ${(props) => props.width ?? '100%'};
   display: flex;
   flex-direction: column;
-  margin: 0 2% 2% 2%;
+  margin: ${(props) => props.margin ?? '0 2% 2% 2%'};
   position: relative;
 
+  gap: ${(props) => props.gap ?? '0'};
   ${media.desktop`
     margin: 0 0 10px 0;
   `}
