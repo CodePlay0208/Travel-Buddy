@@ -23,6 +23,7 @@ import TripDetail from './TripDetail'
 import TripDates from './TripDates'
 import { StyledToastContainer } from '../../styles/Global'
 import TripItinerary from './TripItinerary'
+import ItineraryPreview from './ItineraryPreview'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -254,16 +255,20 @@ const PublishTrip = (props) => {
             )}
           </PublishTripLeftSection>
           <PublishTripRightSection>
-            <ImageUpload tripData={tripData} setTripData={setTripData} />
+            {activeSection === TABS.ITINERARY ? (
+              <ItineraryPreview tripData={tripData} />
+            ) : (
+              <ImageUpload tripData={tripData} setTripData={setTripData} />
+            )}
           </PublishTripRightSection>
         </PublishTripContent>
-        {!toEditTrip && activeSection === TABS.TRIP ? (
+        {activeSection === TABS.ITINERARY ? (
           <PublishTripButton>
-            <SubmitButton onClick={handleNext}>Next</SubmitButton>
+            <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
           </PublishTripButton>
         ) : (
           <PublishTripButton>
-            <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
+            <SubmitButton onClick={handleNext}>Next</SubmitButton>
           </PublishTripButton>
         )}
       </PublishTripContainer>
