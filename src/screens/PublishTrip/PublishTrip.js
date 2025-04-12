@@ -19,12 +19,15 @@ import {
   PublishTripButton,
   SubmitButton,
   Container,
+  DayTab,
+  AddButton,
 } from './PublishTrip.styled'
 import TripDetail from './TripDetail'
 import TripDates from './TripDates'
 import { StyledToastContainer } from '../../styles/Global'
 import TripItinerary from './TripItinerary'
 import ItineraryPreview from './ItineraryPreview'
+import { FlexContainer } from '../../components/HeroSectionV2/HeroSection.styled'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -47,8 +50,8 @@ const DEFAULT_TRIP_DATA = {
   removedDestinationImages: [],
   tripData: [],
   multipleDates: [],
+  dayTabs: [{ dayTitle: '', dayDescription: [] }],
 }
-
 const formatDate = (dateString) => {
   if (!dateString) return ''
   const date = new Date(dateString)
@@ -70,6 +73,8 @@ const PublishTrip = (props) => {
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
   const [toEditTrip, setToEditTrip] = useState(false)
+  const [curIdx, setCurIdx] = useState(0)
+
   const navigate = useNavigate()
   const location = useLocation()
   const editTripData = location.state?.trip || {}
@@ -111,6 +116,12 @@ const PublishTrip = (props) => {
 
   const handleNext = useCallback(() => {
     setActiveSection(TABS.USER)
+  }, [])
+  const addDayTab = useCallback(() => {
+    setTripData((prev) => ({
+      ...prev,
+      dayTabs: [...prev.dayTabs, { dayTitle: '', dayDescription: [] }],
+    }))
   }, [])
 
   const getProcessedTripDates = useCallback(() => {
@@ -250,14 +261,31 @@ const PublishTrip = (props) => {
             )}
             {activeSection === TABS.ITINERARY && (
               <Container>
+                <FlexContainer margin=" 0 3%  2%" justifyContent="flex-start" alignItems="center" width="100%" gap="0">
+                  {tripData.dayTabs.map((day, index) => (
+                    <DayTab
+                      onClick={() => {
+                        setCurIdx(index)
+                      }}
+                      key={index}
+                      className={index === curIdx ? 'active' : ''}
+                    >
+                      Day {index + 1}
+                    </DayTab>
+                  ))}
+                  <AddButton onClick={addDayTab}>+</AddButton>
+                </FlexContainer>
 
+                <TripItinerary
+                  key={curIdx}
+                  tripData={tripData.dayTabs[curIdx]}
+                  handleChange={(name, value) => {
+                    const updatedDayTabs = [...tripData.dayTabs]
+                    updatedDayTabs[curIdx][name] = value
 
-              <TripItinerary
-                tripData={tripData}
-                handleChange={handleNameChange}
-                handleTripDataChange={handleTripDataChange}
-                handleDeleteDate={handleDeleteDate}
-              />
+                    handleNameChange('dayTabs', updatedDayTabs)
+                  }}
+                />
               </Container>
             )}
           </PublishTripLeftSection>

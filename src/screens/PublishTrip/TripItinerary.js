@@ -15,8 +15,8 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
 
   const handleAddPoint = () => {
     if (curPoint) {
-      const updatedDayPoints = [...(tripData.dayPoints || []), curPoint]
-      handleChange('dayPoints', updatedDayPoints)
+      const updatedDayPoints = [...(tripData.dayDescription || []), curPoint]
+      handleChange('dayDescription', updatedDayPoints)
       setCurPoint('')
     } else {
       alert('Please enter a point')
@@ -25,9 +25,9 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
 
   const handlSavePoint = () => {
     if (curPoint) {
-      const updatedDayPoints = [...(tripData.dayPoints || [])]
+      const updatedDayPoints = [...(tripData.dayDescription || [])]
       updatedDayPoints[editIdx] = curPoint
-      handleChange('dayPoints', updatedDayPoints)
+      handleChange('dayDescription', updatedDayPoints)
       setCurPoint('')
       setEditIdx(null)
       setIsEdit(false)
@@ -40,13 +40,13 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
   }
 
   const onDelete = (index) => {
-    const updatedDayPoints = [...(tripData.dayPoints || [])]
+    const updatedDayPoints = [...(tripData.dayDescription || [])]
     updatedDayPoints.splice(index, 1)
-    handleChange('dayPoints', updatedDayPoints)
+    handleChange('dayDescription', updatedDayPoints)
   }
 
   const onEditClick = (index) => {
-    const currentPoint = tripData.dayPoints[index]
+    const currentPoint = tripData.dayDescription[index]
     setEditIdx(index)
     setIsEdit(true)
     setCurPoint(currentPoint)
@@ -75,7 +75,7 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
             </Label> */}
             <FlexContainer style={{ width: '100%' }}>
               <DescriptionField
-                name="dayPoints"
+                name="dayDescription"
                 borderRadius="30px"
                 value={curPoint}
                 onChange={(e) => setCurPoint(e.target.value)}
@@ -98,7 +98,7 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
             {/* <Label fontSize="1rem" fontWeight="600">
             Dates
           </Label> */}
-            {tripData.dayPoints?.map((dayPoint, index) => (
+            {tripData.dayDescription?.map((dayPoint, index) => (
               <DayTitle title={dayPoint} onDelete={onDelete} onEditClick={onEditClick} idx={index}></DayTitle>
             ))}
           </InputGroup>

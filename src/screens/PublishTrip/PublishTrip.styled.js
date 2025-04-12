@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { Button } from '../../styles/Global'
 
 const colors = {
   primary: '#0b87ac',
@@ -41,6 +42,7 @@ export const PublishTripPage = styled.div`
 `
 export const Container = styled.div`
   padding: 5%;
+  margin: ${(props) => props.margin ?? '0'};
   box-shadow: 0px 0px 8px 0px #0000001a;
   border-radius: 10px;
   @media (max-width: 440px) {
@@ -163,6 +165,53 @@ export const PublishTripLeftSection = styled.div`
   ${media.mobile`
     margin-right: 0;
   `}
+`
+
+export const DayTab = styled.button`
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1rem;
+  height: 100%;
+  color: ${colors.black};
+  padding: 1% 3%;
+  border-radius: 12px;
+  border: none;
+
+  background: ${colors.background};
+  &.active {
+    background-color: ${colors.secondary};
+  }
+
+  ${media.desktop`
+    border-radius: 10px 10px 0 0;
+  `}
+
+  ${media.tablet`
+    border-radius: 5px 5px 0 0;
+  `}
+  ${media.mobile`
+    font-size: 3.5rem;
+    line-height: 4rem;
+    padding:2%;
+    border-radius: 10px 10px 0 0;
+  
+  `}
+`
+
+export const AddButton = styled.button`
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  height: 100%;
+  color: ${colors.black};
+  padding: 1% 3%;
+  border-radius: 12px;
+  border: none;
+  background: white;
 `
 
 export const LeftSection = styled.div`

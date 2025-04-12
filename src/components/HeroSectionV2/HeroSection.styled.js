@@ -144,7 +144,7 @@ export const FlexContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.direction === 'column' ? 'column' : 'row')};
   font-size: ${(props) => props.fontSize || 'min(1rem,32px)'};
-  justify-content: space-between;
+  justify-content: ${(props) => props.justifyContent || 'space-between'};
   align-items: ${(props) => props.alignItems || 'center'};
   gap: ${(props) => props.gap || '10px'};
   padding: ${(props) => props.padding || '0'};
