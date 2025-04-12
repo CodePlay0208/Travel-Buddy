@@ -10,6 +10,9 @@ import DayTitle from './dayTitle'
 const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDeleteDate }) => {
   const [curPoint, setCurPoint] = React.useState('')
   const [curDescription, setCurDescription] = React.useState('')
+  const [editIdx, setEditIdx] = React.useState(null)
+  const [isEdit, setIsEdit] = React.useState(false)
+
   const handleAddPoint = () => {
     if (curPoint) {
       const updatedDayPoints = [...(tripData.dayPoints || []), curPoint]
@@ -19,8 +22,38 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
       alert('Please enter a point')
     }
   }
+
+  const handlSavePoint = () => {
+    if (curPoint) {
+      const updatedDayPoints = [...(tripData.dayPoints || [])]
+      updatedDayPoints[editIdx] = curPoint
+      handleChange('dayPoints', updatedDayPoints)
+      setCurPoint('')
+      setEditIdx(null)
+      setIsEdit(false)
+    } else {
+      onDelete(editIdx)
+      setCurPoint('')
+      setEditIdx(null)
+      setIsEdit(false)
+    }
+  }
+
+  const onDelete = (index) => {
+    const updatedDayPoints = [...(tripData.dayPoints || [])]
+    updatedDayPoints.splice(index, 1)
+    handleChange('dayPoints', updatedDayPoints)
+  }
+
+  const onEditClick = (index) => {
+    const currentPoint = tripData.dayPoints[index]
+    setEditIdx(index)
+    setIsEdit(true)
+    setCurPoint(currentPoint)
+  }
+
   return (
-    <Container>
+    <>
       <InputRow>
         <InputColumn width="100%">
           <InputGroup width="50%">
@@ -49,18 +82,24 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
                 placeholder="Enter Day Description"
               />
               <FlexContainer width="15%" height="100%" justifyContent="flex-end" alignItems="flex-end">
-                <Button padding="12.5%" onClick={handleAddPoint}>
-                  Add
-                </Button>
+                {isEdit ? (
+                  <Button padding="12.5%" onClick={handlSavePoint}>
+                    Save
+                  </Button>
+                ) : (
+                  <Button padding="12.5%" onClick={handleAddPoint}>
+                    Add
+                  </Button>
+                )}
               </FlexContainer>
             </FlexContainer>
           </InputGroup>
-          <InputGroup width="50%" margin="3% 2% 2%" gap='10px'>
+          <InputGroup width="50%" margin="3% 2% 2%" gap="10px">
             {/* <Label fontSize="1rem" fontWeight="600">
             Dates
           </Label> */}
             {tripData.dayPoints?.map((dayPoint, index) => (
-              <DayTitle title={dayPoint}></DayTitle>
+              <DayTitle title={dayPoint} onDelete={onDelete} onEditClick={onEditClick} idx={index}></DayTitle>
             ))}
           </InputGroup>
         </InputColumn>
@@ -68,7 +107,7 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
         
       </InputColumn> */}
       </InputRow>
-    </Container>
+    </>
   )
 }
 

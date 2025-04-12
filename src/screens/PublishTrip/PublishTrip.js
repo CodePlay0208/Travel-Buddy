@@ -18,6 +18,7 @@ import {
   Divider,
   PublishTripButton,
   SubmitButton,
+  Container,
 } from './PublishTrip.styled'
 import TripDetail from './TripDetail'
 import TripDates from './TripDates'
@@ -248,12 +249,16 @@ const PublishTrip = (props) => {
               />
             )}
             {activeSection === TABS.ITINERARY && (
+              <Container>
+
+
               <TripItinerary
                 tripData={tripData}
                 handleChange={handleNameChange}
                 handleTripDataChange={handleTripDataChange}
                 handleDeleteDate={handleDeleteDate}
               />
+              </Container>
             )}
           </PublishTripLeftSection>
           <PublishTripRightSection>

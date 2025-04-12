@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const DayTitle = ({ title, onEditClick, onDelete }) => {
+const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
   const trimTitle = title.length > 50 ? title.substring(0, 50) + '...' : title
   const Container = styled.div`
     display: flex;
@@ -29,7 +29,12 @@ const DayTitle = ({ title, onEditClick, onDelete }) => {
   return (
     <Container>
       <Element width={'85%'}>{trimTitle}</Element>
-      <Element width={'5%'} onClick={onEditClick}>
+      <Element
+        width={'5%'}
+        onClick={() => {
+          onEditClick(idx)
+        }}
+      >
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             fill-rule="evenodd"
@@ -39,7 +44,12 @@ const DayTitle = ({ title, onEditClick, onDelete }) => {
           />
         </svg>
       </Element>
-      <Element width={'5%'} onClick={onDelete}>
+      <Element
+        width={'5%'}
+        onClick={() => {
+          onDelete(idx)
+        }}
+      >
         X
       </Element>
     </Container>
