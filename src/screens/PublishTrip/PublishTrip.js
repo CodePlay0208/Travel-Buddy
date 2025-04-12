@@ -291,7 +291,7 @@ const PublishTrip = (props) => {
           </PublishTripLeftSection>
           <PublishTripRightSection>
             {activeSection === TABS.ITINERARY ? (
-              <ItineraryPreview tripData={tripData} />
+              <ItineraryPreview tripData={tripData.dayTabs[curIdx]} />
             ) : (
               <ImageUpload tripData={tripData} setTripData={setTripData} />
             )}

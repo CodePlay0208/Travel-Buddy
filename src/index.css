@@ -7,7 +7,7 @@ body {
 
 :root {
   --color-primary: #8dd3bb;
-  --color-secondary: #42a7c3;
+  --color-secondary: #009965;
   --color-accent: #112211;
   --color-background: #ffffff;
 }
@@ -34,4 +34,3 @@ html {
     font-size: 20px;
   }
 }
-

@@ -66,7 +66,7 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
               type="text"
               placeholder="Enter Day Name"
               value={tripData.dayTitle || ''}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target.name, e.target.value)}
             />
           </InputGroup>
           <InputGroup>
