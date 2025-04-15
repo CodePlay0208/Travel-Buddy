@@ -21,6 +21,7 @@ import {
   Container,
   DayTab,
   AddButton,
+  DayContainer,
 } from './PublishTrip.styled'
 import TripDetail from './TripDetail'
 import TripDates from './TripDates'
@@ -120,7 +121,7 @@ const PublishTrip = (props) => {
     } else if (activeSection === TABS.USER) {
       setActiveSection(TABS.ITINERARY)
     }
-  }, [])
+  }, [activeSection])
   const addDayTab = useCallback(() => {
     setTripData((prev) => ({
       ...prev,
@@ -242,7 +243,7 @@ const PublishTrip = (props) => {
                 <>
                   <Divider />
                   <ToggleTab className={activeSection === TABS.ITINERARY ? 'active' : ''} onClick={() => handleToggle(TABS.ITINERARY)}>
-                    Trip Dates
+                  Itinerary
                   </ToggleTab>
                 </>
               }
@@ -265,7 +266,7 @@ const PublishTrip = (props) => {
             )}
             {activeSection === TABS.ITINERARY && (
               <Container>
-                <FlexContainer margin=" 0 3%  5%" justifyContent="flex-start" alignItems="center" width="100%" gap="0">
+                <DayContainer>
                   {tripData.dayTabs.map((day, index) => (
                     <DayTab
                       onClick={() => {
@@ -280,7 +281,7 @@ const PublishTrip = (props) => {
                   <AddButton onClick={addDayTab} disabled={tripData.dayTabs.length > 6}>
                     +
                   </AddButton>
-                </FlexContainer>
+                </DayContainer>
 
                 <TripItinerary
                   key={curIdx}
@@ -305,7 +306,7 @@ const PublishTrip = (props) => {
         </PublishTripContent>
         {activeSection === TABS.ITINERARY ? (
           <PublishTripButton>
-            <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
+            <SubmitButton onClick={handleSubmit}>Publish</SubmitButton>
           </PublishTripButton>
         ) : (
           <PublishTripButton>

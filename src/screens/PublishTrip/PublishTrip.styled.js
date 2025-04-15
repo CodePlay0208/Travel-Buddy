@@ -50,6 +50,17 @@ export const Container = styled.div`
     padding: 10% 5%;
   }
 `
+export const DayContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0 5% 1%;
+  align-items: center;
+  width: 100%;
+  @media (max-width: 440px) {
+    margin: 0 3% 5%;
+  }
+`
 
 export const InputField = styled.input`
   display: block;
