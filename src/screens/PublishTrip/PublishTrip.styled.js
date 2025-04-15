@@ -276,6 +276,7 @@ export const InputGroupDesc = styled(InputGroup)`
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
+  gap: 20px;
 
   @media (max-width: 440px) {
     width: 90%;
