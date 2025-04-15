@@ -57,6 +57,8 @@ export const DayContainer = styled.div`
   margin: 0 5% 1%;
   align-items: center;
   width: 100%;
+  overflow-x:scroll;
+
   @media (max-width: 440px) {
     margin: 0 3% 5%;
   }
@@ -206,7 +208,7 @@ export const DayTab = styled.button`
     font-size: 3.5rem;
     line-height: 4rem;
     padding:3%  5%;
-    width : 120px;
+    min-width : 120px;
   
   `}
 `

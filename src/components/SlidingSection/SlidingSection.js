@@ -2,6 +2,7 @@ import React, { memo } from 'react'
 import { Container, Slider, Card, Badge, BadgeText, SliderHeading, CardContainer } from './SlidingSection.styled'
 import { connect } from 'react-redux'
 import { computeDateAndTimeUntilNowInString } from '../../utils/DateUtils'
+import { useNavigate } from 'react-router-dom'
 
 const cardData = [
   {
@@ -53,18 +54,21 @@ const mapStateToProps = (state) => ({
 })
 
 const SlidingSection = ({ trips }) => {
+  const navigate = useNavigate()
+  const handleCardClick = (tripId) => {
+    navigate('/trip/' + tripId)
+  }
   return (
     <Container>
       <Slider cardCount={8}>
         {trips?.slice(0, 8).map((card, index) => (
-          <CardContainer key={index}>
+          <CardContainer key={index} onClick={() => handleCardClick(card.tripId)}>
             <Card key={index} src={card?.croppedDestinationImages?.[0]?.preSignedUrl} />
             <Badge>
               <BadgeText>{computeDateAndTimeUntilNowInString(card?.createdAt)} ago</BadgeText>
             </Badge>
           </CardContainer>
         ))}
-        
       </Slider>
       <SliderHeading>
         <h1>
