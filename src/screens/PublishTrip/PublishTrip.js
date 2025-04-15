@@ -289,10 +289,10 @@ const PublishTrip = (props) => {
                   key={curIdx}
                   tripData={tripData.dayTabs[curIdx]}
                   handleChange={(name, value) => {
-                    const updatedDayTabs = [...tripData.dayTabs]
-                    updatedDayTabs[curIdx][name] = value
-
-                    handleNameChange('dayTabs', updatedDayTabs)
+                    setTripData((prev) => ({
+                      ...prev,
+                      dayTabs: prev.dayTabs.map((tab, i) => (i === curIdx ? { ...tab, [name]: value } : tab)),
+                    }))
                   }}
                 />
               </Container>
