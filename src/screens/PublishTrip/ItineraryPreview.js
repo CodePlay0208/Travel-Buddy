@@ -22,20 +22,18 @@ const ItineraryPreview = ({ tripData, margin }) => {
   }, [])
 
   return (
-    <>
-      <PreviewTitle>Preview</PreviewTitle>
-      <Container ref={containerRef} $height={height} margin={margin}>
-        <DayTitle>{tripData.dayTitle}</DayTitle>
-        <Content>
-          <List>
-            {tripData.dayDescription?.map((text, idx) => (
-              <ListItem key={idx}>{text}</ListItem>
-            ))}
-          </List>
-        </Content>
-      </Container>
-    </>
+    <Container ref={containerRef} $height={height} margin={margin}>
+      <DayTitle>{tripData.dayTitle}</DayTitle>
+      <Content>
+        <List>
+          {tripData.dayDescription?.map((text, idx) => (
+            <ListItem key={idx}>{text}</ListItem>
+          ))}
+        </List>
+      </Content>
+    </Container>
   )
 }
 
+ItineraryPreview.displayName = 'ItineraryPreview'
 export default ItineraryPreview

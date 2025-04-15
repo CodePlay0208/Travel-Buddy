@@ -41,7 +41,7 @@ export const DayTitle = styled.h1`
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-secondary);
-  margin: 0 2% 1%;
+  margin: 0 2% 1% 0;
   line-height: 100%;
   letter-spacing: 1.25px;
   text-transform: uppercase;
@@ -60,7 +60,7 @@ export const DayTitle = styled.h1`
 
 export const Content = styled.div`
   flex: 1;
-  margin: 0 2% 2%;
+  margin: 0 3% 2%;
   font-weight: 500;
   font-size: 0.875rem;
   line-height: 1.3;

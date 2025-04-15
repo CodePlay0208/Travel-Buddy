@@ -30,6 +30,8 @@ import TripItinerary from './TripItinerary'
 import ItineraryPreview from './ItineraryPreview'
 import { FlexContainer } from '../../components/HeroSectionV2/HeroSection.styled'
 
+import { DayTitle, PreviewTitle } from './ItineraryPreview.styled'
+
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
 })
@@ -243,7 +245,7 @@ const PublishTrip = (props) => {
                 <>
                   <Divider />
                   <ToggleTab className={activeSection === TABS.ITINERARY ? 'active' : ''} onClick={() => handleToggle(TABS.ITINERARY)}>
-                  Itinerary
+                    Itinerary
                   </ToggleTab>
                 </>
               }
@@ -298,7 +300,10 @@ const PublishTrip = (props) => {
           </PublishTripLeftSection>
           <PublishTripRightSection>
             {activeSection === TABS.ITINERARY ? (
-              <ItineraryPreview tripData={tripData.dayTabs[curIdx]} />
+              <>
+                <PreviewTitle>Preview</PreviewTitle>
+                <ItineraryPreview tripData={tripData.dayTabs[curIdx]} />
+              </>
             ) : (
               <ImageUpload tripData={tripData} setTripData={setTripData} />
             )}
