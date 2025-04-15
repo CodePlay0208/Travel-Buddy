@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  padding: 5%;
+  padding: 2%;
   margin: ${(props) => props.margin ?? '0'};
-  box-shadow: 0px 0px 8px 0px #0000001a;
+  box-shadow: 0px 0px 9px 0px #00000036;
+
   height: ${(props) => props.$height}px;
-  border-radius: 10px;
+  border-radius: 35px;
   overflow-y: scroll;
   width: 100%;
 
@@ -22,7 +23,7 @@ export const Container = styled.div`
   }
 
   @media (max-width: 440px) {
-    padding: 7%;
+    padding: 5%;
   }
 `
 
@@ -39,10 +40,10 @@ export const PreviewTitle = styled.h1`
 `
 
 export const DayTitle = styled.h1`
-  font-size: 1.5rem;
+  font-size: 1.875rem;
   font-weight: 700;
   color: var(--color-secondary);
-  margin: 0 2% 1% 0;
+  margin: 2%;
   line-height: 100%;
   letter-spacing: 1.25px;
   text-transform: uppercase;
@@ -63,7 +64,7 @@ export const Content = styled.div`
   flex: 1;
   margin: 0 3% 2%;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 1.125rem;
   line-height: 1.3;
   color: #000;
 
@@ -82,7 +83,7 @@ export const List = styled.ul`
 `
 
 export const ListItem = styled.li`
-  font-size: 0.8rem;
+  font-size: 1.125rem;
   font-weight: 500;
   line-height: 1.3;
   color: #000;

@@ -30,6 +30,9 @@ export const ImageRow = styled.div`
 export const OnlyImage = styled.img`
   aspect-ratio: 2;
   border-radius: 10px;
+  @media (max-width: 440px) {
+    aspect-ratio: 4/3;
+  }
 `
 
 export const MainImage = styled.img`

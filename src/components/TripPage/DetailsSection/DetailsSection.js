@@ -2,6 +2,7 @@ import React from 'react'
 import { SectionContainer, Title, UpperSection, MapImage, Divider } from './DetailsSection.styled'
 import AddMembers from './AddMembers/AddMembers'
 import TripDescription from './TripDescription/TripDescription'
+import TripItinerary from './TripItinerary'
 
 const DetailsSection = ({ isUserTrip, isEditMode, setEditMode, editedData, setEditedData, onSaveTrip }) => {
   return (
@@ -15,9 +16,10 @@ const DetailsSection = ({ isUserTrip, isEditMode, setEditMode, editedData, setEd
         onSaveTrip={onSaveTrip}
       />
       <UpperSection>
-        <Title>Your Destination</Title>
-        <Divider />
-        <MapImage />
+        <Title>Itinerary</Title>
+        {/* <Divider /> */}
+        {/* <MapImage /> */}
+        <TripItinerary/>
         <Divider />
       </UpperSection>
       <AddMembers isUserTrip={isUserTrip} editMode={isEditMode}/>

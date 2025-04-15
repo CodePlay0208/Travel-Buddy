@@ -10,13 +10,19 @@ export const SectionContainer = styled.div`
 `
 
 export const Title = styled.div`
+  margin: 5% 0;
   font-size: 2.5rem;
   font-weight: 600;
-  line-height: 2.5rem;
-  margin: 5% 0;
+  line-height: 3rem;
   text-align: center;
+  @media (max-width: 440px) {
+    margin: 10% 0;
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 5rem;
+    text-align: left;
+  }
 `
-
 export const UpperSection = styled.div`
   box-sizing: border-box;
   margin: 2.5% 0;
