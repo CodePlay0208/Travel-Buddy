@@ -291,7 +291,7 @@ const PublishTrip = (props) => {
                   handleChange={(name, value) => {
                     setTripData((prev) => ({
                       ...prev,
-                      dayTabs: prev.dayTabs.map((tab, i) => (i === curIdx ? { ...tab, [name]: value } : tab)),
+                      dayTabs: prev.dayTabs.map((tab, i) => (i === curIdx ? { ...tab, [name]: value, dayTabId: i } : tab)),
                     }))
                   }}
                 />
