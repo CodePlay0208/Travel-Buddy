@@ -101,7 +101,7 @@ const AddMembers = (props) => {
   const handleShowRequests = useCallback(() => {
     getRequestedMembers(currentTrip.tripId)
     setShowRequests(true)
-  }, [getRequestedMembers, currentTrip.tripId])
+  }, [getRequestedMembers, currentTrip])
 
   return (
     <LowerSection>
