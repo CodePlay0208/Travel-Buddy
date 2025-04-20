@@ -156,6 +156,7 @@ export const FileUploadBox = styled.div`
   background-color: #f4f4f4;
   color: black;
   font-size: 0.75rem;
+  cursor: pointer;
 
   @media (max-width: 768px) {
     border-radius: 40px;
