@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  padding: 2%;
   margin: ${(props) => props.margin ?? '0'};
   box-shadow: 0px 0px 9px 0px #00000036;
 
@@ -21,10 +20,6 @@ export const Container = styled.div`
     background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
   }
-
-  @media (max-width: 440px) {
-    padding: 5%;
-  }
 `
 
 export const PreviewTitle = styled.h1`
@@ -43,11 +38,14 @@ export const DayTitle = styled.h1`
   font-size: 1.875rem;
   font-weight: 700;
   color: var(--color-secondary);
-  margin: 2%;
+  margin: 2% 2% 0 2%;
   line-height: 100%;
   letter-spacing: 1.25px;
   text-transform: uppercase;
-
+  position: sticky;
+  background: white;
+  padding: 2%;
+  top: 0px;
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -57,12 +55,14 @@ export const DayTitle = styled.h1`
 
   @media (max-width: 440px) {
     font-size: 6rem;
+    padding: 5%;
   }
 `
 
 export const Content = styled.div`
   flex: 1;
   margin: 0 3% 2%;
+  padding: 0 2%;
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 1.3;
@@ -74,6 +74,10 @@ export const Content = styled.div`
   white-space: normal;
   word-break: break-word;
   overflow-wrap: anywhere;
+
+  @media (max-width: 440px) {
+    padding: 0 5%;
+  }
 `
 
 export const List = styled.ul`
