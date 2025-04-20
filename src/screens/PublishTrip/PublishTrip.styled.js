@@ -90,6 +90,8 @@ export const DescriptionField = styled.textarea`
   align-items: flex-start;
   width: 100%;
   height: 80px;
+  min-height: 80px;
+  min-width: 85%;
   padding: 1% 1.25%;
   border: none;
   background-color: ${colors.background};
