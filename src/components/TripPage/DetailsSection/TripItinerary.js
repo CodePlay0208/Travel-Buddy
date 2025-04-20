@@ -44,7 +44,11 @@ const TripItinerary = ({ trip }) => {
               </DayTitle>
             ))}
           </DayTitleContainer>
-          <ItineraryPreview tripData={curIdx >= 0 ? dayTabs[curIdx] || { dayTitle: '', dayDescription: [] } : shortItineraryData} />
+          <ItineraryPreview
+            tripData={curIdx >= 0 ? dayTabs[curIdx] || { dayTitle: '', dayDescription: [] } : shortItineraryData}
+            isShortItinerary={curIdx === -1}
+            handleShortItineraryClick={(idx) => setCurIdx(idx)}
+          />
         </>
       )}
     </Container>

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useLayoutEffect } from 'react'
 import { Container, PreviewTitle, DayTitle, Content, List, ListItem } from './ItineraryPreview.styled'
 
-const ItineraryPreview = ({ tripData, margin }) => {
+const ItineraryPreview = ({ tripData, margin, isShortItinerary, handleShortItineraryClick }) => {
   const containerRef = useRef(null)
   const [height, setHeight] = useState(0)
 
@@ -26,9 +26,19 @@ const ItineraryPreview = ({ tripData, margin }) => {
       <DayTitle>{tripData.dayTitle}</DayTitle>
       <Content>
         <List>
-          {tripData.dayDescription?.map((text, idx) => (
-            <ListItem key={idx}>{text}</ListItem>
-          ))}
+          {tripData.dayDescription?.map((text, idx) => {
+            return (
+              <>
+                {isShortItinerary ? (
+                  <ListItem onClick={() => handleShortItineraryClick(idx)} key={idx}>
+                    {text}
+                  </ListItem>
+                ) : (
+                  <ListItem key={idx}>{text}</ListItem>
+                )}
+              </>
+            )
+          })}
         </List>
       </Content>
     </Container>
