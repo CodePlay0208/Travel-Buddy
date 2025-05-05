@@ -42,7 +42,7 @@ const HeroSection = () => {
       <FlexContainer gap="20px" direction="row" className="main">
         {/* Left Section */}
         <Section>
-          <FlexContainer direction="column" gap="20px" className="main">
+          <FlexContainer direction="column" gap="10px" className="main">
             {/* Upper Section */}
             <FlexContainer width="100%">
               <FlexContainer aspectRatio="1" width="50%" borderRadius="15px" backgroundImage={images.heroSection_1} />

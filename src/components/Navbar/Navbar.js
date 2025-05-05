@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { UserLoginContext } from '../../utils/Context/LoggedInUserContext'
 import { ChatContext } from '../../utils/Context/ChatContext'
-import { SVG } from '../../assets'
+import { images, SVG } from '../../assets'
 import {
   Nav,
   WebAppNameAndLogo,
@@ -13,6 +13,7 @@ import {
   Signup,
   NavButton,
   ProfileImageContainer,
+  Logo,
 } from '../../styles/Navbar.styles'
 import Dropdown from '../Dropdown/Dropdown'
 import { connect } from 'react-redux'
@@ -143,7 +144,7 @@ const Navbar = (props) => {
             navigate('/')
           }}
         >
-          {props.isLandingPage ? '' : 'Travmigoz'}
+          <Logo src={images.travmigoz_logo} alt="travmigoz logo" />
         </WebAppNameAndLogo>
 
         {isAuthenticated ? (
@@ -158,10 +159,10 @@ const Navbar = (props) => {
               <img src={SVG.publishTrip} alt="publishTrip" />
             </NavButton>
 
-            <NavContents onClick={onChatClick}>
+            {/* <NavContents onClick={onChatClick}>
               <img src={SVG.ChatButton} alt="Chat" />
               {notifications?.length > 0 && <div className="notification-badge" />}
-            </NavContents>
+            </NavContents> */}
 
             <NavContents onClick={onNotificationClick}>
               <img src={SVG.NotificationButton} alt="Notification" />
@@ -206,6 +207,16 @@ const Navbar = (props) => {
           </OtherContentsOfNavBar>
         ) : (
           <OtherContentsOfNavBar>
+            <NavButton
+              onClick={() => {
+                localStorage.removeItem('inputValues')
+                navigate('/publish-trip')
+              }}
+            >
+              <div>Publish Trip</div>
+              <img src={SVG.publishTrip} alt="publishTrip" />
+            </NavButton>
+
             <Signup onClick={() => navigate('/login')}>Login</Signup>
           </OtherContentsOfNavBar>
         )}

@@ -4,7 +4,7 @@ import firstImage from '../data/image.png'
 export const Frame = styled.div`
   position: relative;
   width: 100%;
-  margin: 10% auto;
+  margin: 10% auto 5%;
   padding-top: 20px;
   padding-bottom: 20px;
 

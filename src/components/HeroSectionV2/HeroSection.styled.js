@@ -29,7 +29,7 @@ export const TextWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  padding: 3%;
+  padding: 2.5%;
   width: ${(props) => props.width || 'auto'};
   position: relative;
   border-radius: ${(props) => props.borderRadius || '0'};

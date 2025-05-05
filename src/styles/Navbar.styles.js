@@ -29,6 +29,12 @@ export const Nav = styled.nav`
     padding: 4%;
   }
 `
+export const Logo = styled.img`
+  width: 180px;
+  @media (max-width: 786px) {
+    width: 100px;
+  }
+  `
 
 export const WebAppNameAndLogo = styled.div`
   font-weight: 600;
@@ -41,7 +47,7 @@ export const WebAppNameAndLogo = styled.div`
 
 export const OtherContentsOfNavBar = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   color: #fff;
   position: relative;
