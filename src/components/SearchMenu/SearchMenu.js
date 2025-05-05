@@ -31,8 +31,8 @@ const SearchMenu = (props) => {
   return (
     <SearchBarContainer>
       <SearchBarWrapper>
-        <FlexContainer direction="column" width="100%" gap="0px" alignItems="start">
-          <FlexContainer direction="column" width="100%" gap="0px" margin="3.5% 0 0" alignItems="start">
+        <FlexContainer direction="column" width="100%" gap="0px" alignItems="start" style={{ overflowX: 'unset' }}>
+          <FlexContainer direction="column" width="100%" gap="0px" margin="3.5% 0 0" alignItems="start" style={{ overflowX: 'unset' }}>
             <Label margin="0 2.5%">Where</Label>
             <Searchbar
               inputValues={searchForm.destination}
@@ -49,8 +49,8 @@ const SearchMenu = (props) => {
           </FlexContainer>
         </FlexContainer>
         <VerticalDivider />
-        <FlexContainer direction="column" width="100%" gap="0px" alignItems="start">
-          <FlexContainer direction="column" width="100%" gap="0px" margin="3.5% 0 0" alignItems="start">
+        <FlexContainer direction="column" width="100%" gap="0px" alignItems="start" style={{ overflowX: 'unset' }}>
+          <FlexContainer direction="column" width="100%" gap="0px" margin="3.5% 0 0" alignItems="start" style={{ overflowX: 'unset' }}>
             <Label margin="0 2.5%">When</Label>
             <DatePicker
               inputValues={searchForm.startDate}
