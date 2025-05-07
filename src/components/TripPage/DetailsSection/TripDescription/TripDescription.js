@@ -32,6 +32,8 @@ import { useNavigate } from 'react-router-dom'
 import { images } from '../../../../assets/images'
 import { SVG } from '../../../../assets'
 import { toast } from 'react-toastify'
+import React from 'react'
+import Modal from '../../../Modal/Modal'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
@@ -63,6 +65,7 @@ const TripDescription = (props) => {
   const [wishlistAdded, setWishlistAdded] = useState(trip?.isWishlisted || false)
   const [joined, setJoined] = useState(trip?.isJoined || false)
   const [requested, setRequested] = useState(trip?.isRequested || false)
+  const [deleteModal, setDeleteModal] = useState(false)
   const navigate = useNavigate()
 
   const publisher = trip?.joinedMembers?.find((user) => user?.userId === trip?.userId)
@@ -122,7 +125,7 @@ const TripDescription = (props) => {
   const onDeleteTripClick = async () => {
     const res = await deleteUserTrip(trip.tripId)
     if (res) {
-      navigate('/')
+      navigate('/user-trips')
     }
   }
 
@@ -154,71 +157,88 @@ const TripDescription = (props) => {
   const displayedContent = isExpanded ? content : words.slice(0, 90).join(' ') + '...'
 
   return (
-    <SectionContainer>
-      <DescriptionContainer>
-        <Title>{`${trip?.startLocation} To ${trip?.destination}`}</Title>
-        <GreyLine />
-        {editMode ? (
-          <textarea defaultValue={content} />
-        ) : (
-          <DescriptionContent>
-            {displayedContent}
-            <Link>
-              {words.length > 90 && <ToggleButton onClick={toggleExpand}>{isExpanded ? ' Show Less' : ' Show More'}</ToggleButton>}
-            </Link>
-          </DescriptionContent>
-        )}
-      </DescriptionContainer>
-      <ChatSectionContainer>
-        <ChatSection>
-          <ProfileImage>
-            <ProfilePicture src={publisher?.profilePic?.[0]?.preSignedUrl || images.defaultProfileImg} alt="" />
-            <ProfileName>{publisher?.username}</ProfileName>
-          </ProfileImage>
+    <>
+      <SectionContainer>
+        <DescriptionContainer>
+          <Title>{`${trip?.startLocation} To ${trip?.destination}`}</Title>
           <GreyLine />
-          <DateContainer>
-            <DateSection>
-              <StartDate>
-                <BoxHeading>Start Date</BoxHeading>
-                <BoxContent>{formatDate(trip?.startDate)}</BoxContent>
-              </StartDate>
-              <EndDate>
-                <BoxHeading>End Date</BoxHeading>
-                <BoxContent>{formatDate(trip?.endDate)}</BoxContent>
-              </EndDate>
-            </DateSection>
-            <InfoSection>
-              <StartDate>
-                <BoxHeading>Min Budget</BoxHeading>
-                <BoxContent>₹{trip?.minBudget}</BoxContent>
-              </StartDate>
-              <EndDate>
-                <BoxHeading>Max Budget</BoxHeading>
-                <BoxContent>₹{trip?.maxBudget}</BoxContent>
-              </EndDate>
-            </InfoSection>
-            <ButtonSection>
-              <ChatButton onClick={onShareLinkClick}>Share Now</ChatButton>
-              {isUserTrip && <EditButton onClick={onDeleteTripClick}>Delete Trip</EditButton>}
-              {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
-              {
-                <ChatButton onClick={onWishlistClick}>
-                  {wishlistAdded ? <img src={SVG.wishListRed} alt="wishlist" /> : <img src={SVG.wishlist} alt="wishlist" />}
-                </ChatButton>
-              }
-            </ButtonSection>
-          </DateContainer>
-        </ChatSection>
-        <ChatButton
-          style={{ width: '100%' }}
-          onClick={() => {
-            isUserTrip ? onEditTripClick() : onJoinTripClick()
-          }}
-        >
-          {isUserTrip ? 'Edit Trip' : joined ? 'Leave Trip' : requested ? 'Requested' : 'Join Trip'}
-        </ChatButton>
-      </ChatSectionContainer>
-    </SectionContainer>
+          {editMode ? (
+            <textarea defaultValue={content} />
+          ) : (
+            <DescriptionContent>
+              {displayedContent}
+              <Link>
+                {words.length > 90 && <ToggleButton onClick={toggleExpand}>{isExpanded ? ' Show Less' : ' Show More'}</ToggleButton>}
+              </Link>
+            </DescriptionContent>
+          )}
+        </DescriptionContainer>
+        <ChatSectionContainer>
+          <ChatSection>
+            <ProfileImage>
+              <ProfilePicture src={publisher?.profilePic?.[0]?.preSignedUrl || images.defaultProfileImg} alt="" />
+              <ProfileName>{publisher?.username}</ProfileName>
+            </ProfileImage>
+            <GreyLine />
+            <DateContainer>
+              <DateSection>
+                <StartDate>
+                  <BoxHeading>Start Date</BoxHeading>
+                  <BoxContent>{formatDate(trip?.startDate)}</BoxContent>
+                </StartDate>
+                <EndDate>
+                  <BoxHeading>End Date</BoxHeading>
+                  <BoxContent>{formatDate(trip?.endDate)}</BoxContent>
+                </EndDate>
+              </DateSection>
+              <InfoSection>
+                <StartDate>
+                  <BoxHeading>Min Budget</BoxHeading>
+                  <BoxContent>₹{trip?.minBudget}</BoxContent>
+                </StartDate>
+                <EndDate>
+                  <BoxHeading>Max Budget</BoxHeading>
+                  <BoxContent>₹{trip?.maxBudget}</BoxContent>
+                </EndDate>
+              </InfoSection>
+              <ButtonSection>
+                <ChatButton onClick={onShareLinkClick}>Share Now</ChatButton>
+                {isUserTrip && (
+                  <EditButton
+                    onClick={() => {
+                      setDeleteModal(true)
+                    }}
+                  >
+                    Delete Trip
+                  </EditButton>
+                )}
+                {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
+                {
+                  <ChatButton onClick={onWishlistClick}>
+                    {wishlistAdded ? <img src={SVG.wishListRed} alt="wishlist" /> : <img src={SVG.wishlist} alt="wishlist" />}
+                  </ChatButton>
+                }
+              </ButtonSection>
+            </DateContainer>
+          </ChatSection>
+          <ChatButton
+            style={{ width: '100%' }}
+            onClick={() => {
+              isUserTrip ? onEditTripClick() : onJoinTripClick()
+            }}
+          >
+            {isUserTrip ? 'Edit Trip' : joined ? 'Leave Trip' : requested ? 'Requested' : 'Join Trip'}
+          </ChatButton>
+        </ChatSectionContainer>
+      </SectionContainer>
+      {deleteModal && (
+        <Modal
+          message="Are you sure you want to delete your account? This action cannot be undone."
+          onConfirm={onDeleteTripClick}
+          onCancel={() => setDeleteModal(false)}
+        />
+      )}
+    </>
   )
 }
 

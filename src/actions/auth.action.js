@@ -16,7 +16,7 @@ import { AuthApi, ProfileApi } from '../services/api-services/api-invokes'
 import { setAuthToken } from '../services/api-services/api-services'
 import { toast } from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
-import { GET_PROFILE } from '../constants/action-types/profile.constants'
+import { GET_PROFILE, PROFILE_LOGOUT } from '../constants/action-types/profile.constants'
 
 export const isTokenValid = () => async (dispatch) => {
   try {
@@ -187,5 +187,5 @@ export const logout = () => (dispatch) => {
   }
 
   dispatch({ type: LOGOUT })
-  dispatch({ type: LOGOUT })
+  dispatch({ type: PROFILE_LOGOUT })
 }

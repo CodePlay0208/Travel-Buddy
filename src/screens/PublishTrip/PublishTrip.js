@@ -128,7 +128,7 @@ const PublishTrip = (props) => {
     } else if (activeSection === TABS.USER) {
       setActiveSection(TABS.ITINERARY)
     }
-  }, [activeSection])
+  }, [activeSection,toEditTrip])
   const addDayTab = useCallback(() => {
     setTripData((prev) => ({
       ...prev,

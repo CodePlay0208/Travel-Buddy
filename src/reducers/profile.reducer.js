@@ -1,4 +1,4 @@
-import { GET_PROFILE, UPDATE_PROFILE, DELETE_PROFILE, PROFILE_ERROR, LOGOUT } from '../constants/action-types/profile.constants'
+import { GET_PROFILE, UPDATE_PROFILE, DELETE_PROFILE, PROFILE_ERROR, PROFILE_LOGOUT } from '../constants/action-types/profile.constants'
 
 const initialState = {
   profile: null,
@@ -29,7 +29,12 @@ const profileReducer = (state = initialState, action) => {
         loading: false,
         error: payload,
       }
-    case LOGOUT:
+    case PROFILE_LOGOUT:
+      return {
+        ...state,
+        profile: null,
+        loading: false,
+      }
     default:
       return state
   }
