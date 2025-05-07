@@ -1,60 +1,72 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 9999;
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
+  justify-content: center;
 `
 
 export const ModalContainer = styled.div`
-  background: #fff;
-  border-radius: 10px;
-  width: 400px;
-  max-width: 90%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  padding: 20px;
-`
-
-export const ModalHeader = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-`
-
-export const ModalContent = styled.div`
-  font-size: 1rem;
-  margin-bottom: 20px;
-`
-
-export const ModalActions = styled.div`
+  position: relative;
+  width: 547px;
+  height: 236px;
+  background: #ffffff;
+  box-shadow: 0px 4px 25px rgba(141, 211, 187, 0.25);
+  border-radius: 15px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 10px;
 `
 
-export const ModalButton = styled.button`
-  padding: 10px 20px;
+export const Title = styled.h2`
+  width: 488px;
+  height: 68px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 28.3px;
+  line-height: 34px;
+  color: #000000;
+  text-align: center;
+  margin: 0 0 32px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  gap: 32px;
+`
+
+export const Button = styled.button`
+  width: 236px;
+  height: 52.14px;
   border: none;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: 54px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  background-color: ${(props) => (props.primary ? '#009f38' : '#ff0019')};
-  color: #fff;
+`
 
-  &:hover {
-    opacity: 0.9;
-  }
+export const DeleteBtn = styled(Button)`
+  background: #ef4343;
+  color: #000000;
+`
 
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
+export const StayBtn = styled(Button)`
+  background: #8dd3bb;
+  color: #000000;
 `

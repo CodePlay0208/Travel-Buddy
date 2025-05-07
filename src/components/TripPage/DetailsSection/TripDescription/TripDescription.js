@@ -233,7 +233,7 @@ const TripDescription = (props) => {
       </SectionContainer>
       {deleteModal && (
         <Modal
-          message="Are you sure you want to delete your account? This action cannot be undone."
+          message="Are you sure you want to delete your Trip? This action cannot be undone."
           onConfirm={onDeleteTripClick}
           onCancel={() => setDeleteModal(false)}
         />
