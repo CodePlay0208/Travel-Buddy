@@ -45,10 +45,12 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
     startDate,
     endDate,
     tripMembers,
+    joinedMembers,
     userId: publisherId,
     createdAt,
   } = trip || {}
 
+  const { phoneNumber } = joinedMembers?.find((member) => member.userId === publisherId) || {}
   const duration = computeDateAndTimeUntilNowInString(createdAt)
   const navigate = useNavigate()
 
@@ -83,6 +85,15 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
     navigate(`/trip/${tripId}`)
   }
 
+  const onCallNowClick = (e) => {
+    e.stopPropagation()
+    if (localStorage.token) {
+      window.open(`tel:${phoneNumber}`, '_blank')
+    } else {
+      navigate('/login')
+    }
+  }
+
   return (
     <TripCardContainer onClick={onCardPress}>
       <LeftContainer>
@@ -94,7 +105,6 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
               </CarouselItem>
             ))}
         </Slider>
-        
       </LeftContainer>
       <RightContainer>
         <Details>
@@ -113,7 +123,7 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
               </Price>
             </Budget>
             {/* {!editEnable && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>} */}
-            {!editEnable && <ChatButton onClick={onChatNowClick}>Call Now</ChatButton>}
+            {!editEnable && <ChatButton onClick={onCallNowClick}>Call Now</ChatButton>}
             {editEnable && <ChatButton onClick={() => {}}>Edit Trip</ChatButton>}
           </ChatNow>
         </Details>

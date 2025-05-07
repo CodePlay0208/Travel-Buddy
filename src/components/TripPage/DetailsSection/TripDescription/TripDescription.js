@@ -69,7 +69,7 @@ const TripDescription = (props) => {
   const navigate = useNavigate()
 
   const publisher = trip?.joinedMembers?.find((user) => user?.userId === trip?.userId)
-
+  const phoneNumber = publisher?.phoneNumber
   useEffect(() => {
     setWishlistAdded(trip?.isWishlisted || false)
     setJoined(trip?.isJoined || false)
@@ -151,6 +151,16 @@ const TripDescription = (props) => {
       }
     }
   }
+  
+  const onCallNowClick = (e) => {
+    e.stopPropagation()
+    if (localStorage.token) {
+      window.open(`tel:${phoneNumber}`, '_blank')
+    } else {
+      navigate('/login')
+    }
+  }
+
 
   const content = trip?.description || ''
   const words = content ? content.split(' ') : []
@@ -212,7 +222,8 @@ const TripDescription = (props) => {
                     Delete Trip
                   </EditButton>
                 )}
-                {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
+                {/* {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>} */}
+                {!isUserTrip && <ChatButton onClick={onCallNowClick}>Call Now</ChatButton>}
                 {
                   <ChatButton onClick={onWishlistClick}>
                     {wishlistAdded ? <img src={SVG.wishListRed} alt="wishlist" /> : <img src={SVG.wishlist} alt="wishlist" />}
