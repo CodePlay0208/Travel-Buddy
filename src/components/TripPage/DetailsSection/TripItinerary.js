@@ -40,7 +40,7 @@ const TripItinerary = ({ trip }) => {
             </DayTitle>
             {dayTabs.map((dayTab, index) => (
               <DayTitle key={dayTab.dayTabId || index} onClick={() => handleTabClick(index)} className={index === curIdx ? 'active' : ''}>
-                {`Day ${index + 1}`}
+                {`Day ${index}`}
               </DayTitle>
             ))}
           </DayTitleContainer>
