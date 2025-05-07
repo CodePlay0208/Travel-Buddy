@@ -110,6 +110,7 @@ export const ProfileImage = styled.div`
 export const ProfilePicture = styled.img`
   width: 4rem;
   border-radius: 50%;
+  aspect-ratio: 1;
 
   @media (max-width: 440px) {
     width: 12rem;

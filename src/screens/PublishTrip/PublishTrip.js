@@ -30,7 +30,8 @@ import TripItinerary from './TripItinerary'
 import ItineraryPreview from './ItineraryPreview'
 import { FlexContainer } from '../../components/HeroSectionV2/HeroSection.styled'
 
-import { DayTitle, PreviewTitle } from './ItineraryPreview.styled'
+import { DayTitle, List, ListItem, PreviewTitle } from './ItineraryPreview.styled'
+import { SVG } from '../../assets'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -118,6 +119,10 @@ const PublishTrip = (props) => {
   }, [])
 
   const handleNext = useCallback(() => {
+    if (toEditTrip) {
+      setActiveSection(TABS.ITINERARY)
+      return
+    }
     if (activeSection === TABS.TRIP) {
       setActiveSection(TABS.USER)
     } else if (activeSection === TABS.USER) {
@@ -277,10 +282,24 @@ const PublishTrip = (props) => {
                       key={index}
                       className={index === curIdx ? 'active' : ''}
                     >
-                      Day {index + 1}
+                      Day {index}
+                      <img
+                        className="clear"
+                        src={SVG.clear}
+                        alt="Clear"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setCurIdx((prev) => (prev > 0 &&
+                           prev >= index ? prev - 1 : prev))
+                          setTripData((prev) => ({
+                            ...prev,
+                            dayTabs: prev.dayTabs.filter((_, i) => i !== index),
+                          }))
+                        }}
+                      />
                     </DayTab>
                   ))}
-                  <AddButton onClick={addDayTab} disabled={tripData.dayTabs.length > (tripData?.duration || 6)}>
+                  <AddButton onClick={addDayTab} disabled={tripData.dayTabs.length >= (tripData?.duration || 6)}>
                     +
                   </AddButton>
                 </DayContainer>

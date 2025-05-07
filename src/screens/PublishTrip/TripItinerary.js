@@ -65,7 +65,7 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
               name="dayTitle"
               type="text"
               placeholder="Enter Day Name"
-              value={tripData.dayTitle || ''}
+              value={tripData?.dayTitle || ''}
               onChange={(e) => handleChange(e.target.name, e.target.value)}
             />
           </InputGroupDayName>
@@ -93,7 +93,7 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
             {/* <Label fontSize="1rem" fontWeight="600">
             Dates
           </Label> */}
-            {tripData.dayDescription?.map((dayPoint, index) => (
+            {tripData?.dayDescription?.map((dayPoint, index) => (
               <DayTitle title={dayPoint} onDelete={onDelete} onEditClick={onEditClick} idx={index}></DayTitle>
             ))}
           </InputGroupList>

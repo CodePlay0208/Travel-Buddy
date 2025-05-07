@@ -30,7 +30,7 @@ export const Nav = styled.nav`
   }
 `
 export const Logo = styled.img`
-  width: 180px;
+  width: 200px;
   @media (max-width: 786px) {
     width: 100px;
   }

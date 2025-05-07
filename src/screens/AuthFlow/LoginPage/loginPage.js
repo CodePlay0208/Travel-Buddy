@@ -33,13 +33,12 @@ import { UserLoginContext } from '../../../utils/Context/LoggedInUserContext'
 import { css } from 'styled-components'
 import { Helmet } from 'react-helmet-async'
 import { StyledToastContainer } from '../../../styles/Global'
-import { getProfile } from '../../../actions/profile.action'
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
 })
 
 const LoginPage = (props) => {
-  const { login, isAuthenticated, getProfile } = props
+  const { login, isAuthenticated, loadUser } = props
   const [formData, setFormData] = useState({
     phone: '',
     email: '',
@@ -78,7 +77,7 @@ const LoginPage = (props) => {
         .then((data) => {
           console.log('the data is', data)
           localStorage.setItem('token', data.token)
-          getProfile()
+          loadUser()
           navigate('/')
         })
         .catch((error) => {
@@ -246,4 +245,4 @@ const LoginPage = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { login, loginWithGoogle, getProfile })(memo(LoginPage))
+export default connect(mapStateToProps, { login, loginWithGoogle, loadUser })(memo(LoginPage))

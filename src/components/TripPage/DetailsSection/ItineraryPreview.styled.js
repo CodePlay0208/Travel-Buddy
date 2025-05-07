@@ -94,6 +94,12 @@ export const ListItem = styled.li`
   margin: 2% 0;
   word-break: break-word;
 
+  &.short-itinerary{
+    cursor: pointer;
+    color: #000;
+    font-weight: 600;
+    text-decoration: underline;
+  }
   @media (max-width: 440px) {
     font-size: 3.5rem;
     margin: 5% 0;

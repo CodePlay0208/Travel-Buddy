@@ -16,6 +16,7 @@ import { AuthApi, ProfileApi } from '../services/api-services/api-invokes'
 import { setAuthToken } from '../services/api-services/api-services'
 import { toast } from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
+import { GET_PROFILE } from '../constants/action-types/profile.constants'
 
 export const isTokenValid = () => async (dispatch) => {
   try {
@@ -38,9 +39,13 @@ export const loadUser = () => async (dispatch) => {
   try {
     const res = await ProfileApi.getUserProfile()
     dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+    dispatch({
       type: USER_LOADED,
       payload: res.data,
-    })
+    });
   } catch (e) {
     logout()
     dispatch({
@@ -181,5 +186,6 @@ export const logout = () => (dispatch) => {
     setAuthToken('')
   }
 
+  dispatch({ type: LOGOUT })
   dispatch({ type: LOGOUT })
 }

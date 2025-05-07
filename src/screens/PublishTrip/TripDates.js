@@ -23,7 +23,7 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
               inputValues={tripData.multipleDates}
               setInputValues={(value) => handleTripDataChange('multipleDates', value)}
               onValue="multipleDates"
-              maxDates={5}
+              maxDates={10}
               showOnlyCalendar={true}
               placeholderValue="Your Arrival & Departure"
               fontWeight="500"

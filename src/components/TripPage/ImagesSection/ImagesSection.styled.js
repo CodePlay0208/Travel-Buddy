@@ -80,6 +80,7 @@ export const StackedImages = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
+  aspect-ratio: 4/3;
 `
 
 export const LLSection = styled.div`

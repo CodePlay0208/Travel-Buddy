@@ -30,7 +30,7 @@ const ItineraryPreview = ({ tripData, margin, isShortItinerary, handleShortItine
             return (
               <>
                 {isShortItinerary ? (
-                  <ListItem onClick={() => handleShortItineraryClick(idx)} key={idx}>
+                  <ListItem onClick={() => handleShortItineraryClick(idx)} key={idx} className={isShortItinerary ? 'short-itinerary' : ''}>
                     {text}
                   </ListItem>
                 ) : (

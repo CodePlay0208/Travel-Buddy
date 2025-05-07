@@ -112,7 +112,8 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
                 Rs {minBudget} - {maxBudget}
               </Price>
             </Budget>
-            {!editEnable && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
+            {/* {!editEnable && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>} */}
+            {!editEnable && <ChatButton onClick={onChatNowClick}>Call Now</ChatButton>}
             {editEnable && <ChatButton onClick={() => {}}>Edit Trip</ChatButton>}
           </ChatNow>
         </Details>

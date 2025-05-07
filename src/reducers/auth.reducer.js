@@ -78,6 +78,7 @@ const authReducer = (state = initialState, action) => {
         token: null,
         isLoading: false,
         isAuthenticated: false,
+        user: null,
         otpVerified: false,
       }
     default:

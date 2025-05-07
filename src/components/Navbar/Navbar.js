@@ -89,7 +89,7 @@ const Navbar = (props) => {
         },
       }
       const { data } = await axios.post(
-        `https://api.travmigoz.com/chat/fetchOrCreateChats`,
+        `https://api-e2e.travmigoz.com/chat/fetchOrCreateChats`,
         { userId },
         { ...config, withCredentials: true },
       )
