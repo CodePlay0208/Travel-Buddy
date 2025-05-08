@@ -123,7 +123,7 @@ export const ArrowButton = styled.button`
     top: 50%;
     transform: translateY(-50%);
     @media (max-width: 440px) {
-      top: 101%;
+      /* top: 101%; */
       left: 1%;
       transform: translateY(0);
     }
@@ -134,7 +134,7 @@ export const ArrowButton = styled.button`
     top: 50%;
     transform: translateY(-50%);
     @media (max-width: 440px) {
-      top: 101%;
+      /* top: 101%; */
       right: 1%;
       transform: translateY(0);
     }
