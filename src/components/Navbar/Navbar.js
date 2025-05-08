@@ -24,6 +24,7 @@ import NotificationItem from './NotificationItem'
 import { addMemberTrip } from '../../actions/trips.action'
 import { getOrCreateChat } from '../../actions/chats.action'
 import { jwtDecode } from 'jwt-decode'
+import { env } from '../../services/api-services/config/env'
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
@@ -89,7 +90,7 @@ const Navbar = (props) => {
         },
       }
       const { data } = await axios.post(
-        `https://api.travmigoz.com/chat/fetchOrCreateChats`,
+        `${env.BASE_API_URL}chat/fetchOrCreateChats`,
         { userId },
         { ...config, withCredentials: true },
       )
