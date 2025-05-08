@@ -128,7 +128,7 @@ const PublishTrip = (props) => {
     } else if (activeSection === TABS.USER) {
       setActiveSection(TABS.ITINERARY)
     }
-  }, [activeSection,toEditTrip])
+  }, [activeSection, toEditTrip])
   const addDayTab = useCallback(() => {
     setTripData((prev) => ({
       ...prev,
@@ -150,6 +150,19 @@ const PublishTrip = (props) => {
     return []
   }, [tripData.multipleDates, tripData.duration])
 
+  const makeDayTabsEmptyIfEmptyData = useCallback(() => {
+    const allEmpty = tripData.dayTabs.every(
+      (tab) =>
+        typeof tab === 'object' &&
+        (tab.dayTitle === '' || tab.dayTitle == null) &&
+        (Array.isArray(tab.dayDescription) ? tab.dayDescription.length === 0 : true),
+    )
+    if (allEmpty) {
+      return []
+    }
+    return tripData.dayTabs
+  }, [tripData])
+
   const handleEditTripSubmit = useCallback(async () => {
     const formDataImages = new FormData()
     tripData.destinationImages?.forEach((image) => {
@@ -168,6 +181,9 @@ const PublishTrip = (props) => {
     delete tripDetails.destinationImages
     delete tripDetails.removedDestinationImages
 
+    const updatedDayTabs = makeDayTabsEmptyIfEmptyData()
+    tripDetails.dayTabs = updatedDayTabs
+
     const isTripPublished = await editTrip(tripData.tripId, tripDetails, false)
     if (!isTripPublished) {
       toast.error('Failed to update trip. Please try again.')
@@ -181,7 +197,7 @@ const PublishTrip = (props) => {
     } else {
       toast.error('Failed to update trip images. Please try again.')
     }
-  }, [tripData, editTrip, editTripImages, navigate])
+  }, [tripData, makeDayTabsEmptyIfEmptyData, editTrip, editTripImages, navigate])
 
   const handleCreateTripSubmit = useCallback(async () => {
     const processedTripDates = getProcessedTripDates()
@@ -189,6 +205,8 @@ const PublishTrip = (props) => {
     delete tripBody.destinationImages
     delete tripBody.removedDestinationImages
 
+    const updatedDayTabs = makeDayTabsEmptyIfEmptyData()
+    tripBody.dayTabs = updatedDayTabs
     const isTripPublished = await createTrip(tripBody, false)
     if (!isTripPublished) {
       toast.error('Failed to publish trip. Please try again.')
@@ -212,7 +230,7 @@ const PublishTrip = (props) => {
 
     toast.success('Trip published successfully!')
     navigate('/')
-  }, [tripData, createTrip, createTripsImages, getProcessedTripDates, navigate])
+  }, [getProcessedTripDates, tripData, makeDayTabsEmptyIfEmptyData, createTrip, createTripsImages, navigate])
 
   const handleSubmit = useCallback(async () => {
     try {
@@ -289,8 +307,7 @@ const PublishTrip = (props) => {
                         alt="Clear"
                         onClick={(e) => {
                           e.stopPropagation()
-                          setCurIdx((prev) => (prev > 0 &&
-                           prev >= index ? prev - 1 : prev))
+                          setCurIdx((prev) => (prev > 0 && prev >= index ? prev - 1 : prev))
                           setTripData((prev) => ({
                             ...prev,
                             dayTabs: prev.dayTabs.filter((_, i) => i !== index),
