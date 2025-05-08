@@ -200,7 +200,7 @@ export const DayTab = styled.button`
   align-items: center;
   gap: 1%;
   min-height: 35px;
-  min-width: 120px;
+  min-width: 130px;
 
   background: ${colors.background};
   &.active {
