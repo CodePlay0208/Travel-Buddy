@@ -15,8 +15,9 @@ export const ModalOverlay = styled.div`
 
 export const ModalContainer = styled.div`
   position: relative;
-  width: 547px;
-  height: 236px;
+  max-width: 600px;
+  width: 75vw;
+  padding: 2%;
   background: #ffffff;
   box-shadow: 0px 4px 25px rgba(141, 211, 187, 0.25);
   border-radius: 15px;
@@ -24,11 +25,14 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (maX-width: 440px) {
+    padding: 5%;
+  }
 `
 
 export const Title = styled.h2`
-  width: 488px;
-  height: 68px;
+  max-width: 488px;
+  /* height: 68px; */
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 28.3px;
@@ -44,11 +48,12 @@ export const Title = styled.h2`
 export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 32px;
+  width: 100%;
 `
 
 export const Button = styled.button`
-  width: 236px;
   height: 52.14px;
+  width: 50%;
   border: none;
   border-radius: 54px;
   font-family: 'Montserrat', sans-serif;
