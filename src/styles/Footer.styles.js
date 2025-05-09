@@ -2,34 +2,57 @@ import styled from 'styled-components'
 
 export const FooterContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   padding: 2%;
   gap: 2%;
   background: var(--color-primary);
   width: 100%;
+  @media (max-width: 786px) {
+    flex-direction: column;
+  }
+`
+export const FooterRight = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5%;
+  font-family: Montserrat;
+  font-weight: 700;
+  font-size: 3.5rem;
+  line-height: 100%;
+  color: white;
+
+  @media (max-width: 786px) {
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    font-size: 5.5rem;
+    padding: 8% 5%;
+  }
 `
 
 export const FooterTop = styled.div`
-  width: 100%;
-  max-width: 1729px;
+  width: 50%;
   display: flex;
-  align-items: center;
-  padding: 2% 5%;
+  align-items: flex-start;
   background: var(--color-primary);
-  justify-content: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   @media (max-width: 786px) {
-    flex-wrap: wrap;
+    width: 100%;
   }
 `
 
 export const FooterSection = styled.div`
-  width: 50%;
+  /* width: 25%; */
   background: var(--color-primary);
-  padding: 2% 5%;
   @media (max-width: 786px) {
-    width: 100%;
+    width: 50%;
+    padding: 0% 5%;
   }
 `
 
@@ -37,7 +60,7 @@ export const FooterHeading = styled.h2`
   font-family: 'TradeGothic LT Extended';
   font-style: normal;
   font-weight: 700;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: #112211;
   @media (max-width: 440px) {
     font-size: 4.5rem;
@@ -48,6 +71,7 @@ export const FooterList = styled.ul`
   flex-direction: column;
   list-style-type: none;
   padding: 0;
+  gap: 16px;
 
   &.social-icons {
     @media (max-width: 786px) {
@@ -62,7 +86,6 @@ export const FooterLink = styled.a`
   font-style: normal;
   font-weight: 500;
   font-size: 1rem;
-  margin-bottom: 4%;
   color: #444444;
   text-decoration: none;
   display: flex;

@@ -1,5 +1,15 @@
 import React from 'react'
-import { FooterContainer, FooterTop, FooterSection, FooterHeading, FooterList, FooterLink, Image, Text } from '../../styles/Footer.styles'
+import {
+  FooterContainer,
+  FooterTop,
+  FooterSection,
+  FooterHeading,
+  FooterList,
+  FooterLink,
+  Image,
+  Text,
+  FooterRight,
+} from '../../styles/Footer.styles'
 import { SVG } from '../../assets/svg'
 
 const Footer = () => {
@@ -12,10 +22,24 @@ const Footer = () => {
             <FooterLink href="/">Bangalore</FooterLink>
             <FooterLink href="/">Delhi</FooterLink>
             <FooterLink href="/">Tamil Nadu</FooterLink>
-            <FooterLink href="/">Mumbai</FooterLink>{' '}
+            <FooterLink href="/">Mumbai</FooterLink>
           </FooterList>
         </FooterSection>
-
+        <FooterSection className="destinations">
+          <FooterHeading>Blogs</FooterHeading>
+          <FooterList>
+            <FooterLink href="/">General</FooterLink>
+            <FooterLink href="/">Travel Tip</FooterLink>
+            <FooterLink href="/">Travel Guide</FooterLink>
+          </FooterList>
+        </FooterSection>
+        <FooterSection className="destinations">
+          <FooterHeading>About Us</FooterHeading>
+          <FooterList>
+            <FooterLink href="/">Why Travmigoz</FooterLink>
+            <FooterLink href="/">What we Believe</FooterLink>
+          </FooterList>
+        </FooterSection>
         <FooterSection className="contact">
           <FooterHeading>Contact Us</FooterHeading>
           <FooterList className="social-icons">
@@ -38,6 +62,10 @@ const Footer = () => {
           </FooterList>
         </FooterSection>
       </FooterTop>
+      <FooterRight>
+        Travmigoz
+        {/* © 2025. All rights reserved. */}
+      </FooterRight>
     </FooterContainer>
   )
 }
