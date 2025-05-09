@@ -33,6 +33,7 @@ import { UserLoginContext } from '../../../utils/Context/LoggedInUserContext'
 import { css } from 'styled-components'
 import { Helmet } from 'react-helmet-async'
 import { StyledToastContainer } from '../../../styles/Global'
+import { Logo } from '../../../styles/Navbar.styles'
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
 })
@@ -159,7 +160,7 @@ const LoginPage = (props) => {
               navigate('/')
             }}
           >
-            Travmigoz
+            <Logo src={images.travmigoz_logo} alt="travmigoz logo" />
           </TitleContainer>
           <FormContainer>
             <FormHeadingContainer>Log into Your Account</FormHeadingContainer>

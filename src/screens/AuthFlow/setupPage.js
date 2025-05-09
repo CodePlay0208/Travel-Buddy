@@ -35,6 +35,7 @@ import DatePicker from '../../components/DatePicker/DatePicker'
 import { updateProfile } from '../../actions/profile.action'
 import { InputLabel } from '../../components/InputComponent/InputComponent.styled'
 import { VerifyCodeResendText } from './VerifyCode/VerifyCode.styled'
+import { Logo } from '../../styles/Navbar.styles'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
@@ -107,7 +108,7 @@ const SetupPage = (props) => {
               navigate('/')
             }}
           >
-            Travmigoz
+            <Logo src={images.travmigoz_logo} alt="travmigoz logo" />
           </TitleContainer>
           <FormContainer>
             <FormHeadingContainer> Setting up your Profile</FormHeadingContainer>

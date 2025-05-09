@@ -27,6 +27,7 @@ import { css } from 'styled-components'
 import { InputFieldsContainer } from '../LoginPage/loginPage.styled'
 import { Helmet } from 'react-helmet-async'
 import { StyledToastContainer } from '../../../styles/Global'
+import { Logo } from '../../../styles/Navbar.styles'
 
 const mapStateToProps = (state) => ({
   user: state.authReducer.user,
@@ -95,7 +96,7 @@ const SignUp = (props) => {
               navigate('/')
             }}
           >
-            Travmigoz
+            <Logo src={images.travmigoz_logo} alt="travmigoz logo" />
           </TitleContainer>
           <FormContainer>
             <FormHeadingContainer>Get Started</FormHeadingContainer>

@@ -30,6 +30,7 @@ import {
 import { VerifyCodeResendCodeContainer, VerifyCodeDidntRecieveText, VerifyCodeResendLink, VerifyCodeResendText } from './VerifyCode.styled'
 import OtpComponent from './OtpComponent'
 import { StyledToastContainer } from '../../../styles/Global'
+import { Logo } from '../../../styles/Navbar.styles'
 const mapStateToProps = (state) => ({
   otpVerified: state.authReducer.otpVerified,
 })
@@ -78,7 +79,7 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
               navigate('/')
             }}
           >
-            Travmigoz
+            <Logo src={images.travmigoz_logo} alt="travmigoz logo" />
           </TitleContainer>
           <FormContainer>
             {/* <BackButtonContainer role="button" onClick={handleBackButtonClick}>
