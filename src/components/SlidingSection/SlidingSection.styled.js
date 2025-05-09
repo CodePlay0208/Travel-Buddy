@@ -19,8 +19,8 @@ export const Container = styled.div`
   position: relative;
   margin: 5% 0;
   @media (max-width: 786px) {
-    flex-direction: column;
-    margin: 30% 0 20%;
+    flex-direction: column-reverse;
+    margin: 30% 0 10%;
   }
 `
 
@@ -53,11 +53,11 @@ export const SliderHeading = styled.div`
     border-bottom-right-radius: 30px;
   }
 
-  h2 {
+  h1 {
     margin: 0;
     font-size: 2rem;
     @media (max-width: 768px) {
-      font-size: 4.5rem;
+      font-size: 3rem;
     }
   }
   span {
