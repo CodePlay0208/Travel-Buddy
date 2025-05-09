@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -25,7 +25,7 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media (maX-width: 440px) {
+  @media (max-width: 440px) {
     padding: 5%;
   }
 `
@@ -35,14 +35,18 @@ export const Title = styled.h2`
   /* height: 68px; */
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 28.3px;
-  line-height: 34px;
+  font-size: 1.5rem;
+  line-height: 2rem;
   color: #000000;
   text-align: center;
   margin: 0 0 32px 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 440px) {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
 `
 
 export const ButtonsWrapper = styled.div`
@@ -58,12 +62,16 @@ export const Button = styled.button`
   border-radius: 54px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 19px;
-  line-height: 26px;
+  font-size: 1.5rem;
+  line-height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media (max-width: 440px) {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
 `
 
 export const DeleteBtn = styled(Button)`
