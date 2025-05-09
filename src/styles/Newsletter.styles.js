@@ -23,6 +23,7 @@ export const NewsletterWrapper = styled.div`
   border-radius: 24px;
   overflow: hidden;
   align-items: flex-start;
+  flex-direction: column;
   width: 80%;
   padding: 2% 2% 0;
 
@@ -31,6 +32,10 @@ export const NewsletterWrapper = styled.div`
     width: 100%;
   }
 `
+export const ContentContainer = styled.div`
+  display: flex;
+
+`
 
 export const NewsletterHeader = styled.div`
   font-family: 'TradeGothic LT Extended';
@@ -38,7 +43,6 @@ export const NewsletterHeader = styled.div`
   font-weight: 700;
   font-size: 3.5rem;
   color: #112211;
-  margin-bottom: 5%;
 
   @media (max-width: 786px) {
     font-size: 5rem;
@@ -48,7 +52,7 @@ export const NewsletterHeader = styled.div`
 export const NewsletterLeft = styled.div`
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
   width: 60%;
 `
 
@@ -164,11 +168,10 @@ export const NewsletterRight = styled.div`
   justify-content: center;
 
   width: 40%;
-  margin-top: 4%;
   margin-left: 2.5%;
 
   @media (max-width: 786px) {
-    margin-top: 20%;
+    margin-top: 10%;
   }
 `
 
