@@ -55,7 +55,7 @@ const tripReducer = (state = initialState, action) => {
     case GET_TRIPS:
       return {
         ...state,
-        trips: payload,
+        trips: action.append ? [...(state.trips || []), ...(payload || [])] : payload,
         loading: false,
       }
     case GET_TRIP:

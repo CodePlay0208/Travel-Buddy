@@ -19,6 +19,9 @@ const SearchResultsPage = (props) => {
     getTrips(searchForm)
   }, [getTrips, searchForm])
 
+  const showMoreTrips = () => {
+    getTrips(searchForm, trips.length, 50, true) 
+  }
   return (
     <SearchResultsPageContainer>
       <Helmet>
@@ -32,7 +35,7 @@ const SearchResultsPage = (props) => {
       <h1 style={{ textAlign: 'center' }}>Discover Stunning Travel Destinations. Enjoy Amazing Trips with Travmigoz </h1>
       <TripList>{trips && trips.map((trip) => <TripCard key={trip?.tripId} trip={trip} />)}</TripList>
       <SearchResultButtonDiv>
-        <ShowMoreButton>Show More</ShowMoreButton>
+        <ShowMoreButton onClick={showMoreTrips}>Show More</ShowMoreButton>
       </SearchResultButtonDiv>
       <Footer />
     </SearchResultsPageContainer>
