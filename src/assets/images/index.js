@@ -10,4 +10,5 @@ export const images = {
   heroSection_3: require('./image3.webp'),
   heroSection_4: require('./image4.webp'),
   travmigoz_logo: require('./travmigoz-0.png'),
+  travmigoz_logo_white: require('./travmigoz-logo-white.png'),
 }

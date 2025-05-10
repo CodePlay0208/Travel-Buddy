@@ -11,6 +11,8 @@ import {
   FooterRight,
 } from '../../styles/Footer.styles'
 import { SVG } from '../../assets/svg'
+import { images } from '../../assets'
+import { Logo } from '../../styles/Navbar.styles'
 
 const Footer = () => {
   return (
@@ -63,7 +65,7 @@ const Footer = () => {
         </FooterSection>
       </FooterTop>
       <FooterRight>
-        Travmigoz
+         <Logo src={images.travmigoz_logo_white} alt="travmigoz logo" />
         {/* © 2025. All rights reserved. */}
       </FooterRight>
     </FooterContainer>

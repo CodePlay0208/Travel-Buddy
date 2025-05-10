@@ -31,9 +31,9 @@ const TopDestination = (props) => {
   }, [])
 
   const cardData = [
-    { id: 1, searchQuery: 'Delhi, India', displayName: 'Delhi', icon: SVG.delhi },
-    { id: 2, searchQuery: 'Bangalore, Karnataka', displayName: 'Bangalore', icon: SVG.banglore },
-    { id: 3, searchQuery: 'Mumbai, Maharashtra', displayName: 'Mumbai', icon: SVG.mumbai },
+    { id: 1, searchQuery: 'Manali, Himachal Pradesh', displayName: 'Manali', icon: SVG.delhi },
+    { id: 2, searchQuery: 'Gokarna, Karnataka', displayName: 'Gokarna', icon: SVG.banglore },
+    { id: 3, searchQuery: 'Hampta Pass Trek, Manali', displayName: 'Hampta Pass', icon: SVG.mumbai },
     { id: 4, searchQuery: 'Hyderabad, Telangana', displayName: 'Hyderabad', icon: SVG.hyderabad },
   ]
 

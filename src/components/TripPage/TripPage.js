@@ -94,7 +94,7 @@ const TripPage = (props) => {
         />
         <StyledToastContainer />
       </Container>
-      <PopularSection title="Similar Trip" />
+      <PopularSection title="Trip" />
       <Footer />
     </>
   )

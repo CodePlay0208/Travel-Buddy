@@ -6,4 +6,5 @@ export const TripList = styled.div`
   flex-wrap: wrap;
   width: 100%;
   gap: 4%;
+  flex: 1;
 `
