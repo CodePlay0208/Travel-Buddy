@@ -20,7 +20,7 @@ const TripItinerary = ({ trip }) => {
   dayTabs = dayTabs.sort((a, b) => Number(a.dayTabId ?? 0) - Number(b.dayTabId ?? 0))
 
   const shortItineraryData = {
-    dayTitle: 'Short Itinerary',
+    dayTitle: 'Quick Itinerary',
     dayDescription: dayTabs.map((dayTab) => dayTab?.dayTitle ?? 'Day' + dayTabs.dayTabId + 1),
   }
 
