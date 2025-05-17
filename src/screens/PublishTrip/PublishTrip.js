@@ -50,6 +50,7 @@ const DEFAULT_TRIP_DATA = {
   maxBudget: null,
   description: '',
   duration: 0,
+  title: 'Title',
   destinationImages: [],
   removedDestinationImages: [],
   tripData: [],
@@ -220,13 +221,13 @@ const PublishTrip = (props) => {
       console.log(image)
     })
 
-    let tripIds = []
-    Object.values(isTripPublished.data).forEach((ids) => {
-      if (Array.isArray(ids)) {
-        tripIds = tripIds.concat(ids)
-      }
-    })
-    formDataImages.append('tripIds', JSON.stringify(tripIds))
+    // let tripId = ""
+    // Object.values(isTripPublished.data).forEach((ids) => {
+    //   if (Array.isArray(ids)) {
+    //     tripIds = tripIds.concat(ids)
+    //   }
+    // })
+    formDataImages.append('tripId', isTripPublished.data.tripId)
     await createTripsImages(formDataImages, true)
 
     toast.success('Trip published successfully!')

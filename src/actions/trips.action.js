@@ -54,7 +54,7 @@ export const getTrips =
 export const getTripById = (tripId) => async (dispatch) => {
   try {
     const res = await TripsApi.getTripById(tripId)
-    dispatch({ type: GET_TRIP, payload: res.data })
+    dispatch({ type: GET_TRIP, payload: res.data?.[0] })
     return true
   } catch (e) {
     dispatch({ type: TRIPS_ERROR, payload: e })

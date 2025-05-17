@@ -45,6 +45,8 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
     startDate,
     endDate,
     tripMembers,
+    relatedTrips,
+    tripInstanceId,
     joinedMembers,
     userId: publisherId,
     title,
@@ -83,7 +85,7 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
   }
 
   const onCardPress = () => {
-    navigate(`/trip/${tripId}`)
+    navigate(`/trip/${tripInstanceId??relatedTrips?.[0]?.tripInstanceId}`)
   }
 
   const onCallNowClick = (e) => {
