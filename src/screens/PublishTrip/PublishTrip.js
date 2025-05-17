@@ -44,8 +44,8 @@ const TABS = {
 }
 
 const DEFAULT_TRIP_DATA = {
-  destination: '',
-  startLocation: '',
+  destination: [],
+  startLocation: [],
   minBudget: null,
   maxBudget: null,
   description: '',
@@ -201,7 +201,8 @@ const PublishTrip = (props) => {
 
   const handleCreateTripSubmit = useCallback(async () => {
     const processedTripDates = getProcessedTripDates()
-    const tripBody = { ...tripData, tripDates: processedTripDates }
+    const tripBody = { ...tripData, tripDates: processedTripDates, startLocation:[tripData.startLocation], destination: [tripData.destination] }
+
     delete tripBody.destinationImages
     delete tripBody.removedDestinationImages
 

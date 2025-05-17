@@ -47,6 +47,7 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
     tripMembers,
     joinedMembers,
     userId: publisherId,
+    title,
     createdAt,
   } = trip || {}
 
@@ -112,7 +113,7 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
             <img src={SVG.ChatNow} alt="" />
             {`${duration} ago`}
           </Duration>
-          <Title>{`${startLocation?.split(',')[0]} To ${destination?.split(',')[0]}`}</Title>
+          <Title>{title}</Title>
           <DateComp>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</DateComp>
           <Description>{truncateDescription(description, 150)}</Description>
           <ChatNow>
