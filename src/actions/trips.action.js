@@ -34,7 +34,10 @@ export const getTrips =
     ]
 
     try {
-      const res = await TripsApi.getTrips(params)
+      let res = await TripsApi.getTrips(params)
+      if (!res.data?.trips?.length) {
+        res = await TripsApi.getTrips([ { key: 'destination', value: "" }, { key: 'date', value: "" } , { key: 'offset', value: 0 }, { key: 'limit', value: 50 } ])
+      }
       dispatch({ type: GET_TRIPS, payload: res.data.trips, append })
       return true
     } catch (e) {

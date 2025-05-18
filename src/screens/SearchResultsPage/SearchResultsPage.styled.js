@@ -25,7 +25,7 @@ export const SearchResultButtonDiv = styled.div`
 `
 
 export const ShowMoreButton = styled.button`
-  font-size: 36px;
+  font-size: 3rem;
   padding: 10px 20px;
   cursor: pointer;
   background-color: var(--color-primary);
