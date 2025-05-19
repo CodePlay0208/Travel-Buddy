@@ -181,17 +181,19 @@ const PublishTrip = (props) => {
 
     delete tripDetails.destinationImages
     delete tripDetails.removedDestinationImages
+    delete tripDetails.endDate
+    delete tripDetails.startDate
 
     const updatedDayTabs = makeDayTabsEmptyIfEmptyData()
     tripDetails.dayTabs = updatedDayTabs
 
-    const isTripPublished = await editTrip(tripData.tripId, tripDetails, false)
+    const isTripPublished = await editTrip(tripData.baseTripId, tripDetails, false)
     if (!isTripPublished) {
       toast.error('Failed to update trip. Please try again.')
       return
     }
 
-    const isTripImagesPublished = await editTripImages(tripData.tripId, formDataImages, true)
+    const isTripImagesPublished = await editTripImages(tripData.baseTripId, formDataImages, true)
     if (isTripImagesPublished) {
       toast.success('Trip updated successfully!')
       navigate('/')
@@ -206,6 +208,8 @@ const PublishTrip = (props) => {
 
     delete tripBody.destinationImages
     delete tripBody.removedDestinationImages
+
+
 
     const updatedDayTabs = makeDayTabsEmptyIfEmptyData()
     tripBody.dayTabs = updatedDayTabs

@@ -74,7 +74,7 @@ const PopularSection = (props) => {
           <img src={SVG.rightArrowBlack} alt="" />
         </ArrowButton>
         {trips?.map((trip) => (
-          <TripCard key={trip?.tripId} trip={trip} />
+          <TripCard key={trip?.tripInstanceId} trip={trip} />
         ))}
       </PopularTripContent>
     </PopularTripContainer>

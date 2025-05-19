@@ -55,14 +55,14 @@ const mapStateToProps = (state) => ({
 
 const SlidingSection = ({ trips }) => {
   const navigate = useNavigate()
-  const handleCardClick = (tripId) => {
-    navigate('/trip/' + tripId)
+  const handleCardClick = (tripInstanceId) => {
+    navigate('/trip/' + tripInstanceId)
   }
   return (
     <Container>
       <Slider cardCount={8}>
         {trips?.slice(0, 8).map((card, index) => (
-          <CardContainer key={index} onClick={() => handleCardClick(card.tripId)}>
+          <CardContainer key={index} onClick={() => handleCardClick(card.tripInstanceId)}>
             <Card key={index} src={card?.croppedDestinationImages?.[0]?.preSignedUrl} />
             <Badge>
               <BadgeText>{computeDateAndTimeUntilNowInString(card?.createdAt)} ago</BadgeText>

@@ -74,7 +74,7 @@ const TripPage = (props) => {
     Object.entries(formData).forEach(([key, value]) => {
       formDataNew.append(key, value)
     })
-    await editTrip(trip.tripId, formDataNew, true)
+    await editTrip(trip.baseTripId, formDataNew, true)
     setIsEditMode(false)
     fetchTrip()
   }
