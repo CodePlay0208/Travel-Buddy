@@ -25,7 +25,7 @@ export const SearchResultButtonDiv = styled.div`
 `
 
 export const ShowMoreButton = styled.button`
-  font-size: 3rem;
+  font-size: 2rem;
   padding: 10px 20px;
   cursor: pointer;
   background-color: var(--color-primary);
@@ -38,4 +38,10 @@ export const ShowMoreButton = styled.button`
   &:hover {
     background-color: #7cc2a9;
   }
+
+  @media (max-width: 440px) {
+    font-size: 4rem;
+    padding: 5% 10%;
+  }
+
 `

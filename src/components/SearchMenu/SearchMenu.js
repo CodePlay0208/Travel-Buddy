@@ -15,16 +15,21 @@ const mapStateToProps = (state) => ({
 
 const SearchMenu = (props) => {
   const { searchForm, setSearchForm } = props
+  const [currForm, setCurrForm] = React.useState({
+    destination: searchForm.destination || '',
+    startDate: searchForm.startDate || '',
+  })
   const navigate = useNavigate()
 
   const handleInputChange = (field, value) => {
-    setSearchForm({
-      ...searchForm,
+    setCurrForm((prevForm) => ({
+      ...prevForm,
       [field]: value,
-    })
+    }))
   }
 
-  const onSearchButton = async () => {
+  const onSearchButton = async (field, value) => {
+     setSearchForm(currForm)
     navigate('/trips')
   }
 
@@ -35,7 +40,7 @@ const SearchMenu = (props) => {
           <FlexContainer direction="column" width="100%" gap="0px" margin="3.5% 0 0" alignItems="start" style={{ overflowX: 'unset' }}>
             <Label margin="0 2.5%">Where</Label>
             <Searchbar
-              inputValues={searchForm.destination}
+              inputValues={currForm.destination}
               setInputValues={(value) => handleInputChange('destination', value)}
               onValue={'destination'}
               placeholderValue={'Your Destination'}
@@ -53,7 +58,7 @@ const SearchMenu = (props) => {
           <FlexContainer direction="column" width="100%" gap="0px" margin="3.5% 0 0" alignItems="start" style={{ overflowX: 'unset' }}>
             <Label margin="0 2.5%">When</Label>
             <DatePicker
-              inputValues={searchForm.startDate}
+              inputValues={currForm.startDate}
               setInputValues={(value) => handleInputChange('startDate', value)}
               onValue={'startDate'}
               placeholderValue={'Your Arrival & Departure'}
