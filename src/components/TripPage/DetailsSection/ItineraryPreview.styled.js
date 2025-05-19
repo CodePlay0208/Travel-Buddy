@@ -54,7 +54,7 @@ export const DayTitle = styled.h1`
   overflow-wrap: anywhere;
 
   @media (max-width: 440px) {
-    font-size: 6rem;
+    font-size: 4rem;
     padding: 5%;
   }
 `
