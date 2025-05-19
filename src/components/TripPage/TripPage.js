@@ -32,7 +32,7 @@ const TripPage = (props) => {
   }, [tripIdFromParams])
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const isUserTrip = trip?.userId === profile?.userId || false
+  const isUserTrip = trip?.userId === profile?.hostId || false
 
   const fetchTrip = useCallback(() => {
     if (tripId) {
@@ -94,7 +94,7 @@ const TripPage = (props) => {
         />
         <StyledToastContainer />
       </Container>
-      <PopularSection title="Trip" />
+      <PopularSection title="Similar Trips" />
       <Footer />
     </>
   )

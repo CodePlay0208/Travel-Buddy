@@ -68,7 +68,7 @@ const TripDescription = (props) => {
   const [deleteModal, setDeleteModal] = useState(false)
   const navigate = useNavigate()
 
-  const publisher = trip?.joinedMembers?.find((user) => user?.userId === trip?.userId)
+  const publisher = trip?.joinedMembers?.find((user) => user?.userId === trip?.hostId)
   const phoneNumber = publisher?.phoneNumber
   useEffect(() => {
     setWishlistAdded(trip?.isWishlisted || false)
@@ -85,7 +85,7 @@ const TripDescription = (props) => {
       navigate('/login')
       return
     }
-    const isChatCreated = await getOrCreateChat(trip?.userId)
+    const isChatCreated = await getOrCreateChat(trip?.hostId)
     if (isChatCreated) {
       navigate('/chats')
     }

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import firstImage from '../data/Images/aeroplaneBack.png'
 
 export const PopularTripContainer = styled.div`
-  margin: 5% 0;
+  /* margin: 5% 0; */
   background-image: url(${firstImage});
   background-size: contain;
   background-position: -30px;

@@ -99,7 +99,7 @@ const AddMembers = (props) => {
   )
 
   const handleShowRequests = useCallback(() => {
-    getRequestedMembers(currentTrip.tripId)
+    getRequestedMembers(currentTrip.tripInstanceId)
     setShowRequests(true)
   }, [getRequestedMembers, currentTrip])
 
@@ -166,7 +166,7 @@ const AddMembers = (props) => {
               <DetailBox
                 id={item.userId}
                 heading={item.username}
-                body={item.userId === currentTrip?.userId ? 'Host' : 'Traveller'}
+                body={item.userId === currentTrip?.hostId ? 'Host' : 'Traveller'}
                 profilePic={item?.profilePic?.[0]?.preSignedUrl ?? images.defaultProfileImg}
               />
             </CardContainer>

@@ -242,7 +242,7 @@ export const TripsApi = {
   },
   getRequestedMembers: async (tripId) => {
     try {
-      const result = await ApiService.post(`${API_PATH.GET_REQUESTED_MEMBERS}`, { tripId }, { baseURL: env.BASE_API_URL })
+      const result = await ApiService.post(`${API_PATH.GET_REQUESTED_MEMBERS}`, {tripInstanceId: tripId }, { baseURL: env.BASE_API_URL })
       console.log('getRequestedMembers SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {

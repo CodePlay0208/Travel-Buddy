@@ -227,7 +227,7 @@ const PublishTrip = (props) => {
     //     tripIds = tripIds.concat(ids)
     //   }
     // })
-    formDataImages.append('tripId', isTripPublished.data.tripId)
+    formDataImages.append('baseTripId', isTripPublished.data.baseTripId)
     await createTripsImages(formDataImages, true)
 
     toast.success('Trip published successfully!')

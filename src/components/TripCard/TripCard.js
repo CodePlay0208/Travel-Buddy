@@ -85,7 +85,7 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
   }
 
   const onCardPress = () => {
-    navigate(`/trip/${tripInstanceId??relatedTrips?.[0]?.tripInstanceId}`)
+    navigate(`/trip/${tripInstanceId ?? relatedTrips?.[0]?.tripInstanceId}`)
   }
 
   const onCallNowClick = (e) => {
@@ -116,7 +116,8 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
             {`${duration} ago`}
           </Duration>
           <Title>{title}</Title>
-          <DateComp>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</DateComp>
+
+          {tripInstanceId && <DateComp>{`${formatDate(startDate)} - ${formatDate(endDate)}`}</DateComp>}
           <Description>{truncateDescription(description, 150)}</Description>
           <ChatNow>
             <Budget>
