@@ -129,7 +129,7 @@ const Navbar = (props) => {
   }
 
   const handleNotificationConfirm = async (notification) => {
-    await addMemberTrip(notification.tripId, notification.senderId)
+    await addMemberTrip(notification.tripInstanceId, notification.senderId)
   }
 
   const handleNotificationDelete = (notification) => {
@@ -174,7 +174,7 @@ const Navbar = (props) => {
               <Dropdown
                 data={notificationsAlert}
                 selectSuggestion={(notification) => {
-                  navigate(`/trip/${notification.tripId}`)
+                  navigate(`/trip/${notification.tripInstanceId}`)
                 }}
                 selectable={false}
                 title="Notification"

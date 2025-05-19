@@ -100,7 +100,7 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         userTrip: {
-          trips: state.userTrip.trips.filter((trip) => trip.tripId !== payload),
+          trips: state.userTrip.trips.filter((trip) => trip.tripInstanceId !== payload),
         },
       }
     case ADD_WISHLIST_TRIP:
@@ -115,7 +115,7 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         wishlistTrips: {
-          trips: state.wishlistTrips.trips.filter((trip) => trip.tripId !== payload),
+          trips: state.wishlistTrips.trips.filter((trip) => trip.tripInstanceId !== payload),
         },
         loading: false,
       }
@@ -130,7 +130,7 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         trips: state.trips.map((trip) => {
-          if (trip.tripId === payload.tripId) {
+          if (trip.tripInstanceId === payload.tripInstanceId) {
             return {
               ...trip,
               joinedMembers: [...trip.joinedMembers, payload.memberId],

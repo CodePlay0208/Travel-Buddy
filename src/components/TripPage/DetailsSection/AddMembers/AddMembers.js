@@ -39,10 +39,10 @@ const AddMembers = (props) => {
 
   const currentTrip = trip?.trip
   const fetchTrip = useCallback(() => {
-    if (currentTrip.tripId) {
-      getTripById(currentTrip.tripId)
+    if (currentTrip.tripInstanceId) {
+      getTripById(currentTrip.tripInstanceId)
     }
-  }, [getTripById, currentTrip?.tripId])
+  }, [getTripById, currentTrip?.tripInstanceId])
 
   const [areMembersExpanded, setAreMembersExpanded] = useState(false)
   const [editTripMembers, setEditTripMembers] = useState(false)
@@ -60,7 +60,7 @@ const AddMembers = (props) => {
   const handleConfirm = useCallback(
     async (userId) => {
       if (currentTrip) {
-        const result = await addMemberTrip(currentTrip.tripId, userId)
+        const result = await addMemberTrip(currentTrip.tripInstanceId, userId)
         if (result) fetchTrip()
       }
     },
@@ -78,7 +78,7 @@ const AddMembers = (props) => {
   const handleRemoveMember = useCallback(
     async (userId) => {
       if (currentTrip) {
-        const result = await removeMemberAsHost(currentTrip.tripId, userId)
+        const result = await removeMemberAsHost(currentTrip.tripInstanceId, userId)
         if (result) fetchTrip()
       }
     },
@@ -88,10 +88,10 @@ const AddMembers = (props) => {
   const handleDeclineRequest = useCallback(
     async (userId) => {
       if (currentTrip) {
-        const result = await declineRequest(currentTrip.tripId, userId)
+        const result = await declineRequest(currentTrip.tripInstanceId, userId)
         if (result) {
           fetchTrip()
-          getRequestedMembers(currentTrip.tripId)
+          getRequestedMembers(currentTrip.tripInstanceId)
         }
       }
     },
@@ -139,15 +139,21 @@ const AddMembers = (props) => {
                   heading={item.username}
                   body={
                     <RequestButtonContainer>
-                      <Button style={{ width: '50%', fontSize: '1rem', padding: '5%' }} onClick={() => handleConfirm(item.userId)}>
+                      <Button
+                        style={{ width: '50%', fontSize: '1rem', padding: '5%' }}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleConfirm(item.userId)
+                        }}
+                      >
                         Accept
                       </Button>
-                      <Button
+                      {/* <Button
                         style={{ width: '50%', fontSize: '1rem', backgroundColor: '#E0E0E0', padding: '5%' }}
                         onClick={() => handleChatNow(item.userId)}
                       >
                         Chat Now
-                      </Button>
+                      </Button> */}
                     </RequestButtonContainer>
                   }
                   profilePic={item?.profilePic?.[0]?.preSignedUrl ?? images.defaultProfileImg}

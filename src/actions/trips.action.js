@@ -36,7 +36,12 @@ export const getTrips =
     try {
       let res = await TripsApi.getTrips(params)
       if (!res.data?.trips?.length) {
-        res = await TripsApi.getTrips([ { key: 'destination', value: "" }, { key: 'date', value: "" } , { key: 'offset', value: 0 }, { key: 'limit', value: 50 } ])
+        res = await TripsApi.getTrips([
+          { key: 'destination', value: '' },
+          { key: 'date', value: '' },
+          { key: 'offset', value: 0 },
+          { key: 'limit', value: 50 },
+        ])
       }
       dispatch({ type: GET_TRIPS, payload: res.data.trips, append })
       return true
@@ -153,9 +158,9 @@ export const removeWishlistTrip = (tripId) => async (dispatch) => {
   }
 }
 
-export const requestJoinTrip = (tripId) => async (dispatch) => {
+export const requestJoinTrip = (tripId, hostId) => async (dispatch) => {
   try {
-    const res = await TripsApi.requestJoinTrip(tripId)
+    const res = await TripsApi.requestJoinTrip(tripId, hostId)
     dispatch({ type: REQUEST_JOIN_TRIP, payload: res.data })
     toast.success('Join request sent!')
     return true
@@ -174,9 +179,9 @@ export const requestJoinTrip = (tripId) => async (dispatch) => {
   }
 }
 
-export const leaveTrip = (tripId) => async (dispatch) => {
+export const leaveTrip = (tripId, hostId) => async (dispatch) => {
   try {
-    await TripsApi.leaveTrip(tripId)
+    await TripsApi.leaveTrip(tripId, hostId)
     dispatch({ type: LEAVE_TRIP, payload: tripId })
     toast.success('Left trip successfully!')
     return true
@@ -298,10 +303,10 @@ export const getRequestedMembers = (tripId) => async (dispatch) => {
   }
 }
 
-export const addMemberTrip = (tripId, memberId) => async (dispatch) => {
+export const addMemberTrip = (tripInstanceId, memberId) => async (dispatch) => {
   try {
-    await TripsApi.addMemberTrip({ tripId, memberId })
-    dispatch({ type: ADD_MEMBER_TRIP, payload: { tripId, memberId } })
+    await TripsApi.addMemberTrip({ tripInstanceId, memberId })
+    dispatch({ type: ADD_MEMBER_TRIP, payload: { tripInstanceId: tripInstanceId, memberId: memberId } })
     toast.success('Member added to trip successfully!')
     return true
   } catch (e) {
@@ -311,10 +316,10 @@ export const addMemberTrip = (tripId, memberId) => async (dispatch) => {
   }
 }
 
-export const removeMemberAsHost = (tripId, memberId) => async (dispatch) => {
+export const removeMemberAsHost = (tripInstanceId, memberId) => async (dispatch) => {
   try {
-    await TripsApi.removeMemberAsHost({ tripId, memberId })
-    dispatch({ type: REMOVE_MEMBER_AS_HOST, payload: { tripId, memberId } })
+    await TripsApi.removeMemberAsHost({ tripInstanceId, memberId })
+    dispatch({ type: REMOVE_MEMBER_AS_HOST, payload: { tripInstanceId: tripInstanceId, memberId: memberId } })
     toast.success('Member removed from trip successfully!')
     return true
   } catch (e) {
@@ -324,10 +329,10 @@ export const removeMemberAsHost = (tripId, memberId) => async (dispatch) => {
   }
 }
 
-export const declineRequest = (tripId, memberId) => async (dispatch) => {
+export const declineRequest = (tripInstanceId, memberId) => async (dispatch) => {
   try {
-    await TripsApi.declineRequest({ tripId, memberId })
-    dispatch({ type: DECLINE_REQUEST_AS_HOST, payload: { tripId, memberId } })
+    await TripsApi.declineRequest({ tripInstanceId, memberId })
+    dispatch({ type: DECLINE_REQUEST_AS_HOST, payload: { tripInstanceId: tripInstanceId, memberId: memberId } })
     toast.success('Request declined successfully!')
     return true
   } catch (e) {

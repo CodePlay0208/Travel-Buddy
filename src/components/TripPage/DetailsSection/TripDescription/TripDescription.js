@@ -97,12 +97,12 @@ const TripDescription = (props) => {
       return
     }
     if (!wishlistAdded) {
-      const result = await addWishlistTrip(trip.tripId)
+      const result = await addWishlistTrip(trip.tripInstanceId)
       if (result) {
         setWishlistAdded(true)
       }
     } else {
-      const result = await removeWishlistTrip(trip.tripId)
+      const result = await removeWishlistTrip(trip.tripInstanceId)
       if (result) {
         setWishlistAdded(false)
       }
@@ -123,7 +123,7 @@ const TripDescription = (props) => {
   }
 
   const onDeleteTripClick = async () => {
-    const res = await deleteUserTrip(trip.tripId)
+    const res = await deleteUserTrip(trip.tripInstanceId)
     if (res) {
       navigate('/user-trips')
     }
@@ -138,13 +138,13 @@ const TripDescription = (props) => {
       if (requested) {
         return
       }
-      const result = await requestJoinTrip(trip.tripId)
+      const result = await requestJoinTrip(trip.tripInstanceId, trip.hostId)
       if (result) {
         setJoined(false)
         setRequested(true)
       }
     } else {
-      const result = await leaveTrip(trip.tripId)
+      const result = await leaveTrip(trip.tripInstanceId, trip.hostId)
       if (result) {
         setJoined(false)
         setRequested(false)

@@ -34,9 +34,9 @@ export const TripsApi = {
       throw e
     }
   },
-  getTripById: async (tripId) => {
+  getTripById: async (baseTripId) => {
     try {
-      const result = await ApiService.get(`${API_PATH.TRIP_BY_ID_API}/${tripId}`, {
+      const result = await ApiService.get(`${API_PATH.TRIP_BY_ID_API}/${baseTripId}`, {
         baseURL: env.BASE_API_URL,
         headers: {
           withCredentials: true,
@@ -98,13 +98,13 @@ export const TripsApi = {
       throw e
     }
   },
-  editTrip: async (payload, tripId, isMultiMedia = false) => {
+  editTrip: async (payload, baseTripId, isMultiMedia = false) => {
     if (localStorage.token) {
       setAuthTokenImg(localStorage.token)
     }
     try {
       const result = await ApiService.put(
-        `${API_PATH.EDIT_TRIPS_API}/${tripId}`,
+        `${API_PATH.EDIT_TRIPS_API}/${baseTripId}`,
         payload,
         {
           baseURL: env.BASE_API_URL,
@@ -119,9 +119,9 @@ export const TripsApi = {
       throw e
     }
   },
-  deleteUserTrip: async (tripId) => {
+  deleteUserTrip: async (baseTripId) => {
     try {
-      const result = await ApiService.delete(`${API_PATH.DELETE_TRIP_API}/${tripId}`, {
+      const result = await ApiService.delete(`${API_PATH.DELETE_TRIP_API}/${baseTripId}`, {
         baseURL: env.BASE_API_URL,
       })
       console.log('deleteUserTrip SUCCESS: ', result)
@@ -169,10 +169,10 @@ export const TripsApi = {
       throw e
     }
   },
-  editTripImages: async (tripId, payload, isMultiMedia) => {
+  editTripImages: async (basebaseTripId, payload, isMultiMedia) => {
     try {
       const result = await ApiService.put(
-        `${API_PATH.EDIT_TRIP_IMAGES_API}/${tripId}`,
+        `${API_PATH.EDIT_TRIP_IMAGES_API}/${basebaseTripId}`,
         payload,
         {
           baseURL: env.BASE_API_URL,
@@ -187,10 +187,10 @@ export const TripsApi = {
       throw e
     }
   },
-  addWishlistTrip: async (tripId) => {
+  addWishlistTrip: async (tripInstanceId) => {
     try {
       const result = await ApiService.post(
-        `${API_PATH.ADD_WISHLIST_TRIP}/${tripId}`,
+        `${API_PATH.ADD_WISHLIST_TRIP}/${tripInstanceId}`,
         {},
         {
           baseURL: env.BASE_API_URL,
@@ -203,10 +203,10 @@ export const TripsApi = {
       throw e
     }
   },
-  removeWishlistTrip: async (tripId) => {
+  removeWishlistTrip: async (tripInstanceId) => {
     try {
       const result = await ApiService.post(
-        `${API_PATH.REMOVE_WISHLIST_TRIP}/${tripId}`,
+        `${API_PATH.REMOVE_WISHLIST_TRIP}/${tripInstanceId}`,
         {},
         {
           baseURL: env.BASE_API_URL,
@@ -219,9 +219,9 @@ export const TripsApi = {
       throw e
     }
   },
-  requestJoinTrip: async (tripId) => {
+  requestJoinTrip: async (tripInstanceId,hostId) => {
     try {
-      const result = await ApiService.post(`${API_PATH.REQUEST_JOIN_TRIP}`, { tripId }, { baseURL: env.BASE_API_URL })
+      const result = await ApiService.post(`${API_PATH.REQUEST_JOIN_TRIP}`, { tripInstanceId,hostId }, { baseURL: env.BASE_API_URL })
       console.log('requestJoinTrip SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
@@ -230,9 +230,9 @@ export const TripsApi = {
     }
   },
 
-  leaveTrip: async (tripId) => {
+  leaveTrip: async (tripInstanceId,hostId) => {
     try {
-      const result = await ApiService.post(`${API_PATH.LEAVE_TRIP}`, { tripId }, { baseURL: env.BASE_API_URL })
+      const result = await ApiService.post(`${API_PATH.LEAVE_TRIP}`, { tripInstanceId,hostId }, { baseURL: env.BASE_API_URL })
       console.log('leaveTrip SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
@@ -240,9 +240,9 @@ export const TripsApi = {
       throw e
     }
   },
-  getRequestedMembers: async (tripId) => {
+  getRequestedMembers: async (tripInstanceId) => {
     try {
-      const result = await ApiService.post(`${API_PATH.GET_REQUESTED_MEMBERS}`, {tripInstanceId: tripId }, { baseURL: env.BASE_API_URL })
+      const result = await ApiService.post(`${API_PATH.GET_REQUESTED_MEMBERS}`, {tripInstanceId: tripInstanceId }, { baseURL: env.BASE_API_URL })
       console.log('getRequestedMembers SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
@@ -251,9 +251,9 @@ export const TripsApi = {
     }
   },
 
-  addMemberTrip: async ({ tripId, memberId }) => {
+  addMemberTrip: async ({ tripInstanceId, memberId }) => {
     try {
-      const result = await ApiService.post(`${API_PATH.ADD_MEMBER_TRIP}`, { tripId, memberId }, { baseURL: env.BASE_API_URL })
+      const result = await ApiService.post(`${API_PATH.ADD_MEMBER_TRIP}`, { tripInstanceId, memberId }, { baseURL: env.BASE_API_URL })
       console.log('addMemberTrip SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
@@ -262,9 +262,9 @@ export const TripsApi = {
     }
   },
 
-  removeMemberAsHost: async ({ tripId, memberId }) => {
+  removeMemberAsHost: async ({ tripInstanceId, memberId }) => {
     try {
-      const result = await ApiService.post(`${API_PATH.REMOVE_MEMBER_AS_HOST}`, { tripId, memberId }, { baseURL: env.BASE_API_URL })
+      const result = await ApiService.post(`${API_PATH.REMOVE_MEMBER_AS_HOST}`, { tripInstanceId, memberId }, { baseURL: env.BASE_API_URL })
       console.log('removeMemberAsHost SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
@@ -272,9 +272,9 @@ export const TripsApi = {
       throw e
     }
   },
-  declineRequest: async ({ tripId, memberId }) => {
+  declineRequest: async ({ tripInstanceId, memberId }) => {
     try {
-      const result = await ApiService.post(`${API_PATH.DECLINE_REQUEST_AS_HOST}`, { tripId, memberId }, { baseURL: env.BASE_API_URL })
+      const result = await ApiService.post(`${API_PATH.DECLINE_REQUEST_AS_HOST}`, { tripInstanceId, memberId }, { baseURL: env.BASE_API_URL })
       console.log('removeMemberAsHost SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {

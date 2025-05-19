@@ -13,6 +13,8 @@ export const ButtonContainer = styled.div`
 export const RequestButtonContainer = styled.div`
   display: flex;
   gap: 5%;
+  justify-content: center;
+    align-items: center;
 `
 export const CardContainer = styled.div`
   position: relative;

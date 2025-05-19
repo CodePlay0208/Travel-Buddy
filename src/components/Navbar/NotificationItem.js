@@ -134,7 +134,7 @@ const NotificationItem = ({ notification, onConfirm, onDelete, onChatNow }) => {
             Accept
           </ActionButton>
         )}
-        <ActionButton
+        {/* <ActionButton
           background="#E0E0E0"
           onClick={(e) => {
             e.stopPropagation()
@@ -142,7 +142,7 @@ const NotificationItem = ({ notification, onConfirm, onDelete, onChatNow }) => {
           }}
         >
           Chat Now
-        </ActionButton>
+        </ActionButton> */}
       </ActionContainer>
     </Container>
   )
