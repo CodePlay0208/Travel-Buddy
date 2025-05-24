@@ -21,7 +21,7 @@ const SearchResultHeader = (props) => {
         <LandingHeader>
           <HeaderDescription>
             <HeaderDesHeading>TRAVMIGOZ</HeaderDesHeading>
-            <HeaderDesPara>FIND YOUR TRAVEL AMIGOES</HeaderDesPara>
+            <HeaderDesPara>FIND YOUR TRAVEL AMIGOS</HeaderDesPara>
           </HeaderDescription>
 
           <HeaderSearchBar>
