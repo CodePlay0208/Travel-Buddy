@@ -7,8 +7,14 @@ export const SearchBarContainer = styled.div`
   width: 100%;
   gap: 2%;
   padding: 0 1%;
+  border-radius: 140px;
   height: 60%;
   position: relative;
+  box-shadow: 0px 0px 12px 0px #00000033;
+
+  &&:hover {
+    box-shadow: 0px 0px 12px 0px #00000099;
+  }
   @media (max-width: 456px) {
     gap: 1%;
     padding: 3%;
@@ -35,12 +41,14 @@ export const SearchButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  img ,svg{
+  img,
+  svg {
     width: 4rem;
     aspect-ratio: 1;
   }
   @media (max-width: 786px) {
-    img,svg {
+    img,
+    svg {
       width: 7rem;
       aspect-ratio: 1;
     }
