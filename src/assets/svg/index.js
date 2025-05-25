@@ -48,6 +48,11 @@ import signup from './auth/signup.svg'
 import leftArrowBlack from './popularSection/leftArrowBlack.svg'
 import rightArrowBlack from './popularSection/rightArrowBlack.svg'
 
+import NotificationSvg from './NotificationButton'
+
+export{
+  NotificationSvg
+}
 
 export const SVG = {
   leftArrowBlack,

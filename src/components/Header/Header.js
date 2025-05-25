@@ -16,7 +16,7 @@ import {
 const SearchResultHeader = (props) => {
   return (
     <>
-      <Navbar />
+      <Navbar isImageNavbar={true}/>
       <HeaderContainer>
         <LandingHeader>
           <HeaderDescription>

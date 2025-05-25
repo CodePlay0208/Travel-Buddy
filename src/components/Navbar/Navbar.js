@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { UserLoginContext } from '../../utils/Context/LoggedInUserContext'
 import { ChatContext } from '../../utils/Context/ChatContext'
-import { images, SVG } from '../../assets'
+import { images, NotificationSvg, SVG } from '../../assets'
 import {
   Nav,
   WebAppNameAndLogo,
@@ -25,6 +25,7 @@ import { addMemberTrip } from '../../actions/trips.action'
 import { getOrCreateChat } from '../../actions/chats.action'
 import { jwtDecode } from 'jwt-decode'
 import { env } from '../../services/api-services/config/env'
+import PublishTrip from '../../assets/svg/publishTrip'
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
@@ -89,11 +90,7 @@ const Navbar = (props) => {
           'Content-type': 'application/json',
         },
       }
-      const { data } = await axios.post(
-        `${env.BASE_API_URL}chat/fetchOrCreateChats`,
-        { userId },
-        { ...config, withCredentials: true },
-      )
+      const { data } = await axios.post(`${env.BASE_API_URL}chat/fetchOrCreateChats`, { userId }, { ...config, withCredentials: true })
       if (!userChatValues.chats.find((c) => c._id === data._id)) {
         setUserChatValues((currentValues) => ({
           ...currentValues,
@@ -138,7 +135,7 @@ const Navbar = (props) => {
 
   return (
     <NavContainer isImageNavbar={props.isImageNavbar}>
-      <Nav>
+      <Nav isImageNavbar={props.isImageNavbar}>
         <WebAppNameAndLogo
           onClick={() => {
             localStorage.removeItem('inputValues')
@@ -150,6 +147,15 @@ const Navbar = (props) => {
 
         {isAuthenticated ? (
           <OtherContentsOfNavBar>
+            {/* <NavContents onClick={onChatClick}>
+              <img src={SVG.ChatButton} alt="Chat" />
+              {notifications?.length > 0 && <div className="notification-badge" />}
+            </NavContents> */}
+
+            <NavContents onClick={onNotificationClick}>
+              <NotificationSvg />
+              {notificationsAlert?.length > 0 && <div className="notification-badge" />}
+            </NavContents>
             <NavButton
               onClick={() => {
                 localStorage.removeItem('inputValues')
@@ -157,19 +163,8 @@ const Navbar = (props) => {
               }}
             >
               <div>Publish Trip</div>
-              <img src={SVG.publishTrip} alt="publishTrip" />
+              <PublishTrip />
             </NavButton>
-
-            {/* <NavContents onClick={onChatClick}>
-              <img src={SVG.ChatButton} alt="Chat" />
-              {notifications?.length > 0 && <div className="notification-badge" />}
-            </NavContents> */}
-
-            <NavContents onClick={onNotificationClick}>
-              <img src={SVG.NotificationButton} alt="Notification" />
-              {notificationsAlert?.length > 0 && <div className="notification-badge" />}
-            </NavContents>
-
             {showNotification && (
               <Dropdown
                 data={notificationsAlert}

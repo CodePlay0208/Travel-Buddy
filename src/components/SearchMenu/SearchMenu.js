@@ -61,7 +61,7 @@ const SearchMenu = (props) => {
               inputValues={currForm.startDate}
               setInputValues={(value) => handleInputChange('startDate', value)}
               onValue={'startDate'}
-              placeholderValue={'Your Arrival & Departure'}
+              placeholderValue={'Your Departure Date'}
               fontSize={`1.75rem`}
               fontWeight={`600`}
               border={'1px solid #ffffff'}

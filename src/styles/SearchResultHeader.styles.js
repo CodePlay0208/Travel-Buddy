@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import firstImage from '../data/image.png'
 const breakpoints = {
   mobile: '480px',
   tablet: '786px',
@@ -8,11 +8,11 @@ const breakpoints = {
 
 export const HeaderContainer = styled.div`
   position: relative;
-
-  width: 95%;
+  background-color: green;
+  width: 100%;
   height: auto;
-  margin: 2.5%;
-  margin-bottom: 7.5%;
+  padding:10% 0 0;
+  margin-bottom: 10%;
 `
 
 export const LandingHeader = styled.div`
@@ -34,10 +34,12 @@ export const LandingImage = styled.img`
 `
 
 export const HeaderSearchBar = styled.div`
-  position: relative;
-  width: 70%;
-  height: 1000%;
+  position: absolute;
+  bottom: 0;
+  width: 60%;
+  transform: translateY(100%);
   margin: 2.5%;
+  /* padding:1%; */
   border-radius: 140px;
   background-color: white;
   display: flex;
@@ -59,7 +61,7 @@ export const HeaderDescription = styled.div`
   position: relative;
   text-align: center;
   z-index: 1;
-  margin: 1%;
+  margin: 1% 1% 5%;
 
   @media (max-width: ${breakpoints.tablet}) {
     margin: 5%;
