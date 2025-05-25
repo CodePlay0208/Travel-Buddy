@@ -35,18 +35,18 @@ export const SearchButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  img {
+  img ,svg{
     width: 4rem;
     aspect-ratio: 1;
   }
   @media (max-width: 786px) {
-    img {
+    img,svg {
       width: 7rem;
       aspect-ratio: 1;
     }
   }
   @media (max-width: 440px) {
-    img {
+    img.svg {
       width: 12rem;
       aspect-ratio: 1;
     }

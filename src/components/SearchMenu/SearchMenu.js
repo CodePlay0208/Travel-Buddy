@@ -8,6 +8,7 @@ import { setSearchForm } from '../../actions/trips.action'
 import { SVG } from '../../assets'
 import { Label, VerticalDivider } from '../../styles/Global'
 import { FlexContainer } from '../HeroSectionV2/HeroSection.styled'
+import SearchIcon from '../../assets/svg/SearchIcon'
 
 const mapStateToProps = (state) => ({
   searchForm: state.tripReducer.searchForm,
@@ -29,7 +30,7 @@ const SearchMenu = (props) => {
   }
 
   const onSearchButton = async (field, value) => {
-     setSearchForm(currForm)
+    setSearchForm(currForm)
     navigate('/trips')
   }
 
@@ -72,7 +73,7 @@ const SearchMenu = (props) => {
         </FlexContainer>
       </SearchBarWrapper>
       <SearchButtonContainer onClick={onSearchButton} role="button">
-        <img src={SVG.searchIcon} alt="searchIcon" />
+        <SearchIcon />
       </SearchButtonContainer>
     </SearchBarContainer>
   )

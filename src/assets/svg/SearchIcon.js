@@ -1,26 +1,45 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 const StyledSVG = styled.svg`
   --color-primary: #8dd3bb;
   cursor: pointer;
-  circle,
-  line {
+  .big-circle {
+    fill: black;
+    stroke: #000000;
+    transition: fill 0.2s, stroke 0.2s;
+  }
+  .small-circle {
+    fill: transparent;
     stroke: #8dd3bb;
+    stroke-width: 2;
+    transition: fill 0.2s, stroke 0.2s;
+  }
+  .search-path {
+    stroke: #8dd3bb;
+    stroke-width: 2;
+    stroke-linecap: round;
     transition: stroke 0.2s;
   }
-  &:hover circle,
-  &:hover line {
+  &:hover .big-circle {
+    fill: var(--color-primary);
     stroke: var(--color-primary);
   }
-`;
+  &:hover .small-circle {
+    fill: var(--color-primary);
+    stroke: black;
+  }
+  &:hover .search-path {
+    stroke: black;
+  }
+`
 
 const SearchIcon = (props) => (
-  <StyledSVG viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    {/* Replace below with your actual SVG markup for searchIcon.svg */}
-    <circle cx="11" cy="11" r="7" strokeWidth="2" fill="none" />
-    <line x1="16.5" y1="16.5" x2="22" y2="22" strokeWidth="2" strokeLinecap="round" />
+  <StyledSVG viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <circle className="big-circle" cx="31" cy="31" r="30.5" />
+    <circle className="small-circle" cx="29.625" cy="29.625" r="9.625" />
+    <path className="search-path" d="M42 42L37.875 37.875" />
   </StyledSVG>
-);
+)
 
-export default SearchIcon;
+export default SearchIcon
