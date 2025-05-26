@@ -29,9 +29,12 @@ export const SliderHeading = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 35rem;
-  padding: 2% 0 2% 2%;
-  height: 100%;
+  padding: 1% 0 1% 2%;
+  height: 95%;
   position: absolute;
+  margin: 0.5% 0;
+  box-shadow: 0px 0px 12px 0px #00000033;
+
   background-color: white;
   z-index: 2;
   border-top-right-radius: 100px;

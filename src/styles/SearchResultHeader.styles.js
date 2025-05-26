@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import firstImage from '../data/image.png'
+import { images } from '../assets'
+
 const breakpoints = {
   mobile: '480px',
   tablet: '786px',
@@ -11,8 +12,11 @@ export const HeaderContainer = styled.div`
   background-color: green;
   width: 100%;
   height: auto;
-  padding:10% 0 0;
+  padding: 17% 0 0;
   margin-bottom: 10%;
+  background-image: url(${images.BackgroundImage});
+  background-size: cover;
+  background-position-y: 95%;
 `
 
 export const LandingHeader = styled.div`
@@ -80,7 +84,7 @@ export const HeaderDesHeading = styled.div`
   text-align: center;
 
   font-size: 6rem;
-  color: var(--color-primary);
+  color: white;
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 12rem;
   }
@@ -92,8 +96,8 @@ export const HeaderDesPara = styled.div`
   letter-spacing: 0.32em;
   text-align: center;
 
-  font-size: 2rem;
-  color: #000000;
+  font-size: 1.9rem;
+  color: white;
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 3.25rem;
   }

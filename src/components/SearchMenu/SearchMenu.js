@@ -45,7 +45,7 @@ const SearchMenu = (props) => {
               setInputValues={(value) => handleInputChange('destination', value)}
               onValue={'destination'}
               placeholderValue={'Your Destination'}
-              fontSize={`1.75rem`}
+              fontSize={`1.5rem`}
               fontWeight={`600`}
               dropDownFontSize={'100%'}
               border={'1px solid #ffffff'}
@@ -63,7 +63,7 @@ const SearchMenu = (props) => {
               setInputValues={(value) => handleInputChange('startDate', value)}
               onValue={'startDate'}
               placeholderValue={'Your Departure Date'}
-              fontSize={`1.75rem`}
+              fontSize={`1.5rem`}
               fontWeight={`600`}
               border={'1px solid #ffffff'}
               backgroundColor={'#ffffff'}

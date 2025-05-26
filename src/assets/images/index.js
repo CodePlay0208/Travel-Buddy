@@ -1,3 +1,5 @@
+import { BackgroundImage } from '../../components/HeroSectionV2/HeroSection.styled';
+
 export const images = {
   defaultProfileImg: require('./default_profile_pic.webp'),
   auth_side_image: require('./auth-side-image.webp'),
@@ -11,4 +13,5 @@ export const images = {
   heroSection_4: require('./image4.webp'),
   travmigoz_logo: require('./travmigoz-0.png'),
   travmigoz_logo_white: require('./travmigoz-logo-white.png'),
+  BackgroundImage: require('./backgroundImage.jpg'),
 }
