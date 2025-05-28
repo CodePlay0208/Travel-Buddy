@@ -8,7 +8,7 @@ const colors = {
   dark: '#040f0f',
   light: '#ffffff',
   hover: '#559c84',
-  background: '#f4f4f4',
+  background: '#f2f2f2',
   black: '#000000',
   shadow: 'rgba(0, 0, 0, 0.1)',
 }

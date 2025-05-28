@@ -44,11 +44,11 @@ export const Input = styled.input`
   padding: ${(props) => props.padding ?? '2.5%'};
   margin: ${(props) => props.margin ?? '0'};
   font-size: ${(props) => props.fontSize ?? '1rem'};
-  border: ${(props) => props.border ?? '1px solid #f4f4f4'};
+  border: ${(props) => props.border ?? '1px solid #f2f2f2'};
   border-radius: 50px;
   font-weight: 600;
   color: #7c7878;
-  background-color: ${(props) => props.backgroundColor ?? '#f4f4f4'};
+  background-color: ${(props) => props.backgroundColor ?? '#f2f2f2'};
   cursor: pointer;
   @media (max-width: 786px) {
     font-size: ${(props) => {
@@ -90,7 +90,7 @@ export const Input = styled.input`
 export const VerticalDivider = styled.div`
   width: 1px;
   height: 100%;
-  background-color: #f4f4f4;
+  background-color: #f2f2f2;
   border: 1px solid #afafaf;
   border-radius: 10px;
   padding: 3% 0;
@@ -116,7 +116,7 @@ export const Button = styled.button`
   &:hover {
     background-color: #79bca7;
   }
-  
+
   @media (max-width: 440px) {
     font-size: 2.5rem;
   }

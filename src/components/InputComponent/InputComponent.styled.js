@@ -35,7 +35,7 @@ export const InputFieldContainer = styled.div`
   border-radius: 40px;
   padding: 2%;
   border-style: none;
-  background-color: #f4f4f4;
+  background-color: #f2f2f2;
   font-size: 1.5rem;
 
   @media (max-width: 786px) {

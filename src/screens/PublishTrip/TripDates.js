@@ -30,8 +30,8 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
               fontSize="1rem"
               padding="2.5%"
               borderRadius="30px"
-              backgroundColor="#f4f4f4"
-              border="2px solid #f4f4f4"
+              backgroundColor="#f2f2f2"
+              border="2px solid #f2f2f2"
             />
           </InputGroup>
         </InputColumn>

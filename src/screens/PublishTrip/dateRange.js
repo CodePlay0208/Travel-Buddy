@@ -26,7 +26,7 @@ const DateRange = ({ startDate, totalDays, onDelete }) => {
     display: flex;
     justify-content: space-between;
     padding: 2%;
-    background: #f4f4f4;
+    background: #f2f2f2;
     box-shadow: 0px 0px 4px 0px #00000026;
     border-radius: 10px;
   `

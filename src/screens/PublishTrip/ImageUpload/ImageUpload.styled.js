@@ -153,7 +153,7 @@ export const FileUploadBox = styled.div`
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  background-color: #f4f4f4;
+  background-color: #f2f2f2;
   color: black;
   font-size: 0.75rem;
   cursor: pointer;
