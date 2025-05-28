@@ -210,7 +210,7 @@ const Navbar = (props) => {
               }}
             >
               <div>Publish Trip</div>
-              <img src={SVG.publishTrip} alt="publishTrip" />
+              <PublishTrip />
             </NavButton>
 
             <Signup onClick={() => navigate('/login')}>Login</Signup>

@@ -43,6 +43,7 @@ export const SliderHeading = styled.div`
   @media (max-width: 1024px) {
     border-top-right-radius: 70px;
     border-bottom-right-radius: 70px;
+    box-shadow: 0px 0px 0px;
   }
   @media (max-width: 768px) {
     border-top-right-radius: 50px;

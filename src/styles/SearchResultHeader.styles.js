@@ -53,6 +53,8 @@ export const HeaderSearchBar = styled.div`
   box-shadow: 0px 0px 12px 0px #00000033;
 
   @media (max-width: ${breakpoints.tablet}) {
+    position: relative;
+    transform: translateY(50%);
     width: 100%;
     border-radius: 45px;
   }
