@@ -88,6 +88,7 @@ export const InputField = styled.input`
 export const DescriptionField = styled.textarea`
   display: flex;
   align-items: flex-start;
+  max-width: 100%;
   width: 100%;
   height: 100px;
   min-height: 100px;

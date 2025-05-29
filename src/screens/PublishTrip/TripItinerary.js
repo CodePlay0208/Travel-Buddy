@@ -110,7 +110,7 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
             {/* <Label fontSize="1rem" fontWeight="600">
             Dates
           </Label> */}
-          <InputColumn width="88%">
+          <InputColumn width="88%" gap="10px">
             
             {tripData?.dayDescription?.map((dayPoint, index) => (
               <DayTitle title={dayPoint} onDelete={onDelete} onEditClick={onEditClick} idx={index}></DayTitle>
