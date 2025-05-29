@@ -46,10 +46,14 @@ export const Input = styled.input`
   font-size: ${(props) => props.fontSize ?? '1rem'};
   border: ${(props) => props.border ?? '1px solid #f2f2f2'};
   border-radius: 50px;
-  font-weight: 600;
-  color: #7c7878;
+  font-weight: 400;
+  color: #232323;
   background-color: ${(props) => props.backgroundColor ?? '#f2f2f2'};
   cursor: pointer;
+
+  &:hover {
+    border: ${(props) => props.border ?? ' 1px solid #8DD3BB'};
+  }
   @media (max-width: 786px) {
     font-size: ${(props) => {
       const fontSize = parseFloat(props.fontSize)
@@ -106,9 +110,9 @@ export const Button = styled.button`
   color: #000000;
   text-align: center;
   width: 100%;
-  background: var(--color-primary);
+  background: white;
   padding: ${(props) => props.padding ?? '5% 10%'};
-  border: none;
+  border: 1px solid #000000;
   border-radius: 40px;
   cursor: pointer;
   transition: background-color 0.3s ease;

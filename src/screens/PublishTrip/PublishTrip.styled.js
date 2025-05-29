@@ -42,10 +42,11 @@ export const PublishTripPage = styled.div`
   width: 100%;
 `
 export const Container = styled.div`
-  padding: 5%;
+  padding: 2%;
   margin: ${(props) => props.margin ?? '0'};
-  box-shadow: 0px 0px 8px 0px #0000001a;
-  border-radius: 10px;
+  box-shadow: 0px 1px 6px 0px #00000033;
+
+  border-radius: 16px;
   @media (max-width: 440px) {
     padding: 10% 5%;
   }
@@ -54,7 +55,6 @@ export const DayContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  margin: 0 5% 1%;
   align-items: center;
   width: 100%;
   overflow-x: scroll;
@@ -89,8 +89,8 @@ export const DescriptionField = styled.textarea`
   display: flex;
   align-items: flex-start;
   width: 100%;
-  height: 80px;
-  min-height: 80px;
+  height: 100px;
+  min-height: 100px;
   min-width: 85%;
   padding: 1% 1.25%;
   border: none;
@@ -186,13 +186,13 @@ export const PublishTripLeftSection = styled.div`
 export const DayTab = styled.button`
   cursor: pointer;
   transition: background-color 0.4s ease;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1rem;
   line-height: 1rem;
   height: 100%;
-  color: ${colors.black};
-  padding: 1% 3%;
-  border-radius: 12px;
+  color: black;
+  padding: 0.5% 1%;
+  border-radius: 6px;
   border: none;
   display: flex;
   align-content: center;
@@ -204,6 +204,7 @@ export const DayTab = styled.button`
 
   background: ${colors.background};
   &.active {
+    color: white;
     background-color: ${colors.secondary};
   }
 
@@ -262,44 +263,43 @@ export const InputGroup = styled.div`
   width: ${(props) => props.width ?? '100%'};
   display: flex;
   flex-direction: column;
-  margin: ${(props) => props.margin ?? '0 2% 2% 2%'};
+  margin: ${(props) => props.margin ?? '0'};
   position: relative;
 
   gap: ${(props) => props.gap ?? '0'};
   ${media.desktop`
-    margin: 0 0 10px 0;
+    /* margin: 0 0 10px 0; */
   `}
   ${media.mobile`
-    margin: 0 0 20px 0 ;
+    /* margin: 0 0 20px 0 ; */
   `}
 `
 
 export const InputGroupDayName = styled(InputGroup)`
-  width: 50%;
+  width: 100%;
   @media (max-width: 440px) {
-    width: 150%;
+    width: 100%;
   }
 `
 export const InputGroupDesc = styled(InputGroup)`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: flex-end;
+  justify-content: space-between;
+  align-items: center;
   gap: 20px;
 
-  @media (max-width: 440px) {
-    width: 90%;
+  @media (max-width: 786px) {
+    width: 100%;
     flex-direction: column;
     gap: 10px;
   }
 `
 export const InputGroupList = styled(InputGroup)`
-  width: 50%;
-  margin: 3% 2% 2%;
+  width: 100%;
   gap: 10px;
   @media (max-width: 440px) {
-    width: 90%;
+    width: 100%;
   }
 `
 
@@ -430,6 +430,7 @@ export const InputRow = styled.div`
   position: relative;
   display: flex;
   gap: 20px;
+  margin: ${(props) => props.margin || '3% 0 0'};
 
   ${media.tablet`
     flex-direction: column;
@@ -439,12 +440,12 @@ export const InputRow = styled.div`
 export const ButtonContainer = styled.div`
   position: relative;
   display: flex;
-  width: 15%;
+  width: 100%;
   height: 100%;
   justify-content: flex-end;
   align-items: flex-end;
 
-  ${media.mobile`
+  ${media.tablet`
     width: 33%;
   `}
 `
@@ -453,9 +454,12 @@ export const InputColumn = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin: 3%;
+  gap: ${(props) => props.gap || '0'};
   width: ${(props) => props.width || '100%'};
+
+  ${media.tablet`
+    width: 100%;
+  `}
 `
 
 export const PublishTripRightSection = styled.div`

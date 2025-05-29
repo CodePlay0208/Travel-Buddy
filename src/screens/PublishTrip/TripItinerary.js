@@ -1,5 +1,15 @@
 import React from 'react'
-import { ButtonContainer, Container, DescriptionField, InputColumn, InputGroup, InputGroupDayName, InputGroupDesc, InputGroupList, InputRow } from './PublishTrip.styled'
+import {
+  ButtonContainer,
+  Container,
+  DescriptionField,
+  InputColumn,
+  InputGroup,
+  InputGroupDayName,
+  InputGroupDesc,
+  InputGroupList,
+  InputRow,
+} from './PublishTrip.styled'
 
 import { Button, Input, Label } from '../../styles/Global'
 import DatePicker from '../../components/DatePicker/DatePicker'
@@ -55,28 +65,34 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
   return (
     <>
       <InputRow>
-        <InputColumn width="100%">
+        <InputColumn gap="10px">
           <InputGroupDayName>
             {/* <Label fontSize="1rem" fontWeight="600">
               Day Title
             </Label> */}
-            <Input
-              width="60%"
-              name="dayTitle"
-              type="text"
-              placeholder="Enter Day Name"
-              value={tripData?.dayTitle || ''}
-              onChange={(e) => handleChange(e.target.name, e.target.value)}
-            />
+            <InputColumn width="88%">
+              <Input
+                width="100%"
+                padding="1.5%"
+                name="dayTitle"
+                type="text"
+                placeholder="Enter Day Name"
+                value={tripData?.dayTitle || ''}
+                onChange={(e) => handleChange(e.target.name, e.target.value)}
+              />
+            </InputColumn>
           </InputGroupDayName>
           <InputGroupDesc>
+            <InputColumn width="88%">
               <DescriptionField
                 name="dayDescription"
-                borderRadius="30px"
+                borderRadius="16px"
                 value={curPoint}
                 onChange={(e) => setCurPoint(e.target.value)}
                 placeholder="Enter Day Description"
               />
+            </InputColumn>
+            <InputColumn width="10%">
               <ButtonContainer>
                 {isEdit ? (
                   <Button padding="12.5%" onClick={handlSavePoint}>
@@ -88,19 +104,20 @@ const TripItinerary = ({ tripData, handleChange, handleTripDataChange, handleDel
                   </Button>
                 )}
               </ButtonContainer>
+            </InputColumn>
           </InputGroupDesc>
-          <InputGroupList >
+          <InputGroupList>
             {/* <Label fontSize="1rem" fontWeight="600">
             Dates
           </Label> */}
+          <InputColumn width="88%">
+            
             {tripData?.dayDescription?.map((dayPoint, index) => (
               <DayTitle title={dayPoint} onDelete={onDelete} onEditClick={onEditClick} idx={index}></DayTitle>
             ))}
+          </InputColumn>
           </InputGroupList>
         </InputColumn>
-        {/* <InputColumn>
-        
-      </InputColumn> */}
       </InputRow>
     </>
   )

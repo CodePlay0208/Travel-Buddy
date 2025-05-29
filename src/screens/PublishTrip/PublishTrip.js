@@ -32,6 +32,7 @@ import { FlexContainer } from '../../components/HeroSectionV2/HeroSection.styled
 
 import { DayTitle, List, ListItem, PreviewTitle } from './ItineraryPreview.styled'
 import { SVG } from '../../assets'
+import ClearIcon from '../../assets/svg/clear'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -204,12 +205,15 @@ const PublishTrip = (props) => {
 
   const handleCreateTripSubmit = useCallback(async () => {
     const processedTripDates = getProcessedTripDates()
-    const tripBody = { ...tripData, tripDates: processedTripDates, startLocation:[tripData.startLocation], destination: [tripData.destination] }
+    const tripBody = {
+      ...tripData,
+      tripDates: processedTripDates,
+      startLocation: [tripData.startLocation],
+      destination: [tripData.destination],
+    }
 
     delete tripBody.destinationImages
     delete tripBody.removedDestinationImages
-
-
 
     const updatedDayTabs = makeDayTabsEmptyIfEmptyData()
     tripBody.dayTabs = updatedDayTabs
@@ -307,9 +311,8 @@ const PublishTrip = (props) => {
                       className={index === curIdx ? 'active' : ''}
                     >
                       Day {index}
-                      <img
-                        className="clear"
-                        src={SVG.clear}
+                      <ClearIcon
+                        color={index === curIdx ? 'white' : 'black'}
                         alt="Clear"
                         onClick={(e) => {
                           e.stopPropagation()

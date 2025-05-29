@@ -6,8 +6,8 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
   const Container = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 2%;
-    background: #f2f2f2;
+    padding: 1% 1.5%;
+    background: #DDF2EB;
     box-shadow: 0px 0px 4px 0px #00000026;
     border-radius: 10px;
   `
@@ -28,9 +28,9 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
 
   return (
     <Container>
-      <Element width={'85%'}>{trimTitle}</Element>
+      <Element width={'90%'}>{trimTitle}</Element>
       <Element
-        width={'5%'}
+        width={'2%'}
         onClick={() => {
           onEditClick(idx)
         }}
@@ -45,7 +45,7 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
         </svg>
       </Element>
       <Element
-        width={'5%'}
+        width={'2%'}
         onClick={() => {
           onDelete(idx)
         }}
