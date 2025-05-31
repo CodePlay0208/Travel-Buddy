@@ -3,6 +3,7 @@ import { Container, InputColumn, InputGroup, InputRow } from './PublishTrip.styl
 import { Input, Label } from '../../styles/Global'
 import DatePicker from '../../components/DatePicker/DatePicker'
 import DateRange from './dateRange'
+import InputDropdown from '../../components/InputDropdown/InputDropdown'
 
 const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteDate }) => {
   return (
@@ -36,11 +37,25 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
           </InputGroup>
         </InputColumn>
         <InputColumn gap="10px">
-          <InputGroup width="100%" >
+          <InputGroup width="100%">
             <Label fontSize="1rem" fontWeight="700">
               Schedule Trip
             </Label>
-            <Input padding='2%' name="scheduleTrip" type="text" placeholder="Schedule Trip Duration" value={tripData.duration || ''} onChange={handleChange} />
+            <InputDropdown
+              options={[
+                { value: 'Daily' },
+                { value: 'Every 3 months' },
+                { value: 'Every 6 months' },
+                { value: 'Yearly' },
+                { value: 'Until I turn this off' },
+              ]}
+              padding="2%"
+              name="scheduleTrip"
+              type="text"
+              placeholder="Schedule Trip Duration"
+              value={tripData.duration || ''}
+              onChange={handleChange}
+            />
           </InputGroup>
           <InputRow>
             <Label fontSize="1rem" fontWeight="700">

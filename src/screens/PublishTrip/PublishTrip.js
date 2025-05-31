@@ -117,9 +117,14 @@ const PublishTrip = (props) => {
     }
   }, [editTripData])
 
-  const handleChange = useCallback((e) => {
-    const { name, value } = e.target
-    setTripData((prev) => ({ ...prev, [name]: value }))
+  const handleChange = useCallback((e, nameOverride) => {
+    // Support both event and direct value
+    if (e && e.target) {
+      const { name, value } = e.target
+      setTripData((prev) => ({ ...prev, [name]: value }))
+    } else if (nameOverride) {
+      setTripData((prev) => ({ ...prev, [nameOverride]: e }))
+    }
   }, [])
   const handleNameChange = useCallback((name, value) => {
     setTripData((prev) => ({ ...prev, [name]: value }))

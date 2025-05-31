@@ -25,7 +25,7 @@ import { addMemberTrip } from '../../actions/trips.action'
 import { getOrCreateChat } from '../../actions/chats.action'
 import { jwtDecode } from 'jwt-decode'
 import { env } from '../../services/api-services/config/env'
-import PublishTrip from '../../assets/svg/publishTrip'
+import PublishTrip from '../../assets/svg/iconTrip'
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authReducer.isAuthenticated,
@@ -63,7 +63,7 @@ const Navbar = (props) => {
     } else {
       logout()
     }
-  }, [])
+  }, [logout, navigate])
   const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
   const { userChatValues, setUserChatValues } = useContext(ChatContext)
 
