@@ -23,10 +23,10 @@ const ItineraryPreview = ({ tripData, margin }) => {
 
   return (
     <Container ref={containerRef} $height={height} margin={margin}>
-      <DayTitle>{tripData?.inc_excTitle}</DayTitle>
+      <DayTitle>{tripData?.dayTitle}</DayTitle>
       <Content>
         <List>
-          {tripData?.inc_excDescription?.map((text, idx) => (
+          {tripData?.dayDescription?.map((text, idx) => (
             <ListItem key={idx}>{text}</ListItem>
           ))}
         </List>
