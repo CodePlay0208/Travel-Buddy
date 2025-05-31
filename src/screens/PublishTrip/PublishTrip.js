@@ -42,6 +42,7 @@ const TABS = {
   TRIP: 'trip',
   USER: 'user',
   ITINERARY: 'Itinerary',
+  INC_EXC: 'Inclusions/Exclusions',
 }
 
 const DEFAULT_TRIP_DATA = {
@@ -57,6 +58,16 @@ const DEFAULT_TRIP_DATA = {
   tripData: [],
   multipleDates: [],
   dayTabs: [{ dayTitle: '', dayDescription: [] }],
+  inc_exc: [
+    {
+      inc_excTitle: 'Inclusions',
+      inc_excDescription: [],
+    },
+    {
+      inc_excTitle: 'Exclusions',
+      inc_excDescription: [],
+    },
+  ],
 }
 const formatDate = (dateString) => {
   if (!dateString) return ''
@@ -80,6 +91,7 @@ const PublishTrip = (props) => {
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
   const [toEditTrip, setToEditTrip] = useState(false)
   const [curIdx, setCurIdx] = useState(0)
+  const [curIncExcIdx, setCurIncExcIdx] = useState(0)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -281,6 +293,13 @@ const PublishTrip = (props) => {
                     Itinerary
                   </ToggleTab>
                 </>
+              }{
+                <>
+                  <Divider />
+                  <ToggleTab className={activeSection === TABS.INC_EXC ? 'active' : ''} onClick={() => handleToggle(TABS.INC_EXC)}>
+                    Include & Exclude
+                  </ToggleTab>
+                </>
               }
             </ToggleBetweenTripUser>
             {activeSection === TABS.TRIP && (
@@ -342,9 +361,42 @@ const PublishTrip = (props) => {
                 />
               </Container>
             )}
+            {activeSection === TABS.INC_EXC && (
+              <Container>
+                <DayContainer>
+                  {tripData.inc_exc.map((item, index) => (
+                    <DayTab
+                      onClick={() => {
+                        setCurIncExcIdx(index)
+                      }}
+                      key={index}
+                      className={index === curIncExcIdx ? 'active' : ''}
+                    >
+                      {item.inc_excTitle}
+                    </DayTab>
+                  ))}
+                </DayContainer>
+
+                <TripItinerary
+                  key={curIncExcIdx}
+                  tripData={tripData.inc_exc[curIncExcIdx]}
+                  handleChange={(name, value) => {
+                    setTripData((prev) => ({
+                      ...prev,
+                      inc_exc: prev.inc_exc.map((tab, i) => (i === curIncExcIdx ? { ...tab, [name]: value} : tab)),
+                    }))
+                  }}
+                />
+              </Container>
+            )}
           </PublishTripLeftSection>
           <PublishTripRightSection>
-            {activeSection === TABS.ITINERARY ? (
+            {activeSection === TABS.INC_EXC ? (
+              <>
+                <PreviewTitle>Preview</PreviewTitle>
+                <ItineraryPreview tripData={tripData.inc_exc[curIncExcIdx]} />
+              </>
+            ) : activeSection === TABS.ITINERARY ? (
               <>
                 <PreviewTitle>Preview</PreviewTitle>
                 <ItineraryPreview tripData={tripData.dayTabs[curIdx]} />
@@ -354,7 +406,7 @@ const PublishTrip = (props) => {
             )}
           </PublishTripRightSection>
         </PublishTripContent>
-        {activeSection === TABS.ITINERARY ? (
+        {activeSection === TABS.INC_EXC ? (
           <PublishTripButton>
             <SubmitButton onClick={handleSubmit}>Publish</SubmitButton>
           </PublishTripButton>
