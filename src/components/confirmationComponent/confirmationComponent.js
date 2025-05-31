@@ -73,4 +73,6 @@ const ConfirmationComponent = ({}) => {
   )
 }
 
+ConfirmationComponent.displayName = 'ConfirmationComponent'
+
 export default ConfirmationComponent

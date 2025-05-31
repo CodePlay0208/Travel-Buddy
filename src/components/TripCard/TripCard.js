@@ -136,4 +136,6 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
   )
 }
 
+TripCard.displayName = 'TripCard'
+
 export default connect(null, { getOrCreateChat, deleteUserTrip })(memo(TripCard))

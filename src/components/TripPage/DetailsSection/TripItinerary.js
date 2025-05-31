@@ -55,4 +55,6 @@ const TripItinerary = ({ trip }) => {
   )
 }
 
+TripItinerary.displayName = 'TripItinerary'
+
 export default connect(mapStateToProps, null)(memo(TripItinerary))

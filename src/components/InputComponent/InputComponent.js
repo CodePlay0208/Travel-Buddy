@@ -15,6 +15,7 @@ const PasswordEyeComponent = memo((props) => {
     </PassowrdEyeContainer>
   )
 })
+PasswordEyeComponent.displayName = 'PasswordEyeComponent'
 
 const InputComponent = ({
   label,
@@ -57,5 +58,6 @@ const InputComponent = ({
     </Container>
   )
 }
+InputComponent.displayName = 'InputComponent'
 
 export default InputComponent

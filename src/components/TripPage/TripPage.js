@@ -100,4 +100,6 @@ const TripPage = (props) => {
   )
 }
 
+TripPage.displayName = 'TripPage'
+
 export default connect(mapStateToProps, { getTripById, editTrip })(memo(TripPage))

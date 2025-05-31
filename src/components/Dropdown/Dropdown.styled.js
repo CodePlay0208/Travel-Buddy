@@ -17,6 +17,8 @@ export const DropdownContainer = styled.div`
   border-radius: 20px;
   z-index: 10;
 `
+DropdownContainer.displayName = 'DropdownContainer'
+
 export const FlexContainerCust = styled(FlexContainer)`
   @media (max-width: ${breakpoints.tablet}) {
   }
@@ -24,6 +26,7 @@ export const FlexContainerCust = styled(FlexContainer)`
     font-size: 4rem;
   }
 `
+FlexContainerCust.displayName = 'FlexContainerCust'
 
 export const DropdownItem = styled.div`
   font-family: 'Montserrat', sans-serif;
@@ -43,6 +46,7 @@ export const DropdownItem = styled.div`
     background-color: ${(props) => (props.selectable ? '#f1f1f1' : '#ffffff')};
   }
 `
+DropdownItem.displayName = 'DropdownItem'
 
 export const City = styled.div`
   margin: 1% 0;
@@ -52,3 +56,4 @@ export const City = styled.div`
     font-size: 4rem;
   }
 `
+City.displayName = 'City'

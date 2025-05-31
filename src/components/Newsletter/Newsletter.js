@@ -71,4 +71,6 @@ const Newsletter = ({ subscribeNewsletter }) => {
   )
 }
 
+Newsletter.displayName = 'Newsletter'
+
 export default connect(mapStateToProps, { subscribeNewsletter })(memo(Newsletter))

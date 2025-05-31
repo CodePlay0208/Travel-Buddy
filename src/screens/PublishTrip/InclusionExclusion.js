@@ -63,7 +63,6 @@ const InclusionExclusion = ({ tripData, handleChange, handleTripDataChange, hand
     <>
       <InputRow>
         <InputColumn gap="10px">
-          
           <InputGroupDesc>
             <InputColumn width="88%">
               <DescriptionField
@@ -92,17 +91,18 @@ const InclusionExclusion = ({ tripData, handleChange, handleTripDataChange, hand
             {/* <Label fontSize="1rem" fontWeight="600">
             Dates
           </Label> */}
-          <InputColumn width="88%" gap="10px">
-            
-            {tripData?.inc_excDescription?.map((dayPoint, index) => (
-              <DayTitle title={dayPoint} onDelete={onDelete} onEditClick={onEditClick} idx={index}></DayTitle>
-            ))}
-          </InputColumn>
+            <InputColumn width="88%" gap="10px">
+              {tripData?.inc_excDescription?.map((dayPoint, index) => (
+                <DayTitle title={dayPoint} onDelete={onDelete} onEditClick={onEditClick} idx={index}></DayTitle>
+              ))}
+            </InputColumn>
           </InputGroupList>
         </InputColumn>
       </InputRow>
     </>
   )
 }
+
+InclusionExclusion.displayName = 'InclusionExclusion'
 
 export default InclusionExclusion

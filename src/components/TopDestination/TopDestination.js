@@ -59,4 +59,6 @@ const TopDestination = (props) => {
   )
 }
 
+TopDestination.displayName = 'TopDestination'
+
 export default connect(mapStateToProps, { setSearchForm })(memo(TopDestination))

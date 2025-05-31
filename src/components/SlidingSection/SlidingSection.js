@@ -80,4 +80,6 @@ const SlidingSection = ({ trips }) => {
   )
 }
 
+SlidingSection.displayName = 'SlidingSection'
+
 export default connect(mapStateToProps, null)(memo(SlidingSection))

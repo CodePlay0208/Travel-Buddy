@@ -217,4 +217,6 @@ const SetupPage = (props) => {
   )
 }
 
+SetupPage.displayName = 'SetupPage'
+
 export default connect(mapStateToProps, { updateProfile })(memo(SetupPage))

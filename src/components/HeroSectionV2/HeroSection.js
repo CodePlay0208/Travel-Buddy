@@ -92,4 +92,6 @@ const HeroSection = () => {
   )
 }
 
+HeroSection.displayName = 'HeroSection'
+
 export default HeroSection

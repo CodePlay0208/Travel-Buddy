@@ -36,4 +36,5 @@ const ItineraryPreview = ({ tripData, margin }) => {
 }
 
 ItineraryPreview.displayName = 'ItineraryPreview'
+
 export default ItineraryPreview

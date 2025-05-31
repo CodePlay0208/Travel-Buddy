@@ -18,4 +18,6 @@ const OtpComponent = ({ onSubmit, formData, setFormData, onResendClick, name = '
   )
 }
 
+OtpComponent.displayName = 'OtpComponent'
+
 export default OtpComponent

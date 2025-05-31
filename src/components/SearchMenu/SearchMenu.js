@@ -79,4 +79,6 @@ const SearchMenu = (props) => {
   )
 }
 
+SearchMenu.displayName = 'SearchMenu'
+
 export default connect(mapStateToProps, { setSearchForm })(memo(SearchMenu))

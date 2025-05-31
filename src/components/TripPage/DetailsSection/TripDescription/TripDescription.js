@@ -151,7 +151,7 @@ const TripDescription = (props) => {
       }
     }
   }
-  
+
   const onCallNowClick = (e) => {
     e.stopPropagation()
     if (localStorage.token) {
@@ -160,7 +160,6 @@ const TripDescription = (props) => {
       navigate('/login')
     }
   }
-
 
   const content = trip?.description || ''
   const words = content ? content.split(' ') : []
@@ -252,6 +251,8 @@ const TripDescription = (props) => {
     </>
   )
 }
+
+TripDescription.displayName = 'TripDescription'
 
 export default connect(mapStateToProps, {
   getOrCreateChat,

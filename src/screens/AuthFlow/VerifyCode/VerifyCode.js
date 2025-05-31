@@ -106,4 +106,6 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
   )
 }
 
-export default connect(mapStateToProps, {getProfile, verifyOTP, resendOTP })(memo(VerifyCode))
+VerifyCode.displayName = 'VerifyCode'
+
+export default connect(mapStateToProps, { getProfile, verifyOTP, resendOTP })(memo(VerifyCode))

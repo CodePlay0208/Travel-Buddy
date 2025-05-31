@@ -183,4 +183,6 @@ const AddMembers = (props) => {
   )
 }
 
+AddMembers.displayName = 'AddMembers'
+
 export default connect(mapStateToProps, mapDispatchToProps)(memo(AddMembers))

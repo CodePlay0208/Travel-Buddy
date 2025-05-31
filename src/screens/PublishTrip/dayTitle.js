@@ -7,7 +7,7 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
     display: flex;
     justify-content: space-between;
     padding: 1% 1.5%;
-    background: #DDF2EB;
+    background: #ddf2eb;
     box-shadow: 0px 0px 4px 0px #00000026;
     border-radius: 10px;
   `
@@ -55,5 +55,7 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
     </Container>
   )
 }
+
+DayTitle.displayName = 'DayTitle'
 
 export default DayTitle

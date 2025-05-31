@@ -26,11 +26,7 @@ const InputDropdown = ({
     if (useSuggestions && getSuggestions && inputValue.length > 2) {
       getSuggestions(inputValue)
     } else {
-      setFilteredOptions(
-        options.filter(opt =>
-          opt[filterKey].toLowerCase().includes(inputValue.toLowerCase())
-        )
-      )
+      setFilteredOptions(options.filter((opt) => opt[filterKey].toLowerCase().includes(inputValue.toLowerCase())))
     }
   }, [inputValue, options, useSuggestions, getSuggestions, filterKey])
 
@@ -59,15 +55,11 @@ const InputDropdown = ({
         autoComplete="off"
         {...inputProps}
       />
-      {showDropdown && (
-        <Dropdown
-          data={dropdownData}
-          selectSuggestion={handleSelect}
-          setShowDropdown={setShowDropdown}
-        />
-      )}
+      {showDropdown && <Dropdown data={dropdownData} selectSuggestion={handleSelect} setShowDropdown={setShowDropdown} />}
     </div>
   )
 }
+
+InputDropdown.displayName = 'InputDropdown'
 
 export default InputDropdown

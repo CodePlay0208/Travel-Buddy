@@ -81,4 +81,6 @@ const PopularSection = (props) => {
   )
 }
 
+PopularSection.displayName = 'PopularSection'
+
 export default connect(mapStateToProps, { getTrips })(memo(PopularSection))

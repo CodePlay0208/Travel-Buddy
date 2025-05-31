@@ -20,7 +20,7 @@ const SearchResultsPage = (props) => {
   }, [getTrips, searchForm])
 
   const showMoreTrips = () => {
-    getTrips(searchForm, trips.length, 50, true) 
+    getTrips(searchForm, trips.length, 50, true)
   }
   return (
     <SearchResultsPageContainer>
@@ -41,5 +41,7 @@ const SearchResultsPage = (props) => {
     </SearchResultsPageContainer>
   )
 }
+
+SearchResultsPage.displayName = 'SearchResultsPage'
 
 export default connect(mapStateToProps, { getTrips })(memo(SearchResultsPage))

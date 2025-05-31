@@ -57,4 +57,6 @@ const DateRange = ({ startDate, totalDays, onDelete }) => {
   )
 }
 
+DateRange.displayName = 'DateRange'
+
 export default DateRange

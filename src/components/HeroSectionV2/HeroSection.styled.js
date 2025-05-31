@@ -8,12 +8,14 @@ export const Container = styled.div`
   width: 100%;
   padding: 20px;
 `
+Container.displayName = 'HeroSectionV2Container'
 
 export const Section = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
 `
+Section.displayName = 'HeroSectionV2Section'
 
 export const ImageWrapper = styled.div`
   img {
@@ -22,6 +24,7 @@ export const ImageWrapper = styled.div`
     border-radius: 10px;
   }
 `
+ImageWrapper.displayName = 'ImageWrapper'
 
 export const TextWrapper = styled.div`
   display: flex;
@@ -39,6 +42,7 @@ export const TextWrapper = styled.div`
     color: white;
   }
 `
+TextWrapper.displayName = 'TextWrapper'
 
 export const Heading = styled.div`
   font-size: 3.5rem;
@@ -52,6 +56,8 @@ export const Heading = styled.div`
     font-size: 6rem;
   }
 `
+Heading.displayName = 'HeroSectionV2Heading'
+
 export const PublishHeading = styled.div`
   font-size: 3.5rem;
   font-weight: 700;
@@ -61,6 +67,8 @@ export const PublishHeading = styled.div`
     font-size: 5rem;
   }
 `
+PublishHeading.displayName = 'PublishHeading'
+
 export const BottomHeading = styled.div`
   font-size: 3.5rem;
   font-weight: 700;
@@ -73,6 +81,7 @@ export const BottomHeading = styled.div`
     font-size: 6rem;
   }
 `
+BottomHeading.displayName = 'BottomHeading'
 
 export const SubText = styled.p`
   width: 50%;
@@ -85,6 +94,8 @@ export const SubText = styled.p`
     font-size: 2.5rem;
   }
 `
+SubText.displayName = 'SubText'
+
 export const LeftText = styled.p`
   font-size: 1.25rem;
   text-align: right;
@@ -92,6 +103,7 @@ export const LeftText = styled.p`
     font-size: 2.5rem;
   }
 `
+LeftText.displayName = 'LeftText'
 
 export const RightSubText = styled.p`
   padding: 5% 5% 5% 0%;
@@ -104,6 +116,7 @@ export const RightSubText = styled.p`
     font-size: 2.5rem;
   }
 `
+RightSubText.displayName = 'RightSubText'
 
 export const SmallText = styled.span`
   font-family: Montserrat;
@@ -115,6 +128,7 @@ export const SmallText = styled.span`
     font-size: 6rem;
   }
 `
+SmallText.displayName = 'SmallText'
 
 export const BackgroundImage = styled.div`
   img {
@@ -123,6 +137,8 @@ export const BackgroundImage = styled.div`
     border-radius: 15px;
   }
 `
+BackgroundImage.displayName = 'BackgroundImage'
+
 export const PublishButton = styled.button`
   font-size: 3.5rem;
   padding: 1%;
@@ -140,6 +156,8 @@ export const PublishButton = styled.button`
     width: 100%;
   }
 `
+PublishButton.displayName = 'PublishButton'
+
 export const FlexContainer = styled.div`
   display: flex;
   overflow-x: scroll;
@@ -178,6 +196,8 @@ export const FlexContainer = styled.div`
     }
   }
 `
+FlexContainer.displayName = 'FlexContainer'
+
 export const PublishNowContainer = styled(FlexContainer)`
   @media (max-width: 786px) {
     flex-direction: column;
@@ -185,6 +205,8 @@ export const PublishNowContainer = styled(FlexContainer)`
     height: 100%;
   }
 `
+PublishNowContainer.displayName = 'PublishNowContainer'
+
 export const PublishNowContent = styled(FlexContainer)`
   padding: 1%;
   @media (max-width: 786px) {
@@ -193,3 +215,4 @@ export const PublishNowContent = styled(FlexContainer)`
     height: 100%;
   }
 `
+PublishNowContent.displayName = 'PublishNowContent'
