@@ -22,10 +22,15 @@ import {
   DayTab,
   AddButton,
   DayContainer,
+  DescriptionField,
+  InputColumn,
+  InputGroupDesc,
+  InputGroupDayName,
+  IncDayTab,
 } from './PublishTrip.styled'
 import TripDetail from './TripDetail'
 import TripDates from './TripDates'
-import { StyledToastContainer } from '../../styles/Global'
+import { Label, StyledToastContainer } from '../../styles/Global'
 import TripItinerary from './TripItinerary'
 import ItineraryPreview from './ItineraryPreview'
 import { FlexContainer } from '../../components/HeroSectionV2/HeroSection.styled'
@@ -33,6 +38,8 @@ import { FlexContainer } from '../../components/HeroSectionV2/HeroSection.styled
 import { DayTitle, List, ListItem, PreviewTitle } from './ItineraryPreview.styled'
 import { SVG } from '../../assets'
 import ClearIcon from '../../assets/svg/clear'
+import InclusionExclusion from './InclusionExclusion'
+import IncExcPreview from './IncExcPreview'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -142,6 +149,10 @@ const PublishTrip = (props) => {
     } else if (activeSection === TABS.USER) {
       setActiveSection(TABS.ITINERARY)
     }
+    else if (activeSection === TABS.ITINERARY) {
+      setActiveSection(TABS.INC_EXC)
+    }
+
   }, [activeSection, toEditTrip])
   const addDayTab = useCallback(() => {
     setTripData((prev) => ({
@@ -293,7 +304,8 @@ const PublishTrip = (props) => {
                     Itinerary
                   </ToggleTab>
                 </>
-              }{
+              }
+              {
                 <>
                   <Divider />
                   <ToggleTab className={activeSection === TABS.INC_EXC ? 'active' : ''} onClick={() => handleToggle(TABS.INC_EXC)}>
@@ -363,9 +375,15 @@ const PublishTrip = (props) => {
             )}
             {activeSection === TABS.INC_EXC && (
               <Container>
+                <InputGroupDayName>
+                  <Label fontSize="1.3rem" fontWeight="700" margin="2% 0%">
+                    Trip Include & Exclude
+                  </Label>
+                </InputGroupDayName>
                 <DayContainer>
                   {tripData.inc_exc.map((item, index) => (
-                    <DayTab
+                    <IncDayTab
+                    fontSize="0.8rem"
                       onClick={() => {
                         setCurIncExcIdx(index)
                       }}
@@ -373,17 +391,17 @@ const PublishTrip = (props) => {
                       className={index === curIncExcIdx ? 'active' : ''}
                     >
                       {item.inc_excTitle}
-                    </DayTab>
+                    </IncDayTab>
                   ))}
                 </DayContainer>
 
-                <TripItinerary
+                <InclusionExclusion
                   key={curIncExcIdx}
                   tripData={tripData.inc_exc[curIncExcIdx]}
                   handleChange={(name, value) => {
                     setTripData((prev) => ({
                       ...prev,
-                      inc_exc: prev.inc_exc.map((tab, i) => (i === curIncExcIdx ? { ...tab, [name]: value} : tab)),
+                      inc_exc: prev.inc_exc.map((tab, i) => (i === curIncExcIdx ? { ...tab, [name]: value } : tab)),
                     }))
                   }}
                 />
@@ -394,7 +412,7 @@ const PublishTrip = (props) => {
             {activeSection === TABS.INC_EXC ? (
               <>
                 <PreviewTitle>Preview</PreviewTitle>
-                <ItineraryPreview tripData={tripData.inc_exc[curIncExcIdx]} />
+                <IncExcPreview tripData={tripData.inc_exc[curIncExcIdx]} />
               </>
             ) : activeSection === TABS.ITINERARY ? (
               <>

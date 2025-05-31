@@ -1,7 +1,9 @@
 import React, { useRef, useState, useLayoutEffect } from 'react'
-import { Container, PreviewTitle, DayTitle, Content, List, ListItem } from './ItineraryPreview.styled'
+import IncludeIcon from './IncludeIcon.js'
+import ExcludeIcon from './ExcludeIcon.js'
+import { Container, PreviewTitle, DayTitle, Content, List, ListItem } from './IncExcPreview.styled.js'
 
-const ItineraryPreview = ({ tripData, margin }) => {
+const IncExcPreview = ({ tripData, margin }) => {
   const containerRef = useRef(null)
   const [height, setHeight] = useState(0)
 
@@ -21,13 +23,18 @@ const ItineraryPreview = ({ tripData, margin }) => {
     return () => ro.disconnect()
   }, [])
 
+  const isExclude = tripData?.inc_excTitle?.toLowerCase().includes('exclusions')
+
   return (
     <Container ref={containerRef} $height={height} margin={margin}>
-      <DayTitle>{tripData?.inc_excTitle}</DayTitle>
+      <DayTitle isExclude = {isExclude}>{tripData?.inc_excTitle}</DayTitle>
       <Content>
         <List>
           {tripData?.inc_excDescription?.map((text, idx) => (
-            <ListItem key={idx}>{text}</ListItem>
+            <ListItem key={idx} className="flex items-start">
+              {isExclude ? <ExcludeIcon className="mr-2 mt-1 flex-shrink-0" /> : <IncludeIcon className="mr-2 mt-1 flex-shrink-0" />}
+              <span>{text}</span>
+            </ListItem>
           ))}
         </List>
       </Content>
@@ -35,5 +42,5 @@ const ItineraryPreview = ({ tripData, margin }) => {
   )
 }
 
-ItineraryPreview.displayName = 'ItineraryPreview'
-export default ItineraryPreview
+IncExcPreview.displayName = 'ItineraryPreview'
+export default IncExcPreview

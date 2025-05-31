@@ -42,6 +42,11 @@ export const PublishTripPage = styled.div`
   width: 100%;
 `
 export const Container = styled.div`
+  display: flex;
+
+  flex-direction: column;
+  width: 100%;
+  /* gap: 1rem; */
   padding: 2%;
   margin: ${(props) => props.margin ?? '0'};
   box-shadow: 0px 1px 6px 0px #00000033;
@@ -188,8 +193,8 @@ export const DayTab = styled.button`
   cursor: pointer;
   transition: background-color 0.4s ease;
   font-weight: 700;
-  font-size: 1rem;
-  line-height: 1rem;
+  font-size: ${(props) => props.fontSize ?? '1rem'};
+  line-height: ${(props) => props.fontSize ?? '1rem'};
   height: 100%;
   color: black;
   padding: 0.5% 1%;
@@ -221,6 +226,16 @@ export const DayTab = styled.button`
     padding:3%  5%;
   
   `}
+`
+
+export const IncDayTab = styled(DayTab)`
+  color: black;
+  background-color: white;
+
+  &.active {
+    background: black;
+    color: ${colors.secondary};
+  }
 `
 
 export const AddButton = styled.button`
@@ -278,6 +293,17 @@ export const InputGroup = styled.div`
 
 export const InputGroupDayName = styled(InputGroup)`
   width: 100%;
+  @media (max-width: 440px) {
+    width: 100%;
+  }
+`
+export const InputGroupDayTitle = styled.div`
+  font-family: Montserrat;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0%;
+
   @media (max-width: 440px) {
     width: 100%;
   }
