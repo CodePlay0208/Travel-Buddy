@@ -45,7 +45,7 @@ const ChatBox = (props) => {
       setMessages(res.data.messages.reverse())
       socket.emit('join chat', { roomId: selectedChat.chatId, userId: user.userId })
     } catch (e) {
-      console.log('Error: fetchMessagesForChat-', e)
+      //console.log('Error: fetchMessagesForChat-', e)
     }
   }
 
@@ -60,7 +60,7 @@ const ChatBox = (props) => {
   const onSendMessage = async (e) => {
     e.preventDefault()
     if (messageText) {
-      console.log('onSendMessage called')
+      //console.log('onSendMessage called')
       socket.emit('stop typing', selectedChat.chatId)
       if (localStorage.token) {
         setAuthToken(localStorage.token)
@@ -72,7 +72,7 @@ const ChatBox = (props) => {
         setMessages([...messages, res.data])
         setMessageText('')
       } catch (e) {
-        console.log('Error: onSendMessage-', e)
+        //console.log('Error: onSendMessage-', e)
       }
     }
   }

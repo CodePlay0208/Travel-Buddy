@@ -10,11 +10,11 @@ export const TripsApi = {
       const result = await ApiService.get(`${API_PATH.TRIPS_API}?${queryString}`, {
         baseURL: env.BASE_API_URL,
       })
-      console.log('getTrips SUCCESS', result)
+      //console.log('getTrips SUCCESS', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('getTrips ERROR', e)
+      //console.log('getTrips ERROR', e)
       throw e
     }
   },
@@ -26,11 +26,11 @@ export const TripsApi = {
           withCredentials: true,
         },
       })
-      console.log('getUserTrips SUCCESS', result)
+      //console.log('getUserTrips SUCCESS', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('getUserTrips ERROR', e)
+      //console.log('getUserTrips ERROR', e)
       throw e
     }
   },
@@ -42,11 +42,11 @@ export const TripsApi = {
           withCredentials: true,
         },
       })
-      console.log('getTripById SUCCESS', result)
+      //console.log('getTripById SUCCESS', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('getTripById ERROR', e)
+      //console.log('getTripById ERROR', e)
       throw e
     }
   },
@@ -58,11 +58,11 @@ export const TripsApi = {
           withCredentials: true,
         },
       })
-      console.log('getUserPastTrips SUCCESS', result)
+      //console.log('getUserPastTrips SUCCESS', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('getUserPastTrips ERROR', e)
+      //console.log('getUserPastTrips ERROR', e)
       throw e
     }
   },
@@ -74,11 +74,11 @@ export const TripsApi = {
           withCredentials: true,
         },
       })
-      console.log('getUserWishlistTrips SUCCESS', result)
+      //console.log('getUserWishlistTrips SUCCESS', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('getUserWishlistTrips ERROR', e)
+      //console.log('getUserWishlistTrips ERROR', e)
       throw e
     }
   },
@@ -90,11 +90,11 @@ export const TripsApi = {
           withCredentials: true,
         },
       })
-      console.log('getUserRequestedTrips SUCCESS', result)
+      //console.log('getUserRequestedTrips SUCCESS', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('getUserRequestedTrips ERROR', e)
+      //console.log('getUserRequestedTrips ERROR', e)
       throw e
     }
   },
@@ -111,11 +111,11 @@ export const TripsApi = {
         },
         isMultiMedia,
       )
-      console.log('editTrip SUCCESS: ', result)
+      //console.log('editTrip SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('editTrip ERROR', e)
+      //console.log('editTrip ERROR', e)
       throw e
     }
   },
@@ -124,11 +124,11 @@ export const TripsApi = {
       const result = await ApiService.delete(`${API_PATH.DELETE_TRIP_API}/${baseTripId}`, {
         baseURL: env.BASE_API_URL,
       })
-      console.log('deleteUserTrip SUCCESS: ', result)
+      //console.log('deleteUserTrip SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('deleteUserTrip ERROR: ', e)
+      //console.log('deleteUserTrip ERROR: ', e)
       throw e
     }
   },
@@ -142,11 +142,11 @@ export const TripsApi = {
         },
         false,
       )
-      console.log('createTrip SUCCESS: ', result)
+      //console.log('createTrip SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('createTrip ERROR: ', e)
+      //console.log('createTrip ERROR: ', e)
       throw e
     }
   },
@@ -161,11 +161,11 @@ export const TripsApi = {
         },
         isMultiMedia,
       )
-      console.log('CREATE_TRIPS_IMAGES_API SUCCESS: ', result)
+      //console.log('CREATE_TRIPS_IMAGES_API SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('CREATE_TRIPS_IMAGES_API ERROR: ', e)
+      //console.log('CREATE_TRIPS_IMAGES_API ERROR: ', e)
       throw e
     }
   },
@@ -179,11 +179,11 @@ export const TripsApi = {
         },
         isMultiMedia,
       )
-      console.log('CREATE_TRIPS_IMAGES_API SUCCESS: ', result)
+      //console.log('CREATE_TRIPS_IMAGES_API SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('CREATE_TRIPS_IMAGES_API ERROR: ', e)
+      //console.log('CREATE_TRIPS_IMAGES_API ERROR: ', e)
       throw e
     }
   },
@@ -196,10 +196,10 @@ export const TripsApi = {
           baseURL: env.BASE_API_URL,
         },
       )
-      console.log('addWishlistTrip SUCCESS', result)
+      //console.log('addWishlistTrip SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('addWishlistTrip ERROR: ', e)
+      //console.log('addWishlistTrip ERROR: ', e)
       throw e
     }
   },
@@ -212,41 +212,45 @@ export const TripsApi = {
           baseURL: env.BASE_API_URL,
         },
       )
-      console.log('removeWishlistTrip SUCCESS', result)
+      //console.log('removeWishlistTrip SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('removeWishlistTrip ERROR: ', e)
+      //console.log('removeWishlistTrip ERROR: ', e)
       throw e
     }
   },
-  requestJoinTrip: async (tripInstanceId,hostId) => {
+  requestJoinTrip: async (tripInstanceId, hostId) => {
     try {
-      const result = await ApiService.post(`${API_PATH.REQUEST_JOIN_TRIP}`, { tripInstanceId,hostId }, { baseURL: env.BASE_API_URL })
-      console.log('requestJoinTrip SUCCESS', result)
+      const result = await ApiService.post(`${API_PATH.REQUEST_JOIN_TRIP}`, { tripInstanceId, hostId }, { baseURL: env.BASE_API_URL })
+      //console.log('requestJoinTrip SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('requestJoinTrip ERROR: ', e)
+      //console.log('requestJoinTrip ERROR: ', e)
       throw e
     }
   },
 
-  leaveTrip: async (tripInstanceId,hostId) => {
+  leaveTrip: async (tripInstanceId, hostId) => {
     try {
-      const result = await ApiService.post(`${API_PATH.LEAVE_TRIP}`, { tripInstanceId,hostId }, { baseURL: env.BASE_API_URL })
-      console.log('leaveTrip SUCCESS', result)
+      const result = await ApiService.post(`${API_PATH.LEAVE_TRIP}`, { tripInstanceId, hostId }, { baseURL: env.BASE_API_URL })
+      //console.log('leaveTrip SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('leaveTrip ERROR: ', e)
+      //console.log('leaveTrip ERROR: ', e)
       throw e
     }
   },
   getRequestedMembers: async (tripInstanceId) => {
     try {
-      const result = await ApiService.post(`${API_PATH.GET_REQUESTED_MEMBERS}`, {tripInstanceId: tripInstanceId }, { baseURL: env.BASE_API_URL })
-      console.log('getRequestedMembers SUCCESS', result)
+      const result = await ApiService.post(
+        `${API_PATH.GET_REQUESTED_MEMBERS}`,
+        { tripInstanceId: tripInstanceId },
+        { baseURL: env.BASE_API_URL },
+      )
+      //console.log('getRequestedMembers SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('getRequestedMembers ERROR: ', e)
+      //console.log('getRequestedMembers ERROR: ', e)
       throw e
     }
   },
@@ -254,10 +258,10 @@ export const TripsApi = {
   addMemberTrip: async ({ tripInstanceId, memberId }) => {
     try {
       const result = await ApiService.post(`${API_PATH.ADD_MEMBER_TRIP}`, { tripInstanceId, memberId }, { baseURL: env.BASE_API_URL })
-      console.log('addMemberTrip SUCCESS', result)
+      //console.log('addMemberTrip SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('addMemberTrip ERROR: ', e)
+      //console.log('addMemberTrip ERROR: ', e)
       throw e
     }
   },
@@ -265,20 +269,24 @@ export const TripsApi = {
   removeMemberAsHost: async ({ tripInstanceId, memberId }) => {
     try {
       const result = await ApiService.post(`${API_PATH.REMOVE_MEMBER_AS_HOST}`, { tripInstanceId, memberId }, { baseURL: env.BASE_API_URL })
-      console.log('removeMemberAsHost SUCCESS', result)
+      //console.log('removeMemberAsHost SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('removeMemberAsHost ERROR: ', e)
+      //console.log('removeMemberAsHost ERROR: ', e)
       throw e
     }
   },
   declineRequest: async ({ tripInstanceId, memberId }) => {
     try {
-      const result = await ApiService.post(`${API_PATH.DECLINE_REQUEST_AS_HOST}`, { tripInstanceId, memberId }, { baseURL: env.BASE_API_URL })
-      console.log('removeMemberAsHost SUCCESS', result)
+      const result = await ApiService.post(
+        `${API_PATH.DECLINE_REQUEST_AS_HOST}`,
+        { tripInstanceId, memberId },
+        { baseURL: env.BASE_API_URL },
+      )
+      //console.log('removeMemberAsHost SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('removeMemberAsHost ERROR: ', e)
+      //console.log('removeMemberAsHost ERROR: ', e)
       throw e
     }
   },

@@ -53,7 +53,7 @@ const LoginPage = (props) => {
   const googleSignIn = useGoogleLogin({
     clientId: '1022164133679-ki2bnhs4j6njqkehebo7dmo3k96rdfvc.apps.googleusercontent.com',
     onSuccess: (response) => {
-      console.log(response)
+      //console.log(response)
       const token = response.access_token
       setGoogleToken(token)
 
@@ -76,7 +76,7 @@ const LoginPage = (props) => {
         })
 
         .then((data) => {
-          console.log('the data is', data)
+          //console.log('the data is', data)
           localStorage.setItem('token', data.token)
           loadUser()
           navigate('/')

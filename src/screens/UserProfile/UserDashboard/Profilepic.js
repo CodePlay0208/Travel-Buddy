@@ -24,7 +24,7 @@ const Profilepic = ({ profile }) => {
         },
       })
       alert('Image uploaded successfully!')
-      console.log('Response:', response.data)
+      //console.log('Response:', response.data)
     } catch (error) {
       console.error('Error uploading image:', error)
       alert('Failed to upload image.')

@@ -148,11 +148,9 @@ const PublishTrip = (props) => {
       setActiveSection(TABS.USER)
     } else if (activeSection === TABS.USER) {
       setActiveSection(TABS.ITINERARY)
-    }
-    else if (activeSection === TABS.ITINERARY) {
+    } else if (activeSection === TABS.ITINERARY) {
       setActiveSection(TABS.INC_EXC)
     }
-
   }, [activeSection, toEditTrip])
   const addDayTab = useCallback(() => {
     setTripData((prev) => ({
@@ -249,7 +247,7 @@ const PublishTrip = (props) => {
     const formDataImages = new FormData()
     tripData.destinationImages?.forEach((image) => {
       formDataImages.append('destinationImages', image.file)
-      console.log(image)
+      //console.log(image)
     })
 
     // let tripId = ""
@@ -383,7 +381,7 @@ const PublishTrip = (props) => {
                 <DayContainer>
                   {tripData.inc_exc.map((item, index) => (
                     <IncDayTab
-                    fontSize="0.8rem"
+                      fontSize="0.8rem"
                       onClick={() => {
                         setCurIncExcIdx(index)
                       }}

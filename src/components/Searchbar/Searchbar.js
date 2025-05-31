@@ -55,8 +55,8 @@ const Searchbar = (props) => {
   }
   return (
     <SearchBarContainer
-      widthValue={props.width ? props.width : `100%`}
-      heightValue={props.height ? props.height : `100%`}
+      widthvalue={props.width ? props.width : `100%`}
+      heightvalue={props.height ? props.height : `100%`}
       borderColor={props.borderColor ? props.borderColor : `grey`}
       onClick={() => {
         document.getElementById(customId).focus()

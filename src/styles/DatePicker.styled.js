@@ -15,8 +15,8 @@ export const DatePickerWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   overflow: visible;
-  height: ${(props) => props.heightValue};
-  width: ${(props) => props.widthValue};
+  height: ${(props) => props.heightvalue};
+  width: ${(props) => props.widthvalue};
 
   input {
     height: 100%;

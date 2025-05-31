@@ -71,7 +71,7 @@ const SignUp = (props) => {
     }
 
     const isAuth = await register({ ...formData, userKey: isEmail ? formData.email : `${formData.phoneNumber}` })
-    console.log(isAuth)
+    //console.log(isAuth)
 
     if (isAuth) {
       localStorage.setItem('userKey', isEmail ? formData.email : `${formData.phoneNumber}`)

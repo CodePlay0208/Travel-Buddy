@@ -24,7 +24,7 @@ const getAuthTokenImg = () => {
 const setGoogleToken = (googleToken) => {
   if (googleToken) {
     API_CONFIG.headers.GoogleAuthorization = `Bearer ${googleToken}`
-    console.log('API_CONFIG', API_CONFIG)
+    //console.log('API_CONFIG', API_CONFIG)
   }
 }
 
@@ -43,10 +43,10 @@ const ApiService = {
         baseURL: options.baseURL || env.BASE_API_URL,
         headers: headerValue,
       })
-      console.log('GET RES: ', res)
+      //console.log('GET RES: ', res)
       return res
     } catch (e) {
-      console.log('GET Error: ', e)
+      //console.log('GET Error: ', e)
       throw e
     }
   },
@@ -63,10 +63,10 @@ const ApiService = {
           ...options.headers,
         },
       })
-      console.log('POST RES: ', res)
+      //console.log('POST RES: ', res)
       return res
     } catch (e) {
-      console.log('POST Error: ', e)
+      //console.log('POST Error: ', e)
       throw e
     }
   },
@@ -80,10 +80,10 @@ const ApiService = {
         baseURL: options.baseURL || env.BASE_API_URL,
         headers: { ...API_CONFIG.headers, ...options.headers },
       })
-      console.log('DELETE RES: ', res)
+      //console.log('DELETE RES: ', res)
       return res
     } catch (e) {
-      console.log('DELETE Error: ', e)
+      //console.log('DELETE Error: ', e)
       throw e
     }
   },
@@ -97,10 +97,10 @@ const ApiService = {
         baseURL: options.baseURL || env.BASE_API_URL,
         headers: { ...(isMultiMedia ? API_CONFIG_IMG.headers : API_CONFIG.headers), ...options.headers },
       })
-      console.log('PUT RES: ', res)
+      //console.log('PUT RES: ', res)
       return res
     } catch (e) {
-      console.log('PUT Error: ', e)
+      //console.log('PUT Error: ', e)
       throw e
     }
   },

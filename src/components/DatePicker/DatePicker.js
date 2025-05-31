@@ -382,7 +382,7 @@ const DatePicker = (props) => {
   const displayValue = multiSelect ? selectedDates.map((simple) => dateToDisplayString(simple)).join(', ') : selectedDate
 
   return (
-    <DatePickerWrapper ref={wrapperRef} widthValue={props.width || '100%'} heightValue={props.height || '100%'}>
+    <DatePickerWrapper ref={wrapperRef} widthvalue={props.width || '100%'} heightvalue={props.height || '100%'}>
       {!showOnlyCalendar && (
         <>
           <Input

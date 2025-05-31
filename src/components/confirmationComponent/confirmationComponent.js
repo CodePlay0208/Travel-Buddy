@@ -13,7 +13,7 @@ const ModalContainer = styled.div`
 const Title = styled.h2`
   width: 488px;
   height: 68px;
-  
+
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 28.2978px;
@@ -55,11 +55,11 @@ const StayBtn = styled(Button)`
 const ConfirmationComponent = ({}) => {
   const onDelete = () => {
     // Handle delete action here
-    console.log('Profile deleted')
+    //console.log('Profile deleted')
   }
   const onStay = () => {
     // Handle stay action here
-    console.log('User chose to stay')
+    //console.log('User chose to stay')
   }
 
   return (

@@ -6,14 +6,14 @@ export const NewsletterApi = {
   newsLetterSubscribe: async (payload) => {
     try {
       const result = await ApiService.post(API_PATH.NEWSLETTER_API, payload, {
-        baseURL: env.BASE_API_URL
+        baseURL: env.BASE_API_URL,
       })
-      console.log('newsLetterSubscribe SUCCESS: ', result)
+      //console.log('newsLetterSubscribe SUCCESS: ', result)
 
-      return { status: result.status, data : result.data }
+      return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('newsLetterSubscribe ERROR: ', e)
+      //console.log('newsLetterSubscribe ERROR: ', e)
       throw e
     }
-  }
+  },
 }

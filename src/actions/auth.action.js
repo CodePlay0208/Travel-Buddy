@@ -41,11 +41,11 @@ export const loadUser = () => async (dispatch) => {
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
-    });
+    })
     dispatch({
       type: USER_LOADED,
       payload: res.data,
-    });
+    })
   } catch (e) {
     logout()
     dispatch({
@@ -125,9 +125,9 @@ export const verifyOTP =
         type: VERIFY_OTP_SUCCESS,
         payload: res.data,
       })
-      console.log(res)
+      //console.log(res)
 
-      console.log(res.data.token)
+      //console.log(res.data.token)
       localStorage.setItem('token', res.data.token)
       toast.success('OTP Verified!', { autoClose: 1500 })
 

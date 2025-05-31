@@ -8,10 +8,10 @@ export const ProfileApi = {
       const result = await ApiService.get(API_PATH.USER_PROFILE_API, {
         baseURL: env.BASE_API_URL,
       })
-      console.log('getUserProfile SUCCESS: ', result)
+      //console.log('getUserProfile SUCCESS: ', result)
       return result
     } catch (e) {
-      console.log('getUserProfile ERROR: ', e)
+      //console.log('getUserProfile ERROR: ', e)
     }
   },
 
@@ -20,10 +20,10 @@ export const ProfileApi = {
       const result = await ApiService.put(API_PATH.EDIT_PROFILE_API, payload, {
         baseURL: env.BASE_API_URL,
       })
-      console.log('editUserProfile SUCCESS: ', result)
+      //console.log('editUserProfile SUCCESS: ', result)
       return result
     } catch (e) {
-      console.log('editUserProfile ERROR: ', e)
+      //console.log('editUserProfile ERROR: ', e)
     }
   },
   deleteUserProfile: async () => {
@@ -31,10 +31,10 @@ export const ProfileApi = {
       const result = await ApiService.delete(API_PATH.DELETE_PROFILE_API, {
         baseURL: env.BASE_API_URL,
       })
-      console.log('deleteUserProfile SUCCESS: ', result)
+      //console.log('deleteUserProfile SUCCESS: ', result)
       return result
     } catch (e) {
-      console.log('deleteUserProfile ERROR: ', e)
+      //console.log('deleteUserProfile ERROR: ', e)
     }
   },
 }

@@ -5,11 +5,11 @@ import { env } from '../config/env'
 const NotificationApi = {
   getNotifications: async () => {
     try {
-      const result = await ApiService.post(`${API_PATH.GET_NOTIFICATIONS}`,{}, { baseURL: env.BASE_API_URL })
-      console.log('getNotifications SUCCESS', result)
+      const result = await ApiService.post(`${API_PATH.GET_NOTIFICATIONS}`, {}, { baseURL: env.BASE_API_URL })
+      //console.log('getNotifications SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('getNotifications ERROR: ', e)
+      //console.log('getNotifications ERROR: ', e)
       throw e
     }
   },
@@ -20,10 +20,10 @@ const NotificationApi = {
         { notificationId: notificationId },
         { baseURL: env.BASE_API_URL },
       )
-      console.log('getNotifications SUCCESS', result)
+      //console.log('getNotifications SUCCESS', result)
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('getNotifications ERROR: ', e)
+      //console.log('getNotifications ERROR: ', e)
       throw e
     }
   },

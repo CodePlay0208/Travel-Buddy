@@ -8,11 +8,11 @@ export const AuthApi = {
       const result = await ApiService.get(API_PATH.AUTH_USER_LOAD_API, {
         baseURL: env.BASE_API_URL,
       })
-      console.log('authAndLoadUser SUCCESS: ', result)
+      //console.log('authAndLoadUser SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('authAndLoadUser ERROR: ', e)
+      //console.log('authAndLoadUser ERROR: ', e)
       throw e
     }
   },
@@ -25,11 +25,11 @@ export const AuthApi = {
           withCredentials: true,
         },
       })
-      console.log('loginUser SUCCESS: ', result)
+      //console.log('loginUser SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('loginUser ERROR: ', e)
+      //console.log('loginUser ERROR: ', e)
       throw e
     }
   },
@@ -39,11 +39,11 @@ export const AuthApi = {
       const result = await ApiService.get(API_PATH.AUTH_GOOGLE_LOGIN_API, {
         baseURL: env.BASE_API_URL,
       })
-      console.log('loginUserWithGoogle SUCCESS: ', result)
+      //console.log('loginUserWithGoogle SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('loginUserWithGoogle ERROR: ', e)
+      //console.log('loginUserWithGoogle ERROR: ', e)
       throw e
     }
   },
@@ -56,11 +56,11 @@ export const AuthApi = {
           withCredentials: true,
         },
       })
-      console.log('registerUser SUCCESS: ', result)
+      //console.log('registerUser SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('registerUser ERROR: ', e)
+      //console.log('registerUser ERROR: ', e)
       throw e
     }
   },
@@ -70,11 +70,11 @@ export const AuthApi = {
       const result = await ApiService.post(API_PATH.AUTH_VERIFY_OTP, payload, {
         baseURL: env.BASE_API_URL,
       })
-      console.log('verifyOTP SUCCESS: ', result)
+      //console.log('verifyOTP SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('verifyOTP ERROR: ', e)
+      //console.log('verifyOTP ERROR: ', e)
       throw e
     }
   },
@@ -83,11 +83,11 @@ export const AuthApi = {
       const result = await ApiService.post(API_PATH.EDIT_SECONDARY_KEY, payload, {
         baseURL: env.BASE_API_URL,
       })
-      console.log('editSecondaryKey SUCCESS: ', result)
+      //console.log('editSecondaryKey SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('editSecondaryKey ERROR: ', e)
+      //console.log('editSecondaryKey ERROR: ', e)
       throw e
     }
   },
@@ -97,11 +97,11 @@ export const AuthApi = {
       const result = await ApiService.post(API_PATH.AUTH_RESEND_OTP, payload, {
         baseURL: env.BASE_API_URL,
       })
-      console.log('resendOtp SUCCESS: ', result)
+      //console.log('resendOtp SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('resendOtp ERROR: ', e)
+      //console.log('resendOtp ERROR: ', e)
       throw e
     }
   },

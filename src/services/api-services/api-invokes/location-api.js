@@ -8,11 +8,11 @@ export const LocationApi = {
       const result = await ApiService.get(`${API_PATH.LOCATION_API}/${payload}`, {
         baseURL: env.BASE_API_URL,
       })
-      console.log('getLocationByName SUCCESS: ', result)
+      //console.log('getLocationByName SUCCESS: ', result)
 
       return { status: result.status, data: result.data }
     } catch (e) {
-      console.log('getLocationByName ERROR: ', e)
+      //console.log('getLocationByName ERROR: ', e)
       throw e
     }
   },

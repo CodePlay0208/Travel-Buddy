@@ -3,8 +3,8 @@ import styled from 'styled-components'
 export const SearchBarContainer = styled.div`
   border: none;
   border-radius: 10px;
-  width: ${(props) => props.widthValue};
-  height: ${(props) => props.heightValue};
+  width: ${(props) => props.widthvalue};
+  height: ${(props) => props.heightvalue};
   display: flex;
   justify-content: space-between;
   align-items: center;
