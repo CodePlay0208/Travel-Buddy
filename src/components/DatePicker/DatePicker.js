@@ -31,11 +31,21 @@ const fullMonthNames = [
 ]
 
 const DatePicker = (props) => {
-  const { inputValues, setInputValues, placeholderValue, pickerType = 'default', maxDates, showOnlyCalendar } = props
+  const {
+    inputValues,
+    setInputValues,
+    placeholderValue,
+    pickerType = 'default',
+    maxDates,
+    showOnlyCalendar,
+
+    weekdaySelectionWeeks = 12,
+  } = props
 
   const multiSelect = maxDates && maxDates > 1
 
   const today = new Date()
+
   const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate())
   const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())
   const hundredYearsAgo = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate())
@@ -46,6 +56,8 @@ const DatePicker = (props) => {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDates, setSelectedDates] = useState(multiSelect ? (Array.isArray(inputValues) ? inputValues : []) : [])
   const [selectedDate, setSelectedDate] = useState(multiSelect ? '' : inputValues)
+
+  const [selectedWeekdays, setSelectedWeekdays] = useState([])
 
   const [showCalendar, setShowCalendar] = useState(showOnlyCalendar ? true : false)
   const [currentView, setCurrentView] = useState('days')
@@ -115,6 +127,51 @@ const DatePicker = (props) => {
     return () => document.removeEventListener('click', handleClickOutside)
   }, [selectedDate, showCalendar, multiSelect, showOnlyCalendar])
 
+  const generateDatesForWeekday = (weekdayIndex) => {
+    const dates = []
+
+    const start = new Date(todayMidnight)
+
+    const end = new Date(todayMidnight)
+    end.setDate(end.getDate() + weekdaySelectionWeeks * 7)
+
+    const cursor = new Date(start)
+    while (cursor <= end) {
+      if (cursor.getDay() === weekdayIndex) {
+        dates.push(new Date(cursor))
+      }
+      cursor.setDate(cursor.getDate() + 1)
+    }
+    return dates
+  }
+
+  const handleWeekdayClick = (weekdayIndex) => {
+    if (!showOnlyCalendar) return
+
+    let newSelectedWeekdays = []
+    let newSelectedDates = [...selectedDates]
+
+    if (selectedWeekdays.includes(weekdayIndex)) {
+      newSelectedWeekdays = selectedWeekdays.filter((w) => w !== weekdayIndex)
+
+      const toRemoveStrings = generateDatesForWeekday(weekdayIndex).map((dt) => dateToSimpleString(dt))
+      newSelectedDates = newSelectedDates.filter((d) => !toRemoveStrings.includes(d))
+    } else {
+      newSelectedWeekdays = [...selectedWeekdays, weekdayIndex]
+
+      const toAddDates = generateDatesForWeekday(weekdayIndex).map((dt) => dateToSimpleString(dt))
+      toAddDates.forEach((s) => {
+        if (!newSelectedDates.includes(s)) {
+          newSelectedDates.push(s)
+        }
+      })
+    }
+
+    setSelectedWeekdays(newSelectedWeekdays)
+    setSelectedDates(newSelectedDates)
+    setInputValues(newSelectedDates)
+  }
+
   const populateDays = () => {
     const year = currentDate.getFullYear()
     const month = currentDate.getMonth()
@@ -148,6 +205,7 @@ const DatePicker = (props) => {
         </span>,
       )
     }
+
     return days
   }
 
@@ -344,7 +402,7 @@ const DatePicker = (props) => {
             <NavButton onClick={handlePrev}>
               <img className="svgIcon" src={SVG.leftArrow} alt="" />
             </NavButton>
-            <HeaderContainer className="header-label" onClick={handleHeaderClick} >
+            <HeaderContainer className="header-label" onClick={handleHeaderClick}>
               {currentView === 'days' && `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`}
               {currentView === 'months' && `${currentDate.getFullYear()}`}
               {currentView === 'years' &&
@@ -361,8 +419,18 @@ const DatePicker = (props) => {
                 {currentView === 'days' && (
                   <>
                     <DayNames>
-                      {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-                        <span key={day}>{day}</span>
+                      {['Su', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, idx) => (
+                        <span
+                          key={day}
+                          onClick={() => handleWeekdayClick(idx)}
+                          style={{
+                            cursor: showOnlyCalendar ? 'pointer' : 'default',
+                            backgroundColor: selectedWeekdays.includes(idx) ? '#8DD3BB' : 'black',
+                            color: selectedWeekdays.includes(idx) ? 'black' : '#8DD3BB',
+                          }}
+                        >
+                          {day}
+                        </span>
                       ))}
                     </DayNames>
                     <Days>{populateDays()}</Days>
@@ -374,8 +442,17 @@ const DatePicker = (props) => {
             ) : (
               <>
                 <DayNames>
-                  {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-                    <span key={day}>{day}</span>
+                  {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, idx) => (
+                    <span
+                      key={day}
+                      onClick={() => handleWeekdayClick(idx)}
+                      style={{
+                        cursor: showOnlyCalendar ? 'pointer' : 'default',
+                        backgroundColor: selectedWeekdays.includes(idx) ? '#D3E3FC' : 'transparent',
+                      }}
+                    >
+                      {day}
+                    </span>
                   ))}
                 </DayNames>
                 <Days>{populateDays()}</Days>
@@ -389,3 +466,4 @@ const DatePicker = (props) => {
 }
 
 export default DatePicker
+DatePicker.displayName = 'DatePicker'

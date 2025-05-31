@@ -10,13 +10,13 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
       <InputRow>
         <InputColumn width="80%">
           <InputGroup>
-            <Label fontSize="1rem" fontWeight="600">
+            <Label fontSize="1rem" fontWeight="700">
               Duration (No. of Days)
             </Label>
             <Input name="duration" type="text" placeholder="Enter No. of Days" value={tripData.duration || ''} onChange={handleChange} />
           </InputGroup>
           <InputGroup>
-            <Label fontSize="1rem" fontWeight="600">
+            <Label fontSize="1rem" fontWeight="700">
               Pick Your Start Dates
             </Label>
             <DatePicker
@@ -35,10 +35,16 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
             />
           </InputGroup>
         </InputColumn>
-        <InputColumn>
+        <InputColumn gap="10px">
+          <InputGroup width="100%" >
+            <Label fontSize="1rem" fontWeight="700">
+              Schedule Trip
+            </Label>
+            <Input padding='2%' name="scheduleTrip" type="text" placeholder="Schedule Trip Duration" value={tripData.duration || ''} onChange={handleChange} />
+          </InputGroup>
           <InputRow>
-            <Label fontSize="1rem" fontWeight="600">
-              Dates
+            <Label fontSize="1rem" fontWeight="700">
+              Dates Preview
             </Label>
           </InputRow>
           {tripData.multipleDates?.map((date, index) => (

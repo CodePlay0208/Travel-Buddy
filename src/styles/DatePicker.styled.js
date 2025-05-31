@@ -182,7 +182,8 @@ export const DayNames = styled.div`
     width: 14.28%;
     aspect-ratio: 1;
     text-align: center;
-    padding: 2%;
+    margin: 2%;
+    border-radius: 4px;
     font-weight: bold;
     color: #333;
   }
