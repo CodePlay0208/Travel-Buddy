@@ -1,3 +1,6 @@
+﻿/* ================================================================
+   ALL CODE IN THIS FILE HAS BEEN COMMENTED OUT
+   ================================================================ 
 import { memo, useEffect } from 'react'
 import './ChatSideBar.css'
 import { connect } from 'react-redux'
@@ -50,3 +53,4 @@ const ChatSideBar = (props) => {
 }
 
 export default connect(mapStateToProps, { setSelectedChat, getAllChats })(memo(ChatSideBar))
+*/

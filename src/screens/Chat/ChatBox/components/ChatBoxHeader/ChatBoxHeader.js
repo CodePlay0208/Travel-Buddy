@@ -1,3 +1,6 @@
+﻿/* ================================================================
+   ALL CODE IN THIS FILE HAS BEEN COMMENTED OUT
+   ================================================================ 
 import { memo, useCallback } from 'react'
 import './ChatBoxHeader.css'
 import { connect } from 'react-redux'
@@ -35,3 +38,4 @@ const ChatBoxHeader = (props) => {
 }
 
 export default connect(mapStateToProps, null)(memo(ChatBoxHeader))
+*/

@@ -1,3 +1,6 @@
+﻿/* ================================================================
+   ALL CODE IN THIS FILE HAS BEEN COMMENTED OUT
+   ================================================================ 
 import { memo, useEffect, useState, useRef, useCallback } from 'react'
 import './ChatBox.css'
 import { connect } from 'react-redux'
@@ -181,3 +184,4 @@ const ChatBox = (props) => {
 }
 
 export default connect(mapStateToProps, { setFetchAgain })(memo(ChatBox))
+*/

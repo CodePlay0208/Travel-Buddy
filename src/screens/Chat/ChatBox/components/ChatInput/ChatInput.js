@@ -1,3 +1,6 @@
+﻿/* ================================================================
+   ALL CODE IN THIS FILE HAS BEEN COMMENTED OUT
+   ================================================================ 
 // import { useState, memo } from 'react'
 // import './ChatInput.css'
 // import { SVG } from '../../../../../assets'
@@ -76,3 +79,4 @@
 // }
 
 // export default connect(mapStateToProps, { sendMessage, emitTyping, setTypingState, emitStopTyping })(memo(ChatInput))
+*/

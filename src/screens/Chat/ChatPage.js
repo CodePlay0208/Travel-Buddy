@@ -1,3 +1,6 @@
+﻿/* ================================================================
+   ALL CODE IN THIS FILE HAS BEEN COMMENTED OUT
+   ================================================================ 
 import React, { memo, useState, useEffect } from 'react';
 import ChatBox from './ChatBox/ChatBox';
 import ChatSideBar from './ChatSideBar/ChatSideBar';
@@ -37,7 +40,7 @@ const ChatPage = () => {
       <div className="chatpage-container">
         {isMobile && (
           <button className="hamburger" onClick={toggleSidebar}>
-            ☰
+            â˜°
           </button>
         )}
         {isMobile && isSidebarOpen && (
@@ -52,3 +55,4 @@ const ChatPage = () => {
 };
 
 export default memo(ChatPage);
+*/

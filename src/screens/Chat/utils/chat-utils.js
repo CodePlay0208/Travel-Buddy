@@ -1,3 +1,6 @@
+﻿/* ================================================================
+   ALL CODE IN THIS FILE HAS BEEN COMMENTED OUT
+   ================================================================ 
 export const isSameSenderMargin = (messages, m, i, userId) => {
   if (i < messages.length - 1 && messages[i + 1].sender.userId === m.sender.userId && messages[i].sender.userId !== userId) return 33
   else if (
@@ -36,3 +39,4 @@ export const convertDateFormat = (dateStr) => {
   const [day, month, year] = dateStr.split('-')
   return `${year}-${month}-${day}`
 }
+*/
