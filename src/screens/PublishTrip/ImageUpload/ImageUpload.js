@@ -100,7 +100,7 @@ const ImageUpload = ({ tripData, setTripData }) => {
                 </DropImage>
               )}
               <FileUploaderContainer>
-                <FileUploadLabel>Upload</FileUploadLabel>
+                {/* <FileUploadLabel>Upload</FileUploadLabel> */}
                 <FileUploadBox>Upload Image</FileUploadBox>
               </FileUploaderContainer>
             </DropImageInner>
@@ -126,7 +126,7 @@ const ImageUpload = ({ tripData, setTripData }) => {
         )}
       </ImageUploading>
       <ShowAllImageContainer>
-        <SeeAllButton onClick={() => setOverlay(true)}>See All Photos</SeeAllButton>
+        <SeeAllButton onClick={() => setOverlay(true)}>See All Images</SeeAllButton>
       </ShowAllImageContainer>
       {overlay && (
         <ImageOverlay

@@ -140,32 +140,20 @@ export const FileUploadLabel = styled.div`
   }
 `
 
-export const FileUploadBox = styled.div`
-  width: 100%;
-  height: 47px;
-  border-radius: 40px;
-  gap: 8px;
-  padding-top: 8px;
-  padding-right: 15px;
-  padding-bottom: 8px;
-  padding-left: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const FileUploadBox = styled(Button)`
+  font-size: 1rem;
   font-weight: 500;
-  background-color: #f2f2f2;
-  color: black;
-  font-size: 0.75rem;
-  cursor: pointer;
+  padding: 4% 5%;
 
-  @media (max-width: 768px) {
-    border-radius: 40px;
-  }
-  @media (max-width: 440px) {
-    border-radius: 20px;
+  @media (max-width: 1080px) {
     font-size: 2rem;
   }
 `
+
+export const SeeAllButton = styled(FileUploadBox)`
+background-color: black;
+color: var(--color-primary);
+  `
 
 export const FileUploadPlaceholder = styled.button`
   @media (max-width: 768px) {
@@ -179,16 +167,6 @@ export const FileUploadPlaceholder = styled.button`
 export const UploadButtonContainer = styled.div`
   margin-left: auto;
 `
-export const SeeAllButton = styled(Button)`
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 4% 5%;
-
-  @media (max-width: 1080px) {
-    font-size: 2rem;
-  }
-`
-
 export const ShowAllImageContainer = styled.div`
   display: flex;
   justify-content: end;
