@@ -33,6 +33,8 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
               borderRadius="30px"
               backgroundColor="#f2f2f2"
               border="2px solid #f2f2f2"
+              selectedWeekdays={tripData.selectedWeekdays || []}
+              setSelectedWeekdays={(value) => handleTripDataChange('selectedWeekdays', value)}
             />
           </InputGroup>
         </InputColumn>

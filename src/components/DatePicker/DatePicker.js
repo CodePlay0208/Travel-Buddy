@@ -34,6 +34,8 @@ const DatePicker = (props) => {
   const {
     inputValues,
     setInputValues,
+    selectedWeekdays,
+    setSelectedWeekdays,
     placeholderValue,
     pickerType = 'default',
     maxDates,
@@ -52,12 +54,11 @@ const DatePicker = (props) => {
   const maxDate = pickerType === 'dob' ? todayMidnight : oneYearLater
 
   const [currentDate, setCurrentDate] = useState(new Date())
-  const [selectedDates, setSelectedDates] = useState(multiSelect ? (Array.isArray(inputValues) ? inputValues : []) : [])
+
+  const [selectedDates, setSelectedDates] = useState(multiSelect && Array.isArray(inputValues) ? inputValues : [])
   const [selectedDate, setSelectedDate] = useState(multiSelect ? '' : inputValues)
 
-  const [selectedWeekdays, setSelectedWeekdays] = useState([])
-
-  const [showCalendar, setShowCalendar] = useState(showOnlyCalendar ? true : false)
+  const [showCalendar, setShowCalendar] = useState(showOnlyCalendar || false)
   const [currentView, setCurrentView] = useState('days')
 
   const wrapperRef = useRef(null)
@@ -151,28 +152,36 @@ const DatePicker = (props) => {
   const handleWeekdayClick = (weekdayIndex) => {
     if (!showOnlyCalendar) return
 
-    let newSelectedWeekdays = []
-    let newSelectedDates = [...selectedDates]
+    let newSelectedWeekdays
+    let newDates = [...selectedDates]
 
     if (selectedWeekdays.includes(weekdayIndex)) {
       newSelectedWeekdays = selectedWeekdays.filter((w) => w !== weekdayIndex)
-      const toRemoveStrings = generateDatesForWeekday(weekdayIndex).map((dt) => dateToSimpleString(dt))
-      newSelectedDates = newSelectedDates.filter((d) => !toRemoveStrings.includes(d))
+
+      const toRemove = generateDatesForWeekday(weekdayIndex).map((d) => dateToSimpleString(d))
+
+      newDates = newDates.filter((s) => !toRemove.includes(s))
+
+      newDates = sortDateStrings(newDates)
     } else {
       newSelectedWeekdays = [...selectedWeekdays, weekdayIndex]
-      const toAddDates = generateDatesForWeekday(weekdayIndex).map((dt) => dateToSimpleString(dt))
-      toAddDates.forEach((s) => {
-        if (!newSelectedDates.includes(s)) {
-          newSelectedDates.push(s)
+
+      const toAdd = generateDatesForWeekday(weekdayIndex).map((d) => dateToSimpleString(d))
+
+      toAdd.forEach((s) => {
+        if (!newDates.includes(s)) {
+          newDates.push(s)
         }
       })
+
+      newDates = sortDateStrings(newDates)
     }
 
-    newSelectedDates = sortDateStrings(newSelectedDates)
-
     setSelectedWeekdays(newSelectedWeekdays)
-    setSelectedDates(newSelectedDates)
-    setInputValues(newSelectedDates)
+
+    setSelectedDates(newDates)
+
+    setInputValues(newDates)
   }
 
   const populateDays = () => {
@@ -181,7 +190,6 @@ const DatePicker = (props) => {
     const firstDayOfMonth = new Date(year, month, 1).getDay()
     const lastDateOfMonth = new Date(year, month + 1, 0).getDate()
     const days = []
-
     const prevMonthLastDate = new Date(year, month, 0).getDate()
 
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -198,6 +206,7 @@ const DatePicker = (props) => {
       const simple = dateToSimpleString(date)
       const isDisabled = date < minDate || date > maxDate
       const isSelected = multiSelect ? selectedDates.includes(simple) : selectedDate === simple
+
       days.push(
         <span
           key={dayNum}
@@ -224,7 +233,6 @@ const DatePicker = (props) => {
         }
         newDates = [...selectedDates, simpleDate]
       }
-
       newDates = sortDateStrings(newDates)
       setSelectedDates(newDates)
       setInputValues(newDates)
@@ -379,10 +387,10 @@ const DatePicker = (props) => {
     }
   }
 
-  const displayValue = multiSelect ? selectedDates.map((simple) => dateToDisplayString(simple)).join(', ') : selectedDate
+  const displayValue = multiSelect ? selectedDates.map((d) => dateToDisplayString(d)).join(', ') : selectedDate
 
   return (
-    <DatePickerWrapper ref={wrapperRef} widthvalue={props.width || '100%'} heightvalue={props.height || '100%'}>
+    <DatePickerWrapper ref={wrapperRef} widthValue={props.width || '100%'} heightValue={props.height || '100%'}>
       {!showOnlyCalendar && (
         <>
           <Input
@@ -391,7 +399,7 @@ const DatePicker = (props) => {
             value={displayValue}
             placeholder={placeholderValue}
             readOnly
-            onClick={() => setShowCalendar(!showCalendar)}
+            onClick={() => setShowCalendar((prev) => !prev)}
             className="SearchBar-date"
             border={props?.border}
             backgroundColor={props?.backgroundColor}
