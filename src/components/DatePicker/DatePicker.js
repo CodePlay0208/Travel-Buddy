@@ -38,14 +38,12 @@ const DatePicker = (props) => {
     pickerType = 'default',
     maxDates,
     showOnlyCalendar,
-
     weekdaySelectionWeeks = 12,
   } = props
 
   const multiSelect = maxDates && maxDates > 1
 
   const today = new Date()
-
   const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate())
   const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate())
   const hundredYearsAgo = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate())
@@ -81,6 +79,13 @@ const DatePicker = (props) => {
     }
     const [day, month, year] = dateString.split('-').map(Number)
     return new Date(year, month - 1, day)
+  }
+
+  const sortDateStrings = (arr) => {
+    return arr
+      .map((s) => parseDateString(s))
+      .sort((d1, d2) => d1 - d2)
+      .map((d) => dateToSimpleString(d))
   }
 
   const dateToSimpleString = (date) => {
@@ -129,9 +134,7 @@ const DatePicker = (props) => {
 
   const generateDatesForWeekday = (weekdayIndex) => {
     const dates = []
-
     const start = new Date(todayMidnight)
-
     const end = new Date(todayMidnight)
     end.setDate(end.getDate() + weekdaySelectionWeeks * 7)
 
@@ -153,12 +156,10 @@ const DatePicker = (props) => {
 
     if (selectedWeekdays.includes(weekdayIndex)) {
       newSelectedWeekdays = selectedWeekdays.filter((w) => w !== weekdayIndex)
-
       const toRemoveStrings = generateDatesForWeekday(weekdayIndex).map((dt) => dateToSimpleString(dt))
       newSelectedDates = newSelectedDates.filter((d) => !toRemoveStrings.includes(d))
     } else {
       newSelectedWeekdays = [...selectedWeekdays, weekdayIndex]
-
       const toAddDates = generateDatesForWeekday(weekdayIndex).map((dt) => dateToSimpleString(dt))
       toAddDates.forEach((s) => {
         if (!newSelectedDates.includes(s)) {
@@ -166,6 +167,8 @@ const DatePicker = (props) => {
         }
       })
     }
+
+    newSelectedDates = sortDateStrings(newSelectedDates)
 
     setSelectedWeekdays(newSelectedWeekdays)
     setSelectedDates(newSelectedDates)
@@ -212,22 +215,22 @@ const DatePicker = (props) => {
   const handleDateSelect = (date) => {
     const simpleDate = dateToSimpleString(date)
     if (multiSelect) {
+      let newDates
       if (selectedDates.includes(simpleDate)) {
-        const newDates = selectedDates.filter((d) => d !== simpleDate)
-        setSelectedDates(newDates)
-        setInputValues(newDates)
+        newDates = selectedDates.filter((d) => d !== simpleDate)
       } else {
         if (maxDates && selectedDates.length >= maxDates) {
           return
         }
-        const newDates = [...selectedDates, simpleDate]
-        setSelectedDates(newDates)
-        setInputValues(newDates)
+        newDates = [...selectedDates, simpleDate]
       }
+
+      newDates = sortDateStrings(newDates)
+      setSelectedDates(newDates)
+      setInputValues(newDates)
     } else {
       setInputValues(simpleDate)
       setSelectedDate(dateToDisplayString(simpleDate))
-
       if (!showOnlyCalendar) {
         setShowCalendar(false)
       }
@@ -345,13 +348,15 @@ const DatePicker = (props) => {
     if (todayMidnight >= minDate && todayMidnight <= maxDate) {
       const simpleDate = dateToSimpleString(todayMidnight)
       if (multiSelect) {
-        if (!selectedDates.includes(simpleDate)) {
-          if (!maxDates || selectedDates.length < maxDates) {
-            const newDates = [...selectedDates, simpleDate]
-            setSelectedDates(newDates)
-            setInputValues(newDates)
+        let newDates = [...selectedDates]
+        if (!newDates.includes(simpleDate)) {
+          if (!maxDates || newDates.length < maxDates) {
+            newDates.push(simpleDate)
           }
         }
+        newDates = sortDateStrings(newDates)
+        setSelectedDates(newDates)
+        setInputValues(newDates)
       } else {
         setInputValues(simpleDate)
         setSelectedDate(dateToDisplayString(simpleDate))
@@ -396,6 +401,7 @@ const DatePicker = (props) => {
           {displayValue && <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} />}
         </>
       )}
+
       {(showOnlyCalendar || showCalendar) && (
         <Calendar ref={calendarRef} className={showOnlyCalendar ? 'showOnlyCalendar' : ''}>
           <CalendarHeader>
@@ -413,6 +419,7 @@ const DatePicker = (props) => {
               <img className="svgIcon" src={SVG.rightArrow} alt="" />
             </NavButton>
           </CalendarHeader>
+
           <div className="calendar-body">
             {pickerType ? (
               <>

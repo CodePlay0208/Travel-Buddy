@@ -1,6 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
 
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 2%;
+  background: #ddf2eb;
+  box-shadow: 0px 0px 4px 0px #00000026;
+  border-radius: 10px;
+`
+
+const Element = styled.span`
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  width: ${(props) => props.width};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+`
+
 const DateRange = ({ startDate, totalDays, onDelete }) => {
   const [day, month, year] = startDate.split('-').map(Number)
   const start = new Date(year, month - 1, day)
@@ -21,29 +44,6 @@ const DateRange = ({ startDate, totalDays, onDelete }) => {
   if (end) {
     end.setDate(start.getDate() + duration)
   }
-
-  const Container = styled.div`
-    display: flex;
-    justify-content: space-between;
-    padding: 2%;
-    background: #DDF2EB;
-    box-shadow: 0px 0px 4px 0px #00000026;
-    border-radius: 10px;
-  `
-
-  const Element = styled.span`
-    font-size: 0.75rem;
-    line-height: 1rem;
-    font-weight: 600;
-    width: ${(props) => props.width};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    @media (max-width: 768px) {
-      font-size: 2.5rem;
-      line-height: 3rem;
-    }
-  `
 
   return (
     <Container>
