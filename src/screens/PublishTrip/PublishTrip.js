@@ -235,8 +235,6 @@ const PublishTrip = (props) => {
     const tripBody = {
       ...tripData,
       tripDates: processedTripDates,
-      startLocation: [tripData.startLocation],
-      destination: [tripData.destination],
     }
 
     delete tripBody.destinationImages
@@ -256,12 +254,6 @@ const PublishTrip = (props) => {
       //console.log(image)
     })
 
-    // let tripId = ""
-    // Object.values(isTripPublished.data).forEach((ids) => {
-    //   if (Array.isArray(ids)) {
-    //     tripIds = tripIds.concat(ids)
-    //   }
-    // })
     formDataImages.append('baseTripId', isTripPublished.data.baseTripId)
     await createTripsImages(formDataImages, true)
 
@@ -413,14 +405,14 @@ const PublishTrip = (props) => {
             )}
           </PublishTripLeftSection>
           <PublishTripRightSection>
-            {activeSection === TABS.INC_EXC ? (
+            {activeSection === TABS.TRIP ? (
+              <>
+                <TripDetailPreview tripData={tripData} />
+              </>
+            ) : activeSection === TABS.INC_EXC ? (
               <>
                 <PreviewTitle>Preview</PreviewTitle>
-                <IncExcPreview tripData={tripData} />
-              </>
-            ) : activeSection === TABS.TRIP ? (
-              <>
-                <TripDetailPreview tripData={tripData.inc_exc[curIncExcIdx]} />
+                <IncExcPreview tripData={tripData.inc_exc[curIncExcIdx]} />
               </>
             ) : activeSection === TABS.ITINERARY ? (
               <>

@@ -14,18 +14,8 @@ import {
 
 const TripDetailPreview = ({ tripData = {}, margin }) => {
   const {
-    startLocation = [
-      { name: 'Kashmiri Gate', sub: 'New Delhi' },
-      { name: 'New Delhi', sub: '20 June 2022' },
-      { name: 'Chandigarh', sub: '20 June 2022' },
-    ],
-    endLocation = [
-      { name: 'Manali', sub: 'New Delhi' },
-      { name: 'Kullu', sub: '20 June 2022' },
-      { name: 'Kasole', sub: '20 June 2022' },
-      { name: 'New Delhi', sub: '20 June 2022' },
-      { name: 'New Delhi', sub: '20 June 2022' },
-    ],
+    startLocation = [],
+    destination = [],
   } = tripData
 
   const containerRef = useRef(null)
@@ -47,7 +37,12 @@ const TripDetailPreview = ({ tripData = {}, margin }) => {
   }, [])
 
   const handleRemove = (section, idx) => {
-    console.log(`Remove ${section}[${idx}]`)
+    if (section === 'start') {
+      startLocation.splice(idx, 1)
+    } else if (section === 'end') {
+      destination.splice(idx, 1)
+    }
+    setHeight(height + 1) 
   }
 
   return (
@@ -76,8 +71,8 @@ const TripDetailPreview = ({ tripData = {}, margin }) => {
               </BulletWrapper>
               <LocationBox>
                 <div>
-                  <LocationName>{loc.name}</LocationName>
-                  <LocationSub>{loc.sub}</LocationSub>
+                  <LocationName>{loc.city}</LocationName>
+                  <LocationSub>{loc.state}</LocationSub>
                 </div>
                 <CloseButton onClick={() => handleRemove('start', idx)}>✕</CloseButton>
               </LocationBox>
@@ -87,8 +82,8 @@ const TripDetailPreview = ({ tripData = {}, margin }) => {
       </Timeline>
       <SectionTitle>Destinations</SectionTitle>
       <Timeline>
-        {endLocation.map((loc, idx) => {
-          const isLast = idx === endLocation.length - 1
+        {destination.map((loc, idx) => {
+          const isLast = idx === destination.length - 1
           return (
             <TimelineItem key={idx}>
               <BulletWrapper>
@@ -109,8 +104,8 @@ const TripDetailPreview = ({ tripData = {}, margin }) => {
               </BulletWrapper>
               <LocationBox>
                 <div>
-                  <LocationName>{loc.name}</LocationName>
-                  <LocationSub>{loc.sub}</LocationSub>
+                  <LocationName>{loc.city}</LocationName>
+                  <LocationSub>{loc.state}</LocationSub>
                 </div>
                 <CloseButton onClick={() => handleRemove('end', idx)}>✕</CloseButton>
               </LocationBox>

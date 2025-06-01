@@ -6,7 +6,7 @@ import Searchbar from '../../components/Searchbar/Searchbar'
 const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }) => {
   return (
     <Container>
-    <InputRow margin = "0 0 2.5%">
+      <InputRow margin="0 0 2.5%">
         <InputGroup>
           <Label fontSize="1rem" fontWeight="600">
             Title
@@ -21,16 +21,15 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
             padding="1.25%"
           />
         </InputGroup>
-       
       </InputRow>
-      <InputRow margin = "0 0 2.5%">
+      <InputRow margin="0 0 2.5%">
         <InputGroup>
           <Label fontSize="1rem" fontWeight="600">
             Pick Up Locations
           </Label>
           <Searchbar
             isReadOnly={isReadOnly}
-            inputValues={tripData.startLocation}
+            inputValues={tripData.startLocation} // array of strings
             setInputValues={(value) => handleTripDataChange('startLocation', value)}
             onValue="startLocation"
             placeholderValue="Enter Start Location"
@@ -39,6 +38,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
             fontWeight="500"
             borderColor="#0b87ac"
             dropDownFontSize="75%"
+            isMultiSelect={true}
           />
         </InputGroup>
         <InputGroup>
@@ -47,7 +47,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           </Label>
           <Searchbar
             isReadOnly={isReadOnly}
-            inputValues={tripData.destination}
+            inputValues={tripData.destination} // array of strings
             setInputValues={(value) => handleTripDataChange('destination', value)}
             onValue="destination"
             placeholderValue="Enter Destination"
@@ -56,10 +56,11 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
             fontWeight="500"
             borderColor="#0b87ac"
             dropDownFontSize="75%"
+            isMultiSelect={true}
           />
         </InputGroup>
       </InputRow>
-      <InputRow margin = "0 0 2.5%">
+      <InputRow margin="0 0 2.5%">
         <InputGroup>
           <Label fontSize="1rem" fontWeight="600">
             Minimun Budget
@@ -87,7 +88,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           />
         </InputGroup>
       </InputRow>
-      <InputRow margin = "0 0 2.5%">
+      <InputRow margin="0 0 2.5%">
         <InputGroup>
           <Label fontSize="1rem" fontWeight="600">
             Description

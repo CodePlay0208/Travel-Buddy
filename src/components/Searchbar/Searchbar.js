@@ -2,32 +2,45 @@ import React, { useState, memo } from 'react'
 import { SVG } from '../../assets'
 import { getLocationSuggestions } from '../../actions/location.action'
 import { connect } from 'react-redux'
-import { SearchBarContainer, SearchBarInput, LocationIcon, DropdownSC, City, State } from '../../styles/Searchbar.styled'
+import { SearchBarContainer } from '../../styles/Searchbar.styled'
 import { Input } from '../../styles/Global'
-import { FlexContainer } from '../HeroSectionV2/HeroSection.styled'
-import LineBorder from '../../styles/Line.styled'
-import { DropdownItem } from '../Dropdown/Dropdown.styled'
 import Dropdown from '../Dropdown/Dropdown'
+import { City, State } from '../../styles/Searchbar.styled'
 
 const mapStateToProps = (state) => ({
   suggestions: state.locationReducer.suggestions,
 })
 
 const Searchbar = (props) => {
-  const { suggestions, getLocationSuggestions, inputValues, setInputValues, onValue, placeholderValue, isReadOnly } = props
+  const {
+    suggestions,
+    getLocationSuggestions,
+    inputValues,
+    setInputValues,
+    onValue,
+    placeholderValue,
+    isReadOnly,
+    width,
+    height,
+    borderColor,
+    padding,
+    fontSize,
+    fontWeight,
+    border,
+    backgroundColor,
+    isMultiSelect = false,
+  } = props
+
+  const [inputText, setInputText] = useState({ city: '', state: '' })
   const [isDropdownVisible, setDropdownVisible] = useState(false)
   const [timeoutId, setTimeoutId] = useState(null)
 
-  const searchBarChangeHandler = (event) => {
+  const handleInputChange = (event) => {
     const value = event.target.value
-    setInputValues(value)
+    setInputText({ ...inputText, city: value })
 
-    // Clear the previous timeout if the user is still typing
-    if (timeoutId) {
-      clearTimeout(timeoutId)
-    }
+    if (timeoutId) clearTimeout(timeoutId)
 
-    // Set a new timeout
     const newTimeoutId = setTimeout(async () => {
       if (value.length > 2 && value.length < 25) {
         try {
@@ -43,40 +56,85 @@ const Searchbar = (props) => {
     setTimeoutId(newTimeoutId)
   }
 
+  const addToList = () => {
+   
+    if (Array.isArray(inputValues) && !inputValues.includes(inputText)) {
+      setInputValues([...inputValues, inputText])
+    }
+    setInputText({ city: '', state: '' })
+    setDropdownVisible(false)
+  }
+
   const selectSuggestion = (suggestion) => {
-    setInputValues(`${suggestion.city}, ${suggestion.state}`)
+    setInputText({ city: suggestion.city, state: suggestion.state })
     setTimeout(() => setDropdownVisible(false), 0)
   }
 
+  const handleClear = () => {
+    setInputText({ city: '', state: '' })
+  }
+
+  const formattedValue = [inputText.city, inputText.state].filter(Boolean).join(', ')
   const customId = `searchbar-input-${onValue}`
 
-  const handleClear = () => {
-    setInputValues('')
-  }
   return (
     <SearchBarContainer
-      widthvalue={props.width ? props.width : `100%`}
-      heightvalue={props.height ? props.height : `100%`}
-      borderColor={props.borderColor ? props.borderColor : `grey`}
-      onClick={() => {
-        document.getElementById(customId).focus()
-      }}
+      widthvalue={width || `100%`}
+      heightvalue={height || `100%`}
+      borderColor={borderColor || `grey`}
+      onClick={() => document.getElementById(customId)?.focus()}
     >
       <Input
         readOnly={isReadOnly}
         type="text"
         placeholder={placeholderValue}
         id={customId}
-        value={inputValues}
-        onChange={searchBarChangeHandler}
+        value={formattedValue}
+        onChange={handleInputChange}
         autoComplete="off"
-        padding={props.padding}
-        fontSize={props.fontSize ? props.fontSize : `inherit`}
-        fontWeight={props.fontWeight ? props.fontWeight : `600`}
-        border={props?.border}
-        backgroundColor={props?.backgroundColor}
+        padding={padding}
+        fontSize={fontSize || `inherit`}
+        fontWeight={fontWeight || `600`}
+        border={border}
+        backgroundColor={backgroundColor}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault()
+            addToList()
+          }
+        }}
       />
-      {!isReadOnly && inputValues && <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} />}
+
+      {!isReadOnly && (inputText.city || inputText.state) && (
+        <>
+          {isMultiSelect && (
+            <button
+              type="button"
+              style={{
+                background: '#0b87ac',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                width: '2rem',
+                height: '2rem',
+                marginLeft: '0.3rem',
+                cursor: 'pointer',
+                fontSize: '1.5rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              onClick={addToList}
+              title="Add"
+            >
+              +
+            </button>
+          )}
+          {!isMultiSelect && (
+            <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} style={{ marginLeft: '0.3rem', cursor: 'pointer' }} />
+          )}
+        </>
+      )}
       {/* <LocationIcon src={SVG.LocationIcon} alt="Location Icon" /> */}
       {isDropdownVisible && (
         <Dropdown
