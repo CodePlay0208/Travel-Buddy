@@ -40,6 +40,7 @@ import { SVG } from '../../assets'
 import ClearIcon from '../../assets/svg/clear'
 import InclusionExclusion from './InclusionExclusion'
 import IncExcPreview from './IncExcPreview'
+import TripDetailPreview from './TripDetailPreview'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -415,7 +416,11 @@ const PublishTrip = (props) => {
             {activeSection === TABS.INC_EXC ? (
               <>
                 <PreviewTitle>Preview</PreviewTitle>
-                <IncExcPreview tripData={tripData.inc_exc[curIncExcIdx]} />
+                <IncExcPreview tripData={tripData} />
+              </>
+            ) : activeSection === TABS.TRIP ? (
+              <>
+                <TripDetailPreview tripData={tripData.inc_exc[curIncExcIdx]} />
               </>
             ) : activeSection === TABS.ITINERARY ? (
               <>
