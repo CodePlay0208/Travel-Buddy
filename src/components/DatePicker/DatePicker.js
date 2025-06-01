@@ -390,7 +390,7 @@ const DatePicker = (props) => {
   const displayValue = multiSelect ? selectedDates.map((d) => dateToDisplayString(d)).join(', ') : selectedDate
 
   return (
-    <DatePickerWrapper ref={wrapperRef} widthValue={props.width || '100%'} heightValue={props.height || '100%'}>
+    <DatePickerWrapper ref={wrapperRef} widthvalue={props.width || '100%'} heightvalue={props.height || '100%'}>
       {!showOnlyCalendar && (
         <>
           <Input
@@ -440,8 +440,8 @@ const DatePicker = (props) => {
                           onClick={() => handleWeekdayClick(idx)}
                           style={{
                             cursor: showOnlyCalendar ? 'pointer' : 'default',
-                            backgroundColor: selectedWeekdays.includes(idx) ? '#8DD3BB' : 'black',
-                            color: selectedWeekdays.includes(idx) ? 'black' : '#8DD3BB',
+                            backgroundColor: selectedWeekdays?.includes(idx) ? '#8DD3BB' : 'black',
+                            color: selectedWeekdays?.includes(idx) ? 'black' : '#8DD3BB',
                           }}
                         >
                           {day}
