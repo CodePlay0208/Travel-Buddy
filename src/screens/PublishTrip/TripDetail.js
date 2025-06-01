@@ -6,10 +6,27 @@ import Searchbar from '../../components/Searchbar/Searchbar'
 const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }) => {
   return (
     <Container>
+    <InputRow>
+        <InputGroup>
+          <Label fontSize="1rem" fontWeight="600">
+            Title
+          </Label>
+          <Input
+            type="text"
+            name="title"
+            autoComplete="off"
+            value={tripData.title || ''}
+            onChange={handleChange}
+            placeholder="Trip Title"
+            padding="1.25%"
+          />
+        </InputGroup>
+       
+      </InputRow>
       <InputRow>
         <InputGroup>
           <Label fontSize="1rem" fontWeight="600">
-            Start Location
+            Pick Up Locations
           </Label>
           <Searchbar
             isReadOnly={isReadOnly}
@@ -45,7 +62,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
       <InputRow>
         <InputGroup>
           <Label fontSize="1rem" fontWeight="600">
-            Minimum Budget
+            Minimun Budget
           </Label>
           <Input
             type="text"
