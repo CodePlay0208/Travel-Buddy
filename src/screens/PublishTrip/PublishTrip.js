@@ -60,7 +60,7 @@ const DEFAULT_TRIP_DATA = {
   maxBudget: null,
   description: '',
   duration: 0,
-  title: 'Title',
+  title: '',
   destinationImages: [],
   removedDestinationImages: [],
   tripData: [],
