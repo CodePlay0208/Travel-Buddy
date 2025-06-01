@@ -57,7 +57,6 @@ const Searchbar = (props) => {
   }
 
   const addToList = () => {
-   
     if (Array.isArray(inputValues) && !inputValues.includes(inputText)) {
       setInputValues([...inputValues, inputText])
     }
@@ -110,24 +109,15 @@ const Searchbar = (props) => {
           {isMultiSelect && (
             <button
               type="button"
-              style={{
-                background: '#0b87ac',
-                color: 'white',
-                border: 'none',
-                borderRadius: '50%',
-                width: '2rem',
-                height: '2rem',
-                marginLeft: '0.3rem',
-                cursor: 'pointer',
-                fontSize: '1.5rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
+              style={{border:'none', background: 'transparent', cursor: 'pointer'}}
               onClick={addToList}
               title="Add"
             >
-              +
+              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect y="0.5" width="24" height="24" rx="12" fill="#8DD3BB" />
+                <path d="M12 7.49805V17.498" stroke="white" stroke-width="2.85714" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7 12.498H17" stroke="white" stroke-width="2.85714" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
             </button>
           )}
           {!isMultiSelect && (
