@@ -11,7 +11,8 @@ export const SearchBarContainer = styled.div`
   position: relative;
   overflow: visible;
 
-  .clear {
+  
+  .clear,.add-button {
     position: absolute;
     right: 0;
     padding: 2.5%;

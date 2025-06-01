@@ -108,8 +108,9 @@ const Searchbar = (props) => {
         <>
           {isMultiSelect && (
             <button
+              className="add-button"
               type="button"
-              style={{border:'none', background: 'transparent', cursor: 'pointer'}}
+              style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}
               onClick={addToList}
               title="Add"
             >
