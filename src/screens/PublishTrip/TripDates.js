@@ -34,7 +34,7 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
               backgroundColor="#f2f2f2"
               border="2px solid #f2f2f2"
               selectedWeekdays={tripData.selectedWeekdays || []}
-              setSelectedWeekdays={(value) => handleTripDataChange('selectedWeekdays', value)}
+              setSelectedWeekdays={(value) => handleTripDataChange('scheduledWeekdays', value)}
             />
           </InputGroup>
         </InputColumn>
@@ -55,7 +55,7 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
               name="scheduleTrip"
               type="text"
               placeholder="Schedule Trip Duration"
-              value={tripData.duration || ''}
+              value={tripData.scheduleTrip || ''}
               onChange={handleChange}
             />
           </InputGroup>

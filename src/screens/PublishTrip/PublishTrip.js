@@ -93,6 +93,30 @@ const formatDateObj = (dateObj) => {
   return `${d}-${m}-${y}`
 }
 
+const WEEKDAY_MAP = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+const weekdayNameToNumber = (name) => WEEKDAY_MAP.indexOf(name.toLowerCase())
+const weekdayNumberToName = (num) => WEEKDAY_MAP[num] || ''
+
+function strArrToObjArr(arr) {
+  if (!Array.isArray(arr)) return []
+  return arr.map((s) => {
+    if (typeof s === 'string') {
+      const [city, ...stateParts] = s.split(',')
+      return { city: city?.trim() || '', state: stateParts.join(',').trim() || '' }
+    }
+    return s
+  })
+}
+function objArrToStrArr(arr) {
+  if (!Array.isArray(arr)) return []
+  return arr.map((o) => {
+    if (typeof o === 'object' && o !== null) {
+      return `${o.city || ''}${o.state ? ',' + o.state : ''}`.trim()
+    }
+    return o
+  })
+}
+
 const PublishTrip = (props) => {
   const { createTrip, editTrip, createTripsImages, editTripImages } = props
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
@@ -112,6 +136,13 @@ const PublishTrip = (props) => {
         startDate: formatDate(editTripData.startDate),
         endDate: formatDate(editTripData.endDate),
         removedDestinationImages: editTripData.removedDestinationImages || [],
+    
+        startLocation: strArrToObjArr(editTripData.startLocation),
+        destination: strArrToObjArr(editTripData.destination),
+       
+        scheduledWeekdays: Array.isArray(editTripData.scheduledWeekdays)
+          ? editTripData.scheduledWeekdays.map(weekdayNameToNumber).filter((n) => n >= 0)
+          : [],
       }
       setTripData(formattedTripData)
       setToEditTrip(true)
@@ -205,22 +236,24 @@ const PublishTrip = (props) => {
     const tripDetails = {
       ...tripData,
       tripDates: { startDate: tripData.startDate, endDate: tripData.endDate },
+      startLocation: objArrToStrArr(tripData.startLocation),
+      destination: objArrToStrArr(tripData.destination),
+      scheduledWeekdays: Array.isArray(tripData.scheduledWeekdays)
+        ? tripData.scheduledWeekdays.map(weekdayNumberToName)
+        : [],
+      duration: Number(tripData.duration) || 0,
     }
-
     delete tripDetails.destinationImages
     delete tripDetails.removedDestinationImages
     delete tripDetails.endDate
     delete tripDetails.startDate
-
     const updatedDayTabs = makeDayTabsEmptyIfEmptyData()
     tripDetails.dayTabs = updatedDayTabs
-
     const isTripPublished = await editTrip(tripData.baseTripId, tripDetails, false)
     if (!isTripPublished) {
       toast.error('Failed to update trip. Please try again.')
       return
     }
-
     const isTripImagesPublished = await editTripImages(tripData.baseTripId, formDataImages, true)
     if (isTripImagesPublished) {
       toast.success('Trip updated successfully!')
@@ -235,11 +268,15 @@ const PublishTrip = (props) => {
     const tripBody = {
       ...tripData,
       tripDates: processedTripDates,
+      startLocation: objArrToStrArr(tripData.startLocation),
+      destination: objArrToStrArr(tripData.destination),
+      scheduledWeekdays: Array.isArray(tripData.scheduledWeekdays)
+        ? tripData.scheduledWeekdays.map(weekdayNumberToName)
+        : [],
+      duration: Number(tripData.duration) || 0,
     }
-
     delete tripBody.destinationImages
     delete tripBody.removedDestinationImages
-
     const updatedDayTabs = makeDayTabsEmptyIfEmptyData()
     tripBody.dayTabs = updatedDayTabs
     const isTripPublished = await createTrip(tripBody, false)
@@ -247,16 +284,12 @@ const PublishTrip = (props) => {
       toast.error('Failed to publish trip. Please try again.')
       return
     }
-
     const formDataImages = new FormData()
     tripData.destinationImages?.forEach((image) => {
       formDataImages.append('destinationImages', image.file)
-      //console.log(image)
     })
-
     formDataImages.append('baseTripId', isTripPublished.data.baseTripId)
     await createTripsImages(formDataImages, true)
-
     toast.success('Trip published successfully!')
     navigate('/')
   }, [getProcessedTripDates, tripData, makeDayTabsEmptyIfEmptyData, createTrip, createTripsImages, navigate])
