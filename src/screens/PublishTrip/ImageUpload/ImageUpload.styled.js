@@ -44,7 +44,7 @@ export const DropImage = styled.div`
   min-height: 10rem;
   aspect-ratio: 4 / 3;
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='21' ry='21' stroke='%23B1BFD0FF' stroke-width='3' stroke-dasharray='4%2c15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
-
+  margin:0 0 5%;
   border-radius: 9px;
   display: flex;
   justify-content: center;
@@ -117,7 +117,7 @@ export const FileUploaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 4%;
+  /* margin: 4%; */
   position: relative;
 `
 
@@ -205,7 +205,7 @@ export const ImagePreviewSection = styled.div`
   display: flex;
   overflow-x: auto;
   gap: 2.5%;
-  padding-top: 2.5%;
+  padding-top: 4%;
   width: 100%;
 `
 

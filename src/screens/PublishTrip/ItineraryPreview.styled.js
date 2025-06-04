@@ -2,9 +2,10 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   margin: ${(props) => props.margin ?? '0'};
-  box-shadow: 0px 0px 8px 0px #0000001a;
+box-shadow: 0px 1px 6px 0px #00000033;
+
   height: ${(props) => props.$height}px;
-  border-radius: 10px;
+  border-radius: 16px;
   overflow-y: scroll;
   width: 100%;
 
@@ -25,7 +26,7 @@ export const PreviewTitle = styled.h1`
   font-size: 1.5rem;
   font-weight: 600;
   color: #000;
-  margin: 2%;
+  margin: 0 0 4%;
 
   @media (max-width: 440px) {
     font-size: 6rem;
@@ -34,7 +35,7 @@ export const PreviewTitle = styled.h1`
 `
 
 export const DayTitle = styled.h1`
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-secondary);
   margin: 0 2% 1% 0;

@@ -27,7 +27,7 @@ const IncExcPreview = ({ tripData, margin }) => {
 
   return (
     <Container ref={containerRef} $height={height} margin={margin}>
-      <DayTitle isExclude={isExclude}>{tripData?.inc_excTitle}</DayTitle>
+      <DayTitle isExclude={isExclude}>{tripData?.inc_excTitle} :</DayTitle>
       <Content>
         <List>
           {tripData?.inc_excDescription?.map((text, idx) => (
