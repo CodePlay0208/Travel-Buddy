@@ -70,7 +70,7 @@ export const BulletWrapper = styled.div`
 
   .connector {
     position: absolute;
-    top: 125%;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     width: 0.125rem;

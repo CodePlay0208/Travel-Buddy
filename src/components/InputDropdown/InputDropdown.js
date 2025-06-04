@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Dropdown from '../Dropdown/Dropdown'
 import { Input } from '../../styles/Global'
+import ClearIcon from '../../assets/svg/clear'
 
 const InputDropdown = ({
   options = [],
@@ -42,7 +43,7 @@ const InputDropdown = ({
     setShowDropdown(false)
   }
 
-  const dropdownData = useSuggestions ? suggestions : filteredOptions
+  const dropdownData = options
 
   return (
     <div style={{ position: 'relative', width: '100%' }}>
@@ -55,6 +56,14 @@ const InputDropdown = ({
         autoComplete="off"
         {...inputProps}
       />
+      {/* <ClearIcon
+        onClick={() => {
+          setInputValue('')
+          onChange && onChange('')
+          setShowDropdown(false)
+        }}
+        style={{ position:"absolute", marginLeft: '0.3rem', cursor: 'pointer' }}
+      /> */}
       {showDropdown && <Dropdown data={dropdownData} selectSuggestion={handleSelect} setShowDropdown={setShowDropdown} />}
     </div>
   )
