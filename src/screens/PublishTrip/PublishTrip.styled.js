@@ -49,9 +49,9 @@ export const Container = styled.div`
 
   flex-direction: column;
   width: 100%;
-  /* gap: 1rem; */
-  padding: 2%;
+  padding: 3%;
   margin: ${(props) => props.margin ?? '0'};
+  gap: ${(props) => props.gap ?? '0px'};
   box-shadow: 0px 1px 6px 0px #00000033;
 
   border-radius: 16px;
@@ -98,7 +98,7 @@ export const DescriptionField = styled.textarea`
   align-items: flex-start;
   max-width: 100%;
   width: 100%;
-  height: 100px;
+  height: 110px;
   min-height: 100px;
   min-width: 85%;
   padding: 1% 1.25%;
@@ -480,7 +480,7 @@ export const SubmitButton = styled(NextButton)`
 export const InputRow = styled.div`
   position: relative;
   display: flex;
-  gap: 20px;
+  gap: ${(props) => props.gap || '20px'};
   margin: ${(props) => props.margin || '3% 0 0'};
 
   ${media.tablet`

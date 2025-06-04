@@ -5,11 +5,11 @@ import Searchbar from '../../components/Searchbar/Searchbar'
 
 const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }) => {
   return (
-    <Container>
-      <InputRow margin="0 0 2%">
+    <Container gap="20px">
+      <InputRow margin="0 0%">
         <InputGroup>
-          <Label fontSize="1rem" fontWeight="600">
-            Title
+          <Label fontSize="1rem" fontWeight="600" margin="0% 0 1%">
+            Trip Title
           </Label>
           <Input
             type="text"
@@ -22,9 +22,9 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           />
         </InputGroup>
       </InputRow>
-      <InputRow margin="0 0 2%">
+      <InputRow margin="0 0%">
         <InputGroup>
-          <Label fontSize="1rem" fontWeight="600">
+          <Label fontSize="1rem" fontWeight="600" margin="0% 0 1%">
             Pick Up Locations
           </Label>
           <Searchbar
@@ -42,7 +42,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           />
         </InputGroup>
         <InputGroup>
-          <Label fontSize="1rem" fontWeight="600">
+          <Label fontSize="1rem" fontWeight="600" margin="0% 0 1%">
             Destination
           </Label>
           <Searchbar
@@ -60,9 +60,9 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           />
         </InputGroup>
       </InputRow>
-      <InputRow margin="0 0 2%">
+      <InputRow margin="0 0%">
         <InputGroup>
-          <Label fontSize="1rem" fontWeight="600">
+          <Label fontSize="1rem" fontWeight="600" margin="0% 0 1%">
             Minimun Budget
           </Label>
           <Input
@@ -75,7 +75,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           />
         </InputGroup>
         <InputGroup>
-          <Label fontSize="1rem" fontWeight="600">
+          <Label fontSize="1rem" fontWeight="600" margin="0% 0 1%">
             Maximum Budget
           </Label>
           <Input
@@ -88,9 +88,9 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           />
         </InputGroup>
       </InputRow>
-      <InputRow margin="0 0 2%">
+      <InputRow margin="0 0%">
         <InputGroup>
-          <Label fontSize="1rem" fontWeight="600" margin="1% 0 1%">
+          <Label fontSize="1rem" fontWeight="600" margin="0% 0 1%">
             Description
           </Label>
           <DescriptionField name="description" value={tripData.description} onChange={handleChange} placeholder="Enter Trip Description" />

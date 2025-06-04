@@ -403,9 +403,9 @@ const PublishTrip = (props) => {
               </Container>
             )}
             {activeSection === TABS.INC_EXC && (
-              <Container>
+              <Container gap='16px'>
                 <InputGroupDayName>
-                  <Label fontSize="1.3rem" fontWeight="700" margin="2% 0%">
+                  <Label fontSize="1.3rem" fontWeight="700" margin="0% 0%">
                     Trip Include & Exclude
                   </Label>
                 </InputGroupDayName>

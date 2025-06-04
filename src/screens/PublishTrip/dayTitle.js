@@ -8,7 +8,6 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
     justify-content: space-between;
     padding: 1% 1.5%;
     background: #ddf2eb;
-    box-shadow: 0px 0px 4px 0px #00000026;
     border-radius: 10px;
   `
 

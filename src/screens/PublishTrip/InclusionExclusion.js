@@ -61,16 +61,16 @@ const InclusionExclusion = ({ tripData, handleChange, handleTripDataChange, hand
 
   return (
     <>
-      <InputRow>
-        <InputColumn gap="10px">
+      <InputRow margin="0 0" gap="32px">
+        <InputColumn gap="16px">
           <InputGroupDesc>
-            <InputColumn width="88%">
+            <InputColumn width="88%" margin='0'>
               <DescriptionField
                 name="inc_excDescription"
                 borderRadius="16px"
                 value={curPoint}
                 onChange={(e) => setCurPoint(e.target.value)}
-                placeholder="Enter Day Description"
+                placeholder={`Trip ${tripData?.inc_excTitle?.toLowerCase().includes('inclusions') ? 'Inclusion' : 'Exclusion'}`}
               />
             </InputColumn>
             <InputColumn width="10%">

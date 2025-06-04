@@ -8,10 +8,10 @@ import InputDropdown from '../../components/InputDropdown/InputDropdown'
 const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteDate }) => {
   return (
     <Container>
-      <InputRow margin="1% 0 0">
+      <InputRow margin="0 0" gap='32px'>
         <InputColumn width="80%">
           <InputGroup>
-            <Label fontSize="1rem" fontWeight="700">
+            <Label fontSize="1rem" fontWeight="700" margin="2% 0 2%">
               Duration (No. of Days)
             </Label>
             <Input name="duration" type="text" placeholder="Enter No. of Days" value={tripData.duration || ''} onChange={handleChange} />
@@ -38,9 +38,9 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
             />
           </InputGroup>
         </InputColumn>
-        <InputColumn>
+        <InputColumn gap="32px">
           <InputGroup width="100%">
-            <Label fontSize="1rem" fontWeight="700" margin="1.6% 0 0.8%">
+            <Label fontSize="1rem" fontWeight="700" margin="1.6% 0 1.6%">
               Schedule Trip
             </Label>
             <InputDropdown
@@ -54,8 +54,8 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
             />
           </InputGroup>
           <DatesContainer>
-            <InputRow>
-              <Label fontSize="1rem" fontWeight="700">
+            <InputRow margin="0 0" gap="0">
+              <Label fontSize="1rem" fontWeight="700" margin="0">
                 Dates Preview
               </Label>
             </InputRow>

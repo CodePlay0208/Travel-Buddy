@@ -180,7 +180,7 @@ export const DayNames = styled.div`
     align-items: center;
     justify-content: center;
     width: 14.28%;
-    aspect-ratio: 1;
+    aspect-ratio: 1.4;
     text-align: center;
     margin: 2%;
     border-radius: 4px;
