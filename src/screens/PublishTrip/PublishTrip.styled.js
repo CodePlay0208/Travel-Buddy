@@ -56,7 +56,8 @@ export const Container = styled.div`
 
   border-radius: 16px;
   @media (max-width: 440px) {
-    padding: 10% 5%;
+    padding: 5% 4%;
+    gap: ${(props) => props.mobileGap ?? props.gap ?? '0px'};
   }
 `
 export const DayContainer = styled.div`
@@ -485,7 +486,7 @@ export const InputRow = styled.div`
 
   ${media.tablet`
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
   `}
 `
 export const ButtonContainer = styled.div`

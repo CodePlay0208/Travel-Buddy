@@ -59,6 +59,7 @@ export const Input = styled.input`
       const fontSize = parseFloat(props.fontSize)
       return fontSize ? `${fontSize * 2}rem` : '2rem'
     }};
+    padding: ${(props) => props.mobPadding ?? '2.5%'};
     border-radius: 20px;
 
     &&::placeholder {
