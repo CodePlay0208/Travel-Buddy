@@ -320,7 +320,7 @@ const PublishTrip = (props) => {
               </ToggleTab>
               {!toEditTrip && (
                 <>
-                  <Divider />
+                  {/* <Divider /> */}
                   <ToggleTab className={activeSection === TABS.USER ? 'active' : ''} onClick={() => handleToggle(TABS.USER)}>
                     Trip Dates
                   </ToggleTab>
@@ -328,7 +328,7 @@ const PublishTrip = (props) => {
               )}
               {
                 <>
-                  <Divider />
+                  {/* <Divider /> */}
                   <ToggleTab className={activeSection === TABS.ITINERARY ? 'active' : ''} onClick={() => handleToggle(TABS.ITINERARY)}>
                     Itinerary
                   </ToggleTab>
@@ -336,7 +336,7 @@ const PublishTrip = (props) => {
               }
               {
                 <>
-                  <Divider />
+                  {/* <Divider /> */}
                   <ToggleTab className={activeSection === TABS.INC_EXC ? 'active' : ''} onClick={() => handleToggle(TABS.INC_EXC)}>
                     Include & Exclude
                   </ToggleTab>

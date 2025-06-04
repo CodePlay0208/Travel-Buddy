@@ -38,6 +38,9 @@ const media = {
 }
 
 export const PublishTripPage = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 100%;
 `
@@ -123,6 +126,9 @@ export const DescriptionField = styled.textarea`
 `
 
 export const PublishTripContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   position: relative;
   padding: 1%;
   width: 95%;
