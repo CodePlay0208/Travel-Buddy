@@ -11,6 +11,7 @@ import {
   LocationSub,
   CloseButton,
 } from './TripDetailPreview.styled'
+import ClearIcon from '../../assets/svg/clear'
 
 const TripDetailPreview = ({ tripData = {}, margin }) => {
   const {
@@ -74,7 +75,7 @@ const TripDetailPreview = ({ tripData = {}, margin }) => {
                   <LocationName>{loc.city}</LocationName>
                   <LocationSub>{loc.state}</LocationSub>
                 </div>
-                <CloseButton onClick={() => handleRemove('start', idx)}>✕</CloseButton>
+                <ClearIcon onClick={() => handleRemove('start', idx)}>✕</ClearIcon>
               </LocationBox>
             </TimelineItem>
           )
@@ -107,7 +108,7 @@ const TripDetailPreview = ({ tripData = {}, margin }) => {
                   <LocationName>{loc.city}</LocationName>
                   <LocationSub>{loc.state}</LocationSub>
                 </div>
-                <CloseButton onClick={() => handleRemove('end', idx)}>✕</CloseButton>
+                <ClearIcon onClick={() => handleRemove('end', idx)}>✕</ClearIcon>
               </LocationBox>
             </TimelineItem>
           )

@@ -23,15 +23,24 @@ export const Container = styled.div`
 
 export const SectionTitle = styled.h2`
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #050505;
   margin: 1rem 3% 0.5rem 3%;
+
+  @media (max-width: 440px) {
+    font-size: 4.5rem;
+    margin: 15px 0;
+  }
 `
 
 export const Timeline = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0 3% 1rem 3%;
+
+  @media (max-width: 440px) {
+    padding: 0;
+  }
 `
 
 export const TimelineItem = styled.li`
@@ -46,43 +55,70 @@ export const TimelineItem = styled.li`
   &:last-child {
     margin-bottom: 0;
   }
+
+  @media (max-width: 440px) {
+    margin-bottom: 12px;
+    gap: 12px;
+  }
 `
 
 export const BulletWrapper = styled.div`
   position: relative;
-  width: 1.125rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .connector {
     position: absolute;
-    top: 150%;
+    top: 125%;
     left: 50%;
     transform: translateX(-50%);
     width: 0.125rem;
     height: 200%;
     background-color: rgba(5, 5, 5, 0.2);
   }
+
+  @media (max-width: 1080px) {
+    .connector {
+      position: absolute;
+      top: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0.125rem;
+      height: 150%;
+      background-color: rgba(5, 5, 5, 0.2);
+    }
+  }
 `
 
 export const BulletSvg = styled.svg`
   flex-shrink: 0;
-  width: 1.125rem;
-  height: 1.125rem;
 `
 
 export const LocationBox = styled.div`
   flex: 1;
+
   background: #ddf2eb;
   border-radius: 0.5rem;
   padding: 0.5rem 0.75rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  svg{
+    width: 7px;
+    height: 7px;
+  }
 
   @media (max-width: 440px) {
-    padding: 0.75rem 1rem;
+    padding: 6px 12px;
+    border-radius: 8px;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 4px;
+    }
   }
 `
 
@@ -94,7 +130,7 @@ export const LocationName = styled.div`
   color: #050505;
 
   @media (max-width: 440px) {
-    font-size: 1.8rem;
+    font-size: 3rem;
   }
 `
 
@@ -106,7 +142,7 @@ export const LocationSub = styled.div`
   color: #050505;
 
   @media (max-width: 440px) {
-    font-size: 1.6rem;
+    font-size: 2.5rem;
   }
 `
 

@@ -521,10 +521,14 @@ export const PublishTripRightSection = styled.div`
   background: ${colors.light};
   border-radius: 12px;
   margin-top: 3%;
+  min-height: 300px; /* Ensures parent has height at all breakpoints */
 
   ${media.desktop`
     width: 100%;
+    height: 100%;
     max-width: 100%;
-    margin-top: 20px;
   `}
+  @media (max-width: 440px) {
+    min-height: 200px; /* Adjust for mobile if needed */
+  }
 `

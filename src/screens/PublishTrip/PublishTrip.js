@@ -439,9 +439,9 @@ const PublishTrip = (props) => {
           </PublishTripLeftSection>
           <PublishTripRightSection>
             {activeSection === TABS.TRIP ? (
-              <>
+              
                 <TripDetailPreview tripData={tripData} />
-              </>
+              
             ) : activeSection === TABS.INC_EXC ? (
               <>
                 <PreviewTitle>Preview</PreviewTitle>
