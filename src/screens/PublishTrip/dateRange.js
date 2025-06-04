@@ -29,13 +29,14 @@ const DateRange = ({ startDate, totalDays, onDelete }) => {
   const start = new Date(year, month - 1, day)
 
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  const dayOf = (date) => dayNames[date.getDay()]
 
+  const dayOf = (date) => dayNames[date.getDay()]
   const formatDate = (date) => {
     const d = String(date.getDate()).padStart(2, '0')
-    const m = String(date.getMonth() + 1).padStart(2, '0')
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const m = monthNames[date.getMonth()]
     const y = date.getFullYear()
-    return `${d}-${m}-${y}`
+    return `${d} ${m} ${y}`
   }
 
   const duration = totalDays ? parseInt(totalDays, 10) : 0
