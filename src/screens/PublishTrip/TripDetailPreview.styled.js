@@ -22,7 +22,7 @@ export const Container = styled.div`
 `
 
 export const SectionTitle = styled.h2`
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #050505;
   margin: 1rem 3% 0.5rem 3%;

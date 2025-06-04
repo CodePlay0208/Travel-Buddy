@@ -342,7 +342,7 @@ export const ToggleBetweenTripUser = styled.div`
   position: relative;
   display: flex;
   gap: 3%;
-  height: 50px;
+  height: 3rem;
   border-radius: 15px 15px 0 0;
 
   ${media.desktop`
@@ -370,15 +370,16 @@ export const ToggleTab = styled.div`
   transition: background-color 0.4s ease;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
+  font-size: 1rem;
+  line-height: 1rem;
   height: 100%;
   color: ${colors.black};
-  padding: 1%;
+  padding: 1rem;
   border-radius: 15px 15px 0 0;
 
   &.active {
-    background-color: ${colors.secondary};
+     background-color: ${colors.black};
+    color: ${colors.secondary};
   }
 
   ${media.desktop`

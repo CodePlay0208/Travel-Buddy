@@ -49,7 +49,7 @@ const TripDetailPreview = ({ tripData = {}, margin }) => {
     <Container ref={containerRef} $height={height} margin={margin}>
       <SectionTitle>Pick up Locations</SectionTitle>
       <Timeline>
-        {startLocation.map((loc, idx) => {
+        {startLocation?.map((loc, idx) => {
           const isLast = idx === startLocation.length - 1
           return (
             <TimelineItem key={idx}>

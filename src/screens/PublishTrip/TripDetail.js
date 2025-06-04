@@ -6,7 +6,7 @@ import Searchbar from '../../components/Searchbar/Searchbar'
 const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }) => {
   return (
     <Container>
-      <InputRow margin="0 0 2.5%">
+      <InputRow margin="0 0 2%">
         <InputGroup>
           <Label fontSize="1rem" fontWeight="600">
             Title
@@ -22,7 +22,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           />
         </InputGroup>
       </InputRow>
-      <InputRow margin="0 0 2.5%">
+      <InputRow margin="0 0 2%">
         <InputGroup>
           <Label fontSize="1rem" fontWeight="600">
             Pick Up Locations
@@ -60,7 +60,7 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           />
         </InputGroup>
       </InputRow>
-      <InputRow margin="0 0 2.5%">
+      <InputRow margin="0 0 2%">
         <InputGroup>
           <Label fontSize="1rem" fontWeight="600">
             Minimun Budget
@@ -88,9 +88,9 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           />
         </InputGroup>
       </InputRow>
-      <InputRow margin="0 0 2.5%">
+      <InputRow margin="0 0 2%">
         <InputGroup>
-          <Label fontSize="1rem" fontWeight="600">
+          <Label fontSize="1rem" fontWeight="600" margin="1% 0 1%">
             Description
           </Label>
           <DescriptionField name="description" value={tripData.description} onChange={handleChange} placeholder="Enter Trip Description" />
