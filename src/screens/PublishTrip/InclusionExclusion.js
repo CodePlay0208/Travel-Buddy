@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import {
   ButtonContainer,
   Container,
@@ -19,6 +19,26 @@ const InclusionExclusion = ({ tripData, handleChange, handleTripDataChange, hand
   const [curDescription, setCurDescription] = React.useState('')
   const [editIdx, setEditIdx] = React.useState(null)
   const [isEdit, setIsEdit] = React.useState(false)
+
+  
+  const containerRef = useRef(null)
+  const [height, setHeight] = useState(0)
+
+    useLayoutEffect(() => {
+    if (!containerRef.current) return
+    const parent = containerRef.current.parentElement
+    if (!parent) return
+
+    const updateHeight = () => {
+      setHeight(parent.clientHeight * 0.85)
+    }
+
+    updateHeight()
+
+    const ro = new ResizeObserver(updateHeight)
+    ro.observe(parent)
+    return () => ro.disconnect()
+  }, [])
 
   const handleAddPoint = () => {
     if (curPoint) {

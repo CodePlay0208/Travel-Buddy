@@ -46,7 +46,7 @@ export const PublishTripPage = styled.div`
 `
 export const Container = styled.div`
   display: flex;
-
+  min-height: 90%;
   flex-direction: column;
   width: 100%;
   padding: 3%;
