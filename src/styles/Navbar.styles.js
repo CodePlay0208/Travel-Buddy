@@ -9,6 +9,7 @@ export const NavContainer = styled.div`
   font-size: 2rem;
   padding: ${(props) => (props.isImageNavbar ? `0px` : `0px`)};
   z-index: 1000;
+  max-width: 2500px;
   position: ${(props) => (props.isImageNavbar ? `absolute` : `relative`)};
   width: 100%;
   padding-top: 0;
