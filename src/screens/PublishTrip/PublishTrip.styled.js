@@ -297,6 +297,23 @@ export const InputGroup = styled.div`
   `}
 `
 
+export const DatesContainer = styled.div`
+  max-height: 300px;
+  overflow-y: auto;
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  /* Optional: style the scrollbar for better UX */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #d9d9d9;
+    border-radius: 8px;
+  }
+`
+
 export const InputGroupDayName = styled(InputGroup)`
   width: 100%;
   @media (max-width: 440px) {
@@ -384,7 +401,7 @@ export const ToggleTab = styled.div`
   border-radius: 15px 15px 0 0;
 
   &.active {
-     background-color: ${colors.black};
+    background-color: ${colors.black};
     color: ${colors.secondary};
   }
 

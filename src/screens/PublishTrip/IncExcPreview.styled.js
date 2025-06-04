@@ -85,7 +85,7 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.8rem;
   width: 95%;
   font-size: 1.2rem;
