@@ -7,6 +7,10 @@ const Container = styled.div`
   padding: 2%;
   background: #ddf2eb;
   border-radius: 10px;
+
+  @media (max-width: 440px) {
+    padding: 4% 2%;
+  }
 `
 
 const Element = styled.span`
