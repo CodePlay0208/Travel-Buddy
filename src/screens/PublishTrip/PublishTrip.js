@@ -136,10 +136,10 @@ const PublishTrip = (props) => {
         startDate: formatDate(editTripData.startDate),
         endDate: formatDate(editTripData.endDate),
         removedDestinationImages: editTripData.removedDestinationImages || [],
-    
+
         startLocation: strArrToObjArr(editTripData.startLocation),
         destination: strArrToObjArr(editTripData.destination),
-       
+
         scheduledWeekdays: Array.isArray(editTripData.scheduledWeekdays)
           ? editTripData.scheduledWeekdays.map(weekdayNameToNumber).filter((n) => n >= 0)
           : [],
@@ -238,9 +238,7 @@ const PublishTrip = (props) => {
       tripDates: { startDate: tripData.startDate, endDate: tripData.endDate },
       startLocation: objArrToStrArr(tripData.startLocation),
       destination: objArrToStrArr(tripData.destination),
-      scheduledWeekdays: Array.isArray(tripData.scheduledWeekdays)
-        ? tripData.scheduledWeekdays.map(weekdayNumberToName)
-        : [],
+      scheduledWeekdays: Array.isArray(tripData.scheduledWeekdays) ? tripData.scheduledWeekdays.map(weekdayNumberToName) : [],
       duration: Number(tripData.duration) || 0,
     }
     delete tripDetails.destinationImages
@@ -270,9 +268,7 @@ const PublishTrip = (props) => {
       tripDates: processedTripDates,
       startLocation: objArrToStrArr(tripData.startLocation),
       destination: objArrToStrArr(tripData.destination),
-      scheduledWeekdays: Array.isArray(tripData.scheduledWeekdays)
-        ? tripData.scheduledWeekdays.map(weekdayNumberToName)
-        : [],
+      scheduledWeekdays: Array.isArray(tripData.scheduledWeekdays) ? tripData.scheduledWeekdays.map(weekdayNumberToName) : [],
       duration: Number(tripData.duration) || 0,
     }
     delete tripBody.destinationImages
@@ -318,11 +314,17 @@ const PublishTrip = (props) => {
               <ToggleTab className={activeSection === TABS.TRIP ? 'active' : ''} onClick={() => handleToggle(TABS.TRIP)}>
                 Trip Details
               </ToggleTab>
+              <ToggleTab className={activeSection === TABS.TRIP ? 'active mobile' : 'mobile'} onClick={() => handleToggle(TABS.TRIP)}>
+                Details
+              </ToggleTab>
               {!toEditTrip && (
                 <>
                   {/* <Divider /> */}
                   <ToggleTab className={activeSection === TABS.USER ? 'active' : ''} onClick={() => handleToggle(TABS.USER)}>
                     Trip Dates
+                  </ToggleTab>{' '}
+                  <ToggleTab className={activeSection === TABS.USER ? 'active mobile' : 'mobile'} onClick={() => handleToggle(TABS.USER)}>
+                    Dates
                   </ToggleTab>
                 </>
               )}
@@ -332,6 +334,12 @@ const PublishTrip = (props) => {
                   <ToggleTab className={activeSection === TABS.ITINERARY ? 'active' : ''} onClick={() => handleToggle(TABS.ITINERARY)}>
                     Itinerary
                   </ToggleTab>
+                  <ToggleTab
+                    className={activeSection === TABS.ITINERARY ? 'active mobile' : 'mobile'}
+                    onClick={() => handleToggle(TABS.ITINERARY)}
+                  >
+                    Itinerary
+                  </ToggleTab>
                 </>
               }
               {
@@ -339,6 +347,9 @@ const PublishTrip = (props) => {
                   {/* <Divider /> */}
                   <ToggleTab className={activeSection === TABS.INC_EXC ? 'active' : ''} onClick={() => handleToggle(TABS.INC_EXC)}>
                     Include & Exclude
+                  </ToggleTab>
+                  <ToggleTab className={activeSection === TABS.INC_EXC ? 'active mobile' : 'mobile'} onClick={() => handleToggle(TABS.INC_EXC)}>
+                    Extra
                   </ToggleTab>
                 </>
               }
@@ -403,7 +414,7 @@ const PublishTrip = (props) => {
               </Container>
             )}
             {activeSection === TABS.INC_EXC && (
-              <Container gap='16px'>
+              <Container gap="16px">
                 <InputGroupDayName>
                   <Label fontSize="1.3rem" fontWeight="700" margin="0% 0%">
                     Trip Include & Exclude
@@ -439,9 +450,7 @@ const PublishTrip = (props) => {
           </PublishTripLeftSection>
           <PublishTripRightSection>
             {activeSection === TABS.TRIP ? (
-              
-                <TripDetailPreview tripData={tripData} />
-              
+              <TripDetailPreview tripData={tripData} />
             ) : activeSection === TABS.INC_EXC ? (
               <>
                 <PreviewTitle>Preview</PreviewTitle>

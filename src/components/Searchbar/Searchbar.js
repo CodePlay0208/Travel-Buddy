@@ -107,23 +107,23 @@ const Searchbar = (props) => {
       {!isReadOnly && (inputText.city || inputText.state) && (
         <>
           {isMultiSelect && (
-            <button
+            <div
               className="add-button"
               type="button"
               style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}
               onClick={addToList}
               title="Add"
             >
-              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="0.5" width="24" height="24" rx="12" fill="#8DD3BB" />
                 <path d="M12 7.49805V17.498" stroke="white" stroke-width="2.85714" stroke-linecap="round" stroke-linejoin="round" />
                 <path d="M7 12.498H17" stroke="white" stroke-width="2.85714" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-            </button>
+            </div>
           )}
-          {!isMultiSelect && (
+          {/* {!isMultiSelect && (
             <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} style={{ marginLeft: '0.3rem', cursor: 'pointer' }} />
-          )}
+          )} */}
         </>
       )}
       {/* <LocationIcon src={SVG.LocationIcon} alt="Location Icon" /> */}

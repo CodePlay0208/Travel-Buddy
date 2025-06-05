@@ -11,12 +11,17 @@ export const SearchBarContainer = styled.div`
   position: relative;
   overflow: visible;
 
-  
-  .clear,.add-button {
+  .clear,
+  .add-button {
     position: absolute;
+    display: flex;
     right: 0;
-    padding: 2.5%;
+    padding: 0 2.5%;
     bottom: 50%;
+    transform: translateY(50%);
+    align-content: center;
+    justify-content: center;
+    align-items: center;
     transform: translateY(50%);
   }
   @media (max-width: 786px) {

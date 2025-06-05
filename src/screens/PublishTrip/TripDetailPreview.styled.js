@@ -105,8 +105,8 @@ export const LocationBox = styled.div`
   align-items: center;
   justify-content: space-between;
   svg{
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
   }
 
   @media (max-width: 440px) {

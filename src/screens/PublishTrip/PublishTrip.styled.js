@@ -405,6 +405,9 @@ export const ToggleTab = styled.div`
     background-color: ${colors.black};
     color: ${colors.secondary};
   }
+  &.mobile {
+    display: none;
+  }
 
   ${media.desktop`
     border-radius: 10px 10px 0 0;
@@ -414,6 +417,10 @@ export const ToggleTab = styled.div`
     border-radius: 5px 5px 0 0;
   `}
   ${media.mobile`
+  display: none;
+  &.mobile{
+    display:block
+  }
     font-size: 3.5rem;
   line-height: 4rem;
   padding:2%;
