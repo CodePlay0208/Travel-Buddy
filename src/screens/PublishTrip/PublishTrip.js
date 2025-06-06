@@ -93,7 +93,7 @@ const formatDateObj = (dateObj) => {
   return `${d}-${m}-${y}`
 }
 
-const WEEKDAY_MAP = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+const WEEKDAY_MAP = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const weekdayNameToNumber = (name) => WEEKDAY_MAP.indexOf(name.toLowerCase())
 const weekdayNumberToName = (num) => WEEKDAY_MAP[num] || ''
 
