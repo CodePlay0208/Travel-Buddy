@@ -72,11 +72,16 @@ PublishHeading.displayName = 'PublishHeading'
 export const BottomHeading = styled.div`
   font-size: 3.5rem;
   font-weight: 700;
-  bottom: -40%;
-  left: 0;
-  margin: 10px;
   position: relative;
   width: 70%;
+  padding: 2% 2%;
+  position: relative;
+  height: 100%;
+  display: flex;
+  width: 70%;
+  align-content: flex-end;
+  justify-content: flex-end;
+  align-items: flex-end;
   @media (max-width: 786px) {
     font-size: 6rem;
   }

@@ -46,7 +46,7 @@ export const PublishTripPage = styled.div`
 `
 export const Container = styled.div`
   display: flex;
-  min-height: 90%;
+  min-height: 380px;
   flex-direction: column;
   width: 100%;
   padding: 3%;
@@ -57,6 +57,7 @@ export const Container = styled.div`
   border-radius: 16px;
   @media (max-width: 440px) {
     padding: 5% 4%;
+    max-height: 700px;
     gap: ${(props) => props.mobileGap ?? props.mobileGap ?? '0px'};
   }
 `
@@ -69,7 +70,7 @@ export const DayContainer = styled.div`
   overflow-x: scroll;
 
   @media (max-width: 440px) {
-    margin: 0 3% 5%;
+    margin: 0 0% 5%;
     justify-content: center;
     align-items: center;
     &.itinerary {
@@ -267,6 +268,8 @@ export const AddButton = styled.button`
   @media (max-width: 440px) {
     font-size: 5rem;
     line-height: 5rem;
+
+    padding: 2.5% 5%;
   }
 `
 
@@ -305,7 +308,7 @@ export const InputGroup = styled.div`
 `
 
 export const DatesContainer = styled.div`
-  max-height: 400px;
+  max-height: 350px;
   overflow-y: auto;
   width: 100%;
   gap: 10px;
@@ -319,6 +322,12 @@ export const DatesContainer = styled.div`
     background: #d9d9d9;
     border-radius: 8px;
   }
+
+@media (max-width: 440px) {
+  max-height: 200px;
+  width: 100%;
+  gap: 5px;
+}
 `
 
 export const InputGroupDayName = styled(InputGroup)`
@@ -360,7 +369,12 @@ export const InputGroupDesc = styled(InputGroup)`
 export const InputGroupList = styled(InputGroup)`
   width: 100%;
   gap: 10px;
+  min-height: 130px;
+  max-height: 130px;
+
+  overflow-y: scroll;
   @media (max-width: 440px) {
+    max-height: 300px;
     width: 100%;
   }
 `
@@ -456,7 +470,7 @@ export const PublishTripButton = styled.div`
   box-sizing: border-box;
   width: 100%;
   max-width: 302px;
-  height: 60px;
+  height: 50px;
   margin: 20px auto;
   background: ${colors.light};
   border-radius: 8.90855px;
@@ -466,6 +480,7 @@ export const PublishTripButton = styled.div`
 
   ${media.desktop`
     max-width: 100%;
+    height: 45px;
   `}
 `
 
@@ -537,6 +552,11 @@ export const InputColumn = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
+    &.flex-start{
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 16px
+    }
   `}
 `
 

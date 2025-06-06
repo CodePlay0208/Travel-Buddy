@@ -352,7 +352,7 @@ const PublishTrip = (props) => {
                     className={activeSection === TABS.INC_EXC ? 'active mobile' : 'mobile'}
                     onClick={() => handleToggle(TABS.INC_EXC)}
                   >
-                    Extra
+                    Extras
                   </ToggleTab>
                 </>
               }

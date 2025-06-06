@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   margin: ${(props) => props.margin ?? '0'};
-box-shadow: 0px 1px 6px 0px #00000033;
+  box-shadow: 0px 1px 6px 0px #00000033;
 
-  height: ${(props) => props.$height}px;
+  height: 300px;
   border-radius: 16px;
   overflow-y: scroll;
   width: 100%;
@@ -32,8 +32,8 @@ export const PreviewTitle = styled.h1`
   margin: 0 0 4%;
 
   @media (max-width: 440px) {
-    font-size: 6rem;
-    margin: 5% 3%;
+    font-size: 4.5rem;
+    margin: 5% 0%;
   }
 `
 
@@ -41,13 +41,13 @@ export const DayTitle = styled.h1`
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-secondary);
-  margin: 0 2% 1% 0;
+  margin: 0;
   line-height: 100%;
   letter-spacing: 1.25px;
   text-transform: uppercase;
   position: sticky;
   background: white;
-  padding: 5%;
+  padding: 4%;
   top: 0px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -57,8 +57,8 @@ export const DayTitle = styled.h1`
   overflow-wrap: anywhere;
 
   @media (max-width: 440px) {
-    font-size: 6rem;
-    padding: 7%;
+    font-size: 4rem;
+    padding: 4%;
   }
 `
 
@@ -79,7 +79,7 @@ export const Content = styled.div`
   overflow-wrap: anywhere;
 
   @media (max-width: 440px) {
-    padding: 0 7%;
+    padding: 0 4%;
   }
 `
 
@@ -90,15 +90,15 @@ export const List = styled.ul`
 `
 
 export const ListItem = styled.li`
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   font-weight: 500;
   line-height: 1.3;
   color: #000;
-  margin: 2% 0;
+  margin: 0 0 4% 0;
   word-break: break-word;
 
   @media (max-width: 440px) {
     font-size: 3.5rem;
-    margin: 5% 0;
+    margin: 0 0 5% 0;
   }
 `

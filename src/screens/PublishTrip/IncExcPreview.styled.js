@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   margin: ${(props) => props.margin ?? '0'};
-box-shadow: 0px 1px 6px 0px #00000033;
+  box-shadow: 0px 1px 6px 0px #00000033;
 
-  height: ${(props) => props.$height}px;
+  height: 300px;
   border-radius: 16px;
   overflow-y: scroll;
   width: 100%;
@@ -20,7 +20,7 @@ box-shadow: 0px 1px 6px 0px #00000033;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
   }
-   @media (max-width: 440px) {
+  @media (max-width: 440px) {
     height: 280px;
   }
 `
@@ -32,8 +32,8 @@ export const PreviewTitle = styled.h1`
   margin: 2%;
 
   @media (max-width: 440px) {
-    font-size: 6rem;
-    margin: 5% 3%;
+    font-size: 4.5rem;
+    margin: 5% 0%;
   }
 `
 
@@ -42,7 +42,7 @@ export const DayTitle = styled.h1`
 
   font-weight: 700;
   color: ${(props) => (props.isExclude ? '#C6141C' : 'var(--color-secondary)')};
-  margin: 0 2% 1% 0;
+  margin: 0;
   line-height: 100%;
   letter-spacing: 1.25px;
   text-transform: uppercase;
@@ -56,8 +56,8 @@ export const DayTitle = styled.h1`
   overflow-wrap: anywhere;
 
   @media (max-width: 440px) {
-    font-size: 6rem;
-    padding: 7%;
+    font-size: 4rem;
+    padding: 4%;
   }
 `
 
@@ -75,7 +75,7 @@ export const Content = styled.div`
   overflow-wrap: anywhere;
 
   @media (max-width: 440px) {
-    padding: 0 7%;
+    padding: 0 4%;
   }
 `
 
@@ -90,18 +90,31 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   display: flex;
-  align-items: center;
-  gap: 0.8rem;
+  align-items: flex-start;
+  gap: 10px;
   width: 95%;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.4rem;
   color: #000;
   margin: 0 0;
   word-break: break-word;
+  svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+  span {
+    width: 90%;
+    display: inline-block;
+  }
 
   @media (max-width: 440px) {
     font-size: 3.5rem;
     margin: 1rem 0;
+    line-height: 3.5rem;
+    svg {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
   }
 `

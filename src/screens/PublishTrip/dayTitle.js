@@ -31,9 +31,11 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
     display: flex;
     justify-content: space-between;
     padding: 2%;
+    gap:24px;
     background: #ddf2eb;
     border-radius: 10px;
     width: 100%;
+    align-items: center;
 
     .icon,
     svg {
@@ -41,7 +43,7 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
       height: 10px;
     }
     @media (max-width: 440px) {
-      padding: 4% 2%;
+      padding: 4% 4%;
     }
   `
 

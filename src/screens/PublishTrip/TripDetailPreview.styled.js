@@ -21,7 +21,8 @@ export const Container = styled.div`
     border-radius: 0.75rem;
   }
   @media (max-width: 440px) { 
-    height: 550px;
+    height:unset;
+    max-height: 550px;
   }
 `
 

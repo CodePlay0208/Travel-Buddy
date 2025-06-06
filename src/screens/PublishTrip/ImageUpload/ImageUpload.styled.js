@@ -153,6 +153,11 @@ export const FileUploadBox = styled(Button)`
 export const SeeAllButton = styled(FileUploadBox)`
 background-color: black;
 color: var(--color-primary);
+
+&:hover {
+  color: #333;
+  background-color: var(--color-primary);
+}
   `
 
 export const FileUploadPlaceholder = styled.button`

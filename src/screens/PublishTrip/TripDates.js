@@ -8,7 +8,7 @@ import InputDropdown from '../../components/InputDropdown/InputDropdown'
 const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteDate }) => {
   return (
     <Container>
-      <InputRow margin="0 0" gap='32px'>
+      <InputRow margin="0 0" gap="32px">
         <InputColumn width="80%">
           <InputGroup>
             <Label fontSize="1rem" fontWeight="700" margin="2% 0 2%">
@@ -38,7 +38,7 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
             />
           </InputGroup>
         </InputColumn>
-        <InputColumn gap="32px">
+        <InputColumn gap="16px"  className="flex-start">
           {/* <InputGroup width="100%">
             <Label fontSize="1rem" fontWeight="700" margin="1.6% 0 1.6%">
               Schedule Trip
@@ -53,12 +53,12 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
               onChange={handleChange}
             />
           </InputGroup> */}
-          <DatesContainer >
-            <InputRow margin="0 0" gap="0">
-              <Label fontSize="1rem" fontWeight="700" margin="0">
-                Dates Preview
-              </Label>
-            </InputRow>
+          <InputRow margin="0 0" gap="0">
+            <Label fontSize="1rem" fontWeight="700" margin="0">
+              Dates Preview
+            </Label>
+          </InputRow>
+          <DatesContainer>
             {tripData.multipleDates?.map((date, index) => (
               <DateRange key={index} startDate={date} totalDays={tripData.duration} onDelete={() => handleDeleteDate(index)} />
             ))}

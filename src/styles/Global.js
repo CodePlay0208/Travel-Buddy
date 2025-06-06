@@ -119,7 +119,8 @@ export const Button = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #79bca7;
+    background-color: #000000;
+    color: var(--color-primary);
   }
 
   @media (max-width: 440px) {
