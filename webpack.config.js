@@ -1,7 +1,9 @@
 const path = require('path')
 
+const isDev = process.env.NODE_ENV==='development';
+
 module.exports = {
-  mode: 'production',
+  mode: process.env.NODE_ENV || 'production',
   entry: './src/index.js', // Adjust if your entry point is different
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -10,7 +12,7 @@ module.exports = {
     publicPath: '/',
     clean: true, // Cleans the output directory before emit
   },
-  devtool: false, // Disables source maps in production
+  devtool: isDev ? 'cheap-module-source-map' : false, // Enable source maps in development only
   module: {
     rules: [
       {
