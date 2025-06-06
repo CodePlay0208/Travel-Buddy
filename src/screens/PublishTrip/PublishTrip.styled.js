@@ -57,13 +57,13 @@ export const Container = styled.div`
   border-radius: 16px;
   @media (max-width: 440px) {
     padding: 5% 4%;
-    gap: ${(props) => props.mobileGap ?? props.gap ?? '0px'};
+    gap: ${(props) => props.mobileGap ?? props.mobileGap ?? '0px'};
   }
 `
 export const DayContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   width: 100%;
   overflow-x: scroll;
@@ -132,7 +132,7 @@ export const PublishTripContainer = styled.div`
   flex-direction: column;
   position: relative;
   padding: 1%;
-  width: 95%;
+  width: 90%;
   max-width: 1604px;
   margin: 0 auto;
   background: ${colors.light};
@@ -318,6 +318,9 @@ export const DatesContainer = styled.div`
 export const InputGroupDayName = styled(InputGroup)`
   width: 100%;
   @media (max-width: 440px) {
+    .hidden {
+      display: none;
+    }
     width: 100%;
   }
 `
@@ -343,7 +346,9 @@ export const InputGroupDesc = styled(InputGroup)`
   @media (max-width: 786px) {
     width: 100%;
     flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
   }
 `
 export const InputGroupList = styled(InputGroup)`
@@ -421,10 +426,11 @@ export const ToggleTab = styled.div`
   &.mobile{
     display:block
   }
-    font-size: 3.5rem;
-  line-height: 4rem;
-  padding:2%;
-  border-radius: 10px 10px 0 0;
+  
+    font-size: 4rem;
+    line-height: 4rem;
+    padding: 2% 3%;
+    border-radius: 10px 10px 0 0;
   
   `}
 `
@@ -506,6 +512,8 @@ export const ButtonContainer = styled.div`
 
   ${media.tablet`
     width: 33%;
+    justify-content: center;
+    align-items: center;
   `}
 `
 
@@ -517,6 +525,11 @@ export const InputColumn = styled.div`
   width: ${(props) => props.width || '100%'};
 
   ${media.tablet`
+    width: 100%;
+  `}
+  ${media.mobile`
+    align-items: center;
+    justify-content: center;
     width: 100%;
   `}
 `

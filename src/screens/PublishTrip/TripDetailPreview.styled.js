@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   margin: ${(props) => props.margin ?? '0'};
+  
   /* box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1); */
   height: ${(props) => props.$height}px;
   border-radius: 0.625rem;
@@ -18,6 +19,9 @@ export const Container = styled.div`
   &::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 0.75rem;
+  }
+  @media (max-width: 440px) { 
+    height: 550px;
   }
 `
 

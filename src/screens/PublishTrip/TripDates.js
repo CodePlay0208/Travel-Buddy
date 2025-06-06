@@ -39,7 +39,7 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
           </InputGroup>
         </InputColumn>
         <InputColumn gap="32px">
-          <InputGroup width="100%">
+          {/* <InputGroup width="100%">
             <Label fontSize="1rem" fontWeight="700" margin="1.6% 0 1.6%">
               Schedule Trip
             </Label>
@@ -52,7 +52,7 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
               value={tripData.scheduleTrip || ''}
               onChange={handleChange}
             />
-          </InputGroup>
+          </InputGroup> */}
           <DatesContainer>
             <InputRow margin="0 0" gap="0">
               <Label fontSize="1rem" fontWeight="700" margin="0">

@@ -20,6 +20,9 @@ box-shadow: 0px 1px 6px 0px #00000033;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
   }
+   @media (max-width: 440px) {
+    height: 280px;
+  }
 `
 
 export const PreviewTitle = styled.h1`

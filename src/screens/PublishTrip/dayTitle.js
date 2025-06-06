@@ -1,14 +1,48 @@
 import React from 'react'
 import styled from 'styled-components'
+import ClearIcon from '../../assets/svg/clear'
 
 const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
   const trimTitle = title.length > 50 ? title.substring(0, 50) + '...' : title
+  //   const Container = styled.div`
+  //     display: flex;
+  //     justify-content: space-between;
+  //     padding: 1% 1.5%;
+  //     background: #ddf2eb;
+  //     width: 100%;
+  //     border-radius: 10px;
+  //   `
+
+  //   const Element = styled.span`
+  //     font-size: 0.75rem;
+  //     line-height: 1rem;
+  //     font-weight: 600;
+  //     width: ${(props) => props.width};
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: flex-start;
+  //     @media (max-width: 440px) {
+  //       font-size: 3rem;
+  //       line-height: 3rem;
+  //     }
+  //   `
+
   const Container = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 1% 1.5%;
+    padding: 2%;
     background: #ddf2eb;
     border-radius: 10px;
+    width: 100%;
+
+    .icon,
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+    @media (max-width: 440px) {
+      padding: 4% 2%;
+    }
   `
 
   const Element = styled.span`
@@ -24,7 +58,6 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
       line-height: 3rem;
     }
   `
-
   return (
     <Container>
       <Element width={'90%'}>{trimTitle}</Element>
@@ -33,13 +66,12 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
         onClick={() => {
           onEditClick(idx)
         }}
+        className="icon"
       >
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M10.3428 5.99122L11.0841 5.24993C11.7284 4.6056 11.7284 3.56093 11.0841 2.9166C10.4397 2.27227 9.39508 2.27227 8.75075 2.9166L7.99524 3.67211C8.54082 4.6474 9.3537 5.45383 10.3428 5.99122ZM6.54015 5.12719L3.19046 8.47689C2.7654 8.90195 2.55287 9.11448 2.41314 9.37557C2.2734 9.63667 2.21446 9.9314 2.09657 10.5208L1.89784 11.5145C1.83131 11.8471 1.79805 12.0134 1.89266 12.108C1.98727 12.2026 2.15357 12.1694 2.48618 12.1028L3.47983 11.9041C4.06928 11.7862 4.36401 11.7273 4.62511 11.5875C4.8862 11.4478 5.09873 11.2353 5.52379 10.8102L8.88389 7.45012C7.94647 6.84715 7.14847 6.05441 6.54015 5.12719Z"
-            fill="black"
+            d="M5.54024 3.57991C6.1485 4.50706 6.94671 5.29918 7.88399 5.90217L4.52364 9.2635C4.09873 9.68842 3.88626 9.90114 3.6252 10.0408C3.36414 10.1805 3.06905 10.2394 2.4797 10.3573L1.48653 10.5565C1.15395 10.623 0.987395 10.6559 0.892782 10.5614C0.798174 10.4667 0.831143 10.3002 0.897665 9.9676L1.09688 8.97444C1.21475 8.3851 1.27361 8.08999 1.41329 7.82893C1.553 7.56788 1.76572 7.35541 2.19063 6.9305L5.54024 3.57991ZM7.75118 1.36995C8.39552 0.725655 9.43987 0.725629 10.0842 1.36995C10.7285 2.01427 10.7285 3.05863 10.0842 3.70296L9.34395 4.44221C8.35457 3.90466 7.54281 3.09855 6.99727 2.12288L7.75118 1.36995Z"
+            fill="#050505"
           />
         </svg>
       </Element>
@@ -48,8 +80,9 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
         onClick={() => {
           onDelete(idx)
         }}
+        className="icon"
       >
-        X
+        <ClearIcon width={'2%'}>X</ClearIcon>
       </Element>
     </Container>
   )
