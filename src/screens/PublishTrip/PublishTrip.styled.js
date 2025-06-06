@@ -63,17 +63,19 @@ export const Container = styled.div`
 export const DayContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 100%;
   overflow-x: scroll;
-  &.itinerary{
-    justify-content: flex-start;
-  align-items: flex-start;
-  }
 
   @media (max-width: 440px) {
     margin: 0 3% 5%;
+    justify-content: center;
+    align-items: center;
+    &.itinerary {
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
   }
 `
 
