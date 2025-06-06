@@ -27,7 +27,7 @@ export const routes = [
   {
     path: '/publish-trip',
     element: <PublishTrip />,
-    isPrivate: false,
+    isPrivate: true,
   },
   {
     path: '/chats',
