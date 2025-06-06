@@ -348,7 +348,10 @@ const PublishTrip = (props) => {
                   <ToggleTab className={activeSection === TABS.INC_EXC ? 'active' : ''} onClick={() => handleToggle(TABS.INC_EXC)}>
                     Include & Exclude
                   </ToggleTab>
-                  <ToggleTab className={activeSection === TABS.INC_EXC ? 'active mobile' : 'mobile'} onClick={() => handleToggle(TABS.INC_EXC)}>
+                  <ToggleTab
+                    className={activeSection === TABS.INC_EXC ? 'active mobile' : 'mobile'}
+                    onClick={() => handleToggle(TABS.INC_EXC)}
+                  >
                     Extra
                   </ToggleTab>
                 </>
@@ -372,7 +375,7 @@ const PublishTrip = (props) => {
             )}
             {activeSection === TABS.ITINERARY && (
               <Container>
-                <DayContainer>
+                <DayContainer className="itinerary">
                   {tripData.dayTabs.map((day, index) => (
                     <DayTab
                       onClick={() => {
@@ -415,8 +418,8 @@ const PublishTrip = (props) => {
             )}
             {activeSection === TABS.INC_EXC && (
               <Container gap="16px">
-                <InputGroupDayName className='hidden'>
-                  <Label fontSize="1.3rem" fontWeight="700" margin="0% 0%" className='hidden'>
+                <InputGroupDayName className="hidden">
+                  <Label fontSize="1.3rem" fontWeight="700" margin="0% 0%" className="hidden">
                     Trip Include & Exclude
                   </Label>
                 </InputGroupDayName>

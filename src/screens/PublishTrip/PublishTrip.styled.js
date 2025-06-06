@@ -67,6 +67,10 @@ export const DayContainer = styled.div`
   align-items: center;
   width: 100%;
   overflow-x: scroll;
+  &.itinerary{
+    justify-content: flex-start;
+  align-items: flex-start;
+  }
 
   @media (max-width: 440px) {
     margin: 0 3% 5%;
@@ -299,7 +303,7 @@ export const InputGroup = styled.div`
 `
 
 export const DatesContainer = styled.div`
-  max-height: 300px;
+  max-height: 400px;
   overflow-y: auto;
   width: 100%;
   gap: 10px;

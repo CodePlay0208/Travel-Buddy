@@ -53,7 +53,7 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
               onChange={handleChange}
             />
           </InputGroup> */}
-          <DatesContainer>
+          <DatesContainer >
             <InputRow margin="0 0" gap="0">
               <Label fontSize="1rem" fontWeight="700" margin="0">
                 Dates Preview
