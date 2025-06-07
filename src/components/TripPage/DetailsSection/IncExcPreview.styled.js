@@ -15,7 +15,7 @@ export const Container = styled.div`
   margin: ${(props) => props.margin ?? '0'};
   box-shadow: 0px 1px 6px 0px #00000033;
 
-  height: 300px;
+  height: 400px;
   border-radius: 16px;
   overflow-y: scroll;
   width: 50%;
@@ -33,6 +33,7 @@ export const Container = styled.div`
   }
   @media (max-width: 440px) {
     height: 280px;
+    width: 100%;
   }
 `
 
@@ -132,7 +133,7 @@ export const ListItem = styled.li`
 
 export const OuterWrapper = styled.div`
   margin: 5% 0;
-  @media  (max-width: 440px) {
+  @media (max-width: 440px) {
     margin: 36px 0;
   }
 `
@@ -142,6 +143,10 @@ export const TabButtonRow = styled.div`
   gap: 1rem;
   margin-bottom: 1rem;
   justify-content: center;
+
+  @media (max-width: 440px) {
+    margin-bottom: 16px;
+  }
 `
 
 export const TabButton = styled.button`

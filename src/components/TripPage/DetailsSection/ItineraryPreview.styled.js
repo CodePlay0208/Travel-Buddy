@@ -38,7 +38,7 @@ export const DayTitle = styled.h1`
   font-size: 1.875rem;
   font-weight: 700;
   color: var(--color-secondary);
-  margin: 2% 2% 0 2%;
+  margin: 0 2% 0 2%;
   line-height: 100%;
   letter-spacing: 1.25px;
   text-transform: uppercase;
