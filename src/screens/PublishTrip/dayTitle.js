@@ -55,6 +55,8 @@ const DayTitle = ({ title, onEditClick, onDelete, idx }) => {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    word-break: break-word;
+    white-space: normal;
     @media (max-width: 440px) {
       font-size: 3rem;
       line-height: 3rem;
