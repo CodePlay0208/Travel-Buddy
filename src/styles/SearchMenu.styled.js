@@ -35,6 +35,7 @@ export const SearchBarWrapper = styled.div`
   @media (max-width: 456px) {
     flex-direction: column;
     gap: 1%;
+    width: 85%;
   }
 `
 export const SearchButtonContainer = styled.div`
