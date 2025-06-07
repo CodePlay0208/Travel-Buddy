@@ -251,6 +251,11 @@ export const IncDayTab = styled(DayTab)`
     color: ${colors.secondary};
   }
 `
+export const IncExcTab = styled(IncDayTab)`
+  @media (max-width: 440px) {
+    padding: 3% 13%;
+  }
+`
 
 export const AddButton = styled.button`
   cursor: pointer;
@@ -323,11 +328,11 @@ export const DatesContainer = styled.div`
     border-radius: 8px;
   }
 
-@media (max-width: 440px) {
-  max-height: 200px;
-  width: 100%;
-  gap: 5px;
-}
+  @media (max-width: 440px) {
+    max-height: 200px;
+    width: 100%;
+    gap: 5px;
+  }
 `
 
 export const InputGroupDayName = styled(InputGroup)`

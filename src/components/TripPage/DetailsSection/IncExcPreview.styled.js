@@ -132,6 +132,9 @@ export const ListItem = styled.li`
 
 export const OuterWrapper = styled.div`
   margin: 5% 0;
+  @media  (max-width: 440px) {
+    margin: 36px 0;
+  }
 `
 
 export const TabButtonRow = styled.div`
