@@ -36,8 +36,7 @@ import { SVG } from '../../../../assets'
 import { toast } from 'react-toastify'
 import React from 'react'
 import Modal from '../../../Modal/Modal'
-import AlternateDatesCard from '../AlternateDatesCard.tsx'
-
+import AlternateDatesCard from '../AlternateDatesCard/AlternateDatesCard'
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
   wishlistTrips: state.tripReducer.wishlistTrips?.trips,
