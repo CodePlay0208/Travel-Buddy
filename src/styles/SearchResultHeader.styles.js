@@ -53,10 +53,10 @@ export const HeaderSearchBar = styled.div`
   box-shadow: 0px 0px 12px 0px #00000033;
 
   @media (max-width: ${breakpoints.tablet}) {
-    position: relative;
+    margin: 0 12px;
     transform: translateY(50%);
-    width: 100%;
-    border-radius: 45px;
+    width: 90%;
+    border-radius: 30px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -75,7 +75,7 @@ export const HeaderDescription = styled.div`
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    margin: 15%;
+    margin: 35% 15% 30%;
     width: 95%;
   }
 `

@@ -16,7 +16,7 @@ export const SearchBarContainer = styled.div`
     box-shadow: 0px 0px 12px 0px #00000099;
   }
   @media (max-width: 786px) {
-    border-radius: 45px;
+    border-radius: 30px;
   }
   @media (max-width: 456px) {
     gap: 1%;
