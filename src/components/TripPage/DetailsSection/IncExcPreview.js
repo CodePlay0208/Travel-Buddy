@@ -1,5 +1,15 @@
 import React, { useRef, useState, useLayoutEffect, useEffect, memo } from 'react'
-import { Container, PreviewTitle, DayTitle, Content, List, ListItem, ContainerWrapper } from './IncExcPreview.styled.js'
+import {
+  Container,
+  DayTitle,
+  Content,
+  List,
+  ListItem,
+  ContainerWrapper,
+  OuterWrapper,
+  TabButtonRow,
+  TabButton,
+} from './IncExcPreview.styled.js'
 import ExcludeIcon from '../../../screens/PublishTrip/ExcludeIcon.js'
 import IncludeIcon from '../../../screens/PublishTrip/IncludeIcon.js'
 import { connect } from 'react-redux'
@@ -8,6 +18,7 @@ const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
 })
 const MOBILE_WIDTH = 440
+
 const IncExcPreview = ({ trip, margin }) => {
   const containerRef = useRef(null)
   const [height, setHeight] = useState(0)
@@ -44,42 +55,16 @@ const IncExcPreview = ({ trip, margin }) => {
   const exclusionSection = tripData.find((section) => section?.inc_excTitle?.toLowerCase().includes('exclusion'))
 
   return (
-    <>
+    <OuterWrapper>
       {isMobile ? (
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', justifyContent: 'center' }}>
-          <button
-            onClick={() => setSelectedTab('inclusion')}
-            style={{
-              padding: '0.5rem 1.5rem',
-              borderRadius: '20px',
-              border: selectedTab === 'inclusion' ? '2px solid #007bff' : '1px solid #ccc',
-              background: selectedTab === 'inclusion' ? '#e6f0ff' : '#fff',
-              color: selectedTab === 'inclusion' ? '#007bff' : '#333',
-              fontWeight: 600,
-              cursor: 'pointer',
-              outline: 'none',
-              transition: 'all 0.2s',
-            }}
-          >
+        <TabButtonRow>
+          <TabButton onClick={() => setSelectedTab('inclusion')} selected={selectedTab === 'inclusion'} color="#007bff" bg="#e6f0ff">
             Inclusion
-          </button>
-          <button
-            onClick={() => setSelectedTab('exclusion')}
-            style={{
-              padding: '0.5rem 1.5rem',
-              borderRadius: '20px',
-              border: selectedTab === 'exclusion' ? '2px solid #d9534f' : '1px solid #ccc',
-              background: selectedTab === 'exclusion' ? '#ffeaea' : '#fff',
-              color: selectedTab === 'exclusion' ? '#d9534f' : '#333',
-              fontWeight: 600,
-              cursor: 'pointer',
-              outline: 'none',
-              transition: 'all 0.2s',
-            }}
-          >
+          </TabButton>
+          <TabButton onClick={() => setSelectedTab('exclusion')} selected={selectedTab === 'exclusion'} color="#d9534f" bg="#ffeaea">
             Exclusion
-          </button>
-        </div>
+          </TabButton>
+        </TabButtonRow>
       ) : (
         <Title>Inclusions & Exclusions</Title>
       )}
@@ -146,7 +131,7 @@ const IncExcPreview = ({ trip, margin }) => {
       ) : (
         <div style={{ fontSize: '1.5rem', padding: '2rem', textAlign: 'center', color: '#888' }}>No Inclusions and Exclusions Added</div>
       )}
-    </>
+    </OuterWrapper>
   )
 }
 

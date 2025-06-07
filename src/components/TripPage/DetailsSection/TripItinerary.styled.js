@@ -11,6 +11,10 @@ export const Container = styled.div`
     flex-direction: column;
     gap:20px
   }
+
+  @media (max-width: 440px) {
+   max-height: 700px;
+  }
 `
 export const DayTitleContainer = styled.div`
   display: flex;

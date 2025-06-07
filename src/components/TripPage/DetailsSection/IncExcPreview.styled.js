@@ -129,3 +129,26 @@ export const ListItem = styled.li`
     }
   }
 `
+
+export const OuterWrapper = styled.div`
+  margin: 5% 0;
+`
+
+export const TabButtonRow = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+`
+
+export const TabButton = styled.button`
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  border: ${({ selected, color }) => (selected ? `2px solid ${color}` : '1px solid #ccc')};
+  background: ${({ selected, bg }) => (selected ? bg : '#fff')};
+  color: ${({ selected, color }) => (selected ? color : '#333')};
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+`

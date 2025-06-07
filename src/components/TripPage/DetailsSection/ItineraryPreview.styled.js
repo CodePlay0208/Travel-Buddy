@@ -56,6 +56,7 @@ export const DayTitle = styled.h1`
   @media (max-width: 440px) {
     font-size: 4rem;
     padding: 5%;
+    margin:0;
   }
 `
 
