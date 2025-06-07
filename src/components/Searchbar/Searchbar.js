@@ -35,9 +35,10 @@ const Searchbar = (props) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false)
   const [timeoutId, setTimeoutId] = useState(null)
 
+  const [formattedValue, setFormattedValue] = useState([inputText.city, inputText.state].filter(Boolean).join(', '))
   const handleInputChange = (event) => {
     const value = event.target.value
-    setInputText({ ...inputText, city: value })
+    setFormattedValue(value)
 
     if (timeoutId) clearTimeout(timeoutId)
 
@@ -66,14 +67,15 @@ const Searchbar = (props) => {
 
   const selectSuggestion = (suggestion) => {
     setInputText({ city: suggestion.city, state: suggestion.state })
+    setFormattedValue(`${suggestion.city}, ${suggestion.state}`)
     setTimeout(() => setDropdownVisible(false), 0)
   }
 
   const handleClear = () => {
     setInputText({ city: '', state: '' })
+    setFormattedValue('')
   }
 
-  const formattedValue = [inputText.city, inputText.state].filter(Boolean).join(', ')
   const customId = `searchbar-input-${onValue}`
 
   return (
@@ -96,7 +98,6 @@ const Searchbar = (props) => {
         fontWeight={fontWeight || `600`}
         border={border}
         backgroundColor={backgroundColor}
-     
       />
 
       {!isReadOnly && (inputText.city || inputText.state) && (
@@ -116,9 +117,9 @@ const Searchbar = (props) => {
               </svg>
             </div>
           )}
-          {/* {!isMultiSelect && (
+          {!isMultiSelect && (
             <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} style={{ marginLeft: '0.3rem', cursor: 'pointer' }} />
-          )} */}
+          )}
         </>
       )}
       {/* <LocationIcon src={SVG.LocationIcon} alt="Location Icon" /> */}

@@ -155,7 +155,7 @@ const SignUp = (props) => {
                       setIsEmail(!isEmail)
                     }}
                   >
-                    Sign in with <SignUpLoginLink>{!isEmail ? 'Email' : 'Phone'}</SignUpLoginLink>
+                    Sign up with <SignUpLoginLink>{!isEmail ? 'Email' : 'Phone'}</SignUpLoginLink>
                     instead
                   </SignUpAlreadyHaveText>
                 </SignUpAlreadyHaveContainer>
