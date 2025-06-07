@@ -37,6 +37,7 @@ import { toast } from 'react-toastify'
 import React from 'react'
 import Modal from '../../../Modal/Modal'
 import AlternateDatesCard from '../AlternateDatesCard/AlternateDatesCard'
+import Overlay from '../../../Overlay/overlay'
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
   wishlistTrips: state.tripReducer.wishlistTrips?.trips,
@@ -68,6 +69,7 @@ const TripDescription = (props) => {
   const [joined, setJoined] = useState(trip?.isJoined || false)
   const [requested, setRequested] = useState(trip?.isRequested || false)
   const [deleteModal, setDeleteModal] = useState(false)
+  const [showAlternateDates, setShowAlternateDates] = useState(false)
   const navigate = useNavigate()
 
   const publisher = trip?.joinedMembers?.find((user) => user?.userId === trip?.hostId)
@@ -167,11 +169,17 @@ const TripDescription = (props) => {
   const words = content ? content.split(' ') : []
   const displayedContent = isExpanded ? content : words.slice(0, 90).join(' ') + '...'
 
-  const handleAlternateButtonClick = () => {}
+  const handleAlternateButtonClick = () => {
+    setShowAlternateDates(true)
+  }
 
   return (
     <>
-    <AlternateDatesCard/>
+      {showAlternateDates && (
+        <Overlay>
+          <AlternateDatesCard />
+        </Overlay>
+      )}
       <SectionContainer>
         <DescriptionContainer>
           <Title>{trip.title}</Title>

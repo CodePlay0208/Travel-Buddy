@@ -1,12 +1,12 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Card = styled.div`
-  position: absolute;
+  /* position: absolute; */
   width: 500px;
   height: 430px;
-  left: 614px;
-  top: 387px;
-  background: #FFFFFF;
+  /* left: 614px;
+  top: 387px; */
+  background: #ffffff;
   box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
   border-radius: 18px;
   display: flex;
@@ -14,7 +14,7 @@ export const Card = styled.div`
   align-items: flex-start;
   padding: 16px 0;
   isolation: isolate;
-`;
+`
 
 export const Header = styled.div`
   display: flex;
@@ -25,8 +25,8 @@ export const Header = styled.div`
   height: 37px;
   padding: 0 16px 8px;
   gap: 10px;
-  background: #FFFFFF;
-`;
+  background: #ffffff;
+`
 
 export const IconWrapper = styled.div`
   width: 28px;
@@ -35,16 +35,16 @@ export const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-`;
+`
 
 export const Title = styled.h2`
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
-  color: #18191A;
+  color: #18191a;
   margin: 0;
-`;
+`
 
 export const Content = styled.div`
   flex: 1;
@@ -55,7 +55,7 @@ export const Content = styled.div`
   align-items: center;
   gap: 12px;
   overflow-y: auto;
-`;
+`
 
 export const DateRow = styled.div`
   box-sizing: border-box;
@@ -67,10 +67,10 @@ export const DateRow = styled.div`
   height: 54px;
   padding: 8px 16px;
   gap: 24px;
-  background: #FFFFFF;
-  border: 1px solid #D9D9D9;
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
   border-radius: 8px;
-`;
+`
 
 export const Column = styled.div`
   display: flex;
@@ -78,22 +78,22 @@ export const Column = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 4px;
-`;
+`
 
 export const Label = styled.span`
   font-family: 'Overpass', sans-serif;
   font-weight: 300;
   font-size: 12px;
   line-height: 17px;
-  color: #4B4B4B;
-`;
+  color: #4b4b4b;
+`
 
 export const ValueWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
-`;
+`
 
 export const Value = styled.span`
   font-family: 'Overpass', sans-serif;
@@ -101,7 +101,7 @@ export const Value = styled.span`
   font-size: 20px;
   line-height: 17px;
   color: #000000;
-`;
+`
 
 export const Arrow = styled.div`
   width: 24px;
@@ -110,4 +110,4 @@ export const Arrow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`
