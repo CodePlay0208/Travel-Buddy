@@ -36,6 +36,7 @@ import { SVG } from '../../../../assets'
 import { toast } from 'react-toastify'
 import React from 'react'
 import Modal from '../../../Modal/Modal'
+import AlternateDatesCard from '../AlternateDatesCard.tsx'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
@@ -171,6 +172,7 @@ const TripDescription = (props) => {
 
   return (
     <>
+    <AlternateDatesCard/>
       <SectionContainer>
         <DescriptionContainer>
           <Title>{trip.title}</Title>
