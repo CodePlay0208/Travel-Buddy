@@ -96,12 +96,7 @@ const Searchbar = (props) => {
         fontWeight={fontWeight || `600`}
         border={border}
         backgroundColor={backgroundColor}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            e.preventDefault()
-            addToList()
-          }
-        }}
+     
       />
 
       {!isReadOnly && (inputText.city || inputText.state) && (
