@@ -3,6 +3,7 @@ import { SectionContainer, Title, UpperSection, MapImage, Divider } from './Deta
 import AddMembers from './AddMembers/AddMembers'
 import TripDescription from './TripDescription/TripDescription'
 import TripItinerary from './TripItinerary'
+import IncExcPreview from './IncExcPreview'
 
 const DetailsSection = ({ isUserTrip, isEditMode, setEditMode, editedData, setEditedData, onSaveTrip }) => {
   return (
@@ -19,10 +20,14 @@ const DetailsSection = ({ isUserTrip, isEditMode, setEditMode, editedData, setEd
         <Title>Itinerary</Title>
         {/* <Divider /> */}
         {/* <MapImage /> */}
-        <TripItinerary/>
+        <TripItinerary />
+        <Title>Inclusions & Exclusions</Title>
+        {/* <Divider /> */}
+        {/* <MapImage /> */}
+        <IncExcPreview />
         <Divider />
       </UpperSection>
-      <AddMembers isUserTrip={isUserTrip} editMode={isEditMode}/>
+      <AddMembers isUserTrip={isUserTrip} editMode={isEditMode} />
     </SectionContainer>
   )
 }
