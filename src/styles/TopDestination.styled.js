@@ -132,7 +132,7 @@ export const LocationBox = styled.button`
   }
   @media (max-width: 480px) {
     background: none;
-    font-size: 5rem;
+    font-size: 4rem;
     img {
       width: 8rem;
       aspect-ratio: 1;
