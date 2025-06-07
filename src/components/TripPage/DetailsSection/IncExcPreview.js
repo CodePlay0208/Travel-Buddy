@@ -14,6 +14,7 @@ import ExcludeIcon from '../../../screens/PublishTrip/ExcludeIcon.js'
 import IncludeIcon from '../../../screens/PublishTrip/IncludeIcon.js'
 import { connect } from 'react-redux'
 import { Title } from './DetailsSection.styled.js'
+import { IncDayTab } from '../../../screens/PublishTrip/PublishTrip.styled.js'
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
 })
@@ -25,6 +26,7 @@ const IncExcPreview = ({ trip, margin }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_WIDTH)
   const [selectedTab, setSelectedTab] = useState('inclusion')
   const tripData = trip?.inc_exc || []
+  const [curIncExcIdx, setCurIncExcIdx] = useState(0)
 
   useLayoutEffect(() => {
     if (!containerRef.current) return
@@ -58,12 +60,27 @@ const IncExcPreview = ({ trip, margin }) => {
     <OuterWrapper>
       {isMobile ? (
         <TabButtonRow>
-          <TabButton onClick={() => setSelectedTab('inclusion')} selected={selectedTab === 'inclusion'} color="#007bff" bg="#e6f0ff">
-            Inclusion
-          </TabButton>
-          <TabButton onClick={() => setSelectedTab('exclusion')} selected={selectedTab === 'exclusion'} color="#d9534f" bg="#ffeaea">
-            Exclusion
-          </TabButton>
+          <IncDayTab
+            fontSize="0.8rem"
+            onClick={() => {
+              setCurIncExcIdx(0)
+            }}
+            key={0}
+            className={0 === curIncExcIdx ? 'active' : ''}
+          >
+            Inclusions
+          </IncDayTab>
+
+          <IncDayTab
+            fontSize="0.8rem"
+            onClick={() => {
+              setCurIncExcIdx(1)
+            }}
+            key={1}
+            className={1 === curIncExcIdx ? 'active' : ''}
+          >
+            Exclusions
+          </IncDayTab>
         </TabButtonRow>
       ) : (
         <Title>Inclusions & Exclusions</Title>
@@ -71,7 +88,7 @@ const IncExcPreview = ({ trip, margin }) => {
       {Array.isArray(tripData) && tripData.length > 0 ? (
         isMobile ? (
           <ContainerWrapper>
-            {selectedTab === 'inclusion' && inclusionSection && (
+            {selectedTab === 0 && inclusionSection && (
               <Container ref={containerRef} $height={height} margin={margin}>
                 <DayTitle isExclude={false}>{inclusionSection?.inc_excTitle} :</DayTitle>
                 <Content>
@@ -86,7 +103,7 @@ const IncExcPreview = ({ trip, margin }) => {
                 </Content>
               </Container>
             )}
-            {selectedTab === 'exclusion' && exclusionSection && (
+            {selectedTab === 1 && exclusionSection && (
               <Container ref={containerRef} $height={height} margin={margin}>
                 <DayTitle isExclude={true}>{exclusionSection?.inc_excTitle} :</DayTitle>
                 <Content>
