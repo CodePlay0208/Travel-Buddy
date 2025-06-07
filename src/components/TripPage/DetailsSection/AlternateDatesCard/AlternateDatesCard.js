@@ -9,8 +9,12 @@ function formatDate(dateStr) {
   return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
 }
 
-const AlternateDatesCard = ({ relatedTrips = [] }) => {
+const AlternateDatesCard = ({ relatedTrips = [], onClose }) => {
   const navigate = useNavigate()
+  const handleDateRowClick = (tripInstanceId) => {
+    if (onClose) onClose()
+    navigate(`/trip/${tripInstanceId}`)
+  }
   return (
     <Card>
       <Header>
@@ -21,7 +25,7 @@ const AlternateDatesCard = ({ relatedTrips = [] }) => {
       </Header>
       <Content>
         {relatedTrips.map((trip, idx) => (
-          <DateRow key={trip.tripInstanceId} onClick={() => navigate(`/trip/${trip.tripInstanceId}`)} style={{ cursor: 'pointer' }}>
+          <DateRow key={trip.tripInstanceId} onClick={() => handleDateRowClick(trip.tripInstanceId)} style={{ cursor: 'pointer' }}>
             <Column>
               <Label>Start date</Label>
               <ValueWrapper>
