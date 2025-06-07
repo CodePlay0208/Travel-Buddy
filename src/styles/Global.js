@@ -128,6 +128,18 @@ export const Button = styled.button`
   }
 `
 
+
+export const CTAButton = styled(Button)`
+
+  color: #000000;
+  background: white;
+
+  &:hover {
+    background-color: #000000;
+    color: var(--color-primary);
+  }
+
+`
 export const StyledToastContainer = styled(ToastContainer).attrs({
   // Default props for ToastContainer
   position: 'top-right',

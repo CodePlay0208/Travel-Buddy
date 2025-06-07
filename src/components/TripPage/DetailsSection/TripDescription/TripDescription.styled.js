@@ -220,18 +220,18 @@ export const BoxContent = styled.div`
 export const Button = styled.button`
   font-size: 1.25rem;
   font-weight: 500;
-  line-height: 1rem;
   color: #000000;
   text-align: center;
   background: var(--color-primary);
-  padding: 3.5% 5%;
+  padding: 2.5% 5%;
   border: none;
   border-radius: 40px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #79bca7;
+    background-color: #000000;
+    color: var(--color-primary);
   }
 
   @media (max-width: 440px) {
@@ -246,9 +246,37 @@ export const ButtonSection = styled.div`
   padding: 0 5%;
 `
 export const ChatButton = styled(Button)`
+  &:hover {
+    background-color: var(--color-secondary);
+    color:black;
+  }
+  img {
+    width: min(2.5rem, 100%);
+    aspect-ratio: 1;
+  }
+  @media (max-width: 440px) {
+    img {
+      width: min(3rem, 100%);
+      aspect-ratio: 1;
+    }
+  }
+`
+export const JoinButton = styled(Button)`
+  background-color: white;
+  border: 1px solid black;
   img {
     width: 3rem;
     aspect-ratio: 1;
+  }
+`
+export const AlternateButton = styled(Button)`
+  background-color: black;
+  border: 1px solid black;
+  margin: 16px 0;
+  color: var(--color-primary);
+  &:hover {
+    background-color: white;
+    color: black;
   }
 `
 

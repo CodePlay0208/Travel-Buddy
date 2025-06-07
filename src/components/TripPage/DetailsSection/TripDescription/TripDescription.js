@@ -23,6 +23,8 @@ import {
   Link,
   ChatSectionContainer,
   Button,
+  JoinButton,
+  AlternateButton,
 } from './TripDescription.styled'
 import { connect } from 'react-redux'
 import { formatDate } from '../../../../utils/DateUtils'
@@ -165,6 +167,8 @@ const TripDescription = (props) => {
   const words = content ? content.split(' ') : []
   const displayedContent = isExpanded ? content : words.slice(0, 90).join(' ') + '...'
 
+  const handleAlternateButtonClick = () => {}
+
   return (
     <>
       <SectionContainer>
@@ -231,14 +235,17 @@ const TripDescription = (props) => {
               </ButtonSection>
             </DateContainer>
           </ChatSection>
-          <ChatButton
+          <JoinButton
             style={{ width: '100%' }}
             onClick={() => {
               isUserTrip ? onEditTripClick() : onJoinTripClick()
             }}
           >
             {isUserTrip ? 'Edit Trip' : joined ? 'Leave Trip' : requested ? 'Requested' : 'Join Trip'}
-          </ChatButton>
+          </JoinButton>
+          <AlternateButton style={{ width: '100%' }} onClick={handleAlternateButtonClick}>
+            Alternative Dates
+          </AlternateButton>
         </ChatSectionContainer>
       </SectionContainer>
       {deleteModal && (
