@@ -52,7 +52,7 @@ export const SearchButtonContainer = styled.div`
   @media (max-width: 786px) {
     img,
     svg {
-      width: 7rem;
+      width: 50px;
       aspect-ratio: 1;
     }
   }

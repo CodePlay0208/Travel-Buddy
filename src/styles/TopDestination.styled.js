@@ -125,6 +125,7 @@ export const LocationBox = styled.button`
     width: 2.5rem;
     aspect-ratio: 1;
   }
+  
 
   @media (max-width: 1024px) {
     width: 45%;

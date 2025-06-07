@@ -27,13 +27,13 @@ export const routes = [
   {
     path: '/publish-trip',
     element: <PublishTrip />,
-    isPrivate: true,
+    isPrivate: false,
   },
-  {
-    path: '/chats',
-    element: <ChatPage />,
-    isPrivate: true,
-  },
+  // {
+  //   path: '/chats',
+  //   element: <ChatPage />,
+  //   isPrivate: true,
+  // },
 
   {
     path: '/login',
