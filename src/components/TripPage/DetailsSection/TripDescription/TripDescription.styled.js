@@ -247,7 +247,7 @@ export const ButtonSection = styled.div`
 `
 export const ChatButton = styled(Button)`
   img {
-    width: 100%;
+    width: 3rem;
     aspect-ratio: 1;
   }
 `
