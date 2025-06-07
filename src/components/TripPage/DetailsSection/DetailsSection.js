@@ -21,7 +21,7 @@ const DetailsSection = ({ isUserTrip, isEditMode, setEditMode, editedData, setEd
         {/* <Divider /> */}
         {/* <MapImage /> */}
         <TripItinerary />
-        <Title>Inclusions & Exclusions</Title>
+        
         {/* <Divider /> */}
         {/* <MapImage /> */}
         <IncExcPreview />
