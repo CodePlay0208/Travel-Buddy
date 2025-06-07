@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
 const OverlayContainer = styled.div`
@@ -14,7 +14,17 @@ const OverlayContainer = styled.div`
   z-index: 1000;
 `
 
-const Overlay = ({ children }) => {
+const Overlay = ({ children, onClose }) => {
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') {
+        onClose && onClose()
+      }
+    }
+    window.addEventListener('keydown', handleEsc)
+    return () => window.removeEventListener('keydown', handleEsc)
+  }, [onClose])
+
   return <OverlayContainer>{children}</OverlayContainer>
 }
 

@@ -176,8 +176,8 @@ const TripDescription = (props) => {
   return (
     <>
       {showAlternateDates && (
-        <Overlay>
-          <AlternateDatesCard />
+        <Overlay onClose={() => setShowAlternateDates(false)}>
+          <AlternateDatesCard relatedTrips={trip?.relatedTrips || []} />
         </Overlay>
       )}
       <SectionContainer>
