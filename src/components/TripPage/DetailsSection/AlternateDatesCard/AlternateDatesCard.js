@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { Card, Header, IconWrapper, Title, Content, DateRow, Column, Label, ValueWrapper, Value, Arrow } from './AlternateDatesCard.styled'
 import { CalendarIcon, ArrowIcon } from './Icons'
 
-// Helper to format date as 'D MMM'
 function formatDate(dateStr) {
   const date = new Date(dateStr)
   return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })

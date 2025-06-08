@@ -14,6 +14,11 @@ export const Card = styled.div`
   align-items: flex-start;
   padding: 16px 0;
   isolation: isolate;
+
+  @media (max-width: 440px) {
+    width: 90%;
+    /* height: 100%; */
+  }
 `
 
 export const Header = styled.div`
@@ -63,7 +68,7 @@ export const DateRow = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 452px;
+  width: 100%;
   height: 54px;
   padding: 8px 16px;
   gap: 24px;

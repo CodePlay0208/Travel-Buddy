@@ -25,7 +25,17 @@ const Overlay = ({ children, onClose }) => {
     return () => window.removeEventListener('keydown', handleEsc)
   }, [onClose])
 
-  return <OverlayContainer>{children}</OverlayContainer>
+  return (
+    <OverlayContainer
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          onClose && onClose()
+        }
+      }}
+    >
+      {children}
+    </OverlayContainer>
+  )
 }
 
 export default Overlay
