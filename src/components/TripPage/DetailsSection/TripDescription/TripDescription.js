@@ -182,7 +182,7 @@ const TripDescription = (props) => {
       )}
       <SectionContainer>
         <DescriptionContainer>
-          <Title>{trip.title}</Title>
+          <Title>{trip?.title}</Title>
           <GreyLine />
           {editMode ? (
             <textarea defaultValue={content} />
