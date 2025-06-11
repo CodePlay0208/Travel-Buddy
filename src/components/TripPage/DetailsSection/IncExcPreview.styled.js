@@ -98,6 +98,21 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media (max-width: 440px) {
+    gap: 3.25rem;
+  }
+`
+
+export const SvgContainer = styled.ul`
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  
+
 `
 
 export const ListItem = styled.li`
@@ -107,13 +122,13 @@ export const ListItem = styled.li`
   width: 95%;
   font-size: 1.4rem;
   font-weight: 500;
-  line-height: 1.4rem;
+  line-height: 1.3;
   color: #000;
   margin: 0 0;
   word-break: break-word;
   svg {
     width: 1.4rem;
-    height: 1.4rem;
+    height: 1.82rem;
   }
   span {
     width: 90%;
@@ -122,11 +137,11 @@ export const ListItem = styled.li`
 
   @media (max-width: 440px) {
     font-size: 3.5rem;
-    margin: 1rem 0;
-    line-height: 3.5rem;
+    margin: 0 0;
+    line-height: 1.3;
     svg {
       width: 3.5rem;
-      height: 3.5rem;
+      height: 4.55rem;
     }
   }
 `

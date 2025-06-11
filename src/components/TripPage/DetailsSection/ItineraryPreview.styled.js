@@ -65,7 +65,7 @@ export const Content = styled.div`
   margin: 0 3% 2%;
   padding: 0 2%;
   font-weight: 500;
-  font-size: 1.125rem;
+  font-size: 1.4rem;
   line-height: 1.3;
   color: #000;
 
@@ -85,14 +85,21 @@ export const List = styled.ul`
   margin: 0;
   padding-left: 20px;
   list-style-position: outside;
+   display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (max-width: 440px) {
+    gap: 3.25rem;
+  }
 `
 
 export const ListItem = styled.li`
-  font-size: 1.125rem;
+  font-size: 1.4rem;
   font-weight: 500;
   line-height: 1.3;
   color: #000;
-  margin: 2% 0;
+  margin: 0% 0;
   word-break: break-word;
 
   &.short-itinerary{
@@ -103,6 +110,7 @@ export const ListItem = styled.li`
   }
   @media (max-width: 440px) {
     font-size: 3.5rem;
-    margin: 5% 0;
+    margin: 0 0;
+    line-height: 1.3;
   }
 `

@@ -9,6 +9,7 @@ import {
   OuterWrapper,
   TabButtonRow,
   TabButton,
+  SvgContainer,
 } from './IncExcPreview.styled.js'
 import ExcludeIcon from '../../../screens/PublishTrip/ExcludeIcon.js'
 import IncludeIcon from '../../../screens/PublishTrip/IncludeIcon.js'
@@ -105,6 +106,7 @@ const IncExcPreview = ({ trip, margin }) => {
                 {section?.inc_excDescription?.map((text, i) => (
                   <ListItem key={i} className="flex items-start">
                     {isExclude ? <ExcludeIcon className="mr-2 mt-1 flex-shrink-0" /> : <IncludeIcon className="mr-2 mt-1 flex-shrink-0" />}
+
                     <span>{text}</span>
                   </ListItem>
                 ))}
