@@ -5,7 +5,7 @@ export const SectionContainer = styled.div`
   width: 100%;
   box-sizing: border-box;
   @media (max-width: 440px) {
-    margin: 10% 0;
+    margin: 0% 0;
   }
 `
 

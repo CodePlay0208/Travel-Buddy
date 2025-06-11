@@ -9,7 +9,7 @@ export const PopularTripContainer = styled.div`
   background-repeat: no-repeat;
   position: relative;
   @media (max-width: 440px) {
-    margin: 5% 0 15%;
+    margin: 0% 0 15%;
   }
 `
 
