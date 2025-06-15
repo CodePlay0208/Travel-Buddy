@@ -62,6 +62,7 @@ const Searchbar = (props) => {
       setInputValues([...inputValues, inputText])
     }
     setInputText({ city: '', state: '' })
+    setFormattedValue('')
     setDropdownVisible(false)
   }
 
