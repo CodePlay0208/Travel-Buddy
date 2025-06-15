@@ -2,7 +2,7 @@ import React, { useEffect, useState, memo, useCallback } from 'react'
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
 import { connect } from 'react-redux'
-import { createTrip, editTrip, createTripsImages, editTripImages } from '../../actions/trips.action'
+import { createTrip, editTrip, createTripsImages, editTripImages, deleteBaseTrip } from '../../actions/trips.action'
 import { toast, ToastContainer } from 'react-toastify'
 import ImageUpload from './ImageUpload/ImageUpload'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -30,7 +30,7 @@ import {
 } from './PublishTrip.styled'
 import TripDetail from './TripDetail'
 import TripDates from './TripDates'
-import { Label, StyledToastContainer } from '../../styles/Global'
+import { CTAButton, Label, StyledToastContainer } from '../../styles/Global'
 import TripItinerary from './TripItinerary'
 import ItineraryPreview from './ItineraryPreview'
 import { FlexContainer } from '../../components/HeroSectionV2/HeroSection.styled'
@@ -118,7 +118,7 @@ function objArrToStrArr(arr) {
 }
 
 const PublishTrip = (props) => {
-  const { createTrip, editTrip, createTripsImages, editTripImages } = props
+  const { createTrip, editTrip, createTripsImages, editTripImages, deleteBaseTrip } = props
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
   const [toEditTrip, setToEditTrip] = useState(false)
@@ -188,7 +188,7 @@ const PublishTrip = (props) => {
     } else if (activeSection === TABS.ITINERARY) {
       setActiveSection(TABS.INC_EXC)
     }
-  }, [activeSection, toEditTrip])
+  }, [activeSection])
   const addDayTab = useCallback(() => {
     setTripData((prev) => ({
       ...prev,
@@ -303,6 +303,15 @@ const PublishTrip = (props) => {
     }
   }, [toEditTrip, handleEditTripSubmit, handleCreateTripSubmit])
 
+  const handleBaseTripDelete = useCallback(async () => {
+    const res = deleteBaseTrip(tripData?.baseTripId)
+    if (res) {
+      navigate('/user-trips')
+    } else {
+      toast.error('An error occurred during deletion.')
+    }
+  }, [deleteBaseTrip, navigate, tripData?.baseTripId])
+
   return (
     <PublishTripPage>
       <Navbar />
@@ -317,7 +326,7 @@ const PublishTrip = (props) => {
               <ToggleTab className={activeSection === TABS.TRIP ? 'active mobile' : 'mobile'} onClick={() => handleToggle(TABS.TRIP)}>
                 Details
               </ToggleTab>
-              {!toEditTrip && (
+              {
                 <>
                   {/* <Divider /> */}
                   <ToggleTab className={activeSection === TABS.USER ? 'active' : ''} onClick={() => handleToggle(TABS.USER)}>
@@ -327,7 +336,7 @@ const PublishTrip = (props) => {
                     Dates
                   </ToggleTab>
                 </>
-              )}
+              }
               {
                 <>
                   {/* <Divider /> */}
@@ -365,7 +374,7 @@ const PublishTrip = (props) => {
                 isReadOnly={toEditTrip}
               />
             )}
-            {activeSection === TABS.USER && !toEditTrip && (
+            {activeSection === TABS.USER && (
               <TripDates
                 tripData={tripData}
                 handleChange={handleChange}
@@ -478,6 +487,11 @@ const PublishTrip = (props) => {
             <SubmitButton onClick={handleNext}>Next</SubmitButton>
           </PublishTripButton>
         )}
+        {toEditTrip && (
+          <PublishTripButton>
+            <CTAButton onClick={handleBaseTripDelete}>Delete</CTAButton>
+          </PublishTripButton>
+        )}
       </PublishTripContainer>
       <Footer />
       <StyledToastContainer />
@@ -491,5 +505,6 @@ export default memo(
     editTrip,
     createTripsImages,
     editTripImages,
+    deleteBaseTrip,
   })(PublishTrip),
 )
