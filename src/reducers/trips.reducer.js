@@ -18,10 +18,12 @@ import {
   ADD_MEMBER_TRIP,
   DECLINE_REQUEST_AS_HOST,
   REMOVE_MEMBER_AS_HOST,
+  GET_RANDOM_TRIPS,
 } from '../constants/action-types/trips.constants'
 
 const initialState = {
   trips: [],
+  randomTrips: [],
   trip: null,
   loading: true,
   user: {
@@ -56,6 +58,13 @@ const tripReducer = (state = initialState, action) => {
       return {
         ...state,
         trips: action.append ? [...(state.trips || []), ...(payload || [])] : payload,
+        loading: false,
+      }
+    case GET_RANDOM_TRIPS:
+      return {
+        ...state,
+        randomTrips: action.append ? [...(state.trips || []), ...(payload || [])] : payload,
+        
         loading: false,
       }
     case GET_TRIP:

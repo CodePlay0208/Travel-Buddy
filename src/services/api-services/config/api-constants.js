@@ -11,6 +11,7 @@ export const API_PATH = {
   EDIT_SECONDARY_KEY:'/user/editSecondaryKey',
 
   TRIPS_API: '/trips/getTrips',
+  RANDOM_TRIPS_API: '/trips/getRandomTrips',
   USER_TRIPS_API: '/trips/getTripsByUser',
   USER_WISHLIST_TRIPS_API:'trips/getWishlistedTrips',
   USER_PAST_TRIPS_API:'/trips/getJoinedTrips',
@@ -34,7 +35,8 @@ export const API_PATH = {
 
   USER_PROFILE_API: '/user/getUserProfile',
   DELETE_PROFILE_API: 'user/deleteUserProfile',
-  DELETE_TRIP_API: '/trips/deleteTrip',
+  DELETE_TRIP_API: '/trips/deleteTripInstance',
+  DELETE_BASE_TRIP_API: '/trips/deleteBaseTrip',
   EDIT_PROFILE_API: '/user/editUserProfile',
   GET_OTHER_USER_PROFILE: '/user/getOtherUserProfile',
   CHATS_API: '/message/getAllMessages',

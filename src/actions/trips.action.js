@@ -17,6 +17,7 @@ import {
   REMOVE_MEMBER_AS_HOST,
   GET_USER_REQUESTED,
   DECLINE_REQUEST_AS_HOST,
+  GET_RANDOM_TRIPS,
 } from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
@@ -58,6 +59,37 @@ export const getTrips =
       return false
     }
   }
+  
+export const getRandomTrips =
+  (searchForm, offset = 0, limit = 50, append = false) =>
+  async (dispatch) => {
+    const { destination, startDate } = searchForm
+    const params = [
+      { key: 'destination', value: destination },
+      { key: 'date', value: startDate },
+      { key: 'offset', value: offset },
+      { key: 'limit', value: limit },
+    ]
+
+    try {
+      let res = await TripsApi.getRandomTrips(params)
+      
+      dispatch({ type: GET_RANDOM_TRIPS, payload: res.data.trips, append })
+      return true
+    } catch (e) {
+      if (e.response) {
+        if (e.response.status === 401) {
+          toast.error('Invalid User!', { autoClose: 1500 })
+        } else if (e.response.status === 404) {
+          // 404 could mean "no trips found"; returning true to signal an empty result
+          return true
+        }
+      }
+      dispatch({ type: TRIPS_ERROR, payload: e })
+      return false
+    }
+  }
+  
 
 export const getTripById = (tripId) => async (dispatch) => {
   try {
@@ -270,6 +302,21 @@ export const deleteUserTrip = (trip_id) => async (dispatch) => {
   try {
     await TripsApi.deleteUserTrip(trip_id)
     dispatch({ type: 'DELETE_USER_TRIP', payload: trip_id })
+    toast.success('Trip successfully deleted!', { autoClose: 1500 })
+    return true
+  } catch (e) {
+    if (e.response && e.response.status === 401) {
+      toast.error('Invalid User!', { autoClose: 1500 })
+    }
+    dispatch({ type: TRIPS_ERROR, payload: e })
+    return false
+  }
+}
+
+export const deleteBaseTrip = (trip_id) => async (dispatch) => {
+  try {
+    await TripsApi.deleteBaseTrip(trip_id)
+    dispatch({ type: 'DELETE_BASE_TRIP', payload: trip_id })
     toast.success('Trip successfully deleted!', { autoClose: 1500 })
     return true
   } catch (e) {

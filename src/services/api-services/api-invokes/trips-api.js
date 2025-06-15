@@ -1,3 +1,4 @@
+
 import { ApiService, setAuthTokenImg } from '../api-services'
 import { API_PATH } from '../config/api-constants'
 import { env } from '../config/env'
@@ -8,6 +9,20 @@ export const TripsApi = {
     try {
       const queryString = getQueryString(payload)
       const result = await ApiService.get(`${API_PATH.TRIPS_API}?${queryString}`, {
+        baseURL: env.BASE_API_URL,
+      })
+      //console.log('getTrips SUCCESS', result)
+
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      //console.log('getTrips ERROR', e)
+      throw e
+    }
+  },
+  getRandomTrips: async (payload) => {
+    try {
+      const queryString = getQueryString(payload)
+      const result = await ApiService.get(`${API_PATH.RANDOM_TRIPS_API}?${queryString}`, {
         baseURL: env.BASE_API_URL,
       })
       //console.log('getTrips SUCCESS', result)
@@ -122,6 +137,18 @@ export const TripsApi = {
   deleteUserTrip: async (baseTripId) => {
     try {
       const result = await ApiService.delete(`${API_PATH.DELETE_TRIP_API}/${baseTripId}`, {
+        baseURL: env.BASE_API_URL,
+      })
+      //console.log('deleteUserTrip SUCCESS: ', result)
+
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      //console.log('deleteUserTrip ERROR: ', e)
+      throw e
+    }
+  },deleteBaseTrip: async (baseTripId) => {
+    try {
+      const result = await ApiService.delete(`${API_PATH.DELETE_BASE_TRIP_API}/${baseTripId}`, {
         baseURL: env.BASE_API_URL,
       })
       //console.log('deleteUserTrip SUCCESS: ', result)

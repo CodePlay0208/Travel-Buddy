@@ -177,10 +177,10 @@ const PublishTrip = (props) => {
   }, [])
 
   const handleNext = useCallback(() => {
-    if (toEditTrip) {
-      setActiveSection(TABS.ITINERARY)
-      return
-    }
+    // if (toEditTrip) {
+    //   setActiveSection(TABS.ITINERARY)
+    //   return
+    // }
     if (activeSection === TABS.TRIP) {
       setActiveSection(TABS.USER)
     } else if (activeSection === TABS.USER) {

@@ -1,4 +1,5 @@
 export const GET_TRIPS = 'GET_TRIPS'
+export const GET_RANDOM_TRIPS = 'GET_RANDOM_TRIPS'
 export const GET_TRIP = 'GET_TRIP'
 export const GET_USER_TRIPS = 'GET_USER_TRIPS'
 export const DELETE_USER_TRIP = 'DELETE_USER_TRIP'
