@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   margin: ${(props) => props.margin ?? '0'};
-  
+
   /* box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1); */
   height: ${(props) => props.$height}px;
   border-radius: 0.625rem;
@@ -20,8 +20,8 @@ export const Container = styled.div`
     background: rgba(0, 0, 0, 0.2);
     border-radius: 0.75rem;
   }
-  @media (max-width: 440px) { 
-    height:unset;
+  @media (max-width: 440px) {
+    height: unset;
     max-height: 550px;
   }
 `
@@ -60,6 +60,17 @@ export const TimelineItem = styled.li`
   &:last-child {
     margin-bottom: 0;
   }
+  &.start {
+    svg {
+      margin: 1rem 3% 0.5rem 3%;
+    }
+    justify-content: flex-start;
+    margin-bottom: 10rem;
+
+    @media (max-width: 440px) {
+      margin-bottom: 5rem;
+    }
+  }
 
   @media (max-width: 440px) {
     margin-bottom: 12px;
@@ -80,6 +91,15 @@ export const BulletWrapper = styled.div`
     transform: translateX(-50%);
     width: 0.125rem;
     height: 175%;
+    background-color: rgba(5, 5, 5, 0.2);
+  }
+  .connectorLenthy {
+    position: absolute;
+    top: 115%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.125rem;
+    height: 10rem;
     background-color: rgba(5, 5, 5, 0.2);
   }
 
@@ -109,7 +129,7 @@ export const LocationBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  svg{
+  svg {
     width: 9px;
     height: 9px;
   }
