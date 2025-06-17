@@ -4,8 +4,11 @@ import { Input, Label } from '../../styles/Global'
 import DatePicker from '../../components/DatePicker/DatePicker'
 import DateRange from './dateRange'
 import InputDropdown from '../../components/InputDropdown/InputDropdown'
+import InfoIcon from '../../assets/svg/info'
+import { FlexContainer, TooltipWrapper, Tooltip } from './PublishTrip.styled'
 
 const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteDate }) => {
+  const [tooltipVisible, setTooltipVisible] = React.useState(false);
   return (
     <Container>
       <InputRow margin="0 0" gap="32px">
@@ -17,9 +20,20 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
             <Input name="duration" type="text" placeholder="Enter No. of Days" value={tripData.duration || ''} onChange={handleChange} />
           </InputGroup>
           <InputGroup>
-            <Label fontSize="1rem" fontWeight="700">
+          <FlexContainer >
+            <Label fontSize="1rem" fontWeight="700" margin="2% 0 2%">
               Pick Your Start Dates
             </Label>
+            <TooltipWrapper
+              onMouseEnter={() => setTooltipVisible(true)}
+              onMouseLeave={() => setTooltipVisible(false)}
+            >
+              <InfoIcon />
+              <Tooltip visible={tooltipVisible}>
+                Select one or more days of the week (e.g., Monday, Friday). Your trip will be automatically published every week on the selected days for a window of 3 months.
+              </Tooltip>
+            </TooltipWrapper>
+          </FlexContainer>
             <DatePicker
               inputValues={tripData.multipleDates}
               setInputValues={(value) => handleTripDataChange('multipleDates', value)}

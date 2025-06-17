@@ -587,3 +587,65 @@ export const PublishTripRightSection = styled.div`
     min-height: 200px; /* Adjust for mobile if needed */
   }
 `
+export const TooltipWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+  height: 1.1rem;
+  width: 1.1rem;
+
+  @media (max-width: 440px) {
+    height: 3.6rem;
+    width: 3.6rem;
+  }
+  svg{
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const Tooltip = styled.div`
+  width: 250px;
+  background: #fff;
+  color: #050505;
+  text-align: left;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  padding: 12.5px;
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 150%;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  position: absolute;
+  z-index: 9999;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: ${props => (props.visible ? 1 : 0)};
+  pointer-events: none;
+  transition: opacity 0.2s;
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+  }
+  
+`;
+export const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: ${(props) => props.justifyContent || 'flex-start'};
+  align-items: ${(props) => props.alignItems || 'center'};
+  gap: ${(props) => props.gap || '4px'};
+  padding: ${(props) => props.padding || '0'};
+  margin: ${(props) => props.margin || '2% 0 0'};
+  
+`;
