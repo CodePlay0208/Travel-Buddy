@@ -115,7 +115,11 @@ export const DescriptionField = styled.textarea`
   border-radius: ${(props) => props.borderRadius ?? '20px'};
   font-size: 1rem;
   color: ${colors.dark};
+  border: ${(props) => props.border ?? ` 1px solid ${colors.background} `};
 
+  &:hover {
+    border: ${(props) => props.border ?? ' 1px solid #8DD3BB'};
+  }
   ${media.desktop`
     height: 120px;
   `}
