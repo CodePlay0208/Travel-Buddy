@@ -23,12 +23,13 @@ const PickupLocation = ({ title, locationsClubbed = [] }) => {
       subtitle: parts[1] || '',
     }))
 
-    locations = [...locations,...locations]
-    locations = [...locations,...locations]
+    // locations = [...locations,...locations]
+    // locations = [...locations,...locations]
 
   const rowRef = useRef(null)
   const iconRefs = useRef([])
   const [lineParams, setLineParams] = useState({ left: 0, width: 0 })
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   const measureLine = () => {
     if (!rowRef.current || !iconRefs.current || iconRefs.current.length === 0) {
@@ -77,21 +78,30 @@ const PickupLocation = ({ title, locationsClubbed = [] }) => {
     }
   }, [locationsClubbed])
 
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   if (!Array.isArray(locations) || locations.length === 0) {
     return null
   }
   const count = locations.length
 
+  // Determine threshold based on window width
+  const threshold = windowWidth < 440 ? 3 : 5
+
   iconRefs.current = []
   const items = locations.map((loc, idx) => {
     const isLast = idx === locations.length - 1
-    let style = undefined
-    if (count > 5 && !isLast) {
-      const gap = typeof loc.connectorWidth === 'number' ? loc.connectorWidth : DEFAULT_GAP
-      style = { marginRight: `${gap}px` }
+    let gap = 0
+    if (count > threshold && !isLast) {
+       gap = DEFAULT_GAP
+      
     }
     return (
-      <Item key={idx} count={count} style={style} aria-label={`Location ${loc.name}${loc.subtitle ? `, ${loc.subtitle}` : ''}`}>
+      <Item key={idx} count={count} gap={gap} mobGap={(gap*1.5)} aria-label={`Location ${loc.name}${loc.subtitle ? `, ${loc.subtitle}` : ''}`}>
         <IconWrapper
           ref={(el) => {
             iconRefs.current[idx] = el
@@ -106,7 +116,7 @@ const PickupLocation = ({ title, locationsClubbed = [] }) => {
     )
   })
 
-  if (count > 5) {
+  if (count > threshold) {
     return (
       <Container>
         <Title>{title}</Title>

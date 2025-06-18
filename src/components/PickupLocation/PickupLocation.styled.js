@@ -12,11 +12,12 @@ export const Container = styled.div`
   background: #ffffff;
   box-shadow: 0px 1px 11px rgba(0, 0, 0, 0.3);
   border-radius: 16px;
-  width: 100%;
+  width: 50%;
   @media (max-width: 440px) {
     padding: 0;
     gap: 16px;
     box-shadow: 0px 0 0;
+    width: 100%;
   }
 `
 
@@ -61,20 +62,23 @@ export const RowWrapper = styled.div`
   padding-bottom: 32px; */
   @media (max-width: 440px) {
     width: ${({ count }) => (count > 0 ? '100%' : 'auto')};
-    box-shadow: ${({ count }) => (count <= 4 ? '0px 1px 4px 0px #0000004d' : 'none')};
+    box-shadow: ${({ count }) => (count <= 2 ? '0px 1px 4px 0px #0000004d' : 'none')};
     border-radius: 8px;
-    padding: ${({ count }) => (count <= 4 ? '8px 16px' : '0')};
+    padding: ${({ count }) => (count <= 2 ? '8px 16px' : '0')};
   }
 `
 
 export const BackgroundLine = styled.div`
   position: absolute;
-  top: ${8 + ICON_SIZE / 2}px;
+  top: ${ICON_SIZE / 2}px;
   left: ${({ left }) => `${left}px`};
   width: ${({ width }) => `${width}px`};
   height: 1px;
   background-color: rgba(5, 5, 5, 0.4);
   z-index: 1;
+  @media (max-width: 440px) {
+    top: ${8 + ICON_SIZE / 2}px;
+  }
 `
 
 export const ItemsRow = styled.div`
@@ -92,6 +96,11 @@ export const Item = styled.div`
   align-items: center;
   flex: ${({ count }) => (count <= 5 ? '1 1 0' : '0 0 auto')};
   white-space: nowrap;
+
+  margin-right: ${({ gap }) => `${gap}px` ?? '0px'};
+  @media (max-width: 440px) {
+    margin-right: ${({ mobGap }) => `${mobGap}px` ?? '0px'};
+  }
 `
 
 export const IconWrapper = styled.div`
