@@ -16,12 +16,15 @@ import {
 import CustomLocationIcon from './CustomLocationIcon'
 
 const PickupLocation = ({ title, locationsClubbed = [] }) => {
-  const locations = locationsClubbed
+  let locations = locationsClubbed
     .map((loc) => loc.split(',').map((part) => part.trim()))
     .map((parts) => ({
       name: parts[0] || '',
       subtitle: parts[1] || '',
     }))
+
+    locations = [...locations,...locations]
+    locations = [...locations,...locations]
 
   const rowRef = useRef(null)
   const iconRefs = useRef([])

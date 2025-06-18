@@ -13,6 +13,11 @@ export const Container = styled.div`
   box-shadow: 0px 1px 11px rgba(0, 0, 0, 0.3);
   border-radius: 16px;
   width: 100%;
+  @media (max-width: 440px) {
+    padding: 0;
+    gap: 16px;
+    box-shadow: 0px 0 0;
+  }
 `
 
 export const Title = styled.h2`
@@ -25,17 +30,27 @@ export const Title = styled.h2`
   color: #009965;
   margin: 0;
   white-space: nowrap;
+  @media (max-width: 440px) {
+    font-size: 16px;
+    line-height: 16px;
+  }
 `
 
 export const ScrollWrapper = styled.div`
   width: 100%;
   overflow-x: auto;
+
   &::-webkit-scrollbar {
     height: 6px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 3px;
+  }
+  @media (max-width: 440px) {
+    box-shadow: 0px 1px 4px 0px #0000004d;
+    border-radius: 8px;
+    padding: 8px 16px;
   }
 `
 
@@ -44,11 +59,17 @@ export const RowWrapper = styled.div`
   width: ${({ count }) => (count <= 5 ? '100%' : 'auto')};
   /* margin-top: ${ICON_SIZE}px;
   padding-bottom: 32px; */
+  @media (max-width: 440px) {
+    width: ${({ count }) => (count > 0 ? '100%' : 'auto')};
+    box-shadow: ${({ count }) => (count <= 4 ? '0px 1px 4px 0px #0000004d' : 'none')};
+    border-radius: 8px;
+    padding: ${({ count }) => (count <= 4 ? '8px 16px' : '0')};
+  }
 `
 
 export const BackgroundLine = styled.div`
   position: absolute;
-  top: ${ICON_SIZE / 2}px;
+  top: ${8 + ICON_SIZE / 2}px;
   left: ${({ left }) => `${left}px`};
   width: ${({ width }) => `${width}px`};
   height: 1px;
@@ -74,13 +95,17 @@ export const Item = styled.div`
 `
 
 export const IconWrapper = styled.div`
-  width: ${ICON_SIZE+10}px;
+  width: ${ICON_SIZE + 10}px;
   height: ${ICON_SIZE}px;
   background: #ffffff;
   color: #8dd3bb;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 440px) {
+    height: ${ICON_SIZE}px;
+  }
 `
 
 export const Name = styled.div`
