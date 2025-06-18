@@ -4,6 +4,8 @@ import AddMembers from './AddMembers/AddMembers'
 import TripDescription from './TripDescription/TripDescription'
 import TripItinerary from './TripItinerary'
 import IncExcPreview from './IncExcPreview'
+import PickupLocation from '../../PickupLocation/PickupLocation'
+import PickupLocationDemo from '../../PickupLocation/PickupLocationDemo'
 
 const DetailsSection = ({ isUserTrip, isEditMode, setEditMode, editedData, setEditedData, onSaveTrip }) => {
   return (
@@ -16,6 +18,8 @@ const DetailsSection = ({ isUserTrip, isEditMode, setEditMode, editedData, setEd
         setEditedData={setEditedData}
         onSaveTrip={onSaveTrip}
       />
+      
+      <PickupLocationDemo/>
       <UpperSection>
         <Title>Itinerary</Title>
         {/* <Divider /> */}

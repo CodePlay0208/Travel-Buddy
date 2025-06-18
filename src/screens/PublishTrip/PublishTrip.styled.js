@@ -597,11 +597,11 @@ export const TooltipWrapper = styled.div`
     height: 3.6rem;
     width: 3.6rem;
   }
-  svg{
+  svg {
     width: 100%;
     height: 100%;
   }
-`;
+`
 
 export const Tooltip = styled.div`
   width: 250px;
@@ -616,16 +616,16 @@ export const Tooltip = styled.div`
   font-weight: 400;
   font-size: 10px;
   line-height: 150%;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
   position: absolute;
   z-index: 9999;
   bottom: 125%;
   left: 50%;
   transform: translateX(-50%);
-  opacity: ${props => (props.visible ? 1 : 0)};
+  opacity: ${(props) => (props.visible ? 1 : 0)};
   pointer-events: none;
   transition: opacity 0.2s;
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
 
   &::after {
     content: '';
@@ -637,8 +637,7 @@ export const Tooltip = styled.div`
     border-style: solid;
     border-color: #fff transparent transparent transparent;
   }
-  
-`;
+`
 export const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -647,5 +646,4 @@ export const FlexContainer = styled.div`
   gap: ${(props) => props.gap || '4px'};
   padding: ${(props) => props.padding || '0'};
   margin: ${(props) => props.margin || '2% 0 0'};
-  
-`;
+`

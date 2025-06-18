@@ -8,7 +8,7 @@ import InfoIcon from '../../assets/svg/info'
 import { FlexContainer, TooltipWrapper, Tooltip } from './PublishTrip.styled'
 
 const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteDate }) => {
-  const [tooltipVisible, setTooltipVisible] = React.useState(false);
+  const [tooltipVisible, setTooltipVisible] = React.useState(false)
   return (
     <Container>
       <InputRow margin="0 0" gap="32px">
@@ -20,20 +20,18 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
             <Input name="duration" type="text" placeholder="Enter No. of Days" value={tripData.duration || ''} onChange={handleChange} />
           </InputGroup>
           <InputGroup>
-          <FlexContainer >
-            <Label fontSize="1rem" fontWeight="700" margin="2% 0 2%">
-              Pick Your Start Dates
-            </Label>
-            <TooltipWrapper
-              onMouseEnter={() => setTooltipVisible(true)}
-              onMouseLeave={() => setTooltipVisible(false)}
-            >
-              <InfoIcon />
-              <Tooltip visible={tooltipVisible}>
-                Select one or more days of the week (e.g., Monday, Friday). Your trip will be automatically published every week on the selected days for a window of 3 months.
-              </Tooltip>
-            </TooltipWrapper>
-          </FlexContainer>
+            <FlexContainer>
+              <Label fontSize="1rem" fontWeight="700" margin="2% 0 2%">
+                Pick Your Start Dates
+              </Label>
+              <TooltipWrapper onMouseEnter={() => setTooltipVisible(true)} onMouseLeave={() => setTooltipVisible(false)}>
+                <InfoIcon />
+                <Tooltip visible={tooltipVisible}>
+                  Select one or more days of the week (e.g., Monday, Friday). Your trip will be automatically published every week on the
+                  selected days for a window of 3 months.
+                </Tooltip>
+              </TooltipWrapper>
+            </FlexContainer>
             <DatePicker
               inputValues={tripData.multipleDates}
               setInputValues={(value) => handleTripDataChange('multipleDates', value)}
@@ -52,7 +50,7 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
             />
           </InputGroup>
         </InputColumn>
-        <InputColumn gap="16px"  className="flex-start">
+        <InputColumn gap="16px" className="flex-start">
           {/* <InputGroup width="100%">
             <Label fontSize="1rem" fontWeight="700" margin="1.6% 0 1.6%">
               Schedule Trip

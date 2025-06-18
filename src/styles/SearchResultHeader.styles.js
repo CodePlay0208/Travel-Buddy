@@ -9,7 +9,7 @@ const breakpoints = {
 
 export const HeaderContainer = styled.div`
   position: relative;
-  background-color: green;
+  background-color: #ffffff;
   width: 100%;
   height: auto;
   padding: 17% 0 0;

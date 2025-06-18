@@ -31,7 +31,7 @@
     "react-bootstrap": "^2.10.3",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
-    "react-icons": "^5.2.1",
+    "react-icons": "^5.5.0",
     "react-images-uploading": "^3.1.7",
     "react-redux": "^8.1.3",
     "react-responsive-carousel": "^3.2.23",
@@ -45,7 +45,7 @@
     "slick-carousel": "^1.8.1",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
-    "styled-components": "^6.1.11",
+    "styled-components": "^6.1.19",
     "use-debounce": "^10.0.1",
     "web-vitals": "^2.1.4"
   },
