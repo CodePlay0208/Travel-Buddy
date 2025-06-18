@@ -81,7 +81,7 @@ const PopularSection = (props) => {
         <ArrowButton className="right" onClick={scrollRight} aria-label="Scroll Right">
           <img src={SVG.rightArrowBlack} alt="" />
         </ArrowButton>
-        {trips?.map((trip) => (
+        {randomTrips?.trips?.map((trip) => (
           <TripCard key={trip?.tripInstanceId} trip={trip} />
         ))}
       </PopularTripContent>

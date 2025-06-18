@@ -49,11 +49,12 @@ const cardData = [
 
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
+  randomTrips: state.tripReducer.randomTrips,
 
   searchForm: state.tripReducer.searchForm,
 })
 
-const SlidingSection = ({ trips }) => {
+const SlidingSection = ({ trips,randomTrips }) => {
   const navigate = useNavigate()
   const handleCardClick = (tripInstanceId) => {
     navigate('/trip/' + tripInstanceId)
@@ -61,7 +62,7 @@ const SlidingSection = ({ trips }) => {
   return (
     <Container>
       <Slider cardCount={8}>
-        {trips?.slice(0, 8).map((card, index) => (
+        {randomTrips?.trips?.slice(0, 8).map((card, index) => (
           <CardContainer key={index} onClick={() => handleCardClick(card.tripInstanceId)}>
             <Card key={index} src={card?.croppedDestinationImages?.[0]?.preSignedUrl} />
             <Badge>
