@@ -8,6 +8,25 @@ export const SectionContainer = styled.div`
     margin: 0% 0;
   }
 `
+export const LocationContainer = styled.div`
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+  margin: 5% 0;
+  gap: 16px;
+
+  @media (max-width: 440px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 10% 0;
+  }
+`
 
 export const Title = styled.div`
   margin: 5% 0;

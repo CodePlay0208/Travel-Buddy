@@ -256,6 +256,7 @@ const TripDescription = (props) => {
             Alternative Dates
           </AlternateButton>
         </ChatSectionContainer>
+        
       </SectionContainer>
       {deleteModal && (
         <Modal

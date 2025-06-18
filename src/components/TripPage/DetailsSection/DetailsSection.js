@@ -1,13 +1,18 @@
-import React from 'react'
-import { SectionContainer, Title, UpperSection, MapImage, Divider } from './DetailsSection.styled'
+import React, { memo } from 'react'
+import { SectionContainer, Title, UpperSection, MapImage, Divider, LocationContainer } from './DetailsSection.styled'
 import AddMembers from './AddMembers/AddMembers'
 import TripDescription from './TripDescription/TripDescription'
 import TripItinerary from './TripItinerary'
 import IncExcPreview from './IncExcPreview'
 import PickupLocation from '../../PickupLocation/PickupLocation'
 import PickupLocationDemo from '../../PickupLocation/PickupLocationDemo'
+import { connect } from 'react-redux'
 
-const DetailsSection = ({ isUserTrip, isEditMode, setEditMode, editedData, setEditedData, onSaveTrip }) => {
+const mapStateToProps = (state) => ({
+  trip: state.tripReducer.trip,
+})
+
+const DetailsSection = ({trip, isUserTrip, isEditMode, setEditMode, editedData, setEditedData, onSaveTrip }) => {
   return (
     <SectionContainer>
       <TripDescription
@@ -19,7 +24,11 @@ const DetailsSection = ({ isUserTrip, isEditMode, setEditMode, editedData, setEd
         onSaveTrip={onSaveTrip}
       />
       
-      <PickupLocationDemo/>
+      <LocationContainer>
+
+      <PickupLocation  title="Pick Up Location:" locationsClubbed={trip.startLocation} />
+      <PickupLocation  title="Destination:" locationsClubbed={trip.destination} />
+      </LocationContainer>
       <UpperSection>
         <Title>Itinerary</Title>
         {/* <Divider /> */}
@@ -36,4 +45,4 @@ const DetailsSection = ({ isUserTrip, isEditMode, setEditMode, editedData, setEd
   )
 }
 
-export default DetailsSection
+export default connect(mapStateToProps, null)(memo( DetailsSection))
