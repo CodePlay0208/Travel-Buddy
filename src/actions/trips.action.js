@@ -59,7 +59,7 @@ export const getTrips =
       return false
     }
   }
-  
+
 export const getRandomTrips =
   (searchForm, offset = 0, limit = 50, append = false) =>
   async (dispatch) => {
@@ -73,7 +73,7 @@ export const getRandomTrips =
 
     try {
       let res = await TripsApi.getRandomTrips(params)
-      
+
       dispatch({ type: GET_RANDOM_TRIPS, payload: res.data.trips, append })
       return true
     } catch (e) {
@@ -89,7 +89,6 @@ export const getRandomTrips =
       return false
     }
   }
-  
 
 export const getTripById = (tripId) => async (dispatch) => {
   try {
@@ -385,6 +384,15 @@ export const declineRequest = (tripInstanceId, memberId) => async (dispatch) => 
   } catch (e) {
     toast.error('Failed to decline request from trip.')
     dispatch({ type: TRIPS_ERROR, payload: e })
+    return false
+  }
+}
+
+export const generatePreSignedUrlForDestinationImages = (payload) => async (dispatch) => {
+  try {
+    const res = await TripsApi.generatePreSignedUrlForDestinationImages(payload)
+    return res.data
+  } catch (e) {
     return false
   }
 }

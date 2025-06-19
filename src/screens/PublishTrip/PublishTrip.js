@@ -2,7 +2,14 @@ import React, { useEffect, useState, memo, useCallback } from 'react'
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
 import { connect } from 'react-redux'
-import { createTrip, editTrip, createTripsImages, editTripImages, deleteBaseTrip } from '../../actions/trips.action'
+import {
+  createTrip,
+  editTrip,
+  createTripsImages,
+  editTripImages,
+  deleteBaseTrip,
+  generatePreSignedUrlForDestinationImages,
+} from '../../actions/trips.action'
 import { toast, ToastContainer } from 'react-toastify'
 import ImageUpload from './ImageUpload/ImageUpload'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -41,6 +48,7 @@ import ClearIcon from '../../assets/svg/clear'
 import InclusionExclusion from './InclusionExclusion'
 import IncExcPreview from './IncExcPreview'
 import TripDetailPreview from './TripDetailPreview'
+import axios from 'axios'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -118,7 +126,8 @@ function objArrToStrArr(arr) {
 }
 
 const PublishTrip = (props) => {
-  const { createTrip, editTrip, createTripsImages, editTripImages, deleteBaseTrip } = props
+  const { createTrip, editTrip, createTripsImages, editTripImages, deleteBaseTrip, generatePreSignedUrlForDestinationImages, profile } =
+    props
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
   const [toEditTrip, setToEditTrip] = useState(false)
@@ -261,6 +270,19 @@ const PublishTrip = (props) => {
     }
   }, [tripData, makeDayTabsEmptyIfEmptyData, editTrip, editTripImages, navigate])
 
+  function randomHexString(byteCount = 16) {
+    const arr = new Uint8Array(byteCount)
+    window.crypto.getRandomValues(arr)
+    return Array.from(arr)
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('')
+  }
+  function randomFileName(file, byteCount = 16) {
+    const origName = file
+    const ext = origName.includes('.') ? origName.slice(origName.lastIndexOf('.')) : ''
+    const hex = randomHexString(byteCount)
+    return `${hex}`
+  }
   const handleCreateTripSubmit = useCallback(async () => {
     const processedTripDates = getProcessedTripDates()
     const tripBody = {
@@ -280,15 +302,85 @@ const PublishTrip = (props) => {
       toast.error('Failed to publish trip. Please try again.')
       return
     }
-    const formDataImages = new FormData()
+
+    let preSignedUrlPayload = {
+      baseTripId: isTripPublished.data.baseTripId,
+      prefix: `full-images/${profile?.userId}/${isTripPublished.data.baseTripId}`,
+      files: [],
+    }
+
+    let preSignedUrlPayloadForCropped = {
+      baseTripId: isTripPublished.data.baseTripId,
+      prefix: `cropped-images/${profile?.userId}/${isTripPublished.data.baseTripId}`,
+      files: [],
+    }
+
     tripData.destinationImages?.forEach((image) => {
-      formDataImages.append('destinationImages', image.file)
+      const tempPayload = {
+        filename: randomFileName(image.file.name),
+        filetype: image.file.type || 'image/jpeg',
+      }
+      preSignedUrlPayload = {
+        ...preSignedUrlPayload,
+        files: [...preSignedUrlPayload.files, tempPayload],
+      }
+
+      preSignedUrlPayloadForCropped = {
+        ...preSignedUrlPayloadForCropped,
+        files: [...preSignedUrlPayloadForCropped.files, tempPayload],
+      }
     })
-    formDataImages.append('baseTripId', isTripPublished.data.baseTripId)
-    await createTripsImages(formDataImages, true)
+
+    const preSignedUrls = await generatePreSignedUrlForDestinationImages(preSignedUrlPayload)
+    const preSignedUrlsForCroppedImages = await generatePreSignedUrlForDestinationImages(preSignedUrlPayloadForCropped)
+
+    // tripData.destinationImages?.forEach(async (image, index) => {
+    //   // const formDataImages = new FormData()
+    //   // formDataImages.append('destinationImages', image.file)
+    //   // formDataImages.append('baseTripId', isTripPublished.data.baseTripId)
+    //   // await createTripsImages(formDataImages, true)
+    //   const presignedUrl = preSignedUrls[index]
+    //   try {
+    //     await axios.put(presignedUrl, image, {
+    //       headers: {
+    //         'Content-Type': image.file.type,
+    //       },
+
+    //     })
+    //   } catch (err) {
+    //     console.error('Upload error:', err)
+
+    //   }
+    // })
+
+    const uploadPromises = tripData.destinationImages.map(async (imgObj, i) => {
+      const file = imgObj
+      const presignedUrl = preSignedUrls[i]?.s3Url
+      console.log(file, presignedUrl)
+      await axios
+        .put(presignedUrl, imgObj.file, {
+          headers: { 'Content-Type': imgObj.file.type },
+        })
+        .catch((err) => {
+          console.log(err)
+          return {
+            index: i,
+            error: err,
+          }
+        })
+    })
+
     toast.success('Trip published successfully!')
-    navigate('/')
-  }, [getProcessedTripDates, tripData, makeDayTabsEmptyIfEmptyData, createTrip, createTripsImages, navigate])
+    // navigate('/')
+  }, [
+    getProcessedTripDates,
+    tripData,
+    makeDayTabsEmptyIfEmptyData,
+    createTrip,
+    profile?.userId,
+    generatePreSignedUrlForDestinationImages,
+    randomFileName,
+  ])
 
   const handleSubmit = useCallback(async () => {
     try {
@@ -506,5 +598,6 @@ export default memo(
     createTripsImages,
     editTripImages,
     deleteBaseTrip,
+    generatePreSignedUrlForDestinationImages,
   })(PublishTrip),
 )

@@ -1,4 +1,3 @@
-
 import { ApiService, setAuthTokenImg } from '../api-services'
 import { API_PATH } from '../config/api-constants'
 import { env } from '../config/env'
@@ -146,7 +145,8 @@ export const TripsApi = {
       //console.log('deleteUserTrip ERROR: ', e)
       throw e
     }
-  },deleteBaseTrip: async (baseTripId) => {
+  },
+  deleteBaseTrip: async (baseTripId) => {
     try {
       const result = await ApiService.delete(`${API_PATH.DELETE_BASE_TRIP_API}/${baseTripId}`, {
         baseURL: env.BASE_API_URL,
@@ -314,6 +314,14 @@ export const TripsApi = {
       return { status: result.status, data: result.data }
     } catch (e) {
       //console.log('removeMemberAsHost ERROR: ', e)
+      throw e
+    }
+  },
+  generatePreSignedUrlForDestinationImages: async (payload) => {
+    try {
+      const result = await ApiService.post(API_PATH.GENERATE_PRESIGNED_URL_FOR_DEST_IMAGES, payload, { baseURL: env.BASE_API_URL }, false)
+      return { status: result.status, data: result.data }
+    } catch (e) {
       throw e
     }
   },

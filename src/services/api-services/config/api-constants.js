@@ -8,25 +8,25 @@ export const API_PATH = {
   AUTH_FORGET_PASS: '/login/forgotPassword',
   AUTH_RESEND_OTP: '/login/resendOtp',
   AUTH_VERIFY_OTP: '/login/verifyOtp',
-  EDIT_SECONDARY_KEY:'/user/editSecondaryKey',
+  EDIT_SECONDARY_KEY: '/user/editSecondaryKey',
 
   TRIPS_API: '/trips/getTrips',
   RANDOM_TRIPS_API: '/trips/getRandomTrips',
   USER_TRIPS_API: '/trips/getTripsByUser',
-  USER_WISHLIST_TRIPS_API:'trips/getWishlistedTrips',
-  USER_PAST_TRIPS_API:'/trips/getJoinedTrips',
-  USER_REQUESTED_TRIPS_API:'/trips/getRequestedTrips',
+  USER_WISHLIST_TRIPS_API: 'trips/getWishlistedTrips',
+  USER_PAST_TRIPS_API: '/trips/getJoinedTrips',
+  USER_REQUESTED_TRIPS_API: '/trips/getRequestedTrips',
   CREATE_TRIPS_API: '/trips/createTrips',
   CREATE_TRIPS_IMAGES_API: '/trips/createTripsImages',
   EDIT_TRIP_IMAGES_API: '/trips/editTripImages',
   TRIP_BY_ID_API: '/trips/getTripById',
-  REQUEST_JOIN_TRIP:'/trips/requestJoinTrip',
-  LEAVE_TRIP:'/trips/leaveTrip',
+  REQUEST_JOIN_TRIP: '/trips/requestJoinTrip',
+  LEAVE_TRIP: '/trips/leaveTrip',
   GET_REQUESTED_MEMBERS: '/trips/getRequestedMembers',
   ADD_MEMBER_TRIP: '/trips/addmemberTrip',
   REMOVE_MEMBER_AS_HOST: '/trips/removeMemberAsHost',
   DECLINE_REQUEST_AS_HOST: '/trips/declineRequest',
-  
+
   GET_NOTIFICATIONS: '/notification/getNotifications',
   DELETE_NOTIFICATION: '/notification/deleteNotification',
   EDIT_TRIPS_API: '/trips/editTrip',
@@ -52,6 +52,7 @@ export const API_PATH = {
   NEWSLETTER_API: '/misc/subscribeToNewsletter',
 
   LOCATION_API: '/location/getLocationByName',
+  GENERATE_PRESIGNED_URL_FOR_DEST_IMAGES: '/trips/generatePreSignedUrlForDestinationImages',
 }
 
 export const API_CONFIG = {
