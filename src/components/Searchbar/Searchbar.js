@@ -71,9 +71,9 @@ const Searchbar = (props) => {
 
   const selectSuggestion = (suggestion) => {
     setInputText({ city: suggestion.city, state: suggestion.state })
-    setFormattedValue(`${suggestion.city}, ${suggestion.state}`)
+    setFormattedValue(`${suggestion.city},${suggestion.state}`)
      if(!isMultiSelect) {
-      setInputValues(`${suggestion.city}, ${suggestion.state}`)
+      setInputValues(`${suggestion.city},${suggestion.state}`)
     }
     setTimeout(() => setDropdownVisible(false), 0)
   }
