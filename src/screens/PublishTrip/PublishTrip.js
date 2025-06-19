@@ -334,6 +334,17 @@ const PublishTrip = (props) => {
     const preSignedUrls = await generatePreSignedUrlForDestinationImages(preSignedUrlPayload)
     const preSignedUrlsForCroppedImages = await generatePreSignedUrlForDestinationImages(preSignedUrlPayloadForCropped)
 
+    // Crop images to 4:3 before uploading cropped versions
+    const croppedImages = await Promise.all(
+      tripData.destinationImages.map(async (imgObj) => {
+        if (imgObj.file) {
+          const croppedFile = await cropImageToAspectRatio(imgObj.file)
+          return { ...imgObj, croppedFile }
+        }
+        return imgObj
+      }),
+    )
+
     // tripData.destinationImages?.forEach(async (image, index) => {
     //   // const formDataImages = new FormData()
     //   // formDataImages.append('destinationImages', image.file)
@@ -369,6 +380,12 @@ const PublishTrip = (props) => {
           }
         })
     })
+
+    // Example: Use croppedImages for uploading cropped versions
+    // croppedImages.forEach((imgObj, i) => {
+    //   const croppedFile = imgObj.croppedFile
+    //   // Upload croppedFile to preSignedUrlsForCroppedImages[i]?.s3Url
+    // })
 
     toast.success('Trip published successfully!')
     // navigate('/')
@@ -589,6 +606,42 @@ const PublishTrip = (props) => {
       <StyledToastContainer />
     </PublishTripPage>
   )
+}
+
+// Utility: Crop image to 4:3 aspect ratio using Canvas
+async function cropImageToAspectRatio(file, aspectRatio = 4 / 3) {
+  return new Promise((resolve, reject) => {
+    const img = new window.Image();
+    img.onload = function () {
+      let { width, height } = img;
+      let cropWidth = width;
+      let cropHeight = height;
+      let offsetX = 0;
+      let offsetY = 0;
+      if (width / height > aspectRatio) {
+        cropWidth = height * aspectRatio;
+        offsetX = (width - cropWidth) / 2;
+      } else {
+        cropHeight = width / aspectRatio;
+        offsetY = (height - cropHeight) / 2;
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = cropWidth;
+      canvas.height = cropHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, offsetX, offsetY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const croppedFile = new File([blob], file.name, { type: file.type });
+          resolve(croppedFile);
+        } else {
+          reject(new Error('Canvas toBlob failed'));
+        }
+      }, file.type);
+    };
+    img.onerror = reject;
+    img.src = URL.createObjectURL(file);
+  });
 }
 
 export default memo(
