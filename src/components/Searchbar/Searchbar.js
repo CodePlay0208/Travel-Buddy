@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import React, { useState, memo, useEffect } from 'react'
 import { SVG } from '../../assets'
 import { getLocationSuggestions } from '../../actions/location.action'
 import { connect } from 'react-redux'
@@ -35,11 +35,18 @@ const Searchbar = (props) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false)
   const [timeoutId, setTimeoutId] = useState(null)
 
-  const [formattedValue, setFormattedValue] = useState([inputText.city, inputText.state].filter(Boolean).join(', '))
+  const [formattedValue, setFormattedValue] = useState(inputValues || '')
+
+  useEffect(() => {
+    if (!isMultiSelect) {
+      setFormattedValue(inputValues || '')
+    }
+  }, [inputValues, isMultiSelect])
+
   const handleInputChange = (event) => {
     const value = event.target.value
     setFormattedValue(value)
-    if(!isMultiSelect) {
+    if (!isMultiSelect) {
       setInputValues(value)
     }
 
@@ -72,14 +79,14 @@ const Searchbar = (props) => {
   const selectSuggestion = (suggestion) => {
     setInputText({ city: suggestion.city, state: suggestion.state })
     setFormattedValue(`${suggestion.city},${suggestion.state}`)
-     if(!isMultiSelect) {
+    if (!isMultiSelect) {
       setInputValues(`${suggestion.city},${suggestion.state}`)
     }
     setTimeout(() => setDropdownVisible(false), 0)
   }
 
   const handleClear = () => {
-     if(!isMultiSelect) {
+    if (!isMultiSelect) {
       setInputValues('')
     }
     setInputText({ city: '', state: '' })
@@ -110,28 +117,27 @@ const Searchbar = (props) => {
         backgroundColor={backgroundColor}
       />
 
-      {!isReadOnly && (inputText.city || inputText.state) && (
-        <>
-          {isMultiSelect && (
-            <div
-              className="add-button"
-              type="button"
-              style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}
-              onClick={addToList}
-              title="Add"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect y="0.5" width="24" height="24" rx="12" fill="#8DD3BB" />
-                <path d="M12 7.49805V17.498" stroke="white" stroke-width="2.85714" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M7 12.498H17" stroke="white" stroke-width="2.85714" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </div>
-          )}
-          {!isMultiSelect && (
-            <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} style={{ marginLeft: '0.3rem', cursor: 'pointer' }} />
-          )}
-        </>
-      )}
+      <>
+        {!isReadOnly && (inputText.city || inputText.state) && isMultiSelect && (
+          <div
+            className="add-button"
+            type="button"
+            style={{ border: 'none', background: 'transparent', cursor: 'pointer' }}
+            onClick={addToList}
+            title="Add"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect y="0.5" width="24" height="24" rx="12" fill="#8DD3BB" />
+              <path d="M12 7.49805V17.498" stroke="white" stroke-width="2.85714" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M7 12.498H17" stroke="white" stroke-width="2.85714" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        )}
+
+        {!isReadOnly && inputValues && !isMultiSelect && (
+          <img className="clear" src={SVG.clear} alt="Clear" onClick={handleClear} style={{ marginLeft: '0.3rem', cursor: 'pointer' }} />
+        )}
+      </>
       {/* <LocationIcon src={SVG.LocationIcon} alt="Location Icon" /> */}
       {isDropdownVisible && (
         <Dropdown
