@@ -32,7 +32,7 @@ const LandingPage = (props) => {
           content="Plan your perfect trip with Travmigoz! Discover the best travel options, explore amazing destinations, and enjoy unforgettable experiences with your travel buddy."
         />
       </Helmet>
-      <Header isImageNavbar={true} isLandingPage={true} key="LandingPage"/>
+      <Header isImageNavbar={true} isLandingPage={true} />
       <SlidingSection />
       <HeroSection />
       <PopularSection />

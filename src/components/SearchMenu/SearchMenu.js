@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Searchbar from '../Searchbar/Searchbar'
@@ -22,12 +22,6 @@ const SearchMenu = (props) => {
   })
   const navigate = useNavigate()
 
-  useEffect(() => {
-    setCurrForm({
-      destination: searchForm.destination || '',
-      startDate: searchForm.startDate || '',
-    })
-  }, [searchForm])
   const handleInputChange = (field, value) => {
     setCurrForm((prevForm) => ({
       ...prevForm,
@@ -45,9 +39,7 @@ const SearchMenu = (props) => {
       <SearchBarWrapper>
         <FlexContainer direction="column" width="100%" gap="0px" alignItems="start" style={{ overflowX: 'unset' }}>
           <FlexContainer direction="column" width="100%" gap="0px" margin="3.5% 0 0" alignItems="start" style={{ overflowX: 'unset' }}>
-            <Label margin="0 2.5%" fontWeight="700">
-              Where?
-            </Label>
+            <Label margin="0 2.5%" fontWeight='700'>Where?</Label>
             <Searchbar
               inputValues={currForm.destination}
               setInputValues={(value) => handleInputChange('destination', value)}
@@ -65,9 +57,7 @@ const SearchMenu = (props) => {
         <VerticalDivider />
         <FlexContainer direction="column" width="100%" gap="0px" alignItems="start" style={{ overflowX: 'unset' }}>
           <FlexContainer direction="column" width="100%" gap="0px" margin="3.5% 0 0" alignItems="start" style={{ overflowX: 'unset' }}>
-            <Label margin="0 2.5%" fontWeight="700">
-              When?
-            </Label>
+            <Label margin="0 2.5%" fontWeight='700'>When?</Label>
             <DatePicker
               inputValues={currForm.startDate}
               setInputValues={(value) => handleInputChange('startDate', value)}

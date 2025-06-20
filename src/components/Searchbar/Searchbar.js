@@ -1,4 +1,4 @@
-import React, { useState, memo, useEffect } from 'react'
+import React, { useState, memo } from 'react'
 import { SVG } from '../../assets'
 import { getLocationSuggestions } from '../../actions/location.action'
 import { connect } from 'react-redux'
@@ -35,16 +35,11 @@ const Searchbar = (props) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false)
   const [timeoutId, setTimeoutId] = useState(null)
 
-  const [formattedValue, setFormattedValue] = useState(inputValues || '')
-
-  useEffect(() => {
-    setFormattedValue(inputValues || '')
-  }, [inputValues])
-
+  const [formattedValue, setFormattedValue] = useState([inputText.city, inputText.state].filter(Boolean).join(', '))
   const handleInputChange = (event) => {
     const value = event.target.value
     setFormattedValue(value)
-    if (!isMultiSelect) {
+    if(!isMultiSelect) {
       setInputValues(value)
     }
 
@@ -77,14 +72,14 @@ const Searchbar = (props) => {
   const selectSuggestion = (suggestion) => {
     setInputText({ city: suggestion.city, state: suggestion.state })
     setFormattedValue(`${suggestion.city},${suggestion.state}`)
-    if (!isMultiSelect) {
+     if(!isMultiSelect) {
       setInputValues(`${suggestion.city},${suggestion.state}`)
     }
     setTimeout(() => setDropdownVisible(false), 0)
   }
 
   const handleClear = () => {
-    if (!isMultiSelect) {
+     if(!isMultiSelect) {
       setInputValues('')
     }
     setInputText({ city: '', state: '' })
@@ -115,7 +110,7 @@ const Searchbar = (props) => {
         backgroundColor={backgroundColor}
       />
 
-      {!isReadOnly && inputValues && (
+      {!isReadOnly && (inputText.city || inputText.state) && (
         <>
           {isMultiSelect && (
             <div

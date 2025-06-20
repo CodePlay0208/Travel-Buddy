@@ -49,7 +49,6 @@ import InclusionExclusion from './InclusionExclusion'
 import IncExcPreview from './IncExcPreview'
 import TripDetailPreview from './TripDetailPreview'
 import axios from 'axios'
-import Modal from '../../components/Modal/Modal'
 
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.profile,
@@ -134,7 +133,6 @@ const PublishTrip = (props) => {
   const [toEditTrip, setToEditTrip] = useState(false)
   const [curIdx, setCurIdx] = useState(0)
   const [curIncExcIdx, setCurIncExcIdx] = useState(0)
-  const [deleteModal, setDeleteModal] = useState(false)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -279,8 +277,7 @@ const PublishTrip = (props) => {
       .map((b) => b.toString(16).padStart(2, '0'))
       .join('')
   }, [])
-  const randomFileName = useCallback(
-    (file, byteCount = 16) => {
+  const randomFileName = useCallback( (file, byteCount = 16) => {
       const origName = file
       const ext = origName.includes('.') ? origName.slice(origName.lastIndexOf('.')) : ''
       const hex = randomHexString(byteCount)
@@ -372,7 +369,7 @@ const PublishTrip = (props) => {
     await uploadFilesToPresignedUrls(croppedImages, preSignedUrlsForCroppedImages, (imgObj) => imgObj.croppedFile)
 
     toast.success('Trip published successfully!')
-    navigate('/')
+    // navigate('/');
   }, [
     getProcessedTripDates,
     tripData,
@@ -381,7 +378,6 @@ const PublishTrip = (props) => {
     profile?.userId,
     randomFileName,
     generatePreSignedUrlForDestinationImages,
-    navigate,
   ])
 
   const handleSubmit = useCallback(async () => {
@@ -407,204 +403,189 @@ const PublishTrip = (props) => {
   }, [deleteBaseTrip, navigate, tripData?.baseTripId])
 
   return (
-    <>
-      <PublishTripPage>
-        <Navbar />
-        <PublishTripContainer>
-          <PublishTripHeading>Publish Your Trip!</PublishTripHeading>
-          <PublishTripContent>
-            <PublishTripLeftSection>
-              <ToggleBetweenTripUser>
-                <ToggleTab className={activeSection === TABS.TRIP ? 'active' : ''} onClick={() => handleToggle(TABS.TRIP)}>
-                  Trip Details
-                </ToggleTab>
-                <ToggleTab className={activeSection === TABS.TRIP ? 'active mobile' : 'mobile'} onClick={() => handleToggle(TABS.TRIP)}>
-                  Details
-                </ToggleTab>
-                {
-                  <>
-                    {/* <Divider /> */}
-                    <ToggleTab className={activeSection === TABS.USER ? 'active' : ''} onClick={() => handleToggle(TABS.USER)}>
-                      Trip Dates
-                    </ToggleTab>{' '}
-                    <ToggleTab className={activeSection === TABS.USER ? 'active mobile' : 'mobile'} onClick={() => handleToggle(TABS.USER)}>
-                      Dates
-                    </ToggleTab>
-                  </>
-                }
-                {
-                  <>
-                    {/* <Divider /> */}
-                    <ToggleTab className={activeSection === TABS.ITINERARY ? 'active' : ''} onClick={() => handleToggle(TABS.ITINERARY)}>
-                      Itinerary
-                    </ToggleTab>
-                    <ToggleTab
-                      className={activeSection === TABS.ITINERARY ? 'active mobile' : 'mobile'}
-                      onClick={() => handleToggle(TABS.ITINERARY)}
-                    >
-                      Itinerary
-                    </ToggleTab>
-                  </>
-                }
-                {
-                  <>
-                    {/* <Divider /> */}
-                    <ToggleTab className={activeSection === TABS.INC_EXC ? 'active' : ''} onClick={() => handleToggle(TABS.INC_EXC)}>
-                      Include & Exclude
-                    </ToggleTab>
-                    <ToggleTab
-                      className={activeSection === TABS.INC_EXC ? 'active mobile' : 'mobile'}
-                      onClick={() => handleToggle(TABS.INC_EXC)}
-                    >
-                      Extras
-                    </ToggleTab>
-                  </>
-                }
-              </ToggleBetweenTripUser>
-              {activeSection === TABS.TRIP && (
-                <TripDetail
-                  tripData={tripData}
-                  handleChange={handleChange}
-                  handleTripDataChange={handleTripDataChange}
-                  isReadOnly={toEditTrip}
-                />
-              )}
-              {activeSection === TABS.USER && (
-                <TripDates
-                  tripData={tripData}
-                  handleChange={handleChange}
-                  handleTripDataChange={handleTripDataChange}
-                  handleDeleteDate={handleDeleteDate}
-                />
-              )}
-              {activeSection === TABS.ITINERARY && (
-                <Container>
-                  <DayContainer className="itinerary">
-                    {tripData.dayTabs.map((day, index) => (
-                      <DayTab
-                        onClick={() => {
-                          setCurIdx(index)
-                        }}
-                        key={index}
-                        className={index === curIdx ? 'active' : ''}
-                      >
-                        Day {index}
-                        <ClearIcon
-                          color={index === curIdx ? 'white' : 'black'}
-                          alt="Clear"
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            setCurIdx((prev) => (prev > 0 && prev >= index ? prev - 1 : prev))
-                            setTripData((prev) => ({
-                              ...prev,
-                              dayTabs: prev.dayTabs.filter((_, i) => i !== index),
-                            }))
-                          }}
-                        />
-                      </DayTab>
-                    ))}
-                    <AddButton onClick={addDayTab} disabled={tripData.dayTabs.length >= (tripData?.duration || 6)}>
-                      +
-                    </AddButton>
-                  </DayContainer>
-
-                  <TripItinerary
-                    key={curIdx}
-                    tripData={tripData.dayTabs[curIdx]}
-                    handleChange={(name, value) => {
-                      setTripData((prev) => ({
-                        ...prev,
-                        dayTabs: prev.dayTabs.map((tab, i) => (i === curIdx ? { ...tab, [name]: value, dayTabId: i } : tab)),
-                      }))
-                    }}
-                  />
-                </Container>
-              )}
-              {activeSection === TABS.INC_EXC && (
-                <Container gap="16px">
-                  <InputGroupDayName className="hidden">
-                    <Label fontSize="1.3rem" fontWeight="700" margin="0% 0%" className="hidden">
-                      Trip Include & Exclude
-                    </Label>
-                  </InputGroupDayName>
-                  <DayContainer>
-                    {tripData.inc_exc.map((item, index) => (
-                      <IncDayTab
-                        fontSize="0.8rem"
-                        onClick={() => {
-                          setCurIncExcIdx(index)
-                        }}
-                        key={index}
-                        className={index === curIncExcIdx ? 'active' : ''}
-                      >
-                        {item.inc_excTitle}
-                      </IncDayTab>
-                    ))}
-                  </DayContainer>
-
-                  <InclusionExclusion
-                    key={curIncExcIdx}
-                    tripData={tripData.inc_exc[curIncExcIdx]}
-                    handleChange={(name, value) => {
-                      setTripData((prev) => ({
-                        ...prev,
-                        inc_exc: prev.inc_exc.map((tab, i) => (i === curIncExcIdx ? { ...tab, [name]: value } : tab)),
-                      }))
-                    }}
-                  />
-                </Container>
-              )}
-            </PublishTripLeftSection>
-            <PublishTripRightSection>
-              {activeSection === TABS.TRIP ? (
-                <TripDetailPreview tripData={tripData} />
-              ) : activeSection === TABS.INC_EXC ? (
+    <PublishTripPage>
+      <Navbar />
+      <PublishTripContainer>
+        <PublishTripHeading>Publish Your Trip!</PublishTripHeading>
+        <PublishTripContent>
+          <PublishTripLeftSection>
+            <ToggleBetweenTripUser>
+              <ToggleTab className={activeSection === TABS.TRIP ? 'active' : ''} onClick={() => handleToggle(TABS.TRIP)}>
+                Trip Details
+              </ToggleTab>
+              <ToggleTab className={activeSection === TABS.TRIP ? 'active mobile' : 'mobile'} onClick={() => handleToggle(TABS.TRIP)}>
+                Details
+              </ToggleTab>
+              {
                 <>
-                  <PreviewTitle>Preview</PreviewTitle>
-                  <IncExcPreview tripData={tripData.inc_exc[curIncExcIdx]} />
+                  {/* <Divider /> */}
+                  <ToggleTab className={activeSection === TABS.USER ? 'active' : ''} onClick={() => handleToggle(TABS.USER)}>
+                    Trip Dates
+                  </ToggleTab>{' '}
+                  <ToggleTab className={activeSection === TABS.USER ? 'active mobile' : 'mobile'} onClick={() => handleToggle(TABS.USER)}>
+                    Dates
+                  </ToggleTab>
                 </>
-              ) : activeSection === TABS.ITINERARY ? (
+              }
+              {
                 <>
-                  <PreviewTitle>Preview</PreviewTitle>
-                  <ItineraryPreview tripData={tripData.dayTabs[curIdx]} />
+                  {/* <Divider /> */}
+                  <ToggleTab className={activeSection === TABS.ITINERARY ? 'active' : ''} onClick={() => handleToggle(TABS.ITINERARY)}>
+                    Itinerary
+                  </ToggleTab>
+                  <ToggleTab
+                    className={activeSection === TABS.ITINERARY ? 'active mobile' : 'mobile'}
+                    onClick={() => handleToggle(TABS.ITINERARY)}
+                  >
+                    Itinerary
+                  </ToggleTab>
                 </>
-              ) : (
-                <ImageUpload tripData={tripData} setTripData={setTripData} />
-              )}
-            </PublishTripRightSection>
-          </PublishTripContent>
-          {activeSection === TABS.INC_EXC ? (
-            <PublishTripButton>
-              <SubmitButton onClick={handleSubmit}>Publish</SubmitButton>
-            </PublishTripButton>
-          ) : (
-            <PublishTripButton>
-              <SubmitButton onClick={handleNext}>Next</SubmitButton>
-            </PublishTripButton>
-          )}
-          {toEditTrip && (
-            <PublishTripButton>
-              <CTAButton
-                onClick={() => {
-                  setDeleteModal(true)
-                }}
-              >
-                Delete All Trips
-              </CTAButton>
-            </PublishTripButton>
-          )}
-        </PublishTripContainer>
-        <Footer />
-        <StyledToastContainer />
-      </PublishTripPage>
-      {deleteModal && (
-        <Modal
-          message="Are you sure you want to delete all trips? This action will delete all trips scheduled for the selected dates. This action cannot be undone."
-          onConfirm={handleBaseTripDelete}
-          onCancel={() => setDeleteModal(false)}
-        />
-      )}
-    </>
+              }
+              {
+                <>
+                  {/* <Divider /> */}
+                  <ToggleTab className={activeSection === TABS.INC_EXC ? 'active' : ''} onClick={() => handleToggle(TABS.INC_EXC)}>
+                    Include & Exclude
+                  </ToggleTab>
+                  <ToggleTab
+                    className={activeSection === TABS.INC_EXC ? 'active mobile' : 'mobile'}
+                    onClick={() => handleToggle(TABS.INC_EXC)}
+                  >
+                    Extras
+                  </ToggleTab>
+                </>
+              }
+            </ToggleBetweenTripUser>
+            {activeSection === TABS.TRIP && (
+              <TripDetail
+                tripData={tripData}
+                handleChange={handleChange}
+                handleTripDataChange={handleTripDataChange}
+                isReadOnly={toEditTrip}
+              />
+            )}
+            {activeSection === TABS.USER && (
+              <TripDates
+                tripData={tripData}
+                handleChange={handleChange}
+                handleTripDataChange={handleTripDataChange}
+                handleDeleteDate={handleDeleteDate}
+              />
+            )}
+            {activeSection === TABS.ITINERARY && (
+              <Container>
+                <DayContainer className="itinerary">
+                  {tripData.dayTabs.map((day, index) => (
+                    <DayTab
+                      onClick={() => {
+                        setCurIdx(index)
+                      }}
+                      key={index}
+                      className={index === curIdx ? 'active' : ''}
+                    >
+                      Day {index}
+                      <ClearIcon
+                        color={index === curIdx ? 'white' : 'black'}
+                        alt="Clear"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setCurIdx((prev) => (prev > 0 && prev >= index ? prev - 1 : prev))
+                          setTripData((prev) => ({
+                            ...prev,
+                            dayTabs: prev.dayTabs.filter((_, i) => i !== index),
+                          }))
+                        }}
+                      />
+                    </DayTab>
+                  ))}
+                  <AddButton onClick={addDayTab} disabled={tripData.dayTabs.length >= (tripData?.duration || 6)}>
+                    +
+                  </AddButton>
+                </DayContainer>
+
+                <TripItinerary
+                  key={curIdx}
+                  tripData={tripData.dayTabs[curIdx]}
+                  handleChange={(name, value) => {
+                    setTripData((prev) => ({
+                      ...prev,
+                      dayTabs: prev.dayTabs.map((tab, i) => (i === curIdx ? { ...tab, [name]: value, dayTabId: i } : tab)),
+                    }))
+                  }}
+                />
+              </Container>
+            )}
+            {activeSection === TABS.INC_EXC && (
+              <Container gap="16px">
+                <InputGroupDayName className="hidden">
+                  <Label fontSize="1.3rem" fontWeight="700" margin="0% 0%" className="hidden">
+                    Trip Include & Exclude
+                  </Label>
+                </InputGroupDayName>
+                <DayContainer>
+                  {tripData.inc_exc.map((item, index) => (
+                    <IncDayTab
+                      fontSize="0.8rem"
+                      onClick={() => {
+                        setCurIncExcIdx(index)
+                      }}
+                      key={index}
+                      className={index === curIncExcIdx ? 'active' : ''}
+                    >
+                      {item.inc_excTitle}
+                    </IncDayTab>
+                  ))}
+                </DayContainer>
+
+                <InclusionExclusion
+                  key={curIncExcIdx}
+                  tripData={tripData.inc_exc[curIncExcIdx]}
+                  handleChange={(name, value) => {
+                    setTripData((prev) => ({
+                      ...prev,
+                      inc_exc: prev.inc_exc.map((tab, i) => (i === curIncExcIdx ? { ...tab, [name]: value } : tab)),
+                    }))
+                  }}
+                />
+              </Container>
+            )}
+          </PublishTripLeftSection>
+          <PublishTripRightSection>
+            {activeSection === TABS.TRIP ? (
+              <TripDetailPreview tripData={tripData} />
+            ) : activeSection === TABS.INC_EXC ? (
+              <>
+                <PreviewTitle>Preview</PreviewTitle>
+                <IncExcPreview tripData={tripData.inc_exc[curIncExcIdx]} />
+              </>
+            ) : activeSection === TABS.ITINERARY ? (
+              <>
+                <PreviewTitle>Preview</PreviewTitle>
+                <ItineraryPreview tripData={tripData.dayTabs[curIdx]} />
+              </>
+            ) : (
+              <ImageUpload tripData={tripData} setTripData={setTripData} />
+            )}
+          </PublishTripRightSection>
+        </PublishTripContent>
+        {activeSection === TABS.INC_EXC ? (
+          <PublishTripButton>
+            <SubmitButton onClick={handleSubmit}>Publish</SubmitButton>
+          </PublishTripButton>
+        ) : (
+          <PublishTripButton>
+            <SubmitButton onClick={handleNext}>Next</SubmitButton>
+          </PublishTripButton>
+        )}
+        {toEditTrip && (
+          <PublishTripButton>
+            <CTAButton onClick={handleBaseTripDelete}>Delete All Trips</CTAButton>
+          </PublishTripButton>
+        )}
+      </PublishTripContainer>
+      <Footer />
+      <StyledToastContainer />
+    </PublishTripPage>
   )
 }
 
