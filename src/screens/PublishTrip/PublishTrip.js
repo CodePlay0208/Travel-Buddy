@@ -579,7 +579,7 @@ const PublishTrip = (props) => {
         )}
         {toEditTrip && (
           <PublishTripButton>
-            <CTAButton onClick={handleBaseTripDelete}>Delete</CTAButton>
+            <CTAButton onClick={handleBaseTripDelete}>Delete All Trips</CTAButton>
           </PublishTripButton>
         )}
       </PublishTripContainer>
