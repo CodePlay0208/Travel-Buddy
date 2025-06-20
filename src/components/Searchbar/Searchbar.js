@@ -79,6 +79,9 @@ const Searchbar = (props) => {
   }
 
   const handleClear = () => {
+     if(!isMultiSelect) {
+      setInputValues('')
+    }
     setInputText({ city: '', state: '' })
     setFormattedValue('')
   }
