@@ -270,19 +270,52 @@ const PublishTrip = (props) => {
     }
   }, [tripData, makeDayTabsEmptyIfEmptyData, editTrip, editTripImages, navigate])
 
-  function randomHexString(byteCount = 16) {
+  const randomHexString = useCallback((byteCount = 16) => {
     const arr = new Uint8Array(byteCount)
     window.crypto.getRandomValues(arr)
     return Array.from(arr)
       .map((b) => b.toString(16).padStart(2, '0'))
       .join('')
+  }, [])
+  const randomFileName = useCallback( (file, byteCount = 16) => {
+      const origName = file
+      const ext = origName.includes('.') ? origName.slice(origName.lastIndexOf('.')) : ''
+      const hex = randomHexString(byteCount)
+      return `${hex}`
+    },
+    [randomHexString],
+  )
+  function buildPreSignedUrlPayload(baseTripId, userId, prefix, images, getFileName) {
+    return {
+      baseTripId,
+      prefix: `${prefix}/${userId}/${baseTripId}`,
+      files: images.map((image) => ({
+        filename: getFileName(image.file.name),
+        filetype: image.file.type || 'image/jpeg',
+      })),
+    }
   }
-  function randomFileName(file, byteCount = 16) {
-    const origName = file
-    const ext = origName.includes('.') ? origName.slice(origName.lastIndexOf('.')) : ''
-    const hex = randomHexString(byteCount)
-    return `${hex}`
+
+  // Helper to upload files to presigned URLs
+  async function uploadFilesToPresignedUrls(files, urls, getFile) {
+    return Promise.all(
+      files.map(async (imgObj, i) => {
+        const file = getFile(imgObj)
+        const presignedUrl = urls[i]?.s3Url
+        if (file && presignedUrl) {
+          try {
+            await axios.put(presignedUrl, file, {
+              headers: { 'Content-Type': file.type },
+            })
+          } catch (err) {
+            console.error('Upload error:', err)
+            return { index: i, error: err }
+          }
+        }
+      }),
+    )
   }
+
   const handleCreateTripSubmit = useCallback(async () => {
     const processedTripDates = getProcessedTripDates()
     const tripBody = {
@@ -297,46 +330,30 @@ const PublishTrip = (props) => {
     delete tripBody.removedDestinationImages
     const updatedDayTabs = makeDayTabsEmptyIfEmptyData()
     tripBody.dayTabs = updatedDayTabs
+
     const isTripPublished = await createTrip(tripBody, false)
     if (!isTripPublished) {
       toast.error('Failed to publish trip. Please try again.')
       return
     }
 
-    let preSignedUrlPayload = {
-      baseTripId: isTripPublished.data.baseTripId,
-      prefix: `full-images/${profile?.userId}/${isTripPublished.data.baseTripId}`,
-      files: [],
-    }
+    // Build presigned URL payloads
+    const baseTripId = isTripPublished.data.baseTripId
+    const userId = profile?.userId
+    const images = tripData.destinationImages || []
 
-    let preSignedUrlPayloadForCropped = {
-      baseTripId: isTripPublished.data.baseTripId,
-      prefix: `cropped-images/${profile?.userId}/${isTripPublished.data.baseTripId}`,
-      files: [],
-    }
+    const preSignedUrlPayload = buildPreSignedUrlPayload(baseTripId, userId, 'full-images', images, randomFileName)
+    const preSignedUrlPayloadForCropped = buildPreSignedUrlPayload(baseTripId, userId, 'cropped-images', images, randomFileName)
 
-    tripData.destinationImages?.forEach((image) => {
-      const tempPayload = {
-        filename: randomFileName(image.file.name),
-        filetype: image.file.type || 'image/jpeg',
-      }
-      preSignedUrlPayload = {
-        ...preSignedUrlPayload,
-        files: [...preSignedUrlPayload.files, tempPayload],
-      }
-
-      preSignedUrlPayloadForCropped = {
-        ...preSignedUrlPayloadForCropped,
-        files: [...preSignedUrlPayloadForCropped.files, tempPayload],
-      }
-    })
-
-    const preSignedUrls = await generatePreSignedUrlForDestinationImages(preSignedUrlPayload)
-    const preSignedUrlsForCroppedImages = await generatePreSignedUrlForDestinationImages(preSignedUrlPayloadForCropped)
+    // Get presigned URLs
+    const [preSignedUrls, preSignedUrlsForCroppedImages] = await Promise.all([
+      generatePreSignedUrlForDestinationImages(preSignedUrlPayload),
+      generatePreSignedUrlForDestinationImages(preSignedUrlPayloadForCropped),
+    ])
 
     // Crop images to 4:3 before uploading cropped versions
     const croppedImages = await Promise.all(
-      tripData.destinationImages.map(async (imgObj) => {
+      images.map(async (imgObj) => {
         if (imgObj.file) {
           const croppedFile = await cropImageToAspectRatio(imgObj.file)
           return { ...imgObj, croppedFile }
@@ -345,58 +362,22 @@ const PublishTrip = (props) => {
       }),
     )
 
-    // tripData.destinationImages?.forEach(async (image, index) => {
-    //   // const formDataImages = new FormData()
-    //   // formDataImages.append('destinationImages', image.file)
-    //   // formDataImages.append('baseTripId', isTripPublished.data.baseTripId)
-    //   // await createTripsImages(formDataImages, true)
-    //   const presignedUrl = preSignedUrls[index]
-    //   try {
-    //     await axios.put(presignedUrl, image, {
-    //       headers: {
-    //         'Content-Type': image.file.type,
-    //       },
+    // Upload original images
+    await uploadFilesToPresignedUrls(images, preSignedUrls, (imgObj) => imgObj.file)
 
-    //     })
-    //   } catch (err) {
-    //     console.error('Upload error:', err)
-
-    //   }
-    // })
-
-    const uploadPromises = tripData.destinationImages.map(async (imgObj, i) => {
-      const file = imgObj
-      const presignedUrl = preSignedUrls[i]?.s3Url
-      console.log(file, presignedUrl)
-      await axios
-        .put(presignedUrl, imgObj.file, {
-          headers: { 'Content-Type': imgObj.file.type },
-        })
-        .catch((err) => {
-          console.log(err)
-          return {
-            index: i,
-            error: err,
-          }
-        })
-    })
-
-    // Example: Use croppedImages for uploading cropped versions
-    // croppedImages.forEach((imgObj, i) => {
-    //   const croppedFile = imgObj.croppedFile
-    //   // Upload croppedFile to preSignedUrlsForCroppedImages[i]?.s3Url
-    // })
+    // Upload cropped images
+    await uploadFilesToPresignedUrls(croppedImages, preSignedUrlsForCroppedImages, (imgObj) => imgObj.croppedFile)
 
     toast.success('Trip published successfully!')
-    // navigate('/')
+    // navigate('/');
   }, [
     getProcessedTripDates,
     tripData,
     makeDayTabsEmptyIfEmptyData,
     createTrip,
     profile?.userId,
-    generatePreSignedUrlForDestinationImages,
     randomFileName,
+    generatePreSignedUrlForDestinationImages,
   ])
 
   const handleSubmit = useCallback(async () => {
@@ -611,37 +592,37 @@ const PublishTrip = (props) => {
 // Utility: Crop image to 4:3 aspect ratio using Canvas
 async function cropImageToAspectRatio(file, aspectRatio = 4 / 3) {
   return new Promise((resolve, reject) => {
-    const img = new window.Image();
+    const img = new window.Image()
     img.onload = function () {
-      let { width, height } = img;
-      let cropWidth = width;
-      let cropHeight = height;
-      let offsetX = 0;
-      let offsetY = 0;
+      let { width, height } = img
+      let cropWidth = width
+      let cropHeight = height
+      let offsetX = 0
+      let offsetY = 0
       if (width / height > aspectRatio) {
-        cropWidth = height * aspectRatio;
-        offsetX = (width - cropWidth) / 2;
+        cropWidth = height * aspectRatio
+        offsetX = (width - cropWidth) / 2
       } else {
-        cropHeight = width / aspectRatio;
-        offsetY = (height - cropHeight) / 2;
+        cropHeight = width / aspectRatio
+        offsetY = (height - cropHeight) / 2
       }
-      const canvas = document.createElement('canvas');
-      canvas.width = cropWidth;
-      canvas.height = cropHeight;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, offsetX, offsetY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+      const canvas = document.createElement('canvas')
+      canvas.width = cropWidth
+      canvas.height = cropHeight
+      const ctx = canvas.getContext('2d')
+      ctx.drawImage(img, offsetX, offsetY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight)
       canvas.toBlob((blob) => {
         if (blob) {
-          const croppedFile = new File([blob], file.name, { type: file.type });
-          resolve(croppedFile);
+          const croppedFile = new File([blob], file.name, { type: file.type })
+          resolve(croppedFile)
         } else {
-          reject(new Error('Canvas toBlob failed'));
+          reject(new Error('Canvas toBlob failed'))
         }
-      }, file.type);
-    };
-    img.onerror = reject;
-    img.src = URL.createObjectURL(file);
-  });
+      }, file.type)
+    }
+    img.onerror = reject
+    img.src = URL.createObjectURL(file)
+  })
 }
 
 export default memo(
