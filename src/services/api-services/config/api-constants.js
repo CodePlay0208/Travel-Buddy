@@ -53,6 +53,7 @@ export const API_PATH = {
 
   LOCATION_API: '/location/getLocationByName',
   GENERATE_PRESIGNED_URL_FOR_DEST_IMAGES: '/trips/generatePreSignedUrlForDestinationImages',
+  GENERATE_PRESIGNED_URL_FOR_PROFILE_IMAGES: '/user/generatePreSignedUrlForProfileImages',
 }
 
 export const API_CONFIG = {

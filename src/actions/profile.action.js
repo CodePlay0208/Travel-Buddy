@@ -1,5 +1,5 @@
 import { GET_PROFILE, UPDATE_PROFILE, DELETE_PROFILE, PROFILE_ERROR, GET_OTHER_USER_PROFILE } from '../constants/action-types/profile.constants'
-import { ProfileApi } from '../services/api-services/api-invokes'
+import { ProfileApi, TripsApi } from '../services/api-services/api-invokes'
 import { setAuthToken, setAuthTokenImg } from '../services/api-services/api-services'
 import { toast } from 'react-toastify'
 
@@ -87,3 +87,12 @@ export const deleteProfile = () => async (dispatch) => {
     return false
   }
 }
+export const generatePreSignedUrlForProfilePic = (payload) => async (dispatch) => {
+  try {
+    const res = await ProfileApi.generatePreSignedUrlForProfilePic(payload)
+    return res.data
+  } catch (e) {
+    return false
+  }
+}
+

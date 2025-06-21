@@ -503,7 +503,7 @@ const PublishTrip = (props) => {
                         />
                       </DayTab>
                     ))}
-                    <AddButton onClick={addDayTab} disabled={tripData.dayTabs.length >= (tripData?.duration || 6)}>
+                    <AddButton onClick={addDayTab} disabled={tripData.dayTabs.length >= (tripData?.duration+1 || 6)}>
                       +
                     </AddButton>
                   </DayContainer>

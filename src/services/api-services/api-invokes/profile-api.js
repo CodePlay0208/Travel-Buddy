@@ -68,4 +68,12 @@ export const ProfileApi = {
       throw e
     }
   },
+  generatePreSignedUrlForProfilePic: async (payload) => {
+      try {
+        const result = await ApiService.post(API_PATH.GENERATE_PRESIGNED_URL_FOR_PROFILE_IMAGES, payload, { baseURL: env.BASE_API_URL }, false)
+        return { status: result.status, data: result.data }
+      } catch (e) {
+        throw e
+      }
+    },
 }
