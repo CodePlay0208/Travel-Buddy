@@ -34,6 +34,8 @@ import {
   InputGroupDesc,
   InputGroupDayName,
   IncDayTab,
+  InputGroup,
+  InputRow,
 } from './PublishTrip.styled'
 import TripDetail from './TripDetail'
 import TripDates from './TripDates'
@@ -50,42 +52,14 @@ import IncExcPreview from './IncExcPreview'
 import TripDetailPreview from './TripDetailPreview'
 import axios from 'axios'
 import Modal from '../../components/Modal/Modal'
+import { randomHexString, randomFileName, buildPreSignedUrlPayload, uploadFilesToPresignedUrls } from '../../utils/fileUploadUtils'
+import { handleImageUploads } from '../../utils/imageUploadHandler'
 
-const mapStateToProps = (state) => ({
-  profile: state.profileReducer.profile,
-})
+// Utility functions
+const WEEKDAY_MAP = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+const weekdayNameToNumber = (name) => WEEKDAY_MAP.indexOf(name.toLowerCase())
+const weekdayNumberToName = (num) => WEEKDAY_MAP[num] || ''
 
-const TABS = {
-  TRIP: 'trip',
-  USER: 'user',
-  ITINERARY: 'Itinerary',
-  INC_EXC: 'Inclusions/Exclusions',
-}
-
-const DEFAULT_TRIP_DATA = {
-  destination: [],
-  startLocation: [],
-  minBudget: null,
-  maxBudget: null,
-  description: '',
-  duration: 0,
-  title: '',
-  destinationImages: [],
-  removedDestinationImages: [],
-  tripData: [],
-  multipleDates: [],
-  dayTabs: [{ dayTitle: '', dayDescription: [] }],
-  inc_exc: [
-    {
-      inc_excTitle: 'Inclusions',
-      inc_excDescription: [],
-    },
-    {
-      inc_excTitle: 'Exclusions',
-      inc_excDescription: [],
-    },
-  ],
-}
 const formatDate = (dateString) => {
   if (!dateString) return ''
   const date = new Date(dateString)
@@ -102,9 +76,20 @@ const formatDateObj = (dateObj) => {
   return `${d}-${m}-${y}`
 }
 
-const WEEKDAY_MAP = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-const weekdayNameToNumber = (name) => WEEKDAY_MAP.indexOf(name.toLowerCase())
-const weekdayNumberToName = (num) => WEEKDAY_MAP[num] || ''
+const parseDateString = (dateStr) => {
+  if (!dateStr) return null
+  const [day, month, year] = dateStr.split('-').map(Number)
+  return new Date(year, month - 1, day)
+}
+
+const formatDateString = (isoString) => {
+  if (!isoString) return ''
+  const d = new Date(isoString)
+  const day = String(d.getUTCDate()).padStart(2, '0')
+  const month = String(d.getUTCMonth() + 1).padStart(2, '0')
+  const year = d.getUTCFullYear()
+  return `${day}-${month}-${year}`
+}
 
 function strArrToObjArr(arr) {
   if (!Array.isArray(arr)) return []
@@ -126,6 +111,36 @@ function objArrToStrArr(arr) {
   })
 }
 
+const DEFAULT_TRIP_DATA = {
+  destination: [],
+  startLocation: [],
+  minBudget: null,
+  maxBudget: null,
+  description: '',
+  duration: 0,
+  title: '',
+  destinationImages: [],
+  removedDestinationImages: [],
+  tripData: [],
+  multipleDates: [],
+  dayTabs: [{ dayTitle: '', dayDescription: [] }],
+  inc_exc: [
+    { inc_excTitle: 'Inclusions', inc_excDescription: [] },
+    { inc_excTitle: 'Exclusions', inc_excDescription: [] },
+  ],
+}
+
+const mapStateToProps = (state) => ({
+  profile: state.profileReducer.profile,
+})
+
+const TABS = {
+  TRIP: 'trip',
+  USER: 'user',
+  ITINERARY: 'Itinerary',
+  INC_EXC: 'Inclusions/Exclusions',
+}
+
 const PublishTrip = (props) => {
   const { createTrip, editTrip, createTripsImages, editTripImages, deleteBaseTrip, generatePreSignedUrlForDestinationImages, profile } =
     props
@@ -142,15 +157,15 @@ const PublishTrip = (props) => {
 
   useEffect(() => {
     if (Object.keys(editTripData).length > 0) {
+      const editMultipleDates = tripData?.relatedTrips?.map((date) => formatDateString(date?.startDate))
       const formattedTripData = {
         ...editTripData,
         startDate: formatDate(editTripData.startDate),
         endDate: formatDate(editTripData.endDate),
         removedDestinationImages: editTripData.removedDestinationImages || [],
-
         startLocation: strArrToObjArr(editTripData.startLocation),
         destination: strArrToObjArr(editTripData.destination),
-
+        editMultipleDates: Array.isArray(editMultipleDates) ? editMultipleDates : [],
         scheduledWeekdays: Array.isArray(editTripData.scheduledWeekdays)
           ? editTripData.scheduledWeekdays.map(weekdayNameToNumber).filter((n) => n >= 0)
           : [],
@@ -158,10 +173,9 @@ const PublishTrip = (props) => {
       setTripData(formattedTripData)
       setToEditTrip(true)
     }
-  }, [editTripData])
+  }, [editTripData, tripData?.relatedTrips])
 
   const handleChange = useCallback((e, nameOverride) => {
-    // Support both event and direct value
     if (e && e.target) {
       const { name, value } = e.target
       setTripData((prev) => ({ ...prev, [name]: value }))
@@ -169,37 +183,35 @@ const PublishTrip = (props) => {
       setTripData((prev) => ({ ...prev, [nameOverride]: e }))
     }
   }, [])
+
   const handleNameChange = useCallback((name, value) => {
     setTripData((prev) => ({ ...prev, [name]: value }))
   }, [])
+
   const handleTripDataChange = useCallback((field, value) => {
     setTripData((prev) => ({ ...prev, [field]: value }))
   }, [])
 
-  const handleDeleteDate = useCallback((index) => {
-    setTripData((prev) => ({
-      ...prev,
-      multipleDates: prev.multipleDates.filter((_, i) => i !== index),
-    }))
-  }, [])
+  const handleDeleteDate = useCallback(
+    (index) => {
+      setTripData((prev) => ({
+        ...prev,
+        ...(toEditTrip
+          ? { editMultipleDates: prev.editMultipleDates.filter((_, i) => i !== index) }
+          : { multipleDates: prev.multipleDates.filter((_, i) => i !== index) }),
+      }))
+    },
+    [toEditTrip],
+  )
 
-  const handleToggle = useCallback((section) => {
-    setActiveSection(section)
-  }, [])
+  const handleToggle = useCallback((section) => setActiveSection(section), [])
 
   const handleNext = useCallback(() => {
-    // if (toEditTrip) {
-    //   setActiveSection(TABS.ITINERARY)
-    //   return
-    // }
-    if (activeSection === TABS.TRIP) {
-      setActiveSection(TABS.USER)
-    } else if (activeSection === TABS.USER) {
-      setActiveSection(TABS.ITINERARY)
-    } else if (activeSection === TABS.ITINERARY) {
-      setActiveSection(TABS.INC_EXC)
-    }
+    if (activeSection === TABS.TRIP) setActiveSection(TABS.USER)
+    else if (activeSection === TABS.USER) setActiveSection(TABS.ITINERARY)
+    else if (activeSection === TABS.ITINERARY) setActiveSection(TABS.INC_EXC)
   }, [activeSection])
+
   const addDayTab = useCallback(() => {
     setTripData((prev) => ({
       ...prev,
@@ -228,10 +240,7 @@ const PublishTrip = (props) => {
         (tab.dayTitle === '' || tab.dayTitle == null) &&
         (Array.isArray(tab.dayDescription) ? tab.dayDescription.length === 0 : true),
     )
-    if (allEmpty) {
-      return []
-    }
-    return tripData.dayTabs
+    return allEmpty ? [] : tripData.dayTabs
   }, [tripData])
 
   const handleEditTripSubmit = useCallback(async () => {
@@ -244,80 +253,61 @@ const PublishTrip = (props) => {
       removedImages.push(image.object)
     })
     formDataImages.append('removedDestinationImages', JSON.stringify(removedImages))
+
+    const duration = parseInt(tripData.duration, 10) || 0
+    const relatedTripDates = Array.isArray(tripData.relatedTrips) ? tripData.relatedTrips.map((rt) => formatDateString(rt.startDate)) : []
+
+    const newTripDates = tripData.editMultipleDates
+      .filter((date) => !relatedTripDates.includes(date))
+      .map((startDate) => {
+        const start = parseDateString(startDate)
+        const end = new Date(start)
+        end.setDate(start.getDate() + duration)
+        return { startDate, endDate: formatDateObj(end) }
+      })
+
+    const removedTripDates = relatedTripDates
+      .filter((date) => !tripData.editMultipleDates.includes(date))
+      .map((startDate) => {
+        const start = parseDateString(startDate)
+        const end = new Date(start)
+        end.setDate(start.getDate() + duration)
+        return { startDate, endDate: formatDateObj(end) }
+      })
+
     const tripDetails = {
       ...tripData,
       tripDates: { startDate: tripData.startDate, endDate: tripData.endDate },
       startLocation: objArrToStrArr(tripData.startLocation),
       destination: objArrToStrArr(tripData.destination),
       scheduledWeekdays: Array.isArray(tripData.scheduledWeekdays) ? tripData.scheduledWeekdays.map(weekdayNumberToName) : [],
-      duration: Number(tripData.duration) || 0,
+      duration,
+      newTripDates,
+      removedTripDates,
+      removedDestinationImages: removedImages,
     }
+    const imagesToBeUploaded = tripData?.destinationImages?.filter((image) => image.file)
     delete tripDetails.destinationImages
-    delete tripDetails.removedDestinationImages
     delete tripDetails.endDate
     delete tripDetails.startDate
     const updatedDayTabs = makeDayTabsEmptyIfEmptyData()
     tripDetails.dayTabs = updatedDayTabs
+
     const isTripPublished = await editTrip(tripData.baseTripId, tripDetails, false)
     if (!isTripPublished) {
       toast.error('Failed to update trip. Please try again.')
       return
     }
-    const isTripImagesPublished = await editTripImages(tripData.baseTripId, formDataImages, true)
-    if (isTripImagesPublished) {
-      toast.success('Trip updated successfully!')
-      navigate('/')
-    } else {
-      toast.error('Failed to update trip images. Please try again.')
-    }
-  }, [tripData, makeDayTabsEmptyIfEmptyData, editTrip, editTripImages, navigate])
-
-  const randomHexString = useCallback((byteCount = 16) => {
-    const arr = new Uint8Array(byteCount)
-    window.crypto.getRandomValues(arr)
-    return Array.from(arr)
-      .map((b) => b.toString(16).padStart(2, '0'))
-      .join('')
-  }, [])
-  const randomFileName = useCallback(
-    (file, byteCount = 16) => {
-      const origName = file
-      const ext = origName.includes('.') ? origName.slice(origName.lastIndexOf('.')) : ''
-      const hex = randomHexString(byteCount)
-      return `${hex}`
-    },
-    [randomHexString],
-  )
-  function buildPreSignedUrlPayload(baseTripId, userId, prefix, images, getFileName) {
-    return {
-      baseTripId,
-      prefix: `${prefix}/${userId}/${baseTripId}`,
-      files: images.map((image) => ({
-        filename: getFileName(image.file.name),
-        filetype: image.file.type || 'image/jpeg',
-      })),
-    }
-  }
-
-  // Helper to upload files to presigned URLs
-  async function uploadFilesToPresignedUrls(files, urls, getFile) {
-    return Promise.all(
-      files.map(async (imgObj, i) => {
-        const file = getFile(imgObj)
-        const presignedUrl = urls[i]?.s3Url
-        if (file && presignedUrl) {
-          try {
-            await axios.put(presignedUrl, file, {
-              headers: { 'Content-Type': file.type },
-            })
-          } catch (err) {
-            console.error('Upload error:', err)
-            return { index: i, error: err }
-          }
-        }
-      }),
-    )
-  }
+    await handleImageUploads({
+      baseTripId: tripData.baseTripId,
+      userId: profile?.userId,
+      images: imagesToBeUploaded || [],
+      randomFileName,
+      generatePreSignedUrlForDestinationImages,
+    })
+    toast.success('Trip updated successfully!')
+    navigate('/')
+  }, [tripData, makeDayTabsEmptyIfEmptyData, editTrip, profile?.userId, generatePreSignedUrlForDestinationImages, navigate])
 
   const handleCreateTripSubmit = useCallback(async () => {
     const processedTripDates = getProcessedTripDates()
@@ -345,31 +335,13 @@ const PublishTrip = (props) => {
     const userId = profile?.userId
     const images = tripData.destinationImages || []
 
-    const preSignedUrlPayload = buildPreSignedUrlPayload(baseTripId, userId, 'full-images', images, randomFileName)
-    const preSignedUrlPayloadForCropped = buildPreSignedUrlPayload(baseTripId, userId, 'cropped-images', images, randomFileName)
-
-    // Get presigned URLs
-    const [preSignedUrls, preSignedUrlsForCroppedImages] = await Promise.all([
-      generatePreSignedUrlForDestinationImages(preSignedUrlPayload),
-      generatePreSignedUrlForDestinationImages(preSignedUrlPayloadForCropped),
-    ])
-
-    // Crop images to 4:3 before uploading cropped versions
-    const croppedImages = await Promise.all(
-      images.map(async (imgObj) => {
-        if (imgObj.file) {
-          const croppedFile = await cropImageToAspectRatio(imgObj.file)
-          return { ...imgObj, croppedFile }
-        }
-        return imgObj
-      }),
-    )
-
-    // Upload original images
-    await uploadFilesToPresignedUrls(images, preSignedUrls, (imgObj) => imgObj.file)
-
-    // Upload cropped images
-    await uploadFilesToPresignedUrls(croppedImages, preSignedUrlsForCroppedImages, (imgObj) => imgObj.croppedFile)
+    await handleImageUploads({
+      baseTripId,
+      userId,
+      images,
+      randomFileName,
+      generatePreSignedUrlForDestinationImages,
+    })
 
     toast.success('Trip published successfully!')
     navigate('/')
@@ -379,7 +351,6 @@ const PublishTrip = (props) => {
     makeDayTabsEmptyIfEmptyData,
     createTrip,
     profile?.userId,
-    randomFileName,
     generatePreSignedUrlForDestinationImages,
     navigate,
   ])
@@ -475,6 +446,7 @@ const PublishTrip = (props) => {
                   handleChange={handleChange}
                   handleTripDataChange={handleTripDataChange}
                   handleDeleteDate={handleDeleteDate}
+                  isEditTrip={toEditTrip}
                 />
               )}
               {activeSection === TABS.ITINERARY && (

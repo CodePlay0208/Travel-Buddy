@@ -7,7 +7,7 @@ import InputDropdown from '../../components/InputDropdown/InputDropdown'
 import InfoIcon from '../../assets/svg/info'
 import { FlexContainer, TooltipWrapper, Tooltip } from './PublishTrip.styled'
 
-const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteDate }) => {
+const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteDate, isEditTrip }) => {
   const [tooltipVisible, setTooltipVisible] = React.useState(false)
   return (
     <Container>
@@ -33,8 +33,10 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
               </TooltipWrapper>
             </FlexContainer>
             <DatePicker
-              inputValues={tripData.multipleDates}
-              setInputValues={(value) => handleTripDataChange('multipleDates', value)}
+              inputValues={isEditTrip ? tripData?.editMultipleDates : tripData.multipleDates}
+              setInputValues={(value) => {
+                isEditTrip ? handleTripDataChange('editMultipleDates', value) : handleTripDataChange('multipleDates', value)
+              }}
               onValue="multipleDates"
               maxDates={10}
               showOnlyCalendar={true}
@@ -71,9 +73,13 @@ const TripDates = ({ tripData, handleChange, handleTripDataChange, handleDeleteD
             </Label>
           </InputRow>
           <DatesContainer>
-            {tripData.multipleDates?.map((date, index) => (
-              <DateRange key={index} startDate={date} totalDays={tripData.duration} onDelete={() => handleDeleteDate(index)} />
-            ))}
+            {isEditTrip
+              ? tripData.editMultipleDates?.map((date, index) => (
+                  <DateRange key={index} startDate={date} totalDays={tripData.duration} onDelete={() => handleDeleteDate(index)} />
+                ))
+              : tripData.multipleDates?.map((date, index) => (
+                  <DateRange key={index} startDate={date} totalDays={tripData.duration} onDelete={() => handleDeleteDate(index)} />
+                ))}
           </DatesContainer>
         </InputColumn>
       </InputRow>
