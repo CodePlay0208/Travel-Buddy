@@ -11,11 +11,17 @@ import UserProfile from './screens/UserProfile/UserProfile'
 import UserTrips from './screens/UserTrips/UserTrips'
 import SetupPage from './screens/AuthFlow/setupPage'
 import PublicUser from './screens/UserProfile/UserDashboard/PublicUser'
+import HomePage from './components/ContactUs/HomePage'
 
 export const routes = [
   {
     path: '/',
     element: <LandingPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/contact-us',
+    element: <HomePage />,
     isPrivate: false,
   },
 
