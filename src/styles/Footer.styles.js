@@ -62,6 +62,7 @@ export const FooterHeading = styled.h2`
   font-weight: 700;
   font-size: 1.5rem;
   color: #112211;
+  cursor: pointer;
   @media (max-width: 440px) {
     font-size: 4.5rem;
   }

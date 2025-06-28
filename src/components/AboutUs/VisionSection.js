@@ -134,6 +134,7 @@ const Question = styled.h1`
   line-height: 120%;
   text-align: center;
 
+  cursor: pointer;
   padding-top: 8px;
   padding-right: 24px;
   padding-bottom: 8px;
