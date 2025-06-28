@@ -12,6 +12,7 @@ import UserTrips from './screens/UserTrips/UserTrips'
 import SetupPage from './screens/AuthFlow/setupPage'
 import PublicUser from './screens/UserProfile/UserDashboard/PublicUser'
 import HomePage from './components/ContactUs/HomePage'
+import AboutUs from './components/AboutUs/AboutUs'
 
 export const routes = [
   {
@@ -22,6 +23,10 @@ export const routes = [
   {
     path: '/contact-us',
     element: <HomePage />,
+    isPrivate: false,
+  },{
+    path: '/about-us',
+    element: <AboutUs />,
     isPrivate: false,
   },
 

@@ -9,7 +9,7 @@ const CardsFrame = styled.div`
   align-items: center;
   gap: 100px;
 
-  @media (max-width: 440px) {
+  @media (max-width: 1080px) {
     flex-direction: column;
     gap: 40px;
   }
@@ -23,6 +23,10 @@ const Card = styled.div`
   background: #fff;
   border-radius: 32px;
 
+  @media (max-width: 1080px) {
+    width: 440px;
+    padding: 25px 0 0;
+  }
   @media (max-width: 440px) {
     width: 340px;
     height: 160px;

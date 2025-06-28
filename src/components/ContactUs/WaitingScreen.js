@@ -25,6 +25,8 @@ const ImageWrapper = styled.div`
   align-items: center;
 
   background: url(${backgroundImage1});
+  background-size: cover;
+  background-position: center;
   object-fit: contain;
   object-position: center;
   border-radius: 0 0 112px 0;
