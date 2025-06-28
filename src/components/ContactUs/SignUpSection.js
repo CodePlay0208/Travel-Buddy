@@ -1,9 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { toast } from 'react-toastify'
 
 import backgroundImage1 from './secondImage.jpg'
 import { Input } from '../../styles/Global'
 import { DescriptionField } from '../../screens/PublishTrip/PublishTrip.styled'
+import { postFeedback } from '../../actions/feedback.action'
+import { StyledToastContainer } from '../../styles/Global'
 
 const FrameTwo = styled.div`
   width: 100%;
@@ -210,7 +214,13 @@ const ImageWrapper = styled.div`
   }
 `
 
-const SignUpSection = () => {
+const mapStateToProps = (state) => ({
+  loading: state.feedbackReducer.loading,
+  error: state.feedbackReducer.error,
+  success: state.feedbackReducer.success,
+})
+
+const SignUpSection = ({ postFeedback }) => {
   const [form, setForm] = React.useState({ fullName: '', phone: '', email: '', message: '' })
   const [submitted, setSubmitted] = React.useState(false)
 
@@ -218,9 +228,16 @@ const SignUpSection = () => {
     setForm({ ...form, [e.target.id]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    const res = await postFeedback(form)
+    if (res) {
+      setSubmitted(true)
+      setForm({ fullName: '', phone: '', email: '', message: '' })
+      toast.success('Thank you for your feedback!')
+    } else {
+      toast.error('There was an error submitting your feedback. Please try again.')
+    }
   }
 
   return (
@@ -237,7 +254,7 @@ const SignUpSection = () => {
         </SubTitleGroup>
         <Divider />
         {submitted ? (
-          <SubTitle>Thank you for signing up! We'll contact you soon.</SubTitle>
+          <SubTitle>Thank you for your feedback! We'll contact you soon.</SubTitle>
         ) : (
           <Form onSubmit={handleSubmit}>
             <FormSection>
@@ -292,8 +309,9 @@ const SignUpSection = () => {
         )}
       </Content>
       <ImageWrapper />
+      <StyledToastContainer />
     </FrameTwo>
   )
 }
 
-export default SignUpSection
+export default connect(mapStateToProps, { postFeedback })(SignUpSection)
