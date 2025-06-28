@@ -115,6 +115,12 @@ const DescContainer = styled.div`
   align-items: center;
   gap: 8px;
   width: 100%;
+  transition:
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  max-height: ${({ expanded }) => (expanded ? '500px' : '0')};
+  opacity: ${({ expanded }) => (expanded ? 1 : 0)};
 
   @media (max-width: 440px) {
     gap: 3px;
@@ -128,8 +134,15 @@ const Question = styled.h1`
   line-height: 120%;
   text-align: center;
 
+  padding-top: 8px;
+  padding-right: 24px;
+  padding-bottom: 8px;
+  padding-left: 24px;
+
   letter-spacing: 0%;
   margin: 0;
+  background-color: ${({ expanded }) => (expanded ? 'black' : 'white')};
+  color: ${({ expanded }) => (expanded ? '#8dd3bb' : 'black')};
 
   @media (max-width: 440px) {
     font-family: Montserrat;
@@ -164,16 +177,12 @@ const Description = styled.p`
 `
 
 const VerticalDivider = styled.div`
-  transform: rotate(90deg);
-  width: 60px;
-  margin: 24px 0;
-  border-bottom: 2px solid #000000;
+  height: 60px;
+  border-right: 2px solid #000000;
 
   @media (max-width: 440px) {
-    width: 24px;
-    border-bottom: 1px solid #000000;
-
-    margin: 16px 0;
+    height: 24px;
+    border-right: 1px solid #000000;
   }
 `
 const VisionSection = () => {
@@ -200,52 +209,74 @@ const VisionSection = () => {
       </ImageWrapper>
       <SideFrame>
         <TextBlock>
-          <Question onClick={() => handleToggle('values')}>Our Values</Question>
-          {expanded.values ? (
-            <DescContainer onClick={() => handleToggle('values')}>
+          <Question
+            onClick={() => handleToggle('values')}
+            // onMouseEnter={() => setExpanded((prev) => ({ ...prev, values: true }))}
+            // onMouseLeave={() => setExpanded((prev) => ({ ...prev, values: false }))}
+            expanded={expanded.values}
+          >
+            Our Values
+          </Question>
+          {expanded.values && (
+            <DescContainer expanded={expanded.values} onClick={() => handleToggle('values')}>
               <Description>Courage</Description>
               <Description>Creativity</Description>
               <Description>Ownership</Description>
               <Description>Leadership</Description>
               <Description>Customer Commitment</Description>
             </DescContainer>
-          ) : (
-            <></>
           )}
           <VerticalDivider onClick={() => handleToggle('values')} />
         </TextBlock>
         <TextBlock width="30%">
-          <Question onClick={() => handleToggle('purpose')}>Our Purpose</Question>
-          {expanded.purpose ? (
-            <DescContainer onClick={() => handleToggle('purpose')}>
+          <Question
+            onClick={() => handleToggle('purpose')}
+            // onMouseEnter={() => setExpanded((prev) => ({ ...prev, purpose: true }))}
+            // onMouseLeave={() => setExpanded((prev) => ({ ...prev, purpose: false }))}
+            expanded={expanded.purpose}
+          >
+            Our Purpose
+          </Question>
+          {expanded.purpose && (
+            <DescContainer expanded={expanded.purpose} onClick={() => handleToggle('purpose')}>
               <Description>
                 We're all about building genuine human connections through the joy of shared travel experiences, all while making a positive
                 difference for both people and our planet.
               </Description>
             </DescContainer>
-          ) : (
-            <></>
           )}
           <VerticalDivider onClick={() => handleToggle('purpose')} />
         </TextBlock>
         <TextBlock width="48%">
-          <Question onClick={() => handleToggle('vision')}>Our Vision</Question>
-          {expanded.vision ? (
-            <DescContainer onClick={() => handleToggle('vision')}>
+          <Question
+            onClick={() => handleToggle('vision')}
+            // onMouseEnter={() => setExpanded((prev) => ({ ...prev, vision: true }))}
+            // onMouseLeave={() => setExpanded((prev) => ({ ...prev, vision: false }))}
+            expanded={expanded.vision}
+          >
+            Our Vision
+          </Question>
+          {expanded.vision && (
+            <DescContainer expanded={expanded.vision} onClick={() => handleToggle('vision')}>
               <Description>
                 Our goal is to become the most trusted platform for community travel, where solo adventurers, groups, and travel agents come
                 together to create and share unforgettable experiences that nourish the soul and respect our planet.
               </Description>
             </DescContainer>
-          ) : (
-            <></>
           )}
           <VerticalDivider onClick={() => handleToggle('vision')} />
         </TextBlock>
         <TextBlock width="65%">
-          <Question onClick={() => handleToggle('mission')}>Our Mission</Question>
-          {expanded.mission ? (
-            <DescContainer onClick={() => handleToggle('mission')}>
+          <Question
+            onClick={() => handleToggle('mission')}
+            // onMouseEnter={() => setExpanded((prev) => ({ ...prev, mission: true }))}
+            // onMouseLeave={() => setExpanded((prev) => ({ ...prev, mission: false }))}
+            expanded={expanded.mission}
+          >
+            Our Mission
+          </Question>
+          {expanded.mission && (
+            <DescContainer expanded={expanded.mission} onClick={() => handleToggle('mission')}>
               <Description>
                 We’re all about empowering travelers and travel agents to share, explore, and embark on trips that resonate with their
                 interests, favorite destinations, and unique itineraries. By creating communities centered around travel, we nurture a sense
@@ -254,16 +285,20 @@ const VisionSection = () => {
                 sustainability and deeper human connections.
               </Description>
             </DescContainer>
-          ) : (
-            <></>
           )}
           <VerticalDivider onClick={() => handleToggle('mission')} />
         </TextBlock>
-
         <TextBlock width="82%">
-          <Question onClick={() => handleToggle('position')}>Our Positioning</Question>
-          {expanded.position ? (
-            <DescContainer onClick={() => handleToggle('position')}>
+          <Question
+            onClick={() => handleToggle('position')}
+            // onMouseEnter={() => setExpanded((prev) => ({ ...prev, position: true }))}
+            // onMouseLeave={() => setExpanded((prev) => ({ ...prev, position: false }))}
+            expanded={expanded.position}
+          >
+            Our Positioning
+          </Question>
+          {expanded.position && (
+            <DescContainer expanded={expanded.position} onClick={() => handleToggle('position')}>
               <Description>
                 Travmigoz is all about community and connection in the travel world. It’s a platform designed to help you find and link up
                 with fellow travelers and trip creators, whether you’re a solo adventurer or a travel agent. Together, we can share
@@ -278,8 +313,6 @@ const VisionSection = () => {
                 </strong>
               </Description>
             </DescContainer>
-          ) : (
-            <></>
           )}
         </TextBlock>
       </SideFrame>
