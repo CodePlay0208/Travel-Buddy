@@ -1,0 +1,98 @@
+import styled from 'styled-components'
+import backgroundImage1 from './secondImage.jpg'
+
+export const Frame = styled.div`
+  height: 900px;
+  width: 100%;
+  display: flex;
+  gap: 4%;
+
+  @media (max-width: 440px) {
+    flex-direction: column;
+    gap: 40px;
+    padding: 0;
+    height: 100%;
+  }
+`
+
+export const ImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(${backgroundImage1});
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+
+  @media (max-width: 440px) {
+    width: 100%;
+    height: 363px;
+  }
+`
+
+export const SideFrame = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 61%;
+  height: 100%;
+  justify-content: center;
+  gap: 24px;
+  @media (max-width: 440px) {
+    width: 85%;
+    height: 310px;
+    gap: 16px;
+  }
+`
+
+export const Overlay = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+`
+
+export const WaitingMessageBig = styled.h1`
+  z-index: 2;
+  margin: 0;
+  font-family: Montserrat;
+  font-weight: 700;
+  font-size: 4.5rem;
+  line-height: 120%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #ffffff;
+
+  @media (max-width: 440px) {
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+`
+
+export const WaitingMessageSmall = styled.h2`
+  z-index: 2;
+  margin: 0;
+  font-family: Montserrat;
+  font-weight: 400;
+  font-size: 2.25rem;
+  line-height: 120%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #ffffff;
+
+  @media (max-width: 440px) {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 148%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+`
