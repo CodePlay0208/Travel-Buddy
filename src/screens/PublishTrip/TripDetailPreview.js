@@ -13,7 +13,7 @@ import {
 } from './TripDetailPreview.styled'
 import ClearIcon from '../../assets/svg/clear'
 
-const TripDetailPreview = ({ tripData = {}, margin }) => {
+const TripDetailPreview = ({ tripData = {}, margin, isReadOnly }) => {
   const { startLocation = [], destination = [] } = tripData
 
   const containerRef = useRef(null)
@@ -48,7 +48,7 @@ const TripDetailPreview = ({ tripData = {}, margin }) => {
       {!startLocation.length && !destination.length ? (
         <>
           <Timeline>
-            <TimelineItem className='start'>
+            <TimelineItem className="start">
               <BulletWrapper>
                 <BulletSvg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect
@@ -65,10 +65,10 @@ const TripDetailPreview = ({ tripData = {}, margin }) => {
                 </BulletSvg>
                 {<div className="connectorLenthy" />}
               </BulletWrapper>
-                
+
               <SectionTitle>Pick up Locations</SectionTitle>
-              </TimelineItem>
-              <TimelineItem className='start'>
+            </TimelineItem>
+            <TimelineItem className="start">
               <BulletWrapper>
                 <BulletSvg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect
@@ -118,7 +118,7 @@ const TripDetailPreview = ({ tripData = {}, margin }) => {
                       <LocationName>{loc.city}</LocationName>
                       <LocationSub>{loc.state}</LocationSub>
                     </div>
-                    <ClearIcon onClick={() => handleRemove('start', idx)}>✕</ClearIcon>
+                    {!isReadOnly && <ClearIcon onClick={() => handleRemove('start', idx)}>✕</ClearIcon>}
                   </LocationBox>
                 </TimelineItem>
               )
@@ -151,7 +151,7 @@ const TripDetailPreview = ({ tripData = {}, margin }) => {
                       <LocationName>{loc.city}</LocationName>
                       <LocationSub>{loc.state}</LocationSub>
                     </div>
-                    <ClearIcon onClick={() => handleRemove('end', idx)}>✕</ClearIcon>
+                    {!isReadOnly && <ClearIcon onClick={() => handleRemove('end', idx)}>✕</ClearIcon>}
                   </LocationBox>
                 </TimelineItem>
               )
