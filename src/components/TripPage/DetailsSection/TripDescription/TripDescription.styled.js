@@ -105,6 +105,7 @@ export const ProfileImage = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 3%;
+  cursor: pointer;
 `
 
 export const ProfilePicture = styled.img`

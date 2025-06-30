@@ -197,7 +197,7 @@ const TripDescription = (props) => {
         </DescriptionContainer>
         <ChatSectionContainer>
           <ChatSection>
-            <ProfileImage>
+            <ProfileImage onClick={()=> navigate(`/user/${publisher?.userId}`)}>
               <ProfilePicture src={publisher?.profilePic?.[0]?.preSignedUrl || images.defaultProfileImg} alt="" />
               <ProfileName>{publisher?.username}</ProfileName>
             </ProfileImage>
