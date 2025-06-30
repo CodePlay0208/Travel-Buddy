@@ -40,8 +40,8 @@ const Footer = () => {
         <FooterSection className="destinations">
           <FooterHeading onClick={()=>navigate('/about-us')}>About Us</FooterHeading>
           <FooterList>
-            <FooterLink href="/">Why Travmigoz</FooterLink>
-            <FooterLink href="/">What we Believe</FooterLink>
+            <FooterLink href="/about-us">Why Travmigoz</FooterLink>
+            <FooterLink href="/about-us">What we Believe</FooterLink>
           </FooterList>
         </FooterSection>
         <FooterSection className="contact">
