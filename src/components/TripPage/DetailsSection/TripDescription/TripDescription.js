@@ -214,14 +214,23 @@ const TripDescription = (props) => {
                 </EndDate>
               </DateSection>
               <InfoSection>
-                <StartDate>
-                  <BoxHeading>Min Budget</BoxHeading>
-                  <BoxContent>₹{trip?.minBudget}</BoxContent>
-                </StartDate>
-                <EndDate>
-                  <BoxHeading>Max Budget</BoxHeading>
-                  <BoxContent>₹{trip?.maxBudget}</BoxContent>
-                </EndDate>
+                {trip?.minBudget !== trip?.maxBudget ? (
+                  <>
+                    <StartDate>
+                      <BoxHeading>Min Budget</BoxHeading>
+                      <BoxContent>₹{trip?.minBudget}</BoxContent>
+                    </StartDate>
+                    <EndDate>
+                      <BoxHeading>Max Budget</BoxHeading>
+                      <BoxContent>₹{trip?.maxBudget}</BoxContent>
+                    </EndDate>
+                  </>
+                ) : (
+                  <StartDate>
+                    <BoxHeading> Budget</BoxHeading>
+                    <BoxContent>₹{trip?.minBudget}</BoxContent>
+                  </StartDate>
+                )}
               </InfoSection>
               <ButtonSection>
                 <ChatButton onClick={onShareLinkClick}>Share Now</ChatButton>
@@ -256,7 +265,6 @@ const TripDescription = (props) => {
             Alternative Dates
           </AlternateButton>
         </ChatSectionContainer>
-        
       </SectionContainer>
       {deleteModal && (
         <Modal

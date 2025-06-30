@@ -149,7 +149,7 @@ export const DateSection = styled.div`
 `
 export const InfoSection = styled.div`
   display: flex;
-
+  justify-content: center;
   @media (max-width: 440px) {
     flex-wrap: wrap;
     gap: 15px;
@@ -248,7 +248,7 @@ export const ButtonSection = styled.div`
 export const ChatButton = styled(Button)`
   &:hover {
     background-color: var(--color-secondary);
-    color:black;
+    color: black;
   }
   img {
     width: min(2.5rem, 100%);
