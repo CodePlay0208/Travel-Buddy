@@ -209,11 +209,14 @@ const VisionSection = () => {
         <WaitingMessageSmall>Discover the principles that shape every Travmigoz journey.</WaitingMessageSmall>
       </ImageWrapper>
       <SideFrame>
-        <TextBlock>
+        <TextBlock
+          onMouseEnter={() => setExpanded((prev) => ({ ...prev, values: true }))}
+          onMouseLeave={() => setExpanded((prev) => ({ ...prev, values: false }))}
+        >
           <Question
             onClick={() => handleToggle('values')}
-            // onMouseEnter={() => setExpanded((prev) => ({ ...prev, values: true }))}
-            // onMouseLeave={() => setExpanded((prev) => ({ ...prev, values: false }))}
+            onMouseEnter={() => setExpanded((prev) => ({ ...prev, values: true }))}
+            onMouseLeave={() => setExpanded((prev) => ({ ...prev, values: false }))}
             expanded={expanded.values}
           >
             Our Values
@@ -229,11 +232,15 @@ const VisionSection = () => {
           )}
           <VerticalDivider onClick={() => handleToggle('values')} />
         </TextBlock>
-        <TextBlock width="30%">
+        <TextBlock
+          width="30%"
+          onMouseEnter={() => setExpanded((prev) => ({ ...prev, purpose: true }))}
+          onMouseLeave={() => setExpanded((prev) => ({ ...prev, purpose: false }))}
+        >
           <Question
             onClick={() => handleToggle('purpose')}
-            // onMouseEnter={() => setExpanded((prev) => ({ ...prev, purpose: true }))}
-            // onMouseLeave={() => setExpanded((prev) => ({ ...prev, purpose: false }))}
+            onMouseEnter={() => setExpanded((prev) => ({ ...prev, purpose: true }))}
+            onMouseLeave={() => setExpanded((prev) => ({ ...prev, purpose: false }))}
             expanded={expanded.purpose}
           >
             Our Purpose
@@ -248,13 +255,12 @@ const VisionSection = () => {
           )}
           <VerticalDivider onClick={() => handleToggle('purpose')} />
         </TextBlock>
-        <TextBlock width="48%">
-          <Question
-            onClick={() => handleToggle('vision')}
-            // onMouseEnter={() => setExpanded((prev) => ({ ...prev, vision: true }))}
-            // onMouseLeave={() => setExpanded((prev) => ({ ...prev, vision: false }))}
-            expanded={expanded.vision}
-          >
+        <TextBlock
+          width="48%"
+          onMouseEnter={() => setExpanded((prev) => ({ ...prev, vision: true }))}
+          onMouseLeave={() => setExpanded((prev) => ({ ...prev, vision: false }))}
+        >
+          <Question onClick={() => handleToggle('vision')} expanded={expanded.vision}>
             Our Vision
           </Question>
           {expanded.vision && (
@@ -267,13 +273,12 @@ const VisionSection = () => {
           )}
           <VerticalDivider onClick={() => handleToggle('vision')} />
         </TextBlock>
-        <TextBlock width="65%">
-          <Question
-            onClick={() => handleToggle('mission')}
-            // onMouseEnter={() => setExpanded((prev) => ({ ...prev, mission: true }))}
-            // onMouseLeave={() => setExpanded((prev) => ({ ...prev, mission: false }))}
-            expanded={expanded.mission}
-          >
+        <TextBlock
+          width="65%"
+          onMouseEnter={() => setExpanded((prev) => ({ ...prev, mission: true }))}
+          onMouseLeave={() => setExpanded((prev) => ({ ...prev, mission: false }))}
+        >
+          <Question onClick={() => handleToggle('mission')} expanded={expanded.mission}>
             Our Mission
           </Question>
           {expanded.mission && (
@@ -289,13 +294,12 @@ const VisionSection = () => {
           )}
           <VerticalDivider onClick={() => handleToggle('mission')} />
         </TextBlock>
-        <TextBlock width="82%">
-          <Question
-            onClick={() => handleToggle('position')}
-            // onMouseEnter={() => setExpanded((prev) => ({ ...prev, position: true }))}
-            // onMouseLeave={() => setExpanded((prev) => ({ ...prev, position: false }))}
-            expanded={expanded.position}
-          >
+        <TextBlock
+          width="82%"
+          onMouseEnter={() => setExpanded((prev) => ({ ...prev, position: true }))}
+          onMouseLeave={() => setExpanded((prev) => ({ ...prev, position: false }))}
+        >
+          <Question onClick={() => handleToggle('position')} expanded={expanded.position}>
             Our Positioning
           </Question>
           {expanded.position && (
