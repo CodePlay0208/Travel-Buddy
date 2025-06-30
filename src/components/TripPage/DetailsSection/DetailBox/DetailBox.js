@@ -4,8 +4,17 @@ import { useNavigate } from 'react-router-dom'
 
 const DetailBox = ({ id, heading, body, profilePic }) => {
   const navigate = useNavigate()
+
+  const handleProfileClick = (id) => {
+    if (localStorage.token) {
+      navigate(`/user/${id}`)
+    } else {
+      navigate('/login')
+    }
+  }
+
   return (
-    <BoxContainer className={body} onClick={() => navigate('/user/' + id)}>
+    <BoxContainer className={body} onClick={() => handleProfileClick(id)}>
       <BoxContent>
         <ImageContainer>
           <ProfileImage src={profilePic} alt="TravellerPic" />

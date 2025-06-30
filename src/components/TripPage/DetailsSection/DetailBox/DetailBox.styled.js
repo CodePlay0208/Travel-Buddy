@@ -9,6 +9,8 @@ export const BoxContainer = styled.div`
   padding: 3%;
   color: var(--color-primary);
 
+  cursor: pointer;
+
   &.Traveller {
     color: #000000;
   }

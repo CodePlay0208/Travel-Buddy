@@ -173,6 +173,14 @@ const TripDescription = (props) => {
     setShowAlternateDates(true)
   }
 
+  const handleProfileClick = () => {
+    if (localStorage.token) {
+      navigate(`/user/${publisher?.userId}`)
+    } else {
+      navigate('/login')
+    }
+  }
+
   return (
     <>
       {showAlternateDates && (
@@ -197,7 +205,7 @@ const TripDescription = (props) => {
         </DescriptionContainer>
         <ChatSectionContainer>
           <ChatSection>
-            <ProfileImage onClick={()=> navigate(`/user/${publisher?.userId}`)}>
+            <ProfileImage onClick={handleProfileClick}>
               <ProfilePicture src={publisher?.profilePic?.[0]?.preSignedUrl || images.defaultProfileImg} alt="" />
               <ProfileName>{publisher?.username}</ProfileName>
             </ProfileImage>
