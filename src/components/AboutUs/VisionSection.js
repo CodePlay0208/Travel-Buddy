@@ -1,5 +1,16 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useRef } from 'react'
+import styled, { keyframes } from 'styled-components'
+
+// Keyframes for expand and collapse animations
+const expandAnim = keyframes`
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 1000px; opacity: 1; }
+`
+
+const collapseAnim = keyframes`
+  from { max-height: 1000px; opacity: 1; }
+  to { max-height: 0; opacity: 0; }
+`
 
 const Frame = styled.div`
   width: 100%;
@@ -8,7 +19,6 @@ const Frame = styled.div`
   flex-direction: column;
 
   @media (max-width: 440px) {
-    flex-direction: column;
     gap: 40px;
     padding: 0;
     height: 100%;
@@ -24,15 +34,11 @@ const ImageWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   gap: 16px;
   background: black;
-  object-fit: contain;
-  object-position: center;
   overflow: hidden;
 
   @media (max-width: 440px) {
-    width: 100%;
     height: 110px;
     gap: 8px;
   }
@@ -44,13 +50,10 @@ const SideFrame = styled.div`
   align-items: center;
   gap: 32px;
   width: 100%;
-  height: 100%;
-  flex: none;
   justify-content: center;
 
   @media (max-width: 440px) {
     gap: 16px;
-    width: 100%;
     padding: 0 16px;
   }
 `
@@ -63,14 +66,9 @@ const WaitingMessageBig = styled.h1`
   color: #8dd3bb;
   margin: 0;
   line-height: 120%;
-  letter-spacing: 0%;
 
   @media (max-width: 440px) {
-    font-family: Montserrat;
-    font-weight: 700;
     font-size: 30px;
-    line-height: 120%;
-    letter-spacing: 0%;
   }
 `
 
@@ -78,20 +76,11 @@ const WaitingMessageSmall = styled.h2`
   font-family: Montserrat;
   font-weight: 700;
   font-size: 2rem;
-  z-index: 2;
-  line-height: 120%;
-  letter-spacing: 0%;
-
   color: white;
-
   margin: 0;
 
   @media (max-width: 440px) {
-    font-family: Montserrat;
-    font-weight: 700;
     font-size: 12px;
-    line-height: 120%;
-    letter-spacing: 0%;
   }
 `
 
@@ -100,30 +89,13 @@ const TextBlock = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 32px;
-  width: ${(props) => props?.width ?? '100%'};
-  flex: none;
+  width: ${(props) => props.width || '100%'};
+  cursor: pointer;
 
   @media (max-width: 440px) {
     width: 100%;
-    align-items: center;
+    text-align:justify;
     gap: 16px;
-  }
-`
-const DescContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  transition:
-    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  max-height: ${({ expanded }) => (expanded ? '500px' : '0')};
-  opacity: ${({ expanded }) => (expanded ? 1 : 0)};
-
-  @media (max-width: 440px) {
-    gap: 3px;
   }
 `
 
@@ -133,28 +105,29 @@ const Question = styled.h1`
   font-weight: 700;
   line-height: 120%;
   text-align: center;
-
-  cursor: pointer;
-  padding-top: 8px;
-  padding-right: 24px;
-  padding-bottom: 8px;
-  padding-left: 24px;
-
-  letter-spacing: 0%;
   margin: 0;
-  background-color: ${({ expanded }) => (expanded ? 'black' : 'white')};
-  color: ${({ expanded }) => (expanded ? '#8dd3bb' : 'black')};
+  padding: 8px 24px;
+  border-bottom: ${(props) => (props.expanded ? 'none' : '2px solid #8dd3bb')};
+  background-color: ${(props) => (props.expanded ? 'black' : 'white')};
+  color: ${(props) => (props.expanded ? '#8dd3bb' : 'black')};
 
   @media (max-width: 440px) {
-    font-family: Montserrat;
-    font-weight: 700;
     font-size: 20px;
-    line-height: 120%;
-    letter-spacing: 0%;
-    text-align: center;
-    border-bottom: 2px solid #8dd3bb;
-
     padding: 4px 10px;
+  }
+`
+
+const DescContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  overflow: hidden;
+  animation: ${(props) => (props.expanded ? expandAnim : collapseAnim)} 3s ease forwards;
+
+  @media (max-width: 440px) {
+    gap: 3px;
   }
 `
 
@@ -164,42 +137,50 @@ const Description = styled.p`
   font-size: 1.4rem;
   margin: 0;
   line-height: 150%;
-  letter-spacing: 0%;
   text-align: center;
 
   @media (max-width: 440px) {
-    font-family: Montserrat;
-    font-weight: 400;
     font-size: 16px;
-    line-height: 150%;
-    letter-spacing: 0%;
     text-align: justify;
   }
 `
 
 const VerticalDivider = styled.div`
   height: 60px;
-  border-right: 2px solid #000000;
+  border-right: 2px solid #000;
 
   @media (max-width: 440px) {
     height: 24px;
-    border-right: 1px solid #000000;
+    border-right: 1px solid #000;
   }
 `
+
 const VisionSection = () => {
   const [expanded, setExpanded] = React.useState({
     values: false,
+    purpose: false,
     vision: false,
     mission: false,
-    purpose: false,
     position: false,
   })
+  const hoverTimeouts = useRef({})
+
+  const handleMouseEnter = (section) => {
+    if (window.innerWidth <= 440) return;
+    clearTimeout(hoverTimeouts.current[section])
+    setExpanded((prev) => ({ ...prev, [section]: true }))
+  }
+
+  const handleMouseLeave = (section) => {
+    if (window.innerWidth <= 440) return;
+    hoverTimeouts.current[section] = setTimeout(() => {
+      setExpanded((prev) => ({ ...prev, [section]: false }))
+    }, 200)
+  }
 
   const handleToggle = (section) => {
-    setExpanded((prev) => ({
-      ...prev,
-      [section]: !prev[section],
-    }))
+    clearTimeout(hoverTimeouts.current[section])
+    setExpanded((prev) => ({ ...prev, [section]: !prev[section] }))
   }
 
   return (
@@ -209,116 +190,86 @@ const VisionSection = () => {
         <WaitingMessageSmall>Discover the principles that shape every Travmigoz journey.</WaitingMessageSmall>
       </ImageWrapper>
       <SideFrame>
-        <TextBlock
-          onMouseEnter={() => setExpanded((prev) => ({ ...prev, values: true }))}
-          onMouseLeave={() => setExpanded((prev) => ({ ...prev, values: false }))}
-        >
-          <Question
-            onClick={() => handleToggle('values')}
-            onMouseEnter={() => setExpanded((prev) => ({ ...prev, values: true }))}
-            onMouseLeave={() => setExpanded((prev) => ({ ...prev, values: false }))}
-            expanded={expanded.values}
-          >
+        {/* Values */}
+        <TextBlock onMouseEnter={() => handleMouseEnter('values')} onMouseLeave={() => handleMouseLeave('values')}>
+          <Question expanded={expanded.values} onClick={() => handleToggle('values')}>
             Our Values
           </Question>
-          {expanded.values && (
-            <DescContainer expanded={expanded.values} onClick={() => handleToggle('values')}>
-              <Description>Courage</Description>
-              <Description>Creativity</Description>
-              <Description>Ownership</Description>
-              <Description>Leadership</Description>
-              <Description>Customer Commitment</Description>
-            </DescContainer>
-          )}
+          <DescContainer expanded={expanded.values} onClick={() => handleToggle('values')}>
+            <Description>Courage</Description>
+            <Description>Creativity</Description>
+            <Description>Ownership</Description>
+            <Description>Leadership</Description>
+            <Description>Customer Commitment</Description>
+          </DescContainer>
           <VerticalDivider onClick={() => handleToggle('values')} />
         </TextBlock>
-        <TextBlock
-          width="30%"
-          onMouseEnter={() => setExpanded((prev) => ({ ...prev, purpose: true }))}
-          onMouseLeave={() => setExpanded((prev) => ({ ...prev, purpose: false }))}
-        >
-          <Question
-            onClick={() => handleToggle('purpose')}
-            onMouseEnter={() => setExpanded((prev) => ({ ...prev, purpose: true }))}
-            onMouseLeave={() => setExpanded((prev) => ({ ...prev, purpose: false }))}
-            expanded={expanded.purpose}
-          >
+
+        {/* Purpose */}
+        <TextBlock width="30%" onMouseEnter={() => handleMouseEnter('purpose')} onMouseLeave={() => handleMouseLeave('purpose')}>
+          <Question expanded={expanded.purpose} onClick={() => handleToggle('purpose')}>
             Our Purpose
           </Question>
-          {expanded.purpose && (
-            <DescContainer expanded={expanded.purpose} onClick={() => handleToggle('purpose')}>
-              <Description>
-                We're all about building genuine human connections through the joy of shared travel experiences, all while making a positive
-                difference for both people and our planet.
-              </Description>
-            </DescContainer>
-          )}
+          <DescContainer expanded={expanded.purpose} onClick={() => handleToggle('purpose')}>
+            <Description>
+              We're all about building genuine human connections through the joy of shared travel experiences, all while making a positive
+              difference for both people and our planet.
+            </Description>
+          </DescContainer>
           <VerticalDivider onClick={() => handleToggle('purpose')} />
         </TextBlock>
-        <TextBlock
-          width="48%"
-          onMouseEnter={() => setExpanded((prev) => ({ ...prev, vision: true }))}
-          onMouseLeave={() => setExpanded((prev) => ({ ...prev, vision: false }))}
-        >
-          <Question onClick={() => handleToggle('vision')} expanded={expanded.vision}>
+
+        {/* Vision */}
+        <TextBlock width="48%" onMouseEnter={() => handleMouseEnter('vision')} onMouseLeave={() => handleMouseLeave('vision')}>
+          <Question expanded={expanded.vision} onClick={() => handleToggle('vision')}>
             Our Vision
           </Question>
-          {expanded.vision && (
-            <DescContainer expanded={expanded.vision} onClick={() => handleToggle('vision')}>
-              <Description>
-                Our goal is to become the most trusted platform for community travel, where solo adventurers, groups, and travel agents come
-                together to create and share unforgettable experiences that nourish the soul and respect our planet.
-              </Description>
-            </DescContainer>
-          )}
+          <DescContainer expanded={expanded.vision} onClick={() => handleToggle('vision')}>
+            <Description>
+              Our goal is to become the most trusted platform for community travel, where solo adventurers, groups, and travel agents come
+              together to create and share unforgettable experiences that nourish the soul and respect our planet.
+            </Description>
+          </DescContainer>
           <VerticalDivider onClick={() => handleToggle('vision')} />
         </TextBlock>
-        <TextBlock
-          width="65%"
-          onMouseEnter={() => setExpanded((prev) => ({ ...prev, mission: true }))}
-          onMouseLeave={() => setExpanded((prev) => ({ ...prev, mission: false }))}
-        >
-          <Question onClick={() => handleToggle('mission')} expanded={expanded.mission}>
+
+        {/* Mission */}
+        <TextBlock width="65%" onMouseEnter={() => handleMouseEnter('mission')} onMouseLeave={() => handleMouseLeave('mission')}>
+          <Question expanded={expanded.mission} onClick={() => handleToggle('mission')}>
             Our Mission
           </Question>
-          {expanded.mission && (
-            <DescContainer expanded={expanded.mission} onClick={() => handleToggle('mission')}>
-              <Description>
-                We’re all about empowering travelers and travel agents to share, explore, and embark on trips that resonate with their
-                interests, favorite destinations, and unique itineraries. By creating communities centered around travel, we nurture a sense
-                of belonging. With our ‘Routes & Roots’ initiative, we’re also doing our part for the planet by planting trees and
-                supporting mental well-being projects — ensuring that every journey is not just a trip, but a meaningful stride toward
-                sustainability and deeper human connections.
-              </Description>
-            </DescContainer>
-          )}
+          <DescContainer expanded={expanded.mission} onClick={() => handleToggle('mission')}>
+            <Description>
+              We’re all about empowering travelers and travel agents to share, explore, and embark on trips that resonate with their
+              interests, favorite destinations, and unique itineraries. By creating communities centered around travel, we nurture a sense
+              of belonging. With our ‘Routes & Roots’ initiative, we’re also doing our part for the planet by planting trees and supporting
+              mental well-being projects — ensuring that every journey is not just a trip, but a meaningful stride toward sustainability and
+              deeper human connections.
+            </Description>
+          </DescContainer>
           <VerticalDivider onClick={() => handleToggle('mission')} />
         </TextBlock>
-        <TextBlock
-          width="82%"
-          onMouseEnter={() => setExpanded((prev) => ({ ...prev, position: true }))}
-          onMouseLeave={() => setExpanded((prev) => ({ ...prev, position: false }))}
-        >
-          <Question onClick={() => handleToggle('position')} expanded={expanded.position}>
+
+        {/* Positioning */}
+        <TextBlock width="82%" onMouseEnter={() => handleMouseEnter('position')} onMouseLeave={() => handleMouseLeave('position')}>
+          <Question expanded={expanded.position} onClick={() => handleToggle('position')}>
             Our Positioning
           </Question>
-          {expanded.position && (
-            <DescContainer expanded={expanded.position} onClick={() => handleToggle('position')}>
-              <Description>
-                Travmigoz is all about community and connection in the travel world. It’s a platform designed to help you find and link up
-                with fellow travelers and trip creators, whether you’re a solo adventurer or a travel agent. Together, we can share
-                unforgettable experiences. We believe that travel should be more than just a checklist of sights; it should be a journey
-                filled with genuine connections. That’s why we offer personalized itineraries and give back through our Routes & Roots
-                initiative, which focuses on planting trees and supporting mental well-being in communities that need it most. 
-                <br />
-                <br />
-                <strong>
-                  In a travel landscape often dominated by transactions, Travmigoz champions meaningful journeys—where every trip not only
-                  connects hearts but also leaves a positive mark on the world.
-                </strong>
-              </Description>
-            </DescContainer>
-          )}
+          <DescContainer expanded={expanded.position} onClick={() => handleToggle('position')}>
+            <Description>
+              Travmigoz is all about community and connection in the travel world. It’s a platform designed to help you find and link up
+              with fellow travelers and trip creators, whether you’re a solo adventurer or a travel agent. Together, we can share
+              unforgettable experiences. We believe that travel should be more than just a checklist of sights; it should be a journey
+              filled with genuine connections. That’s why we offer personalized itineraries and give back through our Routes & Roots
+              initiative, which focuses on planting trees and supporting mental well-being in communities that need it most.
+            </Description>
+            <Description>
+              <strong>
+                In a travel landscape often dominated by transactions, Travmigoz champions meaningful journeys—where every trip not only
+                connects hearts but also leaves a positive mark on the world.
+              </strong>
+            </Description>
+          </DescContainer>
         </TextBlock>
       </SideFrame>
     </Frame>
