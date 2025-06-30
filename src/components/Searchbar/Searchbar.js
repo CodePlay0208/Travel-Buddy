@@ -107,7 +107,7 @@ const Searchbar = (props) => {
         type="text"
         placeholder={placeholderValue}
         id={customId}
-        value={formattedValue}
+        value={isReadOnly ? '' : formattedValue}
         onChange={handleInputChange}
         autoComplete="off"
         padding={padding}
