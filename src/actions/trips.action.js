@@ -24,7 +24,7 @@ import { toast } from 'react-toastify'
 // setAuthTokenImg was removed as it was commented out
 
 export const getTrips =
-  (searchForm, offset = 0, limit = 50, append = false) =>
+  (searchForm, offset = 0, limit = 50, append = false,isShowMore=false) =>
   async (dispatch) => {
     const { destination, startDate } = searchForm
     const params = [
@@ -36,7 +36,7 @@ export const getTrips =
 
     try {
       let res = await TripsApi.getTrips(params)
-      if (!res.data?.trips?.length) {
+      if (!isShowMore&&!res.data?.trips?.length) {
         res = await TripsApi.getTrips([
           { key: 'destination', value: '' },
           { key: 'date', value: '' },

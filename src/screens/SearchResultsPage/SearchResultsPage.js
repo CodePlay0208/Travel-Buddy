@@ -20,7 +20,7 @@ const SearchResultsPage = (props) => {
   }, [getTrips, searchForm])
 
   const showMoreTrips = () => {
-    getTrips(searchForm, trips.length, 50, true)
+    getTrips(searchForm, trips.length, 50, true,true)
   }
   return (
     <SearchResultsPageContainer>
