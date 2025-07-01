@@ -26,8 +26,8 @@ const DetailsSection = ({trip, isUserTrip, isEditMode, setEditMode, editedData, 
       
       <LocationContainer>
 
-      <PickupLocation  title="Pick Up Location:" locationsClubbed={trip.startLocation} />
-      <PickupLocation  title="Destination:" locationsClubbed={trip.destination} />
+      <PickupLocation  title="Pick Up Location:" locationsClubbed={trip?.startLocation} />
+      <PickupLocation  title="Destination:" locationsClubbed={trip?.destination} />
       </LocationContainer>
       <UpperSection>
         <Title>Itinerary</Title>
