@@ -28,10 +28,10 @@ const PopularSection = (props) => {
   const navigate = useNavigate()
   const scrollContainerRef = useRef(null)
   useEffect(() => {
-    getTrips({
-      destination: '',
-      startDate: '',
-    })
+    // getTrips({
+    //   destination: '',
+    //   startDate: '',
+    // })
   }, [getTrips, searchForm])
 
   useEffect(() => {
