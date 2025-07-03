@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, memo } from 'react'
 import Navbar from '../Navbar/Navbar'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Footer from '../Footer/Footer'
 import ImagesSection from './ImagesSection/ImagesSection'
 import DetailsSection from './DetailsSection/DetailsSection'
@@ -21,7 +21,7 @@ const TripPage = (props) => {
   const { id: tripIdFromParams } = useParams()
   const [tripId, setTripId] = useState(tripIdFromParams)
   const [isEditMode, setIsEditMode] = useState(false)
-
+  const navigate = useNavigate()
   const [editedData, setEditedData] = useState({})
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -34,11 +34,17 @@ const TripPage = (props) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const isUserTrip = trip?.hostId === profile?.userId || false
 
-  const fetchTrip = useCallback(() => {
+  const fetchTrip = useCallback(async () => {
     if (tripId) {
-      getTripById(tripId)
+      const res = await getTripById(tripId)
+      if(!res){
+        navigate('/')
+      }
     }
-  }, [getTripById, tripId])
+    else {
+      toast.error('Trip ID is not provided.')
+    }
+  }, [getTripById, navigate, tripId])
 
   useEffect(() => {
     fetchTrip()
