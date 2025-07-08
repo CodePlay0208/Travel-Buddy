@@ -36,6 +36,10 @@ export async function cropImageToAspectRatio(file, aspectRatio = 4 / 3) {
   })
 }
 
+export function convertFullToCroppedImageKey(key) {
+  return key.replace(/^full-images\//, 'cropped-images/');
+}
+
 // Main handler for uploading original and cropped images
 export async function handleImageUploads({ baseTripId, userId, images, randomFileName, generatePreSignedUrlForDestinationImages }) {
   const preSignedUrlPayload = buildPreSignedUrlPayload(baseTripId, userId, 'full-images', images, randomFileName)

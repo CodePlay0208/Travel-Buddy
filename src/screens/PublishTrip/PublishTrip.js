@@ -53,7 +53,7 @@ import TripDetailPreview from './TripDetailPreview'
 import axios from 'axios'
 import Modal from '../../components/Modal/Modal'
 import { randomHexString, randomFileName, buildPreSignedUrlPayload, uploadFilesToPresignedUrls } from '../../utils/fileUploadUtils'
-import { handleImageUploads } from '../../utils/imageUploadHandler'
+import { convertFullToCroppedImageKey, handleImageUploads } from '../../utils/imageUploadHandler'
 
 // Utility functions
 const WEEKDAY_MAP = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -150,6 +150,7 @@ const PublishTrip = (props) => {
   const [curIdx, setCurIdx] = useState(0)
   const [curIncExcIdx, setCurIncExcIdx] = useState(0)
   const [deleteModal, setDeleteModal] = useState(false)
+  const [isPublishDisable, setIsPublishDisable] = useState(false)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -249,8 +250,10 @@ const PublishTrip = (props) => {
       if (image.file) formDataImages.append('destinationImages', image.file)
     })
     let removedImages = []
+    let removedCroppedImages = []
     ;(Array.isArray(tripData.removedDestinationImages) ? tripData.removedDestinationImages : []).forEach((image) => {
       removedImages.push(image.object)
+      removedCroppedImages.push(convertFullToCroppedImageKey(image.object))
     })
     formDataImages.append('removedDestinationImages', JSON.stringify(removedImages))
 
@@ -285,6 +288,7 @@ const PublishTrip = (props) => {
       newTripDates,
       removedTripDates,
       removedDestinationImages: removedImages,
+      removedCroppedDestinationImages: removedCroppedImages,
     }
     const imagesToBeUploaded = tripData?.destinationImages?.filter((image) => image.file)
     delete tripDetails.destinationImages
@@ -356,6 +360,7 @@ const PublishTrip = (props) => {
   ])
 
   const handleSubmit = useCallback(async () => {
+    setIsPublishDisable(true)
     try {
       if (toEditTrip) {
         await handleEditTripSubmit()
@@ -366,6 +371,7 @@ const PublishTrip = (props) => {
       console.error('Error during trip submission:', error)
       toast.error('An error occurred during submission.')
     }
+    setIsPublishDisable(false)
   }, [toEditTrip, handleEditTripSubmit, handleCreateTripSubmit])
 
   const handleBaseTripDelete = useCallback(async () => {
@@ -550,7 +556,9 @@ const PublishTrip = (props) => {
           </PublishTripContent>
           {activeSection === TABS.INC_EXC ? (
             <PublishTripButton>
-              <SubmitButton onClick={handleSubmit}>Publish</SubmitButton>
+              <SubmitButton disabled={isPublishDisable} onClick={handleSubmit}>
+                Publish
+              </SubmitButton>
             </PublishTripButton>
           ) : (
             <PublishTripButton>

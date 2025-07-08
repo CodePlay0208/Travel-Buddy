@@ -114,7 +114,7 @@ export const DateComp = styled.div`
 export const Title = styled.div`
   font-family: Montserrat;
   margin-top: auto;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 30.84px;
   text-align: left;
