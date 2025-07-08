@@ -64,9 +64,9 @@ export const RowWrapper = styled.div`
   padding-bottom: 32px; */
   @media (max-width: 440px) {
     width: ${({ count }) => (count > 0 ? '100%' : 'auto')};
-    box-shadow: ${({ count }) => (count <= 2 ? '0px 1px 4px 0px #0000004d' : 'none')};
+    box-shadow: ${({ count }) => (count < 3 ? '0px 1px 4px 0px #0000004d' : 'none')};
     border-radius: 8px;
-    padding: ${({ count }) => (count <= 2 ? '8px 16px' : '0')};
+    padding: ${({ count }) => (count < 3 ? '8px 16px' : '0')};
   }
 `
 

@@ -90,7 +90,7 @@ const PickupLocation = ({ title, locationsClubbed = [] }) => {
   const count = locations.length
 
   // Determine threshold based on window width
-  const threshold = windowWidth < 440 ? 3 : 5
+  const threshold = windowWidth < 440 ? 2 : 5
 
   iconRefs.current = []
   const items = locations.map((loc, idx) => {
