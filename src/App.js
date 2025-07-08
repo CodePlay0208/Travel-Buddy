@@ -6,12 +6,14 @@ import { persistor, store } from './store'
 import { PersistGate } from 'redux-persist/integration/react'
 import PrivateRoute from './utils/PrivateRoute/PrivateRoute'
 import ErrorBoundary from './utils/ErrorBoundary'
+import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ErrorBoundary>
+          <ScrollToTop />
           <Routes>
             {routes.map((route) => {
               if (route.isPrivate) {
