@@ -42,8 +42,23 @@ export function convertFullToCroppedImageKey(key) {
 
 // Main handler for uploading original and cropped images
 export async function handleImageUploads({ baseTripId, userId, images, randomFileName, generatePreSignedUrlForDestinationImages }) {
-  const preSignedUrlPayload = buildPreSignedUrlPayload(baseTripId, userId, 'full-images', images, randomFileName)
-  const preSignedUrlPayloadForCropped = buildPreSignedUrlPayload(baseTripId, userId, 'cropped-images', images, randomFileName)
+
+  const imagesWithRandomNames = images.map((imgObj) => {
+    if (imgObj.file) {
+      const newFile = new File([imgObj.file], randomFileName(imgObj.file.name), { type: imgObj.file.type })
+      return { ...imgObj, file: newFile }
+    }
+    return imgObj
+  })
+
+  const preSignedUrlPayload = buildPreSignedUrlPayload(baseTripId, userId, 'full-images', imagesWithRandomNames, (name) => name)
+  const preSignedUrlPayloadForCropped = buildPreSignedUrlPayload(
+    baseTripId,
+    userId,
+    'cropped-images',
+    imagesWithRandomNames,
+    (name) => name,
+  )
 
   // Get presigned URLs
   const [preSignedUrls, preSignedUrlsForCroppedImages] = await Promise.all([
@@ -51,19 +66,21 @@ export async function handleImageUploads({ baseTripId, userId, images, randomFil
     generatePreSignedUrlForDestinationImages(preSignedUrlPayloadForCropped),
   ])
 
-  // Crop images to 4:3 before uploading cropped versions
+  // Crop images to 4:3 before uploading cropped versions, keep the same random name
   const croppedImages = await Promise.all(
-    images.map(async (imgObj) => {
+    imagesWithRandomNames.map(async (imgObj) => {
       if (imgObj.file) {
         const croppedFile = await cropImageToAspectRatio(imgObj.file)
-        return { ...imgObj, croppedFile }
+        // Assign the same random name to the cropped file
+        const newCroppedFile = new File([croppedFile], imgObj.file.name, { type: croppedFile.type })
+        return { ...imgObj, croppedFile: newCroppedFile }
       }
       return imgObj
     }),
   )
 
   // Upload original images
-  await uploadFilesToPresignedUrls(images, preSignedUrls, (imgObj) => imgObj.file)
+  await uploadFilesToPresignedUrls(imagesWithRandomNames, preSignedUrls, (imgObj) => imgObj.file)
 
   // Upload cropped images
   await uploadFilesToPresignedUrls(croppedImages, preSignedUrlsForCroppedImages, (imgObj) => imgObj.croppedFile)
