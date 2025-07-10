@@ -10,6 +10,7 @@ import { Container } from './TripPage.styled'
 import { getTripById, editTrip } from '../../actions/trips.action'
 import { ToastContainer, toast } from 'react-toastify'
 import { StyledToastContainer } from '../../styles/Global'
+import { AdminEmail } from './AdminEmail'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
@@ -32,7 +33,9 @@ const TripPage = (props) => {
   }, [tripIdFromParams])
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const isUserTrip = trip?.hostId === profile?.userId || false
+  
+  const publisher = trip?.joinedMembers?.find((user) => user?.userId === trip?.hostId)
+  const isUserTrip = trip?.hostId === profile?.userId || AdminEmail.includes(profile?.emailId)|| false 
 
   const fetchTrip = useCallback(async () => {
     if (tripId) {
