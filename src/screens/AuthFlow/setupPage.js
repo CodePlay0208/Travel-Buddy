@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import React, { useState, memo, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import { connect } from 'react-redux'
@@ -32,18 +32,20 @@ import { InputFieldsContainer, LoginSignUpLink } from './LoginPage/loginPage.sty
 import Dropdown from '../../components/Dropdown/Dropdown'
 import { Input, Label, StyledToastContainer } from '../../styles/Global'
 import DatePicker from '../../components/DatePicker/DatePicker'
-import { updateProfile } from '../../actions/profile.action'
+import { generatePreSignedUrlForProfilePic, updateProfile } from '../../actions/profile.action'
 import { InputLabel } from '../../components/InputComponent/InputComponent.styled'
 import { VerifyCodeResendText } from './VerifyCode/VerifyCode.styled'
 import { Logo } from '../../styles/Navbar.styles'
+import axios from 'axios'
 
 const mapStateToProps = (state) => ({
+  profile: state.profileReducer.profile,
   user: state.authReducer.user,
   isLoading: state.authReducer.isLoading,
 })
 
 const SetupPage = (props) => {
-  const { updateProfile } = props
+  const { profile,updateProfile,generatePreSignedUrlForProfilePic } = props
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -59,6 +61,21 @@ const SetupPage = (props) => {
     dateOfBirth: '',
   })
 
+  const randomHexString = useCallback((byteCount = 16) => {
+      const arr = new Uint8Array(byteCount)
+      window.crypto.getRandomValues(arr)
+      return Array.from(arr)
+        .map((b) => b.toString(16).padStart(2, '0'))
+        .join('')
+    }, [])
+
+    const randomFileName = useCallback(
+      (file, byteCount = 16) => {
+        const ext = file.includes('.') ? file.slice(file.lastIndexOf('.')) : ''
+        return `${randomHexString(byteCount)}${ext}`
+      },
+      [randomHexString],
+    )
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -67,17 +84,28 @@ const SetupPage = (props) => {
       persona: formData.persona.toLowerCase(),
       gender: formData.gender.toLowerCase(),
     }
-    if (imageFile) {
-      const formDataNew = new FormData()
-      formDataNew.append('profilePic', imageFile)
-      Object.entries(updatedFormData).forEach(([key, value]) => {
-        formDataNew.append(key, value)
-      })
-      await updateProfile(formDataNew, true)
-    } else {
-      await updateProfile(updatedFormData)
-    }
 
+    const res = await updateProfile(updatedFormData)
+
+
+    if (res && imageFile) {
+      const preSignedUrls = await generatePreSignedUrlForProfilePic({
+        prefix: `profile-pic/${profile?.userId}`,
+        files: [
+          {
+            filename: randomFileName(imageFile.name),
+            filetype: imageFile.type || 'image/jpeg',
+          },
+        ],
+      })
+      if (preSignedUrls) {
+        try {
+          await axios.put(preSignedUrls[0].s3Url, imageFile, {
+            headers: { 'Content-Type': imageFile.type || 'image/jpeg' },
+          })
+        } catch (error) {}
+      }
+    }
     navigate('/')
   }
 
@@ -219,4 +247,4 @@ const SetupPage = (props) => {
 
 SetupPage.displayName = 'SetupPage'
 
-export default connect(mapStateToProps, { updateProfile })(memo(SetupPage))
+export default connect(mapStateToProps, { updateProfile,generatePreSignedUrlForProfilePic })(memo(SetupPage))

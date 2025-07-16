@@ -55,10 +55,15 @@ const UserDashboard = memo(
 
     const isLoginWithEmail = formData.isLoginWithEmail || formData.isSignupWithEmail
 
-    useEffect(() => {
-      if (!userId) getProfile()
-    }, [getProfile, userId])
+ useEffect(() => {
+  const fetchProfile = async () => {
+    if (!userId) {
+      await getProfile();
+    }
+  };
 
+  fetchProfile();
+}, [getProfile, userId]);
     useEffect(() => {
       setFormData(profile)
     }, [profile])
@@ -100,10 +105,10 @@ const UserDashboard = memo(
       Object.entries(formData).forEach(([key, value]) => {
         if (key !== 'profilePic') formDataNew.append(key, value)
       })
-      const res = await updateProfile(formDataNew, true)
+      const res = await updateProfile(formData, true)
       if (res && imageFile) {
         const preSignedUrls = await generatePreSignedUrlForProfilePic({
-          prefix: `profile-pic/${profile.userId}`,
+          prefix: `profile-pic/${profile?.userId}`,
           files: [
             {
               filename: randomFileName(imageFile.name),
@@ -130,7 +135,7 @@ const UserDashboard = memo(
       }
       setIsEditing(false)
       setSelectedProfilePic(null)
-    }, [formData, imageFile, profile.userId, updateProfile, generatePreSignedUrlForProfilePic, randomFileName])
+    }, [formData, imageFile, profile?.userId, updateProfile, generatePreSignedUrlForProfilePic, randomFileName])
 
     const handleSave = async (e) => {
       if (isUserKeyChanged) {
