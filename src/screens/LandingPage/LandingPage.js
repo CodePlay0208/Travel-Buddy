@@ -12,6 +12,7 @@ import { setSearchForm } from '../../actions/trips.action'
 import { loadUser } from '../../actions/auth.action'
 import SlidingSection from '../../components/SlidingSection/SlidingSection'
 import { Helmet } from 'react-helmet-async'
+import TravmigozFilter from '../../components/TravmigozFilter'
 
 const LandingPage = (props) => {
   const { setSearchForm, loadUser } = props
@@ -33,6 +34,8 @@ const LandingPage = (props) => {
         />
       </Helmet>
       <Header isImageNavbar={true} isLandingPage={true} key="LandingPage"/>
+      <TravmigozFilter/>
+
       <SlidingSection />
       <HeroSection />
       <PopularSection />
