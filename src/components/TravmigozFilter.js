@@ -8,7 +8,7 @@ const FilterContainer = styled.div`
   width: 100%;
   background: #ffffff;
   border-bottom: 1px solid #ebebeb;
-  position: sticky;
+  /* position: sticky; */
   top: 0;
   z-index: 100;
 `;
