@@ -27,6 +27,10 @@ const FilterChip = styled.button`
   white-space: nowrap;
   cursor: pointer;
   transition: all 0.2s ease;
+  
+  @media (max-width: 440px) {
+    display: none;
+}
 
   &:hover {
     border-color: ${props => props.selected ? '#009965' : '#b0b0b0'};
@@ -36,6 +40,7 @@ const FilterChip = styled.button`
   &:active {
     transform: scale(0.95);
   }
+
 `;
 
 const FiltersButton = styled(FilterChip)`
@@ -48,6 +53,10 @@ const FiltersButton = styled(FilterChip)`
     width: 16px;
     height: 16px;
   }
+  
+  @media (max-width: 440px) {
+    display: block;
+}
 `;
 
 const FilterChipBar = ({ filters, onFilterChange, onOpenModal }) => {

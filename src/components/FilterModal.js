@@ -110,6 +110,7 @@ const ModalFooter = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 24px;
+  border-radius:16px;
   border-top: 1px solid #ebebeb;
   background: white;
 `;
