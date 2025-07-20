@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { SearchResultsPageContainer, TripList, SearchResultButtonDiv, ShowMoreButton } from './SearchResultsPage.styled'
 import { getTrips } from '../../actions/trips.action'
 import { Helmet } from 'react-helmet-async'
+import TravmigozFilter from '../../components/TravmigozFilter'
 
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
@@ -20,7 +21,7 @@ const SearchResultsPage = (props) => {
   }, [getTrips, searchForm])
 
   const showMoreTrips = () => {
-    getTrips(searchForm, trips.length, 50, true,true)
+    getTrips(searchForm, trips.length, 50, true, true)
   }
   return (
     <SearchResultsPageContainer>
@@ -31,7 +32,8 @@ const SearchResultsPage = (props) => {
           content="Explore handpicked travel experiences and find your travel buddy for your trips with Travmigoz. Find your perfect destination and start your journey today!"
         />
       </Helmet>
-      <Header isImageNavbar={true} title="Discover Stunning Travel Destinations. Enjoy Amazing Trips with Travmigoz " key = "search_result" />
+      <Header isImageNavbar={true} title="Discover Stunning Travel Destinations. Enjoy Amazing Trips with Travmigoz " key="search_result" />
+      <TravmigozFilter />
       <h1 style={{ textAlign: 'center' }}>Discover Stunning Travel Destinations. Enjoy Amazing Trips with Travmigoz </h1>
       <TripList>{trips && trips.map((trip) => <TripCard key={trip?.tripId} trip={trip} />)}</TripList>
       <SearchResultButtonDiv>

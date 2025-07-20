@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { images } from '../assets'
 
 const breakpoints = {
-  mobile: '480px',
+  mobile: '440px',
   tablet: '786px',
   desktop: '1024px',
 }
@@ -13,10 +13,13 @@ export const HeaderContainer = styled.div`
   width: 100%;
   height: auto;
   padding: 17% 0 0;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
   background-image: url(${images.BackgroundImage});
   background-size: cover;
   background-position-y: 95%;
+  @media (max-width: ${breakpoints.mobile}) {
+     margin-bottom: 21%;
+  }
 `
 
 export const LandingHeader = styled.div`
