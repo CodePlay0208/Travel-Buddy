@@ -8,13 +8,14 @@ const BudgetContainer = styled.div`
 `;
 
 const PriceInputs = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+    width: 100%;
   gap: 16px;
 `;
 
 const InputGroup = styled.div`
   display: flex;
+  width: 50%;
   flex-direction: column;
   gap: 8px;
 `;

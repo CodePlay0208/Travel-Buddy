@@ -4,6 +4,7 @@ import ParticipantsFilter from './filters/ParticipantsFilter';
 import DurationFilter from './filters/DurationFilter';
 import BudgetFilter from './filters/BudgetFilter';
 import CategoriesFilter from './filters/CategoriesFilter';
+import Overlay from './Overlay/overlay';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -34,7 +35,7 @@ const ModalContainer = styled.div`
   @media (min-width: 768px) {
     left: 50%;
     right: auto;
-    width: 500px;
+    width: 440px;
     transform: translate(-50%, ${props => props.isOpen ? '0' : '100%'});
     bottom: 20px;
     max-height: 80vh;
@@ -159,7 +160,7 @@ const FilterModal = ({ isOpen, onClose, filters, onFiltersChange, resultCount })
     if (!isOpen) return null;
 
     return (
-        <ModalOverlay isOpen={isOpen} onClick={onClose}>
+        <Overlay onClose={onClose}>
             <ModalContainer isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
                 <ModalHeader>
                     <ModalTitle>Filters</ModalTitle>
@@ -209,11 +210,11 @@ const FilterModal = ({ isOpen, onClose, filters, onFiltersChange, resultCount })
                         Clear all
                     </ClearButton>
                     <ApplyButton onClick={handleApply}>
-                        Show {resultCount.toLocaleString()} trips
+                        Show trips
                     </ApplyButton>
                 </ModalFooter>
             </ModalContainer>
-        </ModalOverlay>
+        </Overlay>
     );
 };
 

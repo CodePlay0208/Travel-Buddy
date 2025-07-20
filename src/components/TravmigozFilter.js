@@ -16,7 +16,7 @@ const FilterContainer = styled.div`
 const FilterHeader = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 16px;
   gap: 12px;
 `;
@@ -52,16 +52,12 @@ const TravmigozFilter = () => {
                 />
             </FilterHeader>
 
-            <ResultsCount>
-                {resultCount.toLocaleString()} trips available
-            </ResultsCount>
 
             <FilterModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 filters={filters}
                 onFiltersChange={setFilters}
-                resultCount={resultCount}
             />
         </FilterContainer>
     );

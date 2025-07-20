@@ -71,9 +71,9 @@ const FilterChipBar = ({ filters, onFilterChange, onOpenModal }) => {
             ))}
 
             <FiltersButton onClick={onOpenModal}>
-                <svg viewBox="0 0 16 16" fill="currentColor">
+                {/* <svg viewBox="0 0 16 16" fill="currentColor">
                     <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM8 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM13 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                </svg>
+                </svg> */}
                 Filters
             </FiltersButton>
         </ChipBarContainer>
