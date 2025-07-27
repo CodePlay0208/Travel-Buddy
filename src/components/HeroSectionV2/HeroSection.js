@@ -78,7 +78,7 @@ const HeroSection = () => {
             width="100%%"
             aspectRatio="1"
             borderRadius="15px"
-            backgroundImage="https://travmigoz-assethosting.s3.ap-south-1.amazonaws.com/assets/assetstravmigoz.jpeg"
+            backgroundImage="https://d1j74yat4qcnis.cloudfront.net/429688d2cfd004fddfa302694d92a11ae1db55bf.jpg"
           >
             <BottomHeading>Trust who you travel with</BottomHeading>
             <RightSubText>
