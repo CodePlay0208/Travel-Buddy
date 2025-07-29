@@ -30,6 +30,7 @@ const ResultsCount = styled.span`
 const TravmigozFilter = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [filters, setFilters] = useState({
+        persona:'',
         participants: { min: 1, max: 20 },
         duration: '',
         budget: { min: 1000, max: 100000 },
