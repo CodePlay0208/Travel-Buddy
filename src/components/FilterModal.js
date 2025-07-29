@@ -145,78 +145,85 @@ const ApplyButton = styled.button`
 `;
 
 const FilterModal = ({ isOpen, onClose, filters, onFiltersChange, resultCount }) => {
-    const handleClearAll = () => {
-        onFiltersChange({
-            participants: { min: 1, max: 20 },
-            duration: '',
-            budget: { min: 1000, max: 100000 },
-            categories: [],
-        });
-    };
+  const handleClearAll = () => {
+    onFiltersChange({
+      participants: { min: 1, max: 20 },
+      duration: '',
+      budget: { min: 1000, max: 100000 },
+      categories: [],
+    });
+  };
 
-    const handleApply = () => {
-        onClose();
-    };
+  const handleApply = () => {
+    onClose();
+  };
 
-    if (!isOpen) return null;
+  if (!isOpen) return null;
 
-    return (
-        <Overlay onClose={onClose}>
-            <ModalContainer isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
-                <ModalHeader>
-                    <ModalTitle>Filters</ModalTitle>
-                    <CloseButton onClick={onClose}>
-                        <svg viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                    </CloseButton>
-                </ModalHeader>
+  return (
+    <Overlay onClose={onClose}>
+      <ModalContainer isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
+        <ModalHeader>
+          <ModalTitle>Filters</ModalTitle>
+          <CloseButton onClick={onClose}>
+            <svg viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </CloseButton>
+        </ModalHeader>
 
-                <ModalContent>
-                    <FilterSection>
-                        <SectionTitle>Trip Participants</SectionTitle>
-                        <ParticipantsFilter
-                            value={filters.participants}
-                            onChange={(participants) => onFiltersChange({ ...filters, participants })}
-                        />
-                    </FilterSection>
+        <ModalContent>
+          <FilterSection>
+            <SectionTitle>Trip Participants</SectionTitle>
+            <ParticipantsFilter
+              value={filters.participants}
+              onChange={(participants) => onFiltersChange({ ...filters, participants })}
+            />
+          </FilterSection>
+          <FilterSection>
+            <SectionTitle>Trip Participants</SectionTitle>
+            <ParticipantsFilter
+              value={filters.participants}
+              onChange={(participants) => onFiltersChange({ ...filters, participants })}
+            />
+          </FilterSection>
 
-                    <FilterSection>
-                        <SectionTitle>Duration</SectionTitle>
-                        <DurationFilter
-                            value={filters.duration}
-                            onChange={(duration) => onFiltersChange({ ...filters, duration })}
-                        />
-                    </FilterSection>
+          <FilterSection>
+            <SectionTitle>Duration</SectionTitle>
+            <DurationFilter
+              value={filters.duration}
+              onChange={(duration) => onFiltersChange({ ...filters, duration })}
+            />
+          </FilterSection>
 
-                    <FilterSection>
-                        <SectionTitle>Budget Range</SectionTitle>
-                        <BudgetFilter
-                            value={filters.budget}
-                            onChange={(budget) => onFiltersChange({ ...filters, budget })}
-                        />
-                    </FilterSection>
+          <FilterSection>
+            <SectionTitle>Budget Range</SectionTitle>
+            <BudgetFilter
+              value={filters.budget}
+              onChange={(budget) => onFiltersChange({ ...filters, budget })}
+            />
+          </FilterSection>
 
-                    <FilterSection>
-                        <SectionTitle>Trip Categories</SectionTitle>
-                        <CategoriesFilter
-                            value={filters.categories}
-                            onChange={(categories) => onFiltersChange({ ...filters, categories })}
-                        />
-                    </FilterSection>
-                </ModalContent>
+          <FilterSection>
+            <SectionTitle>Trip Categories</SectionTitle>
+            <CategoriesFilter
+              value={filters.categories}
+              onChange={(categories) => onFiltersChange({ ...filters, categories })}
+            />
+          </FilterSection>
+        </ModalContent>
 
-                <ModalFooter>
-                    <ClearButton onClick={handleClearAll}>
-                        Clear all
-                    </ClearButton>
-                    <ApplyButton onClick={handleApply}>
-                        Show trips
-                    </ApplyButton>
-                </ModalFooter>
-            </ModalContainer>
-        </Overlay>
-    );
+        <ModalFooter>
+          <ClearButton onClick={handleClearAll}>
+            Clear all
+          </ClearButton>
+          <ApplyButton onClick={handleApply}>
+            Show trips
+          </ApplyButton>
+        </ModalFooter>
+      </ModalContainer>
+    </Overlay>
+  );
 };
 
 export default FilterModal;
