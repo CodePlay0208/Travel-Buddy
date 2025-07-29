@@ -10,7 +10,7 @@ import { Label, VerticalDivider } from '../../styles/Global'
 import { FlexContainer } from '../HeroSectionV2/HeroSection.styled'
 import SearchIcon from '../../assets/svg/SearchIcon'
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   searchForm: state.tripReducer.searchForm,
 })
 

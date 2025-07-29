@@ -13,6 +13,23 @@ import SetupPage from './screens/AuthFlow/setupPage'
 import PublicUser from './screens/UserProfile/UserDashboard/PublicUser'
 import HomePage from './components/ContactUs/HomePage'
 import AboutUs from './components/AboutUs/AboutUs'
+import DelhiPage from './pages/DelhiPage'
+import ChandigarhPage from './pages/ChandigarhPage'
+import ShimlaPage from './pages/ShimlaPage'
+import AmritsarPage from './pages/AmritsarPage'
+import MumbaiPage from './pages/MumbaiPage'
+import BangalorePage from './pages/BangalorePage'
+import PunePage from './pages/PunePage'
+import KolkataPage from './pages/KolkataPage'
+import HyderabadPage from './pages/HyderabadPage'
+import GoaPage from './pages/GoaPage'
+import ChennaiPage from './pages/ChennaiPage'
+import AhmedabadPage from './pages/AhmedabadPage'
+import LucknowPage from './pages/LucknowPage'
+import JaipurPage from './pages/JaipurPage'
+import CochinPage from './pages/CochinPage'
+import NagpurPage from './pages/NagpurPage'
+import TrivandrumPage from './pages/TrivandrumPage'
 
 export const routes = [
   {
@@ -24,7 +41,7 @@ export const routes = [
     path: '/contact-us',
     element: <HomePage />,
     isPrivate: false,
-  },{
+  }, {
     path: '/about-us',
     element: <AboutUs />,
     isPrivate: false,
@@ -85,6 +102,91 @@ export const routes = [
   {
     path: '/setup',
     element: <SetupPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/delhi',
+    element: <DelhiPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/chandigarh',
+    element: <ChandigarhPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/shimla',
+    element: <ShimlaPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/amritsar',
+    element: <AmritsarPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/mumbai',
+    element: <MumbaiPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/bangalore',
+    element: <BangalorePage />,
+    isPrivate: false,
+  },
+  {
+    path: '/pune',
+    element: <PunePage />,
+    isPrivate: false,
+  },
+  {
+    path: '/kolkata',
+    element: <KolkataPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/hyderabad',
+    element: <HyderabadPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/goa',
+    element: <GoaPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/chennai',
+    element: <ChennaiPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/ahmedabad',
+    element: <AhmedabadPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/lucknow',
+    element: <LucknowPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/jaipur',
+    element: <JaipurPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/cochin',
+    element: <CochinPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/nagpur',
+    element: <NagpurPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/trivandrum',
+    element: <TrivandrumPage />,
     isPrivate: false,
   },
 ]
