@@ -5,6 +5,7 @@ import DurationFilter from './filters/DurationFilter';
 import BudgetFilter from './filters/BudgetFilter';
 import CategoriesFilter from './filters/CategoriesFilter';
 import Overlay from './Overlay/overlay';
+import PersonaFilter from './filters/PersonaFilter';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -151,6 +152,7 @@ const FilterModal = ({ isOpen, onClose, filters, onFiltersChange, resultCount })
       duration: '',
       budget: { min: 1000, max: 100000 },
       categories: [],
+      persona: '',
     });
   };
 
@@ -174,10 +176,10 @@ const FilterModal = ({ isOpen, onClose, filters, onFiltersChange, resultCount })
 
         <ModalContent>
           <FilterSection>
-            <SectionTitle>Trip Participants</SectionTitle>
-            <ParticipantsFilter
-              value={filters.participants}
-              onChange={(participants) => onFiltersChange({ ...filters, participants })}
+            <SectionTitle>Persona</SectionTitle>
+            <PersonaFilter
+              value={filters.persona}
+              onChange={(persona) => onFiltersChange({ ...filters, persona })}
             />
           </FilterSection>
           <FilterSection>

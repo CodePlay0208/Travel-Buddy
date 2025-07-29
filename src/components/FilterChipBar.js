@@ -60,33 +60,34 @@ const FiltersButton = styled(FilterChip)`
 `;
 
 const FilterChipBar = ({ filters, onFilterChange, onOpenModal }) => {
-    const quickFilters = [
-        { id: 'participants', label: `${filters.participants.min}-${filters.participants.max} people`, selected: filters.participants.min > 1 || filters.participants.max < 20 },
-        { id: 'duration', label: filters.duration || 'Any duration', selected: !!filters.duration },
-        { id: 'budget', label: `₹${filters.budget.min.toLocaleString()}-${filters.budget.max.toLocaleString()}`, selected: filters.budget.min > 1000 || filters.budget.max < 100000 },
-        { id: 'categories', label: filters.categories.length ? `${filters.categories.length} categories` : 'All categories', selected: filters.categories.length > 0 }
-    ];
+  const quickFilters = [
+    { id: 'persona', label: filters?.persona?.label || 'Both Persona', selected: !!filters.persona },
+    { id: 'participants', label: `${filters.participants.min}-${filters.participants.max} people`, selected: filters.participants.min > 1 || filters.participants.max < 20 },
+    { id: 'duration', label: filters.duration || 'Any duration', selected: !!filters.duration },
+    { id: 'budget', label: `₹${filters.budget.min.toLocaleString()}-${filters.budget.max.toLocaleString()}`, selected: filters.budget.min > 1000 || filters.budget.max < 100000 },
+    { id: 'categories', label: filters.categories.length ? `${filters.categories.length} categories` : 'All categories', selected: filters.categories.length > 0 }
+  ];
 
-    return (
-        <ChipBarContainer>
-            {quickFilters.map(filter => (
-                <FilterChip
-                    key={filter.id}
-                    selected={filter.selected}
-                    onClick={onOpenModal}
-                >
-                    {filter.label}
-                </FilterChip>
-            ))}
+  return (
+    <ChipBarContainer>
+      {quickFilters.map(filter => (
+        <FilterChip
+          key={filter.id}
+          selected={filter.selected}
+          onClick={onOpenModal}
+        >
+          {filter.label}
+        </FilterChip>
+      ))}
 
-            <FiltersButton onClick={onOpenModal}>
-                {/* <svg viewBox="0 0 16 16" fill="currentColor">
+      <FiltersButton onClick={onOpenModal}>
+        {/* <svg viewBox="0 0 16 16" fill="currentColor">
                     <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM8 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM13 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                 </svg> */}
-                Filters
-            </FiltersButton>
-        </ChipBarContainer>
-    );
+        Filters
+      </FiltersButton>
+    </ChipBarContainer>
+  );
 };
 
 export default FilterChipBar;
