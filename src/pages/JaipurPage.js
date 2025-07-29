@@ -1,12 +1,18 @@
 import React from 'react';
 import DestinationTemplate from '../components/DestinationTemplate';
 import { destinationContent } from '../data/destinationContent';
+import Navbar from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer';
 
 const JaipurPage = () => (
-    <DestinationTemplate
-        destination={destinationContent.jaipur}
-        destinationName="jaipur"
-    />
+    <>
+        <Navbar />
+        <DestinationTemplate
+            destination={destinationContent.jaipur}
+            destinationName="jaipur"
+        />
+        <Footer />
+    </>
 );
 
 export default JaipurPage;

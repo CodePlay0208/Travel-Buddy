@@ -1,12 +1,18 @@
 import React from 'react';
 import DestinationTemplate from '../components/DestinationTemplate';
 import { destinationContent } from '../data/destinationContent';
+import Navbar from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer';
 
 const PunePage = () => (
-    <DestinationTemplate
-        destination={destinationContent.pune}
-        destinationName="pune"
-    />
+    <>
+        <Navbar />
+        <DestinationTemplate
+            destination={destinationContent.pune}
+            destinationName="pune"
+        />
+        <Footer />
+    </>
 );
 
 export default PunePage;

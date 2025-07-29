@@ -1,12 +1,18 @@
 import React from 'react';
 import DestinationTemplate from '../components/DestinationTemplate';
 import { destinationContent } from '../data/destinationContent';
+import Navbar from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer';
 
 const KolkataPage = () => (
-    <DestinationTemplate
-        destination={destinationContent.kolkata}
-        destinationName="kolkata"
-    />
+    <>
+        <Navbar />
+        <DestinationTemplate
+            destination={destinationContent.kolkata}
+            destinationName="kolkata"
+        />
+        <Footer />
+    </>
 );
 
 export default KolkataPage;
