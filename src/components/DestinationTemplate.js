@@ -6,12 +6,15 @@ import { connect } from 'react-redux';
 import { ContentSection, HeaderSection, PageContainer } from './Destination/DestinationPage.styled';
 import { Section } from './HeroSectionV2/HeroSection.styled';
 import TripList from './Trip/TripList';
-import { getTrips } from '../actions/trips.action';
+import { getTrips, getTripsByStartLocation } from '../actions/trips.action';
 
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
+  startLocationTrips: state.tripReducer.startLocationTrips,
+
+
 })
-const DestinationTemplate = ({ trips, getTrips, destination }) => {
+const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination, getTripsByStartLocation }) => {
   const navigate = useNavigate();
 
 
@@ -24,7 +27,12 @@ const DestinationTemplate = ({ trips, getTrips, destination }) => {
       destination: destination.searchTag || '',
       startDate: '',
     }, 0, 50, false, true)
-  }, [destination, getTrips, navigate])
+
+    getTripsByStartLocation({
+      destination: '',
+      startDate: '',
+    }, 0, 50, false, true, destination.searchTag)
+  }, [destination, getTrips, getTripsByStartLocation, navigate])
 
   if (!destination) {
     return <div>Destination not found</div>;
@@ -45,11 +53,30 @@ const DestinationTemplate = ({ trips, getTrips, destination }) => {
         </Section>
       </ContentSection>
 
-      <TripList
-        title={`Available ${destination.title}`}
-        trips={trips}
-        editEnable={false}
-      />
+      {(!trips || !trips.length) && (!startLocationTrips || !startLocationTrips.length) ? (
+        <TripList
+          title={`Available Trips to ${destination.searchTag}`}
+          trips={trips}
+          editEnable={false}
+        />
+      ) : (
+        <>
+          {trips && trips.length > 0 && (
+            <TripList
+              title={`Available Trips to ${destination.searchTag}`}
+              trips={trips}
+              editEnable={false}
+            />
+          )}
+          {startLocationTrips && startLocationTrips.length > 0 && (
+            <TripList
+              title={`Available Trips from ${destination.searchTag}`}
+              trips={startLocationTrips}
+              editEnable={false}
+            />
+          )}
+        </>
+      )}
       <ContentSection>
 
         <Section>
@@ -67,4 +94,4 @@ const DestinationTemplate = ({ trips, getTrips, destination }) => {
   );
 };
 
-export default connect(mapStateToProps, { getTrips })(memo(DestinationTemplate));
+export default connect(mapStateToProps, { getTrips, getTripsByStartLocation })(memo(DestinationTemplate));

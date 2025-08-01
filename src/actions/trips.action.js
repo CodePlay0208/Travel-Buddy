@@ -18,13 +18,14 @@ import {
   GET_USER_REQUESTED,
   DECLINE_REQUEST_AS_HOST,
   GET_RANDOM_TRIPS,
+  GET_TRIPS_BY_START_LOCATION,
 } from '../constants/action-types/trips.constants'
 import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
 // setAuthTokenImg was removed as it was commented out
 
 export const getTrips =
-  (searchForm, offset = 0, limit = 50, append = false,isShowMore=false) =>
+  (searchForm, offset = 0, limit = 50, append = false,isShowMore=false,startLocation) =>
   async (dispatch) => {
     const { destination, startDate } = searchForm
     const params = [
@@ -32,6 +33,7 @@ export const getTrips =
       { key: 'date', value: startDate },
       { key: 'offset', value: offset },
       { key: 'limit', value: limit },
+      { key: 'startLocation', value: startLocation || '' },
     ]
 
     try {
@@ -45,6 +47,44 @@ export const getTrips =
         ])
       }
       dispatch({ type: GET_TRIPS, payload: res.data.trips, append })
+      return true
+    } catch (e) {
+      if (e.response) {
+        if (e.response.status === 401) {
+          toast.error('Invalid User!', { autoClose: 1500 })
+        } else if (e.response.status === 404) {
+          // 404 could mean "no trips found"; returning true to signal an empty result
+          return true
+        }
+      }
+      dispatch({ type: TRIPS_ERROR, payload: e })
+      return false
+    }
+  }
+
+export const getTripsByStartLocation =
+  (searchForm, offset = 0, limit = 50, append = false,isShowMore=false,startLocation) =>
+  async (dispatch) => {
+    const { destination, startDate } = searchForm
+    const params = [
+      { key: 'destination', value: destination },
+      { key: 'date', value: startDate },
+      { key: 'offset', value: offset },
+      { key: 'limit', value: limit },
+      { key: 'startLocation', value: startLocation || '' },
+    ]
+
+    try {
+      let res = await TripsApi.getTrips(params)
+      if (!isShowMore&&!res.data?.trips?.length) {
+        res = await TripsApi.getTrips([
+          { key: 'destination', value: '' },
+          { key: 'date', value: '' },
+          { key: 'offset', value: 0 },
+          { key: 'limit', value: 50 },
+        ])
+      }
+      dispatch({ type: GET_TRIPS_BY_START_LOCATION, payload: res.data.trips, append })
       return true
     } catch (e) {
       if (e.response) {

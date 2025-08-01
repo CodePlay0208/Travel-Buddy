@@ -34,7 +34,7 @@ const LandingPage = (props) => {
         />
       </Helmet>
       <Header isImageNavbar={true} isLandingPage={true} key="LandingPage"/>
-      <TravmigozFilter/>
+      {/* <TravmigozFilter/> */}
 
       <SlidingSection />
       <HeroSection />
