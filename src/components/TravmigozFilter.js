@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import FilterChipBar from './FilterChipBar';
 import FilterModal from './FilterModal';
 import SortDropdown from './SortDropdown';
+import { connect } from 'react-redux';
+import { setFilters, setSortBy } from '../actions/filters.action';
 
 const FilterContainer = styled.div`
   width: 100%;
@@ -21,24 +23,8 @@ const FilterHeader = styled.div`
   gap: 12px;
 `;
 
-const ResultsCount = styled.span`
-  font-size: 14px;
-  color: #717171;
-  font-weight: 400;
-`;
-
-const TravmigozFilter = () => {
+const TravmigozFilter = ({ filters, sortBy, setFilters, setSortBy }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [filters, setFilters] = useState({
-        persona:'',
-        participants: { min: 1, max: 20 },
-        duration: '',
-        budget: { min: 1000, max: 100000 },
-        categories: [],
-    });
-    const [sortBy, setSortBy] = useState('recommended');
-    const [resultCount, setResultCount] = useState(1247);
-
     return (
         <FilterContainer>
             <FilterHeader>
@@ -52,8 +38,6 @@ const TravmigozFilter = () => {
                     onChange={setSortBy}
                 />
             </FilterHeader>
-
-
             <FilterModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
@@ -64,4 +48,9 @@ const TravmigozFilter = () => {
     );
 };
 
-export default TravmigozFilter;
+const mapStateToProps = (state) => ({
+    filters: state.filtersReducer.filters,
+    sortBy: state.filtersReducer.sortBy,
+});
+
+export default connect(mapStateToProps, { setFilters, setSortBy })(TravmigozFilter);

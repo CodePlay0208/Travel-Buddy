@@ -7,6 +7,7 @@ import chatsReducer from './chats.reducer'
 import newsletterReducer from './newsletter.reducer'
 import notificationReducer from './notification.reducer'
 import feedbackReducer from './feedback.reducer'
+import filtersReducer from './filters.reducer'
 
 export default combineReducers({
   authReducer,
@@ -16,4 +17,5 @@ export default combineReducers({
   chatsReducer,
   notificationReducer,
   feedbackReducer,
+  filtersReducer,
 })

@@ -11,17 +11,19 @@ import TravmigozFilter from '../../components/TravmigozFilter'
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
   searchForm: state.tripReducer.searchForm,
+  filters: state.filtersReducer.filters,
+  sortBy: state.filtersReducer.sortBy,
 })
 
 const SearchResultsPage = (props) => {
-  const { trips, getTrips, searchForm } = props
+  const { trips, getTrips, searchForm, filters, sortBy } = props
 
   useEffect(() => {
-    getTrips(searchForm)
-  }, [getTrips, searchForm])
+    getTrips({ ...searchForm, ...filters, sortBy })
+  }, [getTrips, searchForm, filters, sortBy])
 
   const showMoreTrips = () => {
-    getTrips(searchForm, trips.length, 50, true, true)
+    getTrips({ ...searchForm, ...filters, sortBy }, trips.length, 50, true, true)
   }
   return (
     <SearchResultsPageContainer>
