@@ -12,7 +12,7 @@ const FilterContainer = styled.div`
   /* border-bottom: 1px solid #ebebeb; */
   /* position: sticky; */
   top: 0;
-  z-index: 2;
+  z-index: 5;
 `;
 
 const FilterHeader = styled.div`

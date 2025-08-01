@@ -11,7 +11,7 @@ import { getTrips } from '../actions/trips.action';
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
 })
-const DestinationTemplate = ({ trips, getTrips,destination }) => {
+const DestinationTemplate = ({ trips, getTrips, destination }) => {
   const navigate = useNavigate();
 
 
@@ -24,7 +24,7 @@ const DestinationTemplate = ({ trips, getTrips,destination }) => {
       destination: destination.searchTag || '',
       startDate: '',
     }, 0, 50, false, true)
-  }, [ destination, getTrips, navigate])
+  }, [destination, getTrips, navigate])
 
   if (!destination) {
     return <div>Destination not found</div>;
@@ -43,6 +43,15 @@ const DestinationTemplate = ({ trips, getTrips,destination }) => {
           <h3>Overview</h3>
           <p>{destination.content.overview}</p>
         </Section>
+      </ContentSection>
+
+      <TripList
+        title={`Available ${destination.title}`}
+        trips={trips}
+        editEnable={false}
+      />
+      <ContentSection>
+
         <Section>
           <h3>Top Attractions</h3>
           <p>{destination.content.attractions}</p>
@@ -53,12 +62,6 @@ const DestinationTemplate = ({ trips, getTrips,destination }) => {
         </Section>
       </ContentSection>
 
-
-      <TripList
-        title={`Available ${destination.title}`}
-        trips={trips}
-        editEnable={false}
-      />
 
     </PageContainer>
   );

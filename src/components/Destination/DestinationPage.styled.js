@@ -32,9 +32,9 @@ export const HeaderSection = styled.section`
 `;
 
 export const ContentSection = styled.section`
-  padding: 60px 6%;
+  padding: 0 6%;
   max-width: 2000px;
-  margin: 0 auto;
+  margin: 60px 0;
 `;
 
 export const Section = styled.div`
