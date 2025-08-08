@@ -7,22 +7,27 @@ import TravelImage from '../../assets/images/banner/center.jpg';
 import { useNavigate } from 'react-router-dom';
 
 const BannerWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
   position: relative;
-  box-shadow: 2px 2px 3px 0px #0000004D;
-
-box-shadow: 4px 6px 26px 8px #00000026;
-
-margin: 0 30px;
-  width: 100%-60px;
+  margin: 0 30px;
+  width: calc(100% - 60px);
   max-width: 100%;
   height: 500px;
   background: #9f9f9f;
   border-radius: 40px;
+  box-shadow: 4px 6px 26px 8px #00000026, 2px 2px 3px #0000004D;
   overflow: hidden;
 
   @media (max-width: 768px) {
     height: auto;
-    padding: 40px 20px;
+  }
+
+  @media (max-width: 440px) {
+    height:800px;
+    flex-direction: column;
+    margin: 0 16px;
+    width: calc(100% - 32px);
   }
 `;
 
@@ -35,6 +40,13 @@ const BackgroundImage = styled.div`
   background-image: url(${BackgroundImg});
   background-size: cover;
   background-position: center;
+
+  @media (max-width: 440px) {
+    width: 100%;
+    height: 300px;
+    top:unset;
+    bottom: 0;
+  }
 `;
 
 const PaperAsset = styled.div`
@@ -44,18 +56,55 @@ const PaperAsset = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  background-image: url(${PaperScrap});
-  background-size: cover;
-  filter: drop-shadow(0px 16px 30px rgba(0, 0, 0, 0.15));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    position: relative;
+    height: 100%;
+  }
+
+  @media (max-width: 440px) {
+    height: 510px;
+    width: 100%;
+  }
+
+  /* Background layer */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%; /* make larger so rotation covers area */
+    height: 100%;
+    transform: translate(-50%, -50%);
+    background-image: url(${PaperScrap});
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0px 16px 30px rgba(0, 0, 0, 0.15));
+    z-index: -1;
+
+    @media (max-width: 440px) {
+      width: 140%; /* make larger so rotation covers area */
+    height: 140%;
+      transform: translate(-50%, -50%) rotate(90deg);
+      background-size: cover;
+    }
+  }
 `;
+
+
 
 const ContentWrapper = styled.div`
   z-index: 2;
   position: relative;
   max-width: 60.5%;
   margin-left: 60px;
-  top: 50%;
-  transform: translateY(-50%);
+  /* top: 50%;
+  transform: translateY(-50%); */
   display: flex;
   flex-direction: column;
   gap: 26px;
@@ -65,6 +114,13 @@ const ContentWrapper = styled.div`
     margin-left: 0;
     transform: none;
     top: auto;
+    padding: 40px;
+  }
+  @media (max-width: 440px) {
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    gap: 10px;
   }
 `;
 
@@ -76,10 +132,23 @@ const Heading = styled.h1`
   margin: 0;
   text-transform: uppercase;
   color: #1d425d;
+  text-align: center;
 
   @media (max-width: 768px) {
     font-size: 1.8rem;
     line-height: 2.2rem;
+  }
+
+  @media (max-width: 440px) {
+  font-family: Syncopate;
+font-weight: 700;
+font-style: Bold;
+font-size: 37px;
+line-height: 54px;
+letter-spacing: 0%;
+text-align: center;
+text-transform: uppercase;
+
   }
 `;
 
@@ -88,6 +157,18 @@ const Subheading = styled.p`
   font-size: 1.25rem;
   margin: 0; 
   color: #505050;
+  text-align: center;
+
+  @media (max-width: 440px) {
+    font-family: SF Pro;
+font-weight: 400;
+font-style: Regular;
+font-size: 20px;
+line-height: 34px;
+letter-spacing: 0%;
+text-align: center;
+
+  }
 `;
 
 const UploadButton = styled.button`
@@ -111,6 +192,21 @@ const UploadButton = styled.button`
     color: #ffffff;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
+
+  @media (max-width: 440px) {
+    max-width: 300px;
+    font-size: 1rem;
+    padding: 12px;
+    height: auto;
+    font-family: Montserrat;
+font-weight: 700;
+font-style: Bold;
+font-size: 20px;
+line-height: 100%;
+letter-spacing: 0%;
+text-align: center;
+
+  }
 `;
 
 const FloatingImage = styled.div`
@@ -130,13 +226,36 @@ const FloatingImage = styled.div`
   @media (max-width: 1080px) {
     width: 300px;
   }
+
+  /* @media (max-width: 768px) {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin: 20px auto;
+    width: 90%;
+    border: 8px solid #fff;
+  } */
+
+  @media (max-width: 440px) {
+    width: 220px;
+    border: 8px solid #ffffff;
+    left: 50%;
+  top: 58%;
+  transform: translateY(0%) translateX(-50%) rotate(4deg) skewY(1deg);
+
+  }
 `;
 
 const TimerWrapper = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   gap: 14px;
+
+  @media (max-width: 440px) {
+    gap: 8px;
+  }
 `;
 
 const TimeUnit = styled.div`
@@ -150,6 +269,10 @@ const TimeUnit = styled.div`
     font-weight: 700;
     color: #3880b5;
     letter-spacing: 0.11em;
+
+    @media (max-width: 440px) {
+      font-size: 36px;
+    }
   }
 
   span.label {
@@ -157,6 +280,10 @@ const TimeUnit = styled.div`
     color: #3880b5;
     letter-spacing: 0.11em;
     margin-top: -6px;
+
+    @media (max-width: 440px) {
+      font-size: 14px;
+    }
   }
 `;
 
@@ -165,6 +292,10 @@ const Colon = styled.span`
   font-size: 48px;
   font-weight: 700;
   color: #3880b5;
+
+  @media (max-width: 440px) {
+    font-size: 36px;
+  }
 `;
 
 const CountdownTimer = ({ targetDate }) => {
@@ -212,14 +343,11 @@ const CountdownTimer = ({ targetDate }) => {
 
 const Banner = () => {
   const navigate = useNavigate();
-  const deadline = new Date("08/10/2025");
+  const deadline = new Date("2025-08-10");
   return (
-    <BannerWrapper onClick={() => {
-      navigate('/login');
-    }}>
+    <BannerWrapper onClick={() => navigate('/login')}>
       <BackgroundImage />
-      <PaperAsset >
-
+      <PaperAsset>
         <ContentWrapper>
           <Heading>Show off your travel moments!</Heading>
           <Subheading>
