@@ -71,13 +71,13 @@ const PaperAsset = styled.div`
     width: 100%;
   }
 
-  /* Background layer */
+ 
   &::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100%; /* make larger so rotation covers area */
+    width: 100%;
     height: 100%;
     transform: translate(-50%, -50%);
     background-image: url(${PaperScrap});
@@ -87,7 +87,7 @@ const PaperAsset = styled.div`
     z-index: -1;
 
     @media (max-width: 440px) {
-      width: 200%; /* make larger so rotation covers area */
+      width: 200%;
     height: 140%;
       transform: translate(-50%, -50%) rotate(90deg);
       background-size: cover;
@@ -102,8 +102,7 @@ const ContentWrapper = styled.div`
   position: relative;
   max-width: 60.5%;
   margin-left: 60px;
-  /* top: 50%;
-  transform: translateY(-50%); */
+ 
   display: flex;
   flex-direction: column;
   gap: 26px;
@@ -224,19 +223,13 @@ const FloatingImage = styled.div`
 
   @media (max-width: 1080px) {
     width: 300px;
+    display: none;
   }
 
-  /* @media (max-width: 768px) {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    margin: 20px auto;
-    width: 90%;
-    border: 8px solid #fff;
-  } */
+ 
 
   @media (max-width: 440px) {
+    display: block;
     width: 220px;
     border: 8px solid #ffffff;
     left: 50%;
