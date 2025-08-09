@@ -1,4 +1,3 @@
-// File: components/Banner.jsx
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BackgroundImg from '../../assets/images/banner/second.png';
@@ -24,7 +23,7 @@ const BannerWrapper = styled.div`
   }
 
   @media (max-width: 440px) {
-    height:800px;
+    height:850px;
     flex-direction: column;
     margin: 0 16px;
     width: calc(100% - 32px);
@@ -68,7 +67,7 @@ const PaperAsset = styled.div`
   }
 
   @media (max-width: 440px) {
-    height: 510px;
+    height: 560px;
     width: 100%;
   }
 
@@ -88,7 +87,7 @@ const PaperAsset = styled.div`
     z-index: -1;
 
     @media (max-width: 440px) {
-      width: 140%; /* make larger so rotation covers area */
+      width: 200%; /* make larger so rotation covers area */
     height: 140%;
       transform: translate(-50%, -50%) rotate(90deg);
       background-size: cover;
@@ -114,7 +113,7 @@ const ContentWrapper = styled.div`
     margin-left: 0;
     transform: none;
     top: auto;
-    padding: 40px;
+    padding: 40px 20px;
   }
   @media (max-width: 440px) {
     align-items: center;
