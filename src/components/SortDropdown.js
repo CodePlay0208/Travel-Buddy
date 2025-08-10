@@ -83,14 +83,13 @@ const DropdownItem = styled.button`
 `;
 
 const sortOptions = [
-    { id: 'recommended', label: 'Recommended for you' },
+    { id: '', label: 'Recommended for you' },
     { id: 'budget-low', label: 'Budget: Low to High' },
     { id: 'budget-high', label: 'Budget: High to Low' },
     { id: 'duration-short', label: 'Duration: Shortest first' },
     { id: 'duration-long', label: 'Duration: Longest first' },
     { id: 'group-small', label: 'Group size: Smallest first' },
     { id: 'group-large', label: 'Group size: Largest first' },
-    { id: 'dates-soon', label: 'Trip dates: Soonest first' }
 ];
 
 const SortDropdown = ({ value, onChange }) => {

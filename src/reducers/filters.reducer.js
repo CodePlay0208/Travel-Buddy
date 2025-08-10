@@ -3,7 +3,7 @@ import { SET_FILTERS, SET_SORT_BY } from '../constants/filters.constants';
 const initialState = {
     filters: {
         persona: '',
-        participants: { min: 1, max: 20 },
+        participants: {  },
         duration: '',
         budget: { min: 0, max: 100000 },
         categories: [],

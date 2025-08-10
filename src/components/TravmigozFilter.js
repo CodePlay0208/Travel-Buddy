@@ -24,6 +24,7 @@ const FilterHeader = styled.div`
 `;
 
 const TravmigozFilter = ({ filters, sortBy, setFilters, setSortBy }) => {
+    const [currentFilters, setCurrentFilters] = useState(filters);
     const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <FilterContainer>
@@ -40,9 +41,12 @@ const TravmigozFilter = ({ filters, sortBy, setFilters, setSortBy }) => {
             </FilterHeader>
             <FilterModal
                 isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                filters={filters}
-                onFiltersChange={setFilters}
+                onClose={() => {
+                    setIsModalOpen(false);
+                    setFilters(currentFilters);
+                }}
+                filters={currentFilters}
+                onFiltersChange={setCurrentFilters}
             />
         </FilterContainer>
     );

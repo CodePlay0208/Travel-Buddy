@@ -62,7 +62,7 @@ const FiltersButton = styled(FilterChip)`
 const FilterChipBar = ({ filters, onFilterChange, onOpenModal }) => {
   const quickFilters = [
     { id: 'persona', label: filters?.persona?.label || 'Both Persona', selected: !!filters.persona },
-    { id: 'participants', label: `${filters.participants.min}-${filters.participants.max} people`, selected: filters.participants.min > 1 || filters.participants.max < 20 },
+    { id: 'participants', label: `${filters.participants.min??'0'}-${filters.participants.max??'20'} people`, selected: filters.participants.min > 1 || filters.participants.max < 20 },
     { id: 'duration', label: filters.duration || 'Any duration', selected: !!filters.duration },
     { id: 'budget', label: `₹${filters.budget.min?.toLocaleString()}-${filters.budget.max?.toLocaleString()}`, selected: filters.budget.min > 1000 || filters.budget.max < 100000 },
     { id: 'categories', label: filters.categories.length ? `${filters.categories.length} categories` : 'All categories', selected: filters.categories.length > 0 }

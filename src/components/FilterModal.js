@@ -148,7 +148,7 @@ const ApplyButton = styled.button`
 const FilterModal = ({ isOpen, onClose, filters, onFiltersChange, resultCount }) => {
   const handleClearAll = () => {
     onFiltersChange({
-      participants: { min: 1, max: 20 },
+      participants: {  },
       duration: '',
       budget: { min: 0, max: 100000 },
       categories: [],

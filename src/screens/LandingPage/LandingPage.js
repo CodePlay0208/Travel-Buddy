@@ -22,7 +22,7 @@ const LandingPage = (props) => {
   useEffect(() => {
     setFilters({
       persona: '',
-      participants: { min: 1, max: 20 },
+      participants: {  },
       duration: '',
       budget: { min: 0, max: 100000 },
       categories: [],
