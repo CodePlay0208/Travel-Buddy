@@ -26,8 +26,8 @@ const OptionButton = styled.button`
 `;
 
 const participantOptions = [
-    { id: 'Traveller', label: 'Traveller'},
-    { id: 'Agent', label: 'Agent'},
+    { id: 'traveller', label: 'Traveller'},
+    { id: 'agent', label: 'Agent'},
 ];
 
 const PersonaFilter = ({ value, onChange }) => {

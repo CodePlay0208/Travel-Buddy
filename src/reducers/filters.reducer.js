@@ -5,10 +5,10 @@ const initialState = {
         persona: '',
         participants: { min: 1, max: 20 },
         duration: '',
-        budget: { min: 1000, max: 100000 },
+        budget: { min: 0, max: 100000 },
         categories: [],
     },
-    sortBy: 'recommended',
+    sortBy: '',
 };
 
 export default function filtersReducer(state = initialState, action) {

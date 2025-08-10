@@ -3,7 +3,7 @@ export const getQueryString = (params) => {
   if (Array.isArray(params)) {
     params?.forEach((input) => {
       const { key = '', value = '' } = input
-      if (value) {
+      if (value||value === 0) {
         queryString += key + '=' + value + '&'
       }
     })

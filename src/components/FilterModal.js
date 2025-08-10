@@ -150,7 +150,7 @@ const FilterModal = ({ isOpen, onClose, filters, onFiltersChange, resultCount })
     onFiltersChange({
       participants: { min: 1, max: 20 },
       duration: '',
-      budget: { min: 1000, max: 100000 },
+      budget: { min: 0, max: 100000 },
       categories: [],
       persona: '',
     });

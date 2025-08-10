@@ -14,11 +14,19 @@ import SlidingSection from '../../components/SlidingSection/SlidingSection'
 import { Helmet } from 'react-helmet-async'
 import TravmigozFilter from '../../components/TravmigozFilter'
 import Banner from './Banner'
+import { setFilters } from '../../actions/filters.action'
 
 const LandingPage = (props) => {
-  const { setSearchForm, loadUser } = props
+  const { setSearchForm, loadUser, setFilters } = props
 
   useEffect(() => {
+    setFilters({
+      persona: '',
+      participants: { min: 1, max: 20 },
+      duration: '',
+      budget: { min: 0, max: 100000 },
+      categories: [],
+    })
     setSearchForm({
       destination: '',
       startDate: '',
@@ -34,9 +42,9 @@ const LandingPage = (props) => {
           content="Plan your perfect trip with Travmigoz! Discover the best travel options, explore amazing destinations, and enjoy unforgettable experiences with your travel buddy."
         />
       </Helmet>
-      <Header isImageNavbar={true} isLandingPage={true} key="LandingPage"/>
-      <TravmigozFilter/>
-      <Banner/>
+      <Header isImageNavbar={true} isLandingPage={true} key="LandingPage" />
+      <TravmigozFilter />
+      <Banner />
 
       <SlidingSection />
       <HeroSection />
@@ -48,4 +56,4 @@ const LandingPage = (props) => {
   )
 }
 
-export default connect(null, { setSearchForm, loadUser })(memo(LandingPage))
+export default connect(null, { setSearchForm, loadUser, setFilters })(memo(LandingPage))

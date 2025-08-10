@@ -24,19 +24,82 @@ import { TripsApi } from '../services/api-services/api-invokes'
 import { toast } from 'react-toastify'
 // setAuthTokenImg was removed as it was commented out
 
-export const getTrips =
-  (searchForm, offset = 0, limit = 50, append = false,isShowMore=false,startLocation) =>
-  async (dispatch) => {
-    const { destination, startDate } = searchForm
-    const params = [
-      { key: 'destination', value: destination },
-      { key: 'date', value: startDate },
-      { key: 'offset', value: offset },
-      { key: 'limit', value: limit },
-      { key: 'startLocation', value: startLocation || '' },
-      
-    ]
+// Utility: Map frontend searchForm/filter state to backend param array
+function buildTripSearchParams(searchForm, offset = 0, limit = 50, startLocation = '') {
+  // Map categories to preferences, flatten participants/budget/duration
+  const {
+    destination,
+    startDate,
+    persona,
+    participants,
+    duration,
+    budget,
+    categories,
+    sortBy,
+    ...rest
+  } = searchForm || {};
 
+  // Duration mapping for UI values
+  const DURATION_MAP = {
+    'weekend': { min: 2, max: 3 },
+    'week': { min: 4, max: 7 },
+    'extended': { min: 8, max: 99 }, // 99 as practical upper bound
+    'flexible dates': { min: 1, max: 99 },
+  };
+
+  let minDuration, maxDuration;
+  if (typeof duration === 'string') {
+    const dKey = duration.trim().toLowerCase();
+    if (DURATION_MAP[dKey]) {
+      minDuration = Number(DURATION_MAP[dKey].min);
+      maxDuration = Number(DURATION_MAP[dKey].max);
+    }
+  } else if (typeof duration === 'object' && duration !== null) {
+    minDuration = Number(duration.min);
+    maxDuration = Number(duration.max);
+  } else if (duration) {
+    minDuration = maxDuration = Number(duration);
+  }
+
+  // Map frontend sortBy to backend sortBy
+  const SORT_BY_MAP = {
+    'budget-low': 'budgetLowToHigh',
+    'budget-high': 'budgetHighToLow',
+    'duration-short': 'durationShortest',
+    'duration-long': 'durationLongest',
+    'group-small': 'groupSizeSmallest',
+    'group-large': 'groupSizeLargest',
+    'dates-soon': 'datesSoonest',
+    'recommended': 'recommended',
+  };
+
+  const mappedSortBy = sortBy && SORT_BY_MAP[sortBy] ? SORT_BY_MAP[sortBy] : sortBy;
+
+  const params = [
+    { key: 'destination', value: destination },
+    { key: 'date', value: startDate },
+    { key: 'persona', value: persona && typeof persona === 'object' && persona.id ? persona.id : persona },
+    { key: 'minTotalMember', value: participants?.min },
+    { key: 'maxTotalMember', value: participants?.max },
+    // Only include minDuration/maxDuration if they are valid numbers
+    ...(Number.isFinite(minDuration) ? [{ key: 'minDuration', value: minDuration }] : []),
+    ...(Number.isFinite(maxDuration) ? [{ key: 'maxDuration', value: maxDuration }] : []),
+    { key: 'minBudget', value: budget?.min },
+    { key: 'maxBudget', value: budget?.max },
+    { key: 'preferences', value: categories && categories.length ? JSON.stringify(categories) : undefined },
+    { key: 'sortBy', value: mappedSortBy },
+    { key: 'offset', value: offset },
+    { key: 'limit', value: limit },
+    { key: 'startLocation', value: startLocation || '' },
+  ].filter(item => item.value !== undefined && item.value !== null && item.value !== '');
+
+  return params;
+}
+
+export const getTrips =
+  (searchForm, offset = 0, limit = 50, append = false, isShowMore = false, startLocation) =>
+  async (dispatch) => {
+    const params = buildTripSearchParams(searchForm, offset, limit, startLocation);
     try {
       let res = await TripsApi.getTrips(params)
       if (!isShowMore&&!res.data?.trips?.length) {
