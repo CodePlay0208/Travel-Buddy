@@ -8,7 +8,7 @@ const PreferencesSection = ({ preferences = [] }) => {
   if (!selectedOptions.length) {
     return (
       <div style={{ color: '#6e7781', fontSize: '0.95rem' }}>
-        No preferences selected
+        
       </div>
     );
   }
