@@ -11,6 +11,7 @@ import { getTripById, editTrip } from '../../actions/trips.action'
 import { ToastContainer, toast } from 'react-toastify'
 import { StyledToastContainer } from '../../styles/Global'
 import { AdminEmail } from './AdminEmail'
+import PreferencesSection from '../PreferencesSection'
 
 const mapStateToProps = (state) => ({
   trip: state.tripReducer.trip,
@@ -93,6 +94,7 @@ const TripPage = (props) => {
       <Navbar />
       <Container>
         <ImagesSection preSignedUrl={trip?.destinationImages || []} isEditMode={isEditMode} />
+        <PreferencesSection preferences={trip?.preferences}/>
         <DetailsSection
           isUserTrip={isUserTrip}
           isEditMode={isEditMode}

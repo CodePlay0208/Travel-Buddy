@@ -1,3 +1,3 @@
 export const env = {
-  BASE_API_URL: 'http://localhost:4000/',
+  BASE_API_URL: 'https://prod-api.travmigoz.com/',
 }

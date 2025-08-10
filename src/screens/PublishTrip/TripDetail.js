@@ -125,28 +125,28 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
       </InputRow>
       {/* Preferences Pills */}
       <InputRow margin="0 0%">
-        <InputGroup>
-          <Label fontSize="1rem" fontWeight="500" margin="0% 0 1%">
-            Preferences
-          </Label>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-            {PREFERENCE_OPTIONS.map(({ id, label, icon }) => {
-              const selected = selectedPrefs.includes(id);
-              return (
-                <Pill
-                  key={id}
-                  selected={selected}
-                  onClick={() => togglePref(id)}
-                  disabled={isReadOnly}
-                >
-                  <span aria-hidden="true">{icon}</span>
-                  <span>{label}</span>
-                </Pill>
-              );
-            })}
-          </div>
-        </InputGroup>
-      </InputRow>
+  <InputGroup>
+    <Label fontSize="1rem" fontWeight="500" margin="0% 0 1%">
+      Preferences
+    </Label>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+        {PREFERENCE_OPTIONS.map(({ id, label, icon }) => {
+          const selected = selectedPrefs.includes(id);
+          return (
+            <Pill
+              key={id}
+              selected={selected}
+              onClick={() => togglePref(id)}
+              disabled={isReadOnly}
+            >
+              <span aria-hidden="true">{icon}</span>
+              <span>{label}</span>
+            </Pill>
+          );
+        })}
+      </div>
+  </InputGroup>
+</InputRow>
     </Container>
   );
 };
