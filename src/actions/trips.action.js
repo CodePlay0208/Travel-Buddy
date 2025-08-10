@@ -34,6 +34,7 @@ export const getTrips =
       { key: 'offset', value: offset },
       { key: 'limit', value: limit },
       { key: 'startLocation', value: startLocation || '' },
+      
     ]
 
     try {

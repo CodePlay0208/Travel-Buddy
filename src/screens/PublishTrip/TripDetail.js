@@ -1,9 +1,36 @@
-import React from 'react'
-import { Container, DescriptionField, InputGroup, InputRow } from './PublishTrip.styled'
-import { Input, Label } from '../../styles/Global'
-import Searchbar from '../../components/Searchbar/Searchbar'
+import React from 'react';
+import { Container, DescriptionField, InputGroup, InputRow } from './PublishTrip.styled';
+import { Input, Label } from '../../styles/Global';
+import Searchbar from '../../components/Searchbar/Searchbar';
+import Pill from '../../components/Pill';
+
+const PREFERENCE_OPTIONS = [
+  { id: 'adventure', label: 'Adventure', icon: '🏔️' },
+  { id: 'mountain', label: 'Mountain', icon: '⛰️' },
+  { id: 'beaches', label: 'Beaches', icon: '🏖️' },
+  { id: 'biking', label: 'Biking', icon: '🚴' },
+  { id: 'cultural', label: 'Cultural', icon: '🏛️' },
+  { id: 'nature', label: 'Nature', icon: '🌿' },
+  { id: 'kid-friendly', label: 'Kid-Friendly', icon: '👨👩👧👦' },
+  { id: 'trekking', label: 'Trekking', icon: '🥾' },
+  { id: 'spa', label: 'Spa', icon: '🧘' },
+  { id: 'food-tours', label: 'Food Tours', icon: '🍜' },
+  { id: 'safari', label: 'Safari', icon: '🦁' },
+  { id: 'theme-parks', label: 'Theme Parks', icon: '🎢' },
+];
 
 const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }) => {
+  const selectedPrefs = Array.isArray(tripData.preferences) ? tripData.preferences : [];
+
+  const togglePref = (id) => {
+    if (isReadOnly) return;
+    const exists = selectedPrefs.includes(id);
+    const updated = exists
+      ? selectedPrefs.filter((p) => p !== id)
+      : [...selectedPrefs, id];
+    handleTripDataChange('preferences', updated);
+  };
+
   return (
     <Container gap="20px" mobileGap="16px">
       <InputRow margin="0 0%">
@@ -96,8 +123,32 @@ const TripDetail = ({ tripData, handleChange, handleTripDataChange, isReadOnly }
           <DescriptionField name="description" value={tripData.description} onChange={handleChange} placeholder="Enter Trip Description" />
         </InputGroup>
       </InputRow>
+      {/* Preferences Pills */}
+      <InputRow margin="0 0%">
+        <InputGroup>
+          <Label fontSize="1rem" fontWeight="500" margin="0% 0 1%">
+            Preferences
+          </Label>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            {PREFERENCE_OPTIONS.map(({ id, label, icon }) => {
+              const selected = selectedPrefs.includes(id);
+              return (
+                <Pill
+                  key={id}
+                  selected={selected}
+                  onClick={() => togglePref(id)}
+                  disabled={isReadOnly}
+                >
+                  <span aria-hidden="true">{icon}</span>
+                  <span>{label}</span>
+                </Pill>
+              );
+            })}
+          </div>
+        </InputGroup>
+      </InputRow>
     </Container>
-  )
-}
+  );
+};
 
-export default TripDetail
+export default TripDetail;
