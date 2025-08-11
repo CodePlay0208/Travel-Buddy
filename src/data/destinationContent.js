@@ -99,16 +99,58 @@ export const destinationContent = {
         }
     },
     goa: {
-        title: "Goa Travel Packages",
-        subtitle: "Beach Paradise - Sun, Sand & Portuguese Heritage",
-        description: "Relax on pristine beaches and explore the unique Indo-Portuguese culture of coastal India",
+        title: "Goa Tour Packages",
         searchTag: "Goa,India",
-        content: {
-            overview: "Goa, India's smallest state, offers a perfect blend of stunning beaches, rich Portuguese colonial heritage, and vibrant nightlife. This coastal paradise provides diverse experiences from the serene shores of South Goa to the bustling beaches and markets of North Goa. The state's unique Indo-Portuguese culture, evident in its architecture, cuisine, and festivals, creates an unforgettable travel experience that sets it apart from other Indian destinations. Goa's laid-back atmosphere, combined with its natural beauty and cultural richness, makes it an ideal destination for both relaxation and exploration.",
-            attractions: "Experience the vibrant energy of North Goa's famous beaches including Calangute Beach, known as the Queen of Beaches, perfect for water sports like jet skiing and parasailing. Visit Baga Beach, the hub of nightlife with its beach shacks, music, and dining options. Explore the historic Fort Aguada offering panoramic views of the Arabian Sea, and visit the spiritual Basilica of Bom Jesus, a UNESCO World Heritage Site. Don't miss the magnificent Dudhsagar Waterfall, spice plantations offering insights into Goa's agricultural heritage, and the colorful Saturday Night Market at Arpora for shopping and entertainment.",
-            bestTime: "October to March offers the best weather with pleasant temperatures, minimal rainfall, and perfect conditions for beach activities, water sports, and sightseeing. These months provide ideal weather for enjoying Goa's famous beach culture, exploring historical sites, and participating in the numerous festivals and events that make Goa a year-round party destination."
-        }
+        seo: {
+        metaTitle: "Goa Tour Packages – Best Deals for Couples & Families",
+        metaDescription:
+            "Book top-rated Goa tour packages with hotel, meals, sightseeing & transfers. Explore North & South Goa with custom trips for couples, friends & families.",
+        metaKeywords:
+            "Goa tour packages, North Goa, South Goa, Goa holidays, couples trip Goa, family trip Goa, Goa sightseeing"
     },
+        description:
+            "Looking for the perfect Goa tour package to unwind, explore, or celebrate something special? If you're traveling as a couple, with friends, or on a solo adventure, our handpicked Goa holiday packages are built to match your style. From beach lovers to heritage seekers, Goa welcomes everyone with open arms, sun-kissed shores, and unforgettable experiences. Our carefully designed Goa trip packages cover stays, meals, airport transfers, and sightseeing. Whether you’re after a short getaway or a week-long escape, we’ve got options that make planning effortless. From the energy of North Goa to the peaceful rhythm of South Goa, every traveler finds their place here.",
+        content: {
+            sections: [
+                {
+                    heading: "Explore Goa with Our Holiday Packages",
+                    paragraph:
+                        "Goa is more than just beaches, it’s a journey through culture, cuisine, and coastlines. Our holiday packages in Goa cover top destinations such as:",
+                    list: [
+                        "Baga Beach – nightlife, water sports, and beach shacks",
+                        "Calangute & Anjuna – local markets and lively scenes",
+                        "Palolem & Colva – calm waters, clean sands, perfect for quiet stays",
+                        "Old Goa – visit Basilica of Bom Jesus, Se Cathedral, and Church of St. Francis of Assisi",
+                        "Fort Aguada – panoramic sea views and Portuguese history"
+                    ]
+                },
+                {
+                    heading: "Honeymoon & Family-Friendly Goa Packages",
+                    paragraph:
+                        "For couples, our Goa honeymoon packages offer romantic moments like sunset cruises on the Mandovi River, beachside stays in Morjim, and candlelit dinners by the sea. For families, enjoy Dudhsagar Waterfalls, Butterfly Beach, and the Bhagwan Mahavir Wildlife Sanctuary."
+                },
+                {
+                    heading: "Culture, Cuisine & Hidden Corners",
+                    paragraph:
+                        "Beyond the beaches, Goa’s heart beats in its traditions. Experience festivals, night markets, the Latin Quarter of Fontainhas, and authentic Goan cuisine such as prawn balchão, fish curry rice, and bebinca."
+                },
+                {
+                    heading: "Book Your Goa Travel Package Today",
+                    paragraph:
+                        "Whether you're here for a weekend, honeymoon, or longer, our Goa packages give you a complete experience without the stress of planning."
+                }
+            ],
+            faqs: [
+                { question: "What is the average Goa trip cost for 3 to 5 days?", answer: "₹8,500 to ₹25,000 per person depending on hotel category and season." },
+                { question: "Which are the best places to visit in Goa?", answer: "Baga Beach, Fort Aguada, Dudhsagar Waterfalls, Old Goa churches, Palolem, Spice Plantations, Fontainhas." },
+                { question: "Is North Goa or South Goa better for tourists?", answer: "North Goa for nightlife and markets, South Goa for peace and nature. Many packages include both." },
+                { question: "What is included in Goa tour packages?", answer: "Accommodation, breakfast, sightseeing tours, transfers, and local support." },
+                { question: "When is the best time to visit Goa?", answer: "October to March, during pleasant weather and festive celebrations." }
+            ]
+        }
+    }
+
+    ,
     chennai: {
         title: "Chennai Travel Packages",
         subtitle: "Detroit of India - Culture, Beaches & Technology",

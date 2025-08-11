@@ -153,6 +153,10 @@ export const routes = [
     path: '/goa',
     element: <GoaPage />,
     isPrivate: false,
+  }, {
+    path: '/goa-tour-packages',
+    element: <GoaPage />,
+    isPrivate: false,
   },
   {
     path: '/chennai',
