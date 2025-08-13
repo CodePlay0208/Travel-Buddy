@@ -335,18 +335,18 @@ const CountdownTimer = ({ targetDate }) => {
 
 const Banner = () => {
   const navigate = useNavigate();
-  const deadline = new Date("2025-08-10");
+  const deadline =new Date("2025-08-15T00:00:00+05:30");
   return (
     <BannerWrapper onClick={() => navigate('/login')}>
       <BackgroundImage />
       <PaperAsset>
         <ContentWrapper>
-          <Heading>Show off your travel moments!</Heading>
+          <Heading>Sign Up on the website to participate in the contest</Heading>
           <Subheading>
-            Share your best travel photo with us & get a chance to win a Travmigos gift hamper.
+            Compete With Your Amigoz In ...
           </Subheading>
           <CountdownTimer targetDate={deadline} />
-          <UploadButton>Upload your picture now!</UploadButton>
+          <UploadButton>Sign Up Now!</UploadButton>
         </ContentWrapper>
       </PaperAsset>
       <FloatingImage />
