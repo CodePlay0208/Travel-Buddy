@@ -125,8 +125,8 @@ const ContentWrapper = styled.div`
 const Heading = styled.h1`
   font-family: 'Syncopate', sans-serif;
   font-weight: 700;
-  font-size: 3rem;
-  line-height: 3.5rem;
+  font-size: 2.5rem;
+  line-height: 3rem;
   margin: 0;
   text-transform: uppercase;
   color: #1d425d;
