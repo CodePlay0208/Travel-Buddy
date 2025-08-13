@@ -141,8 +141,8 @@ const Heading = styled.h1`
   font-family: Syncopate;
 font-weight: 700;
 font-style: Bold;
-font-size: 37px;
-line-height: 54px;
+font-size: 30px;
+line-height: 40px;
 letter-spacing: 0%;
 text-align: center;
 text-transform: uppercase;
