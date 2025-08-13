@@ -252,8 +252,8 @@ const PublishTrip = (props) => {
     let removedImages = []
     let removedCroppedImages = []
     ;(Array.isArray(tripData.removedDestinationImages) ? tripData.removedDestinationImages : []).forEach((image) => {
-      removedImages.push(image.object)
-      removedCroppedImages.push(convertFullToCroppedImageKey(image.object))
+      removedImages.push(image?.object)
+      removedCroppedImages.push(convertFullToCroppedImageKey(image?.object))
     })
     formDataImages.append('removedDestinationImages', JSON.stringify(removedImages))
 
