@@ -54,6 +54,18 @@ export const API_PATH = {
   LOCATION_API: '/location/getLocationByName',
   GENERATE_PRESIGNED_URL_FOR_DEST_IMAGES: '/trips/generatePreSignedUrlForDestinationImages',
   GENERATE_PRESIGNED_URL_FOR_PROFILE_IMAGES: '/user/generatePreSignedUrlForProfileImages',
+
+  CHATS_API: '/message/getAllMessages',
+  MESSAGE_BASE: '/message',
+  GET_ALL_MESSAGES: '/message/messages',
+  GET_MESSAGE_COUNT: '/message/messages/count',
+  CREATE_NEW_MESSAGE: '/createNewMessage',
+
+  GROUP_CREATE_CHAT: '/chat/createChat',
+  GROUP_GET_CHATS_API: '/chat/getChats',
+  GROUP_ADD_MEMBERS_TO_CHAT: '/chat/addMemberToChat',
+  GROUP_REMOVE_MEMBER_FROM_CHAT: '/chat/removeMemberFromChat',
+  DM_CREATE_CHAT: '/chat/fetch-or-create',
 }
 
 export const API_CONFIG = {
