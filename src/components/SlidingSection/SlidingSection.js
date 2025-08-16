@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import { Container, Slider, Card, Badge, BadgeText, SliderHeading, CardContainer } from './SlidingSection.styled'
-import { connect } from 'react-redux'
 import { computeDateAndTimeUntilNowInString } from '../../utils/DateUtils'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const cardData = [
   {
@@ -47,14 +47,8 @@ const cardData = [
   },
 ]
 
-const mapStateToProps = (state) => ({
-  trips: state.tripReducer.trips,
-  randomTrips: state.tripReducer.randomTrips,
-
-  searchForm: state.tripReducer.searchForm,
-})
-
-const SlidingSection = ({ trips,randomTrips }) => {
+const SlidingSection = () => {
+  const { trips, randomTrips } = useSelector((state) => state.tripReducer)
   const navigate = useNavigate()
   const handleCardClick = (tripInstanceId) => {
     navigate('/trip/' + tripInstanceId)
@@ -83,4 +77,4 @@ const SlidingSection = ({ trips,randomTrips }) => {
 
 SlidingSection.displayName = 'SlidingSection'
 
-export default connect(mapStateToProps, null)(memo(SlidingSection))
+export default memo(SlidingSection)

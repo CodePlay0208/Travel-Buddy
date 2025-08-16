@@ -1,20 +1,14 @@
 import React, { useState, memo, useEffect } from 'react'
 import { SVG } from '../../assets'
-import { getLocationSuggestions } from '../../actions/location.action'
-import { connect } from 'react-redux'
 import { SearchBarContainer } from '../../styles/Searchbar.styled'
 import { Input } from '../../styles/Global'
 import Dropdown from '../Dropdown/Dropdown'
 import { City, State } from '../../styles/Searchbar.styled'
-
-const mapStateToProps = (state) => ({
-  suggestions: state.locationReducer.suggestions,
-})
+import { useSelector, useDispatch } from 'react-redux'
+import { getLocationSuggestions } from '../../store/slices/location-slice'
 
 const Searchbar = (props) => {
   const {
-    suggestions,
-    getLocationSuggestions,
     inputValues,
     setInputValues,
     onValue,
@@ -30,6 +24,9 @@ const Searchbar = (props) => {
     backgroundColor,
     isMultiSelect = false,
   } = props
+
+  const { suggestions } = useSelector((state) => state.locationReducer) 
+  const dispatch = useDispatch()
 
   const [inputText, setInputText] = useState({ city: '', state: '' })
   const [isDropdownVisible, setDropdownVisible] = useState(false)
@@ -55,7 +52,7 @@ const Searchbar = (props) => {
     const newTimeoutId = setTimeout(async () => {
       if (value.length > 2 && value.length < 25) {
         try {
-          await getLocationSuggestions(value)
+          await dispatch(getLocationSuggestions(value)).unwrap()
           setDropdownVisible(true)
         } catch (error) {
           console.error('Error fetching location suggestions:', error)
@@ -156,4 +153,4 @@ const Searchbar = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { getLocationSuggestions })(memo(Searchbar))
+export default memo(Searchbar)

@@ -1,21 +1,18 @@
 import React, { memo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { connect } from 'react-redux'
 import Searchbar from '../Searchbar/Searchbar'
 import DatePicker from '../DatePicker/DatePicker'
 import { SearchBarContainer, SearchButtonContainer, SearchButton, SearchBarWrapper } from '../../styles/SearchMenu.styled'
-import { setSearchForm } from '../../actions/trips.action'
 import { SVG } from '../../assets'
 import { Label, VerticalDivider } from '../../styles/Global'
 import { FlexContainer } from '../HeroSectionV2/HeroSection.styled'
 import SearchIcon from '../../assets/svg/SearchIcon'
+import { useSelector, useDispatch } from 'react-redux'
+import { setSearchForm } from '../../store/slices/trips-slice'
 
-export const mapStateToProps = (state) => ({
-  searchForm: state.tripReducer.searchForm,
-})
-
-const SearchMenu = (props) => {
-  const { searchForm, setSearchForm } = props
+const SearchMenu = () => {
+  const { searchForm } = useSelector((state) => state.tripReducer)
+  const dispatch = useDispatch()
   const [currForm, setCurrForm] = React.useState({
     destination: searchForm.destination || '',
     startDate: searchForm.startDate || '',
@@ -36,7 +33,7 @@ const SearchMenu = (props) => {
   }
 
   const onSearchButton = async (field, value) => {
-    setSearchForm(currForm)
+    dispatch(setSearchForm(currForm))
     navigate('/trips')
   }
 
@@ -91,4 +88,4 @@ const SearchMenu = (props) => {
 
 SearchMenu.displayName = 'SearchMenu'
 
-export default connect(mapStateToProps, { setSearchForm })(memo(SearchMenu))
+export default memo(SearchMenu)

@@ -1,37 +1,28 @@
-import React, { useEffect, memo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet-async';
-import { ContentSection, HeaderSection, PageContainer } from './Destination/DestinationPage.styled';
-import { Section } from './HeroSectionV2/HeroSection.styled';
-import TripList from './Trip/TripList';
-import { getTrips, getTripsByStartLocation } from '../actions/trips.action';
+import React, { useEffect, memo } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
+import { ContentSection, HeaderSection, PageContainer } from './Destination/DestinationPage.styled'
+import { Section } from './HeroSectionV2/HeroSection.styled'
+import TripList from './Trip/TripList'
+import { useSelector, useDispatch } from 'react-redux'
+import { getTrips, getTripsByStartLocation } from '../store/slices/trips-slice'
 
-const mapStateToProps = (state) => ({
-  trips: state.tripReducer.trips,
-  startLocationTrips: state.tripReducer.startLocationTrips,
-});
-
-const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination, getTripsByStartLocation }) => {
-  const navigate = useNavigate();
+const DestinationTemplate = ({ destination }) => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { trips, startLocationTrips } = useSelector((state) => state.tripReducer)
 
   useEffect(() => {
     if (!destination || !destination.searchTag) {
-      navigate('/');
-      return;
+      navigate('/')
+      return
     }
-    getTrips(
-      { destination: destination.searchTag || '', startDate: '' },
-      0, 50, false, true
-    );
-    getTripsByStartLocation(
-      { destination: '', startDate: '' },
-      0, 50, false, true, destination.searchTag
-    );
-  }, [destination, getTrips, getTripsByStartLocation, navigate]);
+    dispatch(getTrips({ destination: destination.searchTag || '', startDate: '' }, 0, 50, false, true))
+    dispatch(getTripsByStartLocation({ destination: '', startDate: '' }, 0, 50, false, true, destination.searchTag))
+  }, [destination, getTrips, getTripsByStartLocation, navigate])
 
   if (!destination) {
-    return <div>Destination not found</div>;
+    return <div>Destination not found</div>
   }
 
   return (
@@ -40,12 +31,8 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
         <Helmet>
           <title>{destination.seo.metaTitle}</title>
           <meta name="description" content={destination.seo.metaDescription} />
-          {destination.seo.metaKeywords && (
-            <meta name="keywords" content={destination.seo.metaKeywords} />
-          )}
-          {destination.seo.canonicalUrl && (
-            <link rel="canonical" href={destination.seo.canonicalUrl} />
-          )}
+          {destination.seo.metaKeywords && <meta name="keywords" content={destination.seo.metaKeywords} />}
+          {destination.seo.canonicalUrl && <link rel="canonical" href={destination.seo.canonicalUrl} />}
         </Helmet>
       )}
 
@@ -76,9 +63,7 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
           <TripList title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />
         ) : (
           <>
-            {trips?.length > 0 && (
-              <TripList title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />
-            )}
+            {trips?.length > 0 && <TripList title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />}
             {startLocationTrips?.length > 0 && (
               <TripList title={`Available Trips from ${destination.searchTag}`} trips={startLocationTrips} editEnable={false} />
             )}
@@ -100,7 +85,7 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
         )}
       </PageContainer>
     </>
-  );
-};
+  )
+}
 
-export default connect(mapStateToProps, { getTrips, getTripsByStartLocation })(memo(DestinationTemplate));
+export default memo(DestinationTemplate)

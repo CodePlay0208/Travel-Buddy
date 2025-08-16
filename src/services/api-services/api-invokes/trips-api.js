@@ -18,7 +18,7 @@ export const TripsApi = {
       throw e
     }
   },
-  getRandomTrips: async (payload) => {
+  fetchRandomTrips: async (payload) => {
     try {
       const queryString = getQueryString(payload)
       const result = await ApiService.get(`${API_PATH.RANDOM_TRIPS_API}?${queryString}`, {

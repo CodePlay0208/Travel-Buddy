@@ -26,10 +26,7 @@ import {
   JoinButton,
   AlternateButton,
 } from './TripDescription.styled'
-import { connect } from 'react-redux'
 import { formatDate } from '../../../../utils/DateUtils'
-import { getOrCreateChat } from '../../../../actions/chats.action'
-import { addWishlistTrip, removeWishlistTrip, requestJoinTrip, leaveTrip, deleteUserTrip } from '../../../../actions/trips.action'
 import { useNavigate } from 'react-router-dom'
 import { images } from '../../../../assets/images'
 import { SVG } from '../../../../assets'
@@ -38,31 +35,14 @@ import React from 'react'
 import Modal from '../../../Modal/Modal'
 import AlternateDatesCard from '../AlternateDatesCard/AlternateDatesCard'
 import Overlay from '../../../Overlay/overlay'
-const mapStateToProps = (state) => ({
-  trip: state.tripReducer.trip,
-  wishlistTrips: state.tripReducer.wishlistTrips?.trips,
-  profile: state.profileReducer.profile,
-})
+import { useSelector, useDispatch } from 'react-redux'
+import { addWishlistTrip, deleteUserTrip, leaveTrip, removeWishlistTrip, requestJoinTrip } from '../../../../store/slices/trips-slice'
 
 const TripDescription = (props) => {
-  const {
-    trip,
-    getOrCreateChat,
-    addWishlistTrip,
-    removeWishlistTrip,
-    requestJoinTrip,
-    leaveTrip,
-    deleteUserTrip,
-    isUserTrip,
-    wishlistTrips,
-    profile,
-    editMode,
-    setEditMode,
+  const { isUserTrip, editMode, setEditMode, editedData, setEditedData, onSaveTrip } = props
 
-    editedData,
-    setEditedData,
-    onSaveTrip,
-  } = props
+  const dispatch = useDispatch()
+  const { trip } = useSelector((state) => state.tripReducer)
 
   const [isExpanded, setIsExpanded] = useState(false)
   const [wishlistAdded, setWishlistAdded] = useState(trip?.isWishlisted || false)
@@ -84,16 +64,16 @@ const TripDescription = (props) => {
     setIsExpanded((prev) => !prev)
   }
 
-  const onChatNowClick = async () => {
-    if (!localStorage.token) {
-      navigate('/login')
-      return
-    }
-    const isChatCreated = await getOrCreateChat(trip?.hostId)
-    if (isChatCreated) {
-      navigate('/chats')
-    }
-  }
+  // const onChatNowClick = async () => {
+  //   if (!localStorage.token) {
+  //     navigate('/login')
+  //     return
+  //   }
+  //   const isChatCreated = await getOrCreateChat(trip?.hostId)
+  //   if (isChatCreated) {
+  //     navigate('/chats')
+  //   }
+  // }
 
   const onWishlistClick = async () => {
     if (!localStorage.token) {
@@ -101,12 +81,12 @@ const TripDescription = (props) => {
       return
     }
     if (!wishlistAdded) {
-      const result = await addWishlistTrip(trip.tripInstanceId)
+      const result = await dispatch(addWishlistTrip(trip.tripInstanceId)).unwrap()
       if (result) {
         setWishlistAdded(true)
       }
     } else {
-      const result = await removeWishlistTrip(trip.tripInstanceId)
+      const result = await dispatch(removeWishlistTrip(trip.tripInstanceId)).unwrap()
       if (result) {
         setWishlistAdded(false)
       }
@@ -127,7 +107,7 @@ const TripDescription = (props) => {
   }
 
   const onDeleteTripClick = async () => {
-    const res = await deleteUserTrip(trip.tripInstanceId)
+    const res = await dispatch(deleteUserTrip(trip.tripInstanceId)).unwrap()
     if (res) {
       navigate('/user-trips')
     }
@@ -142,13 +122,13 @@ const TripDescription = (props) => {
       if (requested) {
         return
       }
-      const result = await requestJoinTrip(trip.tripInstanceId, trip.hostId)
+      const result = await dispatch(requestJoinTrip(trip.tripInstanceId, trip.hostId)).unwrap()
       if (result) {
         setJoined(false)
         setRequested(true)
       }
     } else {
-      const result = await leaveTrip(trip.tripInstanceId, trip.hostId)
+      const result = await dispatch(leaveTrip(trip.tripInstanceId, trip.hostId)).unwrap()
       if (result) {
         setJoined(false)
         setRequested(false)
@@ -287,11 +267,4 @@ const TripDescription = (props) => {
 
 TripDescription.displayName = 'TripDescription'
 
-export default connect(mapStateToProps, {
-  getOrCreateChat,
-  addWishlistTrip,
-  removeWishlistTrip,
-  requestJoinTrip,
-  leaveTrip,
-  deleteUserTrip,
-})(memo(TripDescription))
+export default memo(TripDescription)

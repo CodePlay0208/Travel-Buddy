@@ -9,24 +9,21 @@ import {
   ExploreButton,
 } from '../../styles/TopDestination.styled.js'
 import firstImage from '../../data/image.png'
-import { connect } from 'react-redux'
-import { setSearchForm } from '../../actions/trips.action'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { SVG } from '../../assets/index.js'
+import { setSearchForm } from '../../store/slices/trips-slice'
 
-const mapStateToProps = (state) => ({
-  searchForm: state.tripReducer.searchForm,
-})
-
-const TopDestination = (props) => {
-  const { searchForm, setSearchForm } = props
+const TopDestination = () => {
   const navigate = useNavigate()
+  const { searchForm } = useSelector(state => state.tripReducer)
+  const dispatch = useDispatch()
 
   const onHeroItemClick = useCallback((value) => {
-    setSearchForm({
+    dispatch(setSearchForm({
       ...searchForm,
       destination: value,
-    })
+    }))
     navigate('/trips')
   }, [])
 
@@ -62,4 +59,4 @@ const TopDestination = (props) => {
 
 TopDestination.displayName = 'TopDestination'
 
-export default connect(mapStateToProps, { setSearchForm })(memo(TopDestination))
+export default memo(TopDestination)

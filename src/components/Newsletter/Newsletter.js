@@ -13,17 +13,14 @@ import {
   ContentContainer,
 } from '../../styles/Newsletter.styles'
 import { Input, StyledToastContainer } from '../../styles/Global'
-import { subscribeNewsletter } from '../../actions/newsletter.action'
-import { connect } from 'react-redux'
 import { toast, ToastContainer } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { subscribeNewsletter } from '../../store/slices/newsletter-slice'
 
-const mapStateToProps = (state) => ({
-  profile: state.profileReducer.profile,
-  loading: state.profileReducer.loading,
-})
-
-const Newsletter = ({ subscribeNewsletter }) => {
+const Newsletter = () => {
   const [email, setEmail] = useState('')
+  const dispatch = useDispatch()
+
   return (
     <NewsletterContainer>
       <NewsletterWrapper>
@@ -48,7 +45,7 @@ const Newsletter = ({ subscribeNewsletter }) => {
               />
               <NewsletterButton
                 onClick={() => {
-                  const res = subscribeNewsletter({ emailId: email })
+                  const res = dispatch(subscribeNewsletter({ emailId: email }))
                   setEmail('')
                   if (res) {
                     toast.success('Subscribed to Newsletter', { autoClose: 1500 })
@@ -73,4 +70,4 @@ const Newsletter = ({ subscribeNewsletter }) => {
 
 Newsletter.displayName = 'Newsletter'
 
-export default connect(mapStateToProps, { subscribeNewsletter })(memo(Newsletter))
+export default memo(Newsletter)

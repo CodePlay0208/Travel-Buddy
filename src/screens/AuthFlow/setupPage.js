@@ -1,8 +1,5 @@
 import React, { useState, memo, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { toast, ToastContainer } from 'react-toastify'
-import { connect } from 'react-redux'
-import { register } from '../../actions/auth.action'
 
 import { images, SVG } from '../../assets'
 import {
@@ -17,37 +14,28 @@ import {
   DesignContainer,
   AuthDesignImage,
   Form,
-  SupportingImg,
   VerifyCodeFormInputsContainer,
-  LabelCust,
   ProfilePic,
   ProfileImage,
   EditPic,
   ProfileContainer,
   SetupPageSkip,
 } from './AuthFlow.styled'
-import InputComponent from '../../components/InputComponent/InputComponent'
 import Copyright from '../../components/Copyright/Copyright'
-import { InputFieldsContainer, LoginSignUpLink } from './LoginPage/loginPage.styled'
+import { InputFieldsContainer } from './LoginPage/loginPage.styled'
 import Dropdown from '../../components/Dropdown/Dropdown'
-import { Input, Label, StyledToastContainer } from '../../styles/Global'
+import { Input, StyledToastContainer } from '../../styles/Global'
 import DatePicker from '../../components/DatePicker/DatePicker'
-import { generatePreSignedUrlForProfilePic, updateProfile } from '../../actions/profile.action'
 import { InputLabel } from '../../components/InputComponent/InputComponent.styled'
-import { VerifyCodeResendText } from './VerifyCode/VerifyCode.styled'
 import { Logo } from '../../styles/Navbar.styles'
 import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
+import { generatePreSignedUrlForProfilePic, updateProfile } from '../../store/slices/profile-slice'
 
-const mapStateToProps = (state) => ({
-  profile: state.profileReducer.profile,
-  user: state.authReducer.user,
-  isLoading: state.authReducer.isLoading,
-})
-
-const SetupPage = (props) => {
-  const { profile,updateProfile,generatePreSignedUrlForProfilePic } = props
+const SetupPage = () => {
+  const { profile } = useSelector((state) => state.profileReducer)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const location = useLocation()
 
   const [imageFile, setImageFile] = useState(null)
 
@@ -85,11 +73,11 @@ const SetupPage = (props) => {
       gender: formData.gender.toLowerCase(),
     }
 
-    const res = await updateProfile(updatedFormData)
+    const res = await dispatch(updateProfile(updatedFormData)).unwrap()
 
 
     if (res && imageFile) {
-      const preSignedUrls = await generatePreSignedUrlForProfilePic({
+      const preSignedUrls = await dispatch(generatePreSignedUrlForProfilePic({
         prefix: `profile-pic/${profile?.userId}`,
         files: [
           {
@@ -97,7 +85,7 @@ const SetupPage = (props) => {
             filetype: imageFile.type || 'image/jpeg',
           },
         ],
-      })
+      })).unwrap()
       if (preSignedUrls) {
         try {
           await axios.put(preSignedUrls[0].s3Url, imageFile, {
@@ -247,4 +235,4 @@ const SetupPage = (props) => {
 
 SetupPage.displayName = 'SetupPage'
 
-export default connect(mapStateToProps, { updateProfile,generatePreSignedUrlForProfilePic })(memo(SetupPage))
+export default memo(SetupPage)

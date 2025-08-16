@@ -7,17 +7,17 @@ import HeroSection from '../../components/HeroSection/HeroSection'
 import TopDestination from '../../components/TopDestination/TopDestination'
 import Newsletter from '../../components/Newsletter/Newsletter'
 import Footer from '../../components/Footer/Footer'
-import { setSearchForm } from '../../actions/trips.action'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { setSearchForm } from '../../store/slices/trips-slice'
 
-const LandingPage = (props) => {
-  const { setSearchForm } = props
+const LandingPage = () => {
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    setSearchForm({
+    dispatch(setSearchForm({
       destination: '',
       startDate: '',
-    })
+    }))
   }, [])
 
   return (
@@ -33,4 +33,4 @@ const LandingPage = (props) => {
   )
 }
 
-export default connect(null, { setSearchForm })(LandingPage)
+export default LandingPage

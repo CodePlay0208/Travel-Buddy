@@ -2,28 +2,23 @@ import React, { memo, useEffect } from 'react'
 import Header from '../../components/Header/Header'
 import TripCard from '../../components/TripCard/TripCard'
 import Footer from '../../components/Footer/Footer'
-import { connect } from 'react-redux'
 import { SearchResultsPageContainer, TripList, SearchResultButtonDiv, ShowMoreButton } from './SearchResultsPage.styled'
-import { getTrips } from '../../actions/trips.action'
 import { Helmet } from 'react-helmet-async'
 import TravmigozFilter from '../../components/TravmigozFilter'
+import { useSelector, useDispatch } from 'react-redux'
+import { getTrips } from '../../store/slices/trips-slice'
 
-const mapStateToProps = (state) => ({
-  trips: state.tripReducer.trips,
-  searchForm: state.tripReducer.searchForm,
-  filters: state.filtersReducer.filters,
-  sortBy: state.filtersReducer.sortBy,
-})
-
-const SearchResultsPage = (props) => {
-  const { trips, getTrips, searchForm, filters, sortBy } = props
+const SearchResultsPage = () => {
+  const { trips, searchForm } = useSelector((state) => state.tripReducer)
+  const { filters, sortBy } = useSelector((state) => state.filtersReducer)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    getTrips({ ...searchForm, ...filters, sortBy })
+    dispatch(getTrips({ ...searchForm, ...filters, sortBy }))
   }, [getTrips, searchForm, filters, sortBy])
 
   const showMoreTrips = () => {
-    getTrips({ ...searchForm, ...filters, sortBy }, trips.length, 50, true, true)
+    dispatch(getTrips({ ...searchForm, ...filters, sortBy }, trips.length, 50, true, true))
   }
   return (
     <SearchResultsPageContainer>
@@ -48,4 +43,4 @@ const SearchResultsPage = (props) => {
 
 SearchResultsPage.displayName = 'SearchResultsPage'
 
-export default connect(mapStateToProps, { getTrips })(memo(SearchResultsPage))
+export default memo(SearchResultsPage)

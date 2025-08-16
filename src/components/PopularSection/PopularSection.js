@@ -13,33 +13,28 @@ import {
 import data from '../../data/data.json'
 import TripCard from '../TripCard/TripCard'
 import { useNavigate } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { getTrips, getRandomTrips } from '../../actions/trips.action'
 import { SVG } from '../../assets'
-
-const mapStateToProps = (state) => ({
-  trips: state.tripReducer.trips,
-  randomTrips: state.tripReducer.randomTrips,
-  searchForm: state.tripReducer.searchForm,
-})
+import { useSelector, useDispatch } from 'react-redux'
+import { getRandomTrips, getTrips } from '../../store/slices/trips-slice'
 
 const PopularSection = (props) => {
-  const { trips, searchForm, getTrips, randomTrips, getRandomTrips } = props
+  const { trips, randomTrips, searchForm } = useSelector((state) => state.tripReducer)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const scrollContainerRef = useRef(null)
-  useEffect(() => {
-    // getTrips({
+  // useEffect(() => {
+    // dispatch(getTrips({
     //   destination: '',
     //   startDate: '',
-    // })
-  }, [getTrips, searchForm])
+    // }))
+  // }, [getTrips, searchForm])
 
   useEffect(() => {
     console.log('Calling getRandomTrips', getRandomTrips)
-    getRandomTrips({
+    dispatch(getRandomTrips({
       destination: '',
       startDate: '',
-    })
+    }))
   }, [getRandomTrips])
 
   const scrollLeft = () => {
@@ -91,4 +86,4 @@ const PopularSection = (props) => {
 
 PopularSection.displayName = 'PopularSection'
 
-export default connect(mapStateToProps, { getTrips, getRandomTrips })(memo(PopularSection))
+export default memo(PopularSection)

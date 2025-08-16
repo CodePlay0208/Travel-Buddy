@@ -41,7 +41,7 @@ export function convertFullToCroppedImageKey(key) {
 }
 
 // Main handler for uploading original and cropped images
-export async function handleImageUploads({ baseTripId, userId, images, randomFileName, generatePreSignedUrlForDestinationImages }) {
+export async function handleImageUploads({ baseTripId, userId, images, randomFileName, generatePreSignedUrlForDestinationImages, dispatch }) {
 
   const imagesWithRandomNames = images.map((imgObj) => {
     if (imgObj.file) {
@@ -62,8 +62,8 @@ export async function handleImageUploads({ baseTripId, userId, images, randomFil
 
   // Get presigned URLs
   const [preSignedUrls, preSignedUrlsForCroppedImages] = await Promise.all([
-    generatePreSignedUrlForDestinationImages(preSignedUrlPayload),
-    generatePreSignedUrlForDestinationImages(preSignedUrlPayloadForCropped),
+    dispatch(generatePreSignedUrlForDestinationImages(preSignedUrlPayload)).unwrap(),
+    dispatch(generatePreSignedUrlForDestinationImages(preSignedUrlPayloadForCropped)).unwrap(),
   ])
 
   // Crop images to 4:3 before uploading cropped versions, keep the same random name

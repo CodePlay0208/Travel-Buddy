@@ -16,23 +16,20 @@ import thirdImage from '../../data/Images/heroSection/image4.png'
 import fourthImage from '../../data/Images/heroSection/image2.png'
 import fifthImage from '../../data/Images/heroSection/image5.png'
 import sixthImage from '../../data/Images/heroSection/image6.png'
-import { setSearchForm } from '../../actions/trips.action'
-import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { setSearchForm } from '../../store/slices/trips-slice'
 
-const mapStateToProps = (state) => ({
-  searchForm: state.tripReducer.searchForm
-})
-
-const HeroSection = (props) => {
-  const { searchForm, setSearchForm } = props
+const HeroSection = () => {
+  const { searchForm } = useSelector((state) => state.tripReducer)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const onHeroItemClick = useCallback((value) => {
-    setSearchForm({ 
+    dispatch(setSearchForm({ 
       ...searchForm,
       'destination': value 
-    })
+    }))
     navigate('/trips')
   }, [])
 
@@ -69,4 +66,4 @@ const HeroSection = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { setSearchForm })(memo(HeroSection))
+export default memo(HeroSection)

@@ -13,19 +13,18 @@ import {
 } from './IncExcPreview.styled.js'
 import ExcludeIcon from '../../../screens/PublishTrip/ExcludeIcon.js'
 import IncludeIcon from '../../../screens/PublishTrip/IncludeIcon.js'
-import { connect } from 'react-redux'
 import { Title } from './DetailsSection.styled.js'
 import { IncDayTab, IncExcTab } from '../../../screens/PublishTrip/PublishTrip.styled.js'
-const mapStateToProps = (state) => ({
-  trip: state.tripReducer.trip,
-})
+import { useSelector } from 'react-redux'
+
 const MOBILE_WIDTH = 440
 
-const IncExcPreview = ({ trip, margin }) => {
+const IncExcPreview = ({ margin }) => {
   const containerRef = useRef(null)
   const [height, setHeight] = useState(0)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_WIDTH)
   const [curIncExcIdx, setCurIncExcIdx] = useState(0)
+  const { trip } = useSelector((state) => state.tripReducer)
   const tripData = trip?.inc_exc || []
 
   useLayoutEffect(() => {
@@ -135,4 +134,4 @@ const IncExcPreview = ({ trip, margin }) => {
 }
 
 IncExcPreview.displayName = 'IncExcPreview'
-export default connect(mapStateToProps, null)(memo(IncExcPreview))
+export default memo(IncExcPreview)

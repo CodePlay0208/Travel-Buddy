@@ -16,37 +16,22 @@ import {
   Logo,
 } from '../../styles/Navbar.styles'
 import Dropdown from '../Dropdown/Dropdown'
-import { connect } from 'react-redux'
 import './Navbar.css'
-import { isTokenValid, logout } from '../../actions/auth.action'
-import { getNotifications, deleteNotification } from '../../actions/notification.action'
 import NotificationItem from './NotificationItem'
-import { addMemberTrip } from '../../actions/trips.action'
-import { getOrCreateChat } from '../../actions/chats.action'
 import { jwtDecode } from 'jwt-decode'
 import { env } from '../../services/api-services/config/env'
 import PublishTrip from '../../assets/svg/iconTrip'
-
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.authReducer.isAuthenticated,
-  profilePic: state.profileReducer.profile?.profilePic,
-  notificationsAlert: state.notificationReducer?.notifications,
-})
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../store/slices/auth-slice'
+import { deleteNotification, getNotifications } from '../../store/slices/notification-slice'
+import { addMemberTrip } from '../../store/slices/trips-slice'
 
 const Navbar = (props) => {
-  const {
-    isAuthenticated,
-    notifications = [],
-    setNotifications = () => {},
-    logout,
-    profilePic,
-    getNotifications,
-    deleteNotification,
-    addMemberTrip,
-    getOrCreateChat,
-    notificationsAlert,
-    isTokenValid,
-  } = props
+  const { isAuthenticated } = useSelector((state) => state.authReducer)
+  const { profile } = useSelector((state) => state.profileReducer)
+  const { notifications: notificationsAlert } = useSelector((state) => state.notificationReducer)
+  const dispatch = useDispatch()
+  const { notifications = [], setNotifications = () => {}, getOrCreateChat } = props
 
   const [showUserProfileDropDownList, setShowUserProfileDropDownList] = useState(false)
   const [showNotification, setShowNotification] = useState(false)
@@ -57,13 +42,13 @@ const Navbar = (props) => {
       const decoded = jwtDecode(localStorage.token)
       const valid = decoded.exp * 1000 > Date.now()
       if (!valid) {
-        logout()
+        dispatch(logout())
         navigate('/')
       }
     } else {
-      logout()
+      dispatch(logout())
     }
-  }, [logout, navigate])
+  }, [logout, navigate, dispatch])
   const { loggedInUserValues, setLoggedInUserValues } = useContext(UserLoginContext)
   const { userChatValues, setUserChatValues } = useContext(ChatContext)
 
@@ -78,7 +63,7 @@ const Navbar = (props) => {
   }
 
   const handleSignOutLogic = async () => {
-    await logout()
+    await dispatch(logout()).unwrap()
     navigate('/')
     window.location.reload()
   }
@@ -121,16 +106,16 @@ const Navbar = (props) => {
   }
 
   const onNotificationClick = async () => {
-    await getNotifications()
+    await dispatch(getNotifications()).unwrap()
     setShowNotification(!showNotification)
   }
 
   const handleNotificationConfirm = async (notification) => {
-    await addMemberTrip(notification.tripInstanceId, notification.senderId)
+    await dispatch(addMemberTrip(notification.tripInstanceId, notification.senderId)).unwrap()
   }
 
   const handleNotificationDelete = (notification) => {
-    deleteNotification(notification.notificationId)
+    dispatch(deleteNotification(notification.notificationId)).unwrap()
   }
 
   return (
@@ -179,10 +164,10 @@ const Navbar = (props) => {
                     onConfirm={handleNotificationConfirm}
                     onDelete={handleNotificationDelete}
                     onChatNow={async (notification) => {
-                      const isChatCreated = await getOrCreateChat(notification.senderId)
-                      if (isChatCreated) {
-                        navigate('/chats')
-                      }
+                      // const isChatCreated = await getOrCreateChat(notification.senderId)
+                      // if (isChatCreated) {
+                      //   navigate('/chats')
+                      // }
                     }}
                   />
                 )}
@@ -191,7 +176,7 @@ const Navbar = (props) => {
             )}
 
             <ProfileImageContainer onClick={handleClickOnProfilePic}>
-              <img src={profilePic?.[0] ? profilePic[0].preSignedUrl : SVG.ProfileIcon} alt="Profile" />
+              <img src={profile?.profilePic?.[0] ? profile?.profilePic[0].preSignedUrl : SVG.ProfileIcon} alt="Profile" />
               {showUserProfileDropDownList && (
                 <Dropdown
                   data={userProfileDropDownData}
@@ -221,6 +206,4 @@ const Navbar = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { isTokenValid, logout, getNotifications, deleteNotification, addMemberTrip, getOrCreateChat })(
-  memo(Navbar),
-)
+export default memo(Navbar)

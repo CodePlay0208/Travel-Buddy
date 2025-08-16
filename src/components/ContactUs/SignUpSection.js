@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { toast } from 'react-toastify'
 
 import {
@@ -22,16 +21,13 @@ import {
 import backgroundImage1 from './secondImage.jpg'
 import { Input } from '../../styles/Global'
 import { DescriptionField } from '../../screens/PublishTrip/PublishTrip.styled'
-import { postFeedback } from '../../actions/feedback.action'
 import { StyledToastContainer } from '../../styles/Global'
+import { useSelector, useDispatch } from 'react-redux'
+import { postFeedback } from '../../store/slices/feedback-slice' 
 
-const mapStateToProps = (state) => ({
-  loading: state.feedbackReducer.loading,
-  error: state.feedbackReducer.error,
-  success: state.feedbackReducer.success,
-})
-
-const SignUpSection = ({ postFeedback }) => {
+const SignUpSection = () => {
+  const dispatch = useDispatch()
+  const { loading, error, success } = useSelector((state) => state.feedbackReducer)
   const [form, setForm] = React.useState({ fullName: '', phone: '', email: '', message: '' })
   const [submitted, setSubmitted] = React.useState(false)
 
@@ -41,7 +37,7 @@ const SignUpSection = ({ postFeedback }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const res = await postFeedback(form)
+    const res = await dispatch(postFeedback(form)).unwrap()
     if (res) {
       setSubmitted(true)
       setForm({ fullName: '', phone: '', email: '', message: '' })
@@ -125,4 +121,4 @@ const SignUpSection = ({ postFeedback }) => {
   )
 }
 
-export default connect(mapStateToProps, { postFeedback })(SignUpSection)
+export default SignUpSection

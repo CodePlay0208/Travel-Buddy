@@ -1,5 +1,4 @@
 import { memo, useState, useCallback } from 'react'
-import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import DetailBox from '../DetailBox/DetailBox'
@@ -17,30 +16,20 @@ import {
 import { images } from '../../../../assets/images'
 import { Button } from '../../../../styles/Global'
 import { SVG } from '../../../../assets'
-import { addMemberTrip, getRequestedMembers, removeMemberAsHost, declineRequest, getTripById } from '../../../../actions/trips.action'
-import { getOrCreateChat } from '../../../../actions/chats.action'
 import React from 'react'
-
-const mapStateToProps = (state) => ({
-  trip: state.tripReducer,
-})
-
-const mapDispatchToProps = {
-  addMemberTrip,
-  removeMemberAsHost,
-  getRequestedMembers,
-  declineRequest,
-  getOrCreateChat,
-  getTripById,
-}
+import { useSelector, useDispatch } from 'react-redux'
+import { addMemberTrip, declineRequest, getRequestedMembers, getTripById, removeMemberAsHost } from '../../../../store/slices/trips-slice'
 
 const AddMembers = (props) => {
-  const { trip, isUserTrip, addMemberTrip, removeMemberAsHost, getRequestedMembers, declineRequest, getOrCreateChat, getTripById } = props
+  const { isUserTrip } = props
+
+  const { trip } = useSelector((state) => state.tripReducer)
+  const dispatch = useDispatch()
 
   const currentTrip = trip?.trip
   const fetchTrip = useCallback(() => {
     if (currentTrip.tripInstanceId) {
-      getTripById(currentTrip.tripInstanceId)
+      dispatch(getTripById(currentTrip.tripInstanceId)).unwrap()
     }
   }, [getTripById, currentTrip?.tripInstanceId])
 
@@ -60,25 +49,25 @@ const AddMembers = (props) => {
   const handleConfirm = useCallback(
     async (userId) => {
       if (currentTrip) {
-        const result = await addMemberTrip(currentTrip.tripInstanceId, userId)
+        const result = await dispatch(addMemberTrip(currentTrip.tripInstanceId, userId)).unwrap()
         if (result) fetchTrip()
       }
     },
     [currentTrip, addMemberTrip, fetchTrip],
   )
 
-  const handleChatNow = useCallback(
-    async (userId) => {
-      const isChatCreated = await getOrCreateChat(userId)
-      if (isChatCreated) navigate('/chats')
-    },
-    [getOrCreateChat, navigate],
-  )
+  // const handleChatNow = useCallback(
+  //   async (userId) => {
+  //     const isChatCreated = await dispatch(getOrCreateChat(userId)).unwrap()
+  //     if (isChatCreated) navigate('/chats')
+  //   },
+  //   [getOrCreateChat, navigate],
+  // )
 
   const handleRemoveMember = useCallback(
     async (userId) => {
       if (currentTrip) {
-        const result = await removeMemberAsHost(currentTrip.tripInstanceId, userId)
+        const result = await dispatch(removeMemberAsHost(currentTrip.tripInstanceId, userId)).unwrap()
         if (result) fetchTrip()
       }
     },
@@ -88,10 +77,10 @@ const AddMembers = (props) => {
   const handleDeclineRequest = useCallback(
     async (userId) => {
       if (currentTrip) {
-        const result = await declineRequest(currentTrip.tripInstanceId, userId)
+        const result = await dispatch(declineRequest(currentTrip.tripInstanceId, userId)).unwrap()
         if (result) {
           fetchTrip()
-          getRequestedMembers(currentTrip.tripInstanceId)
+          dispatch(getRequestedMembers(currentTrip.tripInstanceId)).unwrap()
         }
       }
     },
@@ -99,7 +88,7 @@ const AddMembers = (props) => {
   )
 
   const handleShowRequests = useCallback(() => {
-    getRequestedMembers(currentTrip.tripInstanceId)
+    dispatch(getRequestedMembers(currentTrip.tripInstanceId)).unwrap()
     setShowRequests(true)
   }, [getRequestedMembers, currentTrip])
 
@@ -185,4 +174,4 @@ const AddMembers = (props) => {
 
 AddMembers.displayName = 'AddMembers'
 
-export default connect(mapStateToProps, mapDispatchToProps)(memo(AddMembers))
+export default memo(AddMembers)

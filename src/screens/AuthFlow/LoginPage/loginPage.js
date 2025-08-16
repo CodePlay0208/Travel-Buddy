@@ -4,9 +4,7 @@ import { useGoogleLogin } from '@react-oauth/google'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { images, SVG } from '../../../assets'
-import { connect } from 'react-redux'
 import { setGoogleToken } from '../../../services/api-services/api-services'
-import { login, loginWithGoogle, loadUser } from '../../../actions/auth.action'
 import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
 import {
@@ -34,12 +32,10 @@ import { css } from 'styled-components'
 import { Helmet } from 'react-helmet-async'
 import { StyledToastContainer } from '../../../styles/Global'
 import { Logo } from '../../../styles/Navbar.styles'
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.authReducer.isAuthenticated,
-})
+import { useDispatch } from 'react-redux'
+import { loadUser, login } from '../../../store/slices/auth-slice'
 
-const LoginPage = (props) => {
-  const { login, isAuthenticated, loadUser } = props
+const LoginPage = () => {
   const [formData, setFormData] = useState({
     phone: '',
     email: '',
@@ -49,6 +45,7 @@ const LoginPage = (props) => {
   const location = useLocation()
   const { setLoggedInUserValues } = useContext(UserLoginContext)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const googleSignIn = useGoogleLogin({
     clientId: '1022164133679-ki2bnhs4j6njqkehebo7dmo3k96rdfvc.apps.googleusercontent.com',
@@ -78,7 +75,7 @@ const LoginPage = (props) => {
         .then((data) => {
           //console.log('the data is', data)
           localStorage.setItem('token', data.token)
-          loadUser()
+          dispatch(loadUser()).unwrap()
           navigate('/')
         })
         .catch((error) => {
@@ -132,7 +129,7 @@ const LoginPage = (props) => {
         }
       }
 
-      const isAuth = await login(isEmail ? formData.email : `${formData.phone}`)
+      const isAuth = await dispatch(login(isEmail ? formData.email : `${formData.phone}`)).unwrap()
 
       if (isAuth) {
         sessionStorage.setItem('prevRoute', location.pathname)
@@ -246,4 +243,4 @@ const LoginPage = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { login, loginWithGoogle, loadUser })(memo(LoginPage))
+export default memo(LoginPage)

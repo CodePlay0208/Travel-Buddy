@@ -22,13 +22,10 @@ import {
 } from '../../styles/TripCard.styled'
 import { useNavigate } from 'react-router-dom'
 import './TripCard.css'
-import { connect } from 'react-redux'
-import { getOrCreateChat } from '../../actions/chats.action'
 import { computeDateAndTimeUntilNowInString, formatDate } from '../../utils/DateUtils'
-import { deleteUserTrip } from '../../actions/trips.action'
 import { jwtDecode } from 'jwt-decode'
 
-const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
+const TripCard = ({ trip, editEnable = false }) => {
   const {
     tripId,
     profileImg,
@@ -72,17 +69,17 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
     return ''
   }
 
-  const onChatNowClick = async (e) => {
-    e.stopPropagation()
-    if (localStorage.token) {
-      const isChatCreated = await getOrCreateChat(publisherId)
-      if (isChatCreated) {
-        navigate('/chats')
-      }
-    } else {
-      navigate('/chats')
-    }
-  }
+  // const onChatNowClick = async (e) => {
+  //   e.stopPropagation()
+  //   if (localStorage.token) {
+  //     const isChatCreated = await getOrCreateChat(publisherId)
+  //     if (isChatCreated) {
+  //       navigate('/chats')
+  //     }
+  //   } else {
+  //     navigate('/chats')
+  //   }
+  // }
 
   const onCardPress = () => {
     navigate(`/trip/${tripInstanceId ?? relatedTrips?.[0]?.tripInstanceId}`)
@@ -138,4 +135,4 @@ const TripCard = ({ trip, getOrCreateChat, editEnable = false }) => {
 
 TripCard.displayName = 'TripCard'
 
-export default connect(null, { getOrCreateChat, deleteUserTrip })(memo(TripCard))
+export default memo(TripCard)

@@ -1,11 +1,10 @@
 import React, { memo } from 'react'
 import { Container, DayTitle, DayTitleContainer } from './TripItinerary.styled'
 import ItineraryPreview from './ItineraryPreview'
-import { connect } from 'react-redux'
-const mapStateToProps = (state) => ({
-  trip: state.tripReducer.trip,
-})
-const TripItinerary = ({ trip }) => {
+import { useSelector } from 'react-redux'
+
+const TripItinerary = () => {
+  const { trip } = useSelector((state) => state.tripReducer)
   let dayTabs =
     Array.isArray(trip?.dayTabs) && trip.dayTabs.length > 0
       ? trip.dayTabs.filter(
@@ -57,4 +56,4 @@ const TripItinerary = ({ trip }) => {
 
 TripItinerary.displayName = 'TripItinerary'
 
-export default connect(mapStateToProps, null)(memo(TripItinerary))
+export default memo(TripItinerary)

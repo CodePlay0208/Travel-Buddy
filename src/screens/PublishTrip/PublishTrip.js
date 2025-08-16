@@ -1,15 +1,6 @@
 import React, { useEffect, useState, memo, useCallback } from 'react'
 import Footer from '../../components/Footer/Footer'
 import Navbar from '../../components/Navbar/Navbar'
-import { connect } from 'react-redux'
-import {
-  createTrip,
-  editTrip,
-  createTripsImages,
-  editTripImages,
-  deleteBaseTrip,
-  generatePreSignedUrlForDestinationImages,
-} from '../../actions/trips.action'
 import { toast, ToastContainer } from 'react-toastify'
 import ImageUpload from './ImageUpload/ImageUpload'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -54,6 +45,8 @@ import axios from 'axios'
 import Modal from '../../components/Modal/Modal'
 import { randomHexString, randomFileName, buildPreSignedUrlPayload, uploadFilesToPresignedUrls } from '../../utils/fileUploadUtils'
 import { convertFullToCroppedImageKey, handleImageUploads } from '../../utils/imageUploadHandler'
+import { useSelector, useDispatch } from 'react-redux'
+import { createTrip, deleteBaseTrip, editTrip, generatePreSignedUrlForDestinationImages } from '../../store/slices/trips-slice'
 
 // Utility functions
 const WEEKDAY_MAP = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -130,10 +123,6 @@ const DEFAULT_TRIP_DATA = {
   ],
 }
 
-const mapStateToProps = (state) => ({
-  profile: state.profileReducer.profile,
-})
-
 const TABS = {
   TRIP: 'trip',
   USER: 'user',
@@ -141,9 +130,10 @@ const TABS = {
   INC_EXC: 'Inclusions/Exclusions',
 }
 
-const PublishTrip = (props) => {
-  const { createTrip, editTrip, createTripsImages, editTripImages, deleteBaseTrip, generatePreSignedUrlForDestinationImages, profile } =
-    props
+const PublishTrip = () => {
+  const { profile } = useSelector((state) => state.profileReducer)
+  const dispatch = useDispatch()
+
   const [activeSection, setActiveSection] = useState(TABS.TRIP)
   const [tripData, setTripData] = useState(DEFAULT_TRIP_DATA)
   const [toEditTrip, setToEditTrip] = useState(false)
@@ -297,7 +287,7 @@ const PublishTrip = (props) => {
     const updatedDayTabs = makeDayTabsEmptyIfEmptyData()
     tripDetails.dayTabs = updatedDayTabs
 
-    const isTripPublished = await editTrip(tripData.baseTripId, tripDetails, false)
+    const isTripPublished = await dispatch(editTrip(tripData.baseTripId, tripDetails, false)).unwrap()
     if (!isTripPublished) {
       toast.error('Failed to update trip. Please try again.')
       return
@@ -308,6 +298,7 @@ const PublishTrip = (props) => {
       images: imagesToBeUploaded || [],
       randomFileName,
       generatePreSignedUrlForDestinationImages,
+      dispatch
     })
     toast.success('Trip updated successfully!')
     navigate('/')
@@ -328,7 +319,7 @@ const PublishTrip = (props) => {
     const updatedDayTabs = makeDayTabsEmptyIfEmptyData()
     tripBody.dayTabs = updatedDayTabs
 
-    const isTripPublished = await createTrip(tripBody, false)
+    const isTripPublished = await dispatch(createTrip(tripBody, false)).unwrap()
     if (!isTripPublished) {
       toast.error('Failed to publish trip. Please try again.')
       return
@@ -345,6 +336,7 @@ const PublishTrip = (props) => {
       images,
       randomFileName,
       generatePreSignedUrlForDestinationImages,
+      dispatch
     })
 
     toast.success('Trip published successfully!')
@@ -375,7 +367,7 @@ const PublishTrip = (props) => {
   }, [toEditTrip, handleEditTripSubmit, handleCreateTripSubmit])
 
   const handleBaseTripDelete = useCallback(async () => {
-    const res = deleteBaseTrip(tripData?.baseTripId)
+    const res = await dispatch(deleteBaseTrip(tripData?.baseTripId)).unwrap()
     if (res) {
       navigate('/user-trips')
     } else {
@@ -627,13 +619,5 @@ async function cropImageToAspectRatio(file, aspectRatio = 4 / 3) {
   })
 }
 
-export default memo(
-  connect(mapStateToProps, {
-    createTrip,
-    editTrip,
-    createTripsImages,
-    editTripImages,
-    deleteBaseTrip,
-    generatePreSignedUrlForDestinationImages,
-  })(PublishTrip),
-)
+export default memo(PublishTrip)
+

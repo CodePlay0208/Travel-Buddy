@@ -5,40 +5,22 @@ import UserDashboard from './UserDashboard/UserDashboard'
 import React, { memo, useEffect, useState } from 'react'
 import Modal from '../../components/Modal/Modal'
 import TripCard from '../../components/TripCard/TripCard'
-import { connect } from 'react-redux'
-import { getProfile } from '../../actions/profile.action'
-import { deleteUserTrip, getUserTrips, getUserWishlist, getUserPastTrips, getUserRequested } from '../../actions/trips.action'
 import { toast } from 'react-toastify'
 import TripList from '../../components/Trip/TripList'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteUserTrip, getUserPastTrips, getUserRequested, getUserTrips, getUserWishlist } from '../../store/slices/trips-slice'
 
-const mapStateToProps = (state) => ({
-  myTrips: state.tripReducer.userTrip?.trips,
-  profile: state.profileReducer.profile,
-  wishlistTrips: state.tripReducer.wishlistTrips?.trips,
-  pastTrips: state.tripReducer.pastTrips?.trips,
-  requestedTrips: state.tripReducer.requestedTrips?.trips,
-})
-const UserProfile = (props) => {
-  const {
-    myTrips,
-    getProfile,
-    getUserWishlist,
-    getUserPastTrips,
-    getUserTrips,
-    deleteUserTrip,
-    wishlistTrips,
-    pastTrips,
-    requestedTrips,
-    getUserRequested,
-  } = props
+const UserProfile = () => {
+  const { userTrip, wishlistTrips, pastTrips, requestedTrips } = useSelector((state) => state.tripReducer)
+  const dispatch = useDispatch()
 
   const [modalState, setModalState] = useState({ isOpen: false, tripId: null })
 
   useEffect(() => {
-    getUserTrips()
-    getUserWishlist()
-    getUserPastTrips()
-    getUserRequested()
+    dispatch(getUserTrips())
+    dispatch(getUserWishlist())
+    dispatch(getUserPastTrips())
+    dispatch(getUserRequested())
   }, [])
 
   const onDeleteTripClick = (tripId) => (e) => {
@@ -50,7 +32,7 @@ const UserProfile = (props) => {
     const { tripId } = modalState
     setModalState({ isOpen: false, tripId: null })
     try {
-      await deleteUserTrip(tripId)
+      await dispatch(deleteUserTrip(tripId)).unwrap()
       toast.success('Trip deleted successfully!', { autoClose: 1500 })
     } catch (error) {
       toast.error('Failed to delete trip. Please try again.', { autoClose: 1500 })
@@ -62,21 +44,15 @@ const UserProfile = (props) => {
   }
 
   const tripContent =
-    myTrips?.length > 0 ? (
-      myTrips.map((trip) => (
-        <TripCard key={trip?.tripId} trip={trip} />
-      ))
-    ) : (
-      <p>No trips found.</p>
-    )
+    userTrip?.trips?.length > 0 ? userTrip?.trips.map((trip) => <TripCard key={trip?.tripId} trip={trip} />) : <p>No trips found.</p>
   return (
     <div>
       <Navbar />
       <UserDashboard />
-      <TripList title="Requested Trips" trips={requestedTrips} />
-      <TripList title="Wishlist" trips={wishlistTrips} />
-      <TripList title="My Trips" trips={myTrips} editEnable={true}/>
-      <TripList title="Joined Trips" trips={pastTrips} />
+      <TripList title="Requested Trips" trips={requestedTrips?.trips} />
+      <TripList title="Wishlist" trips={wishlistTrips?.trips} />
+      <TripList title="My Trips" trips={userTrip?.trips} editEnable={true} />
+      <TripList title="Joined Trips" trips={pastTrips?.trips} />
       <Footer />
       {modalState.isOpen && (
         <Modal
@@ -89,6 +65,4 @@ const UserProfile = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { getProfile, getUserTrips, deleteUserTrip, getUserWishlist, getUserPastTrips, getUserRequested })(
-  memo(UserProfile),
-)
+export default memo(UserProfile)

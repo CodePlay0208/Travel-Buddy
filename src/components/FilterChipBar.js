@@ -59,7 +59,7 @@ const FiltersButton = styled(FilterChip)`
 }
 `;
 
-const FilterChipBar = ({ filters, onFilterChange, onOpenModal }) => {
+const FilterChipBar = ({ filters, dispatch, onFilterChange, onOpenModal }) => {
   const quickFilters = [
     { id: 'persona', label: filters?.persona?.label || 'Both Persona', selected: !!filters.persona },
     { id: 'participants', label: `${filters.participants.min??'0'}-${filters.participants.max??'20'} people`, selected: filters.participants.min > 1 || filters.participants.max < 20 },

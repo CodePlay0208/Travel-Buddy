@@ -5,21 +5,19 @@ import Footer from '../Footer/Footer'
 import ImagesSection from './ImagesSection/ImagesSection'
 import DetailsSection from './DetailsSection/DetailsSection'
 import PopularSection from '../PopularSection/PopularSection'
-import { connect } from 'react-redux'
 import { Container } from './TripPage.styled'
-import { getTripById, editTrip } from '../../actions/trips.action'
 import { ToastContainer, toast } from 'react-toastify'
 import { StyledToastContainer } from '../../styles/Global'
 import { AdminEmail } from './AdminEmail'
 import PreferencesSection from '../PreferencesSection'
+import { useSelector, useDispatch } from 'react-redux'
+import { editTrip, getTripById } from '../../store/slices/trips-slice'
 
-const mapStateToProps = (state) => ({
-  trip: state.tripReducer.trip,
-  profile: state.profileReducer.profile,
-})
+const TripPage = () => {
+  const { trip } = useSelector((state) => state.tripReducer)
+  const { profile } = useSelector((state) => state.profileReducer)
+  const dispatch = useDispatch()
 
-const TripPage = (props) => {
-  const { trip, getTripById, profile, editTrip } = props
   const { id: tripIdFromParams } = useParams()
   const [tripId, setTripId] = useState(tripIdFromParams)
   const [isEditMode, setIsEditMode] = useState(false)
@@ -40,7 +38,7 @@ const TripPage = (props) => {
 
   const fetchTrip = useCallback(async () => {
     if (tripId) {
-      const res = await getTripById(tripId)
+      const res = await dispatch(getTripById(tripId)).unwrap()
       if(!res){
         navigate('/')
       }
@@ -84,7 +82,7 @@ const TripPage = (props) => {
     Object.entries(formData).forEach(([key, value]) => {
       formDataNew.append(key, value)
     })
-    await editTrip(trip.baseTripId, formDataNew, true)
+    await dispatch(editTrip(trip.baseTripId, formDataNew, true)).unwrap()
     setIsEditMode(false)
     fetchTrip()
   }
@@ -113,4 +111,4 @@ const TripPage = (props) => {
 
 TripPage.displayName = 'TripPage'
 
-export default connect(mapStateToProps, { getTripById, editTrip })(memo(TripPage))
+export default memo(TripPage)

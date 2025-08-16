@@ -2,26 +2,22 @@ import React, { memo, useEffect, useState } from 'react'
 import TripCard from '../../components/TripCard/TripCard'
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
-import { connect } from 'react-redux'
-import { getUserTrips, deleteUserTrip } from '../../actions/trips.action'
 import { TripList } from './UserTrips.styled'
-import { getProfile } from '../../actions/profile.action'
 import { toast } from 'react-toastify'
 import Modal from '../../components/Modal/Modal'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteUserTrip, getUserTrips } from '../../store/slices/trips-slice'
+import { getProfile } from '../../store/slices/profile-slice'
 
-const mapStateToProps = (state) => ({
-  trips: state.tripReducer.userTrip?.trips,
-  profile: state.profileReducer.profile,
-})
-
-const UserTrips = (props) => {
-  const { trips, getProfile, getUserTrips, deleteUserTrip } = props
+const UserTrips = () => {
+  const { userTrip } = useSelector((state) => state.tripReducer)
+  const dispatch = useDispatch()
 
   const [modalState, setModalState] = useState({ isOpen: false, tripId: null })
 
   useEffect(() => {
-    getProfile()
-    getUserTrips()
+    dispatch(getProfile())
+    dispatch(getUserTrips())
   }, [])
 
   const onDeleteTripClick = (tripId) => (e) => {
@@ -33,7 +29,7 @@ const UserTrips = (props) => {
     const { tripId } = modalState
     setModalState({ isOpen: false, tripId: null })
     try {
-      await deleteUserTrip(tripId)
+      await dispatch(deleteUserTrip(tripId)).unwrap()
       toast.success('Trip deleted successfully!', { autoClose: 1500 })
     } catch (error) {
       toast.error('Failed to delete trip. Please try again.', { autoClose: 1500 })
@@ -45,7 +41,11 @@ const UserTrips = (props) => {
   }
 
   const tripContent =
-    trips?.length > 0 ? trips.map((trip) => <TripCard key={trip?.tripId} trip={trip} editEnable={true} />) : <p>No trips found.</p>
+    userTrip?.trips?.length > 0 ? (
+      userTrip?.trips.map((trip) => <TripCard key={trip?.tripId} trip={trip} editEnable={true} />)
+    ) : (
+      <p>No trips found.</p>
+    )
 
   return (
     <>
@@ -63,4 +63,4 @@ const UserTrips = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { getProfile, getUserTrips, deleteUserTrip })(memo(UserTrips))
+export default memo(UserTrips)

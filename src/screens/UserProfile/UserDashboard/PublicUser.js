@@ -1,56 +1,37 @@
 import Navbar from '../../../components/Navbar/Navbar'
 import React, { memo, useEffect, useState } from 'react'
-import UserDashboard from './UserDashboard'
 import { useParams } from 'react-router-dom'
-import { getOtherUserProfile } from '../../../actions/profile.action'
-import { connect } from 'react-redux'
 
 import { images } from '../../../assets/images'
 import {
   DashboardContainer,
-  ImageContainer,
-  BackgroundImage,
   ProfilePic,
   ImgProfile,
-  EditPic,
   DashboardHeader,
   HeaderTitle,
   DashboardContent,
-  UserInfoColumns,
-  UserInfoColumn,
   UserInfoItemCenter,
-  DashboardActions,
-  EditButton,
-  SaveButton,
-  CancelButton,
-  DeleteButton,
   Container,
   ProfilePicContainer,
   NameContainer,
-  MakePrivate,
-  MakePrivateContainer,
   UserInfoRow,
   UserInfoRows,
 } from './UserDashboard.styled'
 
-import Dropdown from '../../../components/Dropdown/Dropdown'
-import { Input, Label, StyledToastContainer, Value } from '../../../styles/Global'
-import { ToastContainer } from 'react-toastify'
+import { Label, StyledToastContainer, Value } from '../../../styles/Global'
+import { useDispatch } from 'react-redux'
+import { getOtherUserProfile } from '../../../store/slices/profile-slice'
 
-const mapStateToProps = (state) => ({
-  profile: state.profileReducer.profile,
-  loading: state.profileReducer.loading,
-})
-
-const PublicUser = ({ getOtherUserProfile }) => {
+const PublicUser = () => {
   const { id: userId } = useParams()
+  const dispatch = useDispatch()
 
   const [profile, setOtherUserProfile] = useState({})
 
   useEffect(() => {
     const fetchData = async () => {
       if (userId) {
-        const res = await getOtherUserProfile(userId)
+        const res = await dispatch(getOtherUserProfile(userId)).unwrap()
         if (res) {
           setOtherUserProfile(res.data)
         }
@@ -128,4 +109,4 @@ const PublicUser = ({ getOtherUserProfile }) => {
   )
 }
 
-export default connect(mapStateToProps, { getOtherUserProfile })(memo(PublicUser))
+export default memo(PublicUser)

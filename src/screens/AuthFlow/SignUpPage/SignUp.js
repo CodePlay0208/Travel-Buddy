@@ -1,8 +1,7 @@
 import React, { useState, memo } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
-import { connect } from 'react-redux'
-import { register } from '../../../actions/auth.action'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { images, SVG } from '../../../assets'
 import {
@@ -28,14 +27,11 @@ import { InputFieldsContainer } from '../LoginPage/loginPage.styled'
 import { Helmet } from 'react-helmet-async'
 import { StyledToastContainer } from '../../../styles/Global'
 import { Logo } from '../../../styles/Navbar.styles'
+import { register } from '../../../store/slices/auth-slice'
 
-const mapStateToProps = (state) => ({
-  user: state.authReducer.user,
-  isLoading: state.authReducer.isLoading,
-})
-
-const SignUp = (props) => {
-  const { register } = props
+const SignUp = () => {
+  const { user, isLoading } = useSelector((state) => state.authReducer)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -70,7 +66,7 @@ const SignUp = (props) => {
       return
     }
 
-    const isAuth = await register({ ...formData, userKey: isEmail ? formData.email : `${formData.phoneNumber}` })
+    const isAuth = await dispatch(register({ ...formData, userKey: isEmail ? formData.email : `${formData.phoneNumber}` })).unwrap()
     //console.log(isAuth)
 
     if (isAuth) {
@@ -174,4 +170,4 @@ const SignUp = (props) => {
   )
 }
 
-export default connect(mapStateToProps, { register })(memo(SignUp))
+export default memo(SignUp)

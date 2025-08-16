@@ -2,35 +2,32 @@ import { useEffect, memo } from 'react'
 import './LandingPage.css'
 import Header from '../../components/Header/Header'
 import PopularSection from '../../components/PopularSection/PopularSection'
-import AboutSection from '../../components/AboutSection/AboutSection'
 import HeroSection from '../../components/HeroSectionV2/HeroSection'
 import TopDestination from '../../components/TopDestination/TopDestination'
 import Newsletter from '../../components/Newsletter/Newsletter'
 import Footer from '../../components/Footer/Footer'
-import { connect } from 'react-redux'
-import { setSearchForm } from '../../actions/trips.action'
-import { loadUser } from '../../actions/auth.action'
 import SlidingSection from '../../components/SlidingSection/SlidingSection'
 import { Helmet } from 'react-helmet-async'
-import TravmigozFilter from '../../components/TravmigozFilter'
 import Banner from './Banner'
-import { setFilters } from '../../actions/filters.action'
+import { useDispatch } from 'react-redux'
+import { setSearchForm } from '../../store/slices/trips-slice'
+import { setFilters } from '../../store/slices/filters-slice'
 
 const LandingPage = (props) => {
-  const { setSearchForm, loadUser, setFilters } = props
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    setFilters({
+    dispatch(setFilters({
       persona: '',
       participants: {  },
       duration: '',
       budget: { min: 0, max: 100000 },
       categories: [],
-    })
-    setSearchForm({
+    }))
+    dispatch(setSearchForm({
       destination: '',
       startDate: '',
-    })
+    }))
   }, [setSearchForm])
 
   return (
@@ -56,4 +53,4 @@ const LandingPage = (props) => {
   )
 }
 
-export default connect(null, { setSearchForm, loadUser, setFilters })(memo(LandingPage))
+export default memo(LandingPage)

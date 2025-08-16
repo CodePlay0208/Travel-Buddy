@@ -1,13 +1,10 @@
-import { connect } from 'react-redux'
 import { Navigate } from 'react-router-dom'
-
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.authReducer.isAuthenticated,
-})
+import { useSelector } from 'react-redux'
 
 const PrivateRoute = (props) => {
-  const { element, isAuthenticated } = props
+  const { isAuthenticated } = useSelector((state) => state.authReducer)
+  const { element } = props
   return isAuthenticated ? element : <Navigate to="/login" />
 }
 
-export default connect(mapStateToProps)(PrivateRoute)
+export default PrivateRoute

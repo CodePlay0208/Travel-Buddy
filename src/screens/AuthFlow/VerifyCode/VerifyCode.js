@@ -2,41 +2,32 @@ import React, { useEffect, useState, memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { SVG, images } from '../../../assets'
 
-import { connect } from 'react-redux'
-import { verifyOTP, resendOTP } from '../../../actions/auth.action'
-import { ToastContainer } from 'react-toastify'
-import InputComponent from '../../../components/InputComponent/InputComponent'
 import Copyright from '../../../components/Copyright/Copyright'
-import { getProfile } from '../../../actions/profile.action'
 import {
   Container,
   FormAndCopyrightContainer,
   FormAndTitleContainer,
   TitleContainer,
   FormContainer,
-  BackButtonContainer,
-  BackButtonIcon,
-  BackButtonText,
   FormHeadingContainer,
   FormSubHeadingText,
   DesignContainer,
   AuthDesignImage,
-  MainButtonAuth,
-  Form,
   SupportingImg,
   VerifyCodeFormInputsContainer,
   OtpContainer,
 } from '../AuthFlow.styled'
-import { VerifyCodeResendCodeContainer, VerifyCodeDidntRecieveText, VerifyCodeResendLink, VerifyCodeResendText } from './VerifyCode.styled'
 import OtpComponent from './OtpComponent'
 import { StyledToastContainer } from '../../../styles/Global'
 import { Logo } from '../../../styles/Navbar.styles'
-const mapStateToProps = (state) => ({
-  otpVerified: state.authReducer.otpVerified,
-})
+import { useSelector, useDispatch } from 'react-redux'
+import { resendOTP, verifyOTP } from '../../../store/slices/auth-slice'
+import { getProfile } from '../../../store/slices/profile-slice'
 
-const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
+const VerifyCode = () => {
   const navigate = useNavigate()
+  const { otpVerified } = useSelector((state) => state.authReducer)
+  const dispatch = useDispatch()
 
   const origin = sessionStorage.getItem('prevRoute')
 
@@ -48,20 +39,21 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    verifyOTP(formData.verificationCode, origin === '/signup')
+    console.log('formData.verificationCode', formData.verificationCode)
+    dispatch(verifyOTP(formData.verificationCode, origin === '/signup')).unwrap()
   }
 
   const onResendClick = async () => {
     if (origin === '/signup') {
-      await resendOTP(true)
+      await dispatch(resendOTP(true)).unwrap()
     } else {
-      await resendOTP(false)
+      await dispatch(resendOTP(false)).unwrap()
     }
   }
 
   useEffect(() => {
     if (otpVerified) {
-      getProfile()
+      dispatch(getProfile()).unwrap()
       if (origin === '/signup') {
         navigate('/setup')
       } else {
@@ -108,4 +100,4 @@ const VerifyCode = ({ otpVerified, verifyOTP, resendOTP }) => {
 
 VerifyCode.displayName = 'VerifyCode'
 
-export default connect(mapStateToProps, { getProfile, verifyOTP, resendOTP })(memo(VerifyCode))
+export default memo(VerifyCode)
