@@ -58,14 +58,15 @@ export const login = createAsyncThunk('auth/login', async (userKey, { rejectWith
   }
 })
 
-export const verifyOTP = createAsyncThunk('auth/verifyOTP', async ({ userOtp, isSignUpRequest = false }, { rejectWithValue }) => {
+export const verifyOTP = createAsyncThunk('auth/verifyOTP', async ({ userOtp, isSignUpRequest = false }, { dispatch, rejectWithValue }) => {
   const userKey = localStorage.getItem('userKey')
   if (localStorage.token) setAuthToken(localStorage.token)
-
+  const body = JSON.stringify({ userKey, userOtp, isSignUpRequest });
   try {
-    const res = await AuthApi.verifyOTP(JSON.stringify({ userKey, userOtp, isSignUpRequest }))
+    const res = await AuthApi.verifyOTP(body)
     localStorage.setItem('token', res.data.token)
     toast.success('OTP Verified!', { autoClose: 1500 })
+    dispatch(loadUser())
     return res.data
   } catch (err) {
     if (err.response?.status === 400) {

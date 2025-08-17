@@ -57,12 +57,11 @@ export const routes = [
     element: <PublishTrip />,
     isPrivate: true,
   },
-  // {
-  //   path: '/chats',
-  //   element: <ChatPage />,
-  //   isPrivate: true,
-  // },
-
+  {
+    path: '/chats',
+    element: <ChatPage />,
+    isPrivate: true,
+  },
   {
     path: '/login',
     element: <LoginPage />,

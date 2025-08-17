@@ -40,7 +40,7 @@ const VerifyCode = () => {
   const onSubmit = (e) => {
     e.preventDefault()
     console.log('formData.verificationCode', formData.verificationCode)
-    dispatch(verifyOTP(formData.verificationCode, origin === '/signup')).unwrap()
+    dispatch(verifyOTP({ userOtp: formData.verificationCode, isSignUpRequest: origin === '/signup'})).unwrap()
   }
 
   const onResendClick = async () => {

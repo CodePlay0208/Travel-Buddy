@@ -129,7 +129,16 @@ const Navbar = (props) => {
         >
           <Logo src={images.travmigoz_logo} alt="travmigoz logo" />
         </WebAppNameAndLogo>
-
+        <OtherContentsOfNavBar>
+          <NavButton
+            onClick={() => {
+              navigate('/chats')
+            }}
+          >
+            <div>Chat</div>
+            <PublishTrip />
+          </NavButton>
+        </OtherContentsOfNavBar>
         {isAuthenticated ? (
           <OtherContentsOfNavBar>
             {/* <NavContents onClick={onChatClick}>

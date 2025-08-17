@@ -37,6 +37,7 @@ import AlternateDatesCard from '../AlternateDatesCard/AlternateDatesCard'
 import Overlay from '../../../Overlay/overlay'
 import { useSelector, useDispatch } from 'react-redux'
 import { addWishlistTrip, deleteUserTrip, leaveTrip, removeWishlistTrip, requestJoinTrip } from '../../../../store/slices/trips-slice'
+import { fetchOrCreateDirectChat } from '../../../../store/slices/chat-slice.ts'
 
 const TripDescription = (props) => {
   const { isUserTrip, editMode, setEditMode, editedData, setEditedData, onSaveTrip } = props
@@ -136,12 +137,15 @@ const TripDescription = (props) => {
     }
   }
 
-  const onCallNowClick = (e) => {
+  const onChatNowClick = async (e) => {
     e.stopPropagation()
-    if (localStorage.token) {
-      window.open(`tel:${phoneNumber}`, '_blank')
-    } else {
-      navigate('/login')
+    try {
+      console.log('here')
+      const body = { receiverUserId: trip.hostId }
+      await dispatch(fetchOrCreateDirectChat(body)).unwrap()
+    } catch (error) {
+      console.error('TripDescription:: onChatNowClick - ERROR: ', JSON.stringify(error))
+      toast.error('Please Try Again!')
     }
   }
 
@@ -232,7 +236,7 @@ const TripDescription = (props) => {
                   </EditButton>
                 )}
                 {/* {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>} */}
-                {!isUserTrip && <ChatButton onClick={onCallNowClick}>Call Now</ChatButton>}
+                {!isUserTrip && <ChatButton onClick={onChatNowClick}>Chat Now</ChatButton>}
                 {
                   <ChatButton onClick={onWishlistClick}>
                     {wishlistAdded ? <img src={SVG.wishListRed} alt="wishlist" /> : <img src={SVG.wishlist} alt="wishlist" />}
