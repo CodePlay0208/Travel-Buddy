@@ -335,7 +335,7 @@ const CountdownTimer = ({ targetDate }) => {
 
 const Banner = () => {
   const navigate = useNavigate();
-  const deadline =new Date("2025-08-15T00:00:00+05:30");
+  const deadline = new Date("2025-08-22T00:00:00+05:30");
   return (
     <BannerWrapper onClick={() => navigate('/login')}>
       <BackgroundImage />
