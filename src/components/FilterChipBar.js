@@ -70,7 +70,7 @@ const FilterChipBar = ({ filters, onFilterChange, onOpenModal }) => {
 
   return (
     <ChipBarContainer>
-      {quickFilters.map(filter => (
+      {/* {quickFilters.map(filter => (
         <FilterChip
           key={filter.id}
           selected={filter.selected}
@@ -78,7 +78,7 @@ const FilterChipBar = ({ filters, onFilterChange, onOpenModal }) => {
         >
           {filter.label}
         </FilterChip>
-      ))}
+      ))} */}
 
       <FiltersButton onClick={onOpenModal}>
         {/* <svg viewBox="0 0 16 16" fill="currentColor">
