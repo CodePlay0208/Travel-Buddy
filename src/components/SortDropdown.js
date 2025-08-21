@@ -82,7 +82,7 @@ const DropdownItem = styled.button`
 `;
 
 const sortOptions = [
-  { id: '', label: 'Recommended for you' },
+  { id: '', label: 'Recommended' },
   { id: 'budget-low', label: 'Budget: Low to High' },
   { id: 'budget-high', label: 'Budget: High to Low' },
   { id: 'duration-short', label: 'Duration: Shortest first' },
@@ -121,7 +121,7 @@ const SortDropdown = ({ value, onChange }) => {
       <DropdownButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
         {window.innerWidth <= 440
           ? 'Sort by'
-          : selectedOption?.label || 'Sort by'}
+          : `Sort by ${selectedOption?.label}`}
         <svg viewBox="0 0 20 20" fill="currentColor">
           <path
             fillRule="evenodd"
