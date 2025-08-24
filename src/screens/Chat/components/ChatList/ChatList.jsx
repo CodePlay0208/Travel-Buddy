@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 
 const ListContainer = styled.div`
-  width: 300px;
+  width: 500px;
   border-right: 1px solid #e0e0e0;
   overflow-y: auto;
   background-color: white;

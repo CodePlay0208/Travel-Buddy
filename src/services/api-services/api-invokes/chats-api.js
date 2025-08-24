@@ -28,6 +28,17 @@ export const ChatApi = {
     }
   },
 
+  getUserPresence: async (userId) => {
+    try {
+      const result = await ApiService.get(`${API_PATH.USER_PRESENCE}/${userId}`, {
+        baseURL: env.BASE_API_CHAT_URL
+      })
+      return { status: result.status, data: result.data }
+    } catch (e) {
+      throw e
+    }
+  },
+
   fetchOrCreateDirectChatRoom: async (payload) => {
     try {
       const result = await ApiService.post(`${API_PATH.DM_CREATE_CHAT}`, payload, {

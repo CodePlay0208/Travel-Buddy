@@ -285,8 +285,17 @@ class SocketManager {
     this.socket.emit('messageRead', { messageId, chatId, userId })
   }
 
+  userDisconnects() {
+    this.socket?.emit('userOffline')
+  }
+
+  userConnects() {
+    this.socket?.emit('userOnline')
+  }
+
   disconnect() {
     if (this.socket) {
+      this.userDisconnects()
       this.activeChats.clear()
       this.typingTimers.forEach((timer) => clearTimeout(timer))
       this.typingTimers.clear()

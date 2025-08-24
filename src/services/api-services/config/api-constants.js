@@ -66,6 +66,8 @@ export const API_PATH = {
   GROUP_ADD_MEMBERS_TO_CHAT: '/chat/addMemberToChat',
   GROUP_REMOVE_MEMBER_FROM_CHAT: '/chat/removeMemberFromChat',
   DM_CREATE_CHAT: '/chat/fetch-or-create',
+
+  USER_PRESENCE: '/user-presence'
 }
 
 export const API_CONFIG = {

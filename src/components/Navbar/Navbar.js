@@ -129,22 +129,12 @@ const Navbar = (props) => {
         >
           <Logo src={images.travmigoz_logo} alt="travmigoz logo" />
         </WebAppNameAndLogo>
-        <OtherContentsOfNavBar>
-          <NavButton
-            onClick={() => {
-              navigate('/chats')
-            }}
-          >
-            <div>Chat</div>
-            <PublishTrip />
-          </NavButton>
-        </OtherContentsOfNavBar>
         {isAuthenticated ? (
           <OtherContentsOfNavBar>
-            {/* <NavContents onClick={onChatClick}>
+            <NavContents onClick={onChatClick}>
               <img src={SVG.ChatButton} alt="Chat" />
               {notifications?.length > 0 && <div className="notification-badge" />}
-            </NavContents> */}
+            </NavContents>
 
             <NavContents onClick={onNotificationClick}>
               <NotificationSvg />

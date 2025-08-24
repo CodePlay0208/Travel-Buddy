@@ -35,6 +35,7 @@ export class ChatService {
 
       if (!this.socketManager.getConnectionStatus()) {
         await this.socketManager.connect()
+        this.socketManager.userConnects()
       }
     } catch (error) {
       console.error('Failed to initialize user chats:', error)

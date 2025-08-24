@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ChatApi } from '../../services/api-services/api-invokes'
 
 export type ConnectionStatus = 'connecting' | 'connected' | 'disconnected' | 'error'
 
@@ -17,6 +18,19 @@ const initialState: SocketState = {
   onlineUsers: {},
   reconnectAttempts: 0,
 }
+
+export const fetchUserPresence = createAsyncThunk(
+  'chats/fetchUserPresence',
+  async (data: { userId: string; chatId: string }, { rejectWithValue }) => {
+    try {
+      const { userId, chatId } = data
+      const response = await ChatApi.getUserPresence(userId)
+      return { ...response.data, chatId }
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || 'Failed to get user presence')
+    }
+  }
+)
 
 const socketSlice = createSlice({
   name: 'socket',
@@ -39,23 +53,16 @@ const socketSlice = createSlice({
         isTyping: boolean
       }>,
     ) => {
-      console.log('0')
       const { chatId, userId, isTyping } = action.payload
-      console.log('REUCER', chatId, userId, isTyping)
-
       if (!state.typingUsers[chatId]) {
-        console.log('1')
         state.typingUsers[chatId] = []
       }
 
       if (isTyping && !state.typingUsers[chatId].includes(userId)) {
-        console.log('2')
         state.typingUsers[chatId].push(userId)
       } else if (!isTyping) {
-        console.log('3')
         state.typingUsers[chatId] = state.typingUsers[chatId].filter((id) => id !== userId)
       }
-      console.log('state.typingUsers', state.typingUsers)
     },
 
     setUserOnline: (
@@ -87,6 +94,20 @@ const socketSlice = createSlice({
       return initialState
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUserPresence.fulfilled, (state, action) => {
+      const { chatId, userId, status } = action.payload
+      if (!state.onlineUsers[chatId]) {
+        state.onlineUsers[chatId] = []
+      }
+
+      if (status === 'online' && !state.onlineUsers[chatId].includes(userId)) {
+        state.onlineUsers[chatId].push(userId)
+      } else if (status === 'offline') {
+        state.onlineUsers[chatId] = state.onlineUsers[chatId].filter((id) => id !== userId)
+      }
+    })
+  }
 })
 
 export const socketActions = socketSlice.actions
