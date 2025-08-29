@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-// Custom SVG Icon Component
+// Custom SVG Icon Component for checkmarks
 const CheckIcon = () => (
   <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M37.1651 18.4695V20.0029C37.163 23.5969 35.9992 27.094 33.8473 29.9726C31.6953 32.8512 28.6705 34.957 25.224 35.976C21.7774 36.9951 18.0938 36.8727 14.7225 35.6272C11.3512 34.3816 8.47282 32.0797 6.51666 29.0646C4.5605 26.0496 3.63138 22.483 3.86785 18.8967C4.10433 15.3105 5.49374 11.8967 7.82886 9.16465C10.164 6.43257 13.3197 4.5285 16.8254 3.73644C20.331 2.94438 23.9988 3.30676 27.2817 4.76953" stroke="#65B599" strokeWidth="3.33333" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M37.165 6.6665L20.4984 23.3498L15.4984 18.3498" stroke="#65B599" strokeWidth="3.33333" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+// Accordion Down Arrow (Closed State)
+const AccordionDownIcon = () => (
+  <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M14.82 17.9974L24 27.1574L33.18 17.9974L36 20.8174L24 32.8174L12 20.8174L14.82 17.9974Z" fill="black"/>
+  </svg>
+);
+
+// Accordion Up Arrow (Open State)
+const AccordionUpIcon = () => (
+  <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M14.82 31.6374L24 22.4774L33.18 31.6374L36 28.8174L24 16.8174L12 28.8174L14.82 31.6374Z" fill="black"/>
   </svg>
 );
 
@@ -321,14 +335,7 @@ const AccordionIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  color: #000000;
-  transform: ${props => props.isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
   transition: transform 0.3s ease;
-  
-  &::before {
-    content: '▼';
-  }
 `;
 
 const AccordionContent = styled.div`
@@ -512,7 +519,9 @@ const SectionTemplate = () => {
                         <AccordionItem key={index} isOpen={openFAQs.has(index)}>
                             <AccordionHeader onClick={() => toggleFAQ(index)}>
                                 <QuestionText>{faq.question}</QuestionText>
-                                <AccordionIcon isOpen={openFAQs.has(index)} />
+                                <AccordionIcon>
+                                    {openFAQs.has(index) ? <AccordionUpIcon /> : <AccordionDownIcon />}
+                                </AccordionIcon>
                             </AccordionHeader>
                             <AccordionContent isOpen={openFAQs.has(index)}>
                                 <AccordionAnswer>
