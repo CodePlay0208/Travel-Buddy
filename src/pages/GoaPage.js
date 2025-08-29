@@ -3,14 +3,11 @@ import DestinationTemplate from '../components/DestinationTemplate';
 import { destinationContent } from '../data/destinationContent';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
-import PageTemplate from '../components/SeoPagesTemplate/PageTemplate';
-import SectionTemplate from '../components/SeoPagesTemplate/SectionTemplate';
 
 const GoaPage = () => (
     <>
         <Navbar />
-        <SectionTemplate/>
-        <PageTemplate
+        <DestinationTemplate
             destination={destinationContent.goa}
             destinationName="goa"
         />

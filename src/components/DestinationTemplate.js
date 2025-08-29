@@ -2,10 +2,10 @@ import React, { useEffect, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
-import { ContentSection, HeaderSection, PageContainer } from './Destination/DestinationPage.styled';
-import { Section } from './HeroSectionV2/HeroSection.styled';
+import { PageContainer, HeaderSection } from './Destination/DestinationPage.styled';
 import TripList from './Trip/TripList';
 import { getTrips, getTripsByStartLocation } from '../actions/trips.action';
+import SectionTemplate from './SeoPagesTemplate/SectionTemplate';
 
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
@@ -34,6 +34,15 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
     return <div>Destination not found</div>;
   }
 
+  // Prepare data for SectionTemplate
+  const sectionTemplateData = {
+    sections: [
+      ...(destination.hero ? [destination.hero] : []),
+      ...(destination.content?.sections || [])
+    ],
+    faqs: destination.content?.faqs || []
+  };
+
   return (
     <>
       {destination.seo && (
@@ -52,26 +61,17 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
       <PageContainer>
         <HeaderSection>
           <h1>{destination.title}</h1>
-          <h2>{destination.subtitle}</h2>
+          {destination.subtitle && <h2>{destination.subtitle}</h2>}
           <p>{destination.description}</p>
         </HeaderSection>
 
-        {destination.content?.sections?.map((sec, idx) => (
-          <ContentSection key={idx}>
-            <Section>
-              <h2>{sec.heading}</h2>
-              {sec.paragraph && <p>{sec.paragraph}</p>}
-              {sec.list && (
-                <ul>
-                  {sec.list.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              )}
-            </Section>
-          </ContentSection>
-        ))}
+        {/* Use new SectionTemplate for enhanced content */}
+        <SectionTemplate
+          sections={sectionTemplateData.sections}
+          faqs={sectionTemplateData.faqs}
+        />
 
+        {/* Trip listings */}
         {(!trips || !trips.length) && (!startLocationTrips || !startLocationTrips.length) ? (
           <TripList title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />
         ) : (
@@ -83,20 +83,6 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
               <TripList title={`Available Trips from ${destination.searchTag}`} trips={startLocationTrips} editEnable={false} />
             )}
           </>
-        )}
-
-        {destination.content?.faqs && (
-          <ContentSection>
-            <Section>
-              <h3>Frequently Asked Questions</h3>
-              {destination.content.faqs.map((faq, idx) => (
-                <div key={idx}>
-                  <h4>{faq.question}</h4>
-                  <p>{faq.answer}</p>
-                </div>
-              ))}
-            </Section>
-          </ContentSection>
         )}
       </PageContainer>
     </>
