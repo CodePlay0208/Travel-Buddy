@@ -69,7 +69,7 @@ const AccordionHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   padding: 40px;
   gap: 10px;
   width: 100%;
@@ -109,8 +109,8 @@ letter-spacing: 0%;
   }
 `;
 const AccordionIcon = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,8 +118,13 @@ const AccordionIcon = styled.div`
 
 
   @media (max-width: 440px) {
-    width : 24px;
-    height : 24px;
+    width : 12px;
+    height : 12px;
+  }
+
+  svg{
+    width : 100%;
+    height : 100%;
   }
 `;
 const AccordionContent = styled.div`

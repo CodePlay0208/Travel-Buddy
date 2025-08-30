@@ -104,6 +104,7 @@ export const Duration = styled.div`
 
 export const DateComp = styled.div`
   font-family: Montserrat;
+  text-align: left;
   font-size: 17px;
   font-weight: 700;
   line-height: 28.69px;

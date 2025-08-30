@@ -71,6 +71,11 @@ const IconWrapper = styled.div`
     width: 16px;
     height: 22px;
   }
+  
+  svg{
+    width : 100%;
+    height : 100%;
+  }
 `;
 const ListItemContent = styled.div`
   flex: 1;
