@@ -11,6 +11,8 @@ import BackgroundSectionBlock from './SeoPagesTemplate/BackgroundSectionBlock';
 import SectionBlock from './SeoPagesTemplate/SectionBlock';
 import TemplateHeader from './TemplateHeader';
 import { Header } from 'antd/es/layout/layout';
+import BackgroundSection from './SeoPagesTemplate/BackgroundSection';
+import InfoWithImageSection from './SeoPagesTemplate/InfoWithImageSection';
 
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
@@ -117,11 +119,22 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
 
         <TemplateHeader heading={"Goa Tour Packages"} content={"Looking for the perfect Goa tour package to unwind, explore, or celebrate something special?"} />
 
+          
         <HeaderSection>
+        <InfoWithImageSection
+          text={destination.seo.metaKeywords}
+        />
 
           {sections.map((section, index) => {
             if (section.backgroundImage) {
               return <BackgroundSectionBlock key={index} section={section} />;
+            }
+            else if(index===0){
+               return <>
+
+              <SectionBlock key={index} section={section} />
+              <BackgroundSection key={index} section={section} />
+              </>
             }
             return <SectionBlock key={index} section={section} />;
           })}
