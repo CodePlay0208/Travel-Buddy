@@ -6,6 +6,11 @@ import { PageContainer, HeaderSection } from './Destination/DestinationPage.styl
 import TripList from './Trip/TripList';
 import { getTrips, getTripsByStartLocation } from '../actions/trips.action';
 import SectionTemplate from './SeoPagesTemplate/SectionTemplate';
+import FAQAccordion from './SeoPagesTemplate/FAQAccordion';
+import BackgroundSectionBlock from './SeoPagesTemplate/BackgroundSectionBlock';
+import SectionBlock from './SeoPagesTemplate/SectionBlock';
+import TemplateHeader from './TemplateHeader';
+import { Header } from 'antd/es/layout/layout';
 
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
@@ -42,6 +47,56 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
     ],
     faqs: destination.content?.faqs || []
   };
+  const { heading, content } = destination.hero || { heading: '', content: '' };
+  const sections = [
+    {
+      heading: { h1: "Explore Goa with Our Holiday Packages" },
+      paragraph: { p: "Goa is more than just beaches, it's a journey through culture, cuisine, and coastlines. Our holiday packages in Goa cover top destinations such as:" },
+      list: [
+        "Baga Beach: Nightlife, water sports, and beach shacks",
+        "Calangute & Anjuna: Local markets and lively scenes",
+        "Palolem & Colva: Calm waters, clean sands, perfect for quiet stays",
+        "Old Goa: Visit Basilica of Bom Jesus, Se Cathedral, and Church of St. Francis of Assisi",
+        "Fort Aguada: panoramic sea views and Portuguese history"
+      ]
+    },
+    {
+      heading: { h2: "Honeymoon & Family-Friendly Goa Packages" },
+      paragraph: { p: "For couples, our Goa honeymoon packages offer romantic moments like sunset cruises on the Mandovi River, beachside stays in Morjim, and candlelit dinners by the sea. For families, enjoy Dudhsagar Waterfalls, Butterfly Beach, and the Bhagwan Mahavir Wildlife Sanctuary." }
+    },
+    {
+      heading: "Culture, Cuisine & Hidden Corners",
+      paragraph: "Beyond the beaches, Goa's heart beats in its traditions. Experience festivals, night markets, the Latin Quarter of Fontainhas, and authentic Goan cuisine such as prawn balchão, fish curry rice, and bebinca."
+    },
+    {
+      backgroundImage: "https://example.com/goa-beach.jpg",
+      heading: "Book Your Goa Travel Package Today",
+      paragraph: "Whether you're here for a weekend, honeymoon, or longer, our Goa packages give you a complete experience without the stress of planning."
+    }
+  ];
+
+  const faqs = [
+    {
+      question: "What is the average Goa trip cost for 3 to 5 days?",
+      answer: "₹8,500 to ₹25,000 per person depending on hotel category and season."
+    },
+    {
+      question: "Which are the best places to visit in Goa?",
+      answer: "Baga Beach, Fort Aguada, Dudhsagar Waterfalls, Old Goa churches, Palolem, Spice Plantations, Fontainhas."
+    },
+    {
+      question: "Is North Goa or South Goa better for tourists?",
+      answer: "North Goa for nightlife and markets, South Goa for peace and nature. Many packages include both."
+    },
+    {
+      question: "What is included in Goa tour packages?",
+      answer: "Accommodation, breakfast, sightseeing tours, transfers, and local support."
+    },
+    {
+      question: "When is the best time to visit Goa?",
+      answer: "October to March, during pleasant weather and festive celebrations."
+    }
+  ];
 
   return (
     <>
@@ -59,31 +114,34 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
       )}
 
       <PageContainer>
+
+        <TemplateHeader heading={"Goa Tour Packages"} content={"Looking for the perfect Goa tour package to unwind, explore, or celebrate something special?"} />
+
         <HeaderSection>
-          <h1>{destination.title}</h1>
-          {destination.subtitle && <h2>{destination.subtitle}</h2>}
-          <p>{destination.description}</p>
+
+          {sections.map((section, index) => {
+            if (section.backgroundImage) {
+              return <BackgroundSectionBlock key={index} section={section} />;
+            }
+            return <SectionBlock key={index} section={section} />;
+          })}
+
+
+          {/* Trip listings */}
+          {(!trips || !trips.length) && (!startLocationTrips || !startLocationTrips.length) ? (
+            <TripList title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />
+          ) : (
+            <>
+              {trips?.length > 0 && (
+                <TripList title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />
+              )}
+              {startLocationTrips?.length > 0 && (
+                <TripList title={`Available Trips from ${destination.searchTag}`} trips={startLocationTrips} editEnable={false} />
+              )}
+            </>
+          )}
+          <FAQAccordion faqs={faqs} />
         </HeaderSection>
-
-        {/* Use new SectionTemplate for enhanced content */}
-        <SectionTemplate
-          sections={sectionTemplateData.sections}
-          faqs={sectionTemplateData.faqs}
-        />
-
-        {/* Trip listings */}
-        {(!trips || !trips.length) && (!startLocationTrips || !startLocationTrips.length) ? (
-          <TripList title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />
-        ) : (
-          <>
-            {trips?.length > 0 && (
-              <TripList title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />
-            )}
-            {startLocationTrips?.length > 0 && (
-              <TripList title={`Available Trips from ${destination.searchTag}`} trips={startLocationTrips} editEnable={false} />
-            )}
-          </>
-        )}
       </PageContainer>
     </>
   );

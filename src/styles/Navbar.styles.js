@@ -14,7 +14,7 @@ export const NavContainer = styled.div`
   width: 100%;
   padding-top: 0;
   box-shadow: ${(props) => (props.isImageNavbar ? `none` : `none`)};
-  background: ${(props) => (!props.isImageNavbar ? `none` : '#00000024')};
+  background: ${(props) => (!props.isImageNavbar ? `none` : '#ffffff3e')};
 
   @media (max-width: 1080px) {
     font-size: 4rem;

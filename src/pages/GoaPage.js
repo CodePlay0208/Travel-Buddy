@@ -6,7 +6,7 @@ import Footer from '../components/Footer/Footer';
 
 const GoaPage = () => (
     <>
-        <Navbar />
+        <Navbar isImageNavbar={true}/>
         <DestinationTemplate
             destination={destinationContent.goa}
             destinationName="goa"
