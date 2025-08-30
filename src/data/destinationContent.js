@@ -31,20 +31,76 @@ export const destinationContent = {
         "October to March offers the most comfortable weather with pleasant temperatures and clear skies, perfect for exploring the city's numerous gardens and outdoor attractions. The winter months provide ideal conditions for lake activities at Sukhna Lake and leisurely walks through the various themed gardens that Chandigarh is famous for.",
     },
   },
+
   shimla: {
-    title: 'Shimla Travel Packages',
-    subtitle: 'Queen of Hills - Colonial Charm & Mountain Beauty',
-    description: 'Experience the former British summer capital with its scenic views and pleasant climate',
-    searchTag: 'Shimla,India',
-    content: {
-      overview:
-        "Shimla, the erstwhile summer capital of British India, is nestled amidst the snow-capped Shivalik Mountains at an elevation of 2,200 meters. This charming hill station offers stunning views of the mighty Himalayas and showcases beautiful British Gothic architecture throughout the city. The city's colonial heritage is evident in its churches, government buildings, and the famous Ridge area. Shimla's pleasant climate, scenic beauty, and rich history make it a perfect retreat from the plains, attracting visitors seeking both natural beauty and cultural experiences in the lap of the Himalayas.",
-      attractions:
-        "Visit the highest point at Jakhu Temple dedicated to Lord Hanuman, offering panoramic views of the Shivalik ranges. Explore the famous Mall Road for shopping and dining, and admire the neo-Gothic architecture of Christ Church. The historic Viceregal Lodge, now Indian Institute of Advanced Study, showcases British colonial architecture. Experience adventure at Kufri, famous for its snow activities and pony rides, and visit the scenic Naldhera with its beautiful golf course. Don't miss the toy train ride, a UNESCO World Heritage railway line connecting Kalka to Shimla.",
-      bestTime:
-        'March to June offers pleasant weather perfect for sightseeing and outdoor activities, while October to February provides crisp mountain air and occasional snowfall, especially in nearby areas like Kufri. The summer months are ideal for escaping the heat of the plains, while winter offers a magical snowy landscape for those seeking a different mountain experience.',
+    "pageHeading": "Shimla Manali Tour Packages",
+    "pageTitle": "Nestled in the lap of the Himalayas - Shimla and Manali offer a holiday that stays with you forever.",
+    "pageContent": "Nestled in the lap of the Himalayas - Shimla and Manali offer a holiday that stays with you forever. Our Shimla Manali tour packages are crafted to blend nature's beauty. Enjoy the adventure, and comfort in one seamless journey. The snow-covered mountains, tall pine forests, and sparkling rivers every moment feels refreshing you. If you wish to unwind peaceful landscapes or enjoy thrilling mountain activities. The Shimla and Manali promise experiences you will always treasure.",
+    "title": "Shimla Manali Tour Packages",
+    "searchTag": "Shimla Manali,India",
+    "seo": {
+      "metaTitle": "Shimla Manali Tour Packages | Holidays in the Himalayas",
+      "metaDescription": "Book Shimla Manali tour packages with stays, transport, and sightseeing. Enjoy snow peaks, pine valleys, rivers, and adventure activities for a perfect holiday.",
+      "metaKeywords": "Shimla tour packages, Manali tour packages, Himachal Pradesh, Queen of Hills, snow activities, adventure sports, Solang Valley, Rohtang Pass, Mall Road, Ridge, Kufri, mountain holidays"
     },
+    "description": "Nestled in the lap of the Himalayas - Shimla and Manali offer a holiday that stays with you forever. Our Shimla Manali tour packages are crafted to blend nature's beauty. Enjoy the adventure, and comfort in one seamless journey. The snow-covered mountains, tall pine forests, and sparkling rivers every moment feels refreshing you. If you wish to unwind peaceful landscapes or enjoy thrilling mountain activities. The Shimla and Manali promise experiences you will always treasure.",
+    "sections": [
+      {
+        "heading": {"h2": "Shimla Tour Packages – The Queen of Hills"},
+        "paragraph": {"p": "The Shimla is known as the Queen of the Hills offers a mix of history and natural views. Walk on Mall Road or relax at Ridge. Visit Kufri for snow fun and enjoy the view from Jakhu Temple. Our Shimla Tour Packages include all these spots. If you want a short break, the 4 Days 3 Nights Tour Package Shimla is a perfect choice. It covers the highlights and gives you free time to explore."}
+      },
+      {
+        "heading": {"h2": "Manali Tour Packages – Snow and Thrill"},
+        "paragraph": {"p": "The Manali is heart of the adventure in the Himachal. The Solang Valley is famous for paragliding and the skiing. Rohtang Pass offers snow even in summer. Hadimba Temple and Tibetan monasteries show the culture of the valley. Our Manali Tour Packages are popular for families, couples, and students. You can enjoy the adventure sports and peaceful views in one trip."}
+      },
+      {
+        "heading": {"h2": "Shimla Kullu Manali Tour Package – Complete Journey"},
+        "paragraph": {"p": "A Shimla Kullu Manali Tour Package is the best way to enjoy Himachal fully. Start with Shimla and its colonial charm. Move to Kullu for rafting, shopping, and river views. End with Manali for snow and adventure. This package gives you sightseeing, culture, and leisure in one journey."}
+      },
+      {
+        "heading": {"h2": "Best Shimla Manali Tour Package for Every Budget"},
+        "paragraph": {"p": "We offer the best Shimla Manali Tour Package for every budget. Luxury travelers can enjoy the high-end stays with premium services. Couples can book romantic hotels with mountain views. Families can choose simple and safe stays near the city center. Students and groups can pick budget tour packages under 5000 for an affordable holiday. Every plan is created to keep comfort and safety in mind."}
+      },
+      {
+        "heading": {"h2": "Why Our Shimla Manali Packages?"},
+        "list": [
+          "Flexible tour plans according to your convenience",
+          "Reasonable prices without cutting corners",
+          "Skilled guides and comfortable transportation",
+          "Tailor-made stays for couples, family, and groups",
+          "Plan Your Shimla Manali Holiday Today"
+        ]
+      },
+      {
+        "heading": "Plan Your Shimla Manali Holiday Today",
+        "paragraph": {"p": "From strolling through pine woods to browsing in vibrant bazaars to frolicking in snow, our Shimla and Manali packages make your holiday a memorable experience. Book now and see the mountains at their finest."}
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Are Shimla Manali packages suitable for families?",
+        "answer": "Yes, the destinations are senior citizen- and child-friendly with child, old people, and all age group facilities."
+      },
+      {
+        "question": "Which is best time to visit Shimla and Manali?",
+        "answer": "March to June is ideal time for good weather. December to February is ideal time for snowfall. Autumn seasons are also extremely good for view point."
+      },
+      {
+        "question": "What items are included in the Shimla Manali tour package?",
+        "answer": "The hotel accommodation, local sightseeing, conveyance, and escorted tours are covered in most packages."
+      },
+      {
+        "question": "How many minimum days required for Shimla Manali tour?",
+        "answer": "5 to 7 days journey is generally enough to cover Shimla and Manali tour comfortably without rushing."
+      },
+      {
+        "question": "How do I travel to Shimla and Manali?",
+        "answer": "Shimla are accessible by train and road. The Manali are accessible mostly by road and the closest airport at Kullu."
+      }
+    ]
   },
+
+
   amritsar: {
     title: 'Amritsar Travel Packages',
     subtitle: 'Golden City - Spirituality, History & Patriotism',

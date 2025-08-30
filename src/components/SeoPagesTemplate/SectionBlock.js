@@ -226,8 +226,8 @@ const renderContent = (content, isHeading = false) => {
   if (typeof content === 'string') {
     return isHeading ? <H2Item>{content}</H2Item> : <PItem>{content}</PItem>
   }
-  const tag = Object.keys(content)[0]
-  const text = content[tag]
+  const tag = Object?.keys(content??{})?.[0]
+  const text = content?.[tag]??''
   switch (tag) {
     case 'h1':
       return <H1Item>{text}</H1Item>
