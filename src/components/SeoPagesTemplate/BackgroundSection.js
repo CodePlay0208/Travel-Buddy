@@ -23,6 +23,7 @@ const BackgroundSectionContainer = styled.section`
   border-radius: 15px;
   position: relative;
   margin-bottom: 60px;
+  border:none;
   &::before {
     content: '';
     position: absolute;
@@ -32,6 +33,16 @@ const BackgroundSectionContainer = styled.section`
     bottom: 0;
     border-radius: 15px;
     z-index: 0;
+  }
+
+  @media (max-width: 440px) {
+    width: 100%;
+height: 180px;
+border-radius: 14px;
+margin-bottom: 32px;
+
+
+
   }
 `;
 const BackgroundSectionContent = styled.div`
@@ -72,9 +83,9 @@ const BackgroundSectionParagraph = styled.p`
 `;
 
 const BackgroundSection = ({ section }) => (
-    <BackgroundSectionContainer backgroundImage={section.backgroundImage}>
-      
-    </BackgroundSectionContainer>
+  <BackgroundSectionContainer backgroundImage={section.backgroundImage}>
+
+  </BackgroundSectionContainer>
 );
 
 export default BackgroundSection;

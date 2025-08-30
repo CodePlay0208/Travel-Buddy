@@ -19,7 +19,7 @@ const mapStateToProps = (state) => ({
   startLocationTrips: state.tripReducer.startLocationTrips,
 });
 
-const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination, getTripsByStartLocation }) => {
+const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination = {}, getTripsByStartLocation }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,16 +41,10 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
     return <div>Destination not found</div>;
   }
 
-  // Prepare data for SectionTemplate
-  const sectionTemplateData = {
-    sections: [
-      ...(destination.hero ? [destination.hero] : []),
-      ...(destination.content?.sections || [])
-    ],
-    faqs: destination.content?.faqs || []
-  };
-  const { heading, content } = destination.hero || { heading: '', content: '' };
-  const sections = [
+  const heading = destination.pageHeading;
+  const title = destination.pageTitle
+  const content = destination.pageContent;
+  const sections = destination.sections || [
     {
       heading: { h1: "Explore Goa with Our Holiday Packages" },
       paragraph: { p: "Goa is more than just beaches, it's a journey through culture, cuisine, and coastlines. Our holiday packages in Goa cover top destinations such as:" },
@@ -77,7 +71,7 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
     }
   ];
 
-  const faqs = [
+  const faqs = destination.faqs || [
     {
       question: "What is the average Goa trip cost for 3 to 5 days?",
       answer: "₹8,500 to ₹25,000 per person depending on hotel category and season."
@@ -117,23 +111,23 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
 
       <PageContainer>
 
-        <TemplateHeader heading={"Goa Tour Packages"} content={"Looking for the perfect Goa tour package to unwind, explore, or celebrate something special?"} />
+        <TemplateHeader heading={heading} content={title} />
 
-          
+
         <HeaderSection>
-        <InfoWithImageSection
-          text={destination.seo.metaKeywords}
-        />
+          <InfoWithImageSection
+            text={content}
+          />
 
           {sections.map((section, index) => {
             if (section.backgroundImage) {
               return <BackgroundSectionBlock key={index} section={section} />;
             }
-            else if(index===0){
-               return <>
+            else if (index === 0) {
+              return <>
 
-              <SectionBlock key={index} section={section} />
-              <BackgroundSection key={index} section={section} />
+                <SectionBlock key={index} section={section} />
+                <BackgroundSection key={index} section={section} />
               </>
             }
             return <SectionBlock key={index} section={section} />;

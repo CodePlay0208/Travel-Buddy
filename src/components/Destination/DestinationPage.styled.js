@@ -19,9 +19,22 @@ transform: translateY(-120px);
 
   background-color: white;
 
+  @media (max-width: 440px) {
+    padding: 40px 16px 0;
+    border-top-left-radius: 52px;
+    border-top-right-radius: 52px;
+    transform: translateY(-40px);
+    gap: 32px;
+  }
+
 `;
 export const TripSection = styled.header`
 margin :100px 0px;
+
+
+  @media (max-width: 440px) {
+    margin :60px 0px;
+  }
 
 `;
 

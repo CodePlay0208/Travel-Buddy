@@ -43,7 +43,7 @@ const SideFrame = styled.div`
   justify-content: center;
   gap: 24px;
   @media (max-width: 440px) {
-    width: 85%;
+    width: 90%;
     height: 310px;
     gap: 16px;
   }

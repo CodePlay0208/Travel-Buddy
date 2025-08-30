@@ -18,9 +18,10 @@ const SectionContainer = styled.section`
     width: 100%;
   }
 
-  @media (max-width: 1439px) {
+  @media (max-width: 440px) {
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
+    margin-bottom: 32px;
   }
 `;
 
@@ -43,6 +44,16 @@ const TextContainer = styled.div`
     color: #000000;
     margin: 0;
     width: 100%;
+
+    @media (max-width: 440px) {
+      font-family: Montserrat;
+font-weight: 400;
+font-style: Regular;
+font-size: 16px;
+line-height: 150%;
+letter-spacing: 0%;
+text-align: justify;
+    }
   }
 `;
 
@@ -56,8 +67,11 @@ const ImageContainer = styled.div`
   background-repeat: no-repeat;
   flex-shrink: 0;
 
-  @media (max-width: 1439px) {
-    display: none;
+  @media (max-width: 440px) {
+    width: 100%;
+    height: 400px;
+    border-radius: 14px;
+    background-position: top;
   }
 `;
 
@@ -70,7 +84,7 @@ const InfoWithImageSection = ({ text, imageUrl }) => {
       if (textRef.current) {
         const textHeight = textRef.current.scrollHeight;
         const imageHeight = 528;
-        
+
         // If text content is taller than image, expand to full width
         if (textHeight > imageHeight) {
           setExpanded(true);
@@ -82,7 +96,7 @@ const InfoWithImageSection = ({ text, imageUrl }) => {
 
     // Check on mount and when text changes
     checkTextHeight();
-    
+
     // Add resize listener for responsive behavior
     window.addEventListener('resize', checkTextHeight);
     return () => window.removeEventListener('resize', checkTextHeight);
