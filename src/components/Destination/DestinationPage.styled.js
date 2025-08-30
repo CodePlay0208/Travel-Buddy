@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 
-export const PageContainer = styled.main`
+export const PageContainer = styled.div`
   min-height: 100vh;
   padding: 0;
 `;
@@ -10,7 +10,7 @@ export const PageContainer = styled.main`
 
 export const HeaderSection = styled.header`
   text-align: center;
-  padding: 120px 8% 100px;
+  padding: 120px 8% 0;
 opacity: 1;
 gap: 60px;
 border-top-left-radius: 155px;
@@ -18,6 +18,10 @@ border-top-right-radius: 155px;
 transform: translateY(-120px);
 
   background-color: white;
+
+`;
+export const TripSection = styled.header`
+margin :100px 0px;
 
 `;
 

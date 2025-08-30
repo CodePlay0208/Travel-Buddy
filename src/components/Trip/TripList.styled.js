@@ -13,7 +13,7 @@ export const Container = styled.div`
   scroll-behavior: smooth;
 
   p {
-    font-size: 1.5rem;
+    font-size: 1.85rem;
   }
   @media (max-width: 440px) {
     font-size: 3rem;
@@ -34,8 +34,9 @@ export const Container = styled.div`
 
 export const Heading = styled.h1`
   display: flex;
-  padding: 0 6%;
-  font-size: 2.5rem;
+  justify-content: ${(props) => props.justify || 'flex-start'};
+  padding: ${(props) => props.padding || '0 6%'};
+  font-size: 3.25rem;
   @media (max-width: 768px) {
     font-size: 5rem;
   }

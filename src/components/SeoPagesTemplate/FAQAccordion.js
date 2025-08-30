@@ -10,17 +10,17 @@ const FAQSection = styled.section`
   padding: 0px;
   gap: 32px;
   width: 100%;
-  max-width: 1420px;
+  margin: 0 0 60px 0; 
 `;
 const FAQHeading = styled.h1`
+display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
-  font-size: 56px;
+  font-size: 3.25rem;
   line-height: 120%;
   color: #252525;
   margin: 0;
   width: 100%;
-  max-width: 832px;
 `;
 const AccordionContainer = styled.div`
   display: flex;
@@ -29,6 +29,7 @@ const AccordionContainer = styled.div`
   padding: 0px;
   gap: 32px;
   width: 100%;
+  
 `;
 const AccordionItem = styled.div`
   display: flex;
@@ -40,12 +41,14 @@ const AccordionItem = styled.div`
   background: ${props => props.isOpen ? '#8DD3BB' : 'transparent'};
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: 2px 3px 15px 0px #00000040;
+
 `;
 const AccordionHeader = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding: 40px;
   gap: 10px;
   width: 100%;
@@ -86,12 +89,11 @@ const AccordionContent = styled.div`
 const AccordionAnswer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding: 40px;
   gap: 10px;
   width: 100%;
-  min-height: 320px;
   border-radius: 0px 0px 24px 24px;
   box-sizing: border-box;
   font-family: 'Montserrat', Arial, sans-serif;

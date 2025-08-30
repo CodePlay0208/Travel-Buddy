@@ -2,7 +2,7 @@ import React, { useEffect, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
-import { PageContainer, HeaderSection } from './Destination/DestinationPage.styled';
+import { PageContainer, HeaderSection, TripSection } from './Destination/DestinationPage.styled';
 import TripList from './Trip/TripList';
 import { getTrips, getTripsByStartLocation } from '../actions/trips.action';
 import SectionTemplate from './SeoPagesTemplate/SectionTemplate';
@@ -127,19 +127,22 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination,
           })}
 
 
-          {/* Trip listings */}
-          {(!trips || !trips.length) && (!startLocationTrips || !startLocationTrips.length) ? (
-            <TripList title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />
-          ) : (
-            <>
-              {trips?.length > 0 && (
-                <TripList title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />
-              )}
-              {startLocationTrips?.length > 0 && (
-                <TripList title={`Available Trips from ${destination.searchTag}`} trips={startLocationTrips} editEnable={false} />
-              )}
-            </>
-          )}
+          <TripSection>
+
+            {/* Trip listings */}
+            {(!trips || !trips.length) && (!startLocationTrips || !startLocationTrips.length) ? (
+              <TripList padding={'0'} justify={'center'} title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />
+            ) : (
+              <>
+                {trips?.length > 0 && (
+                  <TripList padding={'0'} justify={'center'} title={`Available Trips to ${destination.searchTag}`} trips={trips} editEnable={false} />
+                )}
+                {startLocationTrips?.length > 0 && (
+                  <TripList padding={'0'} justify={'center'} title={`Available Trips from ${destination.searchTag}`} trips={startLocationTrips} editEnable={false} />
+                )}
+              </>
+            )}
+          </TripSection>
           <FAQAccordion faqs={faqs} />
         </HeaderSection>
       </PageContainer>

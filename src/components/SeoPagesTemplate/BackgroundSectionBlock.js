@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { images } from '../../assets';
+
 
 const BackgroundSection = styled.section`
   box-sizing: border-box;
@@ -7,20 +9,18 @@ const BackgroundSection = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 80px 60px;
+  padding: 4.5% 3.5%;
   gap: 12px;
   isolation: isolate;
   width: 100%;
-  max-width: 1419px;
-  height: 342px;
-  background-image: url(${props => props.backgroundImage});
+  background-image: url(${images.BackgroundImage});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border: 1px solid #000000;
   border-radius: 20px;
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   &::before {
     content: '';
     position: absolute;
@@ -46,7 +46,7 @@ const BackgroundSectionContent = styled.div`
 const BackgroundSectionHeading = styled.h1`
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
-  font-size: 62px;
+  font-size: 3.25rem;
   line-height: 120%;
   text-align: center;
   color: #8DD3BB;
@@ -59,7 +59,7 @@ const BackgroundSectionHeading = styled.h1`
 const BackgroundSectionParagraph = styled.p`
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 1.85rem;
   line-height: 150%;
   text-align: center;
   color: #FFFFFF;
