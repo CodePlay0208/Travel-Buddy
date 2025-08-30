@@ -1,8 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import { images } from '../../assets';
+import React from 'react'
+import styled from 'styled-components'
+import { images } from '../../assets'
 import backgroundImage1 from './firstImage.jpg'
-
 
 const BackgroundSectionContainer = styled.section`
   box-sizing: border-box;
@@ -13,9 +12,9 @@ const BackgroundSectionContainer = styled.section`
   padding: 4.5% 3.5%;
   gap: 12px;
   isolation: isolate;
-  height:450px;
+  height: 450px;
   width: 100%;
-  background-image: url(${props => props.backgroundImage || backgroundImage1});
+  background-image: url(${(props) => props.backgroundImage || backgroundImage1});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,7 +22,7 @@ const BackgroundSectionContainer = styled.section`
   border-radius: 15px;
   position: relative;
   margin-bottom: 60px;
-  border:none;
+  border: none;
   &::before {
     content: '';
     position: absolute;
@@ -37,14 +36,11 @@ const BackgroundSectionContainer = styled.section`
 
   @media (max-width: 440px) {
     width: 100%;
-height: 180px;
-border-radius: 14px;
-margin-bottom: 32px;
-
-
-
+    height: 180px;
+    border-radius: 14px;
+    margin-bottom: 32px;
   }
-`;
+`
 const BackgroundSectionContent = styled.div`
   position: relative;
   z-index: 1;
@@ -54,38 +50,36 @@ const BackgroundSectionContent = styled.div`
   gap: 12px;
   width: 100%;
   max-width: 1299px;
-`;
+`
 const BackgroundSectionHeading = styled.h1`
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
   font-size: 3.25rem;
   line-height: 120%;
   text-align: center;
-  color: #8DD3BB;
+  color: #8dd3bb;
   margin: 0;
   width: 100%;
   max-width: 1297px;
   min-height: 74px;
   z-index: 1;
-`;
+`
 const BackgroundSectionParagraph = styled.p`
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 600;
   font-size: 1.85rem;
   line-height: 150%;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0;
   width: 100%;
   max-width: 1299px;
   min-height: 96px;
   z-index: 2;
-`;
+`
 
 const BackgroundSection = ({ section }) => (
-  <BackgroundSectionContainer backgroundImage={section.backgroundImage}>
+  <BackgroundSectionContainer backgroundImage={section.backgroundImage}></BackgroundSectionContainer>
+)
 
-  </BackgroundSectionContainer>
-);
-
-export default BackgroundSection;
+export default BackgroundSection

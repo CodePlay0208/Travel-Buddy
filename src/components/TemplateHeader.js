@@ -97,7 +97,7 @@ const WaitingMessageSmall = styled.h2`
   }
 `
 
-const TemplateHeader = ({heading,content}) => (
+const TemplateHeader = ({ heading, content }) => (
   <Frame>
     <ImageWrapper>
       <Overlay />

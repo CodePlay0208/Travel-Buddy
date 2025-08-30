@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import CheckIcon from './CheckIcon';
+import React from 'react'
+import styled from 'styled-components'
+import CheckIcon from './CheckIcon'
 
 const Section = styled.section`
   display: flex;
@@ -14,10 +14,10 @@ const Section = styled.section`
   @media (max-width: 440px) {
     margin-bottom: 32px;
   }
-`;
+`
 const SectionHeadingContainer = styled.div`
   width: 100%;
-`;
+`
 const SectionContentContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -29,10 +29,10 @@ const SectionContentContainer = styled.div`
   @media (max-width: 440px) {
     gap: 24px;
   }
-`;
+`
 const SectionParagraphContainer = styled.div`
   width: 100%;
-`;
+`
 const List = styled.ul`
   list-style: none;
   padding: 0;
@@ -45,7 +45,7 @@ const List = styled.ul`
   @media (max-width: 440px) {
     gap: 12px;
   }
-`;
+`
 const ListItem = styled.li`
   display: flex;
   flex-direction: row;
@@ -57,8 +57,8 @@ const ListItem = styled.li`
 
   @media (max-width: 440px) {
     gap: 6px;
-    }
-`;
+  }
+`
 const IconWrapper = styled.div`
   width: 40px;
   height: 48px;
@@ -71,12 +71,12 @@ const IconWrapper = styled.div`
     width: 16px;
     height: 22px;
   }
-  
-  svg{
-    width : 100%;
-    height : 100%;
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
-`;
+`
 const ListItemContent = styled.div`
   flex: 1;
   font-family: 'Montserrat', Arial, sans-serif;
@@ -90,15 +90,15 @@ const ListItemContent = styled.div`
 
   @media (max-width: 440px) {
     font-family: Montserrat;
-font-weight: 600;
-font-style: SemiBold;
-font-size: 16px;
-leading-trim: NONE;
-line-height: 22px;
-letter-spacing: 0%;
-text-align: justify;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: justify;
   }
-`;
+`
 
 const H1Item = styled.h1`
   display: flex;
@@ -111,77 +111,74 @@ const H1Item = styled.h1`
 
   @media (max-width: 440px) {
     font-family: Montserrat;
-font-weight: 700;
-font-style: Bold;
-font-size: 32px;
-leading-trim: NONE;
-line-height: 120%;
-letter-spacing: 0%;
-text-align: center;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 32px;
+    leading-trim: NONE;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-align: center;
   }
-`;
+`
 const H2Item = styled.h2`
- display: flex;
+  display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
   font-size: 3.25rem;
   line-height: 120%;
   color: #252525;
   margin: 0;
-   @media (max-width: 440px) {
+  @media (max-width: 440px) {
     font-family: Montserrat;
-font-weight: 700;
-font-style: Bold;
-font-size: 32px;
-leading-trim: NONE;
-line-height: 120%;
-letter-spacing: 0%;
-text-align: center;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 32px;
+    leading-trim: NONE;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-align: center;
   }
-`;
+`
 const H3Item = styled.h3`
- display: flex;
+  display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
   font-size: 3.25rem;
   line-height: 120%;
   color: #252525;
   margin: 0;
-   @media (max-width: 440px) {
+  @media (max-width: 440px) {
     font-family: Montserrat;
-font-weight: 700;
-font-style: Bold;
-font-size: 32px;
-leading-trim: NONE;
-line-height: 120%;
-letter-spacing: 0%;
-text-align: center;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 32px;
+    leading-trim: NONE;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-align: center;
   }
-`;
+`
 const H4Item = styled.h4`
- display: flex;
+  display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
   font-size: 3.25rem;
   line-height: 120%;
   color: #252525;
   margin: 0;
-   @media (max-width: 440px) {
+  @media (max-width: 440px) {
     font-family: Montserrat;
-font-weight: 700;
-font-style: Bold;
-font-size: 32px;
-leading-trim: NONE;
-line-height: 120%;
-letter-spacing: 0%;
-text-align: center;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 32px;
+    leading-trim: NONE;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-align: center;
   }
-
-
-
-`;
+`
 const PItem = styled.p`
- display: flex;
+  display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 400;
   font-size: 1.85rem;
@@ -193,17 +190,17 @@ const PItem = styled.p`
 
   @media (max-width: 440px) {
     font-family: Montserrat;
-font-weight: 400;
-font-style: Regular;
-font-size: 16px;
-leading-trim: NONE;
-line-height: 150%;
-letter-spacing: 0%;
-text-align: justify;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: justify;
   }
-`;
+`
 const DivItem = styled.div`
- display: flex;
+  display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 400;
   font-size: 32px;
@@ -215,42 +212,45 @@ const DivItem = styled.div`
 
   @media (max-width: 440px) {
     font-family: Montserrat;
-font-weight: 400;
-font-style: Regular;
-font-size: 16px;
-leading-trim: NONE;
-line-height: 150%;
-letter-spacing: 0%;
-text-align: justify;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: justify;
   }
-`;
+`
 
 const renderContent = (content, isHeading = false) => {
   if (typeof content === 'string') {
-    return isHeading ? <H2Item>{content}</H2Item> : <PItem>{content}</PItem>;
+    return isHeading ? <H2Item>{content}</H2Item> : <PItem>{content}</PItem>
   }
-  const tag = Object.keys(content)[0];
-  const text = content[tag];
+  const tag = Object.keys(content)[0]
+  const text = content[tag]
   switch (tag) {
-    case 'h1': return <H1Item>{text}</H1Item>;
-    case 'h2': return <H2Item>{text}</H2Item>;
-    case 'h3': return <H3Item>{text}</H3Item>;
-    case 'h4': return <H4Item>{text}</H4Item>;
-    case 'p': return <PItem>{text}</PItem>;
-    case 'div': return <DivItem>{text}</DivItem>;
-    default: return <PItem>{text}</PItem>;
+    case 'h1':
+      return <H1Item>{text}</H1Item>
+    case 'h2':
+      return <H2Item>{text}</H2Item>
+    case 'h3':
+      return <H3Item>{text}</H3Item>
+    case 'h4':
+      return <H4Item>{text}</H4Item>
+    case 'p':
+      return <PItem>{text}</PItem>
+    case 'div':
+      return <DivItem>{text}</DivItem>
+    default:
+      return <PItem>{text}</PItem>
   }
-};
+}
 
 const SectionBlock = ({ section }) => (
   <Section>
-    <SectionHeadingContainer>
-      {renderContent(section.heading, true)}
-    </SectionHeadingContainer>
+    <SectionHeadingContainer>{renderContent(section.heading, true)}</SectionHeadingContainer>
     <SectionContentContainer>
-      <SectionParagraphContainer>
-        {renderContent(section.paragraph, false)}
-      </SectionParagraphContainer>
+      <SectionParagraphContainer>{renderContent(section.paragraph, false)}</SectionParagraphContainer>
       {section.list && (
         <List>
           {section.list.map((item, itemIndex) => (
@@ -258,15 +258,13 @@ const SectionBlock = ({ section }) => (
               <IconWrapper>
                 <CheckIcon />
               </IconWrapper>
-              <ListItemContent>
-                {typeof item === 'string' ? item : renderContent(item)}
-              </ListItemContent>
+              <ListItemContent>{typeof item === 'string' ? item : renderContent(item)}</ListItemContent>
             </ListItem>
           ))}
         </List>
       )}
     </SectionContentContainer>
   </Section>
-);
+)
 
-export default SectionBlock;
+export default SectionBlock

@@ -1,7 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { images } from '../../assets';
-
+import React from 'react'
+import styled from 'styled-components'
+import { images } from '../../assets'
 
 const BackgroundSection = styled.section`
   box-sizing: border-box;
@@ -32,26 +31,26 @@ const BackgroundSection = styled.section`
     border-radius: 20px;
     z-index: 0;
   }
-  border:none;
+  border: none;
 
   @media (max-width: 440px) {
     width: 100%;
-height: 275px;
-border-radius: 0px;
-margin-bottom: 32px;
-&::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    height: 275px;
     border-radius: 0px;
-    z-index: 0;
+    margin-bottom: 32px;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 0px;
+      z-index: 0;
+    }
   }
-  }
-`;
+`
 const BackgroundSectionContent = styled.div`
   position: relative;
   z-index: 1;
@@ -61,14 +60,14 @@ const BackgroundSectionContent = styled.div`
   gap: 12px;
   width: 100%;
   max-width: 1299px;
-`;
+`
 const BackgroundSectionHeading = styled.h1`
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
   font-size: 3.25rem;
   line-height: 120%;
   text-align: center;
-  color: #8DD3BB;
+  color: #8dd3bb;
   margin: 0;
   width: 100%;
   max-width: 1297px;
@@ -77,22 +76,22 @@ const BackgroundSectionHeading = styled.h1`
 
   @media (max-width: 440px) {
     font-family: Montserrat;
-font-weight: 700;
-font-style: Bold;
-font-size: 32px;
-leading-trim: NONE;
-line-height: 120%;
-letter-spacing: 0%;
-text-align: center;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 32px;
+    leading-trim: NONE;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-align: center;
   }
-`;
+`
 const BackgroundSectionParagraph = styled.p`
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 600;
   font-size: 1.85rem;
   line-height: 150%;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0;
   width: 100%;
   max-width: 1299px;
@@ -101,15 +100,15 @@ const BackgroundSectionParagraph = styled.p`
 
   @media (max-width: 440px) {
     font-family: Montserrat;
-font-weight: 600;
-font-style: SemiBold;
-font-size: 16px;
-leading-trim: NONE;
-line-height: 150%;
-letter-spacing: 0%;
-text-align: center;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
   }
-`;
+`
 
 const BackgroundSectionBlock = ({ section }) => (
   <BackgroundSection backgroundImage={section.backgroundImage}>
@@ -122,6 +121,6 @@ const BackgroundSectionBlock = ({ section }) => (
       </BackgroundSectionParagraph>
     </BackgroundSectionContent>
   </BackgroundSection>
-);
+)
 
-export default BackgroundSectionBlock;
+export default BackgroundSectionBlock

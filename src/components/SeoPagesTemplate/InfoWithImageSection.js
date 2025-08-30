@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
-import secondImage from './secondImage.jpg'; // Ensure this image exists in the same directory
+import React, { useState, useEffect, useRef } from 'react'
+import styled from 'styled-components'
+import secondImage from './secondImage.jpg' // Ensure this image exists in the same directory
 
 // Styled Components
 const SectionContainer = styled.section`
@@ -23,7 +23,7 @@ const SectionContainer = styled.section`
     gap: 32px;
     margin-bottom: 32px;
   }
-`;
+`
 
 const TextContainer = styled.div`
   display: flex;
@@ -32,8 +32,8 @@ const TextContainer = styled.div`
   padding: 0px;
   gap: 60px;
   width: 100%;
-  flex: ${props => props.expanded ? 'none' : '1'};
-  
+  flex: ${(props) => (props.expanded ? 'none' : '1')};
+
   p {
     font-family: 'Montserrat', Arial, sans-serif;
     font-style: normal;
@@ -47,15 +47,15 @@ const TextContainer = styled.div`
 
     @media (max-width: 440px) {
       font-family: Montserrat;
-font-weight: 400;
-font-style: Regular;
-font-size: 16px;
-line-height: 150%;
-letter-spacing: 0%;
-text-align: justify;
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 16px;
+      line-height: 150%;
+      letter-spacing: 0%;
+      text-align: justify;
     }
   }
-`;
+`
 
 const ImageContainer = styled.div`
   width: 470px;
@@ -73,45 +73,43 @@ const ImageContainer = styled.div`
     border-radius: 14px;
     background-position: top;
   }
-`;
+`
 
 const InfoWithImageSection = ({ text, imageUrl }) => {
-  const [expanded, setExpanded] = useState(false);
-  const textRef = useRef(null);
+  const [expanded, setExpanded] = useState(false)
+  const textRef = useRef(null)
 
   useEffect(() => {
     const checkTextHeight = () => {
       if (textRef.current) {
-        const textHeight = textRef.current.scrollHeight;
-        const imageHeight = 528;
+        const textHeight = textRef.current.scrollHeight
+        const imageHeight = 528
 
         // If text content is taller than image, expand to full width
         if (textHeight > imageHeight) {
-          setExpanded(true);
+          setExpanded(true)
         } else {
-          setExpanded(false);
+          setExpanded(false)
         }
       }
-    };
+    }
 
     // Check on mount and when text changes
-    checkTextHeight();
+    checkTextHeight()
 
     // Add resize listener for responsive behavior
-    window.addEventListener('resize', checkTextHeight);
-    return () => window.removeEventListener('resize', checkTextHeight);
-  }, [text]);
+    window.addEventListener('resize', checkTextHeight)
+    return () => window.removeEventListener('resize', checkTextHeight)
+  }, [text])
 
   return (
     <SectionContainer className={expanded ? 'expanded' : ''}>
       <TextContainer ref={textRef} expanded={expanded}>
         <p>{text}</p>
       </TextContainer>
-      {!expanded && (
-        <ImageContainer imageUrl={imageUrl} />
-      )}
+      {!expanded && <ImageContainer imageUrl={imageUrl} />}
     </SectionContainer>
-  );
-};
+  )
+}
 
-export default InfoWithImageSection;
+export default InfoWithImageSection
