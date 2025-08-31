@@ -1,4 +1,9 @@
 import React from 'react'
+
+import FamilyHolidayPage from './pages/FamilyHolidayPage'
+import TourTravelPage from './pages/TourTravelPage'
+import TrekkingTripsPage from './pages/TrekkingTripsPage'
+import VacationsPage from './pages/VacationsPage'
 import LandingPage from './screens/LandingPage/LandingPage'
 import SearchResultsPage from './screens/SearchResultsPage/SearchResultsPage'
 import PublishTrip from './screens/PublishTrip/PublishTrip'
@@ -41,7 +46,8 @@ export const routes = [
     path: '/contact-us',
     element: <HomePage />,
     isPrivate: false,
-  }, {
+  },
+  {
     path: '/about-us',
     element: <AboutUs />,
     isPrivate: false,
@@ -153,9 +159,30 @@ export const routes = [
     path: '/goa',
     element: <GoaPage />,
     isPrivate: false,
-  }, {
+  },
+  {
     path: '/goa-tour-packages',
     element: <GoaPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/family-holiday-tour-packages',
+    element: <FamilyHolidayPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/tour-travel-packages',
+    element: <TourTravelPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/trekking-trips-packages',
+    element: <TrekkingTripsPage />,
+    isPrivate: false,
+  },
+  {
+    path: '/vacations-tour-packages',
+    element: <VacationsPage />,
     isPrivate: false,
   },
   {
