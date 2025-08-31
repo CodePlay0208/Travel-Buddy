@@ -108,6 +108,7 @@ const H1Item = styled.h1`
   line-height: 120%;
   color: #252525;
   margin: 0;
+  text-align: left;
 
   @media (max-width: 440px) {
     font-family: Montserrat;
@@ -128,6 +129,7 @@ const H2Item = styled.h2`
   line-height: 120%;
   color: #252525;
   margin: 0;
+  text-align: left;
   @media (max-width: 440px) {
     font-family: Montserrat;
     font-weight: 700;
@@ -147,6 +149,7 @@ const H3Item = styled.h3`
   line-height: 120%;
   color: #252525;
   margin: 0;
+  text-align: left;
   @media (max-width: 440px) {
     font-family: Montserrat;
     font-weight: 700;
@@ -166,6 +169,7 @@ const H4Item = styled.h4`
   line-height: 120%;
   color: #252525;
   margin: 0;
+  text-align: left;
   @media (max-width: 440px) {
     font-family: Montserrat;
     font-weight: 700;
