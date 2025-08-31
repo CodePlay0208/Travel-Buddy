@@ -1,5 +1,268 @@
 export const destinationContent = {
   // All new JSON data from user request goes here
+
+  
+
+
+
+  tourTravel: {
+    pageHeading: 'Tour Travel Packages for Your Dream Holidays',
+    pageTitle: 'Finding the right tour travel packages to makes every journey smooth and memorable.',
+    pageContent:
+      'Finding the right tour travel packages to makes every journey smooth and memorable. A good travel plan saves time and gives you the freedom to enjoy without stress. Our platform is built for travelers who want reliable services with best experiences. From short weekend trips to long international tours - we bring everything in one place.',
+    title: 'Tour Travel Packages for Your Dream Holidays',
+    searchTag: 'Tour Travel,India',
+    seo: {
+      metaTitle: 'Best Travel Tour Packages for Holidays | Travmigoz',
+      metaDescription:
+        'Enjoy stress-free holidays with Travmigoz. Get the best domestic and international travel tour packages designed for comfort, adventure, and great value.',
+      metaKeywords:
+        'tour travel packages, best travel packages, luxury tour packages, budget tour packages, international tours, domestic tours, customized packages, group travel, honeymoon packages',
+    },
+    description:
+      'Finding the right tour travel packages to makes every journey smooth and memorable. A good travel plan saves time and gives you the freedom to enjoy without stress. Our platform is built for travelers who want reliable services with best experiences. From short weekend trips to long international tours - we bring everything in one place.',
+    sections: [
+      {
+        heading: { h2: 'Best Travel Tour Packages for Every Traveler' },
+        paragraph: {
+          p: 'We design the best travel tour packages to fit all types of travelers. Some want luxury stays while others want affordable trips. Families look for comfort and safety. Couples want romance and privacy. Solo travelers want freedom and flexibility. We make sure every package is planned with care. Each plan covers top attractions, guided tours, and local activities. Hotels are handpicked. Transfers are smooth. You only need to pack and travel.',
+        },
+      },
+      {
+        heading: { h2: 'Why Choose the Best Website for Tour Packages' },
+        paragraph: {
+          p: 'Travelers often ask which is the best website for tour packages. The answer is simple. A great travel website should give trust, variety, and value. We provide all three.',
+        },
+        list: [
+          'Expert planning from start to end',
+          'Packages for both India and international holidays',
+          'Transparent pricing with no hidden costs',
+          'Authentic experiences beyond common sightseeing',
+          '24x7 support for complete peace of mind',
+        ],
+      },
+      {
+        heading: { h2: 'Explore All Types of Tour Travel Packages' },
+        paragraph: {
+          p: 'We believe travel is not one-size-fits-all. That is why we create multiple categories of tour travel packages to match your style.',
+        },
+        list: [
+          'Luxury Tour Packages -- Designed for comfort with five-star stays and premium services',
+          'Budget Tour Packages -- Affordable and well planned to give you the best within your budget',
+          'International Tour Packages -- For Europe, Asia, America, and more with guided plans',
+          "Domestic Tour Packages to experience India's culture, history, and nature in a safe way",
+          'Customized tour packages specially tailored to on-base of activities and locations of your choice',
+          'Group Travel Packages are perfect for friends, students, or office trips',
+          'Honeymoon Packages for Romantic escapes to beaches, mountains, and luxury resorts',
+        ],
+      },
+      {
+        heading: { h2: 'How We Create the Best Travel Experiences' },
+        paragraph: {
+          p: 'We focus on more than just bookings. Our team adds small touches that make a big difference. Every destination is checked for quality. Local guides are selected for their knowledge. Hotels are chosen for comfort and safety. Transport is arranged for ease of travel. This attention to detail makes us the best website for tour packages trusted by travel lovers.',
+        },
+      },
+      {
+        heading: { h2: 'Start Your Next Journey Today' },
+        paragraph: {
+          p: 'Your dream vacation is just a step away. With our wide range of tour travel packages you can travel anywhere with confidence. Choose from luxury, budget, international, or domestic tours. Book easily with the best travel tour packages created by experts. Travel is not just about visiting places. It is about creating moments that bring joy. Book now with the best website for tour packages and make your journey unforgettable.',
+        },
+      },
+    ],
+    faqs: [
+      {
+        question: 'How do I select the appropriate tour travel package?',
+        answer:
+          'You need to determine your budget and destination to arrange your tour travel packages cover hotels, transfers, and sightseeing. The ideal package must have comfort, value, and special experiences.',
+      },
+      {
+        question: 'Can your travel tour packages be customized?',
+        answer:
+          'Yes. We offer customized tour packages wherein you may choose destinations, hotels, activities, and trip duration to suit your choices.',
+      },
+      {
+        question: 'What are the best travel tour packages?',
+        answer:
+          'All packages feature hotel accommodations, airport transfers, guided sightseeing, and local experiences. Others feature meals, flights, or private transportation based on the package.',
+      },
+      {
+        question: 'Do you provide domestic services and international tour packages?',
+        answer:
+          "Yes. We have them both. From exploring India's heritage and culture to destinations around the world, we have full-travel solutions for all types of travelers.",
+      },
+      {
+        question: 'Do you provide luxury travel tour packages?',
+        answer:
+          'Yes. We provide high-end luxury tour packages with five-star accommodations, private transfers, and private activities for travelers seeking a luxury experience.',
+      },
+    ],
+  },
+  trekkingTrips: {
+    pageHeading: 'Trekking Trips Packages',
+    pageTitle: 'A trek is not only a walk through hills.',
+    pageContent:
+      'A trek is not only a walk through hills. It is the sound of a stream beside you. It is the silence of pine forests. It is the surprise of finding a village hidden in the valley. Trekking trips give space to slow down and breathe in a way city life never allows.',
+    title: 'Trekking Trips Packages',
+    searchTag: 'Trekking,India',
+    seo: {
+      metaTitle: 'Adventure Trekking Trips Packages | Travmigoz',
+      metaDescription:
+        'Find trekking trips designed for families, beginners, and experts. Packages include guides, meals, and safe accommodation so you can enjoy every step.',
+      metaKeywords:
+        'trekking packages, adventure trekking, mountain treks, hiking trips, trekking guides, camping packages, high altitude treks, family trekking, cultural treks',
+    },
+    description:
+      'A trek is not only a walk through hills. It is the sound of a stream beside you. It is the silence of pine forests. It is the surprise of finding a village hidden in the valley. Trekking trips give space to slow down and breathe in a way city life never allows.',
+    sections: [
+      {
+        heading: { h2: 'Why Trekking Packages Work Well?' },
+        paragraph: {
+          p: 'Planning a trek on your own to feel overwhelming. Where to stay. Which route is safe? How much time the trail will take. A trekking package takes care of these details so the focus stays on the journey. Routes are marked. Local guides walk with you. Camps or lodges are ready when you arrive tired at the end of the day.',
+        },
+      },
+      {
+        heading: { h2: 'Different Types of Trekking Trips' },
+        list: [
+          'Short Treks -- Ideal for weekends and first-time trekkers',
+          'Moderate Treks -- Longer routes with a good mix of adventure and rest',
+          'High Mountain Treks -- Demanding climbs that reward with snow peaks and alpine lakes',
+          'Cultural Treks -- Paths through villages where food, traditions, and local stories add to the journey',
+          'Comfort Treks -- Walks designed with private tents, warm meals, and cozy stays',
+        ],
+      },
+      {
+        heading: { h2: 'What a Trek Feels Like' },
+        paragraph: {
+          p: 'Every trail holds its own surprises. Sometimes it is mist lifting slowly from the hills. It is the sound of boots on a wooden bridge across a rushing stream. The nights often end around a fire where stories flow under a sky crowded with stars. Trekking packages usually cover guides, meals, and safety support, so the walk feels safe and the mind stays light.',
+        },
+      },
+      {
+        heading: { h2: 'Picking the Right Trek' },
+        paragraph: {
+          p: 'The choice depends on mood and fitness. Families often look for gentle slopes with space for children to play. Adventure seekers want high passes and rocky climbs. Some choose a trek that mixes nature with culture. A good package can be adjusted so the pace suits the group.',
+        },
+      },
+      {
+        heading: { h2: 'Why Treks Stay in Memory' },
+        paragraph: {
+          p: 'Reaching the summit feels good but it is never the only highlight. Small moments often stay longer. A rainbow after rain. A smile from a villager offering tea. The bond formed with fellow trekkers while walking together. These are the pieces that make trekking trips unforgettable.',
+        },
+      },
+    ],
+    faqs: [
+      {
+        question: 'What comes in a trekking package?',
+        answer:
+          'It depends on the trip, but most cover food, stays, and a local guide. A few include camping tents and transport from the nearest town.',
+      },
+      {
+        question: 'Can a beginner join a trek?',
+        answer:
+          'Of course. Not all treks are hard. Many are short, slow, and meant for first-timers. The guide keeps an eye on everyone so nobody feels lost.',
+      },
+      {
+        question: 'Can kids or older parents come along?',
+        answer: "Yes. Some trails are made for families. They're short, safe, and have rest spots along the way.",
+      },
+      {
+        question: 'How big are the groups usually?',
+        answer: 'It changes. Small groups give a quiet time. Bigger groups feel more lively and fun, especially at night near the fire.',
+      },
+      {
+        question: 'Why go for a package instead of planning on my own?',
+        answer:
+          "With a package, you don't need to plan where to eat or sleep. Everything is ready - just walk, look around, and enjoy the journey.",
+      },
+    ],
+  },
+  vacations: {
+    pageHeading: 'Vacations Tour Packages for Every Escape',
+    pageTitle: 'Every holiday tells a story.',
+    pageContent:
+      'Every holiday tells a story. Sometimes it is about quiet mornings by the sea. Sometimes it is about walking through busy streets filled with history. Vacations tour packages help travelers shape those stories with ease. They bring together the main parts of a trip so the focus stays on the experience.',
+    title: 'Vacations Tour Packages for Every Escape',
+    searchTag: 'Vacations,India',
+    seo: {
+      metaTitle: 'Vacations Tour Packages | Best Budget and Luxury Vacation Deals',
+      metaDescription:
+        'Choose from a wide range of vacation tour packages. Enjoy affordable options or indulge in luxury vacation packages with comfort and unique experiences.',
+      metaKeywords:
+        'vacation packages, luxury vacation packages, best vacation packages, holiday packages, budget vacations, romantic getaways, family vacations, solo travel, adventure holidays',
+    },
+    description:
+      'Every holiday tells a story. Sometimes it is about quiet mornings by the sea. Sometimes it is about walking through busy streets filled with history. Vacations tour packages help travelers shape those stories with ease. They bring together the main parts of a trip so the focus stays on the experience.',
+    sections: [
+      {
+        heading: { h2: 'Best Vacation Packages for Real Travel Needs' },
+        paragraph: {
+          p: 'The best vacation packages are not about one fixed idea. They are about matching the mood of the traveler. A family may prefer a safe resort with activities for children. A couple may want a cabin in the hills far away from the crowd. Some travelers only want a weekend in a city filled with art and food. Others may take weeks to discover a country step by step. Good packages work because they provide balance. You see new places yet still have time to breathe. The plan removes stress while leaving space for discovery.',
+        },
+      },
+      {
+        heading: { h2: 'What Brings Value to a Package?' },
+        paragraph: {
+          p: 'A holiday plan should never feel rush. A clear schedule with the right mix of travel and rest makes all the difference. The accommodation should be fit the location and the style of the trip. Transport should feel simple, not confusing. The experiences should reflect the character of the place, whether it is food, music, or outdoor life. When these pieces come together, the journey feels natural.',
+        },
+      },
+      {
+        heading: { h2: 'Luxury Vacation Packages and What They Offer' },
+        paragraph: {
+          p: 'Luxury vacation packages focus on comfort and detail. They are built for travelers who prefer privacy and refined experiences. This may include private transfers, boutique stays, spa sessions, or fine dining. It could also mean a private guide who takes you through local culture without the crowds. Luxury travel does not mean more places in less time. It often means fewer places but more depth. The focus is on ease and quality rather than speed. Every step of the trip feels carefully prepared.',
+        },
+      },
+      {
+        heading: { h2: 'Different Ways People Travel' },
+        paragraph: {
+          p: 'Vacations take many shapes. Some people seek calm while others seek movement. Packages reflect these styles in different ways.',
+        },
+        list: [
+          'A slow journey where mornings are free and afternoons are for gentle walks',
+          'An adventure break filled with hikes, water sports, or outdoor challenges',
+          'A cultural escape that includes monuments, markets, and traditional events',
+          'A wellness retreat designed around rest, yoga, and balanced food',
+          'Each style offers its own way of looking at a destination',
+        ],
+      },
+      {
+        heading: { h2: 'Making the Right Choice' },
+        paragraph: {
+          p: 'Choosing among best holidays tour packages is about knowing feels right for you. Ask yourself - how much time you have and how you want to spend it. Short trips often work best with highlights. Longer trips can allow deeper exploration. Some travelers want comfort at every step. Others prefer simple stays with more focus on the road. The best vacation packages are the ones that respect your pace. The luxury vacation packages add a layer of care for those to enjoy finer detail.',
+        },
+      },
+      {
+        heading: { h2: 'Final Thought' },
+        paragraph: {
+          p: 'A holiday is not only about reaching a place. It is about how you feel during the journey. Packages give structure so you can relax and notice more around you. If It is a calm retreat or a luxury escape, a well-chosen vacation becomes part of your life story.',
+        },
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is a vacation tour package, anyway?',
+        answer:
+          "It's an already planned vacation package that combines hotels, local transport, and activities under one price. The concept is to simplify holidays.",
+      },
+      {
+        question: 'How do I know relevant vacation package is right for me?',
+        answer:
+          'At first, think about the kind of break you want. Some people look for peace and quiet, others want adventure or culture. Once you decide -- you can easily find spot and travel package.',
+      },
+      {
+        question: 'Is a vacation package more economical for booking independently?',
+        answer:
+          'Yes. we provides negotiate with hotels and local operators, so the combined price often works out lower than booking flights, rooms, and tours separately.',
+      },
+      {
+        question: 'What do vacation packages usually include?',
+        answer:
+          'Most packages cover accommodation and transport between places. Also add guided tours, day trips, or meals. Each package is different.',
+      },
+      {
+        question: 'Are vacation packages suitable for families with children?',
+        answer: 'Yes, our vacation packages suitable for families - offer pools and play areas with activities to entertain children.',
+      },
+    ],
+  },
   familyHoliday: {
     pageHeading: 'Family Holiday Tour Packages',
     pageTitle: 'Family holidays are filled with laughter and shared meals.',
@@ -333,264 +596,6 @@ export const destinationContent = {
         question: 'Do you have budget tour packages from Mumbai?',
         answer:
           'Yes. Our Mumbai budget tour packages are best for budget-conscious travelers who do not wish to spend a lot of money. You will still get to stay comfortably, have transport at all times, and also a well-organized itinerary.',
-      },
-    ],
-  },
-  tourTravel: {
-    pageHeading: 'Tour Travel Packages for Your Dream Holidays',
-    pageTitle: 'Finding the right tour travel packages to makes every journey smooth and memorable.',
-    pageContent:
-      'Finding the right tour travel packages to makes every journey smooth and memorable. A good travel plan saves time and gives you the freedom to enjoy without stress. Our platform is built for travelers who want reliable services with best experiences. From short weekend trips to long international tours - we bring everything in one place.',
-    title: 'Tour Travel Packages for Your Dream Holidays',
-    searchTag: 'Tour Travel,India',
-    seo: {
-      metaTitle: 'Best Travel Tour Packages for Holidays | Travmigoz',
-      metaDescription:
-        'Enjoy stress-free holidays with Travmigoz. Get the best domestic and international travel tour packages designed for comfort, adventure, and great value.',
-      metaKeywords:
-        'tour travel packages, best travel packages, luxury tour packages, budget tour packages, international tours, domestic tours, customized packages, group travel, honeymoon packages',
-    },
-    description:
-      'Finding the right tour travel packages to makes every journey smooth and memorable. A good travel plan saves time and gives you the freedom to enjoy without stress. Our platform is built for travelers who want reliable services with best experiences. From short weekend trips to long international tours - we bring everything in one place.',
-    sections: [
-      {
-        heading: { h2: 'Best Travel Tour Packages for Every Traveler' },
-        paragraph: {
-          p: 'We design the best travel tour packages to fit all types of travelers. Some want luxury stays while others want affordable trips. Families look for comfort and safety. Couples want romance and privacy. Solo travelers want freedom and flexibility. We make sure every package is planned with care. Each plan covers top attractions, guided tours, and local activities. Hotels are handpicked. Transfers are smooth. You only need to pack and travel.',
-        },
-      },
-      {
-        heading: { h2: 'Why Choose the Best Website for Tour Packages' },
-        paragraph: {
-          p: 'Travelers often ask which is the best website for tour packages. The answer is simple. A great travel website should give trust, variety, and value. We provide all three.',
-        },
-        list: [
-          'Expert planning from start to end',
-          'Packages for both India and international holidays',
-          'Transparent pricing with no hidden costs',
-          'Authentic experiences beyond common sightseeing',
-          '24x7 support for complete peace of mind',
-        ],
-      },
-      {
-        heading: { h2: 'Explore All Types of Tour Travel Packages' },
-        paragraph: {
-          p: 'We believe travel is not one-size-fits-all. That is why we create multiple categories of tour travel packages to match your style.',
-        },
-        list: [
-          'Luxury Tour Packages -- Designed for comfort with five-star stays and premium services',
-          'Budget Tour Packages -- Affordable and well planned to give you the best within your budget',
-          'International Tour Packages -- For Europe, Asia, America, and more with guided plans',
-          "Domestic Tour Packages to experience India's culture, history, and nature in a safe way",
-          'Customized tour packages specially tailored to on-base of activities and locations of your choice',
-          'Group Travel Packages are perfect for friends, students, or office trips',
-          'Honeymoon Packages for Romantic escapes to beaches, mountains, and luxury resorts',
-        ],
-      },
-      {
-        heading: { h2: 'How We Create the Best Travel Experiences' },
-        paragraph: {
-          p: 'We focus on more than just bookings. Our team adds small touches that make a big difference. Every destination is checked for quality. Local guides are selected for their knowledge. Hotels are chosen for comfort and safety. Transport is arranged for ease of travel. This attention to detail makes us the best website for tour packages trusted by travel lovers.',
-        },
-      },
-      {
-        heading: { h2: 'Start Your Next Journey Today' },
-        paragraph: {
-          p: 'Your dream vacation is just a step away. With our wide range of tour travel packages you can travel anywhere with confidence. Choose from luxury, budget, international, or domestic tours. Book easily with the best travel tour packages created by experts. Travel is not just about visiting places. It is about creating moments that bring joy. Book now with the best website for tour packages and make your journey unforgettable.',
-        },
-      },
-    ],
-    faqs: [
-      {
-        question: 'How do I select the appropriate tour travel package?',
-        answer:
-          'You need to determine your budget and destination to arrange your tour travel packages cover hotels, transfers, and sightseeing. The ideal package must have comfort, value, and special experiences.',
-      },
-      {
-        question: 'Can your travel tour packages be customized?',
-        answer:
-          'Yes. We offer customized tour packages wherein you may choose destinations, hotels, activities, and trip duration to suit your choices.',
-      },
-      {
-        question: 'What are the best travel tour packages?',
-        answer:
-          'All packages feature hotel accommodations, airport transfers, guided sightseeing, and local experiences. Others feature meals, flights, or private transportation based on the package.',
-      },
-      {
-        question: 'Do you provide domestic services and international tour packages?',
-        answer:
-          "Yes. We have them both. From exploring India's heritage and culture to destinations around the world, we have full-travel solutions for all types of travelers.",
-      },
-      {
-        question: 'Do you provide luxury travel tour packages?',
-        answer:
-          'Yes. We provide high-end luxury tour packages with five-star accommodations, private transfers, and private activities for travelers seeking a luxury experience.',
-      },
-    ],
-  },
-  trekkingTrips: {
-    pageHeading: 'Trekking Trips Packages',
-    pageTitle: 'A trek is not only a walk through hills.',
-    pageContent:
-      'A trek is not only a walk through hills. It is the sound of a stream beside you. It is the silence of pine forests. It is the surprise of finding a village hidden in the valley. Trekking trips give space to slow down and breathe in a way city life never allows.',
-    title: 'Trekking Trips Packages',
-    searchTag: 'Trekking,India',
-    seo: {
-      metaTitle: 'Adventure Trekking Trips Packages | Travmigoz',
-      metaDescription:
-        'Find trekking trips designed for families, beginners, and experts. Packages include guides, meals, and safe accommodation so you can enjoy every step.',
-      metaKeywords:
-        'trekking packages, adventure trekking, mountain treks, hiking trips, trekking guides, camping packages, high altitude treks, family trekking, cultural treks',
-    },
-    description:
-      'A trek is not only a walk through hills. It is the sound of a stream beside you. It is the silence of pine forests. It is the surprise of finding a village hidden in the valley. Trekking trips give space to slow down and breathe in a way city life never allows.',
-    sections: [
-      {
-        heading: { h2: 'Why Trekking Packages Work Well?' },
-        paragraph: {
-          p: 'Planning a trek on your own to feel overwhelming. Where to stay. Which route is safe? How much time the trail will take. A trekking package takes care of these details so the focus stays on the journey. Routes are marked. Local guides walk with you. Camps or lodges are ready when you arrive tired at the end of the day.',
-        },
-      },
-      {
-        heading: { h2: 'Different Types of Trekking Trips' },
-        list: [
-          'Short Treks -- Ideal for weekends and first-time trekkers',
-          'Moderate Treks -- Longer routes with a good mix of adventure and rest',
-          'High Mountain Treks -- Demanding climbs that reward with snow peaks and alpine lakes',
-          'Cultural Treks -- Paths through villages where food, traditions, and local stories add to the journey',
-          'Comfort Treks -- Walks designed with private tents, warm meals, and cozy stays',
-        ],
-      },
-      {
-        heading: { h2: 'What a Trek Feels Like' },
-        paragraph: {
-          p: 'Every trail holds its own surprises. Sometimes it is mist lifting slowly from the hills. It is the sound of boots on a wooden bridge across a rushing stream. The nights often end around a fire where stories flow under a sky crowded with stars. Trekking packages usually cover guides, meals, and safety support, so the walk feels safe and the mind stays light.',
-        },
-      },
-      {
-        heading: { h2: 'Picking the Right Trek' },
-        paragraph: {
-          p: 'The choice depends on mood and fitness. Families often look for gentle slopes with space for children to play. Adventure seekers want high passes and rocky climbs. Some choose a trek that mixes nature with culture. A good package can be adjusted so the pace suits the group.',
-        },
-      },
-      {
-        heading: { h2: 'Why Treks Stay in Memory' },
-        paragraph: {
-          p: 'Reaching the summit feels good but it is never the only highlight. Small moments often stay longer. A rainbow after rain. A smile from a villager offering tea. The bond formed with fellow trekkers while walking together. These are the pieces that make trekking trips unforgettable.',
-        },
-      },
-    ],
-    faqs: [
-      {
-        question: 'What comes in a trekking package?',
-        answer:
-          'It depends on the trip, but most cover food, stays, and a local guide. A few include camping tents and transport from the nearest town.',
-      },
-      {
-        question: 'Can a beginner join a trek?',
-        answer:
-          'Of course. Not all treks are hard. Many are short, slow, and meant for first-timers. The guide keeps an eye on everyone so nobody feels lost.',
-      },
-      {
-        question: 'Can kids or older parents come along?',
-        answer: "Yes. Some trails are made for families. They're short, safe, and have rest spots along the way.",
-      },
-      {
-        question: 'How big are the groups usually?',
-        answer: 'It changes. Small groups give a quiet time. Bigger groups feel more lively and fun, especially at night near the fire.',
-      },
-      {
-        question: 'Why go for a package instead of planning on my own?',
-        answer:
-          "With a package, you don't need to plan where to eat or sleep. Everything is ready - just walk, look around, and enjoy the journey.",
-      },
-    ],
-  },
-  vacations: {
-    pageHeading: 'Vacations Tour Packages for Every Escape',
-    pageTitle: 'Every holiday tells a story.',
-    pageContent:
-      'Every holiday tells a story. Sometimes it is about quiet mornings by the sea. Sometimes it is about walking through busy streets filled with history. Vacations tour packages help travelers shape those stories with ease. They bring together the main parts of a trip so the focus stays on the experience.',
-    title: 'Vacations Tour Packages for Every Escape',
-    searchTag: 'Vacations,India',
-    seo: {
-      metaTitle: 'Vacations Tour Packages | Best Budget and Luxury Vacation Deals',
-      metaDescription:
-        'Choose from a wide range of vacation tour packages. Enjoy affordable options or indulge in luxury vacation packages with comfort and unique experiences.',
-      metaKeywords:
-        'vacation packages, luxury vacation packages, best vacation packages, holiday packages, budget vacations, romantic getaways, family vacations, solo travel, adventure holidays',
-    },
-    description:
-      'Every holiday tells a story. Sometimes it is about quiet mornings by the sea. Sometimes it is about walking through busy streets filled with history. Vacations tour packages help travelers shape those stories with ease. They bring together the main parts of a trip so the focus stays on the experience.',
-    sections: [
-      {
-        heading: { h2: 'Best Vacation Packages for Real Travel Needs' },
-        paragraph: {
-          p: 'The best vacation packages are not about one fixed idea. They are about matching the mood of the traveler. A family may prefer a safe resort with activities for children. A couple may want a cabin in the hills far away from the crowd. Some travelers only want a weekend in a city filled with art and food. Others may take weeks to discover a country step by step. Good packages work because they provide balance. You see new places yet still have time to breathe. The plan removes stress while leaving space for discovery.',
-        },
-      },
-      {
-        heading: { h2: 'What Brings Value to a Package?' },
-        paragraph: {
-          p: 'A holiday plan should never feel rush. A clear schedule with the right mix of travel and rest makes all the difference. The accommodation should be fit the location and the style of the trip. Transport should feel simple, not confusing. The experiences should reflect the character of the place, whether it is food, music, or outdoor life. When these pieces come together, the journey feels natural.',
-        },
-      },
-      {
-        heading: { h2: 'Luxury Vacation Packages and What They Offer' },
-        paragraph: {
-          p: 'Luxury vacation packages focus on comfort and detail. They are built for travelers who prefer privacy and refined experiences. This may include private transfers, boutique stays, spa sessions, or fine dining. It could also mean a private guide who takes you through local culture without the crowds. Luxury travel does not mean more places in less time. It often means fewer places but more depth. The focus is on ease and quality rather than speed. Every step of the trip feels carefully prepared.',
-        },
-      },
-      {
-        heading: { h2: 'Different Ways People Travel' },
-        paragraph: {
-          p: 'Vacations take many shapes. Some people seek calm while others seek movement. Packages reflect these styles in different ways.',
-        },
-        list: [
-          'A slow journey where mornings are free and afternoons are for gentle walks',
-          'An adventure break filled with hikes, water sports, or outdoor challenges',
-          'A cultural escape that includes monuments, markets, and traditional events',
-          'A wellness retreat designed around rest, yoga, and balanced food',
-          'Each style offers its own way of looking at a destination',
-        ],
-      },
-      {
-        heading: { h2: 'Making the Right Choice' },
-        paragraph: {
-          p: 'Choosing among best holidays tour packages is about knowing feels right for you. Ask yourself - how much time you have and how you want to spend it. Short trips often work best with highlights. Longer trips can allow deeper exploration. Some travelers want comfort at every step. Others prefer simple stays with more focus on the road. The best vacation packages are the ones that respect your pace. The luxury vacation packages add a layer of care for those to enjoy finer detail.',
-        },
-      },
-      {
-        heading: { h2: 'Final Thought' },
-        paragraph: {
-          p: 'A holiday is not only about reaching a place. It is about how you feel during the journey. Packages give structure so you can relax and notice more around you. If It is a calm retreat or a luxury escape, a well-chosen vacation becomes part of your life story.',
-        },
-      },
-    ],
-    faqs: [
-      {
-        question: 'What is a vacation tour package, anyway?',
-        answer:
-          "It's an already planned vacation package that combines hotels, local transport, and activities under one price. The concept is to simplify holidays.",
-      },
-      {
-        question: 'How do I know relevant vacation package is right for me?',
-        answer:
-          'At first, think about the kind of break you want. Some people look for peace and quiet, others want adventure or culture. Once you decide -- you can easily find spot and travel package.',
-      },
-      {
-        question: 'Is a vacation package more economical for booking independently?',
-        answer:
-          'Yes. we provides negotiate with hotels and local operators, so the combined price often works out lower than booking flights, rooms, and tours separately.',
-      },
-      {
-        question: 'What do vacation packages usually include?',
-        answer:
-          'Most packages cover accommodation and transport between places. Also add guided tours, day trips, or meals. Each package is different.',
-      },
-      {
-        question: 'Are vacation packages suitable for families with children?',
-        answer: 'Yes, our vacation packages suitable for families - offer pools and play areas with activities to entertain children.',
       },
     ],
   },
@@ -950,6 +955,10 @@ export const destinationContent = {
 }
 
 export const destinationList = [
+  'tourTravel',
+  'trekkingTrips',
+  'vacations',
+  'familyHoliday',
   'delhi',
   'chandigarh',
   'shimla',

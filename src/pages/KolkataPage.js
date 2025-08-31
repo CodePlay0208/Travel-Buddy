@@ -1,18 +1,15 @@
-import React from 'react';
-import DestinationTemplate from '../components/DestinationTemplate';
-import { destinationContent } from '../data/destinationContent';
-import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
+import React from 'react'
+import DestinationTemplate from '../components/DestinationTemplate'
+import { destinationContent } from '../data/destinationContent'
+import Navbar from '../components/Navbar/Navbar'
+import Footer from '../components/Footer/Footer'
 
 const KolkataPage = () => (
-    <>
-        <Navbar />
-        <DestinationTemplate
-            destination={destinationContent.kolkata}
-            destinationName="kolkata"
-        />
-        <Footer />
-    </>
-);
+  <>
+    <Navbar isImageNavbar={true} />
+    <DestinationTemplate destination={destinationContent.kolkata} destinationName="kolkata" />
+    <Footer />
+  </>
+)
 
-export default KolkataPage;
+export default KolkataPage
