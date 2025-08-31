@@ -86,7 +86,7 @@ const AccordionHeader = styled.div`
     align-items: center;
   }
 `
-const QuestionText = styled.div`
+const QuestionText = styled.h3`
   flex: 1;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 500;
@@ -94,6 +94,9 @@ const QuestionText = styled.div`
   line-height: 150%;
   text-align: justify;
   color: #000000;
+  margin: 0;
+
+  padding: 0;
 
   @media (max-width: 440px) {
     font-family: Montserrat;
@@ -129,7 +132,9 @@ const AccordionContent = styled.div`
   overflow: hidden;
   transition: max-height 0.4s ease;
 `
-const AccordionAnswer = styled.div`
+const AccordionAnswer = styled.h4`
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

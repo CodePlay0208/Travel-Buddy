@@ -77,7 +77,9 @@ const IconWrapper = styled.div`
     height: 100%;
   }
 `
-const ListItemContent = styled.div`
+const ListItemContent = styled.h3`
+  margin: 0;
+  padding: 0;
   flex: 1;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 500;
@@ -230,8 +232,8 @@ const renderContent = (content, isHeading = false) => {
   if (typeof content === 'string') {
     return isHeading ? <H2Item>{content}</H2Item> : <PItem>{content}</PItem>
   }
-  const tag = Object?.keys(content??{})?.[0]
-  const text = content?.[tag]??''
+  const tag = Object?.keys(content ?? {})?.[0]
+  const text = content?.[tag] ?? ''
   switch (tag) {
     case 'h1':
       return <H1Item>{text}</H1Item>
