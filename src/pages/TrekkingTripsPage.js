@@ -7,7 +7,7 @@ import Footer from '../components/Footer/Footer'
 const TrekkingTripsPage = () => (
   <>
     <Navbar />
-    <DestinationTemplate destination={destinationContent.trekkingTrips} destinationName="trekking-trips" />
+    <DestinationTemplate destination={destinationContent.trekkingTrips} destinationName="trekking-trips" isBlog={true}/>
     <Footer />
   </>
 )

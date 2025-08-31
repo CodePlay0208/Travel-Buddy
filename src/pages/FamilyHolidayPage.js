@@ -7,7 +7,7 @@ import Footer from '../components/Footer/Footer'
 const FamilyHolidayPage = () => (
   <>
     <Navbar />
-    <DestinationTemplate destination={destinationContent.familyHoliday} destinationName="family-holiday" />
+    <DestinationTemplate destination={destinationContent.familyHoliday} destinationName="family-holiday" isBlog={true} />
     <Footer />
   </>
 )

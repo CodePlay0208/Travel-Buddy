@@ -19,10 +19,13 @@ const mapStateToProps = (state) => ({
   startLocationTrips: state.tripReducer.startLocationTrips,
 });
 
-const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination = {}, getTripsByStartLocation }) => {
+const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination = {}, getTripsByStartLocation,isBlog }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if(isBlog){
+      return;
+    }
     if (!destination || !destination.searchTag) {
       navigate('/');
       return;
