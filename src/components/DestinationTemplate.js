@@ -62,21 +62,6 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination 
 
         <HeaderSection>
           <InfoWithImageSection text={content} />
-
-          {sections.map((section, index) => {
-            if (section.backgroundImage) {
-              return <BackgroundSectionBlock key={index} section={section} />
-            } else if (index === 0) {
-              return (
-                <>
-                  <SectionBlock key={index} section={section} />
-                  <BackgroundSection key={index} section={section} />
-                </>
-              )
-            }
-            return <SectionBlock key={index} section={section} />
-          })}
-
           <TripSection>
             {/* Trip listings */}
             {(!trips || !trips.length) && (!startLocationTrips || !startLocationTrips.length) ? (
@@ -110,6 +95,21 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination 
               </>
             )}
           </TripSection>
+
+          {sections.map((section, index) => {
+            if (section.backgroundImage) {
+              return <BackgroundSectionBlock key={index} section={section} />
+            } else if (index === 0) {
+              return (
+                <>
+                  <SectionBlock key={index} section={section} />
+                  <BackgroundSection key={index} section={section} />
+                </>
+              )
+            }
+            return <SectionBlock key={index} section={section} />
+          })}
+
           <FAQAccordion faqs={faqs} />
         </HeaderSection>
       </PageContainer>
