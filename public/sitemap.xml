@@ -27,6 +27,63 @@
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
+
+  <!-- Verify OTP Page -->
+  <url>
+    <loc>https://www.travmigoz.com/verify-otp</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Sign Up Page -->
+  <url>
+    <loc>https://www.travmigoz.com/signup</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Login Page -->
+  <url>
+    <loc>https://www.travmigoz.com/login</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Setup Profile Page -->
+  <url>
+    <loc>https://www.travmigoz.com/setup-profile</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- About Us Page -->
+  <url>
+    <loc>https://www.travmigoz.com/about</loc>
+    <priority>0.4</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <!-- Contact Us Page -->
+  <url>
+    <loc>https://www.travmigoz.com/contact</loc>
+    <priority>0.4</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <!-- Terms and Conditions Page -->
+  <url>
+    <loc>https://www.travmigoz.com/terms</loc>
+    <priority>0.3</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <!-- Privacy Policy Page -->
+  <url>
+    <loc>https://www.travmigoz.com/privacy</loc>
+    <priority>0.3</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <!-- Destination Pages -->
   <url>
     <loc>https://www.travmigoz.com/ahmedabad</loc>
     <priority>0.7</priority>
@@ -63,7 +120,7 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.travmigoz.com/family-holiday</loc>
+    <loc>https://www.travmigoz.com/family-holiday-packages</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -113,12 +170,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.travmigoz.com/tour-travel</loc>
+    <loc>https://www.travmigoz.com/tour-travel-packages</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.travmigoz.com/trekking-trips</loc>
+    <loc>https://www.travmigoz.com/trekking-trips-packages</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -128,7 +185,7 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.travmigoz.com/vacations</loc>
+    <loc>https://www.travmigoz.com/vacations-tour-packages</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
