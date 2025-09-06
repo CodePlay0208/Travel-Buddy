@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import FilterChipBar from './FilterChipBar';
-import FilterModal from './FilterModal';
-import SortDropdown from './SortDropdown';
-import { connect } from 'react-redux';
-import { setFilters, setSortBy } from '../actions/filters.action';
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import FilterChipBar from './FilterChipBar'
+import FilterModal from './FilterModal'
+import SortDropdown from './SortDropdown'
+import { connect } from 'react-redux'
+import { setFilters, setSortBy } from '../actions/filters.action'
 
 const FilterContainer = styled.div`
   width: 100%;
@@ -13,7 +13,7 @@ const FilterContainer = styled.div`
   /* position: sticky; */
   top: 0;
   z-index: 5;
-`;
+`
 
 const FilterHeader = styled.div`
   display: flex;
@@ -21,40 +21,33 @@ const FilterHeader = styled.div`
   justify-content: center;
   padding: 16px;
   gap: 12px;
-`;
+`
 
 const TravmigozFilter = ({ filters, sortBy, setFilters, setSortBy }) => {
-    const [currentFilters, setCurrentFilters] = useState(filters);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    return (
-        <FilterContainer>
-            <FilterHeader>
-                <FilterChipBar
-                    filters={filters}
-                    onFilterChange={setFilters}
-                    onOpenModal={() => setIsModalOpen(true)}
-                />
-                <SortDropdown
-                    value={sortBy}
-                    onChange={setSortBy}
-                />
-            </FilterHeader>
-            <FilterModal
-                isOpen={isModalOpen}
-                onClose={() => {
-                    setIsModalOpen(false);
-                    setFilters(currentFilters);
-                }}
-                filters={currentFilters}
-                onFiltersChange={setCurrentFilters}
-            />
-        </FilterContainer>
-    );
-};
+  const [currentFilters, setCurrentFilters] = useState(filters)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  return (
+    <FilterContainer>
+      <FilterHeader>
+        <FilterChipBar filters={filters} onFilterChange={setFilters} onOpenModal={() => setIsModalOpen(true)} />
+        <SortDropdown value={sortBy} onChange={setSortBy} />
+      </FilterHeader>
+      <FilterModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false)
+          setFilters(currentFilters)
+        }}
+        filters={currentFilters}
+        onFiltersChange={setCurrentFilters}
+      />
+    </FilterContainer>
+  )
+}
 
 const mapStateToProps = (state) => ({
-    filters: state.filtersReducer.filters,
-    sortBy: state.filtersReducer.sortBy,
-});
+  filters: state.filtersReducer.filters,
+  sortBy: state.filtersReducer.sortBy,
+})
 
-export default connect(mapStateToProps, { setFilters, setSortBy })(TravmigozFilter);
+export default connect(mapStateToProps, { setFilters, setSortBy })(TravmigozFilter)

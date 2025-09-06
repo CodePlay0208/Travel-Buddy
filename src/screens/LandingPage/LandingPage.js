@@ -15,6 +15,7 @@ import { Helmet } from 'react-helmet-async'
 import TravmigozFilter from '../../components/TravmigozFilter'
 import Banner from './Banner'
 import { setFilters } from '../../actions/filters.action'
+import QuesAns from '../../components/QuesAns'
 
 const LandingPage = (props) => {
   const { setSearchForm, loadUser, setFilters } = props
@@ -22,7 +23,7 @@ const LandingPage = (props) => {
   useEffect(() => {
     setFilters({
       persona: '',
-      participants: {  },
+      participants: {},
       duration: '',
       budget: { min: 0, max: 100000 },
       categories: [],
@@ -43,13 +44,21 @@ const LandingPage = (props) => {
         />
       </Helmet>
       <Header isImageNavbar={true} isLandingPage={true} key="LandingPage" />
-       {/* <TravmigozFilter />  */}
+
+      {/* <TravmigozFilter />  */}
       <Banner />
 
       <SlidingSection />
       <HeroSection />
       <PopularSection />
       <TopDestination />
+      {/* <QuesAns
+        heading="Frequently Asked Questions"
+        questions={[
+          { question: 'What is Travmigoz?', answer: 'Travmigoz is a travel platform.' },
+          { question: 'How to book?', answer: 'Visit our website and follow the instructions.' },
+        ]}
+      /> */}
       <Newsletter />
       <Footer />
     </div>

@@ -13,6 +13,8 @@ import TemplateHeader from './TemplateHeader'
 import { Header } from 'antd/es/layout/layout'
 import BackgroundSection from './SeoPagesTemplate/BackgroundSection'
 import InfoWithImageSection from './SeoPagesTemplate/InfoWithImageSection'
+import { TripList as GridList } from '../screens/SearchResultsPage/SearchResultsPage.styled'
+import TripCard from './TripCard/TripCard'
 
 const mapStateToProps = (state) => ({
   trips: state.tripReducer.trips,
@@ -25,7 +27,7 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination 
   useEffect(() => {
     if (isBlog) {
       getTrips({ destination: '', startDate: '' }, 0, 50, false, true)
-      return 
+      return
     }
     if (!destination || !destination.searchTag) {
       navigate('/')
@@ -69,7 +71,7 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination 
                 padding={'0'}
                 justify={'center'}
                 title={`Available Trips to ${destination.searchTag}`}
-                trips={trips}
+                trips={trips?.slice(0, 10)}
                 editEnable={false}
               />
             ) : (
@@ -79,7 +81,7 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination 
                     padding={'0'}
                     justify={'center'}
                     title={`Available Trips to ${destination.searchTag}`}
-                    trips={trips}
+                    trips={trips?.slice(0, 20)}
                     editEnable={false}
                   />
                 )}
@@ -88,7 +90,7 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination 
                     padding={'0'}
                     justify={'center'}
                     title={`Available Trips from ${destination.searchTag}`}
-                    trips={startLocationTrips}
+                    trips={startLocationTrips?.slice(0, 20)}
                     editEnable={false}
                   />
                 )}
@@ -109,8 +111,42 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination 
             }
             return <SectionBlock key={index} section={section} />
           })}
+          <GridList>{trips && trips?.slice(10, 20)?.map((trip) => <TripCard key={trip?.tripId} trip={trip} />)}</GridList>
 
           <FAQAccordion faqs={faqs} />
+           <TripSection>
+            {/* Trip listings */}
+            {(!trips || !trips.length) && (!startLocationTrips || !startLocationTrips.length) ? (
+              <TripList
+                padding={'0'}
+                justify={'center'}
+                title={`Other Related Trips`}
+                trips={trips?.slice(20)}
+                editEnable={false}
+              />
+            ) : (
+              <>
+                {trips?.length > 0 && (
+                  <TripList
+                    padding={'0'}
+                    justify={'center'}
+                    title={`Other Related Trips`}
+                    trips={trips?.slice(20)}
+                    editEnable={false}
+                  />
+                )}
+                {startLocationTrips?.length > 0 && (
+                  <TripList
+                    padding={'0'}
+                    justify={'center'}
+                    title={`Other Related Trips`}
+                    trips={startLocationTrips?.slice(20)}
+                    editEnable={false}
+                  />
+                )}
+              </>
+            )}
+          </TripSection>
         </HeaderSection>
       </PageContainer>
     </>
