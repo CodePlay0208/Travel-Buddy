@@ -19,7 +19,7 @@ const FAQHeading = styled.h1`
   display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
-  font-size: 3.25rem;
+  font-size: 2.25rem;
   line-height: 120%;
   color: #252525;
   margin: 0;
@@ -28,7 +28,7 @@ const FAQHeading = styled.h1`
     font-family: Montserrat;
     font-weight: 700;
     font-style: Bold;
-    font-size: 32px;
+    font-size: 24px;
     leading-trim: NONE;
     line-height: 120%;
     letter-spacing: 0%;
@@ -68,7 +68,7 @@ const AccordionHeader = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  padding: 40px;
+  padding: 30px;
   gap: 10px;
   width: 100%;
   background: #ffffff;
@@ -81,7 +81,7 @@ const AccordionHeader = styled.div`
     transition: transform 0.2s ease;
   }
   @media (max-width: 440px) {
-    padding: 20px;
+    padding: 15px;
     justify-content: center;
     align-items: center;
   }
@@ -90,7 +90,7 @@ const QuestionText = styled.h3`
   flex: 1;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 500;
-  font-size: 32px;
+  font-size: 1.5rem;
   line-height: 150%;
   text-align: justify;
   color: #000000;
@@ -139,14 +139,14 @@ const AccordionAnswer = styled.h4`
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 40px;
+  padding: 30px;
   gap: 10px;
   width: 100%;
   border-radius: 0px 0px 24px 24px;
   box-sizing: border-box;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 500;
-  font-size: 32px;
+  font-size: 1.5rem;
   line-height: 150%;
   text-align: justify;
   color: #ffffff;
@@ -159,7 +159,7 @@ const AccordionAnswer = styled.h4`
     leading-trim: NONE;
     line-height: 150%;
     letter-spacing: 0%;
-    padding: 20px;
+    padding: 15px;
   }
 `
 

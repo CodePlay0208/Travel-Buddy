@@ -61,7 +61,7 @@ const ListItem = styled.li`
 `
 const IconWrapper = styled.div`
   width: 40px;
-  height: 48px;
+  height: 33px;
   flex: none;
   display: flex;
   align-items: center;
@@ -83,7 +83,7 @@ const ListItemContent = styled.h3`
   flex: 1;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 500;
-  font-size: 1.85rem;
+  font-size: 1.5rem;
   line-height: 150%;
   text-align: justify;
   color: #000000;
@@ -106,7 +106,7 @@ const H1Item = styled.h1`
   display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
-  font-size: 3.25rem;
+  font-size: 2.25rem;
   line-height: 120%;
   color: #252525;
   margin: 0;
@@ -127,7 +127,7 @@ const H2Item = styled.h2`
   display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
-  font-size: 3.25rem;
+  font-size: 2.25rem;
   line-height: 120%;
   color: #252525;
   margin: 0;
@@ -147,7 +147,7 @@ const H3Item = styled.h3`
   display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
-  font-size: 3.25rem;
+  font-size: 2.25rem;
   line-height: 120%;
   color: #252525;
   margin: 0;
@@ -167,7 +167,7 @@ const H4Item = styled.h4`
   display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
-  font-size: 3.25rem;
+  font-size: 2.25rem;
   line-height: 120%;
   color: #252525;
   margin: 0;
@@ -187,7 +187,7 @@ const PItem = styled.p`
   display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 400;
-  font-size: 1.85rem;
+  font-size: 1.5rem;
   line-height: 150%;
   text-align: justify;
   color: #000000;

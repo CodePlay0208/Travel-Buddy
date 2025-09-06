@@ -47,7 +47,7 @@ export const QuesList = styled.ul`
 
 export const IconWrapper = styled.div`
   width: 40px;
-  height: 48px;
+  height: 33px;
   flex: none;
   display: flex;
   align-items: center;
@@ -82,7 +82,7 @@ export const Question = styled.h3`
   flex: 1 1 0%;
   font-family: Montserrat, Arial, sans-serif;
   font-weight: 700;
-  font-size: 1.85rem;
+  font-size: 1.5rem;
   line-height: 150%;
   text-align: justify;
   color: rgb(0, 0, 0);
@@ -104,7 +104,7 @@ export const Answer = styled.p`
   display: flex;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 400;
-  font-size: 1.85rem;
+  font-size: 1.5rem;
   line-height: 150%;
   text-align: justify;
   color: #000000;

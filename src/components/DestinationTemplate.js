@@ -70,7 +70,7 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination 
               <TripList
                 padding={'0'}
                 justify={'center'}
-                title={`Available Trips to ${destination.searchTag}`}
+                title={``}
                 trips={trips?.slice(0, 10)}
                 editEnable={false}
               />
@@ -80,7 +80,7 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination 
                   <TripList
                     padding={'0'}
                     justify={'center'}
-                    title={`Available Trips to ${destination.searchTag}`}
+                    title={``}
                     trips={trips?.slice(0, 20)}
                     editEnable={false}
                   />
@@ -89,7 +89,7 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination 
                   <TripList
                     padding={'0'}
                     justify={'center'}
-                    title={`Available Trips from ${destination.searchTag}`}
+                    title={``}
                     trips={startLocationTrips?.slice(0, 20)}
                     editEnable={false}
                   />

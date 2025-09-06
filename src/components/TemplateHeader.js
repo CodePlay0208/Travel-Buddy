@@ -38,6 +38,7 @@ const SideFrame = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   width: 58%;
   height: 100%;
   justify-content: center;
@@ -60,7 +61,7 @@ const WaitingMessageBig = styled.h1`
   margin: 0;
   font-family: Montserrat;
   font-weight: 700;
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   line-height: 120%;
   letter-spacing: 0%;
   text-align: center;
