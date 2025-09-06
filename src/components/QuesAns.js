@@ -1,16 +1,22 @@
 import React from 'react'
-import { QuesAnsContainer, Heading, QuesList, QuesItem } from './QuesAns.styled'
+import { QuesAnsContainer, Heading, QuesList, QuesItem, Answer, Question, IconWrapper } from './QuesAns.styled'
+import CheckIcon from './SeoPagesTemplate/CheckIcon'
 
-const QuesAns = ({ heading, questions }) => {
+const QuesAns = ({ heading, data }) => {
   return (
     <QuesAnsContainer>
       <Heading>{heading}</Heading>
       <QuesList>
-        {questions.map((q, idx) => (
+        {data?.map((q, idx) => (
           <QuesItem key={idx}>
-            <strong>Q:</strong> {q.question}
-            <br />
-            <strong>A:</strong> {q.answer}
+            <Question>
+              <IconWrapper>
+                <CheckIcon />
+              </IconWrapper>{' '}
+              {q.ques}
+            </Question>
+
+            <Answer>{q.ans}</Answer>
           </QuesItem>
         ))}
       </QuesList>

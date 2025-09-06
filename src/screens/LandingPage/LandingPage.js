@@ -34,6 +34,40 @@ const LandingPage = (props) => {
     })
   }, [setSearchForm])
 
+  const data = [
+  {
+    "ques": "Fully Customizable Travel Packages",
+    "ans": "Your travel plan as per your liking, no compromise."
+  },
+  {
+    "ques": "Verified Publishers and Members",
+    "ans": "We do all the verification so you can travel without any worry."
+  },
+  {
+    "ques": "Safe and Secure Platform",
+    "ans": "Because choosing the right travel plan should always feel safe."
+  },
+  {
+    "ques": "Full Transparency, Nothing to Hide",
+    "ans": "No hidden charges, no guesswork, just clear details and honest reviews you can trust."
+  },
+  {
+    "ques": "Easy to Navigate and Book",
+    "ans": "The only confusion you should have is what to pack. Just scroll, select and GO!!"
+  },
+  {
+    "ques": "Build Your Community",
+    "ans": "For us, your travel experience is not just a transaction, it's a journey of a lifetime that we gift you with like-minded people."
+  },
+  {
+    "ques": "Unique Experiences",
+    "ans": "Most amazing trips are never planned on your own. With a travel community, you will get to experience different perspectives with travellers."
+  },
+  {
+    "ques": "Trips That Fit You",
+    "ans": "Every travelling experience is different, and so is every traveller. That’s why we bring in filters that let you choose by different styles, budget and interests."
+  }
+]
   return (
     <div className="LandingContainer">
       <Helmet>
@@ -52,13 +86,10 @@ const LandingPage = (props) => {
       <HeroSection />
       <PopularSection />
       <TopDestination />
-      {/* <QuesAns
-        heading="Frequently Asked Questions"
-        questions={[
-          { question: 'What is Travmigoz?', answer: 'Travmigoz is a travel platform.' },
-          { question: 'How to book?', answer: 'Visit our website and follow the instructions.' },
-        ]}
-      /> */}
+      <QuesAns
+        heading="Why travel agencies Travmigos for the packages?"
+        data={data}
+      />
       <Newsletter />
       <Footer />
     </div>

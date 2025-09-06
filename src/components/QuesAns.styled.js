@@ -1,40 +1,124 @@
 import styled from 'styled-components'
 
 export const QuesAnsContainer = styled.div`
-  background: linear-gradient(135deg, #ff6f61 0%, #ffb347 100%);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  padding: 2rem;
-  margin: 2rem auto;
-  max-width: 600px;
-  color: #fff;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  margin: 0 5%;
+  margin-bottom: 32px;
+  `
 
 export const Heading = styled.h2`
-  font-size: 2.2rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 8px #00000055;
+  display: flex;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 3.25rem;
+  line-height: 120%;
+  color: #252525;
+  margin: 0;
+  text-align: left;
+
+  @media (max-width: 440px) {
+    font-family: Montserrat;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 32px;
+    leading-trim: NONE;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
 `
 
 export const QuesList = styled.ul`
   list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+
+  @media (max-width: 440px) {
+    gap: 24px;
+  }
 `
 
-export const QuesItem = styled.li`
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  margin-bottom: 1.2rem;
-  padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  transition: transform 0.2s;
-  &:hover {
-    transform: scale(1.03) rotate(-1deg);
-    background: rgba(255, 255, 255, 0.18);
+export const IconWrapper = styled.div`
+  width: 40px;
+  height: 48px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 440px) {
+    width: 16px;
+    height: 22px;
   }
-  strong {
-    color: #ffe082;
-    text-shadow: 1px 1px 4px #00000033;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`
+export const QuesItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+
+  @media (max-width: 440px) {
+    gap: 6px;
+  }
+`
+export const Question = styled.h3`
+  margin: 0px;
+  padding: 0px;
+  flex: 1 1 0%;
+  font-family: Montserrat, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.85rem;
+  line-height: 150%;
+  text-align: justify;
+  color: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  @media (max-width: 440px) {
+    font-family: Montserrat;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 120%;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+`
+export const Answer = styled.p`
+  display: flex;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 1.85rem;
+  line-height: 150%;
+  text-align: justify;
+  color: #000000;
+  margin: 0;
+  width: 100%;
+
+  @media (max-width: 440px) {
+    font-family: Montserrat;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    leading-trim: NONE;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: justify;
   }
 `
