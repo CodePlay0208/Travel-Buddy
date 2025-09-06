@@ -83,7 +83,7 @@ const InfoWithImageSection = ({ text, imageUrl }) => {
     const checkTextHeight = () => {
       if (textRef.current) {
         const textHeight = textRef.current.scrollHeight
-        const imageHeight = 528
+        const imageHeight = 700
 
         // If text content is taller than image, expand to full width
         if (textHeight > imageHeight) {

@@ -25,7 +25,7 @@ const DestinationTemplate = ({ startLocationTrips, trips, getTrips, destination 
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (isBlog) {
+    if (true) {
       getTrips({ destination: '', startDate: '' }, 0, 50, false, true)
       return
     }
